@@ -2,7 +2,7 @@
 
 Code and source data accompanying the manuscript **“Kinetic-state identifiability from gravitational response”**.
 
-The paper studies a distinction between the instantaneous gravitational source and the information contained in dynamical response. For massive isotropic collisionless matter, different kinetic states can have the same particle current and stress-energy tensor. The ideal continuous causal transverse-traceless response kernel nevertheless identifies the radial kinetic distribution within the regular compact-support class. On every finite response interval the corresponding forward map is compact, so the inverse is necessarily unbounded even though it is unique. The isotropic massless limit is different: the response collapses to the energy-density moment and does not identify the radial profile.
+The paper studies a distinction between the instantaneous gravitational source and the information contained in dynamical response. For massive isotropic collisionless matter, different kinetic states can have the same particle current and stress-energy tensor. At fixed known particle mass and response normalization, the ideal continuous causal transverse-traceless response kernel at any fixed nonzero wave number nevertheless identifies the radial kinetic distribution in a weighted-decay class that includes compactly supported and exponentially decaying profiles. On every fixed finite momentum and response window the restricted forward map is compact, so the inverse is necessarily unbounded in its H^1 domain norm even though it is unique. The isotropic massless limit is different: the response collapses to the energy-density moment and does not identify the radial profile.
 
 The repository contains the deterministic calculations used in the manuscript:
 
@@ -40,7 +40,7 @@ The calculations are deterministic. Fixed random seeds are used only for the rep
 1. Two smooth isotropic massive Vlasov states can have the same initial particle current and stress-energy tensor while producing different exact FLRW metric evolutions.
 2. Two massive states with the same `n`, `rho` and `P` can have distinct causal TT response kernels and distinct metric transfer functions.
 3. The hidden radial distributions can be reconstructed from finite noisy response data with non-negative regularized inversion.
-4. A separate noise sweep shows the practical loss of reconstruction accuracy as response noise increases. This illustrates stability only; compactness and the unbounded inverse are proved analytically in the manuscript.
+4. A separate noise sweep shows the practical loss of reconstruction accuracy as response noise increases. This illustrates stability only; injectivity, compactness and the unbounded inverse are proved analytically in the manuscript.
 5. In the isotropic massless limit, profile dependence collapses and the matched FLRW geometries coincide to numerical precision.
 6. An arbitrary finite number of local gravitational source jets can be matched while the next jet remains distinct.
 7. Direct phase-space evolution and the eliminated retarded-memory description converge to the same transverse-traceless response.
