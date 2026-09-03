@@ -1,7 +1,0 @@
-metric,value
-moment_max_abs_difference,2.220446049250313e-16
-kernel_relative_L2_separation,0.038089552321220785
-kernel_max_relative_separation,0.02647530816009906
-distribution_relative_L2_separation,2.7899789438727147
-max_metric_transfer_relative_difference,0.00803328795504388
-metric_transfer_peak_omega,0.6715719063545151
