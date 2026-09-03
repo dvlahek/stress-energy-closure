@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+title: "Stress-energy does not close gravitational dynamics"
+message: "If you use this software, please cite the associated manuscript."
+type: software
+authors:
+  - family-names: Vlahek
+    given-names: Dino
+repository-code: "https://github.com/dvlahek/stress-energy-closure"
+license: MIT
+date-released: 2026-09-03
