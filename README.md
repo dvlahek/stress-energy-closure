@@ -2,12 +2,13 @@
 
 Code and source data accompanying the manuscript **“Gravitational response reveals kinetic states hidden from stress-energy”**.
 
-The paper studies a distinction between the instantaneous gravitational source and the information contained in dynamical response. For massive isotropic collisionless matter, different kinetic states can have the same particle current and stress-energy tensor. The main response result shows that the complete causal transverse-traceless kernel nevertheless uniquely identifies the radial kinetic distribution within the regular compact-support class. The massless isotropic limit is different: the response collapses to the energy-density moment and does not identify the radial profile.
+The paper studies a distinction between the instantaneous gravitational source and the information contained in dynamical response. For massive isotropic collisionless matter, different kinetic states can have the same particle current and stress-energy tensor. The complete causal transverse-traceless response kernel nevertheless identifies the radial kinetic distribution within the regular compact-support class. On every finite response interval the corresponding forward map is compact, so the inverse is necessarily unbounded even though it is unique. The isotropic massless limit is different: the response collapses to the energy-density moment and does not identify the radial profile.
 
 The repository contains the deterministic calculations used in the manuscript:
 
 - `ev_flrw_controls.py` — exact flat-FLRW Einstein–Vlasov controls, including the massless profile-universality test and the massive same-`N^mu`/same-`T_munu` counterexample.
 - `injectivity_tomography.py` — stress-energy-matched response construction and regularized reconstruction of the hidden radial distribution.
+- `noise_sweep.py` — finite-data stability test over several response-noise levels and deterministic noise realizations.
 - `mass_sweep.py` — matched matter pairs across particle mass and the corresponding FLRW geometry separation.
 - `hierarchy_test.py` — finite source-jet matching with compact-support bump functions.
 - `direct_vs_memory.py` — direct phase-space Vlasov evolution compared with the reduced retarded-memory representation.
@@ -26,23 +27,25 @@ Run the calculations from the repository root:
 ```bash
 python code/ev_flrw_controls.py --full
 python code/injectivity_tomography.py
+python code/noise_sweep.py
 python code/mass_sweep.py
 python code/hierarchy_test.py
 python code/direct_vs_memory.py --full
 ```
 
-The calculations are deterministic. The inverse-response script uses a fixed random seed only for the reported synthetic noise realization. Numerical outputs are written to local output folders created by the scripts.
+The calculations are deterministic. Fixed random seeds are used only for the reported synthetic noise realizations. Numerical outputs are written to local output folders created by the scripts.
 
 ## What is checked numerically
 
 1. Two smooth isotropic massive Vlasov states can have the same initial particle current and stress-energy tensor while producing different exact FLRW metric evolutions.
 2. Two massive states with the same `n`, `rho` and `P` can have distinct causal TT response kernels and distinct metric transfer functions.
-3. The hidden radial distributions can be reconstructed from finite noisy response data with non-negative regularized inversion; the singular spectrum also shows that this inverse problem is strongly ill-conditioned.
-4. In the isotropic massless limit, profile dependence collapses and the matched FLRW geometries coincide to numerical precision.
-5. An arbitrary finite number of local gravitational source jets can be matched while the next jet remains distinct.
-6. Direct phase-space evolution and the eliminated retarded-memory description converge to the same transverse-traceless response.
+3. The hidden radial distributions can be reconstructed from finite noisy response data with non-negative regularized inversion.
+4. A separate noise sweep shows the practical loss of reconstruction accuracy as response noise increases. This illustrates stability only; compactness and the unbounded inverse are proved analytically in the manuscript.
+5. In the isotropic massless limit, profile dependence collapses and the matched FLRW geometries coincide to numerical precision.
+6. An arbitrary finite number of local gravitational source jets can be matched while the next jet remains distinct.
+7. Direct phase-space evolution and the eliminated retarded-memory description converge to the same transverse-traceless response.
 
-The numerical calculations illustrate and validate the analytic arguments; the injectivity and FLRW existence results do not depend on the numerical examples.
+The numerical calculations illustrate and validate the analytic arguments. The FLRW existence, response injectivity and inverse ill-posedness results do not depend on the numerical examples.
 
 ## Repository structure
 
