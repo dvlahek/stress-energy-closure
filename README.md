@@ -8,6 +8,7 @@ The repository contains the deterministic calculations used in the manuscript:
 
 - `ev_flrw_controls.py` — exact flat-FLRW Einstein–Vlasov controls, including the massless profile-universality test and the massive same-`N^mu`/same-`T_munu` counterexample.
 - `injectivity_tomography.py` — stress-energy-matched response construction and regularized reconstruction of the hidden radial distribution.
+- `prediction_transfer.py` — dimensionless model-level amplitude, phase and complex metric-response separation for the stress-energy-matched pair.
 - `noise_sweep.py` — finite-data stability test over several response-noise levels and deterministic noise realizations.
 - `mass_sweep.py` — matched matter pairs across particle mass and the corresponding FLRW geometry separation.
 - `hierarchy_test.py` — finite source-jet matching with compact-support bump functions.
@@ -27,6 +28,7 @@ Run the calculations from the repository root:
 ```bash
 python code/ev_flrw_controls.py --full
 python code/injectivity_tomography.py
+python code/prediction_transfer.py
 python code/noise_sweep.py
 python code/mass_sweep.py
 python code/hierarchy_test.py
@@ -38,7 +40,7 @@ The calculations are deterministic. Fixed random seeds are used only for the rep
 ## What is checked numerically
 
 1. Two smooth isotropic massive Vlasov states can have the same initial particle current and stress-energy tensor while producing different exact FLRW metric evolutions.
-2. Two massive states with the same `n`, `rho` and `P` can have distinct causal TT response kernels and distinct metric transfer functions.
+2. Two massive states with the same `n`, `rho` and `P` have distinct causal TT response kernels. For the dimensionless validation coupling used in the manuscript, the same metric source produces up to 0.80% complex-response separation, 0.63% amplitude separation and 0.45 degrees of phase separation over the plotted frequency band. These values are proof-of-principle model outputs, not observational forecasts.
 3. The hidden radial distributions can be reconstructed from finite noisy response data with non-negative regularized inversion.
 4. A separate noise sweep shows the practical loss of reconstruction accuracy as response noise increases. This illustrates stability only; injectivity, compactness and the unbounded inverse are proved analytically in the manuscript.
 5. In the isotropic massless limit, profile dependence collapses and the matched FLRW geometries coincide to numerical precision.
