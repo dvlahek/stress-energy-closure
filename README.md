@@ -1,8 +1,8 @@
-# Gravitational response reveals kinetic states hidden from stress-energy
+# Kinetic-state identifiability from gravitational response
 
-Code and source data accompanying the manuscript **“Gravitational response reveals kinetic states hidden from stress-energy”**.
+Code and source data accompanying the manuscript **“Kinetic-state identifiability from gravitational response”**.
 
-The paper studies a distinction between the instantaneous gravitational source and the information contained in dynamical response. For massive isotropic collisionless matter, different kinetic states can have the same particle current and stress-energy tensor. The complete causal transverse-traceless response kernel nevertheless identifies the radial kinetic distribution within the regular compact-support class. On every finite response interval the corresponding forward map is compact, so the inverse is necessarily unbounded even though it is unique. The isotropic massless limit is different: the response collapses to the energy-density moment and does not identify the radial profile.
+The paper studies a distinction between the instantaneous gravitational source and the information contained in dynamical response. For massive isotropic collisionless matter, different kinetic states can have the same particle current and stress-energy tensor. The ideal continuous causal transverse-traceless response kernel nevertheless identifies the radial kinetic distribution within the regular compact-support class. On every finite response interval the corresponding forward map is compact, so the inverse is necessarily unbounded even though it is unique. The isotropic massless limit is different: the response collapses to the energy-density moment and does not identify the radial profile.
 
 The repository contains the deterministic calculations used in the manuscript:
 
