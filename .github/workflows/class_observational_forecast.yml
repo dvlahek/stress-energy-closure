@@ -25,14 +25,6 @@ jobs:
       - name: Install Python dependencies
         run: python -m pip install --upgrade pip numpy matplotlib
 
-      - name: Construct matched nonthermal relic pair
-        run: |
-          python code/class_observational_forecast.py \
-            --mode prepare \
-            --outdir observational_forecast_output \
-            --z-match 1100 \
-            --max-fractional-distortion 0.30
-
       - name: Fetch pinned CLASS
         run: |
           git init class_public
@@ -44,24 +36,70 @@ jobs:
       - name: Build CLASS
         run: make -C class_public class -j2
 
-      - name: Run exact tensor calculations
+      - name: Run distortion sweep
         run: |
-          ./class_public/class observational_forecast_output/class_plus.ini
-          ./class_public/class observational_forecast_output/class_minus.ini
+          set -euo pipefail
+          for item in 005:0.05 010:0.10 020:0.20 030:0.30; do
+            tag="${item%%:*}"
+            frac="${item##*:}"
+            out="observational_forecast_output/f${tag}_default"
+            python code/class_observational_forecast.py --mode prepare --outdir "$out" --z-match 1100 --max-fractional-distortion "$frac"
+            ./class_public/class "$out/class_plus.ini"
+            ./class_public/class "$out/class_minus.ini"
+            python code/class_observational_forecast.py --mode summarize --outdir "$out"
+          done
 
-      - name: List CLASS outputs
-        if: always()
+      - name: Run high-precision 30-percent control
         run: |
-          echo '--- observational_forecast_output ---'
-          find observational_forecast_output -maxdepth 2 -type f -printf '%p\n' | sort
-          echo '--- all Cl files ---'
-          find . -type f -name '*cl*.dat' -printf '%p\n' | sort
+          set -euo pipefail
+          out="observational_forecast_output/f030_highprecision"
+          python code/class_observational_forecast.py --mode prepare --outdir "$out" --z-match 1100 --max-fractional-distortion 0.30
+          ./class_public/class "$out/class_plus.ini" observational_forecast/high_precision.pre
+          ./class_public/class "$out/class_minus.ini" observational_forecast/high_precision.pre
+          python code/class_observational_forecast.py --mode summarize --outdir "$out"
 
-      - name: Summarize B-mode separation
+      - name: Aggregate validation summary
         run: |
-          python code/class_observational_forecast.py \
-            --mode summarize \
-            --outdir observational_forecast_output
+          python - <<'PY'
+          import csv, json
+          from pathlib import Path
+          import numpy as np
+          import pandas as pd
+
+          root = Path('observational_forecast_output')
+          rows=[]
+          for d in sorted(root.iterdir()):
+              if not d.is_dir() or not (d/'class_forecast_summary.json').exists():
+                  continue
+              s=json.loads((d/'class_forecast_summary.json').read_text())
+              rows.append({
+                  'run': d.name,
+                  'max_fractional_distortion': s['max_fractional_distortion_plus'],
+                  'moment_mismatch': s['max_relative_moment_mismatch'],
+                  'max_abs_BB_relative_difference_percent': s['max_abs_BB_relative_difference_percent'],
+                  'ell_at_max': s['ell_at_max_abs_BB_difference']
+              })
+          with (root/'validation_summary.csv').open('w', newline='') as f:
+              w=csv.DictWriter(f, fieldnames=rows[0].keys())
+              w.writeheader(); w.writerows(rows)
+
+          d0=pd.read_csv(root/'f030_default/class_bmode_comparison.csv')
+          dh=pd.read_csv(root/'f030_highprecision/class_bmode_comparison.csv')
+          if not np.array_equal(d0['ell'].values, dh['ell'].values):
+              raise RuntimeError('default/high-precision ell grids differ')
+          x=d0['symmetric_relative_difference_percent'].values
+          y=dh['symmetric_relative_difference_percent'].values
+          max_shape=float(np.max(np.abs(x-y)))
+          im=int(np.argmax(np.abs(y)))
+          validation={
+              'default_30_max_percent': float(np.max(np.abs(x))),
+              'highprecision_30_max_percent': float(np.max(np.abs(y))),
+              'highprecision_ell_at_max': int(dh['ell'].iloc[im]),
+              'max_absolute_change_in_relative_difference_percentage_points': max_shape,
+          }
+          (root/'precision_validation.json').write_text(json.dumps(validation, indent=2)+'\n')
+          print(json.dumps({'sweep':rows,'precision':validation}, indent=2))
+          PY
 
       - name: Record solver commit
         if: always()
