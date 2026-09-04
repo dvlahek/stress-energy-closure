@@ -1,0 +1,66 @@
+name: CLASS observational forecast
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - class-observational-forecast
+    paths:
+      - 'code/class_observational_forecast.py'
+      - 'observational_forecast/**'
+      - '.github/workflows/class_observational_forecast.yml'
+
+jobs:
+  forecast:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout manuscript repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Python dependencies
+        run: python -m pip install --upgrade pip numpy matplotlib
+
+      - name: Construct matched nonthermal relic pair
+        run: |
+          python code/class_observational_forecast.py \
+            --mode prepare \
+            --outdir observational_forecast_output \
+            --z-match 1100 \
+            --max-fractional-distortion 0.30
+
+      - name: Fetch pinned CLASS
+        run: |
+          git init class_public
+          git -C class_public remote add origin https://github.com/lesgourg/class_public.git
+          git -C class_public fetch --depth 1 origin e85808324f51fc694d12e3ed7439552a3c3f9540
+          git -C class_public checkout --detach FETCH_HEAD
+          test "$(git -C class_public rev-parse HEAD)" = "e85808324f51fc694d12e3ed7439552a3c3f9540"
+
+      - name: Build CLASS
+        run: make -C class_public -j2
+
+      - name: Run exact tensor calculations
+        run: |
+          ./class_public/class observational_forecast_output/class_plus.ini
+          ./class_public/class observational_forecast_output/class_minus.ini
+
+      - name: Summarize B-mode separation
+        run: |
+          python code/class_observational_forecast.py \
+            --mode summarize \
+            --outdir observational_forecast_output
+
+      - name: Record solver commit
+        run: git -C class_public rev-parse HEAD > observational_forecast_output/CLASS_COMMIT.txt
+
+      - name: Upload reproducibility artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: class-observational-forecast
+          path: observational_forecast_output/
+          if-no-files-found: error
