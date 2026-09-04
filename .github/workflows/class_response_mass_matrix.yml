@@ -1,0 +1,62 @@
+name: CLASS response mass matrix
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - class-response-optimization
+    paths:
+      - '.github/workflows/class_response_mass_matrix.yml'
+
+jobs:
+  mass:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - tag: '003'
+            mass: '0.03'
+          - tag: '006'
+            mass: '0.06'
+          - tag: '010'
+            mass: '0.10'
+          - tag: '018'
+            mass: '0.18'
+          - tag: '030'
+            mass: '0.30'
+          - tag: '060'
+            mass: '0.60'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install --upgrade pip numpy
+      - name: Fetch pinned CLASS
+        run: |
+          git init class_public
+          git -C class_public remote add origin https://github.com/lesgourg/class_public.git
+          git -C class_public fetch --depth 1 origin e85808324f51fc694d12e3ed7439552a3c3f9540
+          git -C class_public checkout --detach FETCH_HEAD
+          test "$(git -C class_public rev-parse HEAD)" = "e85808324f51fc694d12e3ed7439552a3c3f9540"
+      - run: make -C class_public class -j2
+      - name: Optimize mass ${{ matrix.mass }} eV
+        run: |
+          set -euo pipefail
+          out="response_matrix_output/mass_${{ matrix.tag }}"
+          mkdir -p "$out"
+          python code/class_response_optimize.py --mode prepare-probes --outdir "$out" --mass-eV "${{ matrix.mass }}" --z-match 1100 --probe-frac 0.02 --class-lmax 320
+          for ini in "$out"/probe_*_plus.ini "$out"/probe_*_minus.ini; do ./class_public/class "$ini"; done
+          python code/class_response_optimize.py --mode optimize --outdir "$out" --final-frac 0.30 --lmin 20 --lmax 300 --random-samples 50000 --seed 271828
+          ./class_public/class "$out/final_plus.ini"
+          ./class_public/class "$out/final_minus.ini"
+          python code/class_response_optimize.py --mode summarize-final --outdir "$out" --lmin 20 --lmax 300 --tag default
+          git -C class_public rev-parse HEAD > "$out/CLASS_COMMIT.txt"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: class-response-mass-${{ matrix.tag }}
+          path: response_matrix_output/mass_${{ matrix.tag }}/
+          if-no-files-found: error
