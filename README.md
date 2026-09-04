@@ -21,7 +21,15 @@ The repository contains the deterministic calculations used in the manuscript:
 - `mass_sweep.py` — matched matter pairs across particle mass and the corresponding FLRW geometry separation.
 - `hierarchy_test.py` — finite source-jet matching with compact-support bump functions.
 - `direct_vs_memory.py` — direct phase-space Vlasov evolution compared with the reduced retarded-memory representation.
-- `run_all.py` — convenience script for the numerical validation campaigns.
+- `class_observational_forecast.py` — Planck-anchored CLASS tensor calculation for a stress-energy-matched nonthermal relic pair.
+- `class_response_optimize.py` — response-difference optimization and neutrino-mass sweep within the same smooth deformation class.
+- `run_all.py` — convenience script for the core numerical validation campaigns.
+
+The CLASS workflows pin the public solver to commit `e85808324f51fc694d12e3ed7439552a3c3f9540`. The publication-facing workflows are:
+
+- `.github/workflows/class_observational_forecast.yml` — benchmark CLASS tensor forecast and validation sweep.
+- `.github/workflows/class_response_mass_matrix.yml` — response-optimization mass sweep over 0.03–0.60 eV.
+- `.github/workflows/class_response_resolution_convergence.yml` — resolution-convergence control for the best tested optimized case.
 
 ## Reproducing the calculations
 
@@ -31,7 +39,7 @@ Python 3.10 or newer is recommended.
 python -m pip install -r requirements.txt
 ```
 
-Run the calculations from the repository root:
+Run the non-CLASS calculations from the repository root:
 
 ```bash
 python code/ev_flrw_controls.py --full
@@ -43,7 +51,7 @@ python code/hierarchy_test.py
 python code/direct_vs_memory.py --full
 ```
 
-The calculations are deterministic. Fixed random seeds are used only for the reported synthetic noise realizations. Numerical outputs are written to local output folders created by the scripts.
+The CLASS calculations require a local CLASS build or can be reproduced through the supplied GitHub Actions workflows. The calculations are deterministic. Fixed random seeds are used only for the reported synthetic noise realizations and for the response-optimization search heuristic.
 
 ## What is checked numerically
 
@@ -54,17 +62,21 @@ The calculations are deterministic. Fixed random seeds are used only for the rep
 5. In the isotropic massless limit, profile dependence collapses and the matched FLRW geometries coincide to numerical precision.
 6. An arbitrary finite number of local gravitational source jets can be matched while the next jet remains distinct.
 7. Direct phase-space evolution and the eliminated retarded-memory description converge to the same transverse-traceless response.
+8. A Planck-anchored CLASS calculation shows that the distinction survives in a standard tensor B-mode observable for a controlled nonthermal relic pair. This is a physical-realization control, not a detectability forecast.
+9. Within the tested ten-function smooth deformation class and 30% pointwise cap, explicit CLASS response optimization over neutrino masses 0.03–0.60 eV gives an idealized full-sky cosmic-variance-limited S/N below 0.04 for every tested mass. The best tested case is numerically stable under refined non-cold-relic hierarchy and momentum resolution.
 
 The numerical calculations illustrate and validate the analytic arguments. The FLRW existence, response injectivity and inverse ill-posedness results do not depend on the numerical examples.
 
 ## Repository structure
 
 ```text
-code/          deterministic calculation scripts
-source_data/   compact source data for manuscript figures
+code/                    deterministic calculation scripts
+observational_forecast/  CLASS provenance and diagnostic notes
+source_data/             compact source-data summaries
+.github/workflows/       deterministic CLASS reproduction workflows
 ```
 
-Full frequency-series, time-series and profile data are generated deterministically by the scripts and are supplied as Source Data with the manuscript submission package.
+Full figure-level source data are supplied with the manuscript submission package.
 
 ## Citation
 
