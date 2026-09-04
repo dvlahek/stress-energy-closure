@@ -35,6 +35,9 @@ jobs:
           ./class_public/class "$out/final_plus.ini"
           ./class_public/class "$out/final_minus.ini"
           python code/class_response_optimize.py --mode summarize-final --outdir "$out" --lmin 20 --lmax 300 --tag default
+          cp "$out/final_plus_00_cl.dat" "$out/raw_default_plus_cl.dat"
+          cp "$out/final_minus_00_cl.dat" "$out/raw_default_minus_cl.dat"
+          rm -f "$out"/final_plus_*cl*.dat "$out"/final_minus_*cl*.dat
       - name: Resolution level 1
         run: |
           cat > res1.pre <<'EOF'
@@ -50,6 +53,9 @@ jobs:
           ./class_public/class resolution_output/final_plus.ini res1.pre
           ./class_public/class resolution_output/final_minus.ini res1.pre
           python code/class_response_optimize.py --mode summarize-final --outdir resolution_output --lmin 20 --lmax 300 --tag res1
+          cp resolution_output/final_plus_00_cl.dat resolution_output/raw_res1_plus_cl.dat
+          cp resolution_output/final_minus_00_cl.dat resolution_output/raw_res1_minus_cl.dat
+          rm -f resolution_output/final_plus_*cl*.dat resolution_output/final_minus_*cl*.dat
       - name: Resolution level 2
         run: |
           cat > res2.pre <<'EOF'
@@ -65,6 +71,8 @@ jobs:
           ./class_public/class resolution_output/final_plus.ini res2.pre
           ./class_public/class resolution_output/final_minus.ini res2.pre
           python code/class_response_optimize.py --mode summarize-final --outdir resolution_output --lmin 20 --lmax 300 --tag res2
+          cp resolution_output/final_plus_00_cl.dat resolution_output/raw_res2_plus_cl.dat
+          cp resolution_output/final_minus_00_cl.dat resolution_output/raw_res2_minus_cl.dat
       - name: Compare
         run: |
           python - <<'PY'
@@ -73,6 +81,8 @@ jobs:
           d=Path('resolution_output')
           S={k:json.loads((d/f'final_summary_{k}.json').read_text()) for k in ['default','res1','res2']}
           A={k:np.genfromtxt(d/f'final_bmode_comparison_{k}.csv',delimiter=',',names=True) for k in S}
+          for k in ['res1','res2']:
+              if not np.array_equal(A['default']['ell'],A[k]['ell']): raise RuntimeError('ell grids differ')
           ell=A['default']['ell']; sel=(ell>=20)&(ell<=300)
           payload={
             'mass_eV':0.10,
@@ -84,6 +94,7 @@ jobs:
             'res2_max_percent':S['res2']['actual_max_abs_relative_difference_percent'],
             'res2_ell_at_max':S['res2']['ell_at_actual_max'],
             'res2_percent_at_ell80':S['res2']['relative_difference_percent_at_ell80'],
+            'max_default_res1_change_percentage_points':float(np.max(np.abs(A['default']['symmetric_relative_difference_percent'][sel]-A['res1']['symmetric_relative_difference_percent'][sel]))),
             'max_res1_res2_change_percentage_points':float(np.max(np.abs(A['res1']['symmetric_relative_difference_percent'][sel]-A['res2']['symmetric_relative_difference_percent'][sel]))),
             'moment_mismatch':S['res2']['max_relative_moment_mismatch']
           }
