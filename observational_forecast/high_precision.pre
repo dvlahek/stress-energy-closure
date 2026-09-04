@@ -1,0 +1,16 @@
+# Focused high-precision settings for the ncdm tensor forecast.
+# Adapted conservatively from CLASS cl_ref.pre without tensor-hierarchy-specific
+# settings that require a different hierarchy implementation.
+
+tol_ncdm_bg = 1.e-10
+tol_ncdm_synchronous = 1.e-10
+tol_ncdm_newtonian = 1.e-10
+tol_perturbations_integration = 1.e-7
+perturbations_sampling_stepsize = 0.01
+l_max_ncdm = 50
+q_linstep = 0.10
+q_logstep_spline = 30.
+q_logstep_trapzd = 0.25
+q_numstep_transition = 400
+l_logstep = 1.015
+l_linstep = 15
