@@ -48,11 +48,9 @@ def fermi_dirac(q):
 
 
 def angular_A(x):
-    """Angular TT kernel used only to select a response-separated null direction."""
     mu, wg = np.polynomial.legendre.leggauss(64)
     shape = wg * (1.0 - mu * mu) ** 2
-    x = np.atleast_1d(x)
-    return np.cos(np.outer(x, mu)) @ shape
+    return np.cos(np.outer(np.atleast_1d(x), mu)) @ shape
 
 
 def construct_pair(q, z_match=1100.0, max_fractional_distortion=0.30):
@@ -87,8 +85,7 @@ def construct_pair(q, z_match=1100.0, max_fractional_distortion=0.30):
         Avec = angular_A(v * t)
         R[i] = [trap(w_resp * db * Avec, q) for db in dbasis]
     _, _, vhr = np.linalg.svd(R @ N, full_matrices=False)
-    coeff = N @ vhr[0]
-    delta = coeff @ basis
+    delta = (N @ vhr[0]) @ basis
 
     mask = np.abs(delta) > 1e-24
     alpha_pos = np.min(f0[mask] / np.abs(delta[mask]))
@@ -104,10 +101,6 @@ def construct_pair(q, z_match=1100.0, max_fractional_distortion=0.30):
 
     m0, mp, mm = moms(f0), moms(fp), moms(fm)
     rel_match = np.abs(mp - mm) / np.maximum(0.5 * (np.abs(mp) + np.abs(mm)), 1e-300)
-    frac_plus = np.max(np.abs(fp - f0) / f0)
-    frac_minus = np.max(np.abs(fm - f0) / f0)
-    l2_sep = np.sqrt(trap((fp - fm) ** 2, q) / trap(f0 ** 2, q))
-
     summary = {
         "z_match": z_match,
         "a_match": a,
@@ -119,9 +112,9 @@ def construct_pair(q, z_match=1100.0, max_fractional_distortion=0.30):
         "relative_n_mismatch": float(rel_match[0]),
         "relative_rho_mismatch": float(rel_match[1]),
         "relative_P_mismatch": float(rel_match[2]),
-        "max_fractional_distortion_plus": float(frac_plus),
-        "max_fractional_distortion_minus": float(frac_minus),
-        "distribution_L2_separation_over_FD": float(l2_sep),
+        "max_fractional_distortion_plus": float(np.max(np.abs(fp - f0) / f0)),
+        "max_fractional_distortion_minus": float(np.max(np.abs(fm - f0) / f0)),
+        "distribution_L2_separation_over_FD": float(np.sqrt(trap((fp - fm) ** 2, q) / trap(f0 ** 2, q))),
         "n_baseline": float(m0[0]),
         "rho_baseline_dimensionless": float(m0[1]),
         "P3_baseline_dimensionless": float(m0[2]),
@@ -136,14 +129,11 @@ output = tCl,pCl
 modes = t
 tensor_method = exact
 lensing = no
-
 H0 = {p['H0']}
 omega_b = {p['omega_b']}
 omega_cdm = {p['omega_cdm']}
 A_s = {p['A_s']:.12e}
-n_s = {p['n_s']}
 tau_reio = {p['tau_reio']}
-
 N_ur = {p['N_ur']}
 N_ncdm = 1
 use_ncdm_psd_files = 1
@@ -151,12 +141,10 @@ ncdm_psd_filenames = {psd_path}
 m_ncdm = {p['m_ncdm']}
 T_ncdm = {p['T_ncdm']}
 deg_ncdm = 1.0
-
 r = {r}
 n_t = 0.0
 k_pivot = 0.05
 l_max_tensors = {lmax}
-
 root = {root}
 headers = yes
 write warnings = yes
@@ -168,32 +156,43 @@ def prepare(outdir: Path, z_match: float, frac: float):
     outdir.mkdir(parents=True, exist_ok=True)
     q = np.linspace(0.0, 20.0, 4000)
     f0, fp, fm, summary = construct_pair(q, z_match, frac)
-
-    # CLASS PSD files must contain only numeric columns q and f0(q), with no header.
     np.savetxt(outdir / "psd_fd_reference.dat", np.column_stack([q, f0]), fmt="%.12e")
     np.savetxt(outdir / "psd_plus.dat", np.column_stack([q, fp]), fmt="%.12e")
     np.savetxt(outdir / "psd_minus.dat", np.column_stack([q, fm]), fmt="%.12e")
     np.savetxt(outdir / "matched_distribution_pair.csv", np.column_stack([q, f0, fp, fm]), delimiter=",", header="q,f_FD,f_plus,f_minus", comments="")
-
-    outabs = outdir.resolve()
-    write_ini(outdir / "class_plus.ini", (outdir / "psd_plus.dat").resolve(), outabs / "plus_")
-    write_ini(outdir / "class_minus.ini", (outdir / "psd_minus.dat").resolve(), outabs / "minus_")
+    write_ini(outdir / "class_plus.ini", (outdir / "psd_plus.dat").resolve(), outdir / "plus_")
+    write_ini(outdir / "class_minus.ini", (outdir / "psd_minus.dat").resolve(), outdir / "minus_")
     summary["class_commit"] = CLASS_COMMIT
     summary["planck_reference"] = "Planck 2018 TT,TE,EE+lowE+lensing central values"
     (outdir / "pair_summary.json").write_text(json.dumps(summary, indent=2) + "\n", encoding="utf-8")
     print(json.dumps(summary, indent=2))
 
 
+def discover_cl(outdir: Path, stem: str, explicit: Path | None):
+    if explicit is not None:
+        return explicit
+    candidates = sorted(outdir.glob(f"{stem}*cl*.dat"))
+    if not candidates:
+        candidates = sorted(Path(".").glob(f"**/{stem}*cl*.dat"))
+    candidates = [p for p in candidates if "lensed" not in p.name]
+    if not candidates:
+        produced = "\n".join(str(p) for p in sorted(outdir.glob("*")))
+        raise FileNotFoundError(f"No CLASS Cl file found for {stem}. Produced files:\n{produced}")
+    print(f"Using {stem} CLASS spectrum: {candidates[0]}")
+    return candidates[0]
+
+
 def read_class_cl(path: Path):
     arr = np.loadtxt(path)
     if arr.shape[1] < 5:
-        raise RuntimeError(f"Expected CLASS cl.dat with at least 5 columns, got {arr.shape[1]}")
+        raise RuntimeError(f"Expected CLASS cl.dat with at least 5 columns, got {arr.shape[1]} in {path}")
+    # CLASS headers for CMB Cl output: l, TT, EE, TE, BB (additional columns may follow).
     return arr[:, 0].astype(int), arr[:, 4]
 
 
 def summarize(outdir: Path, plus_cl: Path | None, minus_cl: Path | None):
-    plus_cl = plus_cl or (outdir / "plus_cl.dat")
-    minus_cl = minus_cl or (outdir / "minus_cl.dat")
+    plus_cl = discover_cl(outdir, "plus", plus_cl)
+    minus_cl = discover_cl(outdir, "minus", minus_cl)
     ellp, bbp = read_class_cl(plus_cl)
     ellm, bbm = read_class_cl(minus_cl)
     if not np.array_equal(ellp, ellm):
@@ -210,6 +209,8 @@ def summarize(outdir: Path, plus_cl: Path | None, minus_cl: Path | None):
                header="ell,Dl_BB_plus,Dl_BB_minus,symmetric_relative_difference_percent", comments="")
     summary = json.loads((outdir / "pair_summary.json").read_text())
     summary.update({
+        "plus_class_output": str(plus_cl),
+        "minus_class_output": str(minus_cl),
         "max_abs_BB_relative_difference_percent": float(absrel[imax]),
         "ell_at_max_abs_BB_difference": int(ell[imax]),
         "Dl_BB_plus_at_max": float(bbp[imax]),
@@ -224,12 +225,11 @@ def summarize(outdir: Path, plus_cl: Path | None, minus_cl: Path | None):
         plt.semilogy(ell, np.abs(bbp), label=r"$F_+$")
         plt.semilogy(ell, np.abs(bbm), label=r"$F_-$", linestyle="--")
         plt.xlabel(r"$\ell$")
-        plt.ylabel(r"$D_\ell^{BB}=\ell(\ell+1)C_\ell^{BB}/2\pi$")
+        plt.ylabel(r"$D_\ell^{BB}$")
         plt.legend()
         plt.tight_layout()
         plt.savefig(outdir / "class_bmode_spectra.pdf")
         plt.close()
-
         plt.figure(figsize=(7.0, 4.5))
         plt.plot(ell[mask], rel[mask])
         plt.axhline(0.0, linewidth=0.8)
@@ -240,7 +240,6 @@ def summarize(outdir: Path, plus_cl: Path | None, minus_cl: Path | None):
         plt.close()
     except Exception as exc:
         print(f"Plotting skipped: {exc}")
-
     print(json.dumps(summary, indent=2))
 
 
