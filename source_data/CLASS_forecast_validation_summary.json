@@ -1,0 +1,13 @@
+{
+  "class_commit": "e85808324f51fc694d12e3ed7439552a3c3f9540",
+  "z_match": 1100,
+  "m_ncdm_eV": 0.06,
+  "max_fractional_distortion": 0.3,
+  "max_relative_moment_mismatch": 3.5796869912122257e-16,
+  "stable_multipole_range": [2, 300],
+  "max_abs_BB_relative_difference_percent_ell_le_300": 0.01979333667713716,
+  "ell_at_max_ell_le_300": 233,
+  "BB_relative_difference_percent_at_ell80": 0.00219266338354928,
+  "max_abs_run_to_run_signal_change_percentage_points_ell_le_300": 0.00016493220536874936,
+  "r_normalization": 0.01
+}
