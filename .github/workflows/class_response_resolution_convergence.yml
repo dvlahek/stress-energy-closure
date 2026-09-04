@@ -1,0 +1,99 @@
+name: CLASS optimized resolution convergence
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - class-response-optimization
+    paths:
+      - '.github/workflows/class_response_resolution_convergence.yml'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install --upgrade pip numpy
+      - name: Fetch pinned CLASS
+        run: |
+          git init class_public
+          git -C class_public remote add origin https://github.com/lesgourg/class_public.git
+          git -C class_public fetch --depth 1 origin e85808324f51fc694d12e3ed7439552a3c3f9540
+          git -C class_public checkout --detach FETCH_HEAD
+      - run: make -C class_public class -j2
+      - name: Reconstruct optimized pair and default spectrum
+        run: |
+          out=resolution_output
+          mkdir -p "$out"
+          python code/class_response_optimize.py --mode prepare-probes --outdir "$out" --mass-eV 0.10 --z-match 1100 --probe-frac 0.02 --class-lmax 320
+          for ini in "$out"/probe_*_plus.ini "$out"/probe_*_minus.ini; do ./class_public/class "$ini"; done
+          python code/class_response_optimize.py --mode optimize --outdir "$out" --final-frac 0.30 --lmin 20 --lmax 300 --random-samples 50000 --seed 271828
+          ./class_public/class "$out/final_plus.ini"
+          ./class_public/class "$out/final_minus.ini"
+          python code/class_response_optimize.py --mode summarize-final --outdir "$out" --lmin 20 --lmax 300 --tag default
+      - name: Resolution level 1
+        run: |
+          cat > res1.pre <<'EOF'
+          perturbations_sampling_stepsize = 0.04
+          l_max_ncdm = 30
+          q_linstep = 0.25
+          q_logstep_spline = 12.
+          q_logstep_trapzd = 0.60
+          q_numstep_transition = 180
+          l_logstep = 1.025
+          l_linstep = 20
+          EOF
+          ./class_public/class resolution_output/final_plus.ini res1.pre
+          ./class_public/class resolution_output/final_minus.ini res1.pre
+          python code/class_response_optimize.py --mode summarize-final --outdir resolution_output --lmin 20 --lmax 300 --tag res1
+      - name: Resolution level 2
+        run: |
+          cat > res2.pre <<'EOF'
+          perturbations_sampling_stepsize = 0.025
+          l_max_ncdm = 40
+          q_linstep = 0.18
+          q_logstep_spline = 18.
+          q_logstep_trapzd = 0.40
+          q_numstep_transition = 260
+          l_logstep = 1.020
+          l_linstep = 18
+          EOF
+          ./class_public/class resolution_output/final_plus.ini res2.pre
+          ./class_public/class resolution_output/final_minus.ini res2.pre
+          python code/class_response_optimize.py --mode summarize-final --outdir resolution_output --lmin 20 --lmax 300 --tag res2
+      - name: Compare
+        run: |
+          python - <<'PY'
+          import json,numpy as np
+          from pathlib import Path
+          d=Path('resolution_output')
+          S={k:json.loads((d/f'final_summary_{k}.json').read_text()) for k in ['default','res1','res2']}
+          A={k:np.genfromtxt(d/f'final_bmode_comparison_{k}.csv',delimiter=',',names=True) for k in S}
+          ell=A['default']['ell']; sel=(ell>=20)&(ell<=300)
+          payload={
+            'mass_eV':0.10,
+            'default_cv_SN':S['default']['actual_ideal_fullsky_cv_SN'],
+            'res1_cv_SN':S['res1']['actual_ideal_fullsky_cv_SN'],
+            'res2_cv_SN':S['res2']['actual_ideal_fullsky_cv_SN'],
+            'default_max_percent':S['default']['actual_max_abs_relative_difference_percent'],
+            'res1_max_percent':S['res1']['actual_max_abs_relative_difference_percent'],
+            'res2_max_percent':S['res2']['actual_max_abs_relative_difference_percent'],
+            'res2_ell_at_max':S['res2']['ell_at_actual_max'],
+            'res2_percent_at_ell80':S['res2']['relative_difference_percent_at_ell80'],
+            'max_res1_res2_change_percentage_points':float(np.max(np.abs(A['res1']['symmetric_relative_difference_percent'][sel]-A['res2']['symmetric_relative_difference_percent'][sel]))),
+            'moment_mismatch':S['res2']['max_relative_moment_mismatch']
+          }
+          (d/'resolution_convergence.json').write_text(json.dumps(payload,indent=2)+'\n')
+          print(json.dumps(payload,indent=2))
+          PY
+      - run: git -C class_public rev-parse HEAD > resolution_output/CLASS_COMMIT.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: class-response-resolution-convergence
+          path: resolution_output/
+          if-no-files-found: error
