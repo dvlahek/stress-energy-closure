@@ -2,10 +2,10 @@
 """Planck-anchored CLASS forecast for stress-energy-matched nonthermal relics.
 
 This script does not fit observational data. It uses a Planck 2018 reference
-cosmology and the standard Fermi-Dirac relic-neutrino spectrum as a baseline,
-constructs two positive nonthermal distributions with identical n, rho and P
-at z_match, writes CLASS ncdm PSD/INI files, and post-processes tensor B-mode
-spectra produced by CLASS with tensor_method=exact.
+cosmology and the standard CLASS Fermi-Dirac relic-neutrino spectrum as a
+baseline, constructs two positive nonthermal distributions with identical
+n, rho and P at z_match, writes CLASS ncdm PSD/INI files, and post-processes
+tensor B-mode spectra produced by CLASS with tensor_method=exact.
 """
 from __future__ import annotations
 
@@ -29,6 +29,7 @@ PLANCK = {
 TCMB_K = 2.7255
 KB_EV_K = 8.617333262e-5
 CLASS_COMMIT = "e85808324f51fc694d12e3ed7439552a3c3f9540"
+CLASS_FD_NORM = 2.0 / (2.0 * np.pi) ** 3
 
 
 def trap(y, x):
@@ -37,8 +38,13 @@ def trap(y, x):
     return np.trapz(y, x)
 
 
-def fermi_dirac(q):
+def fd_occupancy(q):
     return 1.0 / (np.exp(q) + 1.0)
+
+
+def fermi_dirac(q):
+    """CLASS default zero-chemical-potential particle+antiparticle PSD."""
+    return CLASS_FD_NORM * fd_occupancy(q)
 
 
 def angular_A(x):
@@ -50,7 +56,8 @@ def angular_A(x):
 
 
 def construct_pair(q, z_match=1100.0, max_fractional_distortion=0.30):
-    f0 = fermi_dirac(q)
+    occ = fd_occupancy(q)
+    f0 = CLASS_FD_NORM * occ
     a = 1.0 / (1.0 + z_match)
     Tnu0_eV = PLANCK["T_ncdm"] * TCMB_K * KB_EV_K
     y = a * PLANCK["m_ncdm"] / Tnu0_eV
@@ -59,7 +66,7 @@ def construct_pair(q, z_match=1100.0, max_fractional_distortion=0.30):
     centers = np.array([0.45, 0.85, 1.35, 2.0, 2.8, 3.8, 5.0, 6.5, 8.5, 11.0])
     widths = np.array([0.28, 0.32, 0.38, 0.46, 0.55, 0.65, 0.78, 0.95, 1.20, 1.55])
     basis = np.array([
-        f0 * (1.0 - f0) * np.exp(-0.5 * ((q - c) / s) ** 2)
+        f0 * (1.0 - occ) * np.exp(-0.5 * ((q - c) / s) ** 2)
         for c, s in zip(centers, widths)
     ])
 
@@ -83,7 +90,7 @@ def construct_pair(q, z_match=1100.0, max_fractional_distortion=0.30):
     coeff = N @ vhr[0]
     delta = coeff @ basis
 
-    mask = np.abs(delta) > 1e-18
+    mask = np.abs(delta) > 1e-24
     alpha_pos = np.min(f0[mask] / np.abs(delta[mask]))
     alpha_frac = max_fractional_distortion / np.max(np.abs(delta[mask]) / f0[mask])
     alpha = min(0.98 * alpha_pos, alpha_frac)
@@ -107,6 +114,7 @@ def construct_pair(q, z_match=1100.0, max_fractional_distortion=0.30):
         "m_ncdm_eV": PLANCK["m_ncdm"],
         "T_ncdm_over_Tcmb": PLANCK["T_ncdm"],
         "mass_over_Tnu_at_match": y,
+        "class_fd_normalization": CLASS_FD_NORM,
         "max_relative_moment_mismatch": float(rel_match.max()),
         "relative_n_mismatch": float(rel_match[0]),
         "relative_rho_mismatch": float(rel_match[1]),
@@ -158,11 +166,13 @@ write warnings = yes
 
 def prepare(outdir: Path, z_match: float, frac: float):
     outdir.mkdir(parents=True, exist_ok=True)
-    q = np.linspace(1e-4, 20.0, 7000)
+    q = np.linspace(0.0, 20.0, 4000)
     f0, fp, fm, summary = construct_pair(q, z_match, frac)
-    np.savetxt(outdir / "psd_fd_reference.dat", np.column_stack([q, f0]), fmt="%.12e", header="q=p/T_ncdm  f_FD(q)")
-    np.savetxt(outdir / "psd_plus.dat", np.column_stack([q, fp]), fmt="%.12e", header="q=p/T_ncdm  f_plus(q)")
-    np.savetxt(outdir / "psd_minus.dat", np.column_stack([q, fm]), fmt="%.12e", header="q=p/T_ncdm  f_minus(q)")
+
+    # CLASS PSD files must contain only numeric columns q and f0(q), with no header.
+    np.savetxt(outdir / "psd_fd_reference.dat", np.column_stack([q, f0]), fmt="%.12e")
+    np.savetxt(outdir / "psd_plus.dat", np.column_stack([q, fp]), fmt="%.12e")
+    np.savetxt(outdir / "psd_minus.dat", np.column_stack([q, fm]), fmt="%.12e")
     np.savetxt(outdir / "matched_distribution_pair.csv", np.column_stack([q, f0, fp, fm]), delimiter=",", header="q,f_FD,f_plus,f_minus", comments="")
 
     outabs = outdir.resolve()
