@@ -1,0 +1,111 @@
+name: CLASS optimized best precision
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - class-response-optimization
+    paths:
+      - '.github/workflows/class_response_best_precision.yml'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install --upgrade pip numpy
+      - name: Fetch pinned CLASS
+        run: |
+          git init class_public
+          git -C class_public remote add origin https://github.com/lesgourg/class_public.git
+          git -C class_public fetch --depth 1 origin e85808324f51fc694d12e3ed7439552a3c3f9540
+          git -C class_public checkout --detach FETCH_HEAD
+          test "$(git -C class_public rev-parse HEAD)" = "e85808324f51fc694d12e3ed7439552a3c3f9540"
+      - run: make -C class_public class -j2
+      - name: Reconstruct optimized 0.10-eV pair
+        run: |
+          set -euo pipefail
+          out="best_precision_output"
+          mkdir -p "$out"
+          python code/class_response_optimize.py --mode prepare-probes --outdir "$out" --mass-eV 0.10 --z-match 1100 --probe-frac 0.02 --class-lmax 320
+          for ini in "$out"/probe_*_plus.ini "$out"/probe_*_minus.ini; do ./class_public/class "$ini"; done
+          python code/class_response_optimize.py --mode optimize --outdir "$out" --final-frac 0.30 --lmin 20 --lmax 300 --random-samples 50000 --seed 271828
+          ./class_public/class "$out/final_plus.ini"
+          ./class_public/class "$out/final_minus.ini"
+          python code/class_response_optimize.py --mode summarize-final --outdir "$out" --lmin 20 --lmax 300 --tag default
+      - name: Precision A
+        run: |
+          cat > precision_A.pre <<'EOF'
+          tol_ncdm_bg = 1.e-8
+          tol_ncdm_synchronous = 1.e-8
+          tol_ncdm_newtonian = 1.e-8
+          tol_perturbations_integration = 1.e-6
+          perturbations_sampling_stepsize = 0.03
+          l_max_ncdm = 30
+          q_linstep = 0.20
+          q_logstep_spline = 15.
+          q_logstep_trapzd = 0.50
+          q_numstep_transition = 200
+          l_logstep = 1.025
+          l_linstep = 20
+          EOF
+          ./class_public/class best_precision_output/final_plus.ini precision_A.pre
+          ./class_public/class best_precision_output/final_minus.ini precision_A.pre
+          python code/class_response_optimize.py --mode summarize-final --outdir best_precision_output --lmin 20 --lmax 300 --tag precisionA
+      - name: Precision B
+        run: |
+          cat > precision_B.pre <<'EOF'
+          tol_ncdm_bg = 1.e-9
+          tol_ncdm_synchronous = 1.e-9
+          tol_ncdm_newtonian = 1.e-9
+          tol_perturbations_integration = 3.e-7
+          perturbations_sampling_stepsize = 0.02
+          l_max_ncdm = 40
+          q_linstep = 0.15
+          q_logstep_spline = 20.
+          q_logstep_trapzd = 0.35
+          q_numstep_transition = 300
+          l_logstep = 1.020
+          l_linstep = 18
+          EOF
+          ./class_public/class best_precision_output/final_plus.ini precision_B.pre
+          ./class_public/class best_precision_output/final_minus.ini precision_B.pre
+          python code/class_response_optimize.py --mode summarize-final --outdir best_precision_output --lmin 20 --lmax 300 --tag precisionB
+      - name: Compare precision levels
+        run: |
+          python - <<'PY'
+          import json, numpy as np
+          from pathlib import Path
+          d=Path('best_precision_output')
+          rows={k:json.loads((d/f'final_summary_{k}.json').read_text()) for k in ['default','precisionA','precisionB']}
+          arr={k:np.genfromtxt(d/f'final_bmode_comparison_{k}.csv',delimiter=',',names=True) for k in rows}
+          for k in ['precisionA','precisionB']:
+              if not np.array_equal(arr['default']['ell'],arr[k]['ell']): raise RuntimeError('ell grids differ')
+          ell=arr['default']['ell']; sel=(ell>=20)&(ell<=300)
+          payload={
+            'mass_eV':0.10,
+            'default_cv_SN':rows['default']['actual_ideal_fullsky_cv_SN'],
+            'precisionA_cv_SN':rows['precisionA']['actual_ideal_fullsky_cv_SN'],
+            'precisionB_cv_SN':rows['precisionB']['actual_ideal_fullsky_cv_SN'],
+            'default_max_percent':rows['default']['actual_max_abs_relative_difference_percent'],
+            'precisionA_max_percent':rows['precisionA']['actual_max_abs_relative_difference_percent'],
+            'precisionB_max_percent':rows['precisionB']['actual_max_abs_relative_difference_percent'],
+            'precisionB_ell_at_max':rows['precisionB']['ell_at_actual_max'],
+            'precisionB_percent_at_ell80':rows['precisionB']['relative_difference_percent_at_ell80'],
+            'max_A_vs_B_change_percentage_points':float(np.max(np.abs(arr['precisionA']['symmetric_relative_difference_percent'][sel]-arr['precisionB']['symmetric_relative_difference_percent'][sel]))),
+            'moment_mismatch':rows['precisionB']['max_relative_moment_mismatch']
+          }
+          (d/'precision_convergence.json').write_text(json.dumps(payload,indent=2)+'\n')
+          print(json.dumps(payload,indent=2))
+          PY
+      - run: git -C class_public rev-parse HEAD > best_precision_output/CLASS_COMMIT.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: class-response-best-precision
+          path: best_precision_output/
+          if-no-files-found: error
