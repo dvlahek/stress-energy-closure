@@ -42,12 +42,20 @@ jobs:
           test "$(git -C class_public rev-parse HEAD)" = "e85808324f51fc694d12e3ed7439552a3c3f9540"
 
       - name: Build CLASS
-        run: make -C class_public -j2
+        run: make -C class_public class -j2
 
       - name: Run exact tensor calculations
         run: |
           ./class_public/class observational_forecast_output/class_plus.ini
           ./class_public/class observational_forecast_output/class_minus.ini
+
+      - name: List CLASS outputs
+        if: always()
+        run: |
+          echo '--- observational_forecast_output ---'
+          find observational_forecast_output -maxdepth 2 -type f -printf '%p\n' | sort
+          echo '--- all Cl files ---'
+          find . -type f -name '*cl*.dat' -printf '%p\n' | sort
 
       - name: Summarize B-mode separation
         run: |
@@ -56,9 +64,11 @@ jobs:
             --outdir observational_forecast_output
 
       - name: Record solver commit
+        if: always()
         run: git -C class_public rev-parse HEAD > observational_forecast_output/CLASS_COMMIT.txt
 
       - name: Upload reproducibility artifact
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: class-observational-forecast
