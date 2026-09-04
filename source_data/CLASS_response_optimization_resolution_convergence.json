@@ -1,0 +1,16 @@
+{
+  "mass_eV": 0.10,
+  "default_cv_SN": 0.03897446768151343,
+  "resolution_1_cv_SN": 0.038935118669359295,
+  "resolution_2_cv_SN": 0.03894318170326097,
+  "default_max_percent": 0.027424530128508526,
+  "resolution_1_max_percent": 0.027412493407382117,
+  "resolution_2_max_percent": 0.027412858495873667,
+  "resolution_2_ell_at_max": 233,
+  "resolution_2_percent_at_ell80": -0.0020853357641831107,
+  "max_default_resolution_1_change_percentage_points": 6.877781956621948e-05,
+  "max_resolution_1_resolution_2_change_percentage_points": 1.770960445506703e-05,
+  "max_relative_moment_mismatch": 4.772915988282968e-16,
+  "ell_range": [20, 300],
+  "class_commit": "e85808324f51fc694d12e3ed7439552a3c3f9540"
+}
