@@ -46,7 +46,7 @@ jobs:
           test "$(git -C class_public rev-parse HEAD)" = "e85808324f51fc694d12e3ed7439552a3c3f9540"
           make -C class_public class -j2
 
-      - name: Prepare scalar plus/minus screening runs
+      - name: Prepare scalar plus/minus precision runs
         run: |
           set -euo pipefail
           python code/class_scalar_lensing_screen.py \
@@ -58,12 +58,12 @@ jobs:
             --lmax 1200 \
             --pkmax 0.30
 
-      - name: Run default-precision scalar CLASS pair in parallel
+      - name: Run high-precision scalar CLASS pair in parallel
         run: |
           set -euo pipefail
-          ./class_public/class scalar_screen/scalar_plus.ini > scalar_screen/scalar_plus.log 2>&1 &
+          ./class_public/class scalar_screen/scalar_plus.ini observational_forecast/high_precision.pre > scalar_screen/scalar_plus.log 2>&1 &
           pid_plus=$!
-          ./class_public/class scalar_screen/scalar_minus.ini > scalar_screen/scalar_minus.log 2>&1 &
+          ./class_public/class scalar_screen/scalar_minus.ini observational_forecast/high_precision.pre > scalar_screen/scalar_minus.log 2>&1 &
           pid_minus=$!
           wait "$pid_plus"
           wait "$pid_minus"
@@ -85,6 +85,6 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: class-scalar-lensing-screen-m010
+          name: class-scalar-lensing-screen-m010-highprec
           path: scalar_screen/
           if-no-files-found: error
