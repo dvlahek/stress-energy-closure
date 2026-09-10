@@ -154,9 +154,10 @@ def main():
         (d/"screen_meta.json").write_text(json.dumps(meta,indent=2)+"\n")
         print(json.dumps(meta,indent=2)); return
 
-    lp = d/"scalar_plus_cl_lensed.dat"; lm = d/"scalar_minus_cl_lensed.dat"
-    up = d/"scalar_plus_cl.dat"; um = d/"scalar_minus_cl.dat"
-    pp = d/"scalar_plus_pk.dat"; pm = d/"scalar_minus_pk.dat"
+    # CLASS prefixes output filenames with its run index (00 for a single run).
+    lp = d/"scalar_plus_00_cl_lensed.dat"; lm = d/"scalar_minus_00_cl_lensed.dat"
+    up = d/"scalar_plus_00_cl.dat"; um = d/"scalar_minus_00_cl.dat"
+    pp = d/"scalar_plus_00_pk.dat"; pm = d/"scalar_minus_00_pk.dat"
     for p in [lp,lm,up,um,pp,pm]:
         if not p.exists(): raise FileNotFoundError(p)
 
@@ -180,20 +181,20 @@ def main():
     ellu=AU[:,0].astype(int); PPp,PPm=AU[:,jPP],BU[:,jPP]
 
     metrics={}
-    for name,a,b,lo,hi in [("TT",TTp,TTm,30,2500),("EE",EEp,EEm,30,2500),("phiphi",PPp,PPm,8,2000)]:
+    for name,a,b,lo,hi in [("TT",TTp,TTm,30,args.lmax),("EE",EEp,EEm,30,args.lmax),("phiphi",PPp,PPm,8,args.lmax)]:
         x=ell if name!="phiphi" else ellu
         rel,mask=symmetric_relative(a,b)
         sel=(x>=lo)&(x<=hi)&mask
         metrics[name]=max_metric(x,rel,sel)
         metrics[name]["ideal_fullsky_cv_SN_auto_only"] = cv_sn_auto(x,a,b,lo,hi)
 
-    sn_te,nused=cv_sn_te_block(ell,TTp,EEp,TEp,TTm,EEm,TEm,30,2500)
+    sn_te,nused=cv_sn_te_block(ell,TTp,EEp,TEp,TTm,EEm,TEm,30,args.lmax)
     metrics["TTEE_TE_combined"]={"ideal_fullsky_gaussian_cv_SN":sn_te,"multipoles_used":nused,
         "note":"optimistic screening statistic; no instrument noise, foregrounds or parameter/nuisance degeneracies"}
 
     denom=np.sqrt(np.maximum(0.5*(TTp+TTm),1e-300)*np.maximum(0.5*(EEp+EEm),1e-300))
     te_norm=(TEp-TEm)/denom
-    sel=(ell>=30)&(ell<=2500)&np.isfinite(te_norm)
+    sel=(ell>=30)&(ell<=args.lmax)&np.isfinite(te_norm)
     metrics["TE"]={"max_abs_delta_TE_over_sqrt_TT_EE_percent":float(100*np.max(np.abs(te_norm[sel]))),
                    "ell_at_max":int(ell[np.where(sel)[0][np.argmax(np.abs(te_norm[sel]))]])}
 
