@@ -15,7 +15,7 @@ permissions:
 jobs:
   screen:
     runs-on: ubuntu-latest
-    timeout-minutes: 35
+    timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
 
@@ -58,15 +58,21 @@ jobs:
             --lmax 1200 \
             --pkmax 0.30
 
-      - name: Run high-precision scalar CLASS pair in parallel
+      - name: Run high-precision scalar CLASS plus
         run: |
           set -euo pipefail
-          ./class_public/class scalar_screen/scalar_plus.ini observational_forecast/high_precision.pre > scalar_screen/scalar_plus.log 2>&1 &
-          pid_plus=$!
-          ./class_public/class scalar_screen/scalar_minus.ini observational_forecast/high_precision.pre > scalar_screen/scalar_minus.log 2>&1 &
-          pid_minus=$!
-          wait "$pid_plus"
-          wait "$pid_minus"
+          ./class_public/class scalar_screen/scalar_plus.ini observational_forecast/high_precision.pre > scalar_screen/scalar_plus.log 2>&1
+          test -s scalar_screen/scalar_plus_00_cl.dat
+          test -s scalar_screen/scalar_plus_00_cl_lensed.dat
+          test -s scalar_screen/scalar_plus_00_pk.dat
+
+      - name: Run high-precision scalar CLASS minus
+        run: |
+          set -euo pipefail
+          ./class_public/class scalar_screen/scalar_minus.ini observational_forecast/high_precision.pre > scalar_screen/scalar_minus.log 2>&1
+          test -s scalar_screen/scalar_minus_00_cl.dat
+          test -s scalar_screen/scalar_minus_00_cl_lensed.dat
+          test -s scalar_screen/scalar_minus_00_pk.dat
           find scalar_screen -maxdepth 1 -type f -printf '%f\n' | sort
 
       - name: Summarize channel separation
