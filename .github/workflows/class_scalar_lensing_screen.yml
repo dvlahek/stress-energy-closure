@@ -1,0 +1,86 @@
+name: CLASS scalar and lensing channel screen
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - scalar-lensing-screen
+    paths:
+      - '.github/workflows/class_scalar_lensing_screen.yml'
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  screen:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - run: python -m pip install --upgrade pip numpy
+
+      - name: Recover fixed published BB-optimized pair
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p pair_artifact
+          gh run download 33857363622 -n class-response-mass-010 -D pair_artifact
+          test "$(sha256sum pair_artifact/final_plus.dat | awk '{print $1}')" = "861bc3769767a3759454bb0260d337a9e311ee2d328eca73e9d98d69877604e0"
+          test "$(sha256sum pair_artifact/final_minus.dat | awk '{print $1}')" = "90f6f4014c97f799f13e30835736bfc41d73975a4b43d2978eaca5d431af6e29"
+          cat pair_artifact/final_summary_default.json
+
+      - name: Fetch pinned CLASS
+        run: |
+          set -euo pipefail
+          git init class_public
+          git -C class_public remote add origin https://github.com/lesgourg/class_public.git
+          git -C class_public fetch --depth 1 origin e85808324f51fc694d12e3ed7439552a3c3f9540
+          git -C class_public checkout --detach FETCH_HEAD
+          test "$(git -C class_public rev-parse HEAD)" = "e85808324f51fc694d12e3ed7439552a3c3f9540"
+          make -C class_public class -j2
+
+      - name: Prepare scalar plus/minus runs
+        run: |
+          set -euo pipefail
+          python code/class_scalar_lensing_screen.py \
+            --mode prepare \
+            --outdir scalar_screen \
+            --plus-psd pair_artifact/final_plus.dat \
+            --minus-psd pair_artifact/final_minus.dat \
+            --mass-eV 0.10 \
+            --lmax 2500 \
+            --pkmax 1.0
+
+      - name: Run high-precision scalar CLASS pair
+        run: |
+          set -euo pipefail
+          ./class_public/class scalar_screen/scalar_plus.ini observational_forecast/high_precision.pre
+          ./class_public/class scalar_screen/scalar_minus.ini observational_forecast/high_precision.pre
+          find scalar_screen -maxdepth 1 -type f -printf '%f\n' | sort
+
+      - name: Summarize channel separation
+        run: |
+          set -euo pipefail
+          python code/class_scalar_lensing_screen.py \
+            --mode summarize \
+            --outdir scalar_screen \
+            --mass-eV 0.10 \
+            --lmax 2500 \
+            --pkmax 1.0
+          git -C class_public rev-parse HEAD > scalar_screen/CLASS_COMMIT.txt
+          cp pair_artifact/final_summary_default.json scalar_screen/original_BB_summary.json
+          cat scalar_screen/scalar_lensing_screen_summary.json
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: class-scalar-lensing-screen-m010
+          path: scalar_screen/
+          if-no-files-found: error
