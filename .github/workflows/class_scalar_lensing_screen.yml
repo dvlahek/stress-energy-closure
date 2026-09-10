@@ -46,7 +46,7 @@ jobs:
           test "$(git -C class_public rev-parse HEAD)" = "e85808324f51fc694d12e3ed7439552a3c3f9540"
           make -C class_public class -j2
 
-      - name: Prepare scalar plus/minus runs
+      - name: Prepare scalar plus/minus screening runs
         run: |
           set -euo pipefail
           python code/class_scalar_lensing_screen.py \
@@ -55,14 +55,18 @@ jobs:
             --plus-psd pair_artifact/final_plus.dat \
             --minus-psd pair_artifact/final_minus.dat \
             --mass-eV 0.10 \
-            --lmax 2500 \
-            --pkmax 1.0
+            --lmax 1200 \
+            --pkmax 0.30
 
-      - name: Run high-precision scalar CLASS pair
+      - name: Run default-precision scalar CLASS pair in parallel
         run: |
           set -euo pipefail
-          ./class_public/class scalar_screen/scalar_plus.ini observational_forecast/high_precision.pre
-          ./class_public/class scalar_screen/scalar_minus.ini observational_forecast/high_precision.pre
+          ./class_public/class scalar_screen/scalar_plus.ini > scalar_screen/scalar_plus.log 2>&1 &
+          pid_plus=$!
+          ./class_public/class scalar_screen/scalar_minus.ini > scalar_screen/scalar_minus.log 2>&1 &
+          pid_minus=$!
+          wait "$pid_plus"
+          wait "$pid_minus"
           find scalar_screen -maxdepth 1 -type f -printf '%f\n' | sort
 
       - name: Summarize channel separation
@@ -72,8 +76,8 @@ jobs:
             --mode summarize \
             --outdir scalar_screen \
             --mass-eV 0.10 \
-            --lmax 2500 \
-            --pkmax 1.0
+            --lmax 1200 \
+            --pkmax 0.30
           git -C class_public rev-parse HEAD > scalar_screen/CLASS_COMMIT.txt
           cp pair_artifact/final_summary_default.json scalar_screen/original_BB_summary.json
           cat scalar_screen/scalar_lensing_screen_summary.json
