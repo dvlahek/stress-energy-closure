@@ -1,0 +1,340 @@
+name: CLASS optimized scalar-lensing mass sweep
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - scalar-lensing-screen
+    paths:
+      - '.github/workflows/class_scalar_mass_sweep.yml'
+      - 'code/class_scalar_mass_sweep_select.py'
+
+permissions:
+  contents: read
+  actions: read
+
+env:
+  CLASS_COMMIT: e85808324f51fc694d12e3ed7439552a3c3f9540
+
+jobs:
+  prepare:
+    name: prepare m${{ matrix.mass.tag }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        mass:
+          - { tag: '003', value: '0.03' }
+          - { tag: '006', value: '0.06' }
+          - { tag: '018', value: '0.18' }
+          - { tag: '030', value: '0.30' }
+          - { tag: '060', value: '0.60' }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install --upgrade pip numpy
+      - name: Prepare null-space probes for m=${{ matrix.mass.value }} eV
+        run: |
+          set -euo pipefail
+          python code/class_scalar_response_optimize.py \
+            --mode prepare-probes \
+            --outdir mass_opt \
+            --mass-eV ${{ matrix.mass.value }} \
+            --z-match 1100 \
+            --probe-frac 0.08 \
+            --lmax 600 \
+            --pkmax 0.30
+      - uses: actions/upload-artifact@v4
+        with:
+          name: scalar-mass-prep-m${{ matrix.mass.tag }}
+          path: mass_opt/
+          if-no-files-found: error
+
+  probe:
+    name: probe m${{ matrix.mass.tag }} d${{ matrix.direction }}
+    needs: prepare
+    runs-on: ubuntu-latest
+    timeout-minutes: 150
+    strategy:
+      fail-fast: false
+      max-parallel: 20
+      matrix:
+        mass:
+          - { tag: '003', value: '0.03' }
+          - { tag: '006', value: '0.06' }
+          - { tag: '018', value: '0.18' }
+          - { tag: '030', value: '0.30' }
+          - { tag: '060', value: '0.60' }
+        direction: ['00','01','02','03','04','05','06']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: scalar-mass-prep-m${{ matrix.mass.tag }}
+          path: mass_opt
+      - name: Fetch pinned CLASS
+        run: |
+          set -euo pipefail
+          git init class_public
+          git -C class_public remote add origin https://github.com/lesgourg/class_public.git
+          git -C class_public fetch --depth 1 origin "$CLASS_COMMIT"
+          git -C class_public checkout --detach FETCH_HEAD
+          test "$(git -C class_public rev-parse HEAD)" = "$CLASS_COMMIT"
+          make -C class_public class -j2
+      - name: Run symmetric probe direction ${{ matrix.direction }}
+        run: |
+          set -euo pipefail
+          j=${{ matrix.direction }}
+          for sign in plus minus; do
+            echo "=== m=${{ matrix.mass.value }} probe ${j} ${sign} ==="
+            ./class_public/class \
+              mass_opt/probe_${j}_${sign}.ini \
+              observational_forecast/scalar_probe_precision.pre \
+              > mass_opt/probe_${j}_${sign}.log 2>&1
+            test -s mass_opt/probe_${j}_${sign}_00_cl.dat
+            test -s mass_opt/probe_${j}_${sign}_00_cl_lensed.dat
+          done
+      - uses: actions/upload-artifact@v4
+        with:
+          name: scalar-probe-m${{ matrix.mass.tag }}-d${{ matrix.direction }}
+          path: |
+            mass_opt/probe_${{ matrix.direction }}_plus_00_cl.dat
+            mass_opt/probe_${{ matrix.direction }}_plus_00_cl_lensed.dat
+            mass_opt/probe_${{ matrix.direction }}_minus_00_cl.dat
+            mass_opt/probe_${{ matrix.direction }}_minus_00_cl_lensed.dat
+            mass_opt/probe_${{ matrix.direction }}_plus.log
+            mass_opt/probe_${{ matrix.direction }}_minus.log
+          if-no-files-found: error
+
+  optimize:
+    name: optimize m${{ matrix.mass.tag }}
+    needs: probe
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    strategy:
+      fail-fast: false
+      matrix:
+        mass:
+          - { tag: '003', value: '0.03' }
+          - { tag: '006', value: '0.06' }
+          - { tag: '018', value: '0.18' }
+          - { tag: '030', value: '0.30' }
+          - { tag: '060', value: '0.60' }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install --upgrade pip numpy
+      - uses: actions/download-artifact@v4
+        with:
+          name: scalar-mass-prep-m${{ matrix.mass.tag }}
+          path: mass_opt
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: scalar-probe-m${{ matrix.mass.tag }}-d*
+          path: mass_opt
+          merge-multiple: true
+      - name: Verify complete 7D response matrix
+        run: |
+          set -euo pipefail
+          for j in 00 01 02 03 04 05 06; do
+            for sign in plus minus; do
+              test -s mass_opt/probe_${j}_${sign}_00_cl.dat
+              test -s mass_opt/probe_${j}_${sign}_00_cl_lensed.dat
+            done
+          done
+      - name: Optimize scalar and lensing directions
+        run: |
+          set -euo pipefail
+          python code/class_scalar_response_optimize.py \
+            --mode optimize \
+            --outdir mass_opt \
+            --final-frac 0.30 \
+            --lmin 30 \
+            --lmax 600 \
+            --random-samples 100000 \
+            --seed 314159
+      - name: Fetch pinned CLASS
+        run: |
+          set -euo pipefail
+          git init class_public
+          git -C class_public remote add origin https://github.com/lesgourg/class_public.git
+          git -C class_public fetch --depth 1 origin "$CLASS_COMMIT"
+          git -C class_public checkout --detach FETCH_HEAD
+          test "$(git -C class_public rev-parse HEAD)" = "$CLASS_COMMIT"
+          make -C class_public class -j2
+      - name: Run optimized candidates at intermediate precision
+        run: |
+          set -euo pipefail
+          for target in scalar lensing; do
+            for sign in plus minus; do
+              echo "=== m=${{ matrix.mass.value }} ${target} candidate ${sign} ==="
+              ./class_public/class \
+                mass_opt/${target}_final_${sign}.ini \
+                observational_forecast/scalar_probe_precision.pre \
+                > mass_opt/${target}_final_${sign}.log 2>&1
+              test -s mass_opt/${target}_final_${sign}_00_cl.dat
+              test -s mass_opt/${target}_final_${sign}_00_cl_lensed.dat
+              test -s mass_opt/${target}_final_${sign}_00_pk.dat
+            done
+          done
+      - name: Select actual winner for this mass
+        run: |
+          set -euo pipefail
+          python code/class_scalar_response_optimize.py \
+            --mode summarize-candidates \
+            --outdir mass_opt \
+            --lmin 30 \
+            --lmax 600 \
+            --pkmax 0.30
+          printf '%s\n' '${{ matrix.mass.value }}' > mass_opt/MASS_EV.txt
+          git -C class_public rev-parse HEAD > mass_opt/CLASS_COMMIT.txt
+          cat mass_opt/scalar_candidate_actual_summary.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: scalar-mass-opt-m${{ matrix.mass.tag }}
+          path: mass_opt/
+          if-no-files-found: error
+
+  aggregate:
+    name: select global mass winner
+    needs: optimize
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: actions/download-artifact@v4
+        with:
+          name: scalar-mass-opt-m003
+          path: sweep/m003
+      - uses: actions/download-artifact@v4
+        with:
+          name: scalar-mass-opt-m006
+          path: sweep/m006
+      - uses: actions/download-artifact@v4
+        with:
+          name: scalar-mass-opt-m018
+          path: sweep/m018
+      - uses: actions/download-artifact@v4
+        with:
+          name: scalar-mass-opt-m030
+          path: sweep/m030
+      - uses: actions/download-artifact@v4
+        with:
+          name: scalar-mass-opt-m060
+          path: sweep/m060
+      - name: Reuse validated m=0.10 eV optimized result
+        uses: actions/download-artifact@v4
+        with:
+          name: class-scalar-response-opt-m010-resumed
+          path: sweep/m010
+          github-token: ${{ github.token }}
+          repository: dvlahek/stress-energy-closure
+          run-id: 34598696605
+      - id: select
+        name: Select global intermediate-precision winner
+        run: |
+          set -euo pipefail
+          python code/class_scalar_mass_sweep_select.py \
+            --root sweep \
+            --outdir global_opt
+          MASS=$(python -c "import json; print(json.load(open('global_opt/global_mass_sweep_selection.json'))['global_winner']['mass_eV'])")
+          echo "winner_mass=${MASS}" >> "$GITHUB_OUTPUT"
+          cat global_opt/global_mass_sweep_selection.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: scalar-mass-sweep-global-selection
+          path: global_opt/
+          if-no-files-found: error
+    outputs:
+      winner_mass: ${{ steps.select.outputs.winner_mass }}
+
+  validate:
+    name: high precision global winner m=${{ needs.aggregate.outputs.winner_mass }}
+    needs: aggregate
+    runs-on: ubuntu-latest
+    timeout-minutes: 240
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install --upgrade pip numpy
+      - uses: actions/download-artifact@v4
+        with:
+          name: scalar-mass-sweep-global-selection
+          path: global_opt
+      - name: Fetch pinned CLASS
+        run: |
+          set -euo pipefail
+          git init class_public
+          git -C class_public remote add origin https://github.com/lesgourg/class_public.git
+          git -C class_public fetch --depth 1 origin "$CLASS_COMMIT"
+          git -C class_public checkout --detach FETCH_HEAD
+          test "$(git -C class_public rev-parse HEAD)" = "$CLASS_COMMIT"
+          make -C class_public class -j2
+      - name: Prepare global winner for high precision
+        run: |
+          set -euo pipefail
+          MASS='${{ needs.aggregate.outputs.winner_mass }}'
+          python code/class_scalar_response_optimize.py \
+            --mode prepare-winner-highprec \
+            --outdir global_opt \
+            --mass-eV "$MASS" \
+            --lmax 1200 \
+            --pkmax 0.30
+      - name: Run global winner plus at high precision
+        run: |
+          set -euo pipefail
+          ./class_public/class \
+            global_opt/highprec/winner_plus.ini \
+            observational_forecast/high_precision.pre \
+            > global_opt/highprec/winner_plus.log 2>&1
+          test -s global_opt/highprec/winner_plus_00_cl.dat
+          test -s global_opt/highprec/winner_plus_00_cl_lensed.dat
+          test -s global_opt/highprec/winner_plus_00_pk.dat
+      - name: Run global winner minus at high precision
+        run: |
+          set -euo pipefail
+          ./class_public/class \
+            global_opt/highprec/winner_minus.ini \
+            observational_forecast/high_precision.pre \
+            > global_opt/highprec/winner_minus.log 2>&1
+          test -s global_opt/highprec/winner_minus_00_cl.dat
+          test -s global_opt/highprec/winner_minus_00_cl_lensed.dat
+          test -s global_opt/highprec/winner_minus_00_pk.dat
+      - name: Summarize global high-precision winner
+        run: |
+          set -euo pipefail
+          python code/class_scalar_response_optimize.py \
+            --mode summarize-winner-highprec \
+            --outdir global_opt \
+            --lmin 30 \
+            --lmax 1200 \
+            --pkmax 0.30
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d = Path('global_opt')
+          selection = json.loads((d/'global_mass_sweep_selection.json').read_text())
+          high = json.loads((d/'scalar_winner_highprec_summary.json').read_text())
+          out = {
+              'global_selection': selection,
+              'global_high_precision': high,
+          }
+          (d/'global_mass_sweep_final_summary.json').write_text(json.dumps(out, indent=2) + '\n')
+          print(json.dumps(out, indent=2))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: scalar-mass-sweep-global-highprec
+          path: global_opt/
+          if-no-files-found: error
