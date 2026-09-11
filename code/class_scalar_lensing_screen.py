@@ -198,20 +198,30 @@ def main():
     metrics["TE"]={"max_abs_delta_TE_over_sqrt_TT_EE_percent":float(100*np.max(np.abs(te_norm[sel]))),
                    "ell_at_max":int(ell[np.where(sel)[0][np.argmax(np.abs(te_norm[sel]))]])}
 
-    if APK.shape != BPK.shape or not np.allclose(APK[:,0],BPK[:,0],rtol=0,atol=1e-14):
-        raise RuntimeError("P(k) grids differ")
-    k=APK[:,0]; Pp=APK[:,1]; Pm=BPK[:,1]
+    # CLASS chooses an adaptive k grid, so nearby cosmologies need not have
+    # bitwise-identical P(k) abscissae. Compare on the overlapping plus grid,
+    # interpolating the positive minus spectrum in log(k)-log(P).
+    kp, Pp_all = APK[:,0], APK[:,1]
+    km, Pm_all = BPK[:,0], BPK[:,1]
+    klo = max(float(kp.min()), float(km.min()), 1e-3)
+    khi = min(float(kp.max()), float(km.max()), args.pkmax)
+    selp = (kp >= klo) & (kp <= khi)
+    k = kp[selp]
+    Pp = Pp_all[selp]
+    if k.size == 0 or np.any(Pp <= 0) or np.any(Pm_all <= 0):
+        raise RuntimeError("Invalid overlapping positive P(k) domain")
+    Pm = np.exp(np.interp(np.log(k), np.log(km), np.log(Pm_all)))
     rpk,mpk=symmetric_relative(Pp,Pm)
-    sel=(k>=1e-3)&(k<=args.pkmax)&mpk
-    metrics["Pk_z0"]=max_metric(k,rpk,sel)
-    metrics["Pk_z0"]["k_units"]="h/Mpc (CLASS output for P_k_max_h/Mpc input)"
+    metrics["Pk_z0"]=max_metric(k,rpk,mpk)
+    metrics["Pk_z0"]["k_units"]="h/Mpc"
+    metrics["Pk_z0"]["comparison"]="minus spectrum log-log interpolated to overlapping plus k grid"
 
     out={"meta":json.loads((d/"screen_meta.json").read_text()),"metrics":metrics}
     (d/"scalar_lensing_screen_summary.json").write_text(json.dumps(out,indent=2)+"\n")
     np.savetxt(d/"scalar_lensed_pair.csv",np.column_stack([ell,TTp,TTm,EEp,EEm,TEp,TEm]),delimiter=",",
                header="ell,TT_plus,TT_minus,EE_plus,EE_minus,TE_plus,TE_minus",comments="")
     np.savetxt(d/"scalar_phiphi_pair.csv",np.column_stack([ellu,PPp,PPm]),delimiter=",",header="ell,phiphi_plus,phiphi_minus",comments="")
-    np.savetxt(d/"scalar_pk_z0_pair.csv",np.column_stack([k,Pp,Pm]),delimiter=",",header="k_h_Mpc,P_plus,P_minus",comments="")
+    np.savetxt(d/"scalar_pk_z0_pair.csv",np.column_stack([k,Pp,Pm]),delimiter=",",header="k_h_Mpc,P_plus,P_minus_interp",comments="")
     print(json.dumps(out,indent=2))
 
 if __name__ == "__main__": main()
