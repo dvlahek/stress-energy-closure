@@ -1,0 +1,190 @@
+name: CLASS scalar and lensing null-space optimization
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - scalar-lensing-screen
+    paths:
+      - '.github/workflows/class_scalar_response_optimize.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  optimize:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - run: python -m pip install --upgrade pip numpy
+
+      - name: Fetch pinned CLASS
+        run: |
+          set -euo pipefail
+          git init class_public
+          git -C class_public remote add origin https://github.com/lesgourg/class_public.git
+          git -C class_public fetch --depth 1 origin e85808324f51fc694d12e3ed7439552a3c3f9540
+          git -C class_public checkout --detach FETCH_HEAD
+          test "$(git -C class_public rev-parse HEAD)" = "e85808324f51fc694d12e3ed7439552a3c3f9540"
+          make -C class_public class -j2
+
+      - name: Prepare 7D symmetric scalar response probes
+        run: |
+          set -euo pipefail
+          python code/class_scalar_response_optimize.py \
+            --mode prepare-probes \
+            --outdir scalar_opt \
+            --mass-eV 0.10 \
+            --z-match 1100 \
+            --probe-frac 0.08 \
+            --lmax 600 \
+            --pkmax 0.30
+
+      - name: Run intermediate-precision probe matrix
+        run: |
+          set -euo pipefail
+          for j in 00 01 02 03 04 05 06; do
+            for sign in plus minus; do
+              echo "=== probe ${j} ${sign} ==="
+              ./class_public/class \
+                scalar_opt/probe_${j}_${sign}.ini \
+                observational_forecast/scalar_probe_precision.pre \
+                > scalar_opt/probe_${j}_${sign}.log 2>&1
+              test -s scalar_opt/probe_${j}_${sign}_00_cl.dat
+              test -s scalar_opt/probe_${j}_${sign}_00_cl_lensed.dat
+            done
+          done
+
+      - name: Optimize scalar and lensing directions
+        run: |
+          set -euo pipefail
+          python code/class_scalar_response_optimize.py \
+            --mode optimize \
+            --outdir scalar_opt \
+            --final-frac 0.30 \
+            --lmin 30 \
+            --lmax 600 \
+            --random-samples 100000 \
+            --seed 314159
+
+      - name: Run optimized candidates at intermediate precision
+        run: |
+          set -euo pipefail
+          for target in scalar lensing; do
+            for sign in plus minus; do
+              echo "=== ${target} candidate ${sign} ==="
+              ./class_public/class \
+                scalar_opt/${target}_final_${sign}.ini \
+                observational_forecast/scalar_probe_precision.pre \
+                > scalar_opt/${target}_final_${sign}.log 2>&1
+              test -s scalar_opt/${target}_final_${sign}_00_cl.dat
+              test -s scalar_opt/${target}_final_${sign}_00_cl_lensed.dat
+              test -s scalar_opt/${target}_final_${sign}_00_pk.dat
+            done
+          done
+
+      - name: Select strongest actual candidate
+        run: |
+          set -euo pipefail
+          python code/class_scalar_response_optimize.py \
+            --mode summarize-candidates \
+            --outdir scalar_opt \
+            --lmin 30 \
+            --lmax 600 \
+            --pkmax 0.30
+          git -C class_public rev-parse HEAD > scalar_opt/CLASS_COMMIT.txt
+          cp observational_forecast/scalar_probe_precision.pre scalar_opt/
+          cp observational_forecast/high_precision.pre scalar_opt/
+          cat scalar_opt/scalar_optimization_summary.json
+          cat scalar_opt/scalar_candidate_actual_summary.json
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: class-scalar-response-opt-m010
+          path: scalar_opt/
+          if-no-files-found: error
+
+  validate:
+    needs: optimize
+    runs-on: ubuntu-latest
+    timeout-minutes: 240
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - run: python -m pip install --upgrade pip numpy
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: class-scalar-response-opt-m010
+          path: scalar_opt
+
+      - name: Fetch pinned CLASS
+        run: |
+          set -euo pipefail
+          git init class_public
+          git -C class_public remote add origin https://github.com/lesgourg/class_public.git
+          git -C class_public fetch --depth 1 origin e85808324f51fc694d12e3ed7439552a3c3f9540
+          git -C class_public checkout --detach FETCH_HEAD
+          test "$(git -C class_public rev-parse HEAD)" = "e85808324f51fc694d12e3ed7439552a3c3f9540"
+          make -C class_public class -j2
+
+      - name: Prepare winning candidate for full high precision
+        run: |
+          set -euo pipefail
+          python code/class_scalar_response_optimize.py \
+            --mode prepare-winner-highprec \
+            --outdir scalar_opt \
+            --mass-eV 0.10 \
+            --lmax 1200 \
+            --pkmax 0.30
+
+      - name: Run winning plus at high precision
+        run: |
+          set -euo pipefail
+          ./class_public/class \
+            scalar_opt/highprec/winner_plus.ini \
+            observational_forecast/high_precision.pre \
+            > scalar_opt/highprec/winner_plus.log 2>&1
+          test -s scalar_opt/highprec/winner_plus_00_cl.dat
+          test -s scalar_opt/highprec/winner_plus_00_cl_lensed.dat
+          test -s scalar_opt/highprec/winner_plus_00_pk.dat
+
+      - name: Run winning minus at high precision
+        run: |
+          set -euo pipefail
+          ./class_public/class \
+            scalar_opt/highprec/winner_minus.ini \
+            observational_forecast/high_precision.pre \
+            > scalar_opt/highprec/winner_minus.log 2>&1
+          test -s scalar_opt/highprec/winner_minus_00_cl.dat
+          test -s scalar_opt/highprec/winner_minus_00_cl_lensed.dat
+          test -s scalar_opt/highprec/winner_minus_00_pk.dat
+
+      - name: Summarize high-precision winner
+        run: |
+          set -euo pipefail
+          python code/class_scalar_response_optimize.py \
+            --mode summarize-winner-highprec \
+            --outdir scalar_opt \
+            --lmin 30 \
+            --lmax 1200 \
+            --pkmax 0.30
+          cat scalar_opt/scalar_winner_highprec_summary.json
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: class-scalar-response-opt-m010-highprec
+          path: scalar_opt/
+          if-no-files-found: error
