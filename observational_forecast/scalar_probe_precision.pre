@@ -1,0 +1,17 @@
+# Intermediate precision for scalar/lensing null-space Jacobian probes.
+# Tight enough to suppress the default-precision subtraction floor while keeping
+# the 14 symmetric probe runs computationally tractable. Final winner is always
+# rechecked with observational_forecast/high_precision.pre.
+
+tol_ncdm_bg = 1.e-9
+tol_ncdm_synchronous = 1.e-9
+tol_ncdm_newtonian = 1.e-9
+tol_perturbations_integration = 3.e-6
+perturbations_sampling_stepsize = 0.03
+l_max_ncdm = 35
+q_linstep = 0.15
+q_logstep_spline = 25.
+q_logstep_trapzd = 0.35
+q_numstep_transition = 300
+l_logstep = 1.02
+l_linstep = 20
