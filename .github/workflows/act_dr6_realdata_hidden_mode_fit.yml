@@ -1,0 +1,86 @@
+name: ACT DR6 real-data hidden-mode lensing fit
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - scalar-lensing-screen
+    paths:
+      - '.github/workflows/act_dr6_realdata_hidden_mode_fit.yml'
+
+permissions:
+  contents: read
+  actions: read
+
+env:
+  SOURCE_SPECTRA_RUN_ID: '34677322082'
+  ACT_LENSLIKE_COMMIT: 'b386ddbb5821c1216c709f051c9289292f174d30'
+
+jobs:
+  fit:
+    name: ACT and ACT+Planck lens-only hidden-mode fit
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install --upgrade pip numpy scipy requests tqdm
+
+      - name: Download frozen midpoint and hidden endpoints
+        uses: actions/download-artifact@v4
+        with:
+          pattern: cmb-survey-spectrum-{fiducial,winner_plus,winner_minus}
+          path: spectra
+          merge-multiple: true
+          github-token: ${{ github.token }}
+          repository: dvlahek/stress-energy-closure
+          run-id: ${{ env.SOURCE_SPECTRA_RUN_ID }}
+
+      - name: Fetch pinned ACT DR6 lensing likelihood
+        run: |
+          set -euo pipefail
+          git clone https://github.com/ACTCollaboration/act_dr6_lenslike.git act_dr6_lenslike_src
+          git -C act_dr6_lenslike_src checkout --detach "$ACT_LENSLIKE_COMMIT"
+          test "$(git -C act_dr6_lenslike_src rev-parse HEAD)" = "$ACT_LENSLIKE_COMMIT"
+          python -m pip install -e ./act_dr6_lenslike_src
+
+      - name: Download official ACT DR6 lensing likelihood data
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import act_dr6_lenslike as alike
+          alike.get_data()
+          for v in ('act_baseline','actplanck_baseline'):
+              d=alike.load_data(v,lens_only=True,like_corrections=False,trim_lmax=2499)
+              print(v, len(d['data_binned_clkk']), d['cov'].shape)
+          PY
+
+      - name: Fit pre-defined hidden mode to ACT lensing data
+        run: |
+          set -euo pipefail
+          python code/act_dr6_realdata_hidden_mode_fit.py \
+            --spectra-root spectra \
+            --act-like-root act_dr6_lenslike_src \
+            --outdir act_realdata_fit
+
+      - name: Sanity-check ACT result
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json, math
+          x=json.load(open('act_realdata_fit/act_dr6_hidden_mode_fit.json'))
+          assert x['hidden_template']['no_ACT_data_driven_mass_or_direction_optimization'] is True
+          for name,v in x['variants'].items():
+              f=v['fixed_background']
+              assert math.isfinite(f['sigma_alpha_linear_template']) and f['sigma_alpha_linear_template'] > 0
+              assert f['endpoint_separation_SN'] >= 0
+              print(name, json.dumps(f, indent=2))
+          PY
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: act-dr6-realdata-hidden-mode-fit
+          path: act_realdata_fit/
+          if-no-files-found: error
