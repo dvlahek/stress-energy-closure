@@ -10,9 +10,11 @@ The injectivity argument is an instance of a broader phase-mixing identifiabilit
 
 kinetic information is retained when the known momentum-to-velocity map is one-to-one and the analytic response has non-vanishing even Taylor coefficients, together with the stated weighted-decay and boundary conditions. The massive relativistic velocity map satisfies these conditions. In the isotropic massless limit all momenta propagate at the same speed, the radial profile collapses to the energy-density moment in the response, and injectivity fails.
 
-On every fixed finite momentum and response window the restricted gravitational forward map is compact, so the inverse is necessarily unbounded in its H^1 domain norm even though it is unique. The manuscript therefore distinguishes exact identifiability from stable finite-data recovery. A direct model-level consequence is that stress-energy-matched massive states can produce different frequency-dependent amplitude and phase responses to the same gravitational perturbation. These numerical response differences are proof-of-principle outputs, not observational sensitivity forecasts.
+On every fixed finite momentum and response window the restricted gravitational forward map is compact, so the inverse is necessarily unbounded in its H^1 domain norm even though it is unique. The manuscript therefore distinguishes exact identifiability from stable finite-data recovery. A direct model-level consequence is that stress-energy-matched massive states can produce different frequency-dependent amplitude and phase responses to the same gravitational perturbation.
 
-The repository contains the deterministic calculations used in the manuscript:
+The repository contains the deterministic calculations used in the manuscript, together with the CLASS campaigns used to separate kinetic response from background and relic-abundance effects.
+
+The main analytic/numerical scripts include:
 
 - `ev_flrw_controls.py` — exact flat-FLRW Einstein–Vlasov controls, including the massless profile-universality test and the massive same-`N^mu`/same-`T_munu` construction.
 - `injectivity_tomography.py` — stress-energy-matched response construction and regularized reconstruction of the hidden radial distribution.
@@ -21,15 +23,19 @@ The repository contains the deterministic calculations used in the manuscript:
 - `mass_sweep.py` — matched matter pairs across particle mass and the corresponding FLRW geometry separation.
 - `hierarchy_test.py` — finite source-jet matching with compact-support bump functions.
 - `direct_vs_memory.py` — direct phase-space Vlasov evolution compared with the reduced retarded-memory representation.
-- `class_observational_forecast.py` — Planck-anchored CLASS tensor calculation for a stress-energy-matched nonthermal relic pair.
-- `class_response_optimize.py` — response-difference optimization and neutrino-mass sweep within the same smooth deformation class.
-- `run_all.py` — convenience script for the core numerical validation campaigns.
+- `class_scalar_response_optimize.py` — scalar CMB/lensing response optimization in the exact stress-energy null space.
+- `class_scalar_control_run.py` and `class_scalar_fixed_omega0_run.py` — controlled mass sweeps with fixed background/relic quantities.
+- `class_cmb_survey_likelihood_forecast.py` — survey-aware Planck-like, SO and CMB-S4 Gaussian/Fisher forecast with linearized LCDM marginalization.
 
 The CLASS workflows pin the public solver to commit `e85808324f51fc694d12e3ed7439552a3c3f9540`. The publication-facing workflows are:
 
-- `.github/workflows/class_observational_forecast.yml` — benchmark CLASS tensor forecast and validation sweep.
-- `.github/workflows/class_response_mass_matrix.yml` — response-optimization mass sweep over 0.03–0.60 eV.
-- `.github/workflows/class_response_resolution_convergence.yml` — resolution-convergence control for the best tested optimized case.
+- `.github/workflows/class_scalar_mass_sweep.yml` — optimized scalar/lensing mass sweep.
+- `.github/workflows/class_scalar_control_sweeps.yml` — fixed-total-matter and fixed-relic-rho-at-match controls.
+- `.github/workflows/class_scalar_fixed_omega0_control.yml` — strict fixed-present-day relic-abundance control.
+- `.github/workflows/class_cmb_survey_likelihood_forecast.yml` — survey-aware Planck/SO/CMB-S4 forecast.
+- `.github/workflows/class_response_mass_matrix.yml` — manual final characterization workflow that assembles the 7D hidden-subspace spectrum, 10/20/30% amplitude control and the final four-panel characterization figure.
+
+The current interpretation and manuscript integration plan are recorded in [`MANUSCRIPT_PLAN.md`](MANUSCRIPT_PLAN.md).
 
 ## Reproducing the calculations
 
@@ -51,19 +57,24 @@ python code/hierarchy_test.py
 python code/direct_vs_memory.py --full
 ```
 
-The CLASS calculations require a local CLASS build or can be reproduced through the supplied GitHub Actions workflows. The calculations are deterministic. Fixed random seeds are used only for the reported synthetic noise realizations and for the response-optimization search heuristic.
+The CLASS calculations require a local CLASS build or can be reproduced through the supplied GitHub Actions workflows. The calculations are deterministic. Fixed random seeds are used only for the reported synthetic noise realizations and response-optimization search heuristics.
 
 ## What is checked numerically
 
 1. Two smooth isotropic massive Vlasov states can have the same initial particle current and stress-energy tensor while producing different exact FLRW metric evolutions.
-2. Two massive states with the same `n`, `rho` and `P` have distinct causal TT response kernels. For the dimensionless validation coupling used in the manuscript, the same metric source produces up to 0.80% complex-response separation, 0.63% amplitude separation and 0.45 degrees of phase separation over the plotted frequency band. These values are proof-of-principle model outputs, not observational forecasts.
+2. Two massive states with the same `n`, `rho` and `P` have distinct causal TT response kernels.
 3. The hidden radial distributions can be reconstructed from finite noisy response data with non-negative regularized inversion.
 4. A separate noise sweep shows the practical loss of reconstruction accuracy as response noise increases. This illustrates stability only; injectivity, compactness and the unbounded inverse are proved analytically in the manuscript.
 5. In the isotropic massless limit, profile dependence collapses and the matched FLRW geometries coincide to numerical precision.
 6. An arbitrary finite number of local gravitational source jets can be matched while the next jet remains distinct.
 7. Direct phase-space evolution and the eliminated retarded-memory description converge to the same transverse-traceless response.
-8. A Planck-anchored CLASS calculation shows that the distinction survives in a standard tensor B-mode observable for a controlled nonthermal relic pair. This is a physical-realization control, not a detectability forecast.
-9. Within the tested ten-function smooth deformation class and 30% pointwise cap, explicit CLASS response optimization over neutrino masses 0.03–0.60 eV gives an idealized full-sky cosmic-variance-limited S/N below 0.04 for every tested mass. The best tested case is numerically stable under refined non-cold-relic hierarchy and momentum resolution.
+8. Scalar CMB, lensing and matter-power calculations retain sensitivity to stress-energy-matched nonthermal relic states.
+9. The original optimized `m=0.60 eV` benchmark reaches high-precision ideal full-sky joint TT+TE+EE `S/N = 1.5193`, but this configuration changes both kinematics and the relic gravitational weight.
+10. Fixing the total present-day matter density leaves the high-mass response essentially unchanged (`S/N = 1.5316`), excluding a trivial total-matter-density explanation.
+11. Fixing the relic energy density at `z=1100` reduces the high-mass response to `S/N = 1.0736`, showing that relic weighting matters but does not remove the effect.
+12. The strict control with fixed `omega_ncdm(z=0)` and fixed `omega_cdm` gives a high-precision `m=0.60 eV` joint TT+TE+EE `S/N = 0.2793` and phi-phi `S/N = 0.1748`. About 18.4% of the original ideal CMB signal remains after the present-day relic abundance is fixed exactly.
+13. In that strict control, the light/relativistic masses `0.03–0.10 eV` form an approximate response plateau, followed by a systematic increase through `0.18`, `0.30` and `0.60 eV`. This is treated as an empirical massive-regime trend, not as a monotonic-mass theorem.
+14. The survey-aware likelihood workflow tests how much of the strict-control signal survives finite sky coverage, beams, detector noise and six-parameter LCDM marginalization.
 
 The numerical calculations illustrate and validate the analytic arguments. The FLRW existence, response injectivity and inverse ill-posedness results do not depend on the numerical examples.
 
@@ -71,12 +82,13 @@ The numerical calculations illustrate and validate the analytic arguments. The F
 
 ```text
 code/                    deterministic calculation scripts
-observational_forecast/  CLASS provenance and diagnostic notes
+observational_forecast/  CLASS provenance and precision settings
 source_data/             compact source-data summaries
 .github/workflows/       deterministic CLASS reproduction workflows
+MANUSCRIPT_PLAN.md        working physical interpretation and final manuscript plan
 ```
 
-Full figure-level source data are supplied with the manuscript submission package.
+Full figure-level source data are supplied with the manuscript submission package and are also produced by the final characterization workflow.
 
 ## Citation
 
