@@ -1,62 +1,468 @@
-name: CLASS response mass matrix
+name: CLASS final hidden-state characterization
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - class-response-optimization
-    paths:
-      - '.github/workflows/class_response_mass_matrix.yml'
+    inputs:
+      fixed_omega_run_id:
+        description: 'Completed fixed-relic-omega0 workflow run ID'
+        required: false
+        default: '34674788325'
+        type: string
+      survey_run_id:
+        description: 'Survey-aware likelihood workflow run ID'
+        required: false
+        default: '34677322082'
+        type: string
+
+permissions:
+  contents: read
+  actions: read
+
+env:
+  CLASS_COMMIT: e85808324f51fc694d12e3ed7439552a3c3f9540
+  FIXED_OMEGA_RUN_ID: ${{ inputs.fixed_omega_run_id || '34674788325' }}
+  SURVEY_RUN_ID: ${{ inputs.survey_run_id || '34677322082' }}
 
 jobs:
-  mass:
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-          - tag: '003'
-            mass: '0.03'
-          - tag: '006'
-            mass: '0.06'
-          - tag: '010'
-            mass: '0.10'
-          - tag: '018'
-            mass: '0.18'
-          - tag: '030'
-            mass: '0.30'
-          - tag: '060'
-            mass: '0.60'
+  hidden_spectrum:
+    name: 7D hidden-subspace Fisher spectrum
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
       - run: python -m pip install --upgrade pip numpy
-      - name: Fetch pinned CLASS
-        run: |
-          git init class_public
-          git -C class_public remote add origin https://github.com/lesgourg/class_public.git
-          git -C class_public fetch --depth 1 origin e85808324f51fc694d12e3ed7439552a3c3f9540
-          git -C class_public checkout --detach FETCH_HEAD
-          test "$(git -C class_public rev-parse HEAD)" = "e85808324f51fc694d12e3ed7439552a3c3f9540"
-      - run: make -C class_public class -j2
-      - name: Optimize mass ${{ matrix.mass }} eV
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: scalar-fixed-omega0-opt-m003
+          path: sweep/m003
+          github-token: ${{ github.token }}
+          repository: dvlahek/stress-energy-closure
+          run-id: ${{ env.FIXED_OMEGA_RUN_ID }}
+      - uses: actions/download-artifact@v4
+        with:
+          name: scalar-fixed-omega0-opt-m006
+          path: sweep/m006
+          github-token: ${{ github.token }}
+          repository: dvlahek/stress-energy-closure
+          run-id: ${{ env.FIXED_OMEGA_RUN_ID }}
+      - uses: actions/download-artifact@v4
+        with:
+          name: class-scalar-response-opt-m010-resumed
+          path: sweep/m010
+          github-token: ${{ github.token }}
+          repository: dvlahek/stress-energy-closure
+          run-id: 34598696605
+      - uses: actions/download-artifact@v4
+        with:
+          name: scalar-fixed-omega0-opt-m018
+          path: sweep/m018
+          github-token: ${{ github.token }}
+          repository: dvlahek/stress-energy-closure
+          run-id: ${{ env.FIXED_OMEGA_RUN_ID }}
+      - uses: actions/download-artifact@v4
+        with:
+          name: scalar-fixed-omega0-opt-m030
+          path: sweep/m030
+          github-token: ${{ github.token }}
+          repository: dvlahek/stress-energy-closure
+          run-id: ${{ env.FIXED_OMEGA_RUN_ID }}
+      - uses: actions/download-artifact@v4
+        with:
+          name: scalar-fixed-omega0-opt-m060
+          path: sweep/m060
+          github-token: ${{ github.token }}
+          repository: dvlahek/stress-energy-closure
+          run-id: ${{ env.FIXED_OMEGA_RUN_ID }}
+
+      - name: Compute covariance-whitened singular spectrum
         run: |
           set -euo pipefail
-          out="response_matrix_output/mass_${{ matrix.tag }}"
-          mkdir -p "$out"
-          python code/class_response_optimize.py --mode prepare-probes --outdir "$out" --mass-eV "${{ matrix.mass }}" --z-match 1100 --probe-frac 0.02 --class-lmax 320
-          for ini in "$out"/probe_*_plus.ini "$out"/probe_*_minus.ini; do ./class_public/class "$ini"; done
-          python code/class_response_optimize.py --mode optimize --outdir "$out" --final-frac 0.30 --lmin 20 --lmax 300 --random-samples 50000 --seed 271828
-          ./class_public/class "$out/final_plus.ini"
-          ./class_public/class "$out/final_minus.ini"
-          python code/class_response_optimize.py --mode summarize-final --outdir "$out" --lmin 20 --lmax 300 --tag default
-          git -C class_public rev-parse HEAD > "$out/CLASS_COMMIT.txt"
+          mkdir -p characterization
+          python - <<'PY'
+          import csv, json, sys
+          from pathlib import Path
+          import numpy as np
+          sys.path.insert(0, 'code')
+          import class_scalar_response_optimize as base
+
+          masses = [('003',0.03),('006',0.06),('010',0.10),('018',0.18),('030',0.30),('060',0.60)]
+          out = {
+              'definition': 'Singular values of the covariance-whitened local hidden-state response Jacobian in the individually pointwise-normalized 7D null basis.',
+              'normalization': 'sqrt(eigenvalue(Gram))/(2*probe_fraction), so values are per unit null-basis coefficient amplitude.',
+              'ell_range_TTEE': [30, 600],
+              'ell_range_phiphi': [8, 600],
+              'per_mass': [],
+          }
+          rows = []
+          for tag, mass in masses:
+              d = Path('sweep') / f'm{tag}'
+              meta = json.loads((d/'scalar_probe_meta.json').read_text())
+              Gs, Gp = base.build_gram(d, 30, 600)
+              eps = float(meta['probe_fractional_distortion'])
+              def spectrum(G):
+                  w = np.linalg.eigvalsh(0.5*(G+G.T))[::-1]
+                  w = np.clip(w, 0.0, None)
+                  s = np.sqrt(w)/(2.0*eps)
+                  tol = max(float(s[0])*1e-10, 1e-14) if len(s) else 1e-14
+                  nz = s[s > tol]
+                  cond = float(nz[0]/nz[-1]) if len(nz) > 1 else None
+                  return s, cond, int(len(nz))
+              ss, cs, rs = spectrum(Gs)
+              sp, cp, rp = spectrum(Gp)
+              item = {
+                  'tag': f'm{tag}', 'mass_eV': mass,
+                  'mass_over_Tnu_at_match': float(meta['mass_over_Tnu_at_match']),
+                  'probe_fraction': eps,
+                  'TTEE_singular_values_per_unit_amplitude': ss.tolist(),
+                  'phiphi_singular_values_per_unit_amplitude': sp.tolist(),
+                  'TTEE_effective_rank': rs, 'phiphi_effective_rank': rp,
+                  'TTEE_condition_number_nonzero': cs,
+                  'phiphi_condition_number_nonzero': cp,
+              }
+              out['per_mass'].append(item)
+              for i, val in enumerate(ss, 1):
+                  rows.append([mass, item['mass_over_Tnu_at_match'], 'TTEE', i, float(val)])
+              for i, val in enumerate(sp, 1):
+                  rows.append([mass, item['mass_over_Tnu_at_match'], 'phiphi', i, float(val)])
+          Path('characterization/hidden_subspace_spectrum.json').write_text(json.dumps(out, indent=2)+'\n')
+          with open('characterization/hidden_subspace_spectrum.csv','w',newline='') as f:
+              w=csv.writer(f); w.writerow(['mass_eV','mass_over_Tnu_at_match','channel','mode','singular_value_per_unit_amplitude']); w.writerows(rows)
+          print(json.dumps(out, indent=2))
+          PY
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: hidden-subspace-spectrum
+          path: characterization/
+          if-no-files-found: error
+
+  amplitude_prepare:
+    name: prepare 10 20 30 percent amplitude control
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install --upgrade pip numpy
+      - uses: actions/download-artifact@v4
+        with:
+          name: scalar-fixed-relic-omega0-global-highprec
+          path: source
+          github-token: ${{ github.token }}
+          repository: dvlahek/stress-energy-closure
+          run-id: ${{ env.FIXED_OMEGA_RUN_ID }}
+      - name: Prepare scaled copies of the same winning hidden direction
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json, sys
+          from pathlib import Path
+          import numpy as np
+          sys.path.insert(0, 'code')
+          import class_scalar_fixed_omega0_run as fixed
+          from class_response_optimize import write_psd
+
+          src = Path('source')
+          plus = np.loadtxt(src/'winner_plus.dat')
+          minus = np.loadtxt(src/'winner_minus.dat')
+          if plus.shape != minus.shape or not np.allclose(plus[:,0], minus[:,0], rtol=0, atol=1e-13):
+              raise RuntimeError('Winner PSD grids differ')
+          params = json.loads((src/'control_parameters.json').read_text())
+          if abs(float(params['mass_eV']) - 0.60) > 1e-12:
+              raise RuntimeError(f"Expected m=0.60 eV global winner, got {params['mass_eV']}")
+          fixed.ctrl.install_writer(params)
+          writer = fixed.ctrl.base.write_scalar_ini
+          q = plus[:,0]
+          f0 = 0.5*(plus[:,1] + minus[:,1])
+          delta30 = 0.5*(plus[:,1] - minus[:,1])
+          out = Path('amplitude_inputs'); out.mkdir(exist_ok=True)
+          manifest = {'mass_eV':0.60,'control':'fixed-relic-omega0','source_cap':0.30,'fractions':[0.10,0.20,0.30],'control_parameters':params}
+          for frac in manifest['fractions']:
+              tag = f"a{int(round(frac*100)):03d}"
+              scale = frac/0.30
+              for sign,sgn in [('plus',1.0),('minus',-1.0)]:
+                  f = f0 + sgn*scale*delta30
+                  if np.any(f <= 0):
+                      raise RuntimeError(f'Non-positive PSD for {tag} {sign}')
+                  dat = out/f'{tag}_{sign}.dat'
+                  write_psd(dat,q,f)
+                  writer(out/f'{tag}_{sign}.ini',dat,out/f'{tag}_{sign}_',0.60,1200,0.30)
+          (out/'amplitude_manifest.json').write_text(json.dumps(manifest,indent=2)+'\n')
+          print(json.dumps(manifest,indent=2))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: fixed-omega0-amplitude-inputs
+          path: amplitude_inputs/
+          if-no-files-found: error
+
+  amplitude_spectra:
+    name: amplitude ${{ matrix.case }}
+    needs: amplitude_prepare
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    strategy:
+      fail-fast: false
+      max-parallel: 6
+      matrix:
+        case: [a010_plus, a010_minus, a020_plus, a020_minus, a030_plus, a030_minus]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: fixed-omega0-amplitude-inputs
+          path: amplitude_inputs
+      - name: Fetch pinned CLASS
+        run: |
+          set -euo pipefail
+          git init class_public
+          git -C class_public remote add origin https://github.com/lesgourg/class_public.git
+          git -C class_public fetch --depth 1 origin "$CLASS_COMMIT"
+          git -C class_public checkout --detach FETCH_HEAD
+          test "$(git -C class_public rev-parse HEAD)" = "$CLASS_COMMIT"
+          make -C class_public class -j2
+      - name: Run high-precision amplitude case
+        run: |
+          set -euo pipefail
+          mkdir -p outputs
+          # Rewrite only root and PSD path because the artifact was prepared in a different workspace.
+          cp amplitude_inputs/${{ matrix.case }}.dat outputs/${{ matrix.case }}.dat
+          sed \
+            -e "s|^ncdm_psd_filenames = .*|ncdm_psd_filenames = ${GITHUB_WORKSPACE}/outputs/${{ matrix.case }}.dat|" \
+            -e "s|^root = .*|root = ${GITHUB_WORKSPACE}/outputs/${{ matrix.case }}_|" \
+            amplitude_inputs/${{ matrix.case }}.ini > outputs/${{ matrix.case }}.ini
+          ./class_public/class outputs/${{ matrix.case }}.ini observational_forecast/high_precision.pre > outputs/${{ matrix.case }}.log 2>&1
+          test -s outputs/${{ matrix.case }}_00_cl.dat
+          test -s outputs/${{ matrix.case }}_00_cl_lensed.dat
+          test -s outputs/${{ matrix.case }}_00_pk.dat
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: class-response-mass-${{ matrix.tag }}
-          path: response_matrix_output/mass_${{ matrix.tag }}/
+          name: fixed-omega0-amplitude-${{ matrix.case }}
+          path: outputs/
+          if-no-files-found: error
+
+  amplitude_summary:
+    name: summarize amplitude linearity
+    needs: amplitude_spectra
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install --upgrade pip numpy
+      - uses: actions/download-artifact@v4
+        with:
+          name: fixed-omega0-amplitude-inputs
+          path: amplitude_inputs
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: fixed-omega0-amplitude-a*
+          path: amplitude_outputs
+          merge-multiple: true
+      - name: Compute high-precision scaling metrics
+        run: |
+          set -euo pipefail
+          mkdir -p characterization
+          python - <<'PY'
+          import csv, json, sys
+          from pathlib import Path
+          sys.path.insert(0,'code')
+          import class_scalar_response_optimize as base
+          d=Path('amplitude_outputs')
+          fractions=[0.10,0.20,0.30]
+          out={'mass_eV':0.60,'control':'fixed-relic-omega0','same_hidden_direction':True,'fractions':[]}
+          rows=[]
+          for frac in fractions:
+              tag=f"a{int(round(frac*100)):03d}"
+              m=base.actual_metrics(d,tag,30,1200,0.30)
+              t=float(m['TTEE_TE_combined']['ideal_fullsky_gaussian_cv_SN'])
+              p=float(m['phiphi']['ideal_fullsky_cv_SN_auto_only'])
+              item={'fractional_distortion_cap':frac,'TTEE_SN':t,'phiphi_SN':p,'metrics':m}
+              out['fractions'].append(item); rows.append([frac,t,p])
+          ref=out['fractions'][-1]
+          for item in out['fractions']:
+              f=item['fractional_distortion_cap']
+              expected=f/0.30
+              item['TTEE_ratio_to_30pct']=item['TTEE_SN']/ref['TTEE_SN'] if ref['TTEE_SN'] else None
+              item['phiphi_ratio_to_30pct']=item['phiphi_SN']/ref['phiphi_SN'] if ref['phiphi_SN'] else None
+              item['expected_linear_ratio']=expected
+              item['TTEE_fractional_deviation_from_linear_ratio']=(item['TTEE_ratio_to_30pct']/expected-1.0) if expected else None
+              item['phiphi_fractional_deviation_from_linear_ratio']=(item['phiphi_ratio_to_30pct']/expected-1.0) if expected else None
+          Path('characterization/amplitude_scaling.json').write_text(json.dumps(out,indent=2)+'\n')
+          with open('characterization/amplitude_scaling.csv','w',newline='') as f:
+              w=csv.writer(f); w.writerow(['fractional_distortion_cap','TTEE_SN','phiphi_SN']); w.writerows(rows)
+          print(json.dumps(out,indent=2))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: amplitude-scaling-summary
+          path: characterization/
+          if-no-files-found: error
+
+  final_figure:
+    name: assemble four-panel manuscript characterization figure
+    needs: [hidden_spectrum, amplitude_summary]
+    runs-on: ubuntu-latest
+    timeout-minutes: 370
+    steps:
+      - uses: actions/checkout@v4
+      - name: Wait for survey-aware likelihood run
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          done_flag=0
+          for i in $(seq 1 180); do
+            status=$(gh api "repos/${GITHUB_REPOSITORY}/actions/runs/${SURVEY_RUN_ID}" --jq '.status')
+            conclusion=$(gh api "repos/${GITHUB_REPOSITORY}/actions/runs/${SURVEY_RUN_ID}" --jq '.conclusion // ""')
+            echo "attempt=${i} status=${status} conclusion=${conclusion}"
+            if [ "$status" = "completed" ]; then
+              test "$conclusion" = "success"
+              done_flag=1
+              break
+            fi
+            sleep 120
+          done
+          test "$done_flag" = 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install --upgrade pip numpy matplotlib
+      - uses: actions/download-artifact@v4
+        with:
+          name: hidden-subspace-spectrum
+          path: figure_data/spectrum
+      - uses: actions/download-artifact@v4
+        with:
+          name: amplitude-scaling-summary
+          path: figure_data/amplitude
+      - uses: actions/download-artifact@v4
+        with:
+          name: cmb-survey-likelihood-forecast
+          path: figure_data/survey
+          github-token: ${{ github.token }}
+          repository: dvlahek/stress-energy-closure
+          run-id: ${{ env.SURVEY_RUN_ID }}
+      - uses: actions/download-artifact@v4
+        with:
+          name: scalar-mass-sweep-global-highprec
+          path: figure_data/controls/original
+          github-token: ${{ github.token }}
+          repository: dvlahek/stress-energy-closure
+          run-id: 34611544016
+      - uses: actions/download-artifact@v4
+        with:
+          name: scalar-control-fixed-total-matter-global-highprec
+          path: figure_data/controls/fixed_total
+          github-token: ${{ github.token }}
+          repository: dvlahek/stress-energy-closure
+          run-id: 34642785031
+      - uses: actions/download-artifact@v4
+        with:
+          name: scalar-control-fixed-relic-rho-match-global-highprec
+          path: figure_data/controls/fixed_rho_match
+          github-token: ${{ github.token }}
+          repository: dvlahek/stress-energy-closure
+          run-id: 34642785031
+      - uses: actions/download-artifact@v4
+        with:
+          name: scalar-fixed-relic-omega0-global-highprec
+          path: figure_data/controls/fixed_omega0
+          github-token: ${{ github.token }}
+          repository: dvlahek/stress-energy-closure
+          run-id: ${{ env.FIXED_OMEGA_RUN_ID }}
+      - name: Build final figure and compact source-data tables
+        run: |
+          set -euo pipefail
+          mkdir -p final_figure
+          python - <<'PY'
+          import csv, json
+          from pathlib import Path
+          import numpy as np
+          import matplotlib.pyplot as plt
+
+          root=Path('figure_data')
+          def find_json_with_key(folder,key):
+              for p in sorted(Path(folder).rglob('*.json')):
+                  try: d=json.loads(p.read_text())
+                  except Exception: continue
+                  if isinstance(d,dict) and key in d: return d,p
+              raise FileNotFoundError(f'No JSON with key={key} below {folder}')
+
+          controls={}
+          for name,folder in [('Original thermal','original'),('Fixed total matter','fixed_total'),('Fixed rho at z=1100','fixed_rho_match'),('Fixed relic omega0','fixed_omega0')]:
+              d,p=find_json_with_key(root/'controls'/folder,'per_mass')
+              controls[name]=d
+
+          spec=json.loads((root/'spectrum/hidden_subspace_spectrum.json').read_text())
+          amp=json.loads((root/'amplitude/amplitude_scaling.json').read_text())
+          survey,_=find_json_with_key(root/'survey','forecasts')
+
+          fig,axs=plt.subplots(2,2,figsize=(11.2,8.2),constrained_layout=True)
+          ax=axs[0,0]
+          for name,d in controls.items():
+              x=[q['mass_eV'] for q in d['per_mass']]
+              y=[q['winner_strength_ideal_SN'] for q in d['per_mass']]
+              ax.plot(x,y,marker='o',label=name)
+          ax.set_xlabel('Relic mass [eV]'); ax.set_ylabel('Optimized ideal S/N')
+          ax.set_title('(a) Background and abundance controls'); ax.legend(fontsize=8)
+
+          ax=axs[0,1]
+          x=np.array([q['mass_over_Tnu_at_match'] for q in spec['per_mass']])
+          for mode in range(3):
+              y=[q['TTEE_singular_values_per_unit_amplitude'][mode] for q in spec['per_mass']]
+              ax.plot(x,y,marker='o',label=f'TT+TE+EE mode {mode+1}')
+          y=[q['phiphi_singular_values_per_unit_amplitude'][0] for q in spec['per_mass']]
+          ax.plot(x,y,marker='s',linestyle='--',label='phi-phi mode 1')
+          ax.set_xlabel(r'$m/T_\nu(z_{match})$'); ax.set_ylabel('Whitened singular value')
+          ax.set_title('(b) 7D hidden-subspace response spectrum'); ax.legend(fontsize=8)
+
+          ax=axs[1,0]
+          fr=np.array([q['fractional_distortion_cap'] for q in amp['fractions']])
+          st=np.array([q['TTEE_SN'] for q in amp['fractions']]); sp=np.array([q['phiphi_SN'] for q in amp['fractions']])
+          ax.plot(100*fr,st,marker='o',label='TT+TE+EE')
+          ax.plot(100*fr,sp,marker='s',label='phi-phi')
+          ax.plot(100*fr,st[-1]*(fr/0.30),linestyle=':',label='linear reference')
+          ax.set_xlabel('Pointwise distortion cap [%]'); ax.set_ylabel('Ideal S/N')
+          ax.set_title('(c) Amplitude scaling, fixed hidden direction'); ax.legend(fontsize=8)
+
+          ax=axs[1,1]
+          order=['Planck2018_like','SimonsObservatory_LAT_baseline','CMB_S4_reference_design']
+          labels=['Planck-like','SO LAT','CMB-S4 ref.']
+          xf=np.arange(len(order)); fixed=[]; marg=[]
+          for k in order:
+              f=survey['forecasts'][k]
+              fixed.append(float(f['fixed_cosmology']['joint_TT_TE_EE_SN']))
+              marg.append(float(f['linearized_LCDM_marginalized']['joint_TT_TE_EE_SN']))
+          w=0.36
+          ax.bar(xf-w/2,fixed,w,label='Fixed cosmology')
+          ax.bar(xf+w/2,marg,w,label='LCDM marginalized')
+          ax.set_xticks(xf,labels); ax.set_ylabel('Survey-aware S/N')
+          ax.set_title('(d) Experimental accessibility'); ax.legend(fontsize=8)
+
+          fig.savefig('final_figure/final_characterization_figure.png',dpi=220)
+          fig.savefig('final_figure/final_characterization_figure.pdf')
+
+          package={'controls':controls,'hidden_subspace_spectrum':spec,'amplitude_scaling':amp,'survey_forecast':survey}
+          Path('final_figure/final_characterization_source_data.json').write_text(json.dumps(package,indent=2)+'\n')
+          with open('final_figure/panel_a_mass_controls.csv','w',newline='') as f:
+              wri=csv.writer(f); wri.writerow(['control','mass_eV','winner_strength_ideal_SN','winner_TTEE_SN','winner_phiphi_SN'])
+              for name,d in controls.items():
+                  for q in d['per_mass']:
+                      wri.writerow([name,q['mass_eV'],q['winner_strength_ideal_SN'],q['winner_TTEE_SN'],q['winner_phiphi_SN']])
+          print('Wrote final four-panel characterization figure and source data.')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: final-hidden-state-characterization
+          path: final_figure/
           if-no-files-found: error
