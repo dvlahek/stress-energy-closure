@@ -1,0 +1,194 @@
+name: CLASS survey-aware CMB likelihood forecast
+
+on:
+  workflow_dispatch:
+    inputs:
+      source_run_id:
+        description: 'Completed fixed-relic-omega0 workflow run ID'
+        required: false
+        default: '34674788325'
+        type: string
+  push:
+    branches:
+      - scalar-lensing-screen
+    paths:
+      - '.github/workflows/class_cmb_survey_likelihood_forecast.yml'
+      - 'code/class_cmb_survey_likelihood_forecast.py'
+
+permissions:
+  contents: read
+  actions: read
+
+env:
+  CLASS_COMMIT: e85808324f51fc694d12e3ed7439552a3c3f9540
+  SOURCE_RUN_ID: ${{ inputs.source_run_id || '34674788325' }}
+
+jobs:
+  prepare:
+    name: wait for fixed-omega0 winner and prepare likelihood grid
+    runs-on: ubuntu-latest
+    timeout-minutes: 355
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Wait for source control sweep
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          echo "Waiting for source run ${SOURCE_RUN_ID}"
+          done_flag=0
+          for i in $(seq 1 165); do
+            status=$(gh api "repos/${GITHUB_REPOSITORY}/actions/runs/${SOURCE_RUN_ID}" --jq '.status')
+            conclusion=$(gh api "repos/${GITHUB_REPOSITORY}/actions/runs/${SOURCE_RUN_ID}" --jq '.conclusion // ""')
+            echo "attempt=${i} status=${status} conclusion=${conclusion}"
+            if [ "$status" = "completed" ]; then
+              if [ "$conclusion" != "success" ]; then
+                echo "Source run completed with conclusion=${conclusion}" >&2
+                exit 1
+              fi
+              done_flag=1
+              break
+            fi
+            sleep 120
+          done
+          test "$done_flag" = 1
+
+      - name: Download fixed-omega0 high-precision winner
+        uses: actions/download-artifact@v4
+        with:
+          name: scalar-fixed-relic-omega0-global-highprec
+          path: source_control
+          github-token: ${{ github.token }}
+          repository: dvlahek/stress-energy-closure
+          run-id: ${{ env.SOURCE_RUN_ID }}
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - run: python -m pip install --upgrade pip numpy
+
+      - name: Prepare high-l signal and LambdaCDM derivative inputs
+        run: |
+          set -euo pipefail
+          python code/class_cmb_survey_likelihood_forecast.py \
+            --mode prepare \
+            --source source_control \
+            --work forecast \
+            --lmax 2500
+          find forecast -maxdepth 2 -type f -print | sort
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: cmb-survey-likelihood-inputs
+          path: forecast/
+          if-no-files-found: error
+
+  spectra:
+    name: CLASS likelihood spectrum ${{ matrix.case }}
+    needs: prepare
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    strategy:
+      fail-fast: false
+      max-parallel: 15
+      matrix:
+        case:
+          - winner_plus
+          - winner_minus
+          - fiducial
+          - d_H0_plus
+          - d_H0_minus
+          - d_omega_b_plus
+          - d_omega_b_minus
+          - d_omega_cdm_plus
+          - d_omega_cdm_minus
+          - d_lnAs_plus
+          - d_lnAs_minus
+          - d_n_s_plus
+          - d_n_s_minus
+          - d_tau_reio_plus
+          - d_tau_reio_minus
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: cmb-survey-likelihood-inputs
+          path: forecast
+
+      - name: Fetch pinned CLASS
+        run: |
+          set -euo pipefail
+          git init class_public
+          git -C class_public remote add origin https://github.com/lesgourg/class_public.git
+          git -C class_public fetch --depth 1 origin "$CLASS_COMMIT"
+          git -C class_public checkout --detach FETCH_HEAD
+          test "$(git -C class_public rev-parse HEAD)" = "$CLASS_COMMIT"
+          make -C class_public class -j2
+
+      - name: Run high-precision spectrum
+        run: |
+          set -euo pipefail
+          mkdir -p forecast/outputs
+          ./class_public/class \
+            "forecast/ini/${{ matrix.case }}.ini" \
+            observational_forecast/high_precision.pre \
+            > "forecast/outputs/${{ matrix.case }}.log" 2>&1
+          test -s "forecast/outputs/${{ matrix.case }}_00_cl.dat"
+          test -s "forecast/outputs/${{ matrix.case }}_00_cl_lensed.dat"
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: cmb-survey-spectrum-${{ matrix.case }}
+          path: |
+            forecast/outputs/${{ matrix.case }}_00_cl.dat
+            forecast/outputs/${{ matrix.case }}_00_cl_lensed.dat
+            forecast/outputs/${{ matrix.case }}.log
+          if-no-files-found: error
+
+  forecast:
+    name: Planck SO CMB-S4 likelihood comparison
+    needs: spectra
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - run: python -m pip install --upgrade pip numpy
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: cmb-survey-likelihood-inputs
+          path: forecast
+
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: cmb-survey-spectrum-*
+          path: spectra
+          merge-multiple: true
+
+      - name: Compute survey-aware Gaussian likelihood and marginalized Fisher result
+        run: |
+          set -euo pipefail
+          python code/class_cmb_survey_likelihood_forecast.py \
+            --mode summarize \
+            --work forecast \
+            --results spectra \
+            --manifest forecast/forecast_manifest.json \
+            --output forecast/cmb_survey_likelihood_forecast.json
+          cat forecast/cmb_survey_likelihood_forecast.json
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: cmb-survey-likelihood-forecast
+          path: |
+            forecast/cmb_survey_likelihood_forecast.json
+            forecast/forecast_manifest.json
+          if-no-files-found: error
