@@ -1,0 +1,27 @@
+name: Launch final hidden-state characterization
+
+on:
+  push:
+    branches:
+      - scalar-lensing-screen
+    paths:
+      - '.github/workflows/launch_final_characterization.yml'
+
+permissions:
+  contents: read
+  actions: write
+
+jobs:
+  dispatch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dispatch final characterization with corrected survey result
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          gh workflow run class_response_mass_matrix.yml \
+            --repo "${GITHUB_REPOSITORY}" \
+            --ref scalar-lensing-screen \
+            -f fixed_omega_run_id=34674788325 \
+            -f survey_run_id=34690965218
