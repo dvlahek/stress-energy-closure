@@ -1,0 +1,97 @@
+name: CLASS hidden-mode 7D observable spectrum
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - scalar-lensing-screen
+    paths:
+      - '.github/workflows/class_hidden_mode_observable_spectrum.yml'
+      - 'code/class_hidden_mode_observable_spectrum.py'
+
+permissions:
+  contents: read
+  actions: read
+
+env:
+  SOURCE_RUN_ID: '34694221873'
+
+jobs:
+  spectrum:
+    name: 7D observable spectrum m060 fixed-omega0-Neff
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install --upgrade pip numpy
+
+      - name: Download fixed-omega0-Neff m060 preparation
+        uses: actions/download-artifact@v4
+        with:
+          name: scalar-fixed-omega0-neff-prep-m060
+          path: work
+          github-token: ${{ github.token }}
+          repository: dvlahek/stress-energy-closure
+          run-id: ${{ env.SOURCE_RUN_ID }}
+
+      - name: Download all seven fixed-omega0-Neff m060 probes
+        uses: actions/download-artifact@v4
+        with:
+          pattern: scalar-fixed-omega0-neff-probe-m060-d*
+          path: work
+          merge-multiple: true
+          github-token: ${{ github.token }}
+          repository: dvlahek/stress-energy-closure
+          run-id: ${{ env.SOURCE_RUN_ID }}
+
+      - name: Verify complete seven-direction response matrix
+        run: |
+          set -euo pipefail
+          for j in 00 01 02 03 04 05 06; do
+            for sign in plus minus; do
+              test -s work/probe_${j}_${sign}_00_cl.dat
+              test -s work/probe_${j}_${sign}_00_cl_lensed.dat
+            done
+          done
+          test -s work/null_shapes.npy
+          test -s work/q.npy
+          test -s work/f0.npy
+
+      - name: Compute generalized observable eigenspectrum
+        run: |
+          set -euo pipefail
+          python code/class_hidden_mode_observable_spectrum.py \
+            --work work \
+            --lmin 30 \
+            --lmax 600 \
+            --final-frac 0.30 \
+            --output results/hidden_mode_observable_spectrum.json
+
+      - name: Sanity-check spectrum
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json, math
+          d=json.load(open('results/hidden_mode_observable_spectrum.json'))
+          assert d['null_dimension'] == 7
+          assert abs(d['source_mass_eV']-0.6) < 1e-12
+          for ch in ['TTEE','phiphi','block_diagonal_TTEE_plus_phiphi']:
+              modes=d[ch]['modes']
+              assert len(modes)==7
+              assert all(math.isfinite(float(m['generalized_eigenvalue_SN2_at_probe_scale'])) for m in modes)
+              assert all(modes[i]['generalized_eigenvalue_SN2_at_probe_scale'] >= modes[i+1]['generalized_eigenvalue_SN2_at_probe_scale']-1e-15 for i in range(6))
+              assert abs(sum(float(m['information_fraction']) for m in modes)-1.0) < 1e-8
+          print('TTEE top fraction =', d['TTEE']['top_mode_information_fraction'])
+          print('TTEE top2 fraction =', d['TTEE']['top_two_cumulative_information_fraction'])
+          print('phiphi top fraction =', d['phiphi']['top_mode_information_fraction'])
+          print('phiphi top2 fraction =', d['phiphi']['top_two_cumulative_information_fraction'])
+          PY
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: hidden-mode-7d-observable-spectrum-m060
+          path: results/
+          if-no-files-found: error
