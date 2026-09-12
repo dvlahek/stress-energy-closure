@@ -1,0 +1,208 @@
+name: Planck 2018 nonlinear bounded hidden-mode fit
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - scalar-lensing-screen
+    paths:
+      - '.github/workflows/planck_realdata_nonlinear_bounded.yml'
+
+permissions:
+  contents: read
+  actions: read
+
+env:
+  SOURCE_CONTROL_RUN_ID: '34674788325'
+  CLASS_COMMIT: 'e85808324f51fc694d12e3ed7439552a3c3f9540'
+  PLANCK_LITE_COMMIT: '2c0d0f67e59ce781654cf62dd7fb10757b0e60be'
+
+jobs:
+  midpoint:
+    name: nonlinear bounded alpha 0
+    runs-on: ubuntu-latest
+    timeout-minutes: 240
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install --upgrade pip numpy scipy
+
+      - name: Download frozen fixed-omega0 winner
+        uses: actions/download-artifact@v4
+        with:
+          name: scalar-fixed-relic-omega0-global-highprec
+          path: frozen_control
+          github-token: ${{ github.token }}
+          repository: dvlahek/stress-energy-closure
+          run-id: ${{ env.SOURCE_CONTROL_RUN_ID }}
+
+      - name: Fetch pinned CLASS
+        run: |
+          set -euo pipefail
+          git init class_public
+          git -C class_public remote add origin https://github.com/lesgourg/class_public.git
+          git -C class_public fetch --depth 1 origin "$CLASS_COMMIT"
+          git -C class_public checkout --detach FETCH_HEAD
+          test "$(git -C class_public rev-parse HEAD)" = "$CLASS_COMMIT"
+          make -C class_public class -j2
+
+      - name: Fetch pinned Planck Plik-lite
+        run: |
+          set -euo pipefail
+          git clone https://github.com/heatherprince/planck-lite-py.git planck-lite-py
+          git -C planck-lite-py checkout --detach "$PLANCK_LITE_COMMIT"
+          test "$(git -C planck-lite-py rev-parse HEAD)" = "$PLANCK_LITE_COMMIT"
+
+      - name: Validate Plik-lite
+        run: |
+          python - <<'PY'
+          import sys, numpy as np
+          sys.path.insert(0, 'planck-lite-py')
+          from planck_lite_py import PlanckLitePy
+          like=PlanckLitePy(data_directory='planck-lite-py/data',year=2018,spectra='TTTEEE',use_low_ell_bins=False)
+          ell,dtt,dte,dee=np.genfromtxt('planck-lite-py/data/Dl_planck2015fit.dat',unpack=True)
+          got=like.loglike(dtt,dte,dee,int(ell[0])); exp=-291.33481235418026
+          print({'got':got,'expected':exp,'difference':got-exp})
+          assert abs(got-exp)<1e-8
+          PY
+
+      - name: Exact bounded nonlinear midpoint fit
+        run: |
+          set -euo pipefail
+          python code/planck_realdata_nonlinear_bounded_fit.py \
+            --alpha 0 \
+            --source frozen_control \
+            --class-exe class_public/class \
+            --precision-pre observational_forecast/high_precision.pre \
+            --planck-lite-root planck-lite-py \
+            --outdir fit_alpha0 \
+            --maxfev 120 \
+            --lmax 2500
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: planck2018-nonlinear-alpha0
+          path: fit_alpha0/
+          if-no-files-found: error
+
+  endpoints:
+    name: nonlinear bounded alpha ${{ matrix.alpha }}
+    needs: midpoint
+    runs-on: ubuntu-latest
+    timeout-minutes: 240
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - alpha: '-1'
+            tag: minus1
+          - alpha: '+1'
+            tag: plus1
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install --upgrade pip numpy scipy
+
+      - name: Download frozen fixed-omega0 winner
+        uses: actions/download-artifact@v4
+        with:
+          name: scalar-fixed-relic-omega0-global-highprec
+          path: frozen_control
+          github-token: ${{ github.token }}
+          repository: dvlahek/stress-energy-closure
+          run-id: ${{ env.SOURCE_CONTROL_RUN_ID }}
+
+      - name: Download midpoint best fit
+        uses: actions/download-artifact@v4
+        with:
+          name: planck2018-nonlinear-alpha0
+          path: alpha0
+
+      - name: Fetch pinned CLASS
+        run: |
+          set -euo pipefail
+          git init class_public
+          git -C class_public remote add origin https://github.com/lesgourg/class_public.git
+          git -C class_public fetch --depth 1 origin "$CLASS_COMMIT"
+          git -C class_public checkout --detach FETCH_HEAD
+          test "$(git -C class_public rev-parse HEAD)" = "$CLASS_COMMIT"
+          make -C class_public class -j2
+
+      - name: Fetch pinned Planck Plik-lite
+        run: |
+          set -euo pipefail
+          git clone https://github.com/heatherprince/planck-lite-py.git planck-lite-py
+          git -C planck-lite-py checkout --detach "$PLANCK_LITE_COMMIT"
+
+      - name: Exact bounded nonlinear endpoint fit
+        run: |
+          set -euo pipefail
+          python code/planck_realdata_nonlinear_bounded_fit.py \
+            --alpha '${{ matrix.alpha }}' \
+            --source frozen_control \
+            --class-exe class_public/class \
+            --precision-pre observational_forecast/high_precision.pre \
+            --planck-lite-root planck-lite-py \
+            --outdir 'fit_${{ matrix.tag }}' \
+            --initial-json alpha0/result.json \
+            --maxfev 90 \
+            --lmax 2500
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: planck2018-nonlinear-${{ matrix.tag }}
+          path: fit_${{ matrix.tag }}/
+          if-no-files-found: error
+
+  summary:
+    name: summarize nonlinear bounded Planck control
+    needs: endpoints
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: planck2018-nonlinear-alpha0
+          path: results/alpha0
+      - uses: actions/download-artifact@v4
+        with:
+          name: planck2018-nonlinear-minus1
+          path: results/minus1
+      - uses: actions/download-artifact@v4
+        with:
+          name: planck2018-nonlinear-plus1
+          path: results/plus1
+      - name: Summarize exact endpoint discrimination
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          out={}
+          for key in ['minus1','alpha0','plus1']:
+              x=json.loads((Path('results')/key/'result.json').read_text())
+              out[key]=x
+          vals={k:float(v['chi2_best']) for k,v in out.items()}
+          best=min(vals.values())
+          summary={
+              'experiment':'Planck 2018 exact bounded nonlinear hidden-mode endpoint control',
+              'chi2_best':vals,
+              'delta_chi2_from_best':{k:v-best for k,v in vals.items()},
+              'max_delta_chi2_across_physical_endpoints':max(vals.values())-best,
+              'optimizer_success':{k:bool(v['optimizer']['success']) for k,v in out.items()},
+              'parameters_at_bounds':{k:[p for p,b in v['at_bounds'].items() if b] for k,v in out.items()},
+              'guardrail':'Controlled m=0.60 eV fixed-omega0 benchmark; exact bounded CLASS recomputation, not a realistic standard-neutrino fit.',
+          }
+          Path('results/summary.json').write_text(json.dumps(summary,indent=2)+'\n')
+          print(json.dumps(summary,indent=2))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: planck2018-nonlinear-bounded-summary
+          path: results/
+          if-no-files-found: error
