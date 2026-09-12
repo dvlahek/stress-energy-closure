@@ -1,0 +1,164 @@
+name: CLASS hidden-mode amplitude linearity
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - scalar-lensing-screen
+    paths:
+      - '.github/workflows/class_hidden_mode_amplitude_linearity.yml'
+      - 'code/class_hidden_mode_amplitude_linearity.py'
+
+permissions:
+  contents: read
+  actions: read
+
+env:
+  SOURCE_RUN_ID: '34694221873'
+  CLASS_COMMIT: e85808324f51fc694d12e3ed7439552a3c3f9540
+
+jobs:
+  prepare:
+    name: prepare frozen 10 and 20 percent pairs
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install --upgrade pip numpy
+      - name: Download final fixed-omega0-Neff HP winner
+        uses: actions/download-artifact@v4
+        with:
+          name: scalar-fixed-omega0-neff-global-highprec
+          path: source
+          github-token: ${{ github.token }}
+          repository: dvlahek/stress-energy-closure
+          run-id: ${{ env.SOURCE_RUN_ID }}
+      - name: Prepare exact amplitude rescalings
+        run: |
+          set -euo pipefail
+          python code/class_hidden_mode_amplitude_linearity.py \
+            --mode prepare \
+            --source source \
+            --work linearity \
+            --mass-eV 0.60 \
+            --z-match 1100 \
+            --lmax 1200 \
+            --pkmax 0.30
+          cat linearity/amplitude_linearity_manifest.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: hidden-mode-amplitude-linearity-prep
+          path: linearity/
+          if-no-files-found: error
+
+  spectra:
+    name: HP amplitude ${{ matrix.frac }} ${{ matrix.sign }}
+    needs: prepare
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    strategy:
+      fail-fast: false
+      max-parallel: 4
+      matrix:
+        frac: ['010','020']
+        sign: ['plus','minus']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: hidden-mode-amplitude-linearity-prep
+          path: linearity
+      - name: Fetch pinned CLASS
+        run: |
+          set -euo pipefail
+          git init class_public
+          git -C class_public remote add origin https://github.com/lesgourg/class_public.git
+          git -C class_public fetch --depth 1 origin "$CLASS_COMMIT"
+          git -C class_public checkout --detach FETCH_HEAD
+          test "$(git -C class_public rev-parse HEAD)" = "$CLASS_COMMIT"
+          make -C class_public class -j2
+      - name: Run frozen-direction high-precision spectrum
+        run: |
+          set -euo pipefail
+          mkdir -p results
+          ./class_public/class \
+            "linearity/amp${{ matrix.frac }}_${{ matrix.sign }}.ini" \
+            observational_forecast/high_precision.pre \
+            > "results/amp${{ matrix.frac }}_${{ matrix.sign }}.log" 2>&1
+          root="linearity/amp${{ matrix.frac }}_${{ matrix.sign }}_"
+          for suffix in 00_cl.dat 00_cl_lensed.dat 00_pk.dat; do
+            src="${root}${suffix}"
+            test -s "$src"
+            cp "$src" "results/amp${{ matrix.frac }}_${{ matrix.sign }}_${suffix}"
+          done
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: hidden-mode-amplitude-${{ matrix.frac }}-${{ matrix.sign }}
+          path: results/
+          if-no-files-found: error
+
+  summarize:
+    name: summarize 10 20 30 percent linearity
+    needs: spectra
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install --upgrade pip numpy
+      - name: Download final fixed-omega0-Neff HP winner
+        uses: actions/download-artifact@v4
+        with:
+          name: scalar-fixed-omega0-neff-global-highprec
+          path: source
+          github-token: ${{ github.token }}
+          repository: dvlahek/stress-energy-closure
+          run-id: ${{ env.SOURCE_RUN_ID }}
+      - uses: actions/download-artifact@v4
+        with:
+          name: hidden-mode-amplitude-linearity-prep
+          path: linearity
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: hidden-mode-amplitude-0??-*
+          path: results
+          merge-multiple: true
+      - name: Summarize spectral and covariance-weighted linearity
+        run: |
+          set -euo pipefail
+          python code/class_hidden_mode_amplitude_linearity.py \
+            --mode summarize \
+            --source source \
+            --work linearity \
+            --results results \
+            --output summary/hidden_mode_amplitude_linearity.json \
+            --lmin 30 \
+            --lmax 1200 \
+            --pkmax 0.30
+      - name: Require controlled linearity
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          d=json.load(open('summary/hidden_mode_amplitude_linearity.json'))
+          print('max relative CV-weighted nonlinearity =', d['maximum_relative_CV_weighted_nonlinearity'])
+          if not d['five_percent_linearity_test_pass']:
+              raise SystemExit('Frozen-direction response is not linear to the prespecified 5% tolerance')
+          for tag,c in d['linearity_checks'].items():
+              print(tag, 'TTEE ratio=', c['TTEE_SN_ratio_to_30pct'],
+                    'phiphi ratio=', c['phiphi_SN_ratio_to_30pct'])
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: hidden-mode-amplitude-linearity-m060
+          path: |
+            summary/
+            linearity/amplitude_linearity_manifest.json
+            linearity/frozen_direction.csv
+          if-no-files-found: error
