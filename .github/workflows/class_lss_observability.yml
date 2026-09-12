@@ -1,0 +1,310 @@
+name: CLASS LSS hidden-state observability
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - scalar-lensing-screen
+    paths:
+      - '.github/lss_observability_trigger.txt'
+
+permissions:
+  contents: read
+  actions: read
+
+env:
+  CLASS_COMMIT: e85808324f51fc694d12e3ed7439552a3c3f9540
+  SOURCE_RUN_ID: '34694221873'
+  FINAL_SURVEY_RUN_ID: '34717947306'
+  CONVERGENCE_RUN_ID: '34715371731'
+
+jobs:
+  gate:
+    name: verify completed CMB controls
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Require successful final survey and 10 percent convergence runs
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json, os, subprocess
+          repo=os.environ["GITHUB_REPOSITORY"]
+          for key in ("FINAL_SURVEY_RUN_ID","CONVERGENCE_RUN_ID"):
+              rid=os.environ[key]
+              raw=subprocess.check_output(
+                  ["gh","api",f"repos/{repo}/actions/runs/{rid}"], text=True
+              )
+              d=json.loads(raw)
+              print(key, rid, "status=", d.get("status"), "conclusion=", d.get("conclusion"))
+              if d.get("status") != "completed" or d.get("conclusion") != "success":
+                  raise SystemExit(f"{key}={rid} is not a completed successful prerequisite")
+          PY
+
+  prepare:
+    name: prepare frozen LSS screen and null-space probes
+    needs: gate
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install --upgrade pip numpy
+      - name: Download final fixed-omega0-Neff high-precision winner
+        uses: actions/download-artifact@v4
+        with:
+          name: scalar-fixed-omega0-neff-global-highprec
+          path: source
+          github-token: ${{ github.token }}
+          repository: dvlahek/stress-energy-closure
+          run-id: ${{ env.SOURCE_RUN_ID }}
+      - name: Prepare idealized 3D LSS campaign
+        run: |
+          set -euo pipefail
+          python code/class_lss_observability_campaign.py \
+            --mode prepare \
+            --source source \
+            --work lss \
+            --pkmax 0.30
+          python - <<'PY'
+          import json
+          d=json.load(open("lss/lss_manifest.json"))
+          assert abs(d["mass_eV"]-0.60) < 1e-12
+          assert abs(d["control_parameters"]["controlled_early_Neff"]-3.046) < 1e-10
+          assert d["null_dimension"] == 7
+          assert d["moment_matrix_rank"] == 3
+          print("prepared", len(d["probe_cases"]), "probe cases and",
+                len(d["nuisance_cases"]), "nuisance/fiducial cases")
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: lss-observability-inputs
+          path: lss/
+          if-no-files-found: error
+
+  screen:
+    name: LSS CLASS ${{ matrix.case }}
+    needs: prepare
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    strategy:
+      fail-fast: false
+      max-parallel: 15
+      matrix:
+        case:
+          - frozen_plus
+          - frozen_minus
+          - probe_00_plus
+          - probe_00_minus
+          - probe_01_plus
+          - probe_01_minus
+          - probe_02_plus
+          - probe_02_minus
+          - probe_03_plus
+          - probe_03_minus
+          - probe_04_plus
+          - probe_04_minus
+          - probe_05_plus
+          - probe_05_minus
+          - probe_06_plus
+          - probe_06_minus
+          - fiducial
+          - d_H0_plus
+          - d_H0_minus
+          - d_omega_b_plus
+          - d_omega_b_minus
+          - d_omega_cdm_plus
+          - d_omega_cdm_minus
+          - d_lnAs_plus
+          - d_lnAs_minus
+          - d_n_s_plus
+          - d_n_s_minus
+          - d_tau_reio_plus
+          - d_tau_reio_minus
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: lss-observability-inputs
+          path: lss
+      - name: Fetch pinned CLASS
+        run: |
+          set -euo pipefail
+          git init class_public
+          git -C class_public remote add origin https://github.com/lesgourg/class_public.git
+          git -C class_public fetch --depth 1 origin "$CLASS_COMMIT"
+          git -C class_public checkout --detach FETCH_HEAD
+          test "$(git -C class_public rev-parse HEAD)" = "$CLASS_COMMIT"
+          make -C class_public class -j2
+      - name: Run six redshift matter-power spectra
+        run: |
+          set -euo pipefail
+          mkdir -p lss/outputs results
+          case="${{ matrix.case }}"
+          for tag in z000 z050 z100 z150 z200 z300; do
+            ./class_public/class \
+              "lss/ini/${case}_${tag}.ini" \
+              observational_forecast/high_precision.pre \
+              > "results/${case}_${tag}.log" 2>&1
+            src="lss/outputs/${case}_${tag}_00_pk.dat"
+            test -s "$src"
+            cp "$src" "results/${case}_${tag}_00_pk.dat"
+          done
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lss-screen-${{ matrix.case }}
+          path: results/
+          if-no-files-found: error
+
+  optimize:
+    name: optimize LCDM-marginalized LSS hidden direction
+    needs: screen
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install --upgrade pip numpy
+      - uses: actions/download-artifact@v4
+        with:
+          name: lss-observability-inputs
+          path: lss
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: lss-screen-*
+          path: screen_results
+          merge-multiple: true
+      - name: Optimize hidden direction after LambdaCDM projection
+        run: |
+          set -euo pipefail
+          python code/class_lss_observability_campaign.py \
+            --mode optimize \
+            --work lss \
+            --results screen_results \
+            --output lss/lss_optimization_summary.json \
+            --pkmax 0.30 \
+            --random-samples 100000 \
+            --seed 314159
+          cat lss/lss_optimization_summary.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: lss-observability-optimized-inputs
+          path: lss/
+          if-no-files-found: error
+
+  validate:
+    name: validate LSS optimized ${{ matrix.case }}
+    needs: optimize
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    strategy:
+      fail-fast: false
+      max-parallel: 2
+      matrix:
+        case:
+          - optimized_plus
+          - optimized_minus
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: lss-observability-optimized-inputs
+          path: lss
+      - name: Fetch pinned CLASS
+        run: |
+          set -euo pipefail
+          git init class_public
+          git -C class_public remote add origin https://github.com/lesgourg/class_public.git
+          git -C class_public fetch --depth 1 origin "$CLASS_COMMIT"
+          git -C class_public checkout --detach FETCH_HEAD
+          test "$(git -C class_public rev-parse HEAD)" = "$CLASS_COMMIT"
+          make -C class_public class -j2
+      - name: Run optimized pair over six redshifts
+        run: |
+          set -euo pipefail
+          mkdir -p lss/outputs results
+          case="${{ matrix.case }}"
+          for tag in z000 z050 z100 z150 z200 z300; do
+            ./class_public/class \
+              "lss/ini/${case}_${tag}.ini" \
+              observational_forecast/high_precision.pre \
+              > "results/${case}_${tag}.log" 2>&1
+            src="lss/outputs/${case}_${tag}_00_pk.dat"
+            test -s "$src"
+            cp "$src" "results/${case}_${tag}_00_pk.dat"
+          done
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lss-optimized-spectrum-${{ matrix.case }}
+          path: results/
+          if-no-files-found: error
+
+  summarize:
+    name: summarize validated 3D LSS observability
+    needs: validate
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install --upgrade pip numpy
+      - uses: actions/download-artifact@v4
+        with:
+          name: lss-observability-optimized-inputs
+          path: lss
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: lss-screen-*
+          path: screen_results
+          merge-multiple: true
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: lss-optimized-spectrum-*
+          path: optimized_results
+          merge-multiple: true
+      - name: Compute fixed and LambdaCDM-marginalized 3D S/N
+        run: |
+          set -euo pipefail
+          python code/class_lss_observability_campaign.py \
+            --mode summarize \
+            --work lss \
+            --results screen_results \
+            --optimized-results optimized_results \
+            --output lss/lss_observability_summary.json
+          cat lss/lss_observability_summary.json
+      - name: Scientific sanity checks
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json, math
+          d=json.load(open("lss/lss_observability_summary.json"))
+          for kmax, r in d["results_by_kmax"].items():
+              for label in ("frozen_current_winner","LSS_optimized_hidden_mode"):
+                  q=r[label]
+                  fixed=q["fixed_SN2_per_total_1_Gpch3"]
+                  marg=q["marginalized_SN2_per_total_1_Gpch3"]
+                  assert math.isfinite(fixed) and math.isfinite(marg)
+                  assert fixed >= 0 and 0 <= marg <= fixed*(1+1e-8)
+          print("decision gate:", d["decision_gate"])
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: lss-observability-final
+          path: |
+            lss/lss_observability_summary.json
+            lss/lss_optimization_summary.json
+            lss/lss_manifest.json
+            lss/control_parameters.json
+            lss/data/optimized_plus.dat
+            lss/data/optimized_minus.dat
+          if-no-files-found: error
