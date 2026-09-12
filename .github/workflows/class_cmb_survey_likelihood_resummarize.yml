@@ -1,0 +1,73 @@
+name: Correct CMB survey likelihood units
+
+on:
+  workflow_dispatch:
+    inputs:
+      source_run_id:
+        description: 'Completed survey-aware likelihood run ID whose CLASS spectra are reused'
+        required: false
+        default: '34677322082'
+        type: string
+  push:
+    branches:
+      - scalar-lensing-screen
+    paths:
+      - '.github/workflows/class_cmb_survey_likelihood_resummarize.yml'
+      - 'code/class_cmb_survey_likelihood_resummarize.py'
+
+permissions:
+  contents: read
+  actions: read
+
+env:
+  SOURCE_RUN_ID: ${{ inputs.source_run_id || '34677322082' }}
+
+jobs:
+  resummarize:
+    name: corrected Planck SO CMB-S4 likelihood summary
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - run: python -m pip install --upgrade pip numpy
+
+      - name: Download original forecast manifest
+        uses: actions/download-artifact@v4
+        with:
+          name: cmb-survey-likelihood-inputs
+          path: forecast
+          github-token: ${{ github.token }}
+          repository: dvlahek/stress-energy-closure
+          run-id: ${{ env.SOURCE_RUN_ID }}
+
+      - name: Download existing high-precision CLASS spectra
+        uses: actions/download-artifact@v4
+        with:
+          pattern: cmb-survey-spectrum-*
+          path: spectra
+          merge-multiple: true
+          github-token: ${{ github.token }}
+          repository: dvlahek/stress-energy-closure
+          run-id: ${{ env.SOURCE_RUN_ID }}
+
+      - name: Recompute likelihood with consistent dimensionless noise units
+        run: |
+          set -euo pipefail
+          python code/class_cmb_survey_likelihood_resummarize.py \
+            --results spectra \
+            --manifest forecast/forecast_manifest.json \
+            --output forecast/cmb_survey_likelihood_forecast.json
+          cat forecast/cmb_survey_likelihood_forecast.json
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: cmb-survey-likelihood-forecast
+          path: |
+            forecast/cmb_survey_likelihood_forecast.json
+            forecast/forecast_manifest.json
+          if-no-files-found: error
