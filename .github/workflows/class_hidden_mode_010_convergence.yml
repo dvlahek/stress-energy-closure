@@ -7,7 +7,7 @@ on:
       - scalar-lensing-screen
     paths:
       - '.github/workflows/class_hidden_mode_010_convergence.yml'
-      - 'observational_forecast/ultra_high_precision.pre'
+      - 'observational_forecast/intermediate_high_precision.pre'
 
 permissions:
   contents: read
@@ -17,15 +17,39 @@ env:
   CLASS_COMMIT: e85808324f51fc694d12e3ed7439552a3c3f9540
   SOURCE_RUN_ID: '34694221873'
   LINEARITY_RUN_ID: '34711963013'
+  SURVEY_RUN_ID: '34714768130'
 
 jobs:
-  ultra010:
-    name: ultra HP 010 ${{ matrix.sign }}
+  wait_for_survey:
+    name: wait until survey sweep releases hosted capacity
+    runs-on: ubuntu-latest
+    timeout-minutes: 240
+    steps:
+      - name: Wait for final survey run to finish
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          for i in $(seq 1 220); do
+            status=$(gh api "repos/${GITHUB_REPOSITORY}/actions/runs/${SURVEY_RUN_ID}" --jq '.status')
+            conclusion=$(gh api "repos/${GITHUB_REPOSITORY}/actions/runs/${SURVEY_RUN_ID}" --jq '.conclusion // ""')
+            echo "attempt=${i} survey_status=${status} conclusion=${conclusion}"
+            if [ "$status" = "completed" ]; then
+              exit 0
+            fi
+            sleep 60
+          done
+          echo "Survey run did not finish within polling window" >&2
+          exit 1
+
+  intermediate010:
+    name: intermediate HP 010 ${{ matrix.sign }}
+    needs: wait_for_survey
     runs-on: ubuntu-latest
     timeout-minutes: 240
     strategy:
       fail-fast: false
-      max-parallel: 2
+      max-parallel: 1
       matrix:
         sign: ['plus','minus']
     steps:
@@ -47,13 +71,13 @@ jobs:
           git -C class_public checkout --detach FETCH_HEAD
           test "$(git -C class_public rev-parse HEAD)" = "$CLASS_COMMIT"
           make -C class_public class -j2
-      - name: Run 10 percent spectrum at ultra precision
+      - name: Run 10 percent spectrum at intermediate high precision
         run: |
           set -euo pipefail
           mkdir -p results
           ./class_public/class \
             "linearity/amp010_${{ matrix.sign }}.ini" \
-            observational_forecast/ultra_high_precision.pre \
+            observational_forecast/intermediate_high_precision.pre \
             > "results/amp010_${{ matrix.sign }}.log" 2>&1
           root="linearity/amp010_${{ matrix.sign }}_"
           for suffix in 00_cl.dat 00_cl_lensed.dat 00_pk.dat; do
@@ -64,13 +88,13 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: hidden-mode-amplitude-ultra010-${{ matrix.sign }}
+          name: hidden-mode-amplitude-intermediate010-${{ matrix.sign }}
           path: results/
           if-no-files-found: error
 
   summarize:
-    name: compare ultra 10 percent against validated 20 and 30 percent
-    needs: ultra010
+    name: compare intermediate 10 percent against validated 20 and 30 percent
+    needs: intermediate010
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
@@ -104,10 +128,10 @@ jobs:
           github-token: ${{ github.token }}
           repository: dvlahek/stress-energy-closure
           run-id: ${{ env.LINEARITY_RUN_ID }}
-      - name: Download ultra 10 percent spectra
+      - name: Download intermediate 10 percent spectra
         uses: actions/download-artifact@v4
         with:
-          pattern: hidden-mode-amplitude-ultra010-*
+          pattern: hidden-mode-amplitude-intermediate010-*
           path: results
           merge-multiple: true
       - name: Summarize convergence and amplitude scaling
@@ -118,7 +142,7 @@ jobs:
             --source source \
             --work linearity \
             --results results \
-            --output summary/hidden_mode_amplitude_010_ultra_convergence.json \
+            --output summary/hidden_mode_amplitude_010_intermediate_convergence.json \
             --lmin 30 \
             --lmax 1200 \
             --pkmax 0.30
@@ -127,7 +151,7 @@ jobs:
           set -euo pipefail
           python - <<'PY'
           import json, math
-          d=json.load(open('summary/hidden_mode_amplitude_010_ultra_convergence.json'))
+          d=json.load(open('summary/hidden_mode_amplitude_010_intermediate_convergence.json'))
           c10=d['linearity_checks']['010']
           c20=d['linearity_checks']['020']
           for c in (c10,c20):
@@ -136,14 +160,14 @@ jobs:
                   assert math.isfinite(x) and x >= 0
           assert c20['TTEE_full_response_linearity']['relative_CV_weighted_nonlinearity'] < 0.05
           assert c20['phiphi_full_response_linearity']['relative_CV_weighted_nonlinearity'] < 0.05
-          print('ultra 010 TTEE relative nonlinearity =', c10['TTEE_full_response_linearity']['relative_CV_weighted_nonlinearity'])
-          print('ultra 010 phiphi relative nonlinearity =', c10['phiphi_full_response_linearity']['relative_CV_weighted_nonlinearity'])
+          print('intermediate 010 TTEE relative nonlinearity =', c10['TTEE_full_response_linearity']['relative_CV_weighted_nonlinearity'])
+          print('intermediate 010 phiphi relative nonlinearity =', c10['phiphi_full_response_linearity']['relative_CV_weighted_nonlinearity'])
           print('020 TTEE relative nonlinearity =', c20['TTEE_full_response_linearity']['relative_CV_weighted_nonlinearity'])
           print('020 phiphi relative nonlinearity =', c20['phiphi_full_response_linearity']['relative_CV_weighted_nonlinearity'])
           print('five_percent_linearity_test_pass =', d['five_percent_linearity_test_pass'])
           PY
       - uses: actions/upload-artifact@v4
         with:
-          name: hidden-mode-amplitude-010-ultra-convergence
+          name: hidden-mode-amplitude-010-intermediate-convergence
           path: summary/
           if-no-files-found: error
