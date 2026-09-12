@@ -1,0 +1,94 @@
+name: CMB survey likelihood units fix
+
+on:
+  workflow_dispatch:
+    inputs:
+      source_run_id:
+        description: 'Completed survey spectrum workflow run ID'
+        required: false
+        default: '34677322082'
+        type: string
+  push:
+    branches:
+      - scalar-lensing-screen
+    paths:
+      - '.github/workflows/class_cmb_survey_likelihood_units_fix.yml'
+      - 'code/class_cmb_survey_likelihood_units_fixed.py'
+
+permissions:
+  contents: read
+  actions: read
+
+env:
+  SOURCE_RUN_ID: ${{ inputs.source_run_id || '34677322082' }}
+
+jobs:
+  corrected_forecast:
+    name: corrected Planck SO CMB-S4 likelihood comparison
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - run: python -m pip install --upgrade pip numpy
+
+      - name: Download original forecast inputs
+        uses: actions/download-artifact@v4
+        with:
+          name: cmb-survey-likelihood-inputs
+          path: forecast
+          github-token: ${{ github.token }}
+          repository: dvlahek/stress-energy-closure
+          run-id: ${{ env.SOURCE_RUN_ID }}
+
+      - name: Download already-computed CLASS spectra
+        uses: actions/download-artifact@v4
+        with:
+          pattern: cmb-survey-spectrum-*
+          path: spectra
+          merge-multiple: true
+          github-token: ${{ github.token }}
+          repository: dvlahek/stress-energy-closure
+          run-id: ${{ env.SOURCE_RUN_ID }}
+
+      - name: Recompute likelihood with dimensionless map-noise units
+        run: |
+          set -euo pipefail
+          python code/class_cmb_survey_likelihood_units_fixed.py \
+            --mode summarize \
+            --work forecast \
+            --results spectra \
+            --manifest forecast/forecast_manifest.json \
+            --output forecast/cmb_survey_likelihood_forecast_units_fixed.json
+          cat forecast/cmb_survey_likelihood_forecast_units_fixed.json
+
+      - name: Sanity-check corrected result
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json, math
+          p='forecast/cmb_survey_likelihood_forecast_units_fixed.json'
+          d=json.load(open(p))
+          for name, r in d['forecasts'].items():
+              fixed=float(r['fixed_cosmology']['joint_TT_TE_EE_SN'])
+              marg=float(r['linearized_LCDM_marginalized']['joint_TT_TE_EE_SN'])
+              if not (math.isfinite(fixed) and math.isfinite(marg)):
+                  raise SystemExit(f'non-finite result for {name}')
+              if fixed <= 1e-6:
+                  raise SystemExit(f'implausibly tiny corrected S/N for {name}: {fixed}')
+              if marg < 0 or marg > fixed*(1+1e-8):
+                  raise SystemExit(f'invalid marginalized S/N for {name}: fixed={fixed}, marg={marg}')
+              print(name, 'fixed=', fixed, 'marginalized=', marg)
+          PY
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: cmb-survey-likelihood-forecast-units-fixed
+          path: |
+            forecast/cmb_survey_likelihood_forecast_units_fixed.json
+            forecast/forecast_manifest.json
+          if-no-files-found: error
