@@ -1,0 +1,332 @@
+name: CLASS fixed relic omega0 control
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - scalar-lensing-screen
+    paths:
+      - '.github/workflows/class_scalar_fixed_omega0_control.yml'
+      - 'code/class_scalar_fixed_omega0_run.py'
+      - 'code/class_scalar_fixed_omega0_sweep_select.py'
+
+permissions:
+  contents: read
+  actions: read
+
+env:
+  CLASS_COMMIT: e85808324f51fc694d12e3ed7439552a3c3f9540
+
+jobs:
+  prepare:
+    name: prepare fixed-relic-omega0 m${{ matrix.mass.tag }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        mass:
+          - { tag: '003', value: '0.03' }
+          - { tag: '006', value: '0.06' }
+          - { tag: '018', value: '0.18' }
+          - { tag: '030', value: '0.30' }
+          - { tag: '060', value: '0.60' }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install --upgrade pip numpy
+      - name: Prepare fixed-omega0 null-space probes
+        run: |
+          set -euo pipefail
+          python code/class_scalar_fixed_omega0_run.py \
+            --mode prepare-probes \
+            --outdir control_opt \
+            --mass-eV '${{ matrix.mass.value }}' \
+            --z-match 1100 \
+            --probe-frac 0.08 \
+            --lmax 600 \
+            --pkmax 0.30
+          cat control_opt/control_parameters.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: scalar-fixed-omega0-prep-m${{ matrix.mass.tag }}
+          path: control_opt/
+          if-no-files-found: error
+
+  probe:
+    name: probe fixed-relic-omega0 m${{ matrix.mass.tag }} d${{ matrix.direction }}
+    needs: prepare
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    strategy:
+      fail-fast: false
+      max-parallel: 30
+      matrix:
+        mass:
+          - { tag: '003', value: '0.03' }
+          - { tag: '006', value: '0.06' }
+          - { tag: '018', value: '0.18' }
+          - { tag: '030', value: '0.30' }
+          - { tag: '060', value: '0.60' }
+        direction: ['00','01','02','03','04','05','06']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: scalar-fixed-omega0-prep-m${{ matrix.mass.tag }}
+          path: control_opt
+      - name: Fetch pinned CLASS
+        run: |
+          set -euo pipefail
+          git init class_public
+          git -C class_public remote add origin https://github.com/lesgourg/class_public.git
+          git -C class_public fetch --depth 1 origin "$CLASS_COMMIT"
+          git -C class_public checkout --detach FETCH_HEAD
+          test "$(git -C class_public rev-parse HEAD)" = "$CLASS_COMMIT"
+          make -C class_public class -j2
+      - name: Run fixed-omega0 symmetric probe
+        run: |
+          set -euo pipefail
+          j='${{ matrix.direction }}'
+          for sign in plus minus; do
+            ./class_public/class \
+              control_opt/probe_${j}_${sign}.ini \
+              observational_forecast/scalar_probe_precision.pre \
+              > control_opt/probe_${j}_${sign}.log 2>&1
+            test -s control_opt/probe_${j}_${sign}_00_cl.dat
+            test -s control_opt/probe_${j}_${sign}_00_cl_lensed.dat
+          done
+      - uses: actions/upload-artifact@v4
+        with:
+          name: scalar-fixed-omega0-probe-m${{ matrix.mass.tag }}-d${{ matrix.direction }}
+          path: |
+            control_opt/probe_${{ matrix.direction }}_plus_00_cl.dat
+            control_opt/probe_${{ matrix.direction }}_plus_00_cl_lensed.dat
+            control_opt/probe_${{ matrix.direction }}_minus_00_cl.dat
+            control_opt/probe_${{ matrix.direction }}_minus_00_cl_lensed.dat
+            control_opt/probe_${{ matrix.direction }}_plus.log
+            control_opt/probe_${{ matrix.direction }}_minus.log
+          if-no-files-found: error
+
+  optimize:
+    name: optimize fixed-relic-omega0 m${{ matrix.mass.tag }}
+    needs: probe
+    runs-on: ubuntu-latest
+    timeout-minutes: 210
+    strategy:
+      fail-fast: false
+      matrix:
+        mass:
+          - { tag: '003', value: '0.03' }
+          - { tag: '006', value: '0.06' }
+          - { tag: '018', value: '0.18' }
+          - { tag: '030', value: '0.30' }
+          - { tag: '060', value: '0.60' }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install --upgrade pip numpy
+      - uses: actions/download-artifact@v4
+        with:
+          name: scalar-fixed-omega0-prep-m${{ matrix.mass.tag }}
+          path: control_opt
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: scalar-fixed-omega0-probe-m${{ matrix.mass.tag }}-d*
+          path: control_opt
+          merge-multiple: true
+      - name: Verify complete 7D response matrix
+        run: |
+          set -euo pipefail
+          for j in 00 01 02 03 04 05 06; do
+            for sign in plus minus; do
+              test -s control_opt/probe_${j}_${sign}_00_cl.dat
+              test -s control_opt/probe_${j}_${sign}_00_cl_lensed.dat
+            done
+          done
+      - name: Optimize fixed-omega0 scalar and lensing directions
+        run: |
+          set -euo pipefail
+          python code/class_scalar_fixed_omega0_run.py \
+            --mode optimize \
+            --outdir control_opt \
+            --mass-eV '${{ matrix.mass.value }}' \
+            --z-match 1100 \
+            --final-frac 0.30 \
+            --lmin 30 \
+            --lmax 600 \
+            --pkmax 0.30 \
+            --random-samples 100000 \
+            --seed 314159
+      - name: Fetch pinned CLASS
+        run: |
+          set -euo pipefail
+          git init class_public
+          git -C class_public remote add origin https://github.com/lesgourg/class_public.git
+          git -C class_public fetch --depth 1 origin "$CLASS_COMMIT"
+          git -C class_public checkout --detach FETCH_HEAD
+          test "$(git -C class_public rev-parse HEAD)" = "$CLASS_COMMIT"
+          make -C class_public class -j2
+      - name: Run optimized fixed-omega0 candidates
+        run: |
+          set -euo pipefail
+          for target in scalar lensing; do
+            for sign in plus minus; do
+              ./class_public/class \
+                control_opt/${target}_final_${sign}.ini \
+                observational_forecast/scalar_probe_precision.pre \
+                > control_opt/${target}_final_${sign}.log 2>&1
+              test -s control_opt/${target}_final_${sign}_00_cl.dat
+              test -s control_opt/${target}_final_${sign}_00_cl_lensed.dat
+              test -s control_opt/${target}_final_${sign}_00_pk.dat
+            done
+          done
+      - name: Select actual winner for this mass
+        run: |
+          set -euo pipefail
+          python code/class_scalar_fixed_omega0_run.py \
+            --mode summarize-candidates \
+            --outdir control_opt \
+            --mass-eV '${{ matrix.mass.value }}' \
+            --z-match 1100 \
+            --lmin 30 \
+            --lmax 600 \
+            --pkmax 0.30
+          printf '%s\n' '${{ matrix.mass.value }}' > control_opt/MASS_EV.txt
+          printf '%s\n' 'fixed-relic-omega0' > control_opt/CONTROL.txt
+          git -C class_public rev-parse HEAD > control_opt/CLASS_COMMIT.txt
+          cat control_opt/scalar_candidate_actual_summary.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: scalar-fixed-omega0-opt-m${{ matrix.mass.tag }}
+          path: control_opt/
+          if-no-files-found: error
+
+  finalize:
+    name: finalize fixed-relic-omega0
+    needs: optimize
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install --upgrade pip numpy
+      - uses: actions/download-artifact@v4
+        with:
+          name: scalar-fixed-omega0-opt-m003
+          path: sweep/m003
+      - uses: actions/download-artifact@v4
+        with:
+          name: scalar-fixed-omega0-opt-m006
+          path: sweep/m006
+      - uses: actions/download-artifact@v4
+        with:
+          name: scalar-fixed-omega0-opt-m018
+          path: sweep/m018
+      - uses: actions/download-artifact@v4
+        with:
+          name: scalar-fixed-omega0-opt-m030
+          path: sweep/m030
+      - uses: actions/download-artifact@v4
+        with:
+          name: scalar-fixed-omega0-opt-m060
+          path: sweep/m060
+      - name: Reuse validated m=0.10 eV reference
+        uses: actions/download-artifact@v4
+        with:
+          name: class-scalar-response-opt-m010-resumed
+          path: sweep/m010
+          github-token: ${{ github.token }}
+          repository: dvlahek/stress-energy-closure
+          run-id: 34598696605
+      - name: Select fixed-omega0 global winner
+        run: |
+          set -euo pipefail
+          python code/class_scalar_fixed_omega0_sweep_select.py \
+            --root sweep \
+            --outdir global_control \
+            --z-match 1100
+          cat global_control/control_mass_sweep_selection.json
+      - name: Fetch pinned CLASS
+        run: |
+          set -euo pipefail
+          git init class_public
+          git -C class_public remote add origin https://github.com/lesgourg/class_public.git
+          git -C class_public fetch --depth 1 origin "$CLASS_COMMIT"
+          git -C class_public checkout --detach FETCH_HEAD
+          test "$(git -C class_public rev-parse HEAD)" = "$CLASS_COMMIT"
+          make -C class_public class -j2
+      - name: Prepare fixed-omega0 winner at high precision
+        run: |
+          set -euo pipefail
+          MASS=$(python -c "import json; print(json.load(open('global_control/control_mass_sweep_selection.json'))['global_winner']['mass_eV'])")
+          echo "High-precision fixed-omega0 winner mass=${MASS} eV"
+          python code/class_scalar_fixed_omega0_run.py \
+            --mode prepare-winner-highprec \
+            --outdir global_control \
+            --mass-eV "$MASS" \
+            --z-match 1100 \
+            --lmax 1200 \
+            --pkmax 0.30
+      - name: Run fixed-omega0 winner plus at high precision
+        run: |
+          set -euo pipefail
+          ./class_public/class \
+            global_control/highprec/winner_plus.ini \
+            observational_forecast/high_precision.pre \
+            > global_control/highprec/winner_plus.log 2>&1
+          test -s global_control/highprec/winner_plus_00_cl.dat
+          test -s global_control/highprec/winner_plus_00_cl_lensed.dat
+          test -s global_control/highprec/winner_plus_00_pk.dat
+      - name: Run fixed-omega0 winner minus at high precision
+        run: |
+          set -euo pipefail
+          ./class_public/class \
+            global_control/highprec/winner_minus.ini \
+            observational_forecast/high_precision.pre \
+            > global_control/highprec/winner_minus.log 2>&1
+          test -s global_control/highprec/winner_minus_00_cl.dat
+          test -s global_control/highprec/winner_minus_00_cl_lensed.dat
+          test -s global_control/highprec/winner_minus_00_pk.dat
+      - name: Summarize fixed-omega0 high-precision winner
+        run: |
+          set -euo pipefail
+          MASS=$(python -c "import json; print(json.load(open('global_control/control_mass_sweep_selection.json'))['global_winner']['mass_eV'])")
+          python code/class_scalar_fixed_omega0_run.py \
+            --mode summarize-winner-highprec \
+            --outdir global_control \
+            --mass-eV "$MASS" \
+            --z-match 1100 \
+            --lmin 30 \
+            --lmax 1200 \
+            --pkmax 0.30
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d = Path('global_control')
+          selection = json.loads((d/'control_mass_sweep_selection.json').read_text())
+          high = json.loads((d/'scalar_winner_highprec_summary.json').read_text())
+          params = json.loads((d/'control_parameters.json').read_text())
+          out = {
+              'control': 'fixed-relic-omega0',
+              'selection': selection,
+              'winner_control_parameters': params,
+              'global_high_precision': high,
+          }
+          (d/'control_mass_sweep_final_summary.json').write_text(
+              json.dumps(out, indent=2) + '\n'
+          )
+          print(json.dumps(out, indent=2))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: scalar-fixed-relic-omega0-global-highprec
+          path: global_control/
+          if-no-files-found: error
