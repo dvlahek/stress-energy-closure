@@ -1,0 +1,201 @@
+name: CLASS final controlled survey forecast
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - scalar-lensing-screen
+    paths:
+      - '.github/workflows/class_cmb_survey_final_control.yml'
+      - 'code/class_cmb_survey_final_control.py'
+
+permissions:
+  contents: read
+  actions: read
+
+env:
+  CLASS_COMMIT: e85808324f51fc694d12e3ed7439552a3c3f9540
+  SOURCE_RUN_ID: '34694221873'
+  LINEARITY_GATE_RUN_ID: '34711963013'
+
+jobs:
+  gate:
+    name: wait for amplitude-linearity control
+    runs-on: ubuntu-latest
+    timeout-minutes: 210
+    steps:
+      - name: Require successful preceding linearity run
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          for i in $(seq 1 200); do
+            status=$(gh api "repos/${GITHUB_REPOSITORY}/actions/runs/${LINEARITY_GATE_RUN_ID}" --jq '.status')
+            conclusion=$(gh api "repos/${GITHUB_REPOSITORY}/actions/runs/${LINEARITY_GATE_RUN_ID}" --jq '.conclusion // ""')
+            echo "attempt=${i} status=${status} conclusion=${conclusion}"
+            if [ "$status" = "completed" ]; then
+              test "$conclusion" = "success"
+              exit 0
+            fi
+            sleep 60
+          done
+          echo "Linearity gate did not complete within polling window" >&2
+          exit 1
+
+  prepare:
+    name: prepare final fixed-Neff likelihood grid
+    needs: gate
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install --upgrade pip numpy
+      - name: Download final fixed-omega0-Neff HP winner
+        uses: actions/download-artifact@v4
+        with:
+          name: scalar-fixed-omega0-neff-global-highprec
+          path: source_control
+          github-token: ${{ github.token }}
+          repository: dvlahek/stress-energy-closure
+          run-id: ${{ env.SOURCE_RUN_ID }}
+      - name: Prepare final controlled high-l inputs
+        run: |
+          set -euo pipefail
+          python code/class_cmb_survey_final_control.py \
+            --mode prepare \
+            --source source_control \
+            --work forecast \
+            --lmax 2500
+          python - <<'PY'
+          import json
+          d=json.load(open('forecast/forecast_manifest.json'))
+          v=d['final_control_validation']
+          assert abs(v['mass_eV']-0.6) < 1e-12
+          assert abs(v['controlled_early_Neff']-3.046) < 1e-10
+          assert abs(v['N_ur']-2.877130328816789) < 1e-10
+          print(v)
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: final-control-survey-inputs
+          path: forecast/
+          if-no-files-found: error
+
+  spectra:
+    name: final survey CLASS ${{ matrix.case }}
+    needs: prepare
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    strategy:
+      fail-fast: false
+      max-parallel: 15
+      matrix:
+        case:
+          - winner_plus
+          - winner_minus
+          - fiducial
+          - d_H0_plus
+          - d_H0_minus
+          - d_omega_b_plus
+          - d_omega_b_minus
+          - d_omega_cdm_plus
+          - d_omega_cdm_minus
+          - d_lnAs_plus
+          - d_lnAs_minus
+          - d_n_s_plus
+          - d_n_s_minus
+          - d_tau_reio_plus
+          - d_tau_reio_minus
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: final-control-survey-inputs
+          path: forecast
+      - name: Fetch pinned CLASS
+        run: |
+          set -euo pipefail
+          git init class_public
+          git -C class_public remote add origin https://github.com/lesgourg/class_public.git
+          git -C class_public fetch --depth 1 origin "$CLASS_COMMIT"
+          git -C class_public checkout --detach FETCH_HEAD
+          test "$(git -C class_public rev-parse HEAD)" = "$CLASS_COMMIT"
+          make -C class_public class -j2
+      - name: Run high-precision spectrum
+        run: |
+          set -euo pipefail
+          mkdir -p results
+          ./class_public/class \
+            "forecast/ini/${{ matrix.case }}.ini" \
+            observational_forecast/high_precision.pre \
+            > "results/${{ matrix.case }}.log" 2>&1
+          for suffix in 00_cl.dat 00_cl_lensed.dat; do
+            src="forecast/outputs/${{ matrix.case }}_${suffix}"
+            test -s "$src"
+            cp "$src" "results/${{ matrix.case }}_${suffix}"
+          done
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: final-control-survey-spectrum-${{ matrix.case }}
+          path: results/
+          if-no-files-found: error
+
+  forecast:
+    name: corrected Planck SO CMB-S4 final-control forecast
+    needs: spectra
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install --upgrade pip numpy
+      - uses: actions/download-artifact@v4
+        with:
+          name: final-control-survey-inputs
+          path: forecast
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: final-control-survey-spectrum-*
+          path: spectra
+          merge-multiple: true
+      - name: Compute unit-corrected survey likelihood and Fisher projection
+        run: |
+          set -euo pipefail
+          python code/class_cmb_survey_final_control.py \
+            --mode summarize \
+            --work forecast \
+            --results spectra \
+            --manifest forecast/forecast_manifest.json \
+            --output forecast/final_control_survey_forecast.json
+          cat forecast/final_control_survey_forecast.json
+      - name: Sanity-check final survey result
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json, math
+          d=json.load(open('forecast/final_control_survey_forecast.json'))
+          cp=d['source_control_parameters']
+          assert abs(cp['controlled_early_Neff']-3.046) < 1e-10
+          assert abs(cp['N_ur']-2.877130328816789) < 1e-10
+          for name,r in d['forecasts'].items():
+              fixed=float(r['fixed_cosmology']['joint_TT_TE_EE_SN'])
+              marg=float(r['linearized_LCDM_marginalized']['joint_TT_TE_EE_SN'])
+              assert math.isfinite(fixed) and math.isfinite(marg)
+              assert fixed > 1e-6
+              assert 0 <= marg <= fixed*(1+1e-8)
+              print(name, 'fixed=', fixed, 'marginalized=', marg,
+                    'retained=', r['linearized_LCDM_marginalized']['fraction_delta_chi2_retained'])
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: final-control-survey-forecast
+          path: |
+            forecast/final_control_survey_forecast.json
+            forecast/forecast_manifest.json
+          if-no-files-found: error
