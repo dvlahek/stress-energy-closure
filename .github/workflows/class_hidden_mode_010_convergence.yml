@@ -1,0 +1,149 @@
+name: CLASS hidden-mode 10 percent convergence
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - scalar-lensing-screen
+    paths:
+      - '.github/workflows/class_hidden_mode_010_convergence.yml'
+      - 'observational_forecast/ultra_high_precision.pre'
+
+permissions:
+  contents: read
+  actions: read
+
+env:
+  CLASS_COMMIT: e85808324f51fc694d12e3ed7439552a3c3f9540
+  SOURCE_RUN_ID: '34694221873'
+  LINEARITY_RUN_ID: '34711963013'
+
+jobs:
+  ultra010:
+    name: ultra HP 010 ${{ matrix.sign }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 240
+    strategy:
+      fail-fast: false
+      max-parallel: 2
+      matrix:
+        sign: ['plus','minus']
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download frozen amplitude inputs
+        uses: actions/download-artifact@v4
+        with:
+          name: hidden-mode-amplitude-linearity-prep
+          path: linearity
+          github-token: ${{ github.token }}
+          repository: dvlahek/stress-energy-closure
+          run-id: ${{ env.LINEARITY_RUN_ID }}
+      - name: Fetch pinned CLASS
+        run: |
+          set -euo pipefail
+          git init class_public
+          git -C class_public remote add origin https://github.com/lesgourg/class_public.git
+          git -C class_public fetch --depth 1 origin "$CLASS_COMMIT"
+          git -C class_public checkout --detach FETCH_HEAD
+          test "$(git -C class_public rev-parse HEAD)" = "$CLASS_COMMIT"
+          make -C class_public class -j2
+      - name: Run 10 percent spectrum at ultra precision
+        run: |
+          set -euo pipefail
+          mkdir -p results
+          ./class_public/class \
+            "linearity/amp010_${{ matrix.sign }}.ini" \
+            observational_forecast/ultra_high_precision.pre \
+            > "results/amp010_${{ matrix.sign }}.log" 2>&1
+          root="linearity/amp010_${{ matrix.sign }}_"
+          for suffix in 00_cl.dat 00_cl_lensed.dat 00_pk.dat; do
+            src="${root}${suffix}"
+            test -s "$src"
+            cp "$src" "results/amp010_${{ matrix.sign }}_${suffix}"
+          done
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: hidden-mode-amplitude-ultra010-${{ matrix.sign }}
+          path: results/
+          if-no-files-found: error
+
+  summarize:
+    name: compare ultra 10 percent against validated 20 and 30 percent
+    needs: ultra010
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install --upgrade pip numpy
+      - name: Download final 30 percent fixed-Neff HP winner
+        uses: actions/download-artifact@v4
+        with:
+          name: scalar-fixed-omega0-neff-global-highprec
+          path: source
+          github-token: ${{ github.token }}
+          repository: dvlahek/stress-energy-closure
+          run-id: ${{ env.SOURCE_RUN_ID }}
+      - name: Download frozen amplitude manifest
+        uses: actions/download-artifact@v4
+        with:
+          name: hidden-mode-amplitude-linearity-prep
+          path: linearity
+          github-token: ${{ github.token }}
+          repository: dvlahek/stress-energy-closure
+          run-id: ${{ env.LINEARITY_RUN_ID }}
+      - name: Download validated 20 percent spectra
+        uses: actions/download-artifact@v4
+        with:
+          pattern: hidden-mode-amplitude-020-*
+          path: results
+          merge-multiple: true
+          github-token: ${{ github.token }}
+          repository: dvlahek/stress-energy-closure
+          run-id: ${{ env.LINEARITY_RUN_ID }}
+      - name: Download ultra 10 percent spectra
+        uses: actions/download-artifact@v4
+        with:
+          pattern: hidden-mode-amplitude-ultra010-*
+          path: results
+          merge-multiple: true
+      - name: Summarize convergence and amplitude scaling
+        run: |
+          set -euo pipefail
+          python code/class_hidden_mode_amplitude_linearity.py \
+            --mode summarize \
+            --source source \
+            --work linearity \
+            --results results \
+            --output summary/hidden_mode_amplitude_010_ultra_convergence.json \
+            --lmin 30 \
+            --lmax 1200 \
+            --pkmax 0.30
+      - name: Sanity-check and report convergence
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json, math
+          d=json.load(open('summary/hidden_mode_amplitude_010_ultra_convergence.json'))
+          c10=d['linearity_checks']['010']
+          c20=d['linearity_checks']['020']
+          for c in (c10,c20):
+              for ch in ('TTEE_full_response_linearity','phiphi_full_response_linearity'):
+                  x=float(c[ch]['relative_CV_weighted_nonlinearity'])
+                  assert math.isfinite(x) and x >= 0
+          assert c20['TTEE_full_response_linearity']['relative_CV_weighted_nonlinearity'] < 0.05
+          assert c20['phiphi_full_response_linearity']['relative_CV_weighted_nonlinearity'] < 0.05
+          print('ultra 010 TTEE relative nonlinearity =', c10['TTEE_full_response_linearity']['relative_CV_weighted_nonlinearity'])
+          print('ultra 010 phiphi relative nonlinearity =', c10['phiphi_full_response_linearity']['relative_CV_weighted_nonlinearity'])
+          print('020 TTEE relative nonlinearity =', c20['TTEE_full_response_linearity']['relative_CV_weighted_nonlinearity'])
+          print('020 phiphi relative nonlinearity =', c20['phiphi_full_response_linearity']['relative_CV_weighted_nonlinearity'])
+          print('five_percent_linearity_test_pass =', d['five_percent_linearity_test_pass'])
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: hidden-mode-amplitude-010-ultra-convergence
+          path: summary/
+          if-no-files-found: error
