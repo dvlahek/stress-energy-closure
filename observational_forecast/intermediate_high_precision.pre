@@ -1,0 +1,17 @@
+# Intermediate high-precision settings for low-amplitude hidden-mode convergence.
+# Stricter than observational_forecast/high_precision.pre but intentionally less
+# aggressive than ultra_high_precision.pre, which repeatedly triggered hosted-runner
+# shutdowns (SIGTERM/143) before CLASS completed.
+
+tol_ncdm_bg = 1.e-11
+tol_ncdm_synchronous = 1.e-11
+tol_ncdm_newtonian = 1.e-11
+tol_perturbations_integration = 1.e-8
+perturbations_sampling_stepsize = 0.007
+l_max_ncdm = 60
+q_linstep = 0.075
+q_logstep_spline = 40.
+q_logstep_trapzd = 0.18
+q_numstep_transition = 550
+l_logstep = 1.011
+l_linstep = 10
