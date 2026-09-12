@@ -96,7 +96,7 @@ jobs:
     name: final survey CLASS ${{ matrix.case }}
     needs: prepare
     runs-on: ubuntu-latest
-    timeout-minutes: 180
+    timeout-minutes: 360
     strategy:
       fail-fast: false
       max-parallel: 15
@@ -135,7 +135,7 @@ jobs:
       - name: Run high-precision spectrum
         run: |
           set -euo pipefail
-          mkdir -p results
+          mkdir -p results forecast/outputs
           ./class_public/class \
             "forecast/ini/${{ matrix.case }}.ini" \
             observational_forecast/high_precision.pre \
@@ -156,7 +156,7 @@ jobs:
     name: corrected Planck SO CMB-S4 final-control forecast
     needs: spectra
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
