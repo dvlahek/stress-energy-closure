@@ -46,20 +46,9 @@ The repository keeps the production-facing observational chain and compact indep
 - `code/wake_published_benchmark.py` compares the fixed-normalization threshold dependence with published wake benchmarks.
 - `code/wake_mass_proxy_scatter.py` propagates Gaussian halo-mass proxy scatter through the nine-tracer calculation.
 - `code/desi_dr1_odd_null_test.py` runs an end-to-end parity-odd null test on the public DESI DR1 Gfinder group VAC.
+- `code/wake_phase7_template.py`, `code/desi_dr1_phase7_lss.py` and `code/desi_dr1_phase7_zresolved.py` implement the public DESI DR1 BGS Phase-7 matched-filter validation.
 
-Production and validation GitHub Actions are:
-
-- `class_observational_forecast.yml`
-- `class_response_mass_matrix.yml`
-- `class_response_resolution_convergence.yml`
-- `rsd_hidden_state_forecast.yml`
-- `wake_desi_multitracer_fullgrid.yml`
-- `wake_desi_robustness.yml`
-- `wake_desi_survey_design.yml`
-- `wake_fisher_independent_check.yml`
-- `wake_published_benchmark.yml`
-- `wake_mass_proxy_scatter.yml`
-- `desi_dr1_odd_null_test.yml`
+Production and validation GitHub Actions are in `.github/workflows/`, including `desi_dr1_phase7_nature_astronomy.yml` for the redshift-resolved DESI DR1 control.
 
 ## Final observational controls
 
@@ -88,15 +77,13 @@ For the mass sweep, the physical wake calibration is recomputed for each mass. T
 
 ## Independent validation controls
 
-Four additional checks test implementation, external consistency and robustness without changing the production forecast. An independent analytic two-tracer Fisher identity agrees with the full covariance implementation over 10,000 randomized tests with median relative error `4.4e-16` and maximum relative error `4.3e-12`.
+An independent analytic two-tracer Fisher identity agrees with the full covariance implementation over 10,000 randomized tests with median relative error `4.4e-16` and maximum relative error `4.3e-12`. The published halo-mass threshold control reproduces the reported optimum at `log10(M_split/[h^-1 M_sun]) = 13.75`. Gaussian scatter in the halo-mass proxy leaves the forecast stable: at `0.2 dex`, the projected value changes from `0.86054` to `0.83810`.
 
-The published halo-mass threshold control reproduces the reported optimum at `log10(M_split/[h^-1 M_sun]) = 13.75`. After one normalization at that point, the value at 12.75 is `2.7601` compared with the published `2.6`, a 6.16% difference. The Okoli Eq. 35 calibration identities agree to numerical precision.
+The original public-data smoke test on the DESI DR1 Gfinder group VAC gives global `chi^2 = 1.299` for four degrees of freedom and `p = 0.862`.
 
-Gaussian scatter in the halo-mass proxy leaves the forecast stable. At `0.2 dex`, the fully projected value changes from `0.86054` to `0.83810`, retaining 94.85% of the zero-scatter Fisher information. At `0.3 dex`, the projected value is `0.81252`, retaining 89.15%.
+A stronger Phase-7 validation applies the estimator to clustering-ready DESI DR1 BGS data and randoms in three redshift bins. The 18-component covariance from 30 jackknife regions is full rank with regularized condition number `843.95`. The empirical permutation-null p-value is `0.265`. In the conservative per-redshift odd-nuisance model, the matched-filter wake coefficient is `0.03184 +/- 0.22249` (`0.143 sigma`), with `chi^2 = 3.200` for 8 degrees of freedom and `p = 0.921`. This is a real-survey matched-filter validation, not an absolute DESI wake constraint; a final absolute constraint would require estimator/window-forwarded templates and split-specific mock validation.
 
-Finally, an end-to-end null test on the public DESI DR1 Gfinder group VAC uses 11,992 redshift-matched objects per mass class. All four separation-bin residuals remain below `0.88 sigma`, with global `chi^2 = 1.299` for four degrees of freedom and `p = 0.862`. This is a public-data parity-odd estimator smoke test, not a DESI LSS wake likelihood or a neutrino-wake constraint.
-
-The compact numerical values for these controls are stored in `source_data/wake_independent_validation_summary.json`.
+The compact numerical values are stored in `source_data/wake_independent_validation_summary.json` and `source_data/wake_phase7_desi_dr1_zresolved_summary.json`.
 
 ## Repository structure
 
@@ -107,11 +94,11 @@ source_data/             compact result summaries used for reproducibility
 .github/workflows/       publication-facing deterministic workflows
 ```
 
-Development and diagnostic branches preserve the exploratory history. The `main` branch is the compact publication-facing state of the project.
+Development and diagnostic branches preserve exploratory history. The `main` branch is the compact publication-facing state of the project. The ongoing full-sample five-tracer sensitivity study remains isolated on `phase7-nature-astronomy` until it is independently validated.
 
 ## Determinism and provenance
 
-The calculations are deterministic. Fixed random seeds are used for synthetic-noise realizations and for candidate searches. Production wake and RSD workflows use seed `20260913`. CLASS is fetched at the pinned commit above and the resolved solver commit is written into every workflow artifact.
+The calculations are deterministic where possible. Fixed random seeds are used for synthetic-noise realizations and candidate searches. Production wake, RSD and Phase-7 workflows use seed `20260913`. CLASS is fetched at the pinned commit above and the resolved solver commit is written into workflow artifacts.
 
 ## Citation
 
