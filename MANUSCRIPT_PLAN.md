@@ -1,251 +1,314 @@
-# Manuscript and final-validation plan
+# Final manuscript integration plan
 
-This document is the working baseline for the final Nature Physics-oriented version of **Gravitational response distinguishes hidden kinetic states**. It records the interpretation that should be preserved while the remaining validation jobs are completed.
+This document is the working baseline for the final Nature Physics-oriented Einstein–Vlasov manuscript. The numerical campaign is complete; manuscript construction and proof wording are now the only planned scientific tasks.
 
-## Current physical baseline
+The exact final numerical anchors are recorded in [`FINAL_VALIDATION_STATUS_2026-09-13.md`](FINAL_VALIDATION_STATUS_2026-09-13.md).
 
-The central theoretical result remains unchanged:
+## Central claim
 
-- distinct kinetic states can share the same instantaneous particle current and stress-energy tensor;
-- for massive isotropic collisionless matter, the continuous causal TT response kernel is injective with respect to the radial kinetic distribution under the stated assumptions;
-- the isotropic massless limit loses radial momentum information because all momenta propagate at the same speed;
-- finite source jets can be matched to arbitrary finite order while the next kinetic direction, and therefore the later metric evolution, remains distinct.
+The paper is not based on the generic observation that a kinetic distribution contains more information than a few moments. The sharper result is:
 
-The cosmological CLASS campaign now separates the hidden-state response from background and abundance effects.
+> **Instantaneous stress-energy is not a complete gravitationally relevant description of kinetic matter.**
 
-### Original optimized massive-relic benchmark
+The logical structure is
 
-For the original thermal normalization, the high-precision global winner occurs at `m = 0.60 eV` and gives
+`exact source-level indistinguishability -> future gravitational separation -> massive-response injectivity -> nonlinear persistence -> controlled cosmological realization -> observability boundary`.
 
-- ideal full-sky joint TT+TE+EE `S/N = 1.5193052363`;
-- ideal full-sky phi-phi `S/N = 0.9470909494`;
-- maximum `P(k,z=0)` difference `0.3391697439%`.
+In equations, the central distinction is
 
-This benchmark changes both kinematics and the relic gravitational weight, so it must not be interpreted as a pure mass effect.
+`F1 != F2`, with the same instantaneous particle current and stress-energy tensor,
 
-### Fixed-total-matter control
+but different later gravitational response.
 
-Holding the present-day total matter density fixed leaves the result essentially unchanged:
+The manuscript must distinguish throughout:
 
-- high-precision joint TT+TE+EE `S/N = 1.5315759525` at `m = 0.60 eV`.
+`instantaneous sourcing != dynamical identifiability != stable inversion != practical observability`.
 
-Therefore the large response is not explained by the trivial change in the total present-day matter density.
+Do not use language implying that spacetime itself stores the hidden matter information. The additional state remains in the kinetic matter distribution.
 
-### Fixed relic energy density at the matching epoch
+## Analytic result chain
 
-Holding the Fermi-Dirac relic energy density fixed at `z_match = 1100` reduces, but does not remove, the response:
+### 1. Exact source degeneracy
 
-- high-precision joint TT+TE+EE `S/N = 1.0735578430` at `m = 0.60 eV`.
+Construct distinct isotropic collisionless distributions with matched particle current and stress-energy tensor at the comparison time.
 
-This control equalizes the hidden component's gravitational weight at the matching epoch, but it does not keep its present-day abundance fixed.
+This is the starting counterexample, not the novelty claim by itself.
 
-### Strict fixed-present-day relic abundance control
+### 2. Massive linear-response injectivity
 
-The strict control keeps
+For fixed known `m>0`, nonzero wave number, response normalization and the stated weighted-decay class, equality of the ideal continuous causal TT response kernel on a non-empty time interval implies equality of the radial distribution.
 
-`omega_ncdm(z=0) = 0.0010752048549100347`
+Physical mechanism:
 
-fixed across the mass sweep while also keeping `omega_cdm = 0.12`. The high-precision global winner is again `m = 0.60 eV`, now along the lensing-optimized hidden direction:
+`v(p)=p/sqrt(p^2+m^2)`
 
-- joint TT+TE+EE ideal full-sky `S/N = 0.2793350592`;
-- TT auto `S/N = 0.1033954143`;
-- EE auto `S/N = 0.2043851583`;
-- phi-phi auto `S/N = 0.1748187606`;
-- maximum TT difference `0.0260067%`;
-- maximum EE difference `0.0540628%`;
-- maximum phi-phi difference `0.0442833%`;
-- maximum `P(k,z=0)` difference `0.0577727%`.
+is one-to-one, so different momentum regions acquire different dynamical phases.
 
-Thus about `18.4%` of the original ideal joint CMB signal remains after the present-day relic abundance is fixed exactly.
+Reviewer-proof wording requirements:
 
-The intermediate strict-control sweep is
+- state explicitly that particle mass, wave number and response normalization/coupling are fixed and known;
+- in the Green-function corollary, state a known nonzero coupling and equality on a domain where the causal Laplace transforms exist;
+- keep the weighted-decay/boundary assumptions next to the theorem statement.
 
-| mass [eV] | optimized ideal S/N |
-|---:|---:|
-| 0.03 | 0.07407165 |
-| 0.06 | 0.07149882 |
-| 0.10 | 0.07236767 |
-| 0.18 | 0.08632430 |
-| 0.30 | 0.09853171 |
-| 0.60 | 0.12107608 |
+### 3. Massless boundary
 
-The light/relativistic regime is therefore approximately flat, followed by a systematic opening of the response toward the more massive regime. Do **not** state a general theorem that response strength is monotonic in mass. The theorem establishes massive injectivity versus the isotropic massless degeneracy, not monotonic sensitivity.
+For isotropic massless matter `v=1`, radial momentum information collapses to the appropriate integrated moment in the TT response. This gives a clean structural boundary for the massive injectivity result.
 
-## Working physical interpretation
+Do not claim monotonic response strength in mass.
 
-The cosmological enhancement contains at least two contributions:
+### 4. Compact forward map and unstable inverse
 
-1. **gravitational weighting/background evolution**, which explains most of the large original `m = 0.60 eV` amplitude;
-2. **mass-dependent kinetic response**, which remains nonzero after the present-day relic abundance and total matter budget are fixed.
+On every fixed finite momentum/response window the restricted forward map is compact. Since it is injective on an infinite-dimensional domain, the inverse on its range is unbounded.
 
-The preferred manuscript statement is:
+This is the rigorous reason that exact identifiability does not imply robust finite-data recovery.
 
-> The large cosmological enhancement is partly gravitational-weight driven, but a distinct mass-dependent kinetic response remains after fixing the relic abundance.
+### 5. Nonlinear FLRW separation
 
-A stronger causal statement should be made only after the full 7D hidden-subspace spectrum is examined.
+Two distributions can have matched `(n,rho,P)` and therefore the same initial scale factor data through acceleration, while a different higher kinetic functional enters a subsequent derivative and separates the later geometry.
 
-## Remaining validation sequence
+The current formulae for `dP/da`, `Delta dot P`, and `Delta a^(3)` have passed the adversarial algebraic audit.
 
-### 1. Survey-aware Planck / SO / CMB-S4 forecast
+### 6. Finite local source-jet theorem
 
-Run ID: `34677322082`.
+For every finite order, distinct isotropic kinetic states can be constructed with the same finite local FLRW stress-energy jet while the next independent kinetic direction differs.
 
-The forecast includes finite sky fraction, beam, white instrumental noise, experiment-specific multipole cuts, joint TT/TE/EE Gaussian covariance, and linearized marginalization over
+Use the phrase **“complete local FLRW stress-energy jet”** or **“within the isotropic FLRW symmetry class”**. Do not make an unrestricted statement about arbitrary tensor jets in general spacetimes.
 
-`H0, omega_b, omega_cdm, ln(A_s), n_s, tau`.
+## Cosmological realization
 
-The main reported quantities are
+The publication-facing realization uses a controlled massive relic, not the older unconstrained mass sweep.
 
-- fixed-cosmology survey-aware `S/N`;
-- LCDM-marginalized survey-aware `S/N`.
+Frozen physical control:
 
-This forecast determines the strength of the observational paragraph. It does not determine the validity of the identifiability result.
+- `m_ncdm=0.60 eV`;
+- `z_match=1100`;
+- matched `(n,rho,P)`;
+- fixed present-day `omega_ncdm`;
+- fixed `omega_cdm`;
+- fixed early total `N_eff=3.046`;
+- smooth positive deformations with a `+/-30%` cap;
+- pinned CLASS commit `e85808324f51fc694d12e3ed7439552a3c3f9540`.
 
-### 2. Full 7D hidden-subspace spectrum
+The main fixed-cosmology anchor is
 
-Use all seven stress-energy-null directions already computed at each mass. Construct the covariance-whitened local response Gram matrices and their singular spectra.
+- joint ideal TT+TE+EE `S/N = 0.2502411773`;
+- phi-phi `S/N = 0.1594145403`;
+- max `P(k,z=0)` difference `0.0570892644%`.
 
-Primary diagnostic:
+The 10/20/30% frozen-direction test shows a maximum CV-weighted nonlinearity of `0.776%`; therefore the 30% result is not a strong-deformation artifact.
 
-`singular_values(m/T_nu(z_match))` for joint TT+TE+EE and phi-phi.
+The older thermal-normalization, fixed-total-matter and fixed-rho-at-match sweeps are useful provenance/controls but should not drive the main narrative. They can be summarized in Methods, Extended Data or Supplementary Information if space permits.
 
-The aim is to distinguish a structural opening of the inverse problem from a single optimizer-selected direction. The most useful result would be a systematic change in the leading singular modes or conditioning as the system leaves the relativistic regime.
+## Observability result
 
-### 3. Amplitude-linearity control
+The observational part is a boundary result, not a detection attempt.
 
-For the same `m = 0.60 eV` strict fixed-omega0 winning direction, evaluate pointwise caps of
+### Primary CMB
 
-`10%, 20%, 30%`.
+Final local standard-cosmology marginalized values:
 
-Check if the observable response and ideal S/N scale approximately linearly with amplitude. This excludes the possibility that the result is driven by a special large-deformation corner.
+- Planck-like: `S/N = 0.01809`;
+- SO LAT: `S/N = 0.04701`;
+- CMB-S4: `S/N = 0.06664`.
 
-### 4. Stop criterion
+About 96–97% of the fixed-cosmology `Delta chi^2` is absorbed by standard cosmological directions.
 
-After the survey forecast, hidden-subspace spectrum, and amplitude control are complete, do not start further large numerical campaigns unless one of these tests exposes a specific unresolved problem.
+The ACT DR6 lensing check gives negligible endpoint `Delta chi^2` within the physical hidden-mode amplitude range.
 
-The current high-precision CLASS checks already establish numerical stability of the principal benchmark and controls.
+### Three-dimensional linear matter clustering
 
-## Final four-panel characterization figure
+At `k_max=0.3 h/Mpc`, total effective volume `50 (Gpc/h)^3`:
 
-The final characterization workflow is stored in
+- fixed-cosmology optimized-pair `S/N = 0.58015`;
+- five-parameter matter-power marginalized `S/N = 0.06523`;
+- retained `Delta chi^2` fraction `1.264%`;
+- absorbed fraction `98.736%`.
 
-`.github/workflows/class_response_mass_matrix.yml`
+The five matter-power nuisance directions are
 
-and is now repurposed as a manual final-validation workflow.
+`H0, omega_b, omega_cdm, lnAs, n_s`.
 
-The intended main/Extended Data figure is:
+`tau_reio` should not be presented as a physical matter-power nuisance direction. It was retained only in the numerical robustness audit. Removing it changes the answer negligibly. The five-parameter result is stable from pseudoinverse `rcond=1e-10` through `1e-14`; even the more aggressive `1e-8` cutoff changes `S/N` only to about `0.06634`.
 
-### Panel (a): background and abundance controls
+Amplitude and tilt alone absorb about 98.6% of the optimized `k_max=0.3` signal norm, so the suppression is mainly a broad-shape degeneracy rather than a numerical near-null-direction effect.
 
-Optimized ideal response versus relic mass for
+Direct hidden-null-space optimization gives essentially no improvement over the frozen direction. Therefore the weak post-projection signal is not an accidentally poor choice of the tested hidden deformation.
 
-- original thermal normalization;
-- fixed total matter;
-- fixed relic rho at `z=1100`;
-- strict fixed `omega_ncdm(z=0)`.
+### Interpretation
 
-Purpose: separate the contribution of background/relic weighting from the residual mass-dependent response.
+The preferred observational statement is:
 
-### Panel (b): hidden-subspace singular spectrum
+> The hidden kinetic response survives all physical and numerical controls, but in the tested smooth isotropic relic class it lies predominantly along observational directions that are degenerate with standard cosmology.
 
-Leading covariance-whitened singular modes versus
+The stronger conceptual conclusion is:
 
-`m/T_nu(z_match)`.
+> Dynamical gravitational identifiability does not imply practical observability.
 
-Purpose: test if response accessibility is a property of the full stress-energy-null subspace rather than one optimized direction.
+## Nature Physics framing
 
-### Panel (c): amplitude scaling
+### Editorial danger
 
-High-precision response for 10%, 20%, and 30% caps along the same strict-control winning direction.
+The most likely desk-rejection reading is:
 
-Purpose: test local linearity and deformation robustness.
+> “A distribution function contains higher moments than the stress-energy tensor, so of course later observables can differ.”
 
-### Panel (d): experimental accessibility
+The first page must explicitly explain why this is not the result.
 
-Planck-like, SO LAT, and CMB-S4 reference forecasts, each shown before and after LCDM marginalization.
+The novelty is the combined chain:
 
-Purpose: distinguish mathematical identifiability, ideal distinguishability, and survey accessibility.
+- exact equality as instantaneous gravitational sources;
+- later gravitational distinction;
+- an injective ideal gravitational response map in the massive case;
+- a sharp isotropic massless boundary;
+- nonlinear finite-source-jet separation;
+- a controlled cosmological realization;
+- a quantitative boundary between identifiability and observational access.
 
-If the marginalized survey signal is very small, panel (d) should move to Extended Data and the hidden-subspace spectrum should receive greater emphasis in the main text. If SO or CMB-S4 retains a meaningful marginalized signal, panel (d) can remain in the main characterization figure.
+### Preferred title direction
 
-## Manuscript integration
+Working title:
 
-### Abstract
+**Kinetic matter carries gravitational information beyond instantaneous stress-energy**
 
-Keep the theorem as the main claim. Add at most one sentence stating that controlled cosmological calculations retain a residual massive-state response after relic-abundance matching. Mention survey accessibility only if the marginalized forecast is genuinely informative.
+Alternative if a slightly more conservative formulation is needed:
 
-### Introduction
+**Gravitational response distinguishes stress-energy-degenerate kinetic states**
 
-Explicitly separate three facts:
+### Abstract structure
 
-1. a kinetic distribution contains more information than its low moments;
-2. distinct kinetic states can share the same stress-energy tensor;
-3. the new question is if gravitational dynamics itself can become injective with respect to the hidden kinetic information.
+1. Einstein equations use instantaneous stress-energy as the local source.
+2. Ask if it is also a complete state for predicting the later gravitational influence of kinetic matter.
+3. Give the source-degenerate/future-distinct result.
+4. State massive injectivity and massless loss.
+5. State nonlinear finite-jet persistence.
+6. Give controlled cosmological realization.
+7. End with the observational boundary: response exists, but most accessible CMB/LSS distinguishability is absorbed by standard cosmological directions.
 
-Add the closest prior art on Einstein-Vlasov degeneracy and nonthermal-relic higher moments. Use a careful `to our knowledge` first claim for the inverse gravitational response result, not for the general non-uniqueness of moment descriptions.
+Avoid beginning the abstract with neutrinos, CLASS or nonthermal relic spectra.
 
-Preferred novelty statement:
+### Introduction structure
 
-> To our knowledge, no previous work has established that the gravitational response itself can become injective with respect to kinetic information absent from the instantaneous particle current and stress-energy tensor.
+Paragraph 1: instantaneous Einstein source versus complete dynamical state.
 
-### Linear theory
+Paragraph 2: explain that “distribution contains higher moments” is not the result; formulate exact source equivalence versus future gravitational distinction.
 
-Preserve the current injectivity theorem. Strengthen the physical bridge through
+Paragraphs 3–4: massive injectivity and massless boundary.
 
-`v(p) = p/sqrt(p^2+m^2)`.
+Paragraph 5: nonlinear FLRW/finite-jet persistence.
 
-In the massless limit `v=1`, radial momentum information collapses. For massive particles, momentum-dependent velocities create distinct temporal/scale signatures.
+Paragraph 6: identifiability versus stable inversion versus observability.
 
-### Nonlinear FLRW result
+Paragraph 7: controlled cosmological realization and final observability result.
 
-Keep the finite-source-jet theorem as an independent nonlinear result. It demonstrates that the central issue is not an artifact of linear response theory.
+The first 1–1.5 pages should remain problem-first and largely independent of detailed cosmological numerics.
 
-### Cosmological realization
+## Main-text result order
 
-Replace any simple statement that larger mass causes a larger signal with the controlled decomposition:
+Recommended order:
 
-- original thermal sweep;
-- fixed-total-matter control;
-- fixed-rho-at-match control;
-- strict fixed-present-day-relic-abundance control.
+1. **Stress-energy-degenerate kinetic states** — concise counterexample and statement of the problem.
+2. **Dynamical recovery through massive response** — injectivity theorem and physical mechanism.
+3. **Massless boundary and unstable finite-window inversion** — establish what injectivity does and does not imply.
+4. **Nonlinear persistence beyond the instantaneous source** — FLRW separation plus finite local source-jet theorem.
+5. **Controlled cosmological realization** — final fixed-abundance/fixed-early-radiation benchmark and amplitude convergence.
+6. **Observability boundary** — primary CMB, idealized 3D LSS, nuisance projection and ACT check.
+7. **Discussion** — state completeness, not hidden gravitational degrees of freedom.
 
-The main conclusion should be that abundance/background evolution amplifies the response strongly, while a smaller but distinct massive-regime kinetic contribution remains.
+## Figure hierarchy
 
-### Observability section
+Do not force all validation material into one four-panel main figure.
 
-Maintain the hierarchy
+Recommended main figures:
 
-`identifiability != stable inversion != observational detectability`.
+### Figure 1 — concept and analytic mechanism
 
-Report ideal cosmic-variance numbers separately from survey-aware and marginalized numbers. Do not describe an ideal or Fisher-level result as a detection.
+- two distributions with identical instantaneous source moments;
+- different massive response kernels;
+- schematic source projection versus dynamical response;
+- optional massless-collapse inset.
 
-### Discussion
+### Figure 2 — nonlinear/state-completeness result
 
-The preferred conceptual statement is:
+- matched FLRW initial source/geometry;
+- subsequent geometric separation;
+- finite source-jet matching illustration or hierarchy summary.
 
-> The stress-energy tensor is a complete instantaneous Einstein source, but it is not a complete dynamical state of kinetic matter. Information removed by moment compression need not remain gravitationally hidden, because it can reappear in the later response.
+### Figure 3 — cosmological realization and observability boundary
 
-This should lead naturally to the interpretation as gravitational spectroscopy/tomography of kinetic state, without saying that spacetime itself stores a memory of hidden matter information.
+- final controlled observable response;
+- amplitude convergence;
+- CMB fixed versus marginalized accessibility;
+- LSS fixed versus marginalized accessibility.
+
+Seven-dimensional singular-spectrum details, older abundance controls, full survey tables and nuisance/pseudoinverse audits are better suited to Extended Data/Supplementary Information.
 
 ## Claim guardrails
 
 Do not claim:
 
-- that stress-energy non-uniqueness is new;
+- that non-uniqueness of moment descriptions is new;
 - that different velocity distributions producing different observables is new;
-- that response strength must increase monotonically with particle mass;
-- that `m=0.60 eV` is a realistic standard-neutrino cosmology;
-- that ideal or survey Fisher `S/N` is an experimental detection;
-- that the current smooth 10-function, 30%-cap class exhausts all possible hidden-state spectra.
+- that the stress-energy tensor is incomplete as the instantaneous Einstein source;
+- that spacetime itself stores hidden matter memory;
+- that response strength increases monotonically with mass;
+- that `m=0.60 eV` is a standard-neutrino best fit or realistic neutrino-mass claim;
+- that the ideal/Fisher signals are experimental detections;
+- that the tested smooth ten-function, 30%-cap relic class exhausts kinetic-state space;
+- that the LSS forecast is a realistic galaxy-survey likelihood.
 
-The `m=0.60 eV` case is a controlled massive-relic benchmark used to expose the mechanism.
+Preferred exact wording:
+
+> The stress-energy tensor is the complete instantaneous Einstein source, but it is not a complete dynamical state variable for kinetic matter.
+
+and
+
+> Two kinetic states can be gravitationally indistinguishable now and gravitationally distinguishable later.
+
+## Theorem wording audit status
+
+A theorem-by-theorem adversarial pass found no result-breaking gap in:
+
+- massive response injectivity;
+- weighted-decay implication for the required moments;
+- causal Green-function transfer corollary;
+- compactness/unbounded inverse;
+- FLRW pressure derivative and `a^(3)` separation;
+- independence of the higher kinetic functional;
+- finite local source-jet construction;
+- isotropic massless collapse.
+
+Remaining proof work is presentation-level:
+
+- make all fixed/known response parameters explicit;
+- qualify source-jet completeness by the FLRW symmetry class;
+- make the causal/Laplace domain in the Green-function corollary explicit;
+- keep theorem assumptions adjacent to claims in the main text or Methods.
+
+## Numerical stop rule — CLOSED
+
+The final amplitude test, corrected CMB survey forecast, LSS screen/recovery and adversarial nuisance/pseudoinverse audit have all completed successfully.
+
+Do not initiate another broad CMB, lensing or LSS campaign for the present manuscript without a specific identified deficiency.
+
+Remaining tasks:
+
+1. replace the outdated cosmology section of the current TeX manuscript;
+2. rewrite title, abstract and first 1–1.5 pages of the Introduction in the final framing;
+3. integrate theorem wording fixes;
+4. choose main versus Extended Data figures/tables;
+5. perform final prose, citation and reproducibility audit;
+6. build the submission package.
 
 ## Reproducibility anchors
 
 - CLASS commit: `e85808324f51fc694d12e3ed7439552a3c3f9540`
-- original optimized mass sweep: run `34611544016`
-- fixed-total / fixed-rho-at-match controls: run `34642785031`
-- strict fixed-omega0 control: run `34674788325`
-- survey-aware likelihood forecast: run `34677322082`
-- strict fixed-omega0 high-precision artifact: `scalar-fixed-relic-omega0-global-highprec`
-- strict fixed-omega0 high-precision artifact digest: `sha256:73088d44c0206231687f0bc871ad9a05f0e55a80689b11ba08cf7f3e14fd0867`
+- final controlled high-precision response: run `34694221873`
+- hidden-subspace spectrum: run `34711814836`
+- amplitude convergence: run `34715371731`
+- final CMB survey forecast: run `34717947306`
+- ACT DR6 real-data check: run `34694365955`
+- original LSS CLASS screen: run `34722070280`
+- finite-support LSS recovery: run `34733700067`
+- LSS projection adversarial audit: run `34741320456`
+
+The exact artifact IDs, digests and final values are in `FINAL_VALIDATION_STATUS_2026-09-13.md`.
