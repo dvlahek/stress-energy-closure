@@ -1,13 +1,11 @@
 name: Phase 7 - EZmock five-tracer placebo covariance cross-check
 
+# GitHub-hosted runners have intermittent connectivity to the DESI LBL mock tree.
+# Keep this workflow as an explicit manual fallback.  The publication-control
+# ensemble is intended to be run with scripts/run_ezmock_placebo_local.sh on a
+# local Linux host, streaming one mock at a time.
 on:
   workflow_dispatch:
-  push:
-    branches: [phase7-nature-astronomy]
-    paths:
-      - 'code/desi_phase7_ezmock_placebo_realization.py'
-      - 'code/desi_phase7_ezmock_aggregate.py'
-      - '.github/workflows/desi_phase7_ezmock_covariance.yml'
 
 jobs:
   template:
