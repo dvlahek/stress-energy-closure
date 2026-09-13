@@ -18,7 +18,7 @@ jobs:
         with:
           python-version: '3.10'
       - name: Install scientific dependencies
-        run: python -m pip install --upgrade pip numpy scipy matplotlib astropy hmf halomod
+        run: python -m pip install --upgrade pip 'numpy<2' 'scipy==1.13.1' matplotlib astropy hmf halomod
       - name: Fetch public BGS HOD
         run: git clone https://github.com/amjsmith/hodpy.git hodpy_public
       - name: Reconstruct BGS split
@@ -29,9 +29,10 @@ jobs:
         run: |
           git -C hodpy_public rev-parse HEAD > desi_bgs_hod_output/HODPY_COMMIT.txt
           python - <<'PY'
-          import hmf, halomod
+          import hmf, halomod, scipy, numpy
           from pathlib import Path
-          Path('desi_bgs_hod_output/PYTHON_PACKAGES.txt').write_text('hmf='+getattr(hmf,'__version__','unknown')+'\nhalomod='+getattr(halomod,'__version__','unknown')+'\n')
+          Path('desi_bgs_hod_output/PYTHON_PACKAGES.txt').write_text(
+              'numpy='+numpy.__version__+'\nscipy='+scipy.__version__+'\nhmf='+getattr(hmf,'__version__','unknown')+'\nhalomod='+getattr(halomod,'__version__','unknown')+'\n')
           PY
       - uses: actions/upload-artifact@v4
         with:
