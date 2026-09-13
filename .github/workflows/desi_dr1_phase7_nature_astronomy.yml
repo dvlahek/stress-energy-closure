@@ -39,14 +39,20 @@ jobs:
         run: |
           set -euo pipefail
           PRIMARY='https://data.desi.lbl.gov/public/dr1'
-          MIRROR='https://webdav-hdfs.pic.es/data/public/DESI/DR1'
+          AWS='https://desidata.s3.amazonaws.com/dr1'
           ROOT='survey/catalogs/dr1/LSS/iron/LSScats/v1.5'
           fetch_one () {
             rel="$1"; out="$2"
-            if ! curl -fL --retry 2 --retry-delay 5 --connect-timeout 20 --max-time 1200 -o "$out" "$PRIMARY/$rel"; then
-              echo "Primary failed for $rel; trying official DR1 European mirror"
+            rm -f "$out"
+            if curl -fL --retry 1 --retry-delay 3 --connect-timeout 15 --max-time 300 \
+                -o "$out" "$PRIMARY/$rel"; then
+              echo "Downloaded $rel from DESI primary"
+            else
+              echo "DESI primary unavailable for $rel; using official DESI AWS Open Data mirror"
               rm -f "$out"
-              curl -fL --retry 4 --retry-delay 5 --connect-timeout 20 --max-time 1800 -o "$out" "$MIRROR/$rel"
+              curl -fL --retry 4 --retry-all-errors --retry-delay 5 \
+                --connect-timeout 20 --max-time 1800 \
+                -o "$out" "$AWS/$rel"
             fi
             test -s "$out"
           }
@@ -54,6 +60,18 @@ jobs:
           fetch_one "$ROOT/BGS_BRIGHT-21.5_SGC_clustering.dat.fits" BGS_BRIGHT-21.5_SGC_clustering.dat.fits
           fetch_one "$ROOT/BGS_BRIGHT-21.5_NGC_0_clustering.ran.fits" BGS_BRIGHT-21.5_NGC_0_clustering.ran.fits
           fetch_one "$ROOT/BGS_BRIGHT-21.5_SGC_0_clustering.ran.fits" BGS_BRIGHT-21.5_SGC_0_clustering.ran.fits
+          python - <<'PY'
+          from astropy.io import fits
+          from pathlib import Path
+          files=sorted(Path('.').glob('BGS_BRIGHT-21.5_*.fits'))
+          assert len(files)==4, files
+          for p in files:
+              with fits.open(p, memmap=True) as hdul:
+                  hdul.verify('exception')
+                  if len(hdul) < 2 or hdul[1].data is None:
+                      raise RuntimeError(f'invalid DESI FITS catalogue: {p}')
+                  print('FITS_OK', p, len(hdul[1].data))
+          PY
           ls -lh BGS_BRIGHT-21.5_*.fits
       - name: Run real-survey Phase-7 pilot
         run: |
