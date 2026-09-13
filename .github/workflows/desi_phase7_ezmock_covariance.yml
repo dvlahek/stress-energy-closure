@@ -32,7 +32,7 @@ jobs:
 
   schema-preflight:
     runs-on: ubuntu-24.04
-    timeout-minutes: 60
+    timeout-minutes: 90
     steps:
       - uses: actions/setup-python@v5
         with: {python-version: '3.11'}
@@ -42,16 +42,13 @@ jobs:
         run: |
           set -euo pipefail
           PRIMARY='https://data.desi.lbl.gov/public/dr1'
-          PIC='https://webdav-hdfs.pic.es/data/public/DESI/DR1'
           ROOT='survey/catalogs/dr1/mocks/EZmock/bright/v1/mock1'
           fetch_one () {
             rel="$1"; out="$2"; rm -f "$out"
-            if ! curl -fL --retry 5 --retry-all-errors --retry-delay 3 \
-                --connect-timeout 30 --max-time 1800 -o "$out" "$PRIMARY/$rel"; then
-              rm -f "$out"
-              curl -k -fL --retry 2 --retry-all-errors --retry-delay 3 \
-                --connect-timeout 30 --max-time 1800 -o "$out" "$PIC/$rel"
-            fi
+            echo "DOWNLOAD $rel"
+            curl --http1.1 -fL --retry 12 --retry-all-errors --retry-delay 15 \
+              --connect-timeout 120 --max-time 3600 --retry-max-time 3600 \
+              -o "$out" "$PRIMARY/$rel"
             test -s "$out"
           }
           fetch_one "$ROOT/BGS_ffa_NGC_clustering.dat.fits" mock_NGC.dat.fits
@@ -84,11 +81,11 @@ jobs:
     needs: [template, schema-preflight]
     strategy:
       fail-fast: false
-      max-parallel: 8
+      max-parallel: 2
       matrix:
         mock: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64]
     runs-on: ubuntu-24.04
-    timeout-minutes: 180
+    timeout-minutes: 240
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -104,18 +101,13 @@ jobs:
           set -euo pipefail
           M='${{ matrix.mock }}'
           PRIMARY='https://data.desi.lbl.gov/public/dr1'
-          PIC='https://webdav-hdfs.pic.es/data/public/DESI/DR1'
           ROOT="survey/catalogs/dr1/mocks/EZmock/bright/v1/mock${M}"
           fetch_one () {
             rel="$1"; out="$2"; rm -f "$out"
             echo "DOWNLOAD $rel"
-            if ! curl -fL --retry 5 --retry-all-errors --retry-delay 3 \
-                --connect-timeout 30 --max-time 1800 -o "$out" "$PRIMARY/$rel"; then
-              echo "DESI primary unavailable; trying PIC mirror"
-              rm -f "$out"
-              curl -k -fL --retry 2 --retry-all-errors --retry-delay 3 \
-                --connect-timeout 30 --max-time 1800 -o "$out" "$PIC/$rel"
-            fi
+            curl --http1.1 -fL --retry 12 --retry-all-errors --retry-delay 15 \
+              --connect-timeout 120 --max-time 3600 --retry-max-time 3600 \
+              -o "$out" "$PRIMARY/$rel"
             test -s "$out"
           }
           fetch_one "$ROOT/BGS_ffa_NGC_clustering.dat.fits" mock_NGC.dat.fits
@@ -128,7 +120,6 @@ jobs:
           python - <<'PY'
           from astropy.io import fits
           import numpy as np
-          from pathlib import Path
 
           with fits.open('ffa_full_BGS.fits',memmap=True) as h:
               f=h[1].data; names={n.upper():n for n in f.names}
