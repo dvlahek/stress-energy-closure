@@ -1,0 +1,167 @@
+name: CLASS LSS hidden-state observability recovery
+
+on:
+  push:
+    branches: [scalar-lensing-screen]
+    paths:
+      - '.github/lss_observability_recover_trigger.txt'
+  workflow_dispatch:
+
+env:
+  CLASS_COMMIT: e85808324f51fc694d12e3ed7439552a3c3f9540
+  SOURCE_LSS_RUN_ID: '34722070280'
+
+jobs:
+  optimize:
+    name: recover marginalized LSS optimizer on common finite k support
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install --upgrade pip numpy
+      - uses: actions/download-artifact@v4
+        with:
+          name: lss-observability-inputs
+          path: lss
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          repository: dvlahek/stress-energy-closure
+          run-id: ${{ env.SOURCE_LSS_RUN_ID }}
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: lss-screen-*
+          path: screen_results
+          merge-multiple: true
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          repository: dvlahek/stress-energy-closure
+          run-id: ${{ env.SOURCE_LSS_RUN_ID }}
+      - name: Optimize hidden direction after LambdaCDM projection
+        run: |
+          set -euo pipefail
+          python code/class_lss_observability_campaign_finite_support.py \
+            --mode optimize \
+            --work lss \
+            --results screen_results \
+            --output lss/lss_optimization_summary.json \
+            --pkmax 0.30 \
+            --random-samples 100000 \
+            --seed 314159
+          cat lss/lss_optimization_summary.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: lss-observability-optimized-inputs-recovered
+          path: lss/
+          if-no-files-found: error
+
+  validate:
+    name: validate recovered LSS optimized ${{ matrix.case }}
+    needs: optimize
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    strategy:
+      fail-fast: false
+      max-parallel: 2
+      matrix:
+        case: [optimized_plus, optimized_minus]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: lss-observability-optimized-inputs-recovered
+          path: lss
+      - name: Fetch pinned CLASS
+        run: |
+          set -euo pipefail
+          git init class_public
+          git -C class_public remote add origin https://github.com/lesgourg/class_public.git
+          git -C class_public fetch --depth 1 origin "$CLASS_COMMIT"
+          git -C class_public checkout --detach FETCH_HEAD
+          test "$(git -C class_public rev-parse HEAD)" = "$CLASS_COMMIT"
+          make -C class_public class -j2
+      - name: Run optimized pair over six redshifts
+        run: |
+          set -euo pipefail
+          mkdir -p lss/outputs results
+          case="${{ matrix.case }}"
+          for tag in z000 z050 z100 z150 z200 z300; do
+            ./class_public/class \
+              "lss/ini/${case}_${tag}.ini" \
+              observational_forecast/high_precision.pre \
+              > "results/${case}_${tag}.log" 2>&1
+            src="lss/outputs/${case}_${tag}_00_pk.dat"
+            test -s "$src"
+            cp "$src" "results/${case}_${tag}_00_pk.dat"
+          done
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lss-optimized-spectrum-recovered-${{ matrix.case }}
+          path: results/
+          if-no-files-found: error
+
+  summarize:
+    name: summarize recovered validated 3D LSS observability
+    needs: validate
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install --upgrade pip numpy
+      - uses: actions/download-artifact@v4
+        with:
+          name: lss-observability-optimized-inputs-recovered
+          path: lss
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: lss-screen-*
+          path: screen_results
+          merge-multiple: true
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          repository: dvlahek/stress-energy-closure
+          run-id: ${{ env.SOURCE_LSS_RUN_ID }}
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: lss-optimized-spectrum-recovered-*
+          path: optimized_results
+          merge-multiple: true
+      - name: Compute fixed and LambdaCDM-marginalized 3D S/N
+        run: |
+          set -euo pipefail
+          python code/class_lss_observability_campaign_finite_support.py \
+            --mode summarize \
+            --work lss \
+            --results screen_results \
+            --optimized-results optimized_results \
+            --output lss/lss_observability_summary.json
+          cat lss/lss_observability_summary.json
+      - name: Scientific sanity checks
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json, math
+          d=json.load(open('lss/lss_observability_summary.json'))
+          for _, r in d['results_by_kmax'].items():
+              for label in ('frozen_current_winner','LSS_optimized_hidden_mode'):
+                  q=r[label]
+                  fixed=q['fixed_SN2_per_total_1_Gpch3']
+                  marg=q['marginalized_SN2_per_total_1_Gpch3']
+                  assert math.isfinite(fixed) and math.isfinite(marg)
+                  assert fixed >= 0 and 0 <= marg <= fixed*(1+1e-8)
+          print('decision gate:', d['decision_gate'])
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: lss-observability-final-recovered
+          path: |
+            lss/lss_observability_summary.json
+            lss/lss_optimization_summary.json
+            lss/lss_manifest.json
+            lss/control_parameters.json
+            lss/data/optimized_plus.dat
+            lss/data/optimized_minus.dat
+          if-no-files-found: error
