@@ -1,0 +1,28 @@
+{
+  "status": "publication-facing summary",
+  "class_commit": "e85808324f51fc694d12e3ed7439552a3c3f9540",
+  "seed": 20260913,
+  "baseline": {
+    "mass_eV": 0.06,
+    "pointwise_cap": 0.30,
+    "ntracer": 9,
+    "unprojected_SN": 3.1909820679,
+    "after_wake_amplitude_projection_SN": 0.8980899219,
+    "after_full_odd_nuisance_projection_SN": 0.8605446904,
+    "linear_predicted_full_projected_SN": 0.8607548083,
+    "max_relative_moment_mismatch_upper_bound": 6.0e-16,
+    "baseline_area_deg2": 14000.0,
+    "area_factor_for_1sigma_at_fixed_density": 1.3503711203,
+    "area_deg2_for_1sigma_at_fixed_density": 18905.195684
+  },
+  "tracer_saturation": {
+    "ntracer": [5, 7, 9],
+    "full_projected_SN": [0.8530, 0.8589, 0.8605]
+  },
+  "rsd_control": {
+    "mass_eV": 0.60,
+    "best_projected_SN": 0.28792,
+    "max_relative_moment_mismatch": 5.97e-16
+  },
+  "note": "Forecast and sensitivity results only. The wake mass sweep inherits the physical normalization assumptions of the adopted literature-calibrated model."
+}

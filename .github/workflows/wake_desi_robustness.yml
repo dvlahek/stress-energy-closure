@@ -1,0 +1,59 @@
+name: Production - DESI BGS wake robustness
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'code/bgs_full_mass_grid.py'
+      - 'code/wake_desi_multitracer_fullgrid.py'
+      - 'code/wake_desi_robustness.py'
+      - '.github/workflows/wake_desi_robustness.yml'
+
+jobs:
+  robustness:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - {mode: mass, value: '0.05', tag: 'mass005'}
+          - {mode: mass, value: '0.06', tag: 'mass006'}
+          - {mode: mass, value: '0.08', tag: 'mass008'}
+          - {mode: mass, value: '0.10', tag: 'mass010'}
+          - {mode: cap, value: '0.10', tag: 'cap010'}
+          - {mode: cap, value: '0.20', tag: 'cap020'}
+          - {mode: cap, value: '0.30', tag: 'cap030'}
+          - {mode: kmax, value: '0.05', tag: 'kmax005'}
+          - {mode: kmax, value: '0.075', tag: 'kmax0075'}
+          - {mode: kmax, value: '0.10', tag: 'kmax010'}
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install dependencies
+        run: python -m pip install --upgrade pip setuptools wheel numpy scipy cython
+      - name: Fetch pinned CLASS
+        run: |
+          git init class_public
+          git -C class_public remote add origin https://github.com/lesgourg/class_public.git
+          git -C class_public fetch --depth 1 origin e85808324f51fc694d12e3ed7439552a3c3f9540
+          git -C class_public checkout --detach FETCH_HEAD
+          test "$(git -C class_public rev-parse HEAD)" = "e85808324f51fc694d12e3ed7439552a3c3f9540"
+      - name: Install CLASS
+        run: python -m pip install ./class_public
+      - name: Run robustness point
+        run: |
+          python code/wake_desi_robustness.py \
+            --mode '${{ matrix.mode }}' \
+            --value '${{ matrix.value }}' \
+            --outdir 'wake_robust_${{ matrix.tag }}' \
+            --samples 30000 --validate 3 --seed 20260913
+      - name: Record CLASS commit
+        run: git -C class_public rev-parse HEAD > 'wake_robust_${{ matrix.tag }}/CLASS_COMMIT.txt'
+      - uses: actions/upload-artifact@v4
+        with:
+          name: wake-robust-${{ matrix.tag }}
+          path: wake_robust_${{ matrix.tag }}/
+          if-no-files-found: error

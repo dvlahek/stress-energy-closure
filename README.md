@@ -1,37 +1,12 @@
-# Gravitational response distinguishes hidden kinetic states
+# Gravitational response recovers kinetic information beyond stress-energy
 
-Code and source data accompanying the manuscript **“Gravitational response distinguishes hidden kinetic states”**.
+Code, source-data summaries and reproducibility workflows accompanying the manuscript **“Gravitational response recovers kinetic information beyond stress-energy”**.
 
-The paper studies a distinction between the instantaneous gravitational source and the information contained in dynamical response. Two collisionless kinetic states can have the same particle current and stress-energy tensor while retaining different momentum-space structure. For massive isotropic collisionless matter, at fixed known particle mass and response normalization, the ideal continuous causal transverse-traceless response kernel at any fixed nonzero wave number uniquely identifies the radial kinetic distribution in a weighted-decay class that includes compactly supported and exponentially decaying profiles.
+The project asks what information gravity retains after collisionless matter is compressed to its instantaneous particle current and stress-energy tensor. The main analytic results separate four levels of information: instantaneous source equivalence, dynamical inequivalence, ideal causal identifiability and finite-data recoverability. For massive isotropic collisionless matter, the complete causal transverse-traceless response at fixed known nonzero mass and wave number uniquely determines the radial kinetic distribution in the stated weighted-decay class. The isotropic massless limit removes this radial encoding exactly. On finite response windows the forward map remains injective but compact, so inversion is unstable.
 
-The injectivity argument is an instance of a broader phase-mixing identifiability principle: for responses of the form
+The numerical calculations validate the exact Einstein–Vlasov constructions, the response theory and the observational controls. The observational forecasts are sensitivity studies, not detections.
 
-`K_F(tau) = integral w(p) F'(p) A(k v(p) tau) dp`,
-
-kinetic information is retained when the known momentum-to-velocity map is one-to-one and the analytic response has non-vanishing even Taylor coefficients, together with the stated weighted-decay and boundary conditions. The massive relativistic velocity map satisfies these conditions. In the isotropic massless limit all momenta propagate at the same speed, the radial profile collapses to the energy-density moment in the response, and injectivity fails.
-
-On every fixed finite momentum and response window the restricted gravitational forward map is compact, so the inverse is necessarily unbounded in its H^1 domain norm even though it is unique. The manuscript therefore distinguishes exact identifiability from stable finite-data recovery. A direct model-level consequence is that stress-energy-matched massive states can produce different frequency-dependent amplitude and phase responses to the same gravitational perturbation. These numerical response differences are proof-of-principle outputs, not observational sensitivity forecasts.
-
-The repository contains the deterministic calculations used in the manuscript:
-
-- `ev_flrw_controls.py` — exact flat-FLRW Einstein–Vlasov controls, including the massless profile-universality test and the massive same-`N^mu`/same-`T_munu` construction.
-- `injectivity_tomography.py` — stress-energy-matched response construction and regularized reconstruction of the hidden radial distribution.
-- `prediction_transfer.py` — dimensionless model-level amplitude, phase and complex metric-response separation for the stress-energy-matched pair.
-- `noise_sweep.py` — finite-data stability test over several response-noise levels and deterministic noise realizations.
-- `mass_sweep.py` — matched matter pairs across particle mass and the corresponding FLRW geometry separation.
-- `hierarchy_test.py` — finite source-jet matching with compact-support bump functions.
-- `direct_vs_memory.py` — direct phase-space Vlasov evolution compared with the reduced retarded-memory representation.
-- `class_observational_forecast.py` — Planck-anchored CLASS tensor calculation for a stress-energy-matched nonthermal relic pair.
-- `class_response_optimize.py` — response-difference optimization and neutrino-mass sweep within the same smooth deformation class.
-- `run_all.py` — convenience script for the core numerical validation campaigns.
-
-The CLASS workflows pin the public solver to commit `e85808324f51fc694d12e3ed7439552a3c3f9540`. The publication-facing workflows are:
-
-- `.github/workflows/class_observational_forecast.yml` — benchmark CLASS tensor forecast and validation sweep.
-- `.github/workflows/class_response_mass_matrix.yml` — response-optimization mass sweep over 0.03–0.60 eV.
-- `.github/workflows/class_response_resolution_convergence.yml` — resolution-convergence control for the best tested optimized case.
-
-## Reproducing the calculations
+## Reproducing the core calculations
 
 Python 3.10 or newer is recommended.
 
@@ -39,7 +14,7 @@ Python 3.10 or newer is recommended.
 python -m pip install -r requirements.txt
 ```
 
-Run the non-CLASS calculations from the repository root:
+Core calculations that do not require CLASS can be run from the repository root:
 
 ```bash
 python code/ev_flrw_controls.py --full
@@ -51,37 +26,77 @@ python code/hierarchy_test.py
 python code/direct_vs_memory.py --full
 ```
 
-The CLASS calculations require a local CLASS build or can be reproduced through the supplied GitHub Actions workflows. The calculations are deterministic. Fixed random seeds are used only for the reported synthetic noise realizations and for the response-optimization search heuristic.
+The CLASS-based calculations use the public solver pinned to commit `e85808324f51fc694d12e3ed7439552a3c3f9540`. They can be run locally with a compatible CLASS installation or through the publication workflows in `.github/workflows/`.
 
-## What is checked numerically
+## Publication calculations
 
-1. Two smooth isotropic massive Vlasov states can have the same initial particle current and stress-energy tensor while producing different exact FLRW metric evolutions.
-2. Two massive states with the same `n`, `rho` and `P` have distinct causal TT response kernels. For the dimensionless validation coupling used in the manuscript, the same metric source produces up to 0.80% complex-response separation, 0.63% amplitude separation and 0.45 degrees of phase separation over the plotted frequency band. These values are proof-of-principle model outputs, not observational forecasts.
-3. The hidden radial distributions can be reconstructed from finite noisy response data with non-negative regularized inversion.
-4. A separate noise sweep shows the practical loss of reconstruction accuracy as response noise increases. This illustrates stability only; injectivity, compactness and the unbounded inverse are proved analytically in the manuscript.
-5. In the isotropic massless limit, profile dependence collapses and the matched FLRW geometries coincide to numerical precision.
-6. An arbitrary finite number of local gravitational source jets can be matched while the next jet remains distinct.
-7. Direct phase-space evolution and the eliminated retarded-memory description converge to the same transverse-traceless response.
-8. A Planck-anchored CLASS calculation shows that the distinction survives in a standard tensor B-mode observable for a controlled nonthermal relic pair. This is a physical-realization control, not a detectability forecast.
-9. Within the tested ten-function smooth deformation class and 30% pointwise cap, explicit CLASS response optimization over neutrino masses 0.03–0.60 eV gives an idealized full-sky cosmic-variance-limited S/N below 0.04 for every tested mass. The best tested case is numerically stable under refined non-cold-relic hierarchy and momentum resolution.
+The repository keeps only the production-facing observational chain on `main`.
 
-The numerical calculations illustrate and validate the analytic arguments. The FLRW existence, response injectivity and inverse ill-posedness results do not depend on the numerical examples.
+- `code/class_observational_forecast.py` reproduces the controlled CLASS tensor realization.
+- `code/class_response_optimize.py` performs the smooth matched-moment response optimization and mass sweep.
+- `code/rsd_hidden_state_forecast.py` defines the even-parity RSD observable and nuisance projection.
+- `code/rsd_hidden_state_forecast_nonlinear.py` performs the final nonlinear-in-distribution RSD validation.
+- `code/wake_two_tracer_fisher.py` defines the parity-odd wake response and baseline Fisher machinery.
+- `code/wake_desi_bonvin_fisher.py` supplies the relativistic odd-sector survey model and physical calibration.
+- `code/wake_desi_multitracer_fisher.py` implements the full covariance-consistent multi-tracer Fisher calculation.
+- `code/wake_desi_multitracer_fullgrid.py` scans the validated HOD threshold grid and tests tracer-resolution saturation.
+- `code/wake_desi_robustness.py` repeats the final mass, deformation-cap and scale-cut controls.
+- `code/wake_desi_survey_design.py` varies survey area and number density after fixing the final nine-tracer hidden state and physical calibration at the baseline survey.
+
+Production GitHub Actions are:
+
+- `class_observational_forecast.yml`
+- `class_response_mass_matrix.yml`
+- `class_response_resolution_convergence.yml`
+- `rsd_hidden_state_forecast.yml`
+- `wake_desi_multitracer_fullgrid.yml`
+- `wake_desi_robustness.yml`
+- `wake_desi_survey_design.yml`
+
+## Final observational controls
+
+The even-parity cosmological calculations show that most of the hidden-state response lies inside ordinary cosmological nuisance directions. The nonlinear RSD control reaches a maximum projected value of `S/N = 0.28792` in the reported 0.60 eV test.
+
+The parity-odd wake is more informative because its leading response samples the relic distribution at resonant momentum. For the final DESI-BGS-like calculation at `m_nu = 0.06 eV`, a 30% pointwise deformation cap and nine disjoint tracer populations give:
+
+| quantity | S/N |
+| --- | ---: |
+| before odd-sector projection | 3.19098 |
+| after wake-amplitude projection | 0.89809 |
+| after the full odd nuisance projection | 0.8605447 |
+| linear prediction for the final projected result | 0.8607548 |
+
+The maximum matched-moment mismatch is below `6.0e-16`. Increasing tracer resolution from five to seven to nine populations gives projected values `0.8530`, `0.8589` and `0.8605`, showing saturation. At fixed number density, exact area scaling of the final baseline places `S/N = 1` at approximately `1.8905e4 deg^2`.
+
+The reported robustness sweep gives:
+
+| control | values | projected S/N |
+| --- | --- | --- |
+| pointwise cap | 10%, 20%, 30% | 0.28687, 0.57371, 0.86054 |
+| `k_max` [h/Mpc] | 0.05, 0.075, 0.10 | 0.34327, 0.58626, 0.86054 |
+| relic mass [eV] | 0.05, 0.06, 0.08, 0.10 | 0.42511, 0.86054, 2.57537, 5.79156 |
+
+For the mass sweep, the physical wake calibration is recomputed for each mass. Those absolute values therefore inherit the normalization assumptions of the adopted literature-calibrated forecast model. They should not be read as a present observational detection claim.
 
 ## Repository structure
 
 ```text
-code/                    deterministic calculation scripts
+code/                    deterministic analysis and validation scripts
 observational_forecast/  CLASS provenance and diagnostic notes
-source_data/             compact source-data summaries
-.github/workflows/       deterministic CLASS reproduction workflows
+source_data/             compact result summaries used for reproducibility
+.github/workflows/       publication-facing deterministic workflows
 ```
 
-Full figure-level source data are supplied with the manuscript submission package.
+Development and diagnostic branches preserve the exploratory history. The `main` branch is the compact publication-facing state of the project.
+
+## Determinism and provenance
+
+The calculations are deterministic. Fixed random seeds are used for synthetic-noise realizations and for candidate searches. Production wake and RSD workflows use seed `20260913`. CLASS is fetched at the pinned commit above and the resolved solver commit is written into every workflow artifact.
 
 ## Citation
 
-If you use this code, please cite the associated manuscript. Bibliographic information will be updated when the paper is published.
+If you use this code, please cite the associated manuscript. Bibliographic information will be updated after publication.
 
 ## License
 
-The code and accompanying source data are released under the MIT License.
+The code and accompanying source-data summaries are released under the MIT License.
