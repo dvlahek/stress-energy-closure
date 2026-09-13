@@ -36,7 +36,7 @@ jobs:
     steps:
       - uses: actions/setup-python@v5
         with: {python-version: '3.11'}
-      - run: python -m pip install --upgrade pip numpy astropy
+      - run: python -m pip install --upgrade pip numpy astropy awscli
       - name: Download one EZmock data catalog and full BGS catalog
         shell: bash
         run: |
@@ -46,9 +46,13 @@ jobs:
           fetch_one () {
             rel="$1"; out="$2"; rm -f "$out"
             echo "DOWNLOAD $rel"
-            curl --http1.1 -fL --retry 12 --retry-all-errors --retry-delay 15 \
-              --connect-timeout 120 --max-time 3600 --retry-max-time 3600 \
-              -o "$out" "$PRIMARY/$rel"
+            if ! aws s3 cp --no-sign-request --only-show-errors "s3://desidata/dr1/$rel" "$out"; then
+              echo "AWS mirror unavailable for $rel; trying DESI primary"
+              rm -f "$out"
+              curl --http1.1 -fL --retry 4 --retry-all-errors --retry-delay 15 \
+                --connect-timeout 60 --max-time 1800 --retry-max-time 1800 \
+                -o "$out" "$PRIMARY/$rel"
+            fi
             test -s "$out"
           }
           fetch_one "$ROOT/BGS_ffa_NGC_clustering.dat.fits" mock_NGC.dat.fits
@@ -90,7 +94,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with: {python-version: '3.11'}
-      - run: python -m pip install --upgrade pip numpy scipy astropy
+      - run: python -m pip install --upgrade pip numpy scipy astropy awscli
       - uses: actions/download-artifact@v4
         with:
           name: phase7-ezmock-template
@@ -105,9 +109,13 @@ jobs:
           fetch_one () {
             rel="$1"; out="$2"; rm -f "$out"
             echo "DOWNLOAD $rel"
-            curl --http1.1 -fL --retry 12 --retry-all-errors --retry-delay 15 \
-              --connect-timeout 120 --max-time 3600 --retry-max-time 3600 \
-              -o "$out" "$PRIMARY/$rel"
+            if ! aws s3 cp --no-sign-request --only-show-errors "s3://desidata/dr1/$rel" "$out"; then
+              echo "AWS mirror unavailable for $rel; trying DESI primary"
+              rm -f "$out"
+              curl --http1.1 -fL --retry 4 --retry-all-errors --retry-delay 15 \
+                --connect-timeout 60 --max-time 1800 --retry-max-time 1800 \
+                -o "$out" "$PRIMARY/$rel"
+            fi
             test -s "$out"
           }
           fetch_one "$ROOT/BGS_ffa_NGC_clustering.dat.fits" mock_NGC.dat.fits
