@@ -1,0 +1,65 @@
+name: RSD hidden-state forecast v3 nonlinear
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - inverse-rsd-upgrade
+    paths:
+      - 'code/rsd_hidden_state_forecast.py'
+      - 'code/rsd_hidden_state_forecast_v3.py'
+      - 'code/class_response_optimize.py'
+      - '.github/workflows/rsd_hidden_state_forecast_v3.yml'
+
+jobs:
+  rsd-forecast-v3:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout manuscript repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Python dependencies
+        run: python -m pip install --upgrade pip setuptools wheel numpy scipy cython
+
+      - name: Fetch pinned CLASS
+        run: |
+          git init class_public
+          git -C class_public remote add origin https://github.com/lesgourg/class_public.git
+          git -C class_public fetch --depth 1 origin e85808324f51fc694d12e3ed7439552a3c3f9540
+          git -C class_public checkout --detach FETCH_HEAD
+          test "$(git -C class_public rev-parse HEAD)" = "e85808324f51fc694d12e3ed7439552a3c3f9540"
+
+      - name: Install pinned CLASS Python wrapper
+        run: python -m pip install ./class_public
+
+      - name: Run nonlinear projected RSD optimization
+        run: |
+          python code/rsd_hidden_state_forecast_v3.py \
+            --outdir rsd_hidden_state_output_v3 \
+            --mass 0.60 \
+            --z-match 1100 \
+            --probe-frac 0.01 \
+            --final-frac 0.30 \
+            --volume 50 \
+            --samples 30000 \
+            --keep 28 \
+            --seed 20260913
+
+      - name: Record solver commit
+        if: always()
+        run: |
+          mkdir -p rsd_hidden_state_output_v3
+          git -C class_public rev-parse HEAD > rsd_hidden_state_output_v3/CLASS_COMMIT.txt
+
+      - name: Upload RSD artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: rsd-hidden-state-forecast-v3
+          path: rsd_hidden_state_output_v3/
+          if-no-files-found: error
