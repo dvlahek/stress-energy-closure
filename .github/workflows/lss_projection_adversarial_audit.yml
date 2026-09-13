@@ -1,0 +1,63 @@
+name: LSS projection adversarial audit
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [scalar-lensing-screen]
+    paths:
+      - '.github/lss_projection_adversarial_audit_trigger.txt'
+
+env:
+  SOURCE_LSS_RUN_ID: '34722070280'
+  RECOVERY_LSS_RUN_ID: '34733700067'
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install --upgrade pip numpy
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: lss-screen-*
+          path: screen_results
+          merge-multiple: true
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          repository: dvlahek/stress-energy-closure
+          run-id: ${{ env.SOURCE_LSS_RUN_ID }}
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: lss-optimized-spectrum-recovered-*
+          path: optimized_results
+          merge-multiple: true
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          repository: dvlahek/stress-energy-closure
+          run-id: ${{ env.RECOVERY_LSS_RUN_ID }}
+      - name: Reproject existing spectra under adversarial nuisance choices
+        run: |
+          set -euo pipefail
+          python code/lss_projection_adversarial_audit.py \
+            --screen screen_results \
+            --optimized optimized_results \
+            --output lss_projection_adversarial_audit.json
+      - name: Compact audit summary
+        run: |
+          python - <<'PY'
+          import json
+          d=json.load(open('lss_projection_adversarial_audit.json'))
+          x=d['optimized']['0.3']['baseline_projections']
+          print('fixed:', x['fixed']['fixed_SN_V50'])
+          print('full6:', x['full6']['marginalized_SN_V50'], x['full6']['retained_delta_chi2_fraction'])
+          print('physical5_no_tau:', x['physical5_no_tau']['marginalized_SN_V50'], x['physical5_no_tau']['retained_delta_chi2_fraction'])
+          print('single parameter absorbed fractions:', d['optimized']['0.3']['single_parameter_absorbed_fraction'])
+          print('reference check:', d['reference_check'])
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: lss-projection-adversarial-audit
+          path: lss_projection_adversarial_audit.json
+          if-no-files-found: error
