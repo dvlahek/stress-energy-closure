@@ -29,14 +29,15 @@ jobs:
           s=p.read_text()
           s=s.replace('from hodpy.mass_function import MassFunctionMXXL\n','')
           s=s.replace('from hodpy.cosmology import CosmologyMXXL\n','')
-          old='''    def __init__(self, mass_function=MassFunctionMXXL(), cosmology=CosmologyMXXL(), mag_faint=20.0,\n                 kcorr=GAMA_KCorrection(CosmologyMXXL()), hod_param_file=lookup.bgs_hod_parameters,\n'''
-          new='''    def __init__(self, mass_function=None, cosmology=None, mag_faint=20.0,\n                 kcorr=None, hod_param_file=lookup.bgs_hod_parameters,\n'''
-          if old not in s:
-              raise SystemExit('HOD_BGS signature pattern not found')
-          s=s.replace(old,new)
-          # HOD_BGS_Simple is used only as a holder when the precomputed target LF exists.
-          # Its legacy MXXL mass-function object is therefore unnecessary here.
-          s=s.replace('        self.mf = MassFunctionMXXL()\n','        self.mf = None\n')
+          for old,new in [
+              ('mass_function=MassFunctionMXXL()', 'mass_function=None'),
+              ('cosmology=CosmologyMXXL()', 'cosmology=None'),
+              ('kcorr=GAMA_KCorrection(CosmologyMXXL())', 'kcorr=None'),
+              ('        self.mf = MassFunctionMXXL()\n', '        self.mf = None\n'),
+          ]:
+              s=s.replace(old,new)
+          if 'MassFunctionMXXL' in s or 'CosmologyMXXL()' in s:
+              raise SystemExit('Legacy runtime defaults remain after patch')
           p.write_text(s)
           PY
       - name: Reconstruct BGS split
