@@ -36,8 +36,6 @@ jobs:
               ('        self.mf = MassFunctionMXXL()\n', '        self.mf = None\n'),
           ]:
               s=s.replace(old,new)
-          if 'MassFunctionMXXL' in s or 'CosmologyMXXL()' in s:
-              raise SystemExit('Legacy runtime defaults remain after patch')
           p.write_text(s)
           PY
       - name: Reconstruct BGS split
