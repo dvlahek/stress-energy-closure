@@ -1,0 +1,50 @@
+name: Patch EZmock AWS transport
+
+on:
+  push:
+    branches: [phase7-nature-astronomy]
+    paths:
+      - '.github/workflows/patch_ezmock_aws_transport.yml'
+
+permissions:
+  contents: write
+  actions: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: phase7-nature-astronomy
+      - name: Cancel stale EZmock run
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          curl -fsSL -X POST \
+            -H "Authorization: Bearer ${GH_TOKEN}" \
+            -H "Accept: application/vnd.github+json" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            https://api.github.com/repos/dvlahek/stress-energy-closure/actions/runs/34780681626/cancel || true
+      - name: Patch EZmock workflow
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('.github/workflows/desi_phase7_ezmock_covariance.yml')
+          s=p.read_text()
+          old='''          fetch_one () {\n            rel="$1"; out="$2"; rm -f "$out"\n            echo "DOWNLOAD $rel"\n            curl --http1.1 -fL --retry 12 --retry-all-errors --retry-delay 15 \\\n              --connect-timeout 120 --max-time 3600 --retry-max-time 3600 \\\n              -o "$out" "$PRIMARY/$rel"\n            test -s "$out"\n          }'''
+          new='''          fetch_one () {\n            rel="$1"; out="$2"; rm -f "$out"\n            echo "DOWNLOAD $rel"\n            if ! aws s3 cp --no-sign-request --only-show-errors "s3://desidata/dr1/$rel" "$out"; then\n              echo "AWS mirror unavailable for $rel; trying DESI primary"\n              rm -f "$out"\n              curl --http1.1 -fL --retry 4 --retry-all-errors --retry-delay 15 \\\n                --connect-timeout 60 --max-time 1800 --retry-max-time 1800 \\\n                -o "$out" "$PRIMARY/$rel"\n            fi\n            test -s "$out"\n          }'''
+          n=s.count(old)
+          if n != 2:
+              raise RuntimeError(f'expected 2 download blocks, found {n}')
+          s=s.replace(old,new)
+          s=s.replace('python -m pip install --upgrade pip numpy astropy\n','python -m pip install --upgrade pip numpy astropy awscli\n',1)
+          s=s.replace('python -m pip install --upgrade pip numpy scipy astropy\n','python -m pip install --upgrade pip numpy scipy astropy awscli\n',1)
+          p.write_text(s)
+          PY
+          git rm .github/workflows/patch_ezmock_aws_transport.yml
+          git config user.name 'dvlahek'
+          git config user.email 'dvlahek@foi.hr'
+          git add .github/workflows/desi_phase7_ezmock_covariance.yml
+          git commit -m 'Use official DESI AWS mirror for EZmock downloads'
+          git push origin HEAD:phase7-nature-astronomy
