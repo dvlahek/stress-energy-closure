@@ -1,12 +1,11 @@
 #!/usr/bin/env python3
-"""Aggregate a custom five-tracer EZmock ensemble for Phase 7."""
+"""Aggregate the Phase-7 EZmock random-rank placebo covariance ensemble."""
 from __future__ import annotations
 import argparse, glob, json
 from pathlib import Path
 import numpy as np
 
 import desi_dr1_phase7_lss as p
-import desi_dr1_phase7_zresolved as zr
 from desi_phase7_mock_aggregate import oas_cov, fit_bundle
 
 
@@ -39,14 +38,19 @@ def main():
         fi=p.gls_fit((row-mean)+wi,Coas,ts,names); rec.append(float(fi['wake_proxy']['amplitude']))
     aw=np.asarray(aw); rec=np.asarray(rec); areal=float(fitc['wake_proxy']['amplitude'])
     pemp=float((1+np.sum(np.abs(aw)>=abs(areal)))/(n+1)); sigma=float(fitc['wake_proxy']['sigma']); coverage=float(np.mean(np.abs(rec-1.0)<=sigma))
-    np.savetxt(out/'ezmock_covariance_sample.csv',Csample,delimiter=','); np.savetxt(out/'ezmock_covariance_oas.csv',Coas,delimiter=',')
-    np.savetxt(out/'ezmock_vectors.csv',X,delimiter=','); np.savetxt(out/'ezmock_window_templates.csv',np.column_stack([Wm,Dm,W.std(axis=0,ddof=1),D.std(axis=0,ddof=1)]),delimiter=',',header='wake_mean,doppler_mean,wake_std,doppler_std',comments='')
-    summary={'scope':'Custom cut-sky EZmock covariance and pair-window calibration for the five-tracer BGS luminosity-ranked proxy estimator.',
-             'mock_count':int(n),'vector_dimension':int(pdim),'sample_covariance_rank':rank,'oas_shrinkage':shrink,'oas_condition_number':cond,'hartlap_factor':hartlap,
-             'real_data_fit_oas':{'minimal':fit2,'conservative':fitc,'empirical_two_sided_wake_pvalue':pemp},
-             'real_data_fit_hartlap_sample_covariance':{'minimal':fit2_h,'conservative':fitc_h},
-             'null_wake_amplitudes':aw.tolist(),'unit_injection_recovery':{'mean':float(rec.mean()),'std':float(rec.std(ddof=1)),'median':float(np.median(rec)),'nominal_one_sigma_coverage_fraction':coverage,'fit_sigma_reference':sigma},
-             'guardrail':'This 64-realization custom EZmock set is a covariance cross-check. DESI publishes 1000 EZmocks; expansion is reserved for the final likelihood only if this subset and Abacus validation are mutually consistent.'}
-    (out/'summary_ezmock_window_covariance.json').write_text(json.dumps(summary,indent=2)+'\n'); print('PHASE7_EZMOCK_AGGREGATE',json.dumps(summary,indent=2))
+    np.savetxt(out/'ezmock_placebo_covariance_sample.csv',Csample,delimiter=','); np.savetxt(out/'ezmock_placebo_covariance_oas.csv',Coas,delimiter=',')
+    np.savetxt(out/'ezmock_placebo_vectors.csv',X,delimiter=','); np.savetxt(out/'ezmock_placebo_window_templates.csv',np.column_stack([Wm,Dm,W.std(axis=0,ddof=1),D.std(axis=0,ddof=1)]),delimiter=',',header='wake_mean,doppler_mean,wake_std,doppler_std',comments='')
+    summary={
+      'scope':'Custom cut-sky EZmock five-tracer equal-count random-rank placebo covariance/systematics control.',
+      'proxy_kind':'RAN_NUM_0_1 equal-count rank within narrow-z and Galactic-cap cells',
+      'mock_count':int(n),'vector_dimension':int(pdim),'sample_covariance_rank':rank,'oas_shrinkage':shrink,'oas_condition_number':cond,'hartlap_factor':hartlap,
+      'real_data_sensitivity_fit_oas':{'minimal':fit2,'conservative':fitc,'empirical_two_sided_wake_pvalue_against_placebo_null':pemp},
+      'real_data_sensitivity_fit_hartlap_sample_covariance':{'minimal':fit2_h,'conservative':fitc_h},
+      'placebo_null_wake_amplitudes':aw.tolist(),
+      'unit_injection_recovery':{'mean':float(rec.mean()),'std':float(rec.std(ddof=1)),'median':float(np.median(rec)),'nominal_one_sigma_coverage_fraction':coverage,'fit_sigma_reference':sigma},
+      'absolute_likelihood_claim':False,
+      'guardrail':'The released DR1 EZmock BGS files used here do not contain R_MAG_APP/R_MAG_ABS. This ensemble therefore tests geometry, pair compression, covariance conditioning and false-positive behaviour with equal-count random ranks. It is not a luminosity-matched covariance. Abacus is the physical luminosity-ranked validation.'
+    }
+    (out/'summary_ezmock_placebo_covariance.json').write_text(json.dumps(summary,indent=2)+'\n'); print('PHASE7_EZMOCK_PLACEBO_AGGREGATE',json.dumps(summary,indent=2))
 
 if __name__=='__main__': main()
