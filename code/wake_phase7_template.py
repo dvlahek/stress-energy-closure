@@ -74,8 +74,14 @@ def main():
     args=ap.parse_args()
     out=Path(args.outdir); out.mkdir(parents=True,exist_ok=True)
 
+    # Phase-7 data templates use the public BGS clustering range 0.1<z<0.4.
+    # The fixed production calibration was defined on the seven-bin HOD grid,
+    # including z=0.075.  Build CLASS states on the union so calibration and
+    # analysis use the same physical state without extending the data fit.
     zgrid=np.array([0.125,0.175,0.225,0.275,0.325,0.375],float)
-    base.ZBINS=zgrid
+    calibration_zgrid=np.array([float(r['z']) for r in refmod.w.SURVEY],float)
+    state_zgrid=np.unique(np.concatenate([zgrid,calibration_zgrid]))
+    base.ZBINS=state_zgrid
     q=np.linspace(0.0,20.0,4000)
     f0,weights,basis,Nnull,shapes,y,M=cro.kinetic_objects(q,args.mass,args.z_match)
     if shapes.shape[0] != len(COEFF):
@@ -126,7 +132,9 @@ def main():
         'reference_projected_SN':REFERENCE_SN,'reference_seed':REFERENCE_SEED,
         'class_commit':REFERENCE_CLASS,'coefficients':COEFF.tolist(),
         'max_relative_moment_mismatch':float(mismatch.max()),
-        'z_grid':zgrid.tolist(),'s_grid_Mpc_over_h':s.tolist(),
+        'z_grid':zgrid.tolist(),'state_z_grid':state_zgrid.tolist(),
+        'calibration_z_grid':calibration_zgrid.tolist(),
+        's_grid_Mpc_over_h':s.tolist(),
         'wake_shape_definition':'Hankel j1 transform of P_cb(k,z) times signed hidden-state stochastic response, retaining sqrt(publication calibration) relative weighting; free amplitude in data fit.',
         'doppler_shape_definition':'Hankel j1 transform of P_cb(k,z) H(z)/k; free amplitude nuisance.',
         'normalization':'Each template is independently normalized to max(abs(template))=1 at each z.',
