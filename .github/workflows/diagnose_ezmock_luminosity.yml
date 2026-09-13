@@ -10,31 +10,33 @@ on:
 jobs:
   diagnose:
     runs-on: ubuntu-24.04
-    timeout-minutes: 30
+    timeout-minutes: 20
     steps:
-      - uses: actions/setup-python@v5
-        with: {python-version: '3.11'}
-      - run: python -m pip install --upgrade pip astropy
-      - name: Fetch mock1 products and inspect all HDUs
+      - name: Inspect mock1 directory and FITS headers by HTTP range
         shell: bash
         run: |
           set -euo pipefail
           ROOT='https://data.desi.lbl.gov/public/dr1/survey/catalogs/dr1/mocks/EZmock/bright/v1/mock1'
-          curl --http1.1 -fL --retry 4 --retry-all-errors --retry-delay 3 --connect-timeout 60 --max-time 900 -o mock_NGC.fits "$ROOT/BGS_ffa_NGC_clustering.dat.fits"
-          curl --http1.1 -fL --retry 4 --retry-all-errors --retry-delay 3 --connect-timeout 60 --max-time 900 -o full.fits "$ROOT/ffa_full_BGS.fits"
           curl --http1.1 -fL --retry 4 --retry-all-errors --retry-delay 3 --connect-timeout 60 --max-time 120 -o listing.html "$ROOT/"
-          echo '=== DIRECTORY FITS LINKS ==='
-          grep -oE 'href="[^"]+\.fits"' listing.html | sed 's/^href="//;s/"$//' | sort -u || true
-          python - <<'PY'
-          from astropy.io import fits
-          for fn in ['mock_NGC.fits','full.fits']:
-              print('\n===',fn,'===')
-              with fits.open(fn,memmap=True) as h:
-                  print('HDU_COUNT',len(h))
-                  for i,x in enumerate(h):
-                      cols=list(getattr(getattr(x,'columns',None),'names',[]) or [])
-                      print('HDU',i,'EXTNAME',x.header.get('EXTNAME'),'NROWS',len(x.data) if getattr(x,'data',None) is not None and hasattr(x.data,'__len__') else None)
-                      print('COLUMNS',cols)
-                      cand=[c for c in cols if any(k in c.upper() for k in ['MAG','FLUX','LUM','MASS','ABS','APP'])]
-                      print('CANDIDATES',cand)
+          echo '=== RELEVANT DIRECTORY ROWS ==='
+          grep -E 'pota-BRIGHT|combbright_wdupspec|ffa_full_BGS|BGS_ffa_NGC_clustering.dat' listing.html || true
+          for F in pota-BRIGHT.fits combbright_wdupspec_zdone.fits; do
+            echo "=== RANGE HEADER $F ==="
+            curl --http1.1 -fL --retry 4 --retry-all-errors --retry-delay 3 --connect-timeout 60 --max-time 120 -r 0-524287 -o header.bin "$ROOT/$F"
+            python - "$F" <<'PY'
+          import sys
+          name=sys.argv[1]
+          b=open('header.bin','rb').read()
+          print('FILE',name,'BYTES',len(b))
+          cards=[]
+          for i in range(0,len(b)-79,80):
+              try: s=b[i:i+80].decode('ascii')
+              except: continue
+              if s.startswith(('XTENSION','EXTNAME','NAXIS1','NAXIS2','TFIELDS','TTYPE','TFORM')):
+                  cards.append(s.rstrip())
+          print('\n'.join(cards[:500]))
+          print('HAS_R_MAG_APP',b'R_MAG_APP' in b)
+          print('HAS_R_MAG_ABS',b'R_MAG_ABS' in b)
+          print('HAS_TARGETID',b'TARGETID' in b)
           PY
+          done
