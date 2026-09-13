@@ -41,14 +41,29 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          BASE='https://data.desi.lbl.gov/public/dr1/survey/catalogs/dr1/mocks/AbacusSummit/BRIGHT/v1/mock0'
+          PRIMARY='https://data.desi.lbl.gov/public/dr1'
+          AWS='https://desidata.s3.amazonaws.com/dr1'
+          ROOT='survey/catalogs/dr1/mocks/AbacusSummit/BRIGHT/v1/mock0'
+          probe_one () {
+            rel="$1"
+            echo "PROBE $rel"
+            if curl -fsSL --retry 1 --retry-delay 2 --connect-timeout 8 --max-time 30 \
+                --range 0-0 -o /dev/null "$PRIMARY/$rel"; then
+              echo "Probe OK from DESI primary"
+              return 0
+            fi
+            echo "DESI primary probe unavailable; checking official AWS mirror"
+            curl -fsSL --retry 3 --retry-all-errors --retry-delay 3 \
+              --connect-timeout 12 --max-time 90 --range 0-0 \
+              -o /dev/null "$AWS/$rel"
+            echo "Probe OK from DESI AWS mirror"
+          }
           for f in \
             BGS_BRIGHT-21.5_complete_NGC_clustering.dat.fits \
             BGS_BRIGHT-21.5_complete_SGC_clustering.dat.fits \
             BGS_BRIGHT-21.5_complete_NGC_0_clustering.ran.fits \
             BGS_BRIGHT-21.5_complete_SGC_0_clustering.ran.fits; do
-            echo "PROBE $f"
-            curl -fIL --retry 2 --connect-timeout 20 --max-time 120 "$BASE/$f" >/dev/null
+            probe_one "$ROOT/$f"
           done
 
   mocks:
