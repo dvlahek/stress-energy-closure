@@ -1,0 +1,80 @@
+name: Phase 7 - DESI DR1 multitracer stochastic seed control
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [phase7-nature-astronomy]
+    paths:
+      - '.github/workflows/desi_dr1_phase7_multitracer_seed_control.yml'
+
+jobs:
+  seed-control:
+    strategy:
+      fail-fast: false
+      matrix:
+        seed: [20260917, 20260929, 20261007]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 180
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install Python dependencies
+        run: python -m pip install --upgrade pip setuptools wheel numpy scipy astropy cython
+      - name: Fetch pinned CLASS
+        run: |
+          git init class_public
+          git -C class_public remote add origin https://github.com/lesgourg/class_public.git
+          git -C class_public fetch --depth 1 origin e85808324f51fc694d12e3ed7439552a3c3f9540
+          git -C class_public checkout --detach FETCH_HEAD
+          test "$(git -C class_public rev-parse HEAD)" = "e85808324f51fc694d12e3ed7439552a3c3f9540"
+      - name: Install CLASS
+        run: python -m pip install ./class_public
+      - name: Build fixed hidden-state and Doppler templates
+        run: |
+          python code/wake_phase7_template.py \
+            --outdir phase7_template --mass 0.06 --z-match 1100 --frac 0.30 \
+            --s-min 20 --s-max 140 --s-step 2
+      - name: Download clustering-ready DESI DR1 BGS data and randoms
+        shell: bash
+        run: |
+          set -euo pipefail
+          PRIMARY='https://data.desi.lbl.gov/public/dr1'
+          AWS='https://desidata.s3.amazonaws.com/dr1'
+          ROOT='survey/catalogs/dr1/LSS/iron/LSScats/v1.5'
+          fetch_one () {
+            rel="$1"; out="$2"; rm -f "$out"
+            if ! curl -fL --retry 1 --retry-delay 3 --connect-timeout 15 --max-time 300 -o "$out" "$PRIMARY/$rel"; then
+              rm -f "$out"
+              curl -fL --retry 4 --retry-all-errors --retry-delay 5 --connect-timeout 20 --max-time 1800 -o "$out" "$AWS/$rel"
+            fi
+            test -s "$out"
+          }
+          fetch_one "$ROOT/BGS_BRIGHT-21.5_NGC_clustering.dat.fits" BGS_BRIGHT-21.5_NGC_clustering.dat.fits
+          fetch_one "$ROOT/BGS_BRIGHT-21.5_SGC_clustering.dat.fits" BGS_BRIGHT-21.5_SGC_clustering.dat.fits
+          fetch_one "$ROOT/BGS_BRIGHT-21.5_NGC_0_clustering.ran.fits" BGS_BRIGHT-21.5_NGC_0_clustering.ran.fits
+          fetch_one "$ROOT/BGS_BRIGHT-21.5_SGC_0_clustering.ran.fits" BGS_BRIGHT-21.5_SGC_0_clustering.ran.fits
+      - name: Run independent stochastic realization
+        run: |
+          python code/desi_dr1_phase7_multitracer_fullsample.py \
+            --data BGS_BRIGHT-21.5_NGC_clustering.dat.fits BGS_BRIGHT-21.5_SGC_clustering.dat.fits \
+            --random BGS_BRIGHT-21.5_NGC_0_clustering.ran.fits BGS_BRIGHT-21.5_SGC_0_clustering.ran.fits \
+            --templates phase7_template/phase7_templates.csv \
+            --outdir phase7_seed_${{ matrix.seed }} \
+            --zmin 0.10 --zmax 0.40 --dz-proxy 0.02 --ntracer 5 \
+            --analysis-z-edges 0.10,0.20,0.30,0.40 \
+            --sep-edges 20,40,60,80,100,120,140 \
+            --random-factor 2.0 --neighbors-per-anchor 48 \
+            --theta-min-deg 0.05 --jackknife 30 --permutations 32 \
+            --seed ${{ matrix.seed }}
+      - name: Record provenance
+        run: |
+          git rev-parse HEAD > phase7_seed_${{ matrix.seed }}/REPOSITORY_COMMIT.txt
+          git -C class_public rev-parse HEAD > phase7_seed_${{ matrix.seed }}/CLASS_COMMIT.txt
+          printf '%s\n' '${{ matrix.seed }}' > phase7_seed_${{ matrix.seed }}/STOCHASTIC_SEED.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: phase7-multitracer-seed-${{ matrix.seed }}
+          path: phase7_seed_${{ matrix.seed }}/
+          if-no-files-found: error
