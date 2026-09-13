@@ -22,41 +22,49 @@ SEED="${SEED:-20260913}"
 
 mkdir -p "$OUTROOT" "$TEMPLATE_DIR"
 
-if ! command -v python >/dev/null 2>&1; then
-  echo 'ERROR: python not found' >&2; exit 2
+if command -v python >/dev/null 2>&1; then
+  PYTHON_BIN="${PYTHON_BIN:-python}"
+elif command -v python3 >/dev/null 2>&1; then
+  PYTHON_BIN="${PYTHON_BIN:-python3}"
+else
+  echo 'ERROR: neither python nor python3 was found' >&2
+  exit 2
 fi
 if ! command -v curl >/dev/null 2>&1; then
   echo 'ERROR: curl not found' >&2; exit 2
 fi
 
-python - <<'PY'
+echo "Using Python: $PYTHON_BIN ($($PYTHON_BIN --version 2>&1))"
+
+"$PYTHON_BIN" - <<'PY'
 import importlib.util
 need=['numpy','scipy','astropy']
 miss=[m for m in need if importlib.util.find_spec(m) is None]
 if miss:
-    raise SystemExit('Missing Python packages: '+', '.join(miss)+'. Install with: pip install numpy scipy astropy')
+    raise SystemExit('Missing Python packages: '+', '.join(miss)+'. Create/activate a venv and install them there.')
 PY
 
 if [[ ! -f "$TEMPLATE_CSV" ]]; then
   echo "Template not found at $TEMPLATE_CSV"
   echo 'Building fixed Phase-7 template requires the pinned CLASS Python module.'
-  if ! python - <<'PY'
+  if ! "$PYTHON_BIN" - <<'PY'
 import importlib.util,sys
 sys.exit(0 if importlib.util.find_spec('classy') else 1)
 PY
   then
     cat >&2 <<'EOF'
-ERROR: CLASS/classy is not installed.
-Install the pinned CLASS version once:
+ERROR: CLASS/classy is not installed in the active Python environment.
+Install the pinned CLASS version once inside your virtual environment:
   rm -rf class_public
   git clone https://github.com/lesgourg/class_public.git class_public
+  git -C class_public fetch origin e85808324f51fc694d12e3ed7439552a3c3f9540
   git -C class_public checkout e85808324f51fc694d12e3ed7439552a3c3f9540
-  pip install ./class_public
+  python -m pip install ./class_public
 Then rerun this script.
 EOF
     exit 3
   fi
-  python code/wake_phase7_template.py \
+  "$PYTHON_BIN" code/wake_phase7_template.py \
     --outdir "$TEMPLATE_DIR" --mass 0.06 --z-match 1100 --frac 0.30 \
     --s-min 20 --s-max 140 --s-step 2
 fi
@@ -82,7 +90,7 @@ for M in $(seq "$FIRST" "$LAST"); do
   fetch_one "$ROOT/BGS_ffa_NGC_0_clustering.ran.fits" "$WORK/mock_NGC.ran.fits"
   fetch_one "$ROOT/BGS_ffa_SGC_0_clustering.ran.fits" "$WORK/mock_SGC.ran.fits"
 
-  python - "$WORK" <<'PY'
+  "$PYTHON_BIN" - "$WORK" <<'PY'
 from astropy.io import fits
 from pathlib import Path
 import sys
@@ -95,7 +103,7 @@ for p in [w/'mock_NGC.dat.fits',w/'mock_SGC.dat.fits',w/'mock_NGC.ran.fits',w/'m
         print('FITS_OK',p,len(h[1].data))
 PY
 
-  python code/desi_phase7_ezmock_placebo_realization.py \
+  "$PYTHON_BIN" code/desi_phase7_ezmock_placebo_realization.py \
     --data "$WORK/mock_NGC.dat.fits" "$WORK/mock_SGC.dat.fits" \
     --random "$WORK/mock_NGC.ran.fits" "$WORK/mock_SGC.ran.fits" \
     --templates "$TEMPLATE_CSV" --outdir "$OUT" --mock-id "$M" \
@@ -116,7 +124,7 @@ echo "Completed vectors currently available: $N"
 
 if [[ "$N" -ge 40 ]]; then
   echo 'At least 40 realizations available; running aggregate.'
-  python code/desi_phase7_ezmock_aggregate.py \
+  "$PYTHON_BIN" code/desi_phase7_ezmock_aggregate.py \
     --mock-root "$OUTROOT" \
     --real-vector source_data/wake_phase7_multitracer_real_vector.csv \
     --outdir "$OUTROOT/aggregate"
