@@ -1,0 +1,47 @@
+name: DESI BGS multi-tracer hidden-state Fisher
+
+on:
+  push:
+    branches: [fullshape-wake-upgrade]
+    paths:
+      - 'code/wake_desi_multitracer_fisher.py'
+      - '.github/workflows/wake_desi_multitracer.yml'
+  workflow_dispatch:
+
+jobs:
+  fisher:
+    strategy:
+      fail-fast: false
+      matrix:
+        ntracer: [2,3,4,5]
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install dependencies
+        run: python -m pip install --upgrade pip setuptools wheel numpy scipy cython
+      - name: Fetch pinned CLASS
+        run: |
+          git init class_public
+          git -C class_public remote add origin https://github.com/lesgourg/class_public.git
+          git -C class_public fetch --depth 1 origin e85808324f51fc694d12e3ed7439552a3c3f9540
+          git -C class_public checkout --detach FETCH_HEAD
+          test "$(git -C class_public rev-parse HEAD)" = "e85808324f51fc694d12e3ed7439552a3c3f9540"
+      - name: Install CLASS
+        run: python -m pip install ./class_public
+      - name: Run multi-tracer forecast
+        run: |
+          python code/wake_desi_multitracer_fisher.py \
+            --ntracer '${{ matrix.ntracer }}' \
+            --outdir 'wake_multitracer_${{ matrix.ntracer }}' \
+            --mass 0.06 --z-match 1100 --frac 0.30 \
+            --samples 50000 --validate 5 --seed 20260913
+      - name: Record CLASS commit
+        run: git -C class_public rev-parse HEAD > 'wake_multitracer_${{ matrix.ntracer }}/CLASS_COMMIT.txt'
+      - uses: actions/upload-artifact@v4
+        with:
+          name: wake-multitracer-${{ matrix.ntracer }}
+          path: wake_multitracer_${{ matrix.ntracer }}/
+          if-no-files-found: error
