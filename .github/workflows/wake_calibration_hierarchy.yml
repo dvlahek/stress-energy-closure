@@ -1,0 +1,40 @@
+name: Wake calibration hierarchy
+
+on:
+  push:
+    branches: [fullshape-wake-upgrade]
+    paths:
+      - 'code/wake_calibration_hierarchy.py'
+      - '.github/workflows/wake_calibration_hierarchy.yml'
+  workflow_dispatch:
+
+jobs:
+  hierarchy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install dependencies
+        run: python -m pip install --upgrade pip numpy scipy matplotlib
+      - name: Fetch pinned CLASS
+        run: |
+          git clone https://github.com/lesgourg/class_public.git class_public
+          cd class_public
+          git checkout e85808324f51fc694d12e3ed7439552a3c3f9540
+      - name: Install CLASS
+        run: python -m pip install ./class_public
+      - name: Run calibration hierarchy
+        run: |
+          python code/wake_calibration_hierarchy.py \
+            --outdir wake_calibration_hierarchy_output \
+            --mass 0.06 --volume 1.0 --frac 0.30 \
+            --samples 40000 --per-level 4 --validate 10
+      - name: Record CLASS commit
+        run: git -C class_public rev-parse HEAD > wake_calibration_hierarchy_output/CLASS_COMMIT.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: wake-calibration-hierarchy
+          path: wake_calibration_hierarchy_output/
