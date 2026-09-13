@@ -1,0 +1,37 @@
+name: DESI BGS uncalibrated split ranking
+
+on:
+  push:
+    branches: [fullshape-wake-upgrade]
+    paths:
+      - 'code/wake_split_raw_rank.py'
+      - '.github/workflows/wake_split_raw_rank.yml'
+  workflow_dispatch:
+
+jobs:
+  rank:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install dependencies
+        run: python -m pip install --upgrade pip setuptools wheel numpy scipy cython
+      - name: Fetch pinned CLASS
+        run: |
+          git init class_public
+          git -C class_public remote add origin https://github.com/lesgourg/class_public.git
+          git -C class_public fetch --depth 1 origin e85808324f51fc694d12e3ed7439552a3c3f9540
+          git -C class_public checkout --detach FETCH_HEAD
+      - name: Install CLASS
+        run: python -m pip install ./class_public
+      - name: Run raw split ranking
+        run: python code/wake_split_raw_rank.py
+      - name: Record CLASS commit
+        run: git -C class_public rev-parse HEAD > wake_split_raw_rank_output/CLASS_COMMIT.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: wake-split-raw-rank
+          path: wake_split_raw_rank_output/
+          if-no-files-found: error
