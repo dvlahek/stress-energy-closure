@@ -6,11 +6,12 @@ on:
     branches: [phase7-nature-astronomy]
     paths:
       - 'code/desi_dr1_phase7_lss.py'
+      - 'code/desi_dr1_phase7_zresolved.py'
       - 'code/wake_phase7_template.py'
       - '.github/workflows/desi_dr1_phase7_nature_astronomy.yml'
 
 jobs:
-  phase7-pilot:
+  phase7-zresolved:
     runs-on: ubuntu-24.04
     timeout-minutes: 180
     steps:
@@ -73,26 +74,27 @@ jobs:
                   print('FITS_OK', p, len(hdul[1].data))
           PY
           ls -lh BGS_BRIGHT-21.5_*.fits
-      - name: Run real-survey Phase-7 pilot
+      - name: Run redshift-resolved real-survey Phase-7 analysis
         run: |
-          python code/desi_dr1_phase7_lss.py \
+          python code/desi_dr1_phase7_zresolved.py \
             --data BGS_BRIGHT-21.5_NGC_clustering.dat.fits BGS_BRIGHT-21.5_SGC_clustering.dat.fits \
             --random BGS_BRIGHT-21.5_NGC_0_clustering.ran.fits BGS_BRIGHT-21.5_SGC_0_clustering.ran.fits \
             --templates phase7_template/phase7_templates.csv \
-            --outdir phase7_desi_dr1 \
+            --outdir phase7_desi_dr1_zresolved \
             --zmin 0.10 --zmax 0.40 --dz-split 0.02 \
+            --analysis-z-edges 0.10,0.20,0.30,0.40 \
             --max-per-class 12000 --max-random-per-class 24000 \
-            --theta-min-deg 0.05 --jackknife 6 --permutations 8 \
+            --theta-min-deg 0.05 --jackknife 30 --permutations 48 \
             --sep-edges 20,40,60,80,100,120,140 --seed 20260913
       - name: Record provenance
         run: |
-          git rev-parse HEAD > phase7_desi_dr1/REPOSITORY_COMMIT.txt
-          git -C class_public rev-parse HEAD > phase7_desi_dr1/CLASS_COMMIT.txt
-          cp phase7_template/template_summary.json phase7_desi_dr1/template_summary.json
+          git rev-parse HEAD > phase7_desi_dr1_zresolved/REPOSITORY_COMMIT.txt
+          git -C class_public rev-parse HEAD > phase7_desi_dr1_zresolved/CLASS_COMMIT.txt
+          cp phase7_template/template_summary.json phase7_desi_dr1_zresolved/template_summary.json
       - uses: actions/upload-artifact@v4
         with:
-          name: desi-dr1-phase7-nature-astronomy-pilot
+          name: desi-dr1-phase7-nature-astronomy-zresolved
           path: |
-            phase7_desi_dr1/
+            phase7_desi_dr1_zresolved/
             phase7_template/phase7_templates.csv
           if-no-files-found: error
