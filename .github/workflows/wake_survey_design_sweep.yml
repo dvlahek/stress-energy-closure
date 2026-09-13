@@ -1,0 +1,39 @@
+name: Wake survey design sweep
+
+on:
+  push:
+    branches: [fullshape-wake-upgrade]
+    paths:
+      - 'code/wake_survey_design_sweep.py'
+      - '.github/workflows/wake_survey_design_sweep.yml'
+  workflow_dispatch:
+
+jobs:
+  sweep:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install dependencies
+        run: python -m pip install --upgrade pip numpy scipy matplotlib
+      - name: Fetch pinned CLASS
+        run: |
+          git clone https://github.com/lesgourg/class_public.git class_public
+          cd class_public
+          git checkout e85808324f51fc694d12e3ed7439552a3c3f9540
+      - name: Install CLASS
+        run: python -m pip install ./class_public
+      - name: Run survey design sweep
+        run: |
+          python code/wake_survey_design_sweep.py \
+            --outdir wake_survey_design_output --mass 0.06 --frac 0.30 \
+            --volume 1.0 --samples 25000 --validate 6
+      - name: Record CLASS commit
+        run: git -C class_public rev-parse HEAD > wake_survey_design_output/CLASS_COMMIT.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: wake-survey-design-sweep
+          path: wake_survey_design_output/
