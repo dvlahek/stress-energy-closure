@@ -34,12 +34,22 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - name: Verify public EZmock BGS paths
+        shell: bash
         run: |
           set -euo pipefail
-          BASE='https://data.desi.lbl.gov/public/dr1/survey/catalogs/dr1/mocks/EZmock/BRIGHT/v1/mock1'
-          for f in BGS_NGC_clustering.dat.fits BGS_SGC_clustering.dat.fits BGS_NGC_0_clustering.ran.fits BGS_SGC_0_clustering.ran.fits; do
-            echo "PROBE $f"
-            curl -fIL --retry 2 --connect-timeout 20 --max-time 120 "$BASE/$f" >/dev/null
+          PRIMARY='https://data.desi.lbl.gov/public/dr1'
+          AWS='https://desidata.s3.amazonaws.com/dr1'
+          ROOT='survey/catalogs/dr1/mocks/EZmock/bright/v1/mock1'
+          probe_one () {
+            rel="$1"
+            echo "PROBE $rel"
+            if curl -fsSL --retry 1 --retry-delay 2 --connect-timeout 8 --max-time 30 --range 0-0 -o /dev/null "$PRIMARY/$rel"; then
+              return 0
+            fi
+            curl -fsSL --retry 3 --retry-all-errors --retry-delay 3 --connect-timeout 12 --max-time 90 --range 0-0 -o /dev/null "$AWS/$rel"
+          }
+          for f in BGS_ffa_NGC_clustering.dat.fits BGS_ffa_SGC_clustering.dat.fits BGS_ffa_NGC_0_clustering.ran.fits BGS_ffa_SGC_0_clustering.ran.fits; do
+            probe_one "$ROOT/$f"
           done
 
   mocks:
@@ -65,7 +75,7 @@ jobs:
         run: |
           set -euo pipefail
           M='${{ matrix.mock }}'; PRIMARY='https://data.desi.lbl.gov/public/dr1'; AWS='https://desidata.s3.amazonaws.com/dr1'
-          ROOT="survey/catalogs/dr1/mocks/EZmock/BRIGHT/v1/mock${M}"
+          ROOT="survey/catalogs/dr1/mocks/EZmock/bright/v1/mock${M}"
           fetch_one () {
             rel="$1"; out="$2"; rm -f "$out"
             if ! curl -fL --retry 1 --retry-delay 2 --connect-timeout 20 --max-time 900 -o "$out" "$PRIMARY/$rel"; then
@@ -74,10 +84,10 @@ jobs:
             fi
             test -s "$out"
           }
-          fetch_one "$ROOT/BGS_NGC_clustering.dat.fits" mock_NGC.dat.fits
-          fetch_one "$ROOT/BGS_SGC_clustering.dat.fits" mock_SGC.dat.fits
-          fetch_one "$ROOT/BGS_NGC_0_clustering.ran.fits" mock_NGC.ran.fits
-          fetch_one "$ROOT/BGS_SGC_0_clustering.ran.fits" mock_SGC.ran.fits
+          fetch_one "$ROOT/BGS_ffa_NGC_clustering.dat.fits" mock_NGC.dat.fits
+          fetch_one "$ROOT/BGS_ffa_SGC_clustering.dat.fits" mock_SGC.dat.fits
+          fetch_one "$ROOT/BGS_ffa_NGC_0_clustering.ran.fits" mock_NGC.ran.fits
+          fetch_one "$ROOT/BGS_ffa_SGC_0_clustering.ran.fits" mock_SGC.ran.fits
       - name: Measure EZmock vector and pair window
         run: |
           python code/desi_phase7_mock_realization.py \
