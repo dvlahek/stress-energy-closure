@@ -1,0 +1,48 @@
+name: Full-shape plus bispectrum mass sweep
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - fullshape-wake-upgrade
+    paths:
+      - '.github/workflows/fullshape_bispectrum_mass_sweep.yml'
+
+jobs:
+  sweep:
+    strategy:
+      fail-fast: false
+      matrix:
+        mass: ['0.06','0.10','0.20']
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install dependencies
+        run: python -m pip install --upgrade pip setuptools wheel numpy scipy cython
+      - name: Fetch pinned CLASS
+        run: |
+          git init class_public
+          git -C class_public remote add origin https://github.com/lesgourg/class_public.git
+          git -C class_public fetch --depth 1 origin e85808324f51fc694d12e3ed7439552a3c3f9540
+          git -C class_public checkout --detach FETCH_HEAD
+      - name: Install classy
+        run: python -m pip install ./class_public
+      - name: Run mass point
+        run: |
+          python code/fullshape_bispectrum_hidden_state.py \
+            --outdir fullshape_mass_${{ matrix.mass }} \
+            --mass ${{ matrix.mass }} \
+            --z-match 1100 \
+            --probe-frac 0.01 \
+            --final-frac 0.30 \
+            --samples 6000 \
+            --keep 10 \
+            --seed 20260913
+      - uses: actions/upload-artifact@v4
+        with:
+          name: fullshape-m${{ matrix.mass }}
+          path: fullshape_mass_${{ matrix.mass }}/
+          if-no-files-found: error
