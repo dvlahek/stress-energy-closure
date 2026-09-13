@@ -1,0 +1,36 @@
+name: Wake hidden-state forecast
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - fullshape-wake-upgrade
+    paths:
+      - 'code/wake_hidden_state_forecast.py'
+      - 'code/class_response_optimize.py'
+      - '.github/workflows/wake_hidden_state_forecast.yml'
+
+jobs:
+  wake-forecast:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install dependencies
+        run: python -m pip install --upgrade pip numpy
+      - name: Run wake optimization and detectability scaling
+        run: |
+          python code/wake_hidden_state_forecast.py \
+            --outdir wake_hidden_state_output \
+            --z-match 1100 \
+            --frac 0.30 \
+            --samples 50000 \
+            --seed 20260913
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: wake-hidden-state-forecast
+          path: wake_hidden_state_output/
+          if-no-files-found: error
