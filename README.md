@@ -30,7 +30,7 @@ The CLASS-based calculations use the public solver pinned to commit `e85808324f5
 
 ## Publication calculations
 
-The repository keeps only the production-facing observational chain on `main`.
+The repository keeps the production-facing observational chain and compact independent validation controls on `main`.
 
 - `code/class_observational_forecast.py` reproduces the controlled CLASS tensor realization.
 - `code/class_response_optimize.py` performs the smooth matched-moment response optimization and mass sweep.
@@ -42,8 +42,12 @@ The repository keeps only the production-facing observational chain on `main`.
 - `code/wake_desi_multitracer_fullgrid.py` scans the validated HOD threshold grid and tests tracer-resolution saturation.
 - `code/wake_desi_robustness.py` repeats the final mass, deformation-cap and scale-cut controls.
 - `code/wake_desi_survey_design.py` varies survey area and number density after fixing the final nine-tracer hidden state and physical calibration at the baseline survey.
+- `code/wake_fisher_independent_check.py` independently checks the two-tracer Fisher identity.
+- `code/wake_published_benchmark.py` compares the fixed-normalization threshold dependence with published wake benchmarks.
+- `code/wake_mass_proxy_scatter.py` propagates Gaussian halo-mass proxy scatter through the nine-tracer calculation.
+- `code/desi_dr1_odd_null_test.py` runs an end-to-end parity-odd null test on the public DESI DR1 Gfinder group VAC.
 
-Production GitHub Actions are:
+Production and validation GitHub Actions are:
 
 - `class_observational_forecast.yml`
 - `class_response_mass_matrix.yml`
@@ -52,6 +56,10 @@ Production GitHub Actions are:
 - `wake_desi_multitracer_fullgrid.yml`
 - `wake_desi_robustness.yml`
 - `wake_desi_survey_design.yml`
+- `wake_fisher_independent_check.yml`
+- `wake_published_benchmark.yml`
+- `wake_mass_proxy_scatter.yml`
+- `desi_dr1_odd_null_test.yml`
 
 ## Final observational controls
 
@@ -77,6 +85,18 @@ The reported robustness sweep gives:
 | relic mass [eV] | 0.05, 0.06, 0.08, 0.10 | 0.42511, 0.86054, 2.57537, 5.79156 |
 
 For the mass sweep, the physical wake calibration is recomputed for each mass. Those absolute values therefore inherit the normalization assumptions of the adopted literature-calibrated forecast model. They should not be read as a present observational detection claim.
+
+## Independent validation controls
+
+Four additional checks test implementation, external consistency and robustness without changing the production forecast. An independent analytic two-tracer Fisher identity agrees with the full covariance implementation over 10,000 randomized tests with median relative error `4.4e-16` and maximum relative error `4.3e-12`.
+
+The published halo-mass threshold control reproduces the reported optimum at `log10(M_split/[h^-1 M_sun]) = 13.75`. After one normalization at that point, the value at 12.75 is `2.7601` compared with the published `2.6`, a 6.16% difference. The Okoli Eq. 35 calibration identities agree to numerical precision.
+
+Gaussian scatter in the halo-mass proxy leaves the forecast stable. At `0.2 dex`, the fully projected value changes from `0.86054` to `0.83810`, retaining 94.85% of the zero-scatter Fisher information. At `0.3 dex`, the projected value is `0.81252`, retaining 89.15%.
+
+Finally, an end-to-end null test on the public DESI DR1 Gfinder group VAC uses 11,992 redshift-matched objects per mass class. All four separation-bin residuals remain below `0.88 sigma`, with global `chi^2 = 1.299` for four degrees of freedom and `p = 0.862`. This is a public-data parity-odd estimator smoke test, not a DESI LSS wake likelihood or a neutrino-wake constraint.
+
+The compact numerical values for these controls are stored in `source_data/wake_independent_validation_summary.json`.
 
 ## Repository structure
 

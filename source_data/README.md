@@ -15,5 +15,6 @@ The retained legacy filenames preserve compatibility with the original calculati
 - `CLASS_response_optimization_resolution_convergence.json` — resolution-convergence control for the best tested optimized case.
 - `wake_final_forecast_summary.json` — publication-facing nine-tracer wake and RSD summary, including the fixed-density area scaling.
 - `wake_robustness_summary.csv` — final wake mass, pointwise-cap and scale-cut robustness values.
+- `wake_independent_validation_summary.json` — independent Fisher identity check, published threshold-shape benchmark, halo-mass proxy-scatter sweep and public DESI DR1 parity-odd null test.
 
-The CLASS and survey calculations are controlled forecasts and sensitivity studies, not observational detections. Full figure-level source data are supplied with the manuscript submission package. The scripts in `code/` and the publication workflows in `.github/workflows/` regenerate the corresponding spectra and diagnostics.
+The CLASS and survey calculations are controlled forecasts and sensitivity studies, not observational detections. The DESI DR1 result is an end-to-end null/smoke test of the parity-odd estimator family and is not a DESI LSS wake likelihood or a neutrino-wake constraint. Full figure-level source data are supplied with the manuscript submission package. The scripts in `code/` and the publication workflows in `.github/workflows/` regenerate the corresponding spectra and diagnostics.

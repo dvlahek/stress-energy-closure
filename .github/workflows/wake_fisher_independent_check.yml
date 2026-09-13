@@ -1,0 +1,27 @@
+name: Validation - independent two-tracer Fisher identity
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'code/wake_fisher_independent_check.py'
+      - '.github/workflows/wake_fisher_independent_check.yml'
+
+jobs:
+  check:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install independent dependencies
+        run: python -m pip install --upgrade pip numpy sympy
+      - name: Run symbolic and numerical check
+        run: python code/wake_fisher_independent_check.py --outdir fisher_independent_check --samples 10000 --seed 20260913
+      - uses: actions/upload-artifact@v4
+        with:
+          name: fisher-independent-check
+          path: fisher_independent_check/
+          if-no-files-found: error

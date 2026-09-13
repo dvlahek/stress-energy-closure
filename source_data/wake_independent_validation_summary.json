@@ -1,0 +1,71 @@
+{
+  "scope": "Independent implementation, external-shape, proxy-scatter and public-data null controls for the publication wake forecast. These tests validate the pipeline and robustness; they are not observational detection claims.",
+  "independent_two_tracer_fisher_identity": {
+    "status": "PASS",
+    "random_numerical_tests": 10000,
+    "median_relative_error": 4.4e-16,
+    "maximum_relative_error": 4.3e-12,
+    "interpretation": "The independent analytic two-tracer Fisher expression agrees with the full covariance implementation to numerical precision across randomized positive-definite test cases."
+  },
+  "published_wake_benchmark": {
+    "status": "PASS",
+    "mass_eV": 0.06,
+    "z_match": 1100.0,
+    "published_reference": "Ge, Pasquini & Tan DESI-BGS halo-mass split shape control",
+    "published_best_log10_Msplit_hinvMsun": 13.75,
+    "reproduced_best_log10_Msplit_hinvMsun": 13.75,
+    "published_minus2logL_at_12p75": 2.6,
+    "shape_matched_minus2logL_at_12p75": 2.7600895025137913,
+    "relative_difference_at_12p75": 0.06157288558222737,
+    "okoli_eq35_max_relative_calibration_difference": 1.3490495998003928e-16,
+    "interpretation": "After one normalization at log10 Msplit=13.75, the remaining threshold dependence reproduces the published optimum and the 12.75 anchor to 6.16%. The Okoli Eq. 35 rows are calibration identities."
+  },
+  "halo_mass_proxy_scatter": {
+    "status": "PASS",
+    "baseline_zero_scatter_SN_reference": 0.8605446904469461,
+    "rows": [
+      {
+        "sigma_log10M_dex": 0.0,
+        "projected_SN": 0.8605447788128455,
+        "SN_ratio_to_zero_scatter": 1.0000001026860084,
+        "information_fraction_to_zero_scatter": 1.0000002053720272
+      },
+      {
+        "sigma_log10M_dex": 0.1,
+        "projected_SN": 0.8560726694223177,
+        "SN_ratio_to_zero_scatter": 0.9948032669607133,
+        "information_fraction_to_zero_scatter": 0.9896335399557082
+      },
+      {
+        "sigma_log10M_dex": 0.2,
+        "projected_SN": 0.8380968985160533,
+        "SN_ratio_to_zero_scatter": 0.973914437936705,
+        "information_fraction_to_zero_scatter": 0.948509332421568
+      },
+      {
+        "sigma_log10M_dex": 0.3,
+        "projected_SN": 0.8125175870818386,
+        "SN_ratio_to_zero_scatter": 0.9441898789240528,
+        "information_fraction_to_zero_scatter": 0.8914945274626175
+      }
+    ],
+    "maximum_relative_moment_mismatch": 5.966144985353711e-16,
+    "interpretation": "A 0.2 dex mass-observable scatter reduces the projected S/N by about 2.6% and retains about 94.9% of the zero-scatter Fisher information."
+  },
+  "desi_dr1_parity_odd_null": {
+    "status": "PASS",
+    "catalog": "DESI DR1 Gfinder group VAC: DESIDR9.y1.v1_group.fits",
+    "scope": "End-to-end public-data parity-odd null/smoke test only; not a DESI LSS wake likelihood.",
+    "mass_split_log10_hM_Msun": 13.75,
+    "z_range": [0.05, 0.4],
+    "matched_objects_per_class": 11992,
+    "separation_edges_Mpc_over_h": [20.0, 40.0, 60.0, 80.0, 100.0],
+    "data_dipole": [0.00974329608149717, 0.0033556788705791825, 0.004419567150888813, 0.0002129439138448732],
+    "per_bin_zscore": [0.6282589268408335, 0.6378771215060147, 0.8765492430193662, -0.08871239447626596],
+    "global_chi2": 1.2987628506266387,
+    "global_dof": 4,
+    "global_chi2_pvalue": 0.861585397467943,
+    "seed": 20260913,
+    "interpretation": "The estimator is statistically consistent with the permutation null on public DESI-linked data and does not generate a spurious large parity-odd signal in this smoke test."
+  }
+}
