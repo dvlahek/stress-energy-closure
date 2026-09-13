@@ -21,6 +21,24 @@ jobs:
         run: python -m pip install --upgrade pip 'numpy<2' 'scipy==1.13.1' matplotlib astropy hmf halomod
       - name: Fetch public BGS HOD
         run: git clone https://github.com/amjsmith/hodpy.git hodpy_public
+      - name: Compatibility patch unused nbodykit defaults
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('hodpy_public/hodpy/hod_bgs.py')
+          s=p.read_text()
+          s=s.replace('from hodpy.mass_function import MassFunctionMXXL\n','')
+          s=s.replace('from hodpy.cosmology import CosmologyMXXL\n','')
+          old='''    def __init__(self, mass_function=MassFunctionMXXL(), cosmology=CosmologyMXXL(), mag_faint=20.0,\n                 kcorr=GAMA_KCorrection(CosmologyMXXL()), hod_param_file=lookup.bgs_hod_parameters,\n'''
+          new='''    def __init__(self, mass_function=None, cosmology=None, mag_faint=20.0,\n                 kcorr=None, hod_param_file=lookup.bgs_hod_parameters,\n'''
+          if old not in s:
+              raise SystemExit('HOD_BGS signature pattern not found')
+          s=s.replace(old,new)
+          # HOD_BGS_Simple is used only as a holder when the precomputed target LF exists.
+          # Its legacy MXXL mass-function object is therefore unnecessary here.
+          s=s.replace('        self.mf = MassFunctionMXXL()\n','        self.mf = None\n')
+          p.write_text(s)
+          PY
       - name: Reconstruct BGS split
         env:
           PYTHONPATH: ${{ github.workspace }}/hodpy_public
