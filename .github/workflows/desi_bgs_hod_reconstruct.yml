@@ -21,9 +21,9 @@ jobs:
         run: python -m pip install --upgrade pip numpy scipy matplotlib astropy hmf halomod
       - name: Fetch public BGS HOD
         run: git clone https://github.com/amjsmith/hodpy.git hodpy_public
-      - name: Install hodpy
-        run: python -m pip install ./hodpy_public
       - name: Reconstruct BGS split
+        env:
+          PYTHONPATH: ${{ github.workspace }}/hodpy_public
         run: python code/desi_bgs_hod_reconstruct.py
       - name: Record software provenance
         run: |
