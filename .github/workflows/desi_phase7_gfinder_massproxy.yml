@@ -32,17 +32,20 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          PIC='https://webdav-hdfs.pic.es/data/public/DESI/DR1'
           PRIMARY='https://data.desi.lbl.gov/public/dr1'
-          AWS='https://desidata.s3.amazonaws.com/dr1'
           fetch_one () {
             rel="$1"; out="$2"; rm -f "$out"
-            if ! curl -fL --retry 1 --retry-delay 3 --connect-timeout 20 --max-time 1200 -o "$out" "$PRIMARY/$rel"; then
+            echo "DOWNLOAD $rel"
+            if ! curl -k -fL --retry 4 --retry-all-errors --retry-delay 5 \
+                --connect-timeout 20 --max-time 3600 -o "$out" "$PIC/$rel"; then
+              echo "PIC mirror unavailable; trying DESI primary"
               rm -f "$out"
-              curl -fL --retry 4 --retry-all-errors --retry-delay 5 --connect-timeout 20 --max-time 3600 -o "$out" "$AWS/$rel"
+              curl -fL --retry 4 --retry-all-errors --retry-delay 5 \
+                --connect-timeout 30 --max-time 3600 -o "$out" "$PRIMARY/$rel"
             fi
             test -s "$out"
             ls -lh "$out"
-            df -h .
           }
           ROOT='survey/catalogs/dr1/LSS/iron/LSScats/v1.5'
           fetch_one "$ROOT/BGS_BRIGHT-21.5_NGC_clustering.dat.fits" BGS_NGC.dat.fits
@@ -53,6 +56,19 @@ jobs:
           fetch_one "$GROOT/DESIDR9.y1.v1_galaxy.fits" gfinder_galaxy.fits
           fetch_one "$GROOT/iDESIDR9.y1.v1_1.fits" gfinder_relation.fits
           fetch_one "$GROOT/DESIDR9.y1.v1_group.fits" gfinder_group.fits
+      - name: Validate downloaded FITS
+        run: |
+          python - <<'PY'
+          from astropy.io import fits
+          from pathlib import Path
+          files=[Path('BGS_NGC.dat.fits'),Path('BGS_SGC.dat.fits'),Path('BGS_NGC.ran.fits'),Path('BGS_SGC.ran.fits'),Path('gfinder_galaxy.fits'),Path('gfinder_relation.fits'),Path('gfinder_group.fits')]
+          for p in files:
+              with fits.open(p,memmap=True) as h:
+                  h.verify('exception')
+                  if len(h)<2 or h[1].data is None or len(h[1].data)==0:
+                      raise RuntimeError(f'invalid FITS: {p}')
+                  print('FITS_OK',p,len(h[1].data),list(h[1].columns.names)[:12])
+          PY
       - name: Run fixed Gfinder mass-proxy analysis
         run: |
           python code/desi_phase7_gfinder_massproxy.py \
