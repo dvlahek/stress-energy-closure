@@ -1,0 +1,40 @@
+{
+  "status": "Phase-7 redshift-resolved real-survey baseline",
+  "workflow_run": 34776438929,
+  "repository_commit": "172ca9dae53de8fd62b2a8233f84f0924d2ed47a",
+  "class_commit": "e85808324f51fc694d12e3ed7439552a3c3f9540",
+  "scope": "DESI DR1 BGS redshift-resolved odd-sector matched-filter deployment; not yet an absolute DESI wake constraint.",
+  "analysis": {
+    "z_edges": [0.1, 0.2, 0.3, 0.4],
+    "vector_dimension": 18,
+    "selected_data": 23998,
+    "selected_random": 47996,
+    "jackknife_regions": 30,
+    "raw_covariance_rank": 18,
+    "regularized_condition_number": 843.9502317271731,
+    "permutation_count": 48,
+    "permutation_empirical_pvalue": 0.2653061224489796,
+    "template_metric_wake_doppler_cosine": -0.8967928525353398
+  },
+  "two_template_fit_null_corrected": {
+    "doppler_amplitude": -0.0167398247454413,
+    "doppler_sigma": 0.02871862371350751,
+    "wake_amplitude": -0.0646812560716922,
+    "wake_sigma": 0.03431101388561719,
+    "wake_z": -1.8851455770826373,
+    "chi2": 19.773034613188567,
+    "dof": 16,
+    "pvalue": 0.23061749733487175
+  },
+  "conservative_per_z_odd_fit": {
+    "wake_amplitude": 0.03184351966985677,
+    "wake_sigma": 0.22249047439896547,
+    "wake_z": 0.1431230696769319,
+    "chi2": 3.199947696620186,
+    "dof": 8,
+    "pvalue": 0.921190117164758,
+    "empirical_two_sided_wake_pvalue": 0.20408163265306123
+  },
+  "interpretation": "The real DESI DR1 odd sector is statistically ordinary under the permutation control. The apparent ~1.9 sigma coefficient in the minimal Doppler+wake model is not robust to conservative per-redshift odd nuisance freedom; the conservative wake coefficient is 0.14 sigma. The redshift-resolved analysis removes the pathological covariance and near-perfect wake-Doppler degeneracy of the first pilot.",
+  "remaining_nature_astronomy_upgrade": "Forward-convolve the custom odd templates through the estimator/window and validate covariance/systematics with the public BGS EZmock and AbacusSummit mock catalogs using the same luminosity split."
+}
