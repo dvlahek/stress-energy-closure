@@ -10,6 +10,10 @@ set -euo pipefail
 # The script processes one realization at a time and removes the large FITS
 # inputs after each successful realization unless KEEP_FITS=1. Small output
 # vectors/windows remain under phase7_ezmock_local/.
+#
+# DESI's public HTTP endpoint can close long transfers before completion.
+# Downloads are therefore explicitly resumable: interrupted bytes are kept in
+# *.part files and every reconnect continues from the existing byte offset.
 
 FIRST="${1:-1}"
 LAST="${2:-$FIRST}"
@@ -19,6 +23,7 @@ OUTROOT="${OUTROOT:-phase7_ezmock_local}"
 TEMPLATE_DIR="${TEMPLATE_DIR:-phase7_template}"
 TEMPLATE_CSV="$TEMPLATE_DIR/phase7_templates.csv"
 SEED="${SEED:-20260913}"
+DOWNLOAD_ATTEMPTS="${DOWNLOAD_ATTEMPTS:-40}"
 
 mkdir -p "$OUTROOT" "$TEMPLATE_DIR"
 
@@ -70,12 +75,65 @@ EOF
 fi
 
 fetch_one () {
-  local url="$1" out="$2"
-  rm -f "$out"
-  echo "DOWNLOAD $url"
-  curl --http1.1 -fL --retry 8 --retry-all-errors --retry-delay 5 \
-    --connect-timeout 60 --max-time 1800 -o "$out" "$url"
-  test -s "$out"
+  local url="$1" out="$2" part="${2}.part"
+  local attempt rc have
+
+  # Preserve a partial file left by the older non-resumable launcher.
+  if [[ -s "$out" && ! -e "$part" ]]; then
+    echo "Preserving existing partial download: $out -> $part"
+    mv "$out" "$part"
+  elif [[ -e "$out" && ! -s "$out" ]]; then
+    rm -f "$out"
+  fi
+
+  for attempt in $(seq 1 "$DOWNLOAD_ATTEMPTS"); do
+    have=0
+    if [[ -f "$part" ]]; then
+      have=$(stat -c '%s' "$part" 2>/dev/null || echo 0)
+    fi
+    echo "DOWNLOAD attempt $attempt/$DOWNLOAD_ATTEMPTS: $url"
+    echo "  existing bytes: $have"
+
+    set +e
+    if [[ "$have" -gt 0 ]]; then
+      curl --http1.1 -fL \
+        --connect-timeout 60 --max-time 900 \
+        --continue-at - -o "$part" "$url"
+      rc=$?
+    else
+      curl --http1.1 -fL \
+        --connect-timeout 60 --max-time 900 \
+        -o "$part" "$url"
+      rc=$?
+    fi
+    set -e
+
+    if [[ "$rc" -eq 0 && -s "$part" ]]; then
+      mv "$part" "$out"
+      echo "DOWNLOAD COMPLETE: $out ($(stat -c '%s' "$out") bytes)"
+      return 0
+    fi
+
+    have=0
+    if [[ -f "$part" ]]; then
+      have=$(stat -c '%s' "$part" 2>/dev/null || echo 0)
+    fi
+    echo "  interrupted (curl rc=$rc), retained $have bytes; reconnecting..."
+
+    # curl rc=33 means the remote endpoint refused byte-range continuation.
+    # Do not silently restart from zero because that recreates the original
+    # failure mode; stop and report it explicitly.
+    if [[ "$rc" -eq 33 ]]; then
+      echo 'ERROR: server refused HTTP range resume (curl rc=33).' >&2
+      echo "Partial file retained at: $part" >&2
+      return 33
+    fi
+    sleep 5
+  done
+
+  echo "ERROR: download did not complete after $DOWNLOAD_ATTEMPTS resumable attempts: $url" >&2
+  echo "Partial file retained at: $part" >&2
+  return 18
 }
 
 for M in $(seq "$FIRST" "$LAST"); do
