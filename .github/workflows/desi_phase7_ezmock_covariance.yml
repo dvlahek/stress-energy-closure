@@ -30,30 +30,8 @@ jobs:
           name: phase7-ezmock-template
           path: phase7_template/
 
-  probe:
-    runs-on: ubuntu-24.04
-    steps:
-      - name: Verify public EZmock BGS paths
-        shell: bash
-        run: |
-          set -euo pipefail
-          PRIMARY='https://data.desi.lbl.gov/public/dr1'
-          AWS='https://desidata.s3.amazonaws.com/dr1'
-          ROOT='survey/catalogs/dr1/mocks/EZmock/bright/v1/mock1'
-          probe_one () {
-            rel="$1"
-            echo "PROBE $rel"
-            if curl -fsSL --retry 1 --retry-delay 2 --connect-timeout 8 --max-time 30 --range 0-0 -o /dev/null "$PRIMARY/$rel"; then
-              return 0
-            fi
-            curl -fsSL --retry 3 --retry-all-errors --retry-delay 3 --connect-timeout 12 --max-time 90 --range 0-0 -o /dev/null "$AWS/$rel"
-          }
-          for f in BGS_ffa_NGC_clustering.dat.fits BGS_ffa_SGC_clustering.dat.fits BGS_ffa_NGC_0_clustering.ran.fits BGS_ffa_SGC_0_clustering.ran.fits; do
-            probe_one "$ROOT/$f"
-          done
-
   mocks:
-    needs: [template, probe]
+    needs: template
     strategy:
       fail-fast: false
       max-parallel: 8
@@ -74,13 +52,19 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          M='${{ matrix.mock }}'; PRIMARY='https://data.desi.lbl.gov/public/dr1'; AWS='https://desidata.s3.amazonaws.com/dr1'
+          M='${{ matrix.mock }}'
+          PIC='https://webdav-hdfs.pic.es/data/public/DESI/DR1'
+          PRIMARY='https://data.desi.lbl.gov/public/dr1'
           ROOT="survey/catalogs/dr1/mocks/EZmock/bright/v1/mock${M}"
           fetch_one () {
             rel="$1"; out="$2"; rm -f "$out"
-            if ! curl -fL --retry 1 --retry-delay 2 --connect-timeout 20 --max-time 900 -o "$out" "$PRIMARY/$rel"; then
+            echo "DOWNLOAD $rel"
+            if ! curl -k -fL --retry 4 --retry-all-errors --retry-delay 5 \
+                --connect-timeout 20 --max-time 1800 -o "$out" "$PIC/$rel"; then
+              echo "PIC mirror unavailable; trying DESI primary"
               rm -f "$out"
-              curl -fL --retry 4 --retry-all-errors --retry-delay 5 --connect-timeout 20 --max-time 1800 -o "$out" "$AWS/$rel"
+              curl -fL --retry 4 --retry-all-errors --retry-delay 5 \
+                --connect-timeout 30 --max-time 1800 -o "$out" "$PRIMARY/$rel"
             fi
             test -s "$out"
           }
@@ -88,6 +72,19 @@ jobs:
           fetch_one "$ROOT/BGS_ffa_SGC_clustering.dat.fits" mock_SGC.dat.fits
           fetch_one "$ROOT/BGS_ffa_NGC_0_clustering.ran.fits" mock_NGC.ran.fits
           fetch_one "$ROOT/BGS_ffa_SGC_0_clustering.ran.fits" mock_SGC.ran.fits
+      - name: Validate downloaded FITS
+        run: |
+          python - <<'PY'
+          from astropy.io import fits
+          from pathlib import Path
+          files=[Path('mock_NGC.dat.fits'),Path('mock_SGC.dat.fits'),Path('mock_NGC.ran.fits'),Path('mock_SGC.ran.fits')]
+          for p in files:
+              with fits.open(p,memmap=True) as h:
+                  h.verify('exception')
+                  if len(h)<2 or h[1].data is None or len(h[1].data)==0:
+                      raise RuntimeError(f'invalid FITS: {p}')
+                  print('FITS_OK',p,len(h[1].data),list(h[1].columns.names)[:12])
+          PY
       - name: Measure EZmock vector and pair window
         run: |
           python code/desi_phase7_mock_realization.py \
