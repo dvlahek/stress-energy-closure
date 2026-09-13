@@ -2,11 +2,11 @@
 """Numerical support fix for the frozen LSS observability campaign.
 
 The original campaign correctly avoids extrapolating P(k): interp_log returns NaN
-outside each CLASS table's support.  The Fisher integrator then passed those NaNs
-into the nuisance matrix when tiny endpoint differences occurred between cases.
-This wrapper changes no physics, parameters, grids, caps, derivative steps, volume
-convention, or decision gates.  It only restricts each redshift integral to the
-common finite support of the already-computed fiducial, probe, and nuisance tables.
+outside each CLASS table's support. Tiny endpoint differences between valid CLASS
+outputs can therefore inject NaNs into Fisher blocks. This wrapper changes no
+physics, parameters, grids, caps, derivative steps, volume convention, or decision
+gates. It restricts both optimization and final validated-summary integrals to the
+common finite support of all spectra entering each Fisher block.
 """
 from __future__ import annotations
 
@@ -49,9 +49,6 @@ def response_arrays_finite_support(results, manifest, kmax):
             step = float(base.DERIVATIVE_STEPS[par])
             D[:, a] = (base.interp_log(k, kp, pp) - base.interp_log(k, km, pm)) / (2.0 * step)
 
-        # No extrapolation: integrate only where every response entering the
-        # same Fisher block is finite. This removes endpoint NaNs caused by
-        # slightly different CLASS k supports across otherwise valid runs.
         finite = np.isfinite(k) & np.isfinite(p0) & (p0 > 0)
         finite &= np.all(np.isfinite(B), axis=1)
         finite &= np.all(np.isfinite(D), axis=1)
@@ -117,7 +114,86 @@ def response_arrays_finite_support(results, manifest, kmax):
     }
 
 
+def actual_signal_and_projection_finite_support(results, case_plus, case_minus, manifest, kmax):
+    pars = list(base.DERIVATIVE_STEPS)
+    nz = len(base.REDSHIFTS)
+    Vbin = 1.0e9 / nz
+    F = np.zeros((len(pars), len(pars)))
+    b = np.zeros(len(pars))
+    sn2 = 0.0
+    max_rel = 0.0
+    per_z = {}
+
+    for z in base.REDSHIFTS:
+        k0, p0 = base.load_pk(results, "fiducial", z)
+        sel0 = (k0 > 0) & (k0 <= kmax)
+        k = k0[sel0]
+        p0 = p0[sel0]
+
+        kp, pp = base.load_pk(results, case_plus, z)
+        km, pm = base.load_pk(results, case_minus, z)
+        pp_i = base.interp_log(k, kp, pp)
+        pm_i = base.interp_log(k, km, pm)
+        h = pp_i - pm_i
+        pbar = 0.5 * (pp_i + pm_i)
+
+        D = np.zeros((len(k), len(pars)))
+        for a, par in enumerate(pars):
+            k1, p1 = base.load_pk(results, f"d_{par}_plus", z)
+            k2, p2 = base.load_pk(results, f"d_{par}_minus", z)
+            step = float(base.DERIVATIVE_STEPS[par])
+            D[:, a] = (base.interp_log(k, k1, p1) - base.interp_log(k, k2, p2)) / (2.0 * step)
+
+        finite = np.isfinite(k) & np.isfinite(p0) & (p0 > 0)
+        finite &= np.isfinite(pp_i) & np.isfinite(pm_i) & np.isfinite(h) & np.isfinite(pbar) & (pbar > 0)
+        finite &= np.all(np.isfinite(D), axis=1)
+        k, p0, h, pbar, D = k[finite], p0[finite], h[finite], pbar[finite], D[finite]
+        if len(k) < 8:
+            raise RuntimeError(f"Too few common finite summary k points at z={z}, kmax={kmax}")
+
+        max_rel = max(max_rel, float(np.max(np.abs(h) / pbar)))
+        pref2 = Vbin / (4.0 * math.pi**2)
+        sn2z = pref2 * float(np.trapezoid(k**2 * (h / p0)**2, k))
+        sn2 += sn2z
+        per_z[str(z)] = {
+            "SN_per_sqrt_total_1_Gpch3_equal_bin_weight": float(math.sqrt(max(sn2z, 0.0))),
+            "max_abs_relative_difference_percent": float(100.0 * np.max(np.abs(h) / pbar)),
+            "common_finite_k_points": int(len(k)),
+            "common_finite_k_min_h_Mpc": float(k.min()),
+            "common_finite_k_max_h_Mpc": float(k.max()),
+        }
+
+        for a in range(len(pars)):
+            da = D[:, a]
+            b[a] += pref2 * float(np.trapezoid(k**2 * h * da / (p0**2), k))
+            for c in range(a, len(pars)):
+                dc = D[:, c]
+                v = pref2 * float(np.trapezoid(k**2 * da * dc / (p0**2), k))
+                F[a, c] += v
+                if c != a:
+                    F[c, a] += v
+
+    if not (np.all(np.isfinite(F)) and np.all(np.isfinite(b)) and np.isfinite(sn2)):
+        raise RuntimeError("Non-finite final-summary Fisher block remains after common-support restriction")
+    Fpinv = np.linalg.pinv(F, rcond=1e-10)
+    absorbed = float(b @ Fpinv @ b)
+    marg2 = max(float(sn2 - absorbed), 0.0)
+    shifts = Fpinv @ b
+    return {
+        "fixed_SN2_per_total_1_Gpch3": float(sn2),
+        "marginalized_SN2_per_total_1_Gpch3": float(marg2),
+        "fraction_delta_chi2_retained": float(marg2 / sn2 if sn2 > 0 else 0.0),
+        "fraction_signal_norm_absorbed_by_LCDM": float(absorbed / sn2 if sn2 > 0 else 0.0),
+        "max_abs_relative_difference_percent": float(100.0 * max_rel),
+        "best_fit_parameter_shifts": {p: float(shifts[i]) for i, p in enumerate(pars)},
+        "fisher_rank": int(np.linalg.matrix_rank(F, tol=max(float(np.max(np.abs(F))), 1.0) * 1e-12)),
+        "per_redshift": per_z,
+        "numerical_support_policy": "intersection of finite CLASS P(k) support across signal, fiducial, and nuisance derivatives; no extrapolation",
+    }
+
+
 base.response_arrays = response_arrays_finite_support
+base.actual_signal_and_projection = actual_signal_and_projection_finite_support
 
 if __name__ == "__main__":
     base.main()
