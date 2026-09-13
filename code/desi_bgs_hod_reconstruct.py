@@ -6,16 +6,18 @@ The calculation follows their Eqs. (4.1)-(4.2):
   b_g(z) = n_g^-1 int dlnM [dn/dlnM] <N(M)> b_h(M,z)
 
 Inputs follow the paper as closely as possible with public software:
-  * BGS HOD from amjsmith/hodpy (MXXL lightcone HOD)
+  * BGS HOD, target LF, slide factors and k-correction from amjsmith/hodpy
   * SMT halo mass function from hmf
   * ST99 peak-background-split halo bias from halomod
-  * Planck-2018-like flat LCDM parameters
+  * Planck-2018-like flat LCDM parameters for the HMF and survey volume
   * M_min=1e11, M_max=1e16 h^-1 Msun
   * benchmark split M_split=1e13.75 h^-1 Msun
 
-The observable BGS absolute-magnitude threshold is obtained from the public
-HOD_BGS k-correction and its default apparent-magnitude limit, preserving the
-lightcone catalogue model used by the cited paper.
+The public HOD was written against a legacy nbodykit stack. The workflow makes
+only a compatibility patch that removes unused legacy mass-function/cosmology
+defaults. The HOD lookup tables and occupation equations are unchanged. A tiny
+cosmology wrapper supplies the Mpc/h comoving distance expected by the public
+GAMA k-correction.
 """
 from __future__ import annotations
 
@@ -28,11 +30,13 @@ from hmf import MassFunction
 from halomod.bias import ST99
 
 from hodpy.hod_bgs import HOD_BGS
+from hodpy.k_correction import GAMA_KCorrection
 
 H0 = 67.36
-OMEGA_B = 0.02237/(H0/100.)**2
-OMEGA_CDM = 0.1200/(H0/100.)**2
-OMEGA_M = OMEGA_B + OMEGA_CDM + 0.00064/(H0/100.)**2
+H = H0/100.0
+OMEGA_B = 0.02237/H**2
+OMEGA_CDM = 0.1200/H**2
+OMEGA_M = OMEGA_B + OMEGA_CDM + 0.00064/H**2
 SIGMA8 = 0.8111
 NS = 0.9649
 COSMO = FlatLambdaCDM(H0=H0, Om0=OMEGA_M, Ob0=OMEGA_B, Tcmb0=2.7255)
@@ -44,6 +48,14 @@ AREA_DEG2 = 14000.0
 ZGRID = np.arange(0.05, 0.401, 0.025)
 
 
+class HODCosmologyWrapper:
+    """Only the Mpc/h comoving-distance method required by hodpy k-correction."""
+    h0 = H
+    OmegaM = OMEGA_M
+    def comoving_distance(self, redshift):
+        return np.asarray(COSMO.comoving_distance(redshift).value, float) * H
+
+
 def integrate_logm(logm, y, lo, hi):
     m = (logm >= lo) & (logm <= hi)
     return float(simpson(y[m], x=np.log(10.0)*logm[m]))
@@ -53,7 +65,9 @@ def main():
     out = Path('desi_bgs_hod_output')
     out.mkdir(parents=True, exist_ok=True)
 
-    hod = HOD_BGS()
+    hcosmo = HODCosmologyWrapper()
+    kcorr = GAMA_KCorrection(hcosmo)
+    hod = HOD_BGS(mass_function=None, cosmology=hcosmo, kcorr=kcorr)
     rows = []
 
     for z in ZGRID:
@@ -86,11 +100,9 @@ def main():
         ntot = nlo+nhi
         btot = (nlo*blo+nhi*bhi)/max(ntot,1e-300)
 
-        # Number per deg^2 per dz. Astropy gives Mpc^3/sr. HMF densities are
-        # h^3/Mpc^3. Convert volume to (Mpc/h)^3 before multiplying.
+        # Astropy volume is Mpc^3/sr. Convert to (Mpc/h)^3 per deg^2.
         dV_dz_sr_mpc3 = float(COSMO.differential_comoving_volume(z).value)
-        h = H0/100.0
-        dV_dz_deg2_hm3 = dV_dz_sr_mpc3 * h**3 * (np.pi/180.0)**2
+        dV_dz_deg2_hm3 = dV_dz_sr_mpc3 * H**3 * (np.pi/180.0)**2
 
         row = {
             'z': float(z),
@@ -112,7 +124,7 @@ def main():
     z = np.array([r['z'] for r in rows])
     nlo = np.array([r['n_low_h3_Mpc3'] for r in rows])
     nhi = np.array([r['n_high_h3_Mpc3'] for r in rows])
-    dV = np.array([float(COSMO.differential_comoving_volume(x).value)*(H0/100.)**3*(np.pi/180.)**2 for x in z])
+    dV = np.array([float(COSMO.differential_comoving_volume(x).value)*H**3*(np.pi/180.)**2 for x in z])
     total_low = AREA_DEG2*float(simpson(nlo*dV, x=z))
     total_high = AREA_DEG2*float(simpson(nhi*dV, x=z))
 
