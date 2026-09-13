@@ -1,0 +1,4 @@
+trigger=2026-09-13T07:00:00+02:00
+source_lss_run=34722070280
+recovery_lss_run=34733700067
+purpose=postprocess-only nuisance-subset and pseudoinverse sensitivity audit
