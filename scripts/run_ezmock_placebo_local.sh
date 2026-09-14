@@ -6,12 +6,11 @@ set -euo pipefail
 #   bash scripts/run_ezmock_placebo_local.sh 3
 #   bash scripts/run_ezmock_placebo_local.sh 3 16
 #
-# Large realization-specific random FITS are not required once a validated
-# NGC/SGC random pair has been saved under shared_random_mock2/.  The launcher
-# builds a compact angular-only cache once; each mock then redraws redshifts
-# from its own data in the same narrow-z/cap cells.  This preserves the survey
-# footprint without freezing mock2 radial selection and removes ~GB/mock of
-# repeated random-catalog downloads.
+# For the homogeneous local ensemble we reuse one validated full NGC/SGC
+# random pair saved under shared_random_mock2/. The random catalogs represent
+# the fixed survey selection/window; make_random_proxy still draws the requested
+# 2x density independently in each current-mock narrow-z/cap cell. No synthetic
+# RA/DEC/z remapping and no repeated ~GB random downloads are used.
 
 FIRST="${1:-3}"
 LAST="${2:-$FIRST}"
@@ -25,9 +24,8 @@ DOWNLOAD_ATTEMPTS="${DOWNLOAD_ATTEMPTS:-40}"
 ARIA_CONNECTIONS="${ARIA_CONNECTIONS:-8}"
 RANDOM_FACTOR="${RANDOM_FACTOR:-2.0}"
 SHARED_RANDOM_DIR="${SHARED_RANDOM_DIR:-$OUTROOT/shared_random_mock2}"
-SHARED_RANDOM_CACHE="${SHARED_RANDOM_CACHE:-$SHARED_RANDOM_DIR/shared_random_angular.npz}"
-SHARED_RANDOM_NGC_COUNT="${SHARED_RANDOM_NGC_COUNT:-1000000}"
-SHARED_RANDOM_SGC_COUNT="${SHARED_RANDOM_SGC_COUNT:-500000}"
+SHARED_NGC="$SHARED_RANDOM_DIR/mock_NGC.ran.fits"
+SHARED_SGC="$SHARED_RANDOM_DIR/mock_SGC.ran.fits"
 
 mkdir -p "$OUTROOT" "$TEMPLATE_DIR"
 
@@ -61,45 +59,26 @@ PY
 
 if [[ ! -f "$TEMPLATE_CSV" ]]; then
   echo "Template not found at $TEMPLATE_CSV"
-  echo 'ERROR: local EZmock runs now expect the fixed validated Phase-7 template.' >&2
-  echo 'Place phase7_templates.csv under phase7_template/; do not rebuild CLASS for this transport run.' >&2
+  echo 'ERROR: local EZmock runs expect the fixed validated Phase-7 template.' >&2
   exit 3
 fi
 
-SHARED_SOURCES_PRESENT=0
-if [[ -s "$SHARED_RANDOM_DIR/mock_NGC.ran.fits" && -s "$SHARED_RANDOM_DIR/mock_SGC.ran.fits" ]]; then
-  SHARED_SOURCES_PRESENT=1
-fi
-
-if [[ ! -s "$SHARED_RANDOM_CACHE" && "$SHARED_SOURCES_PRESENT" -eq 1 ]]; then
-  echo "Building compact shared angular random cache: $SHARED_RANDOM_CACHE"
-  "$PYTHON_BIN" code/desi_phase7_build_shared_random_cache.py \
-    --ngc "$SHARED_RANDOM_DIR/mock_NGC.ran.fits" \
-    --sgc "$SHARED_RANDOM_DIR/mock_SGC.ran.fits" \
-    --out "$SHARED_RANDOM_CACHE" \
-    --ngc-count "$SHARED_RANDOM_NGC_COUNT" \
-    --sgc-count "$SHARED_RANDOM_SGC_COUNT" \
-    --seed 20260914
-fi
-
-if [[ -s "$SHARED_RANDOM_CACHE" ]]; then
-  echo "Using shared angular random cache: $SHARED_RANDOM_CACHE"
-  echo 'Random redshifts will be redrawn separately for each mock within narrow-z/NGC-SGC cells.'
-elif [[ "$SHARED_SOURCES_PRESENT" -eq 1 ]]; then
-  echo 'ERROR: validated shared random FITS are present but the compact cache was not created.' >&2
-  echo 'Refusing to fall back to realization-specific ~GB random downloads.' >&2
+if [[ ! -s "$SHARED_NGC" || ! -s "$SHARED_SGC" ]]; then
+  echo 'ERROR: validated shared full random catalogs are missing.' >&2
+  echo "Expected: $SHARED_NGC" >&2
+  echo "          $SHARED_SGC" >&2
+  echo 'Refusing realization-specific ~GB random downloads for mock3+.' >&2
   exit 4
-else
-  echo 'Shared random sources/cache are not available; realization-specific random FITS remain available only for explicit pre-cache smoke tests.'
 fi
+
+echo "Using fixed validated full survey randoms:"
+echo "  $SHARED_NGC"
+echo "  $SHARED_SGC"
 
 fetch_one () {
   local url="$1" out="$2" part="${2}.part"
   local attempt rc have dir name
-
-  dir=$(dirname "$out")
-  name=$(basename "$out")
-  mkdir -p "$dir"
+  dir=$(dirname "$out"); name=$(basename "$out"); mkdir -p "$dir"
 
   if [[ -s "$out" && ! -e "$part" ]]; then
     echo "REUSE existing download: $out ($(stat -c '%s' "$out") bytes)"
@@ -109,21 +88,12 @@ fetch_one () {
 
   if command -v aria2c >/dev/null 2>&1; then
     echo "DOWNLOAD segmented: $url"
-    aria2c \
-      --continue=true \
+    aria2c --continue=true \
       --max-connection-per-server="$ARIA_CONNECTIONS" \
-      --split="$ARIA_CONNECTIONS" \
-      --min-split-size=1M \
-      --file-allocation=none \
-      --max-tries=0 \
-      --retry-wait=5 \
-      --connect-timeout=60 \
-      --timeout=60 \
-      --summary-interval=10 \
-      --console-log-level=notice \
-      --dir="$dir" \
-      --out="${name}.part" \
-      "$url"
+      --split="$ARIA_CONNECTIONS" --min-split-size=1M \
+      --file-allocation=none --max-tries=0 --retry-wait=5 \
+      --connect-timeout=60 --timeout=60 --summary-interval=10 \
+      --console-log-level=notice --dir="$dir" --out="${name}.part" "$url"
     test -s "$part"
     mv "$part" "$out"
     rm -f "${part}.aria2"
@@ -161,9 +131,21 @@ fetch_one () {
     sleep 5
   done
   echo "ERROR: download did not complete after $DOWNLOAD_ATTEMPTS resumable attempts: $url" >&2
-  echo "Partial file retained at: $part" >&2
   return 18
 }
+
+# Validate the shared random pair once at launcher start. This is local I/O only.
+"$PYTHON_BIN" - "$SHARED_NGC" "$SHARED_SGC" <<'PY'
+from astropy.io import fits
+from pathlib import Path
+import sys
+for p in map(Path,sys.argv[1:]):
+    with fits.open(p,memmap=True) as h:
+        h.verify('exception')
+        if len(h)<2 or h[1].data is None or len(h[1].data)==0:
+            raise RuntimeError(f'invalid shared random FITS: {p}')
+        print('SHARED_RANDOM_FITS_OK',p,len(h[1].data))
+PY
 
 for M in $(seq "$FIRST" "$LAST"); do
   ROOT="$ROOT_BASE/mock${M}"
@@ -180,29 +162,12 @@ for M in $(seq "$FIRST" "$LAST"); do
   fetch_one "$ROOT/BGS_ffa_NGC_clustering.dat.fits" "$WORK/mock_NGC.dat.fits"
   fetch_one "$ROOT/BGS_ffa_SGC_clustering.dat.fits" "$WORK/mock_SGC.dat.fits"
 
-  RANDOM_ARGS=()
-  VALIDATE_RANDOMS=0
-  if [[ -s "$SHARED_RANDOM_CACHE" ]]; then
-    RANDOM_ARGS=(--shared-random-cache "$SHARED_RANDOM_CACHE")
-  else
-    if [[ "$M" -ge 3 ]]; then
-      echo "ERROR: mock $M requires the shared random cache; refusing realization-specific random download." >&2
-      exit 5
-    fi
-    fetch_one "$ROOT/BGS_ffa_NGC_0_clustering.ran.fits" "$WORK/mock_NGC.ran.fits"
-    fetch_one "$ROOT/BGS_ffa_SGC_0_clustering.ran.fits" "$WORK/mock_SGC.ran.fits"
-    RANDOM_ARGS=(--random "$WORK/mock_NGC.ran.fits" "$WORK/mock_SGC.ran.fits")
-    VALIDATE_RANDOMS=1
-  fi
-
-  "$PYTHON_BIN" - "$WORK" "$VALIDATE_RANDOMS" <<'PY'
+  "$PYTHON_BIN" - "$WORK" <<'PY'
 from astropy.io import fits
 from pathlib import Path
 import sys
-w=Path(sys.argv[1]); vr=int(sys.argv[2])
-files=[w/'mock_NGC.dat.fits',w/'mock_SGC.dat.fits']
-if vr: files += [w/'mock_NGC.ran.fits',w/'mock_SGC.ran.fits']
-for p in files:
+w=Path(sys.argv[1])
+for p in [w/'mock_NGC.dat.fits',w/'mock_SGC.dat.fits']:
     with fits.open(p,memmap=True) as h:
         h.verify('exception')
         if len(h)<2 or h[1].data is None or len(h[1].data)==0:
@@ -212,7 +177,7 @@ PY
 
   "$PYTHON_BIN" code/desi_phase7_ezmock_placebo_realization.py \
     --data "$WORK/mock_NGC.dat.fits" "$WORK/mock_SGC.dat.fits" \
-    "${RANDOM_ARGS[@]}" \
+    --random "$SHARED_NGC" "$SHARED_SGC" --shared-full-random \
     --templates "$TEMPLATE_CSV" --outdir "$OUT" --mock-id "$M" \
     --zmin 0.10 --zmax 0.40 --dz-proxy 0.02 --ntracer 5 \
     --analysis-z-edges 0.10,0.20,0.30,0.40 \
@@ -226,7 +191,7 @@ done
 
 N=$(find "$OUTROOT" -type f -name 'mock_*_vector.csv' | wc -l | tr -d ' ')
 H=$(find "$OUTROOT" -type f -name 'mock_*_vector.csv' | grep -Ev '/mock_0[12]_vector\.csv$' | wc -l | tr -d ' ' || true)
-echo "Completed vectors currently available: $N total; $H homogeneous shared-random candidates (mock3+)"
+echo "Completed vectors currently available: $N total; $H candidate mock3+ vectors"
 
 if [[ "$H" -ge 40 ]]; then
   echo 'At least 40 homogeneous mock3+ realizations available; running aggregate.'
@@ -237,5 +202,5 @@ if [[ "$H" -ge 40 ]]; then
     --min-mock-id 3 --require-shared-random
   echo "Aggregate: $OUTROOT/aggregate/summary_ezmock_placebo_covariance.json"
 else
-  echo 'Aggregate requires >=40 homogeneous shared-random realizations from mock3 onward.'
+  echo 'Aggregate requires >=40 homogeneous fixed-full-random realizations from mock3 onward.'
 fi
