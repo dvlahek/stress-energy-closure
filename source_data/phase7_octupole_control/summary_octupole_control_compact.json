@@ -1,0 +1,55 @@
+{
+  "status": "PASS_NULL_CONTROL",
+  "scope": "Predeclared exploratory orthogonal odd-sector ell=3 control on the frozen DESI DR1 BGS five-tracer luminosity-rank sample. No physical wake template is fit to ell=3.",
+  "predeclared_decision_rule": "empirical p >= 0.05: consistent with null; empirical p < 0.05: investigate survey/estimator systematics before any physical interpretation",
+  "observable": {
+    "ell": 3,
+    "basis": "7 P_3(mu) = (7/2)(5 mu^3 - 3 mu)",
+    "primary_statistic": "global permutation-calibrated Mahalanobis distance"
+  },
+  "provenance": {
+    "repository_commit_used_for_run": "e24251e68d2f5c669341e0d0af458452af3f7a73",
+    "stochastic_seed": 20260913,
+    "data_count": 300043,
+    "random_count": 600086,
+    "ntracer": 5,
+    "z_range": [0.1, 0.4],
+    "analysis_z_edges": [0.1, 0.2, 0.3, 0.4],
+    "separation_edges_Mpc_over_h": [20.0, 40.0, 60.0, 80.0, 100.0, 120.0, 140.0],
+    "neighbors_per_anchor": 48,
+    "jackknife_regions": 30,
+    "permutations": 32
+  },
+  "dipole_reproduction_gate": {
+    "raw_covariance_rank": 18,
+    "regularized_condition_number": 932.3920816549149,
+    "global_empirical_pvalue": 0.7878787878787878,
+    "global_mahalanobis": 13.41210900398904,
+    "reference_vector": "source_data/wake_phase7_multitracer_real_vector.csv",
+    "max_abs_difference": 0.0,
+    "rms_difference": 0.0,
+    "correlation": 1.0,
+    "status": "EXACT_REPRODUCTION"
+  },
+  "octupole_null_test": {
+    "status": "CONSISTENT_WITH_NULL",
+    "raw_covariance_rank": 18,
+    "regularized_condition_number": 440.81451808310493,
+    "global_mahalanobis": 15.693601151214075,
+    "global_empirical_pvalue": 0.8181818181818182,
+    "permutation_pvalue_resolution": 0.030303030303030304,
+    "asymptotic_chi2_pvalue_diagnostic": 0.6139213650067508,
+    "max_abs_single_bin_z_diagnostic": 1.3220659244304396,
+    "max_abs_single_bin": {
+      "zlo": 0.2,
+      "zhi": 0.3,
+      "z_effective": 0.2554223929940897,
+      "s_Mpc_over_h": 110.0,
+      "xi3_null_corrected": -0.01328326150533866,
+      "jackknife_sigma": 0.01004735184522756,
+      "z": -1.3220659244304396
+    }
+  },
+  "interpretation_guardrail": "This is not a second neutrino-wake measurement. It is an orthogonal odd-multipole null/control using exactly the same frozen tracer sample and sampled pair geometry as the Phase-7 dipole analysis.",
+  "archived_data_vector": "source_data/phase7_octupole_control/data_vector_octupole_control.csv"
+}
