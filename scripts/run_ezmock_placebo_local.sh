@@ -21,6 +21,7 @@ SEED="${SEED:-20260913}"
 DOWNLOAD_ATTEMPTS="${DOWNLOAD_ATTEMPTS:-40}"
 ARIA_CONNECTIONS="${ARIA_CONNECTIONS:-8}"
 RANDOM_FACTOR="${RANDOM_FACTOR:-2.0}"
+MIN_AGGREGATE_COUNT="${MIN_AGGREGATE_COUNT:-30}"
 
 mkdir -p "$OUTROOT" "$TEMPLATE_DIR"
 
@@ -45,6 +46,7 @@ else
 fi
 
 echo 'EZmock random policy: realization-specific released clustering random catalogs (2x selected density).'
+echo "EZmock aggregate threshold: $MIN_AGGREGATE_COUNT homogeneous realizations."
 
 "$PYTHON_BIN" - <<'PY'
 import importlib.util
@@ -179,15 +181,17 @@ PY
 done
 
 H=$("$PYTHON_BIN" - "$OUTROOT" <<'PY'
-import json,glob,sys,re
+import json,sys
 from pathlib import Path
 root=Path(sys.argv[1]); n=0
 for p in root.glob('mock_*/mock_*_summary.json'):
     try:
         s=json.load(open(p)); mid=int(s.get('mock_id',-1)); mode=str(s.get('random_geometry_mode',''))
         rf=float(s.get('random_count',0))/max(float(s.get('data_count',1)),1.0)
-        if mid>=3 and 'realization-specific released EZmock clustering random catalogs' in mode and rf>=1.8:
-            n+=1
+        san=s.get('sanity',{})
+        ok=(mid>=3 and 'realization-specific released EZmock clustering random catalogs' in mode and rf>=1.8
+            and float(san.get('max_abs_xi0',999))<=0.30 and float(san.get('max_abs_xi1',999))<=0.20)
+        if ok: n+=1
     except Exception:
         pass
 print(n)
@@ -195,14 +199,14 @@ PY
 )
 echo "Homogeneous realization-specific mock3+ vectors currently available: $H"
 
-if [[ "$H" -ge 40 ]]; then
-  echo 'At least 40 homogeneous realization-specific mock3+ realizations available; running aggregate.'
+if [[ "$H" -ge "$MIN_AGGREGATE_COUNT" ]]; then
+  echo "At least $MIN_AGGREGATE_COUNT homogeneous realization-specific mock3+ realizations available; running aggregate."
   "$PYTHON_BIN" code/desi_phase7_ezmock_aggregate.py \
     --mock-root "$OUTROOT" \
     --real-vector source_data/wake_phase7_multitracer_real_vector.csv \
     --outdir "$OUTROOT/aggregate" \
-    --min-mock-id 3 --require-realization-random
+    --min-mock-id 3 --min-count "$MIN_AGGREGATE_COUNT" --require-realization-random
   echo "Aggregate: $OUTROOT/aggregate/summary_ezmock_placebo_covariance.json"
 else
-  echo 'Aggregate requires >=40 homogeneous realization-specific mock3+ realizations.'
+  echo "Aggregate requires >=$MIN_AGGREGATE_COUNT homogeneous realization-specific mock3+ realizations."
 fi
