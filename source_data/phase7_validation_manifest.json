@@ -45,11 +45,23 @@
       "conservative_wake_z_range": [-1.013866049811166, -0.7619674766357311],
       "empirical_two_sided_pvalue_range": [0.2727272727272727, 0.45454545454545453],
       "status": "PASS"
+    },
+    "abacus_physical_mock_calibration": {
+      "source": "source_data/phase7_abacus_final_summary.json",
+      "workflow_run_id": 34780454743,
+      "mock_count": 25,
+      "mock_ids": "0-24",
+      "sample_covariance_rank": 18,
+      "oas_condition_number": 29.437041342166438,
+      "conservative_wake_amplitude": -0.10561626678300673,
+      "conservative_wake_sigma": 0.059370661884118714,
+      "conservative_wake_z": -1.7789302566501861,
+      "empirical_two_sided_pvalue": 0.07692307692307693,
+      "unit_injection_mean": 1.0000000000000262,
+      "status": "PASS_NULL"
     }
   },
-  "pending_closure_layers": {
-    "abacus": "Final aggregate not frozen in this snapshot. 24/25 science realizations had passed; mock 11 was transport-only retry."
-  },
+  "pending_closure_layers": {},
   "provenance_guardrails": [
     "EZmock is a random-rank geometry/covariance/systematics placebo ensemble, not a luminosity-matched physical covariance.",
     "Abacus is the physical luminosity-ranked high-fidelity mock layer.",

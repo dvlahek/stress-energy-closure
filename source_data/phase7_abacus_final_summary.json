@@ -1,0 +1,67 @@
+{
+  "status": "PASS_NULL",
+  "scope": "Final AbacusSummit cut-sky covariance and pair-window calibration for the five-tracer luminosity-proxy DESI DR1 odd-sector estimator.",
+  "workflow_run_id": 34780454743,
+  "run_attempt": 4,
+  "workflow_conclusion": "success",
+  "science_commit": "a2bc868bff98569353448e86659aae934c3cee3f",
+  "artifact_id": 10365928726,
+  "artifact_digest": "sha256:ec3a37653e464a3b86385cce667fa9fc742aae98023808db0fa95a8f5b59a6a8",
+  "mock_count": 25,
+  "mock_ids": "0-24",
+  "vector_dimension": 18,
+  "sample_covariance_rank": 18,
+  "sample_covariance_condition_number_independent_check": 864.5979387713957,
+  "oas_shrinkage": 0.22539897066103604,
+  "oas_condition_number": 29.437041342166438,
+  "hartlap_factor_for_raw_sample_covariance": 0.20833333333333334,
+  "real_data_oas": {
+    "minimal_wake": {
+      "amplitude": -0.03222335224422518,
+      "sigma": 0.011496532933016008,
+      "z": -2.8028756523356195
+    },
+    "conservative_wake": {
+      "amplitude": -0.10561626678300673,
+      "sigma": 0.059370661884118714,
+      "z": -1.7789302566501861
+    },
+    "conservative_chi2": 12.396766971434431,
+    "conservative_dof": 8,
+    "conservative_pvalue": 0.13435961251305803,
+    "empirical_two_sided_wake_pvalue": 0.07692307692307693
+  },
+  "real_data_hartlap_control": {
+    "conservative_wake": {
+      "amplitude": -0.06100297588747683,
+      "sigma": 0.0845031416378325,
+      "z": -0.7219018690325885
+    },
+    "conservative_chi2": 6.064731385392446,
+    "conservative_dof": 8,
+    "conservative_pvalue": 0.639981040199824
+  },
+  "mock_null_wake_amplitudes": {
+    "mean": 6.675215935558753e-17,
+    "std": 0.043284507122499274,
+    "median": -0.001968313070446287,
+    "min": -0.07689806442046297,
+    "max": 0.11293994523877732,
+    "n_abs_ge_real": 1
+  },
+  "unit_injection_recovery": {
+    "mean": 1.0000000000000262,
+    "std": 0.04281670075557443,
+    "median": 0.9956669465358061,
+    "nominal_one_sigma_coverage_fraction": 0.88,
+    "fit_sigma_reference": 0.059370661884118714
+  },
+  "window_stability": {
+    "wake_fractional_std_median": 0.008576282364723865,
+    "wake_fractional_std_max": 0.017007166458217367,
+    "doppler_fractional_std_median": 0.007835628919159064,
+    "doppler_fractional_std_max": 0.01224660931963663
+  },
+  "interpretation": "PASS_NULL. All 25 Abacus realizations completed. The OAS-calibrated conservative real-data coefficient is a sub-2-sigma negative fluctuation with empirical two-sided p=0.0769; the Hartlap sample-covariance control is only 0.72 sigma. No detection is claimed. Unit injections are recovered without measurable bias.",
+  "guardrail": "The amplitude is calibrated to the predeclared luminosity-rank proxy pair model. A physical halo-mass wake amplitude requires a separate proxy-to-halo calibration."
+}
