@@ -1,0 +1,49 @@
+{
+  "snapshot_date": "2026-09-14",
+  "snapshot_branch": "publication-reproducibility",
+  "source_branch_parent": "phase7-nature-astronomy@e129897f12b521ffc4524833b495f3bdf6f89c03",
+  "class_commit": "e85808324f51fc694d12e3ed7439552a3c3f9540",
+  "completed_validation_layers": {
+    "desi_dr1_zresolved": {
+      "source": "source_data/wake_phase7_desi_dr1_zresolved_summary.json",
+      "conservative_wake_amplitude": 0.0318435,
+      "conservative_wake_sigma": 0.2224905,
+      "status": "PASS_NULL"
+    },
+    "desi_dr1_fullsample_luminosity_rank": {
+      "source": "source_data/phase7_desi_fullsample_summary.json",
+      "conservative_wake_amplitude": -0.07390121574359165,
+      "conservative_wake_sigma": 0.08516605996859057,
+      "status": "PASS_NULL"
+    },
+    "desi_dr1_gfinder_mass_proxy": {
+      "source": "source_data/phase7_gfinder_massproxy_summary.json",
+      "conservative_wake_amplitude": 0.06878387421106935,
+      "conservative_wake_sigma": 0.08276078686237884,
+      "data_vector_sha256": "a64e522738d5b42ccc1d8cad1cb51767fea3a8d1d019b0d0bf2b0431e49c7ab9",
+      "status": "PASS_NULL"
+    },
+    "ezmock_random_rank_placebo": {
+      "source": "source_data/phase7_ezmock_local/aggregate_validation_summary.json",
+      "raw_aggregate_summary": "source_data/phase7_ezmock_local/aggregate/summary_ezmock_placebo_covariance.json",
+      "mock_count": 30,
+      "mock_ids": "3-32",
+      "oas_condition_number": 10.677983574525063,
+      "conservative_wake_amplitude": -0.11481177799715447,
+      "conservative_wake_sigma": 0.08199514300447702,
+      "empirical_two_sided_pvalue": 0.0967741935483871,
+      "unit_injection_mean": 0.9999999999999375,
+      "status": "PASS"
+    }
+  },
+  "pending_closure_layers": {
+    "abacus": "Final aggregate not frozen in this snapshot. 24/25 science realizations had passed; mock 11 was transport-only retry.",
+    "stochastic_seed_control": "Three predeclared seeds were running at snapshot creation. Final closure summary should be added before release/tag."
+  },
+  "provenance_guardrails": [
+    "EZmock is a random-rank geometry/covariance/systematics placebo ensemble, not a luminosity-matched physical covariance.",
+    "Abacus is the physical luminosity-ranked high-fidelity mock layer.",
+    "No real-data or mock result in this snapshot is a claimed neutrino-wake detection.",
+    "Exploratory shared-random EZmock outputs are excluded from production."
+  ]
+}

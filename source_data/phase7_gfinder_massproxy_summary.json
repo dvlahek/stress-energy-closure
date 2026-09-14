@@ -1,0 +1,47 @@
+{
+  "status": "PASS_NULL",
+  "scope": "DESI DR1 BGS five-tracer Gfinder GRP_LOGM physical-proxy odd-sector robustness test.",
+  "workflow_run_id": 34778953776,
+  "reproduction_run_id": 34779228855,
+  "repository_commit": "94d798c73039c066187c152a247f3fbda28b47fa",
+  "class_commit": "e85808324f51fc694d12e3ed7439552a3c3f9540",
+  "reproduction_artifact_sha256": "b7fc699d8c29f86b87a7682e409cb8179b178e74e968eca152a414577969d520",
+  "data_vector_sha256": "a64e522738d5b42ccc1d8cad1cb51767fea3a8d1d019b0d0bf2b0431e49c7ab9",
+  "selected_data_count": 271243,
+  "selected_random_count": 542486,
+  "mass_tracer_medians": [
+    12.8099,
+    12.9725,
+    13.1383,
+    13.3508,
+    13.7219
+  ],
+  "jackknife": {
+    "regions": 30,
+    "rank": 18,
+    "condition_number": 543.8817548817902
+  },
+  "permutation": {
+    "count": 32,
+    "global_empirical_pvalue": 0.24242424242424243,
+    "wake_empirical_two_sided_pvalue": 0.42424242424242425
+  },
+  "minimal_fit": {
+    "wake_amplitude": 0.030458587119825183,
+    "wake_sigma": 0.013829999378396959,
+    "wake_z": 2.202356362170397,
+    "chi2": 21.992989220745667,
+    "dof": 16,
+    "pvalue": 0.14341804707525865
+  },
+  "conservative_fit": {
+    "wake_amplitude": 0.06878387421106935,
+    "wake_sigma": 0.08276078686237884,
+    "wake_z": 0.8311167259133072,
+    "chi2": 13.084701901084205,
+    "dof": 8,
+    "pvalue": 0.10896832661409628,
+    "empirical_two_sided_pvalue": 0.42424242424242425
+  },
+  "guardrail": "No mass threshold was selected from the odd data. Gfinder membership introduces an additional selection function, so this is a physical-proxy robustness test rather than the primary DESI likelihood."
+}
