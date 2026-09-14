@@ -23,7 +23,7 @@ def main():
     ap.add_argument('--min-mock-id',type=int,default=3,
                     help='minimum mock id included; default 3 excludes legacy smoke mocks 1-2')
     ap.add_argument('--require-shared-random',action='store_true',
-                    help='require summary provenance for shared-angular/per-realization-z random mode')
+                    help='require fixed validated full survey random catalogs shared across realizations')
     args=ap.parse_args(); out=Path(args.outdir); out.mkdir(parents=True,exist_ok=True)
 
     all_v=glob.glob(str(Path(args.mock_root)/'**/mock_*_vector.csv'),recursive=True)
@@ -38,10 +38,13 @@ def main():
             if not spath.is_file(): raise RuntimeError(f'missing summary for mock {mid}: {spath}')
             sm=json.loads(spath.read_text())
             mode=str(sm.get('random_geometry_mode',''))
-            if 'shared angular cache' not in mode:
-                raise RuntimeError(f'mock {mid} is not shared-random homogeneous: {mode!r}')
+            if 'fixed validated full survey random catalogs shared across realizations' not in mode:
+                raise RuntimeError(f'mock {mid} is not fixed-full-random homogeneous: {mode!r}')
             if int(sm.get('random_count',0)) < int(1.8*sm.get('data_count',0)):
                 raise RuntimeError(f'mock {mid} does not have approximately 2x random density')
+            san=sm.get('sanity',{})
+            if float(san.get('max_abs_xi0',999))>0.30 or float(san.get('max_abs_xi1',999))>0.20:
+                raise RuntimeError(f'mock {mid} failed estimator sanity provenance: {san}')
         pairs.append((vpath,str(wpath)))
 
     if len(pairs)<40:
@@ -78,14 +81,14 @@ def main():
       'scope':'Custom cut-sky EZmock five-tracer equal-count random-rank placebo covariance/systematics control.',
       'proxy_kind':'RAN_NUM_0_1 equal-count rank within narrow-z and Galactic-cap cells',
       'mock_count':int(n),'mock_ids':used_ids,'minimum_mock_id':int(args.min_mock_id),
-      'random_geometry_mode':'shared angular cache with per-realization narrow-z/cap redshift resampling' if args.require_shared_random else 'not enforced',
+      'random_geometry_mode':'fixed validated full survey random catalogs shared across realizations' if args.require_shared_random else 'not enforced',
       'vector_dimension':int(pdim),'sample_covariance_rank':rank,'oas_shrinkage':shrink,'oas_condition_number':cond,'hartlap_factor':hartlap,
       'real_data_sensitivity_fit_oas':{'minimal':fit2,'conservative':fitc,'empirical_two_sided_wake_pvalue_against_placebo_null':pemp},
       'real_data_sensitivity_fit_hartlap_sample_covariance':{'minimal':fit2_h,'conservative':fitc_h},
       'placebo_null_wake_amplitudes':aw.tolist(),
       'unit_injection_recovery':{'mean':float(rec.mean()),'std':float(rec.std(ddof=1)),'median':float(np.median(rec)),'nominal_one_sigma_coverage_fraction':coverage,'fit_sigma_reference':sigma},
       'absolute_likelihood_claim':False,
-      'guardrail':'The released DR1 EZmock BGS files used here do not contain R_MAG_APP/R_MAG_ABS. This homogeneous shared-angular ensemble tests geometry, pair compression, covariance conditioning and false-positive behaviour with equal-count random ranks. Random redshifts are redrawn from each mock data realization in the same narrow-z/cap cells. It is not a luminosity-matched covariance. Abacus is the physical luminosity-ranked validation.'
+      'guardrail':'The released DR1 EZmock BGS files used here do not contain R_MAG_APP/R_MAG_ABS. This homogeneous ensemble tests geometry, pair compression, covariance conditioning and false-positive behaviour with equal-count random ranks. One validated full NGC/SGC survey-random pair is reused as the fixed selection-function pool, with current-mock target counts enforced in each narrow-z/cap cell. It is not a luminosity-matched covariance. Abacus is the physical luminosity-ranked validation.'
     }
     (out/'summary_ezmock_placebo_covariance.json').write_text(json.dumps(summary,indent=2)+'\n'); print('PHASE7_EZMOCK_PLACEBO_AGGREGATE',json.dumps(summary,indent=2))
 
