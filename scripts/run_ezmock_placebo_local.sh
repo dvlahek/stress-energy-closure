@@ -66,9 +66,12 @@ if [[ ! -f "$TEMPLATE_CSV" ]]; then
   exit 3
 fi
 
-if [[ ! -s "$SHARED_RANDOM_CACHE" && \
-      -s "$SHARED_RANDOM_DIR/mock_NGC.ran.fits" && \
-      -s "$SHARED_RANDOM_DIR/mock_SGC.ran.fits" ]]; then
+SHARED_SOURCES_PRESENT=0
+if [[ -s "$SHARED_RANDOM_DIR/mock_NGC.ran.fits" && -s "$SHARED_RANDOM_DIR/mock_SGC.ran.fits" ]]; then
+  SHARED_SOURCES_PRESENT=1
+fi
+
+if [[ ! -s "$SHARED_RANDOM_CACHE" && "$SHARED_SOURCES_PRESENT" -eq 1 ]]; then
   echo "Building compact shared angular random cache: $SHARED_RANDOM_CACHE"
   "$PYTHON_BIN" code/desi_phase7_build_shared_random_cache.py \
     --ngc "$SHARED_RANDOM_DIR/mock_NGC.ran.fits" \
@@ -82,8 +85,12 @@ fi
 if [[ -s "$SHARED_RANDOM_CACHE" ]]; then
   echo "Using shared angular random cache: $SHARED_RANDOM_CACHE"
   echo 'Random redshifts will be redrawn separately for each mock within narrow-z/NGC-SGC cells.'
+elif [[ "$SHARED_SOURCES_PRESENT" -eq 1 ]]; then
+  echo 'ERROR: validated shared random FITS are present but the compact cache was not created.' >&2
+  echo 'Refusing to fall back to realization-specific ~GB random downloads.' >&2
+  exit 4
 else
-  echo 'Shared random cache not available; realization-specific random FITS will be downloaded.'
+  echo 'Shared random sources/cache are not available; realization-specific random FITS remain available only for explicit pre-cache smoke tests.'
 fi
 
 fetch_one () {
@@ -178,6 +185,10 @@ for M in $(seq "$FIRST" "$LAST"); do
   if [[ -s "$SHARED_RANDOM_CACHE" ]]; then
     RANDOM_ARGS=(--shared-random-cache "$SHARED_RANDOM_CACHE")
   else
+    if [[ "$M" -ge 3 ]]; then
+      echo "ERROR: mock $M requires the shared random cache; refusing realization-specific random download." >&2
+      exit 5
+    fi
     fetch_one "$ROOT/BGS_ffa_NGC_0_clustering.ran.fits" "$WORK/mock_NGC.ran.fits"
     fetch_one "$ROOT/BGS_ffa_SGC_0_clustering.ran.fits" "$WORK/mock_SGC.ran.fits"
     RANDOM_ARGS=(--random "$WORK/mock_NGC.ran.fits" "$WORK/mock_SGC.ran.fits")
