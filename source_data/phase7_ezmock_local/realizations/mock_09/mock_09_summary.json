@@ -1,0 +1,113 @@
+{
+  "mock_id": 9,
+  "scope": "cut-sky BGS EZmock five-tracer equal-count random-rank placebo covariance/systematics validation",
+  "rank_field": "RAN_NUM_0_1",
+  "rank_semantics": "uniform released mock field; re-ranked within the same narrow-z and Galactic-cap cells as the real luminosity proxy",
+  "data_count": 303889,
+  "random_count": 607778,
+  "ntracer": 5,
+  "z_bins": [
+    {
+      "zlo": 0.1,
+      "zhi": 0.2,
+      "z_effective": 0.16005012120016215,
+      "N_data": 39377,
+      "N_random": 78754
+    },
+    {
+      "zlo": 0.2,
+      "zhi": 0.3,
+      "z_effective": 0.2555442590381897,
+      "N_data": 97281,
+      "N_random": 194562
+    },
+    {
+      "zlo": 0.3,
+      "zhi": 0.4,
+      "z_effective": 0.353882353437236,
+      "N_data": 167231,
+      "N_random": 334462
+    }
+  ],
+  "separation_edges_Mpc_over_h": [
+    20.0,
+    40.0,
+    60.0,
+    80.0,
+    100.0,
+    120.0,
+    140.0
+  ],
+  "neighbors_per_anchor": 48,
+  "theta_min_deg": 0.05,
+  "seed": 20269994,
+  "random_geometry_mode": "realization-specific released EZmock clustering random catalogs",
+  "sanity": {
+    "max_abs_xi0": 0.10114571445599957,
+    "max_abs_xi1": 0.031619281617580396,
+    "gate_max_abs_xi0": 0.3,
+    "gate_max_abs_xi1": 0.2
+  },
+  "window_model": "pair-level response to xi_odd^{ij}=(m_j-m_i) mu T(s,z), evaluated through the identical sampled DD geometry and RR normalization",
+  "wake_forward_response": [
+    -0.9826373112640452,
+    -0.522970620799272,
+    -0.09464323964543608,
+    -0.026203045734517042,
+    -0.04543480688237403,
+    -0.003376262947104196,
+    -0.8673811223039086,
+    -0.44502031348474885,
+    -0.07649016865076252,
+    -0.020627191850309364,
+    -0.03828510947425732,
+    -0.0028506069458496203,
+    -0.7279366283352701,
+    -0.3710582716654904,
+    -0.060028090985359724,
+    -0.015723975140445483,
+    -0.031522852654410384,
+    -0.0023612489352075857
+  ],
+  "doppler_forward_response": [
+    1.0178948484179984,
+    0.6930400848329671,
+    0.32712474915832046,
+    0.22313234779938376,
+    0.19262615437864425,
+    0.12224658080129568,
+    0.9550046132162575,
+    0.6328658998737606,
+    0.2995825313739665,
+    0.20282371153736786,
+    0.17267245047352678,
+    0.10850440554636237,
+    0.922289104146948,
+    0.6115263681183817,
+    0.2851657995642299,
+    0.19163172002558543,
+    0.16286449513489507,
+    0.1012151955338712
+  ],
+  "xi1_proxy_odd": [
+    -0.031619281617580396,
+    0.020976622924697923,
+    -0.0074228791647893665,
+    0.009180084535056853,
+    -0.008606114664211477,
+    -0.003279163080613,
+    0.02981776379772032,
+    0.015391860553092378,
+    -0.01370627427479733,
+    -0.004449068787023153,
+    0.002812427878400385,
+    -0.002326137727194421,
+    0.0043421431228793305,
+    0.004400986466544397,
+    0.007349298345550558,
+    -0.004610827797063055,
+    0.005117082227265328,
+    -0.003400308483368583
+  ],
+  "guardrail": "EZmock public DR1 files used here lack released luminosity columns. This is an equal-count random-rank placebo covariance/systematics control, not a luminosity-matched covariance and not a halo-mass wake constraint. Each included realization uses its own released clustering random catalogs at approximately 2x selected random density. Abacus remains the physical luminosity-ranked mock validation."
+}
