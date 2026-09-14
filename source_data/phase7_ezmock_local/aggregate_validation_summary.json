@@ -1,0 +1,61 @@
+{
+  "status": "PASS",
+  "scope": "Custom cut-sky EZmock five-tracer equal-count random-rank placebo covariance/systematics control.",
+  "proxy_kind": "RAN_NUM_0_1 equal-count rank within narrow-z and Galactic-cap cells",
+  "mock_count": 30,
+  "mock_ids": [3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32],
+  "random_geometry_mode": "realization-specific released EZmock clustering random catalogs",
+  "vector_dimension": 18,
+  "covariance": {
+    "sample_rank": 18,
+    "sample_condition_number_independent_check": 325.90103720717536,
+    "oas_shrinkage": 0.35506089432801213,
+    "oas_condition_number": 10.677983574525063,
+    "hartlap_factor": 0.3448275862068966,
+    "primary": "OAS shrinkage covariance"
+  },
+  "real_data": {
+    "oas_minimal_wake": {"amplitude": -0.017492576042514203, "sigma": 0.01470686290962624, "z": -1.1894158631929996},
+    "oas_minimal_chi2": 11.289418447065906,
+    "oas_minimal_dof": 16,
+    "oas_minimal_pvalue": 0.7912784878318246,
+    "oas_conservative_wake": {"amplitude": -0.11481177799715447, "sigma": 0.08199514300447702, "z": -1.4002265718456717},
+    "oas_conservative_chi2": 6.312452723293911,
+    "oas_conservative_dof": 8,
+    "oas_conservative_pvalue": 0.6122768583402551,
+    "empirical_two_sided_wake_pvalue": 0.0967741935483871,
+    "hartlap_conservative_wake": {"amplitude": -0.09685722212518533, "sigma": 0.09381094882239788, "z": -1.0324724708685618},
+    "hartlap_conservative_chi2": 5.815226393694316,
+    "hartlap_conservative_dof": 8,
+    "hartlap_conservative_pvalue": 0.6679204306083374
+  },
+  "placebo_wake_amplitudes": {
+    "mean": 2.0354088784794535e-17,
+    "std": 0.061785722977828195,
+    "median": 0.012812963393860552,
+    "min": -0.15994451697107512,
+    "max": 0.09502580499488245,
+    "n_abs_ge_real": 2
+  },
+  "unit_injection_recovery": {
+    "mean": 0.9999999999999375,
+    "std": 0.06151739572551054,
+    "median": 1.010952027880748,
+    "nominal_one_sigma_coverage_fraction": 0.8,
+    "fit_sigma_reference": 0.08199514300447702
+  },
+  "window_stability": {
+    "wake_fractional_std_median": 0.008811523693369724,
+    "wake_fractional_std_max": 0.017511255107843397,
+    "doppler_fractional_std_median": 0.008455241701886908,
+    "doppler_fractional_std_max": 0.014926705662663397
+  },
+  "interpretation": "PASS. No statistically significant wake-like excess. This is a geometry/covariance/systematics placebo control, not a luminosity-matched covariance or absolute wake likelihood. OAS is primary; Hartlap-corrected sample covariance is a finite-mock control.",
+  "aggregate_sha256": {
+    "summary": "efeb37417baa7d2160beb6fa53bb1f7daba24e513f859e3143a42e228d1fea84",
+    "oas_covariance": "7216f668c2d4ebd68c89870fb4713ca500139c532aeeac63ea0a199ab6c17fc1",
+    "sample_covariance": "f71cdb9818298cbbd802ea1dbe022323ba09c2f8e4ef8c9552d3cf1c56222429",
+    "vectors": "b279e916a3ec2dc134dc01b2f8bcd15360da7f9168d2bd0b11a19d98ce12f99c",
+    "window_templates": "e923d7f2c5a9065237a3878467dc93d801bf9259ea87aac3dd358ecd8b9dde9f"
+  }
+}
