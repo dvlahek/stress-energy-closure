@@ -34,15 +34,26 @@
       "empirical_two_sided_pvalue": 0.0967741935483871,
       "unit_injection_mean": 0.9999999999999375,
       "status": "PASS"
+    },
+    "stochastic_seed_control": {
+      "source": "source_data/phase7_seed_control_summary.json",
+      "workflow_run_id": 34888489895,
+      "production_seed": 20260913,
+      "independent_seeds": [20260917, 20260929, 20261007],
+      "conservative_wake_amplitude_mean": -0.06476822491750485,
+      "conservative_wake_amplitude_std": 0.014969537484336083,
+      "conservative_wake_z_range": [-1.013866049811166, -0.7619674766357311],
+      "empirical_two_sided_pvalue_range": [0.2727272727272727, 0.45454545454545453],
+      "status": "PASS"
     }
   },
   "pending_closure_layers": {
-    "abacus": "Final aggregate not frozen in this snapshot. 24/25 science realizations had passed; mock 11 was transport-only retry.",
-    "stochastic_seed_control": "Three predeclared seeds were running at snapshot creation. Final closure summary should be added before release/tag."
+    "abacus": "Final aggregate not frozen in this snapshot. 24/25 science realizations had passed; mock 11 was transport-only retry."
   },
   "provenance_guardrails": [
     "EZmock is a random-rank geometry/covariance/systematics placebo ensemble, not a luminosity-matched physical covariance.",
     "Abacus is the physical luminosity-ranked high-fidelity mock layer.",
+    "The conservative nuisance-projected DESI result is the primary real-data inference; the minimal two-template fit is seed-sensitive and retained only as a diagnostic/control.",
     "No real-data or mock result in this snapshot is a claimed neutrino-wake detection.",
     "Exploratory shared-random EZmock outputs are excluded from production."
   ]
