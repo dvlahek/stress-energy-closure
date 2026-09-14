@@ -12,8 +12,9 @@ set -euo pipefail
 # vectors/windows remain under phase7_ezmock_local/.
 #
 # DESI's public HTTP endpoint can close long transfers before completion.
-# Downloads are therefore explicitly resumable: interrupted bytes are kept in
-# *.part files and every reconnect continues from the existing byte offset.
+# Downloads are therefore resumable. If aria2c is available it is preferred
+# because segmented HTTP-range downloads are much faster on this endpoint;
+# curl -C - remains the fallback.
 
 FIRST="${1:-1}"
 LAST="${2:-$FIRST}"
@@ -24,6 +25,8 @@ TEMPLATE_DIR="${TEMPLATE_DIR:-phase7_template}"
 TEMPLATE_CSV="$TEMPLATE_DIR/phase7_templates.csv"
 SEED="${SEED:-20260913}"
 DOWNLOAD_ATTEMPTS="${DOWNLOAD_ATTEMPTS:-40}"
+ARIA_CONNECTIONS="${ARIA_CONNECTIONS:-8}"
+RANDOM_FACTOR="${RANDOM_FACTOR:-2.0}"
 
 mkdir -p "$OUTROOT" "$TEMPLATE_DIR"
 
@@ -40,6 +43,12 @@ if ! command -v curl >/dev/null 2>&1; then
 fi
 
 echo "Using Python: $PYTHON_BIN ($($PYTHON_BIN --version 2>&1))"
+if command -v aria2c >/dev/null 2>&1; then
+  echo "Using aria2c segmented downloads with $ARIA_CONNECTIONS connections"
+else
+  echo 'aria2c not found; using resumable curl fallback'
+  echo 'For faster downloads: sudo apt install -y aria2'
+fi
 
 "$PYTHON_BIN" - <<'PY'
 import importlib.util
@@ -76,14 +85,45 @@ fi
 
 fetch_one () {
   local url="$1" out="$2" part="${2}.part"
-  local attempt rc have
+  local attempt rc have dir name
 
-  # Preserve a partial file left by the older non-resumable launcher.
+  dir=$(dirname "$out")
+  name=$(basename "$out")
+  mkdir -p "$dir"
+
+  # Preserve a partial file left by an older launcher.
   if [[ -s "$out" && ! -e "$part" ]]; then
     echo "Preserving existing partial download: $out -> $part"
     mv "$out" "$part"
   elif [[ -e "$out" && ! -s "$out" ]]; then
     rm -f "$out"
+  fi
+
+  if command -v aria2c >/dev/null 2>&1; then
+    echo "DOWNLOAD segmented: $url"
+    # aria2c continues an existing .part file and keeps its .aria2 control file
+    # across interrupted runs.  Multiple HTTP ranges avoid the very slow
+    # single-stream transfer observed from the DESI LBL endpoint.
+    aria2c \
+      --continue=true \
+      --max-connection-per-server="$ARIA_CONNECTIONS" \
+      --split="$ARIA_CONNECTIONS" \
+      --min-split-size=1M \
+      --file-allocation=none \
+      --max-tries=0 \
+      --retry-wait=5 \
+      --connect-timeout=60 \
+      --timeout=60 \
+      --summary-interval=10 \
+      --console-log-level=notice \
+      --dir="$dir" \
+      --out="${name}.part" \
+      "$url"
+    test -s "$part"
+    mv "$part" "$out"
+    rm -f "${part}.aria2"
+    echo "DOWNLOAD COMPLETE: $out ($(stat -c '%s' "$out") bytes)"
+    return 0
   fi
 
   for attempt in $(seq 1 "$DOWNLOAD_ATTEMPTS"); do
@@ -120,9 +160,6 @@ fetch_one () {
     fi
     echo "  interrupted (curl rc=$rc), retained $have bytes; reconnecting..."
 
-    # curl rc=33 means the remote endpoint refused byte-range continuation.
-    # Do not silently restart from zero because that recreates the original
-    # failure mode; stop and report it explicitly.
     if [[ "$rc" -eq 33 ]]; then
       echo 'ERROR: server refused HTTP range resume (curl rc=33).' >&2
       echo "Partial file retained at: $part" >&2
@@ -141,6 +178,12 @@ for M in $(seq "$FIRST" "$LAST"); do
   WORK="$OUTROOT/work_mock${M}"
   OUT="$OUTROOT/mock_${M}"
   mkdir -p "$WORK" "$OUT"
+
+  # A completed realization is never downloaded again unless FORCE=1.
+  if [[ "${FORCE:-0}" != '1' && -s "$OUT/mock_$(printf '%02d' "$M")_summary.json" && -s "$OUT/mock_$(printf '%02d' "$M")_vector.csv" ]]; then
+    echo "SKIP completed mock $M -> $OUT"
+    continue
+  fi
 
   echo "==== EZmock $M ===="
   fetch_one "$ROOT/BGS_ffa_NGC_clustering.dat.fits" "$WORK/mock_NGC.dat.fits"
@@ -168,7 +211,7 @@ PY
     --zmin 0.10 --zmax 0.40 --dz-proxy 0.02 --ntracer 5 \
     --analysis-z-edges 0.10,0.20,0.30,0.40 \
     --sep-edges 20,40,60,80,100,120,140 \
-    --random-factor 1.0 --neighbors-per-anchor 48 --theta-min-deg 0.05 \
+    --random-factor "$RANDOM_FACTOR" --neighbors-per-anchor 48 --theta-min-deg 0.05 \
     --seed "$SEED"
 
   if [[ "$KEEP_FITS" != '1' ]]; then
