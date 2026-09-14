@@ -8,3 +8,15 @@ Thumbs.db
 
 ev_*_output/
 *.png
+
+# Local observational production artefacts (compact publication snapshots live in source_data/)
+/class_public/
+/phase7_template/
+/phase7_ezmock_local/
+/phase7_seed_*/
+/phase7_abacus_aggregate/
+/BGS_*.fits
+/mock_*.fits
+*.fits.gz
+*.part
+*.aria2
