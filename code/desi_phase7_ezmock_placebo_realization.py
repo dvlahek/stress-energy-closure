@@ -2,18 +2,17 @@
 """One EZmock realization for the Phase-7 five-tracer placebo covariance control.
 
 The public DR1 EZmock BGS products currently exposed in the release do not
-contain R_MAG_APP/R_MAG_ABS, despite the current data-model documentation.
-For the EZmock-only covariance/systematics cross-check we therefore construct
-five equal-count tracer marks from the released uniform RAN_NUM_0_1 field,
-ranked independently in the same narrow-redshift and NGC/SGC cells used by the
-real-data luminosity proxy. This deliberately removes luminosity-dependent
-bias and is not a replacement for the Abacus luminosity-ranked validation.
+contain R_MAG_APP/R_MAG_ABS. For the EZmock-only covariance/systematics
+cross-check we therefore construct five equal-count tracer marks from the
+released uniform RAN_NUM_0_1 field, ranked independently in the same
+narrow-redshift and NGC/SGC cells used by the real-data luminosity proxy. This
+deliberately removes luminosity-dependent bias and is not a replacement for
+the Abacus luminosity-ranked validation.
 
-For the local homogeneous ensemble we reuse one validated full NGC/SGC random
-pair as the survey-selection pool. The usual make_random_proxy step still
-draws the requested density separately in every current-mock narrow-z/cap
-cell, so the 2x random density follows each realization. We do not synthesize
-new RA/DEC/z combinations.
+Each realization must use its own released NGC/SGC clustering random catalogs.
+Those files are part of the realization-specific survey-selection and
+fiber-assignment product. Reusing a random catalog from another mock is not a
+valid homogeneous covariance construction and is deliberately unsupported.
 """
 from __future__ import annotations
 import argparse, json
@@ -86,8 +85,6 @@ def main():
     ap.add_argument('--sep-edges',default='20,40,60,80,100,120,140')
     ap.add_argument('--random-factor',type=float,default=2.0); ap.add_argument('--neighbors-per-anchor',type=int,default=48)
     ap.add_argument('--theta-min-deg',type=float,default=0.05); ap.add_argument('--seed',type=int,default=20260913)
-    ap.add_argument('--shared-full-random',action='store_true',
-                    help='mark provenance as fixed validated full survey random catalogs shared across realizations')
     args=ap.parse_args(); out=Path(args.outdir); out.mkdir(parents=True,exist_ok=True)
     mid=int(args.mock_id); rng=np.random.default_rng(args.seed+1009*mid)
     edges=np.asarray([float(x) for x in args.sep_edges.split(',')]); s=0.5*(edges[:-1]+edges[1:]); nb=len(s)
@@ -97,9 +94,7 @@ def main():
     catR=read_mock(args.random,'random')
     iD,lD,mD,sD,proxy_info=mt.make_data_proxy(catD,args.zmin,args.zmax,args.dz_proxy,args.ntracer)
     iR,lR,mR,sR=mt.make_random_proxy(catR,args.zmin,args.zmax,args.dz_proxy,args.ntracer,proxy_info,args.random_factor,rng)
-    random_geometry_mode=('fixed validated full survey random catalogs shared across realizations'
-                          if args.shared_full_random else
-                          'realization-specific released EZmock clustering random catalogs')
+    random_geometry_mode='realization-specific released EZmock clustering random catalogs'
     regD=np.zeros(len(iD),int); regR=np.zeros(len(iR),int)
 
     blocks=[]; zmeta=[]
@@ -116,16 +111,12 @@ def main():
         zmeta.append({'zlo':float(lo),'zhi':float(hi),'z_effective':ze,'N_data':int(len(D['w'])),'N_random':int(len(R['w']))})
 
     xi0,xi1=mt.vector(blocks)
-
-    # Catastrophic estimator/window mismatch guard. The random-rank placebo
-    # should be close to a standard cut-sky null. This catches broken random
-    # geometry/normalization before an ensemble can be accumulated.
     max_xi0=float(np.max(np.abs(xi0))); max_xi1=float(np.max(np.abs(xi1)))
     if max_xi0>0.30 or max_xi1>0.20:
         raise RuntimeError(
             f'EZmock estimator sanity gate failed: max|xi0|={max_xi0:.6g}, '
             f'max|xi1|={max_xi1:.6g}; expected placebo-scale values. '
-            'Check random survey selection/normalization before continuing.')
+            'Check realization-specific random survey selection/normalization before continuing.')
 
     wake=[]; dop=[]
     for b,m in zip(blocks,zmeta):
@@ -149,7 +140,7 @@ def main():
       'sanity':{'max_abs_xi0':max_xi0,'max_abs_xi1':max_xi1,'gate_max_abs_xi0':0.30,'gate_max_abs_xi1':0.20},
       'window_model':'pair-level response to xi_odd^{ij}=(m_j-m_i) mu T(s,z), evaluated through the identical sampled DD geometry and RR normalization',
       'wake_forward_response':wake.tolist(),'doppler_forward_response':dop.tolist(),'xi1_proxy_odd':xi1.tolist(),
-      'guardrail':'EZmock public DR1 files used here lack released luminosity columns. This is an equal-count random-rank placebo covariance/systematics control, not a luminosity-matched covariance and not a halo-mass wake constraint. The homogeneous local ensemble reuses one validated full survey-random pair as the selection-function pool while preserving current-mock counts per narrow-z/cap cell. Abacus remains the physical luminosity-ranked mock validation.'
+      'guardrail':'EZmock public DR1 files used here lack released luminosity columns. This is an equal-count random-rank placebo covariance/systematics control, not a luminosity-matched covariance and not a halo-mass wake constraint. Each included realization uses its own released clustering random catalogs at approximately 2x selected random density. Abacus remains the physical luminosity-ranked mock validation.'
     }
     (out/f'{stem}_summary.json').write_text(json.dumps(summary,indent=2)+'\n')
     print('PHASE7_EZMOCK_PLACEBO_REALIZATION',json.dumps(summary))
