@@ -18,7 +18,7 @@ The control additionally measures
 
 from the same DESI DR1 BGS galaxies, luminosity-rank marks, sampled pair geometry, redshift bins, separation bins, random catalogues and jackknife regions.
 
-No neutrino-wake template is fit to the octupole. The octupole is only an orthogonal odd-sector null/consistency observable.
+No neutrino-wake template is fit to the octupole. The octupole is only an orthogonal odd-sector null/consistency observable and is not a fifth candidate headline coefficient.
 
 ## Predeclared primary test
 
@@ -44,12 +44,30 @@ The reproduction gate passed exactly:
 
 Therefore the added octupole code path does not alter the frozen Phase-7 dipole observable.
 
+## Covariance and condition-number definition
+
+The octupole jackknife covariance is first formed as the standard delete-one covariance `C_JK` from 30 regions. Its reported raw rank is `18/18`. For inversion, the code adds a small diagonal ridge
+
+\[
+r = \max\left(10^{-7}\lambda_{\max}(C_{\rm JK}),\;10^{-6}\,\mathrm{median}[\mathrm{diag}(C_{\rm JK})],\;10^{-14}\right)
+\]
+
+and uses `C_reg = C_JK + r I`.
+
+The quoted octupole condition number
+
+`kappa = 440.8145`
+
+is **the condition number of the ridge-regularized covariance `C_reg` used in the Mahalanobis inverse**, not the condition number of the raw jackknife covariance. The raw covariance is full rank, but its condition number was not separately reported by this run. The ridge added for the octupole is `3.373602582674635e-10`.
+
+For comparison, the exactly reproduced dipole follows the same convention and has regularized condition number `932.3921`.
+
 ## Final octupole result
 
 The predeclared octupole null test gives:
 
-- covariance rank: `18/18`
-- regularized covariance condition number: `440.815`
+- raw jackknife covariance rank: `18/18`
+- ridge-regularized covariance condition number: `440.815`
 - global Mahalanobis statistic: `15.6936`
 - empirical permutation p-value: `0.8181818`
 - asymptotic chi-square diagnostic p-value: `0.6139214`
@@ -63,6 +81,10 @@ The predeclared decision rule is therefore satisfied:
 **STATUS: CONSISTENT_WITH_NULL / PASS_NULL_CONTROL**
 
 This does not constitute a second neutrino-wake measurement. It is an orthogonal angular-control result showing no significant higher odd-multipole structure in the same frozen tracer sample and pair geometry.
+
+## Observational inference hierarchy
+
+The sole publication-facing headline observational coefficient remains the conservative full-sample five-tracer luminosity-rank DESI DR1 dipole fit, `A_wake = -0.0739012 +/- 0.0851661` (`-0.868 sigma`), because it is the direct real-data analysis fixed before the later mock-covariance closure; Gfinder, EZmock, Abacus and the present `ell=3` octupole are validation/control layers, not alternative headline estimates.
 
 ## Archived outputs
 
