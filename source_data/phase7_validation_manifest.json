@@ -48,6 +48,7 @@
     },
     "abacus_physical_mock_calibration": {
       "source": "source_data/phase7_abacus_final_summary.json",
+      "amplitude_sweep_source": "source_data/phase7_abacus_injection_amplitude_sweep.json",
       "workflow_run_id": 34780454743,
       "mock_count": 25,
       "mock_ids": "0-24",
@@ -58,6 +59,9 @@
       "conservative_wake_z": -1.7789302566501861,
       "empirical_two_sided_pvalue": 0.07692307692307693,
       "unit_injection_mean": 1.0000000000000262,
+      "amplitude_sweep_range": [-2.0, 2.0],
+      "amplitude_sweep_slope": 1.0000000000000262,
+      "amplitude_sweep_status": "PASS",
       "status": "PASS_NULL"
     }
   },
@@ -66,6 +70,7 @@
     "EZmock is a random-rank geometry/covariance/systematics placebo ensemble, not a luminosity-matched physical covariance.",
     "Abacus is the physical luminosity-ranked high-fidelity mock layer.",
     "The conservative nuisance-projected DESI result is the primary real-data inference; the minimal two-template fit is seed-sensitive and retained only as a diagnostic/control.",
+    "The Abacus amplitude sweep is a compressed-vector / forward-window linear-response validation, not an independent catalog-level signal injection before pair compression.",
     "No real-data or mock result in this snapshot is a claimed neutrino-wake detection.",
     "Exploratory shared-random EZmock outputs are excluded from production."
   ]
