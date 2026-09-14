@@ -25,6 +25,7 @@ jobs:
           git -C class_public remote add origin https://github.com/lesgourg/class_public.git
           git -C class_public fetch --depth 1 origin e85808324f51fc694d12e3ed7439552a3c3f9540
           git -C class_public checkout --detach FETCH_HEAD
+          test "$(git -C class_public rev-parse HEAD)" = "e85808324f51fc694d12e3ed7439552a3c3f9540"
       - run: python -m pip install ./class_public
       - name: Build fixed templates
         run: |
@@ -33,6 +34,7 @@ jobs:
         with:
           name: phase7-abacus-template
           path: phase7_template/
+          if-no-files-found: error
 
   mocks:
     needs: template
@@ -59,20 +61,50 @@ jobs:
           set -euo pipefail
           M='${{ matrix.mock }}'
           PRIMARY='https://data.desi.lbl.gov/public/dr1'
+          AWS='https://desidata.s3.amazonaws.com/dr1'
           PIC='https://webdav-hdfs.pic.es/data/public/DESI/DR1'
           ROOT="survey/catalogs/dr1/mocks/AbacusSummit/bright/v1/mock${M}"
-          fetch_one () {
-            rel="$1"; out="$2"; rm -f "$out"
-            echo "DOWNLOAD $rel"
-            if ! curl -fL --retry 8 --retry-all-errors --retry-delay 10 \
-                --connect-timeout 60 --max-time 3600 -o "$out" "$PRIMARY/$rel"; then
-              echo "DESI primary unavailable; trying PIC mirror"
-              rm -f "$out"
-              curl -k -fL --retry 3 --retry-all-errors --retry-delay 10 \
-                --connect-timeout 30 --max-time 3600 -o "$out" "$PIC/$rel"
-            fi
-            test -s "$out"
+
+          fetch_source () {
+            local base="$1" rel="$2" out="$3" insecure="${4:-0}"
+            local part="${out}.part" attempt rc
+            rm -f "$part"
+            for attempt in $(seq 1 8); do
+              echo "DOWNLOAD attempt ${attempt}/8: ${base}/${rel}"
+              set +e
+              if [[ "$insecure" == '1' ]]; then
+                curl -k -fL --retry 2 --retry-all-errors --retry-delay 5 \
+                  --connect-timeout 60 --max-time 3600 -C - -o "$part" "${base}/${rel}"
+              else
+                curl -fL --retry 2 --retry-all-errors --retry-delay 5 \
+                  --connect-timeout 60 --max-time 3600 -C - -o "$part" "${base}/${rel}"
+              fi
+              rc=$?
+              set -e
+              if [[ "$rc" -eq 0 && -s "$part" ]]; then
+                mv "$part" "$out"
+                echo "DOWNLOAD COMPLETE: $out ($(stat -c '%s' "$out") bytes)"
+                return 0
+              fi
+              if [[ "$rc" -eq 33 ]]; then rm -f "$part"; fi
+              sleep 10
+            done
+            rm -f "$part"
+            return 1
           }
+
+          fetch_one () {
+            local rel="$1" out="$2"
+            rm -f "$out" "${out}.part"
+            fetch_source "$PRIMARY" "$rel" "$out" && return 0
+            echo 'DESI primary unavailable; trying AWS DR1 mirror'
+            fetch_source "$AWS" "$rel" "$out" && return 0
+            echo 'AWS mirror unavailable; trying PIC DR1 mirror'
+            fetch_source "$PIC" "$rel" "$out" 1 && return 0
+            echo "ERROR: all DR1 sources failed for $rel" >&2
+            return 18
+          }
+
           fetch_one "$ROOT/BGS_BRIGHT-21.5_complete_NGC_clustering.dat.fits" mock_NGC.dat.fits
           fetch_one "$ROOT/BGS_BRIGHT-21.5_complete_SGC_clustering.dat.fits" mock_SGC.dat.fits
           fetch_one "$ROOT/BGS_BRIGHT-21.5_complete_NGC_0_clustering.ran.fits" mock_NGC.ran.fits
@@ -101,6 +133,10 @@ jobs:
             --analysis-z-edges 0.10,0.20,0.30,0.40 \
             --sep-edges 20,40,60,80,100,120,140 \
             --random-factor 1.0 --neighbors-per-anchor 48 --theta-min-deg 0.05 --seed 20260913
+      - name: Record realization provenance
+        run: |
+          git rev-parse HEAD > mock_output/REPOSITORY_COMMIT.txt
+          printf '%s\n' '${{ matrix.mock }}' > mock_output/ABACUS_MOCK_ID.txt
       - uses: actions/upload-artifact@v4
         with:
           name: phase7-abacus-${{ matrix.mock }}
@@ -108,7 +144,10 @@ jobs:
           if-no-files-found: error
 
   aggregate:
-    needs: mocks
+    # A transport-only failure of one realization must not discard the completed ensemble.
+    # The aggregate records exact IDs present and requires at least 20 complete pairs.
+    if: ${{ always() && needs.template.result == 'success' }}
+    needs: [template, mocks]
     runs-on: ubuntu-24.04
     timeout-minutes: 30
     steps:
@@ -127,7 +166,8 @@ jobs:
           python code/desi_phase7_mock_aggregate.py \
             --mock-root abacus_mock_outputs \
             --real-vector source_data/wake_phase7_multitracer_real_vector.csv \
-            --outdir phase7_abacus_aggregate
+            --outdir phase7_abacus_aggregate \
+            --min-count 20
       - name: Record provenance
         run: git rev-parse HEAD > phase7_abacus_aggregate/REPOSITORY_COMMIT.txt
       - uses: actions/upload-artifact@v4
