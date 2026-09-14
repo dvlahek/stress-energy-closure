@@ -3,9 +3,8 @@ set -euo pipefail
 
 # Local Linux runner for the Phase-7 EZmock five-tracer placebo covariance control.
 # Usage:
-#   bash scripts/run_ezmock_placebo_local.sh 1
-#   bash scripts/run_ezmock_placebo_local.sh 1 8
-#   KEEP_FITS=1 bash scripts/run_ezmock_placebo_local.sh 1 2
+#   bash scripts/run_ezmock_placebo_local.sh 3
+#   bash scripts/run_ezmock_placebo_local.sh 3 16
 #
 # Large realization-specific random FITS are not required once a validated
 # NGC/SGC random pair has been saved under shared_random_mock2/.  The launcher
@@ -14,7 +13,7 @@ set -euo pipefail
 # footprint without freezing mock2 radial selection and removes ~GB/mock of
 # repeated random-catalog downloads.
 
-FIRST="${1:-1}"
+FIRST="${1:-3}"
 LAST="${2:-$FIRST}"
 KEEP_FITS="${KEEP_FITS:-0}"
 ROOT_BASE='https://data.desi.lbl.gov/public/dr1/survey/catalogs/dr1/mocks/EZmock/bright/v1'
@@ -67,8 +66,6 @@ if [[ ! -f "$TEMPLATE_CSV" ]]; then
   exit 3
 fi
 
-# Build the compact angular cache once if the user has preserved the validated
-# mock2 random pair.  The source FITS remain untouched.
 if [[ ! -s "$SHARED_RANDOM_CACHE" && \
       -s "$SHARED_RANDOM_DIR/mock_NGC.ran.fits" && \
       -s "$SHARED_RANDOM_DIR/mock_SGC.ran.fits" ]]; then
@@ -97,15 +94,11 @@ fetch_one () {
   name=$(basename "$out")
   mkdir -p "$dir"
 
-  # Files produced by the current launcher are complete once renamed from .part.
   if [[ -s "$out" && ! -e "$part" ]]; then
     echo "REUSE existing download: $out ($(stat -c '%s' "$out") bytes)"
     return 0
   fi
-
-  if [[ -e "$out" && ! -s "$out" ]]; then
-    rm -f "$out"
-  fi
+  if [[ -e "$out" && ! -s "$out" ]]; then rm -f "$out"; fi
 
   if command -v aria2c >/dev/null 2>&1; then
     echo "DOWNLOAD segmented: $url"
@@ -133,12 +126,9 @@ fetch_one () {
 
   for attempt in $(seq 1 "$DOWNLOAD_ATTEMPTS"); do
     have=0
-    if [[ -f "$part" ]]; then
-      have=$(stat -c '%s' "$part" 2>/dev/null || echo 0)
-    fi
+    if [[ -f "$part" ]]; then have=$(stat -c '%s' "$part" 2>/dev/null || echo 0); fi
     echo "DOWNLOAD attempt $attempt/$DOWNLOAD_ATTEMPTS: $url"
     echo "  existing bytes: $have"
-
     set +e
     if [[ "$have" -gt 0 ]]; then
       curl --http1.1 -fL --connect-timeout 60 --max-time 900 --continue-at - -o "$part" "$url"
@@ -148,17 +138,13 @@ fetch_one () {
       rc=$?
     fi
     set -e
-
     if [[ "$rc" -eq 0 && -s "$part" ]]; then
       mv "$part" "$out"
       echo "DOWNLOAD COMPLETE: $out ($(stat -c '%s' "$out") bytes)"
       return 0
     fi
-
     have=0
-    if [[ -f "$part" ]]; then
-      have=$(stat -c '%s' "$part" 2>/dev/null || echo 0)
-    fi
+    if [[ -f "$part" ]]; then have=$(stat -c '%s' "$part" 2>/dev/null || echo 0); fi
     echo "  interrupted (curl rc=$rc), retained $have bytes; reconnecting..."
     if [[ "$rc" -eq 33 ]]; then
       echo 'ERROR: server refused HTTP range resume (curl rc=33).' >&2
@@ -167,7 +153,6 @@ fetch_one () {
     fi
     sleep 5
   done
-
   echo "ERROR: download did not complete after $DOWNLOAD_ATTEMPTS resumable attempts: $url" >&2
   echo "Partial file retained at: $part" >&2
   return 18
@@ -205,8 +190,7 @@ from pathlib import Path
 import sys
 w=Path(sys.argv[1]); vr=int(sys.argv[2])
 files=[w/'mock_NGC.dat.fits',w/'mock_SGC.dat.fits']
-if vr:
-    files += [w/'mock_NGC.ran.fits',w/'mock_SGC.ran.fits']
+if vr: files += [w/'mock_NGC.ran.fits',w/'mock_SGC.ran.fits']
 for p in files:
     with fits.open(p,memmap=True) as h:
         h.verify('exception')
@@ -225,22 +209,22 @@ PY
     --random-factor "$RANDOM_FACTOR" --neighbors-per-anchor 48 --theta-min-deg 0.05 \
     --seed "$SEED"
 
-  if [[ "$KEEP_FITS" != '1' ]]; then
-    rm -rf "$WORK"
-  fi
+  if [[ "$KEEP_FITS" != '1' ]]; then rm -rf "$WORK"; fi
   echo "DONE mock $M -> $OUT"
 done
 
 N=$(find "$OUTROOT" -type f -name 'mock_*_vector.csv' | wc -l | tr -d ' ')
-echo "Completed vectors currently available: $N"
+H=$(find "$OUTROOT" -type f -name 'mock_*_vector.csv' | grep -Ev '/mock_0[12]_vector\.csv$' | wc -l | tr -d ' ' || true)
+echo "Completed vectors currently available: $N total; $H homogeneous shared-random candidates (mock3+)"
 
-if [[ "$N" -ge 40 ]]; then
-  echo 'At least 40 realizations available; running aggregate.'
+if [[ "$H" -ge 40 ]]; then
+  echo 'At least 40 homogeneous mock3+ realizations available; running aggregate.'
   "$PYTHON_BIN" code/desi_phase7_ezmock_aggregate.py \
     --mock-root "$OUTROOT" \
     --real-vector source_data/wake_phase7_multitracer_real_vector.csv \
-    --outdir "$OUTROOT/aggregate"
+    --outdir "$OUTROOT/aggregate" \
+    --min-mock-id 3 --require-shared-random
   echo "Aggregate: $OUTROOT/aggregate/summary_ezmock_placebo_covariance.json"
 else
-  echo 'Aggregate requires >=40 completed realizations. Run additional mock ranges when ready.'
+  echo 'Aggregate requires >=40 homogeneous shared-random realizations from mock3 onward.'
 fi
