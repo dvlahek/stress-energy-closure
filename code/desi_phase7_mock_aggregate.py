@@ -1,19 +1,39 @@
 #!/usr/bin/env python3
-"""Aggregate cut-sky Phase-7 mock vectors into a survey-calibrated likelihood.
+"""Aggregate cut-sky Phase-7 Abacus mock vectors into a survey-calibrated likelihood.
 
 Primary covariance is Oracle Approximating Shrinkage (OAS), appropriate for the
-small Abacus ensemble relative to the 18-component data vector.  The raw sample
-covariance and its Hartlap factor are reported as a conservative diagnostic.
+small Abacus ensemble relative to the 18-component data vector. The raw sample
+covariance and its Hartlap factor are reported as a finite-mock diagnostic.
 The real-data vector is the predeclared full-sample five-tracer null-corrected
 vector stored in source_data.
+
+Vector and window files are paired explicitly by mock ID. This prevents a
+missing file from silently shifting two independently sorted file lists.
 """
 from __future__ import annotations
-import argparse, glob, json
+import argparse, glob, json, re
 from pathlib import Path
 import numpy as np
 
 import desi_dr1_phase7_lss as p
 import desi_dr1_phase7_zresolved as zr
+
+
+def _mock_id(path: str | Path, suffix: str) -> int:
+    m = re.search(rf"mock_(\d+)_{suffix}\.csv$", str(path))
+    if not m:
+        raise ValueError(f"cannot parse mock id from {path}")
+    return int(m.group(1))
+
+
+def _indexed_files(root: Path, suffix: str) -> dict[int, str]:
+    out: dict[int, str] = {}
+    for path in glob.glob(str(root / "**" / f"mock_*_{suffix}.csv"), recursive=True):
+        mid = _mock_id(path, suffix)
+        if mid in out:
+            raise RuntimeError(f"duplicate mock {mid} {suffix} files: {out[mid]} and {path}")
+        out[mid] = path
+    return out
 
 
 def oas_cov(X):
@@ -38,16 +58,36 @@ def fit_bundle(y,cov,s,zmeta,wake,dop):
 
 def main():
     ap=argparse.ArgumentParser()
-    ap.add_argument('--mock-root',required=True); ap.add_argument('--real-vector',required=True); ap.add_argument('--outdir',required=True)
+    ap.add_argument('--mock-root',required=True)
+    ap.add_argument('--real-vector',required=True)
+    ap.add_argument('--outdir',required=True)
+    ap.add_argument('--min-count',type=int,default=20,
+                    help='minimum number of complete matched mock vector/window pairs')
     args=ap.parse_args(); out=Path(args.outdir); out.mkdir(parents=True,exist_ok=True)
-    vf=sorted(glob.glob(str(Path(args.mock_root)/'**/mock_*_vector.csv'),recursive=True))
-    wf=sorted(glob.glob(str(Path(args.mock_root)/'**/mock_*_window.csv'),recursive=True))
-    if len(vf)<20 or len(vf)!=len(wf): raise RuntimeError(f'need >=20 matched mocks; vectors={len(vf)} windows={len(wf)}')
+
+    root=Path(args.mock_root)
+    vectors=_indexed_files(root,'vector')
+    windows=_indexed_files(root,'window')
+    vector_ids=set(vectors); window_ids=set(windows)
+    missing_window=sorted(vector_ids-window_ids)
+    missing_vector=sorted(window_ids-vector_ids)
+    if missing_window or missing_vector:
+        raise RuntimeError(
+            f'unmatched Abacus outputs: missing_window={missing_window}, missing_vector={missing_vector}')
+    ids=sorted(vector_ids & window_ids)
+    if len(ids)<args.min_count:
+        raise RuntimeError(f'need >={args.min_count} matched mocks; found={len(ids)} ids={ids}')
+
     X=[]; W=[]; D=[]; meta_ref=None; s_ref=None
-    for vpath,wpath in zip(vf,wf):
-        v=np.genfromtxt(vpath,delimiter=',',names=True)
-        w=np.genfromtxt(wpath,delimiter=',',names=True)
-        X.append(np.asarray(v['xi1_proxy_odd'],float)); W.append(np.asarray(w['wake_forward_response'],float)); D.append(np.asarray(w['doppler_forward_response'],float))
+    for mid in ids:
+        v=np.genfromtxt(vectors[mid],delimiter=',',names=True)
+        w=np.genfromtxt(windows[mid],delimiter=',',names=True)
+        xv=np.asarray(v['xi1_proxy_odd'],float)
+        ww=np.asarray(w['wake_forward_response'],float)
+        dd=np.asarray(w['doppler_forward_response'],float)
+        if xv.ndim!=1 or ww.shape!=xv.shape or dd.shape!=xv.shape:
+            raise RuntimeError(f'mock {mid} vector/window dimension mismatch')
+        X.append(xv); W.append(ww); D.append(dd)
         s=np.asarray(v['s_Mpc_over_h'],float)
         zlo=np.asarray(v['zlo'],float); zhi=np.asarray(v['zhi'],float); ze=np.asarray(v['z_effective'],float)
         if s_ref is None:
@@ -97,7 +137,8 @@ def main():
     np.savetxt(out/'abacus_wake_null_and_injection.csv',np.column_stack([aw,rec]),delimiter=',',header='null_wake_amplitude,unit_injection_recovered_amplitude',comments='')
     summary={
       'scope':'AbacusSummit cut-sky covariance and pair-window calibration for the five-tracer luminosity-proxy estimator.',
-      'mock_count':int(n),'vector_dimension':int(pdim),'sample_covariance_rank':rank,'oas_shrinkage':shrink,'oas_condition_number':cond,'hartlap_factor_for_raw_sample_covariance':hartlap,
+      'mock_count':int(n),'mock_ids':ids,'vector_dimension':int(pdim),'sample_covariance_rank':rank,
+      'oas_shrinkage':shrink,'oas_condition_number':cond,'hartlap_factor_for_raw_sample_covariance':hartlap,
       'mock_mean_vector':mean.tolist(),'mean_wake_forward_response':Wm.tolist(),'mean_doppler_forward_response':Dm.tolist(),
       'real_data_fit_oas':{'minimal':fit2,'conservative':fitc,'empirical_two_sided_wake_pvalue':pemp},
       'real_data_fit_hartlap_sample_covariance':{'minimal':fit2_h,'conservative':fitc_h},
