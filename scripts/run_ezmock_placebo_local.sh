@@ -7,14 +7,12 @@ set -euo pipefail
 #   bash scripts/run_ezmock_placebo_local.sh 1 8
 #   KEEP_FITS=1 bash scripts/run_ezmock_placebo_local.sh 1 2
 #
-# The script processes one realization at a time and removes the large FITS
-# inputs after each successful realization unless KEEP_FITS=1. Small output
-# vectors/windows remain under phase7_ezmock_local/.
-#
-# DESI's public HTTP endpoint can close long transfers before completion.
-# Downloads are therefore resumable. If aria2c is available it is preferred
-# because segmented HTTP-range downloads are much faster on this endpoint;
-# curl -C - remains the fallback.
+# Large realization-specific random FITS are not required once a validated
+# NGC/SGC random pair has been saved under shared_random_mock2/.  The launcher
+# builds a compact angular-only cache once; each mock then redraws redshifts
+# from its own data in the same narrow-z/cap cells.  This preserves the survey
+# footprint without freezing mock2 radial selection and removes ~GB/mock of
+# repeated random-catalog downloads.
 
 FIRST="${1:-1}"
 LAST="${2:-$FIRST}"
@@ -27,6 +25,10 @@ SEED="${SEED:-20260913}"
 DOWNLOAD_ATTEMPTS="${DOWNLOAD_ATTEMPTS:-40}"
 ARIA_CONNECTIONS="${ARIA_CONNECTIONS:-8}"
 RANDOM_FACTOR="${RANDOM_FACTOR:-2.0}"
+SHARED_RANDOM_DIR="${SHARED_RANDOM_DIR:-$OUTROOT/shared_random_mock2}"
+SHARED_RANDOM_CACHE="${SHARED_RANDOM_CACHE:-$SHARED_RANDOM_DIR/shared_random_angular.npz}"
+SHARED_RANDOM_NGC_COUNT="${SHARED_RANDOM_NGC_COUNT:-1000000}"
+SHARED_RANDOM_SGC_COUNT="${SHARED_RANDOM_SGC_COUNT:-500000}"
 
 mkdir -p "$OUTROOT" "$TEMPLATE_DIR"
 
@@ -60,27 +62,31 @@ PY
 
 if [[ ! -f "$TEMPLATE_CSV" ]]; then
   echo "Template not found at $TEMPLATE_CSV"
-  echo 'Building fixed Phase-7 template requires the pinned CLASS Python module.'
-  if ! "$PYTHON_BIN" - <<'PY'
-import importlib.util,sys
-sys.exit(0 if importlib.util.find_spec('classy') else 1)
-PY
-  then
-    cat >&2 <<'EOF'
-ERROR: CLASS/classy is not installed in the active Python environment.
-Install the pinned CLASS version once inside your virtual environment:
-  rm -rf class_public
-  git clone https://github.com/lesgourg/class_public.git class_public
-  git -C class_public fetch origin e85808324f51fc694d12e3ed7439552a3c3f9540
-  git -C class_public checkout e85808324f51fc694d12e3ed7439552a3c3f9540
-  python -m pip install ./class_public
-Then rerun this script.
-EOF
-    exit 3
-  fi
-  "$PYTHON_BIN" code/wake_phase7_template.py \
-    --outdir "$TEMPLATE_DIR" --mass 0.06 --z-match 1100 --frac 0.30 \
-    --s-min 20 --s-max 140 --s-step 2
+  echo 'ERROR: local EZmock runs now expect the fixed validated Phase-7 template.' >&2
+  echo 'Place phase7_templates.csv under phase7_template/; do not rebuild CLASS for this transport run.' >&2
+  exit 3
+fi
+
+# Build the compact angular cache once if the user has preserved the validated
+# mock2 random pair.  The source FITS remain untouched.
+if [[ ! -s "$SHARED_RANDOM_CACHE" && \
+      -s "$SHARED_RANDOM_DIR/mock_NGC.ran.fits" && \
+      -s "$SHARED_RANDOM_DIR/mock_SGC.ran.fits" ]]; then
+  echo "Building compact shared angular random cache: $SHARED_RANDOM_CACHE"
+  "$PYTHON_BIN" code/desi_phase7_build_shared_random_cache.py \
+    --ngc "$SHARED_RANDOM_DIR/mock_NGC.ran.fits" \
+    --sgc "$SHARED_RANDOM_DIR/mock_SGC.ran.fits" \
+    --out "$SHARED_RANDOM_CACHE" \
+    --ngc-count "$SHARED_RANDOM_NGC_COUNT" \
+    --sgc-count "$SHARED_RANDOM_SGC_COUNT" \
+    --seed 20260914
+fi
+
+if [[ -s "$SHARED_RANDOM_CACHE" ]]; then
+  echo "Using shared angular random cache: $SHARED_RANDOM_CACHE"
+  echo 'Random redshifts will be redrawn separately for each mock within narrow-z/NGC-SGC cells.'
+else
+  echo 'Shared random cache not available; realization-specific random FITS will be downloaded.'
 fi
 
 fetch_one () {
@@ -91,19 +97,18 @@ fetch_one () {
   name=$(basename "$out")
   mkdir -p "$dir"
 
-  # Preserve a partial file left by an older launcher.
+  # Files produced by the current launcher are complete once renamed from .part.
   if [[ -s "$out" && ! -e "$part" ]]; then
-    echo "Preserving existing partial download: $out -> $part"
-    mv "$out" "$part"
-  elif [[ -e "$out" && ! -s "$out" ]]; then
+    echo "REUSE existing download: $out ($(stat -c '%s' "$out") bytes)"
+    return 0
+  fi
+
+  if [[ -e "$out" && ! -s "$out" ]]; then
     rm -f "$out"
   fi
 
   if command -v aria2c >/dev/null 2>&1; then
     echo "DOWNLOAD segmented: $url"
-    # aria2c continues an existing .part file and keeps its .aria2 control file
-    # across interrupted runs.  Multiple HTTP ranges avoid the very slow
-    # single-stream transfer observed from the DESI LBL endpoint.
     aria2c \
       --continue=true \
       --max-connection-per-server="$ARIA_CONNECTIONS" \
@@ -136,14 +141,10 @@ fetch_one () {
 
     set +e
     if [[ "$have" -gt 0 ]]; then
-      curl --http1.1 -fL \
-        --connect-timeout 60 --max-time 900 \
-        --continue-at - -o "$part" "$url"
+      curl --http1.1 -fL --connect-timeout 60 --max-time 900 --continue-at - -o "$part" "$url"
       rc=$?
     else
-      curl --http1.1 -fL \
-        --connect-timeout 60 --max-time 900 \
-        -o "$part" "$url"
+      curl --http1.1 -fL --connect-timeout 60 --max-time 900 -o "$part" "$url"
       rc=$?
     fi
     set -e
@@ -159,7 +160,6 @@ fetch_one () {
       have=$(stat -c '%s' "$part" 2>/dev/null || echo 0)
     fi
     echo "  interrupted (curl rc=$rc), retained $have bytes; reconnecting..."
-
     if [[ "$rc" -eq 33 ]]; then
       echo 'ERROR: server refused HTTP range resume (curl rc=33).' >&2
       echo "Partial file retained at: $part" >&2
@@ -179,7 +179,6 @@ for M in $(seq "$FIRST" "$LAST"); do
   OUT="$OUTROOT/mock_${M}"
   mkdir -p "$WORK" "$OUT"
 
-  # A completed realization is never downloaded again unless FORCE=1.
   if [[ "${FORCE:-0}" != '1' && -s "$OUT/mock_$(printf '%02d' "$M")_summary.json" && -s "$OUT/mock_$(printf '%02d' "$M")_vector.csv" ]]; then
     echo "SKIP completed mock $M -> $OUT"
     continue
@@ -188,15 +187,27 @@ for M in $(seq "$FIRST" "$LAST"); do
   echo "==== EZmock $M ===="
   fetch_one "$ROOT/BGS_ffa_NGC_clustering.dat.fits" "$WORK/mock_NGC.dat.fits"
   fetch_one "$ROOT/BGS_ffa_SGC_clustering.dat.fits" "$WORK/mock_SGC.dat.fits"
-  fetch_one "$ROOT/BGS_ffa_NGC_0_clustering.ran.fits" "$WORK/mock_NGC.ran.fits"
-  fetch_one "$ROOT/BGS_ffa_SGC_0_clustering.ran.fits" "$WORK/mock_SGC.ran.fits"
 
-  "$PYTHON_BIN" - "$WORK" <<'PY'
+  RANDOM_ARGS=()
+  VALIDATE_RANDOMS=0
+  if [[ -s "$SHARED_RANDOM_CACHE" ]]; then
+    RANDOM_ARGS=(--shared-random-cache "$SHARED_RANDOM_CACHE")
+  else
+    fetch_one "$ROOT/BGS_ffa_NGC_0_clustering.ran.fits" "$WORK/mock_NGC.ran.fits"
+    fetch_one "$ROOT/BGS_ffa_SGC_0_clustering.ran.fits" "$WORK/mock_SGC.ran.fits"
+    RANDOM_ARGS=(--random "$WORK/mock_NGC.ran.fits" "$WORK/mock_SGC.ran.fits")
+    VALIDATE_RANDOMS=1
+  fi
+
+  "$PYTHON_BIN" - "$WORK" "$VALIDATE_RANDOMS" <<'PY'
 from astropy.io import fits
 from pathlib import Path
 import sys
-w=Path(sys.argv[1])
-for p in [w/'mock_NGC.dat.fits',w/'mock_SGC.dat.fits',w/'mock_NGC.ran.fits',w/'mock_SGC.ran.fits']:
+w=Path(sys.argv[1]); vr=int(sys.argv[2])
+files=[w/'mock_NGC.dat.fits',w/'mock_SGC.dat.fits']
+if vr:
+    files += [w/'mock_NGC.ran.fits',w/'mock_SGC.ran.fits']
+for p in files:
     with fits.open(p,memmap=True) as h:
         h.verify('exception')
         if len(h)<2 or h[1].data is None or len(h[1].data)==0:
@@ -206,7 +217,7 @@ PY
 
   "$PYTHON_BIN" code/desi_phase7_ezmock_placebo_realization.py \
     --data "$WORK/mock_NGC.dat.fits" "$WORK/mock_SGC.dat.fits" \
-    --random "$WORK/mock_NGC.ran.fits" "$WORK/mock_SGC.ran.fits" \
+    "${RANDOM_ARGS[@]}" \
     --templates "$TEMPLATE_CSV" --outdir "$OUT" --mock-id "$M" \
     --zmin 0.10 --zmax 0.40 --dz-proxy 0.02 --ntracer 5 \
     --analysis-z-edges 0.10,0.20,0.30,0.40 \
