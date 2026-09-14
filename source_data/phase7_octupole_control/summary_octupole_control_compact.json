@@ -1,6 +1,8 @@
 {
   "status": "PASS_NULL_CONTROL",
   "scope": "Predeclared exploratory orthogonal odd-sector ell=3 control on the frozen DESI DR1 BGS five-tracer luminosity-rank sample. No physical wake template is fit to ell=3.",
+  "headline_status": "NOT_A_HEADLINE_CANDIDATE",
+  "primary_observational_inference": "The sole publication-facing headline coefficient remains the conservative full-sample five-tracer luminosity-rank DESI DR1 dipole fit: A_wake = -0.0739012 +/- 0.0851661 (-0.868 sigma). Gfinder, EZmock, Abacus and ell=3 are validation/control layers.",
   "predeclared_decision_rule": "empirical p >= 0.05: consistent with null; empirical p < 0.05: investigate survey/estimator systematics before any physical interpretation",
   "observable": {
     "ell": 3,
@@ -20,6 +22,13 @@
     "jackknife_regions": 30,
     "permutations": 32
   },
+  "covariance_condition_number_definition": {
+    "raw_covariance": "Standard delete-one jackknife covariance C_JK from 30 regions.",
+    "regularization": "C_reg = C_JK + r I, with r = max(1e-7 * lambda_max(C_JK), 1e-6 * median(diag(C_JK)), 1e-14).",
+    "reported_condition_number": "np.linalg.cond(C_reg), i.e. the condition number of the ridge-regularized covariance used in the Mahalanobis inverse.",
+    "raw_condition_number_reported": false,
+    "note": "The raw covariance is full rank (18/18), but its condition number was not separately reported by this run."
+  },
   "dipole_reproduction_gate": {
     "raw_covariance_rank": 18,
     "regularized_condition_number": 932.3920816549149,
@@ -34,6 +43,7 @@
   "octupole_null_test": {
     "status": "CONSISTENT_WITH_NULL",
     "raw_covariance_rank": 18,
+    "ridge_added": 3.373602582674635e-10,
     "regularized_condition_number": 440.81451808310493,
     "global_mahalanobis": 15.693601151214075,
     "global_empirical_pvalue": 0.8181818181818182,
@@ -50,6 +60,6 @@
       "z": -1.3220659244304396
     }
   },
-  "interpretation_guardrail": "This is not a second neutrino-wake measurement. It is an orthogonal odd-multipole null/control using exactly the same frozen tracer sample and sampled pair geometry as the Phase-7 dipole analysis.",
+  "interpretation_guardrail": "This is not a second neutrino-wake measurement and not a fifth candidate headline result. It is an orthogonal odd-multipole null/control using exactly the same frozen tracer sample and sampled pair geometry as the Phase-7 dipole analysis.",
   "archived_data_vector": "source_data/phase7_octupole_control/data_vector_octupole_control.csv"
 }
