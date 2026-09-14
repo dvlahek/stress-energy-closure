@@ -1,10 +1,15 @@
 # Gravitational response recovers kinetic information beyond stress-energy
 
-Code, source-data summaries and reproducibility workflows accompanying the manuscript **“Gravitational response recovers kinetic information beyond stress-energy”**.
+Code, source-data summaries and reproducibility workflows accompanying the manuscript
+**“Gravitational response recovers kinetic information beyond stress-energy”**.
 
-The project asks what information gravity retains after collisionless matter is compressed to its instantaneous particle current and stress-energy tensor. The main analytic results separate four levels of information: instantaneous source equivalence, dynamical inequivalence, ideal causal identifiability and finite-data recoverability. For massive isotropic collisionless matter, the complete causal transverse-traceless response at fixed known nonzero mass and wave number uniquely determines the radial kinetic distribution in the stated weighted-decay class. The isotropic massless limit removes this radial encoding exactly. On finite response windows the forward map remains injective but compact, so inversion is unstable.
-
-The numerical calculations validate the exact Einstein–Vlasov constructions, the response theory and the observational controls. The observational forecasts are sensitivity studies, not detections.
+The project asks what information gravity retains after collisionless matter is compressed to its
+instantaneous particle current and stress-energy tensor. The analytic results separate source
+equivalence, dynamical inequivalence, ideal causal identifiability and finite-data recoverability.
+For massive isotropic collisionless matter, the complete ideal causal transverse-traceless response
+at fixed known nonzero mass and wave number identifies the radial kinetic distribution in the stated
+class. The isotropic massless limit removes this radial encoding exactly. Finite response windows
+remain ill-conditioned even when the ideal map is injective.
 
 ## Reproducing the core calculations
 
@@ -12,11 +17,6 @@ Python 3.10 or newer is recommended.
 
 ```bash
 python -m pip install -r requirements.txt
-```
-
-Core calculations that do not require CLASS can be run from the repository root:
-
-```bash
 python code/ev_flrw_controls.py --full
 python code/injectivity_tomography.py
 python code/prediction_transfer.py
@@ -26,97 +26,78 @@ python code/hierarchy_test.py
 python code/direct_vs_memory.py --full
 ```
 
-The CLASS-based calculations use the public solver pinned to commit `e85808324f51fc694d12e3ed7439552a3c3f9540`. They can be run locally with a compatible CLASS installation or through the publication workflows in `.github/workflows/`.
+CLASS-based calculations use `class_public` commit
+`e85808324f51fc694d12e3ed7439552a3c3f9540`.
+
+## Final forecast controls
+
+For the final DESI-BGS-like nine-tracer wake calculation at `m_nu = 0.06 eV` and a 30% pointwise
+deformation cap, the fully projected result is `S/N = 0.8605447`; the corresponding linear prediction
+is `0.8607548`. The controlled CLASS/CMB response optimization remains below `S/N = 0.04` for all
+six tested masses from 0.03 to 0.60 eV within the tested smooth ten-function class.
+
+Independent controls include a full-covariance Fisher identity check, a published wake benchmark,
+and halo-mass proxy scatter. At 0.2 dex proxy scatter the projected wake value changes only from
+`0.86054` to `0.83810`.
+
+## Phase-7 DESI DR1 validation
+
+The observational layer is a validation/null test, not a claimed wake detection.
+
+- Redshift-resolved conservative baseline: `A_wake = 0.03184 +/- 0.22249`.
+- Full-sample five-tracer luminosity rank (300,043 galaxies):
+  `A_wake = -0.07390 +/- 0.08517`.
+- Gfinder physical mass-proxy robustness (271,243 matched galaxies):
+  `A_wake = +0.06878 +/- 0.08276`.
+- 30-realization EZmock random-rank placebo covariance:
+  `A_wake = -0.11481 +/- 0.08200`, empirical two-sided `p = 0.0968`.
+  OAS covariance is rank 18/18 with condition number 10.68; unit-injection recovery has mean 1.0.
+
+The EZmock result is explicitly a geometry/covariance/systematics placebo control, not a
+luminosity-matched physical covariance. AbacusSummit is the physical high-fidelity luminosity-ranked
+mock layer.
+
+The top-level snapshot is `source_data/phase7_validation_manifest.json`.
+Exact production choices and rejected exploratory paths are documented in
+`docs/PHASE7_REPRODUCIBILITY.md` and `docs/PHASE7_HISTORY.md`.
 
 ## Publication calculations
 
-The repository keeps the production-facing observational chain and compact independent validation controls on `main`.
+Production-facing scripts include:
+- `code/class_observational_forecast.py`
+- `code/class_response_optimize.py`
+- `code/rsd_hidden_state_forecast.py`
+- `code/rsd_hidden_state_forecast_nonlinear.py`
+- `code/wake_desi_multitracer_fisher.py`
+- `code/wake_desi_robustness.py`
+- `code/wake_fisher_independent_check.py`
+- `code/wake_published_benchmark.py`
+- `code/wake_mass_proxy_scatter.py`
+- `code/desi_dr1_phase7_multitracer_fullsample.py`
+- `code/desi_phase7_gfinder_massproxy.py`
+- `code/desi_phase7_ezmock_placebo_realization.py`
+- `code/desi_phase7_ezmock_aggregate.py`
+- `code/desi_phase7_mock_realization.py`
+- `code/desi_phase7_mock_aggregate.py`
 
-- `code/class_observational_forecast.py` reproduces the controlled CLASS tensor realization.
-- `code/class_response_optimize.py` performs the smooth matched-moment response optimization and mass sweep.
-- `code/rsd_hidden_state_forecast.py` defines the even-parity RSD observable and nuisance projection.
-- `code/rsd_hidden_state_forecast_nonlinear.py` performs the final nonlinear-in-distribution RSD validation.
-- `code/wake_two_tracer_fisher.py` defines the parity-odd wake response and baseline Fisher machinery.
-- `code/wake_desi_bonvin_fisher.py` supplies the relativistic odd-sector survey model and physical calibration.
-- `code/wake_desi_multitracer_fisher.py` implements the full covariance-consistent multi-tracer Fisher calculation.
-- `code/wake_desi_multitracer_fullgrid.py` scans the validated HOD threshold grid and tests tracer-resolution saturation.
-- `code/wake_desi_robustness.py` repeats the final mass, deformation-cap and scale-cut controls.
-- `code/wake_desi_survey_design.py` varies survey area and number density after fixing the final nine-tracer hidden state and physical calibration at the baseline survey.
-- `code/wake_fisher_independent_check.py` independently checks the two-tracer Fisher identity.
-- `code/wake_published_benchmark.py` compares the fixed-normalization threshold dependence with published wake benchmarks.
-- `code/wake_mass_proxy_scatter.py` propagates Gaussian halo-mass proxy scatter through the nine-tracer calculation.
-- `code/desi_dr1_odd_null_test.py` runs an end-to-end parity-odd null test on the public DESI DR1 Gfinder group VAC.
-
-Production and validation GitHub Actions are:
-
-- `class_observational_forecast.yml`
-- `class_response_mass_matrix.yml`
-- `class_response_resolution_convergence.yml`
-- `rsd_hidden_state_forecast.yml`
-- `wake_desi_multitracer_fullgrid.yml`
-- `wake_desi_robustness.yml`
-- `wake_desi_survey_design.yml`
-- `wake_fisher_independent_check.yml`
-- `wake_published_benchmark.yml`
-- `wake_mass_proxy_scatter.yml`
-- `desi_dr1_odd_null_test.yml`
-
-## Final observational controls
-
-The even-parity cosmological calculations show that most of the hidden-state response lies inside ordinary cosmological nuisance directions. The nonlinear RSD control reaches a maximum projected value of `S/N = 0.28792` in the reported 0.60 eV test.
-
-The parity-odd wake is more informative because its leading response samples the relic distribution at resonant momentum. For the final DESI-BGS-like calculation at `m_nu = 0.06 eV`, a 30% pointwise deformation cap and nine disjoint tracer populations give:
-
-| quantity | S/N |
-| --- | ---: |
-| before odd-sector projection | 3.19098 |
-| after wake-amplitude projection | 0.89809 |
-| after the full odd nuisance projection | 0.8605447 |
-| linear prediction for the final projected result | 0.8607548 |
-
-The maximum matched-moment mismatch is below `6.0e-16`. Increasing tracer resolution from five to seven to nine populations gives projected values `0.8530`, `0.8589` and `0.8605`, showing saturation. At fixed number density, exact area scaling of the final baseline places `S/N = 1` at approximately `1.8905e4 deg^2`.
-
-The reported robustness sweep gives:
-
-| control | values | projected S/N |
-| --- | --- | --- |
-| pointwise cap | 10%, 20%, 30% | 0.28687, 0.57371, 0.86054 |
-| `k_max` [h/Mpc] | 0.05, 0.075, 0.10 | 0.34327, 0.58626, 0.86054 |
-| relic mass [eV] | 0.05, 0.06, 0.08, 0.10 | 0.42511, 0.86054, 2.57537, 5.79156 |
-
-For the mass sweep, the physical wake calibration is recomputed for each mass. Those absolute values therefore inherit the normalization assumptions of the adopted literature-calibrated forecast model. They should not be read as a present observational detection claim.
-
-## Independent validation controls
-
-Four additional checks test implementation, external consistency and robustness without changing the production forecast. An independent analytic two-tracer Fisher identity agrees with the full covariance implementation over 10,000 randomized tests with median relative error `4.4e-16` and maximum relative error `4.3e-12`.
-
-The published halo-mass threshold control reproduces the reported optimum at `log10(M_split/[h^-1 M_sun]) = 13.75`. After one normalization at that point, the value at 12.75 is `2.7601` compared with the published `2.6`, a 6.16% difference. The Okoli Eq. 35 calibration identities agree to numerical precision.
-
-Gaussian scatter in the halo-mass proxy leaves the forecast stable. At `0.2 dex`, the fully projected value changes from `0.86054` to `0.83810`, retaining 94.85% of the zero-scatter Fisher information. At `0.3 dex`, the projected value is `0.81252`, retaining 89.15%.
-
-Finally, an end-to-end null test on the public DESI DR1 Gfinder group VAC uses 11,992 redshift-matched objects per mass class. All four separation-bin residuals remain below `0.88 sigma`, with global `chi^2 = 1.299` for four degrees of freedom and `p = 0.862`. This is a public-data parity-odd estimator smoke test, not a DESI LSS wake likelihood or a neutrino-wake constraint.
-
-The compact numerical values for these controls are stored in `source_data/wake_independent_validation_summary.json`.
+GitHub Actions under `.github/workflows/` reproduce the CLASS, DESI, Gfinder, Abacus and stochastic
+closure calculations. The local EZmock production runner is `scripts/run_ezmock_placebo_local.sh`.
 
 ## Repository structure
 
 ```text
-code/                    deterministic analysis and validation scripts
+code/                    analysis and validation scripts
+scripts/                 local production helpers
 observational_forecast/  CLASS provenance and diagnostic notes
-source_data/             compact result summaries used for reproducibility
-.github/workflows/       publication-facing deterministic workflows
+source_data/             compact numerical snapshots and provenance
+docs/                    Phase-7 reproducibility and analysis history
+.github/workflows/       publication-facing workflows
 ```
 
-Development and diagnostic branches preserve the exploratory history. The `main` branch is the compact publication-facing state of the project.
+Exploratory history is preserved in Git. Production status should be taken from the explicit
+source-data manifests and, after release, the cited release/tag rather than inferred from branch names.
 
-## Determinism and provenance
+## Citation and license
 
-The calculations are deterministic. Fixed random seeds are used for synthetic-noise realizations and for candidate searches. Production wake and RSD workflows use seed `20260913`. CLASS is fetched at the pinned commit above and the resolved solver commit is written into every workflow artifact.
-
-## Citation
-
-If you use this code, please cite the associated manuscript. Bibliographic information will be updated after publication.
-
-## License
-
-The code and accompanying source-data summaries are released under the MIT License.
+If you use this code, please cite the associated manuscript. Bibliographic information will be
+updated after publication. Code and source-data summaries are released under the MIT License.
