@@ -6,11 +6,9 @@ set -euo pipefail
 #   bash scripts/run_ezmock_placebo_local.sh 3
 #   bash scripts/run_ezmock_placebo_local.sh 3 16
 #
-# For the homogeneous local ensemble we reuse one validated full NGC/SGC
-# random pair saved under shared_random_mock2/. The random catalogs represent
-# the fixed survey selection/window; make_random_proxy still draws the requested
-# 2x density independently in each current-mock narrow-z/cap cell. No synthetic
-# RA/DEC/z remapping and no repeated ~GB random downloads are used.
+# IMPORTANT: each EZmock realization uses its own released NGC/SGC clustering
+# random catalogs. These randoms are part of the realization-specific survey
+# selection/fiber-assignment product and must not be shared across mock IDs.
 
 FIRST="${1:-3}"
 LAST="${2:-$FIRST}"
@@ -23,9 +21,6 @@ SEED="${SEED:-20260913}"
 DOWNLOAD_ATTEMPTS="${DOWNLOAD_ATTEMPTS:-40}"
 ARIA_CONNECTIONS="${ARIA_CONNECTIONS:-8}"
 RANDOM_FACTOR="${RANDOM_FACTOR:-2.0}"
-SHARED_RANDOM_DIR="${SHARED_RANDOM_DIR:-$OUTROOT/shared_random_mock2}"
-SHARED_NGC="$SHARED_RANDOM_DIR/mock_NGC.ran.fits"
-SHARED_SGC="$SHARED_RANDOM_DIR/mock_SGC.ran.fits"
 
 mkdir -p "$OUTROOT" "$TEMPLATE_DIR"
 
@@ -49,6 +44,8 @@ else
   echo 'For faster downloads: sudo apt install -y aria2'
 fi
 
+echo 'EZmock random policy: realization-specific released clustering random catalogs (2x selected density).'
+
 "$PYTHON_BIN" - <<'PY'
 import importlib.util
 need=['numpy','scipy','astropy']
@@ -62,18 +59,6 @@ if [[ ! -f "$TEMPLATE_CSV" ]]; then
   echo 'ERROR: local EZmock runs expect the fixed validated Phase-7 template.' >&2
   exit 3
 fi
-
-if [[ ! -s "$SHARED_NGC" || ! -s "$SHARED_SGC" ]]; then
-  echo 'ERROR: validated shared full random catalogs are missing.' >&2
-  echo "Expected: $SHARED_NGC" >&2
-  echo "          $SHARED_SGC" >&2
-  echo 'Refusing realization-specific ~GB random downloads for mock3+.' >&2
-  exit 4
-fi
-
-echo "Using fixed validated full survey randoms:"
-echo "  $SHARED_NGC"
-echo "  $SHARED_SGC"
 
 fetch_one () {
   local url="$1" out="$2" part="${2}.part"
@@ -134,40 +119,44 @@ fetch_one () {
   return 18
 }
 
-# Validate the shared random pair once at launcher start. This is local I/O only.
-"$PYTHON_BIN" - "$SHARED_NGC" "$SHARED_SGC" <<'PY'
-from astropy.io import fits
-from pathlib import Path
-import sys
-for p in map(Path,sys.argv[1:]):
-    with fits.open(p,memmap=True) as h:
-        h.verify('exception')
-        if len(h)<2 or h[1].data is None or len(h[1].data)==0:
-            raise RuntimeError(f'invalid shared random FITS: {p}')
-        print('SHARED_RANDOM_FITS_OK',p,len(h[1].data))
-PY
-
 for M in $(seq "$FIRST" "$LAST"); do
   ROOT="$ROOT_BASE/mock${M}"
   WORK="$OUTROOT/work_mock${M}"
   OUT="$OUTROOT/mock_${M}"
+  STEM="mock_$(printf '%02d' "$M")"
   mkdir -p "$WORK" "$OUT"
 
-  if [[ "${FORCE:-0}" != '1' && -s "$OUT/mock_$(printf '%02d' "$M")_summary.json" && -s "$OUT/mock_$(printf '%02d' "$M")_vector.csv" ]]; then
-    echo "SKIP completed mock $M -> $OUT"
-    continue
+  # Skip only outputs produced with the current realization-specific random policy.
+  if [[ "${FORCE:-0}" != '1' && -s "$OUT/${STEM}_summary.json" && -s "$OUT/${STEM}_vector.csv" ]]; then
+    if "$PYTHON_BIN" - "$OUT/${STEM}_summary.json" <<'PY'
+import json,sys
+s=json.load(open(sys.argv[1]))
+mode=str(s.get('random_geometry_mode',''))
+rf=float(s.get('random_count',0))/max(float(s.get('data_count',1)),1.0)
+ok=('realization-specific released EZmock clustering random catalogs' in mode and rf>=1.8)
+raise SystemExit(0 if ok else 1)
+PY
+    then
+      echo "SKIP homogeneous completed mock $M -> $OUT"
+      continue
+    else
+      echo "REPLACE legacy/non-homogeneous output for mock $M"
+      rm -f "$OUT/${STEM}_summary.json" "$OUT/${STEM}_vector.csv" "$OUT/${STEM}_window.csv"
+    fi
   fi
 
   echo "==== EZmock $M ===="
   fetch_one "$ROOT/BGS_ffa_NGC_clustering.dat.fits" "$WORK/mock_NGC.dat.fits"
   fetch_one "$ROOT/BGS_ffa_SGC_clustering.dat.fits" "$WORK/mock_SGC.dat.fits"
+  fetch_one "$ROOT/BGS_ffa_NGC_0_clustering.ran.fits" "$WORK/mock_NGC.ran.fits"
+  fetch_one "$ROOT/BGS_ffa_SGC_0_clustering.ran.fits" "$WORK/mock_SGC.ran.fits"
 
   "$PYTHON_BIN" - "$WORK" <<'PY'
 from astropy.io import fits
 from pathlib import Path
 import sys
 w=Path(sys.argv[1])
-for p in [w/'mock_NGC.dat.fits',w/'mock_SGC.dat.fits']:
+for p in [w/'mock_NGC.dat.fits',w/'mock_SGC.dat.fits',w/'mock_NGC.ran.fits',w/'mock_SGC.ran.fits']:
     with fits.open(p,memmap=True) as h:
         h.verify('exception')
         if len(h)<2 or h[1].data is None or len(h[1].data)==0:
@@ -177,7 +166,7 @@ PY
 
   "$PYTHON_BIN" code/desi_phase7_ezmock_placebo_realization.py \
     --data "$WORK/mock_NGC.dat.fits" "$WORK/mock_SGC.dat.fits" \
-    --random "$SHARED_NGC" "$SHARED_SGC" --shared-full-random \
+    --random "$WORK/mock_NGC.ran.fits" "$WORK/mock_SGC.ran.fits" \
     --templates "$TEMPLATE_CSV" --outdir "$OUT" --mock-id "$M" \
     --zmin 0.10 --zmax 0.40 --dz-proxy 0.02 --ntracer 5 \
     --analysis-z-edges 0.10,0.20,0.30,0.40 \
@@ -189,18 +178,31 @@ PY
   echo "DONE mock $M -> $OUT"
 done
 
-N=$(find "$OUTROOT" -type f -name 'mock_*_vector.csv' | wc -l | tr -d ' ')
-H=$(find "$OUTROOT" -type f -name 'mock_*_vector.csv' | grep -Ev '/mock_0[12]_vector\.csv$' | wc -l | tr -d ' ' || true)
-echo "Completed vectors currently available: $N total; $H candidate mock3+ vectors"
+H=$("$PYTHON_BIN" - "$OUTROOT" <<'PY'
+import json,glob,sys,re
+from pathlib import Path
+root=Path(sys.argv[1]); n=0
+for p in root.glob('mock_*/mock_*_summary.json'):
+    try:
+        s=json.load(open(p)); mid=int(s.get('mock_id',-1)); mode=str(s.get('random_geometry_mode',''))
+        rf=float(s.get('random_count',0))/max(float(s.get('data_count',1)),1.0)
+        if mid>=3 and 'realization-specific released EZmock clustering random catalogs' in mode and rf>=1.8:
+            n+=1
+    except Exception:
+        pass
+print(n)
+PY
+)
+echo "Homogeneous realization-specific mock3+ vectors currently available: $H"
 
 if [[ "$H" -ge 40 ]]; then
-  echo 'At least 40 homogeneous mock3+ realizations available; running aggregate.'
+  echo 'At least 40 homogeneous realization-specific mock3+ realizations available; running aggregate.'
   "$PYTHON_BIN" code/desi_phase7_ezmock_aggregate.py \
     --mock-root "$OUTROOT" \
     --real-vector source_data/wake_phase7_multitracer_real_vector.csv \
     --outdir "$OUTROOT/aggregate" \
-    --min-mock-id 3 --require-shared-random
+    --min-mock-id 3 --require-realization-random
   echo "Aggregate: $OUTROOT/aggregate/summary_ezmock_placebo_covariance.json"
 else
-  echo 'Aggregate requires >=40 homogeneous fixed-full-random realizations from mock3 onward.'
+  echo 'Aggregate requires >=40 homogeneous realization-specific mock3+ realizations.'
 fi
