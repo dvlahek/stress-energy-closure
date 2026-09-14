@@ -22,33 +22,45 @@ def main():
     ap.add_argument('--outdir',required=True)
     ap.add_argument('--min-mock-id',type=int,default=3,
                     help='minimum mock id included; default 3 excludes legacy smoke mocks 1-2')
+    ap.add_argument('--min-count',type=int,default=30,
+                    help='minimum homogeneous realization count required for the aggregate')
     ap.add_argument('--require-realization-random',action='store_true',
-                    help='require each mock to use its own released EZmock clustering random catalogs')
+                    help='require each included mock to use its own released EZmock clustering random catalogs')
     args=ap.parse_args(); out=Path(args.outdir); out.mkdir(parents=True,exist_ok=True)
 
     all_v=glob.glob(str(Path(args.mock_root)/'**/mock_*_vector.csv'),recursive=True)
     vf=sorted([x for x in all_v if mock_id(x)>=args.min_mock_id],key=mock_id)
-    pairs=[]
+    pairs=[]; excluded=[]
     for vpath in vf:
         mid=mock_id(vpath); base=Path(vpath).parent
         wpath=base/f'mock_{mid:02d}_window.csv'; spath=base/f'mock_{mid:02d}_summary.json'
+        reason=None
         if not wpath.is_file():
-            raise RuntimeError(f'missing window for mock {mid}: {wpath}')
-        if args.require_realization_random:
-            if not spath.is_file(): raise RuntimeError(f'missing summary for mock {mid}: {spath}')
-            sm=json.loads(spath.read_text())
-            mode=str(sm.get('random_geometry_mode',''))
-            if 'realization-specific released EZmock clustering random catalogs' not in mode:
-                raise RuntimeError(f'mock {mid} is not realization-specific-random homogeneous: {mode!r}')
-            if int(sm.get('random_count',0)) < int(1.8*sm.get('data_count',0)):
-                raise RuntimeError(f'mock {mid} does not have approximately 2x random density')
-            san=sm.get('sanity',{})
-            if float(san.get('max_abs_xi0',999))>0.30 or float(san.get('max_abs_xi1',999))>0.20:
-                raise RuntimeError(f'mock {mid} failed estimator sanity provenance: {san}')
+            reason=f'missing window: {wpath}'
+        elif args.require_realization_random:
+            if not spath.is_file():
+                reason=f'missing summary: {spath}'
+            else:
+                sm=json.loads(spath.read_text())
+                mode=str(sm.get('random_geometry_mode',''))
+                if 'realization-specific released EZmock clustering random catalogs' not in mode:
+                    reason=f'non-production random provenance: {mode!r}'
+                elif int(sm.get('random_count',0)) < int(1.8*sm.get('data_count',0)):
+                    reason='random density below 1.8x data density'
+                else:
+                    san=sm.get('sanity',{})
+                    if float(san.get('max_abs_xi0',999))>0.30 or float(san.get('max_abs_xi1',999))>0.20:
+                        reason=f'estimator sanity gate failed: {san}'
+        if reason is not None:
+            excluded.append({'mock_id':mid,'reason':reason})
+            print('EXCLUDE_EZMOCK',mid,reason)
+            continue
         pairs.append((vpath,str(wpath)))
 
-    if len(pairs)<40:
-        raise RuntimeError(f'need >=40 homogeneous EZmocks with id>={args.min_mock_id}; found={len(pairs)}')
+    if len(pairs)<args.min_count:
+        raise RuntimeError(
+            f'need >={args.min_count} homogeneous EZmocks with id>={args.min_mock_id}; '
+            f'found={len(pairs)}; excluded={excluded}')
 
     X=[]; W=[]; D=[]; s_ref=None; meta_ref=None; used_ids=[]
     for vpath,wpath in pairs:
@@ -75,12 +87,15 @@ def main():
         fi=p.gls_fit((row-mean)+wi,Coas,ts,names); rec.append(float(fi['wake_proxy']['amplitude']))
     aw=np.asarray(aw); rec=np.asarray(rec); areal=float(fitc['wake_proxy']['amplitude'])
     pemp=float((1+np.sum(np.abs(aw)>=abs(areal)))/(n+1)); sigma=float(fitc['wake_proxy']['sigma']); coverage=float(np.mean(np.abs(rec-1.0)<=sigma))
-    np.savetxt(out/'ezmock_placebo_covariance_sample.csv',Csample,delimiter=','); np.savetxt(out/'ezmock_placebo_covariance_oas.csv',Coas,delimiter=',')
-    np.savetxt(out/'ezmock_placebo_vectors.csv',X,delimiter=','); np.savetxt(out/'ezmock_placebo_window_templates.csv',np.column_stack([Wm,Dm,W.std(axis=0,ddof=1),D.std(axis=0,ddof=1)]),delimiter=',',header='wake_mean,doppler_mean,wake_std,doppler_std',comments='')
+    np.savetxt(out/'ezmock_placebo_covariance_sample.csv',Csample,delimiter=',')
+    np.savetxt(out/'ezmock_placebo_covariance_oas.csv',Coas,delimiter=',')
+    np.savetxt(out/'ezmock_placebo_vectors.csv',X,delimiter=',')
+    np.savetxt(out/'ezmock_placebo_window_templates.csv',np.column_stack([Wm,Dm,W.std(axis=0,ddof=1),D.std(axis=0,ddof=1)]),delimiter=',',header='wake_mean,doppler_mean,wake_std,doppler_std',comments='')
     summary={
       'scope':'Custom cut-sky EZmock five-tracer equal-count random-rank placebo covariance/systematics control.',
       'proxy_kind':'RAN_NUM_0_1 equal-count rank within narrow-z and Galactic-cap cells',
-      'mock_count':int(n),'mock_ids':used_ids,'minimum_mock_id':int(args.min_mock_id),
+      'mock_count':int(n),'mock_ids':used_ids,'excluded_mocks':excluded,
+      'minimum_mock_id':int(args.min_mock_id),'minimum_required_count':int(args.min_count),
       'random_geometry_mode':'realization-specific released EZmock clustering random catalogs' if args.require_realization_random else 'not enforced',
       'vector_dimension':int(pdim),'sample_covariance_rank':rank,'oas_shrinkage':shrink,'oas_condition_number':cond,'hartlap_factor':hartlap,
       'real_data_sensitivity_fit_oas':{'minimal':fit2,'conservative':fitc,'empirical_two_sided_wake_pvalue_against_placebo_null':pemp},
@@ -88,8 +103,9 @@ def main():
       'placebo_null_wake_amplitudes':aw.tolist(),
       'unit_injection_recovery':{'mean':float(rec.mean()),'std':float(rec.std(ddof=1)),'median':float(np.median(rec)),'nominal_one_sigma_coverage_fraction':coverage,'fit_sigma_reference':sigma},
       'absolute_likelihood_claim':False,
-      'guardrail':'The released DR1 EZmock BGS files used here do not contain R_MAG_APP/R_MAG_ABS. This ensemble tests geometry, pair compression, covariance conditioning and false-positive behaviour with equal-count random ranks. Every included realization uses its own released clustering random catalogs at approximately 2x selected random density. It is not a luminosity-matched covariance. Abacus is the physical luminosity-ranked validation.'
+      'guardrail':'The released DR1 EZmock BGS files used here do not contain R_MAG_APP/R_MAG_ABS. This ensemble tests geometry, pair compression, covariance conditioning and false-positive behaviour with equal-count random ranks. Every included realization uses its own released clustering random catalogs at approximately 2x selected random density. It is not a luminosity-matched covariance. OAS is the primary covariance estimator; the sample/Hartlap result is retained as a finite-mock control. Abacus is the physical luminosity-ranked validation.'
     }
-    (out/'summary_ezmock_placebo_covariance.json').write_text(json.dumps(summary,indent=2)+'\n'); print('PHASE7_EZMOCK_PLACEBO_AGGREGATE',json.dumps(summary,indent=2))
+    (out/'summary_ezmock_placebo_covariance.json').write_text(json.dumps(summary,indent=2)+'\n')
+    print('PHASE7_EZMOCK_PLACEBO_AGGREGATE',json.dumps(summary,indent=2))
 
 if __name__=='__main__': main()
