@@ -1,5 +1,6 @@
 {
   "status": "PASS_NULL",
+  "publication_role": "physical_mock_covariance_window_injection_cross_check_not_primary",
   "scope": "Final AbacusSummit cut-sky covariance and pair-window calibration for the five-tracer luminosity-proxy DESI DR1 odd-sector estimator.",
   "workflow_run_id": 34780454743,
   "run_attempt": 4,
@@ -10,6 +11,7 @@
   "mock_count": 25,
   "mock_ids": "0-24",
   "vector_dimension": 18,
+  "mock_to_dimension_ratio": 1.3888888888888888,
   "sample_covariance_rank": 18,
   "sample_covariance_condition_number_independent_check": 864.5979387713957,
   "oas_shrinkage": 0.22539897066103604,
@@ -41,6 +43,10 @@
     "conservative_dof": 8,
     "conservative_pvalue": 0.639981040199824
   },
+  "covariance_interpretation": {
+    "headline_status": "NOT_PRIMARY",
+    "reason": "The ensemble contains 25 mocks for an 18-dimensional vector. OAS regularization improves conditioning but the inferred significance remains covariance-estimator dependent: -1.779 sigma with OAS versus -0.722 sigma with the raw-sample/Hartlap control. The Abacus result is therefore used to validate physical mock covariance, survey-window response and injection recovery, not to replace the pre-existing primary real-data DESI fit."
+  },
   "mock_null_wake_amplitudes": {
     "mean": 6.675215935558753e-17,
     "std": 0.043284507122499274,
@@ -62,6 +68,6 @@
     "doppler_fractional_std_median": 0.007835628919159064,
     "doppler_fractional_std_max": 0.01224660931963663
   },
-  "interpretation": "PASS_NULL. All 25 Abacus realizations completed. The OAS-calibrated conservative real-data coefficient is a sub-2-sigma negative fluctuation with empirical two-sided p=0.0769; the Hartlap sample-covariance control is only 0.72 sigma. No detection is claimed. Unit injections are recovered without measurable bias.",
-  "guardrail": "The amplitude is calibrated to the predeclared luminosity-rank proxy pair model. A physical halo-mass wake amplitude requires a separate proxy-to-halo calibration."
+  "interpretation": "PASS_NULL. All 25 Abacus realizations completed. The OAS-calibrated conservative real-data coefficient is a sub-2-sigma negative fluctuation with empirical two-sided p=0.0769; the Hartlap sample-covariance control is only 0.72 sigma. No detection is claimed. Unit injections are recovered without measurable bias. This layer is a high-fidelity validation cross-check, not the publication headline likelihood.",
+  "guardrail": "The amplitude is calibrated to the predeclared luminosity-rank proxy pair model. A physical halo-mass wake amplitude requires a separate proxy-to-halo calibration. The finite 25-mock covariance ensemble prevents this cross-check from superseding the primary full-sample DESI inference."
 }
