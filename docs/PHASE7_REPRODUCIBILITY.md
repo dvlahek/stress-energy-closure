@@ -1,161 +1,205 @@
 # Phase-7 observational reproducibility
 
-This document records the production-facing observational validation chain for the manuscript
+This document records the final publication-facing observational analysis used in
 **“Gravitational response recovers kinetic information beyond stress-energy.”**
+It contains only the frozen definitions, final validation layers and information required to reproduce
+the manuscript results.
 
-## Closure status and documentation correction
+## Final analysis status
 
-Phase-7 observational validation is closed. All 25 AbacusSummit science realizations completed,
-the final Abacus aggregate was produced successfully, and the three predeclared stochastic seed
-controls completed successfully.
+Phase-7 observational validation is closed.
 
-An earlier revision of this document retained the pre-closure statement that only 24/25 Abacus
-realizations had completed. That wording was stale relative to the completed workflow and was
-inconsistent with `source_data/phase7_validation_manifest.json`. The Git history preserves that
-revision. The current document supersedes it: the final state is **25/25 Abacus realizations PASS**
-and the aggregate is frozen in the publication-facing source-data snapshot. No scientific result
-was changed by this documentation correction.
+- DESI DR1 BGS full-sample luminosity-rank inference: complete.
+- Gfinder mass-proxy robustness test: complete.
+- EZmock 30-realization geometry/covariance placebo ensemble: complete.
+- AbacusSummit physical luminosity-ranked validation: **25/25 realizations complete**.
+- production seed plus three independent stochastic closure seeds: complete.
+- odd `ell=3` octupole control: complete.
+
+No observational result is presented as a neutrino-wake detection.
 
 ## Frozen scientific choices
 
-The hidden-state template is generated at `m_nu = 0.06 eV`, `z_match = 1100`, and a 30% pointwise deformation cap.
-All CLASS-based calculations use `class_public` commit
+The hidden-state template is generated at `m_nu = 0.06 eV`, `z_match = 1100`, with a 30% pointwise
+deformation cap. CLASS-based calculations use pinned `class_public` commit
 `e85808324f51fc694d12e3ed7439552a3c3f9540`.
 
-The real-data odd vector uses DESI DR1 BGS clustering catalogs over `0.10 < z < 0.40`,
-five tracer populations, separation bins from `20` to `140 h^-1 Mpc`, angular exclusion
-`theta < 0.05 deg`, 48 sampled eligible neighbours per anchor, 30 jackknife regions,
-and 32 frozen-geometry null permutations.
+The real-data odd vector uses public DESI DR1 BGS clustering catalogs over `0.10 < z < 0.40`, five
+luminosity-ranked tracer populations, separation bins from `20` to `140 h^-1 Mpc`, angular exclusion
+`theta < 0.05 deg`, 48 uniformly sampled eligible neighbours per anchor with inverse-probability pair
+weights, 30 jackknife regions and 32 frozen-geometry null permutations.
 
-The production seed is `20260913`. The stochastic closure workflow uses three predeclared
-independent seeds: `20260917`, `20260929`, and `20261007`.
+The production pair-Monte-Carlo seed is `20260913`. Independent closure seeds are `20260917`,
+`20260929` and `20261007`.
 
 ## Primary observational inference
 
-The publication-facing **primary real-data inference** is the conservative full-sample
-five-tracer luminosity-rank DESI DR1 fit in
+The sole publication-facing headline observational coefficient is the conservative full-sample
+five-tracer luminosity-rank DESI DR1 result in
 `source_data/phase7_desi_fullsample_summary.json`:
 
 `A_wake = -0.0739012 +/- 0.0851661` (`-0.868 sigma`),
-with conservative empirical two-sided permutation `p = 0.39394`.
+with empirical two-sided permutation `p = 0.39394`.
 
-**This is the sole headline observational coefficient because it is the direct real-data analysis fixed before the later mock-covariance closure; Gfinder, EZmock, Abacus, and the ell=3 octupole are validation/control layers rather than alternative headline estimates.**
+This coefficient is primary because it is the direct frozen real-data analysis; Gfinder, EZmock,
+AbacusSummit and `ell=3` are independent validation/control layers, not alternative headline
+estimates.
 
-This hierarchy avoids selecting a headline coefficient after comparing several covariance estimators.
-It is documented after closure and is **not claimed as a formal preregistration**.
+The analysis was not fully blinded because real-data outputs were inspected during pipeline
+development. Final tracer definitions, separation/redshift bins, nuisance model, production seed and
+independent closure seeds were fixed before the final closure tests.
 
-The analysis was not fully blinded. Real-data outputs were inspected during pipeline development.
-However, the final tracer definition, separation/redshift bins, nuisance model, production pair-MC
-seed, and independent closure seeds were fixed before the final closure tests. No result is described
-as a blinded measurement.
+## Real-data estimator
 
-## Real DESI DR1 analyses
+Main script:
 
-### Full-sample luminosity-rank test — primary
+`code/desi_dr1_phase7_multitracer_fullsample.py`
 
-Run `code/desi_dr1_phase7_multitracer_fullsample.py` using the clustering-ready NGC/SGC
-BGS data and released random catalogs. The compact result is in
-`source_data/phase7_desi_fullsample_summary.json`; the 18-component real-data vector is
-`source_data/wake_phase7_multitracer_real_vector.csv`.
+Publication-facing outputs:
 
-The conservative fit is the primary null result:
-`A_wake = -0.0739012 +/- 0.0851661` (`-0.868 sigma`).
+- `source_data/phase7_desi_fullsample_summary.json`
+- `source_data/wake_phase7_multitracer_real_vector.csv`
 
-### Gfinder physical mass-proxy robustness test — proxy cross-check
+The five luminosity ranks are defined independently within narrow redshift cells and NGC/SGC. The
+18-component odd data vector is fitted with the frozen wake template and a conservative per-redshift
+odd nuisance basis.
 
-Run `code/desi_phase7_gfinder_massproxy.py` through
-`.github/workflows/desi_phase7_gfinder_massproxy.yml`.
-The exact reproduced data-vector SHA256 is
-`a64e522738d5b42ccc1d8cad1cb51767fea3a8d1d019b0d0bf2b0431e49c7ab9`.
+## Gfinder mass-proxy robustness
 
-The conservative fit is:
+Main script:
+
+`code/desi_phase7_gfinder_massproxy.py`
+
+Output:
+
+`source_data/phase7_gfinder_massproxy_summary.json`
+
+The conservative result is
+
 `A_wake = +0.0687839 +/- 0.0827608` (`0.831 sigma`).
-The minimal ~2.2 sigma coefficient is not stable under the conservative odd-sector nuisance model
-and is not treated as evidence for a wake. The mass-proxy result is a tracer-definition robustness
-check, not an alternative headline coefficient.
 
-## EZmock placebo covariance/systematics ensemble — geometry/systematics cross-check
+This layer tests tracer-proxy dependence only. It is not an alternative headline coefficient.
 
-Released DR1 EZmock BGS files used here do not contain the luminosity fields required for the
-physical luminosity split. EZmock is therefore used only as an equal-count random-rank placebo
-ensemble testing survey geometry, pair compression, covariance conditioning and false positives.
+## EZmock geometry/covariance placebo
 
-Every production realization uses its own released clustering random catalogs. Shared-random
-experiments are excluded.
+Main scripts:
 
-The final 30-realization ensemble gives:
-- rank `18/18`
-- OAS condition number `10.678`
-- real-vector cross-check `A_wake = -0.114812 +/- 0.081995` (`-1.40 sigma`)
-- empirical two-sided placebo `p = 0.09677`
-- unit-injection recovery mean `0.99999999999994`
+- `code/desi_phase7_ezmock_placebo_realization.py`
+- `code/desi_phase7_ezmock_aggregate.py`
 
-Because the released EZmock catalogs do not support the physical luminosity-ranked tracer
-construction, this coefficient is not used as the publication headline inference.
+Local runner:
 
-## Abacus high-fidelity validation — physical-mock cross-check
+`scripts/run_ezmock_placebo_local.sh`
 
-AbacusSummit is the physical high-fidelity luminosity-ranked mock layer. Final run `34780454743`
-completed successfully with all **25/25** mock IDs `0-24` and a full-rank 18-dimensional sample
-covariance.
+The retained ensemble contains 30 homogeneous realization-specific EZmocks, IDs `3-32`. Each mock
+uses its own released NGC/SGC clustering random catalogs. The released files used here do not provide
+the luminosity quantity needed for the physical luminosity-ranked tracer construction, so this layer
+is used only for geometry, pair compression, covariance conditioning and false-positive validation.
 
-The OAS covariance has shrinkage `0.22540` and condition number `29.437`. Using this covariance,
-the conservative real-vector cross-check is
+Final aggregate:
 
-`A_wake = -0.105616 +/- 0.059371` (`-1.779 sigma`),
-with empirical two-sided mock `p = 0.07692`.
+- covariance rank `18/18`;
+- OAS condition number `10.678`;
+- real-vector cross-check `A_wake = -0.114812 +/- 0.081995`;
+- empirical two-sided placebo `p = 0.09677`;
+- unit-injection recovery mean `1.0000`.
 
-This is **not the primary observational coefficient**. The ensemble contains only 25 realizations
-for an 18-dimensional vector (`25/18 = 1.39`), so covariance-estimator uncertainty is non-negligible.
-The raw sample-covariance/Hartlap control gives
+Publication-facing summaries are under `source_data/phase7_ezmock_local/`.
+
+## AbacusSummit physical-mock validation
+
+Main scripts:
+
+- `code/desi_phase7_mock_realization.py`
+- `code/desi_phase7_mock_aggregate.py`
+
+GitHub Actions workflow:
+
+`.github/workflows/desi_phase7_abacus_window_covariance.yml`
+
+The final ensemble contains **25 completed realizations**, mock IDs `0-24`, for an 18-component data
+vector. The sample covariance is full rank.
+
+OAS cross-check:
+
+`A_wake = -0.105616 +/- 0.059371` (`-1.779 sigma`), empirical two-sided mock `p = 0.07692`.
+
+Raw-sample/Hartlap control:
 
 `A_wake = -0.061003 +/- 0.084503` (`-0.722 sigma`).
 
-The OAS/Hartlap difference is treated as a finite-mock covariance diagnostic. Abacus is retained as
-an end-to-end physical-mock validation of survey window, null behavior and signal recovery, not as
-the headline likelihood.
+Because the ensemble contains only 25 mocks for 18 vector components, the covariance-estimator
+dependence is treated as a finite-mock diagnostic. Abacus validates the physical luminosity-ranked
+survey window, covariance response and injection recovery; it does not replace the primary DESI
+coefficient.
+
+The compressed-vector forward-window amplitude sweep over `A = -2, -1, -0.5, 0, 0.5, 1, 2`
+recovers unit slope to numerical precision. This is a linear-response calibration test, not a separate
+catalog-level signal injection.
+
+Outputs:
+
+- `source_data/phase7_abacus_final_summary.json`
+- `source_data/phase7_abacus_injection_amplitude_sweep.json`
 
 ## Stochastic seed closure
 
-Three independent seeds (`20260917`, `20260929`, `20261007`) were declared before the closure run.
-Together with production seed `20260913`, the conservative luminosity-rank coefficient remains
-within `|z| < 1.02`. The mean amplitude over the four seeds is `-0.06477` with seed-to-seed standard
-deviation `0.01497`. No seed is selected post hoc.
+The production seed and three independent closure seeds all retain the conservative result within
+`|z| < 1.02`. Across the four seeds,
 
-The minimal two-template coefficient is seed-sensitive and is retained only as a diagnostic. The
-conservative nuisance-projected fit is the production inference.
+`mean(A_wake) = -0.0647682`,
 
-## Orthogonal ell=3 odd-multipole control
+with seed-to-seed standard deviation `0.0149695`.
 
-The predeclared ell=3 control uses the same frozen DESI sample and sampled pair geometry as the
-dipole and fits no wake template. Its global permutation-calibrated result is `p = 0.81818`, with
-maximum single-bin `|z| = 1.3221`, so it is consistent with the null.
+Output:
 
-The raw ell=3 jackknife covariance is full rank (`18/18`). For inversion the code uses
-`C_reg = C_JK + r I`, with
+`source_data/phase7_seed_control_summary.json`
+
+The conservative nuisance-projected fit is the production inference. The minimal two-template fit is
+retained only as a diagnostic because it is seed-sensitive.
+
+## Odd `ell=3` control
+
+Main script:
+
+`code/desi_dr1_phase7_octupole_control.py`
+
+Local runner:
+
+`scripts/run_phase7_octupole_control_local.sh`
+
+The `ell=3` observable uses the same DESI sample and identical sampled pair geometry as the dipole. No
+wake template is fitted. The dipole is reproduced exactly by the same code path.
+
+The octupole result is
+
+- raw jackknife covariance rank `18/18`;
+- global empirical permutation `p = 0.81818`;
+- maximum single-bin diagnostic `|z| = 1.3221`.
+
+For inversion the code uses `C_reg = C_JK + r I` with
+
 `r = max(1e-7 lambda_max(C_JK), 1e-6 median(diag(C_JK)), 1e-14)`.
-The reported `kappa = 440.8145` is `cond(C_reg)`, the condition number of this ridge-regularized
-covariance used in the Mahalanobis inverse. It is **not** the condition number of the raw jackknife
-covariance; the raw condition number was not separately reported.
 
-This ell=3 result is an orthogonal control, not a fifth candidate headline measurement.
+The reported `kappa = 440.8145` is `cond(C_reg)`, the condition number of the ridge-regularized
+covariance used in the Mahalanobis inverse. It is not the raw jackknife covariance condition number.
 
-## Production versus control outputs
+Outputs are archived in `source_data/phase7_octupole_control/`.
 
-Production headline:
-- full-sample luminosity-rank DESI conservative fit — sole primary observational inference
+## Machine-readable hierarchy
 
-Validation/control layers:
-- Gfinder physical mass-proxy robustness test
-- EZmock 30-realization geometry/covariance/placebo ensemble
-- Abacus 25/25 cut-sky physical mocks and final aggregate
-- three-seed stochastic closure
-- predeclared ell=3 odd-octupole null control
+`source_data/phase7_validation_manifest.json` is the top-level machine-readable declaration of the
+primary result and all final validation roles.
 
-Excluded exploratory outputs:
-- EZmock mocks 1–2 as early smoke/transport checks
-- fixed/shared-random EZmock experiments
-- any output failing explicit estimator sanity gates
-- any significance-selected tracer or mass threshold
+## Local checkout
 
-No observational result in this repository is presented as a neutrino-wake detection.
+```bash
+git fetch origin
+git switch nature-physics-submission
+git pull --ff-only origin nature-physics-submission
+python -m pip install -r requirements.txt
+```
+
+Core theory calculations can then be run with the commands in the root `README.md`. Observational
+workflows requiring public survey catalogs or CLASS download their external inputs as specified by the
+corresponding scripts/workflows; large external catalogs are intentionally not stored in this repository.
