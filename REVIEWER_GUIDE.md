@@ -57,7 +57,3 @@ python -m pip install -r requirements.txt
 The exact commands and fixed observational choices are in `docs/PHASE7_REPRODUCIBILITY.md`.
 CLASS-based calculations use pinned CLASS commit
 `e85808324f51fc694d12e3ed7439552a3c3f9540`.
-
-The publication-facing snapshot intentionally omits development-only transport logs, retry notes and
-rejected exploratory outputs. Those remain recoverable from Git history and development branches but
-are not required to reproduce any manuscript result.
