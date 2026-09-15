@@ -1,10 +1,16 @@
 #!/usr/bin/env python3
 """One-shot CLASS worker with direct velocity-transfer output enabled.
 
-This worker is deliberately short-lived.  It requests both density and velocity
+This worker is deliberately short-lived. It requests both density and velocity
 transfer functions from CLASS, evaluates one PSD state, serializes only the
 arrays needed by the direct-theta pair check, and exits so native CLASS memory
 is returned to the OS.
+
+The optional ``moderate`` precision level is a deliberately restrained
+convergence check. It tightens the ncdm/background and perturbation tolerances
+and moderately increases momentum/hierarchy resolution without using the much
+more expensive publication high-precision preset that previously exhausted
+WSL memory.
 """
 from __future__ import annotations
 
@@ -17,6 +23,21 @@ from classy import Class
 
 import hidden_channel_forensics as hf
 import hidden_channel_operator_diagnostics as hd
+
+
+MODERATE_PRECISION = {
+    "tol_ncdm_bg": 1.0e-8,
+    "tol_ncdm_newtonian": 1.0e-8,
+    "tol_perturbations_integration": 3.0e-7,
+    "perturbations_sampling_stepsize": 0.03,
+    "l_max_ncdm": 30,
+    "q_linstep": 0.20,
+    "q_logstep_spline": 20.0,
+    "q_logstep_trapzd": 0.50,
+    "q_numstep_transition": 250,
+    "l_logstep": 1.03,
+    "l_linstep": 20,
+}
 
 
 def parse_grid(text: str):
@@ -60,6 +81,7 @@ def main():
     ap.add_argument("--z-grid", required=True)
     ap.add_argument("--kh-npy", type=Path, required=True)
     ap.add_argument("--out-npz", type=Path, required=True)
+    ap.add_argument("--precision", choices=("standard", "moderate"), default="standard")
     args = ap.parse_args()
 
     zgrid = parse_grid(args.z_grid)
@@ -69,12 +91,17 @@ def main():
     # CLASS documents dTk and vTk as the density- and velocity-transfer outputs.
     # Keep mPk because P_cb is used in the density-weighted control.
     params["output"] = "mPk,dTk,vTk"
+    if args.precision == "moderate":
+        params.update(MODERATE_PRECISION)
 
     c = Class()
     c.set(params)
     c.compute()
     try:
-        payload = {"z_grid": np.asarray(zgrid, dtype=float)}
+        payload = {
+            "z_grid": np.asarray(zgrid, dtype=float),
+            "precision": np.array(args.precision),
+        }
         transfer_keys = None
         cdm_key = None
         ncdm_key = None
