@@ -1,17 +1,42 @@
 # Gravitational response recovers kinetic information beyond stress-energy
 
 Code, source-data summaries and reproducibility workflows accompanying the manuscript
-**“Gravitational response recovers kinetic information beyond stress-energy”**.
+**“Gravitational response recovers kinetic information beyond stress-energy.”**
 
-The project asks what information gravity retains after collisionless matter is compressed to its
-instantaneous particle current and stress-energy tensor. The analytic results separate source
-equivalence, dynamical inequivalence, ideal causal identifiability and finite-data recoverability.
-For massive isotropic collisionless matter, the complete ideal causal transverse-traceless response
-at fixed known nonzero mass and wave number identifies the radial kinetic distribution in the stated
-class. The isotropic massless limit removes this radial encoding exactly. Finite response windows
-remain ill-conditioned even when the ideal map is injective.
+This repository contains the publication-facing analysis only. Development history, transport retries
+and rejected exploratory paths are preserved in Git and development branches, but are not part of the
+reviewer-facing reproducibility snapshot.
 
-## Reproducing the core calculations
+## Reviewer quick start
+
+The central result separates three questions:
+
+1. can two collisionless states have the same instantaneous gravitational source?
+2. can their later gravitational responses differ and identify the hidden kinetic state?
+3. how much of that information survives projection into realistic observables?
+
+For massive isotropic collisionless matter, the complete ideal causal transverse-traceless response at
+fixed known nonzero mass and wave number identifies the radial kinetic distribution in the stated class.
+The isotropic massless limit removes this radial encoding. On finite response windows the forward map
+remains injective but compact, so inversion is unstable.
+
+The publication-facing DESI DR1 observational result is a null test. The **sole headline coefficient** is
+
+`A_wake = -0.0739012 +/- 0.0851661` (`-0.868 sigma`),
+
+with empirical two-sided permutation `p = 0.39394`.
+
+Gfinder, EZmock, AbacusSummit, stochastic-seed and `ell=3` octupole results are validation/control
+layers and are not alternative headline estimates.
+
+Start with:
+
+- `REVIEWER_GUIDE.md` — claim-to-code/source-data map.
+- `docs/PHASE7_REPRODUCIBILITY.md` — final observational definitions and rerun instructions.
+- `source_data/README.md` — publication-facing numerical outputs.
+- `source_data/phase7_validation_manifest.json` — machine-readable observational hierarchy.
+
+## Reproducing the core theory calculations
 
 Python 3.10 or newer is recommended.
 
@@ -29,75 +54,52 @@ python code/direct_vs_memory.py --full
 CLASS-based calculations use `class_public` commit
 `e85808324f51fc694d12e3ed7439552a3c3f9540`.
 
-## Final forecast controls
+## Observable projection
 
-For the final DESI-BGS-like nine-tracer wake calculation at `m_nu = 0.06 eV` and a 30% pointwise
-deformation cap, the fully projected result is `S/N = 0.8605447`; the corresponding linear prediction
-is `0.8607548`. The controlled CLASS/CMB response optimization remains below `S/N = 0.04` for all
-six tested masses from 0.03 to 0.60 eV within the tested smooth ten-function class.
+Within the tested smooth ten-function matched-moment class, the optimized ideal full-sky tensor
+B-mode response remains below `S/N = 0.04` for all six tested relic masses from 0.03 to 0.60 eV.
+The nonlinear even-parity RSD control reaches projected `S/N = 0.28792` in the reported reference
+test. The final DESI-BGS-like nine-tracer parity-odd wake forecast at `m_nu = 0.06 eV` and a 30%
+pointwise deformation cap gives projected `S/N = 0.8605447` (`0.8607548` in the corresponding linear
+calculation).
 
-Independent controls include a full-covariance Fisher identity check, a published wake benchmark,
-and halo-mass proxy scatter. At 0.2 dex proxy scatter the projected wake value changes only from
-`0.86054` to `0.83810`.
+These are sensitivity calculations, not detections.
 
-## Phase-7 DESI DR1 validation
+## DESI DR1 validation
 
-The observational layer is a validation/null test, not a claimed wake detection.
+Primary real-data inference:
 
-- Redshift-resolved conservative baseline: `A_wake = 0.03184 +/- 0.22249`.
-- Full-sample five-tracer luminosity rank (300,043 galaxies):
-  `A_wake = -0.07390 +/- 0.08517`.
-- Gfinder physical mass-proxy robustness (271,243 matched galaxies):
-  `A_wake = +0.06878 +/- 0.08276`.
-- 30-realization EZmock random-rank placebo covariance:
-  `A_wake = -0.11481 +/- 0.08200`, empirical two-sided `p = 0.0968`.
-  OAS covariance is rank 18/18 with condition number 10.68; unit-injection recovery has mean 1.0.
+- full-sample five-tracer luminosity-rank DESI DR1:
+  `A_wake = -0.0739012 +/- 0.0851661`, empirical two-sided `p = 0.39394`.
 
-The EZmock result is explicitly a geometry/covariance/systematics placebo control, not a
-luminosity-matched physical covariance. AbacusSummit is the physical high-fidelity luminosity-ranked
-mock layer.
+Independent controls:
 
-The top-level snapshot is `source_data/phase7_validation_manifest.json`.
-Exact production choices and rejected exploratory paths are documented in
-`docs/PHASE7_REPRODUCIBILITY.md` and `docs/PHASE7_HISTORY.md`.
+- Gfinder mass-proxy tracer-definition check: `+0.06878 +/- 0.08276`;
+- 30-realization EZmock geometry/covariance placebo: empirical two-sided `p = 0.0968`;
+- 25-realization AbacusSummit physical luminosity-ranked mock validation: OAS cross-check
+  `-1.779 sigma`, with raw-sample/Hartlap control `-0.722 sigma`;
+- production seed plus three independent fixed closure seeds: conservative `|z| < 1.02`;
+- odd `ell=3` control: global empirical permutation `p = 0.81818`, with exact dipole reproduction.
 
-## Publication calculations
+All **25 AbacusSummit realizations** used in the final physical-mock ensemble completed successfully.
 
-Production-facing scripts include:
-- `code/class_observational_forecast.py`
-- `code/class_response_optimize.py`
-- `code/rsd_hidden_state_forecast.py`
-- `code/rsd_hidden_state_forecast_nonlinear.py`
-- `code/wake_desi_multitracer_fisher.py`
-- `code/wake_desi_robustness.py`
-- `code/wake_fisher_independent_check.py`
-- `code/wake_published_benchmark.py`
-- `code/wake_mass_proxy_scatter.py`
-- `code/desi_dr1_phase7_multitracer_fullsample.py`
-- `code/desi_phase7_gfinder_massproxy.py`
-- `code/desi_phase7_ezmock_placebo_realization.py`
-- `code/desi_phase7_ezmock_aggregate.py`
-- `code/desi_phase7_mock_realization.py`
-- `code/desi_phase7_mock_aggregate.py`
-
-GitHub Actions under `.github/workflows/` reproduce the CLASS, DESI, Gfinder, Abacus and stochastic
-closure calculations. The local EZmock production runner is `scripts/run_ezmock_placebo_local.sh`.
+No observational result in this repository is presented as a neutrino-wake detection.
 
 ## Repository structure
 
 ```text
 code/                    analysis and validation scripts
-scripts/                 local production helpers
+scripts/                 local publication rerun helpers
 observational_forecast/  CLASS provenance and diagnostic notes
-source_data/             compact numerical snapshots and provenance
-docs/                    Phase-7 reproducibility and analysis history
+source_data/             publication-facing numerical snapshots and provenance
+docs/                    final reproducibility notes
 .github/workflows/       publication-facing workflows
 ```
 
-Exploratory history is preserved in Git. Production status should be taken from the explicit
-source-data manifests and, after release, the cited release/tag rather than inferred from branch names.
+The canonical submission snapshot is the `nature-physics-submission` branch until it is merged into
+`main` and tagged for release. Development branches are not required to reproduce the manuscript.
 
 ## Citation and license
 
-If you use this code, please cite the associated manuscript. Bibliographic information will be
-updated after publication. Code and source-data summaries are released under the MIT License.
+If you use this code, please cite the associated manuscript. Bibliographic information will be updated
+after publication. Code and source-data summaries are released under the MIT License.
