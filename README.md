@@ -64,19 +64,25 @@ test. The final DESI-BGS-like nine-tracer parity-odd wake forecast at `m_nu = 0.
 pointwise deformation cap gives projected `S/N = 0.8605447` (`0.8607548` in the corresponding linear
 calculation).
 
-A separate transfer-level control compares the same source-matched reference/CREF pair under the
-direct CLASS neutrino-CDM velocity-divergence kernel and the resonant wake kernel at `m_nu = 0.06 eV`
-and `z = 0.3`. With `nk=96`, the density-weighted direct `theta_(nu-cdm) P_cb` half-pair RMS is
-`5.2816e-4` at standard precision and `5.3228e-4` after tightening the integration tolerances, while
-the corresponding resonant wake half-pair response is `0.230844`. The integrated wake-to-linear
-contrast therefore remains about `4.3e2` and changes by less than one percent under this precision test.
-The independently reconstructed density-derived `v_(nu-cdm) P_cb` proxy agrees closely with the direct
-velocity-transfer result in both precision settings.
+A separate transfer-level control compares source-matched kinetic pairs under the direct CLASS
+neutrino-CDM velocity-divergence kernel and the resonant wake kernel at `m_nu = 0.06 eV` and `z = 0.3`.
+For the reference/CREF deformation with `nk=96`, the density-weighted direct
+`theta_(nu-cdm) P_cb` half-pair RMS is `5.2816e-4` at standard precision and `5.3228e-4` after
+tightening the integration tolerances, while the corresponding resonant wake half-pair response is
+`0.230844`. The integrated wake-to-linear contrast therefore remains about `4.3e2` and changes by less
+than one percent under this precision test. The independently reconstructed density-derived
+`v_(nu-cdm) P_cb` proxy agrees closely with the direct velocity-transfer result in both precision
+settings.
 
-A response-optimized second direction is documented only as development history: its standard-precision
-linear response collapses under tighter tolerances and is therefore excluded from quantitative claims.
-A deterministic response-independent coefficient-space-orthogonal direction is provided as the final
-second-direction robustness control.
+A deterministic response-independent orthogonal null direction provides a separate qualitative
+robustness control. Its integrated wake-to-`theta P_cb` contrast is `94.0` at standard precision and
+`79.4` at moderate precision. The corresponding linear RMS changes by about `18.5%`, driven mainly by
+the high-`k` third, so this second direction is not used as a precision-grade headline coefficient.
+It nevertheless remains smooth, has no zero crossings in either precision setting, and preserves a
+large wake/linear separation without response optimization.
+
+A response-optimized direction is documented only as development history: its standard-precision
+linear response collapses under tighter tolerances and is excluded from quantitative claims.
 
 These response comparisons are transfer-level diagnostics, not absolute bispectrum amplitudes, kSZ/RSD
 survey forecasts, or detections. See `docs/HIDDEN_CHANNEL_RETENTION.md`,
