@@ -30,15 +30,13 @@ For the reference/CREF deformation at `m_nu = 0.06 eV`, `z = 0.3`, a 30% pointwi
 
 The density-derived and direct-theta-times-`P_cb` proxies agree at the `~5e-5` relative level in this run, showing that the earlier density-derived construction was not a finite-difference artifact.
 
-A response-selected direction gave the same internal agreement at standard precision (`6.547802239846086e-4` versus `6.547375721265696e-4`), but this direction later failed precision convergence and is not retained as a quantitative control.
-
 ### k-resolved decomposition
 
 The direct-theta diagnostic was then resolved over 96 logarithmic `k` modes. The exact identity
 
 `delta(theta P) = bar(theta) delta(P) + bar(P) delta(theta)`
 
-closed to absolute residuals of order `1e-16` for both tested directions. The apparently larger relative residual for the selected direction came only from division by a smaller `theta P` profile amplitude; its absolute closure residual was slightly smaller than the CREF residual.
+closed to absolute residuals of order `1e-16`. Pure `theta` and `theta P_cb` are therefore distinct transfer-level quantities, not two normalizations of one quantity.
 
 For CREF at standard precision (`nk=96`):
 
@@ -59,24 +57,45 @@ For CREF, the moderate-precision `nk=96` run gave
 - density-derived `v P_cb` RMS: `5.322828757582342e-4`,
 - wake / direct-`theta P_cb`: `433.68820256540243`.
 
-The main `theta P_cb` RMS therefore changed by only about `+0.78%` from standard to moderate precision, and the wake/linear contrast changed by about `-0.77%`. The direct-theta-times-`P_cb` and density-derived proxies remain essentially identical. The three moderate-precision `k`-third RMS values are `4.504055217659639e-3`, `2.19849459583823e-3`, and `4.62497953857375e-4`.
-
-The pure `theta` fractional RMS is more precision sensitive and is not used as the headline quantitative comparison.
+The main `theta P_cb` RMS changed by only about `+0.78%` from standard to moderate precision, and the wake/linear contrast changed by about `-0.77%`. The pure `theta` fractional RMS is more precision sensitive and is not used as the headline quantitative comparison.
 
 For the response-selected direction, the moderate-precision result changed qualitatively:
 
 - standard direct `theta P_cb` RMS: `6.464617200898742e-4`,
-- moderate direct `theta P_cb` RMS: `1.0669648447319053e-5`,
-- standard density-derived `v P_cb` RMS: `6.464779244086267e-4`,
-- moderate density-derived `v P_cb` RMS: `1.0670810511705817e-5`.
+- moderate direct `theta P_cb` RMS: `1.0669648447319053e-5`.
 
-The middle and high-`k` responses collapse under tighter tolerances and the number of zero crossings increases. This shows that the response-optimized direction exploited numerically delicate cancellations. Its previously quoted wake/linear factors (`~285`–`288`) are therefore retired from manuscript-level claims.
+The middle and high-`k` responses collapse under tighter tolerances and the number of zero crossings increases. The response-selected direction is therefore excluded from manuscript-level quantitative claims. Its previously quoted wake/linear factors (`~285`–`288`) are retained only as development history.
+
+### Response-independent orthogonal control
+
+A second null direction was then defined without using any CLASS response amplitude: the first canonical coefficient-space basis axis was Gram-Schmidt orthogonalized against normalized CREF, normalized under the same pointwise cap, and propagated through the same pipeline. Its coefficient-space dot product with CREF is `-1.91e-17`, and its matched-moment mismatch is `2.39e-16`.
+
+At standard precision (`nk=96`):
+
+- direct `theta P_cb` RMS: `1.1713198944007974e-3`,
+- density-derived `v P_cb` RMS: `1.1713282196477968e-3`,
+- wake response: `0.1101394327438084`,
+- wake / direct `theta P_cb`: `94.03019044609631`,
+- zero crossings: `0`.
+
+At moderate precision:
+
+- direct `theta P_cb` RMS: `1.3876806621063746e-3`,
+- density-derived `v P_cb` RMS: `1.3876847572915057e-3`,
+- wake / direct `theta P_cb`: `79.36943689668965`,
+- zero crossings: `0`.
+
+The standard-to-moderate change in the integrated `theta P_cb` RMS is `+18.47%`, so this control is not precision-converged at the percent level. The change is driven mainly by the high-`k` third, whose RMS increases by about `26.1%`; the low and middle thirds change by about `0.44%` and `2.34%`. The qualitative separation remains strong: the integrated wake/linear contrast stays between about `79` and `94`, and the direct-theta-times-`P_cb` and density-derived proxies agree at the `1e-5` relative level or better in both precision settings.
+
+This control is therefore retained as a response-independent qualitative robustness check, not as a second precision-grade headline coefficient.
 
 ### Current retained conclusion
 
-The robust quantitative control is the reference/CREF deformation. At `nk=96`, its density-weighted direct velocity-divergence response is `5.28e-4` at standard precision and `5.32e-4` at moderate precision, compared with a resonant wake half-pair response of `0.230844`. The corresponding integrated wake-to-linear contrast remains about `4.3e2`.
+The precision-grade quantitative control remains CREF: its integrated density-weighted direct velocity-divergence response is `5.28e-4` at standard precision and `5.32e-4` at moderate precision, compared with a resonant wake half-pair response of `0.230844`. The corresponding integrated wake-to-linear contrast remains about `4.3e2`.
 
-This is a transfer-level response diagnostic, not a kSZ or RSD survey forecast and not a theorem over all source-matched distributions. A final response-independent coefficient-space-orthogonal null direction is added as a separate robustness control; it is not selected using CLASS response amplitudes.
+The orthogonal response-independent control gives a separate qualitative confirmation that the resonant kernel can retain much more of the hidden kinetic perturbation than the integrated linear velocity kernel, with an integrated contrast of about `79`–`94` across the two precision settings. Because that second control shifts by about `18%`, it is not used as an exact second manuscript coefficient.
+
+This is a transfer-level response diagnostic, not a kSZ or RSD survey forecast and not a theorem over all source-matched distributions.
 
 ### Resource note
 
