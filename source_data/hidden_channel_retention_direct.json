@@ -1,5 +1,5 @@
 {
-  "calculation": "direct hidden-channel observable-retention comparison",
+  "calculation": "hidden-channel observable-retention validation",
   "status": "response_diagnostic_not_survey_forecast",
   "class_commit_expected": "e85808324f51fc694d12e3ed7439552a3c3f9540",
   "mass_eV": 0.06,
@@ -7,31 +7,108 @@
   "z": 0.3,
   "fractional_deformation_cap": 0.30,
   "k_range_h_Mpc": [0.003, 0.2],
-  "nk_direct": 48,
   "half_pair_convention": true,
-  "linear_proxy": "v_nu-cdm * P_cb",
   "mode_weight": "k^3 Delta ln k",
   "wake_sigma_kms": 200.0,
-  "results": {
-    "reference_cref": {
-      "density_proxy_half_pair_rms": 0.0005369172869387564,
-      "wake_half_pair_fraction": 0.23084420034493347,
-      "wake_to_linear_ratio": 429.94369144099613,
+  "class_output_direct_theta": "mPk,dTk,vTk",
+  "reference_cref": {
+    "wake_half_pair_fraction": 0.23084420034493347,
+    "nk48_standard": {
+      "density_derived_velocity_Pcb_half_pair_rms": 0.0005369172869387564,
+      "direct_theta_half_pair_rms": 0.00039505423084350484,
+      "direct_theta_Pcb_half_pair_rms": 0.0005369438898120348,
+      "wake_to_direct_theta_ratio": 584.3354717453441,
+      "wake_to_direct_theta_Pcb_ratio": 429.92238989020603,
       "max_relative_moment_mismatch": 3.579686991212226e-16
     },
-    "selected_linear_search_direction": {
-      "density_proxy_half_pair_rms": 0.0006547802239846086,
-      "wake_half_pair_fraction": 0.18644923053132711,
-      "wake_to_linear_ratio": 284.75085792406253,
-      "max_relative_moment_mismatch": 3.5796869912122257e-16
+    "nk96_standard": {
+      "direct_theta_half_pair_rms": 0.0004078367440126135,
+      "direct_theta_Pcb_half_pair_rms": 0.0005281598155627618,
+      "density_derived_velocity_Pcb_half_pair_rms": 0.0005280865049182505,
+      "wake_to_direct_theta_ratio": 566.0210947981527,
+      "wake_to_direct_theta_Pcb_ratio": 437.0726313189232,
+      "wake_to_density_derived_proxy_ratio": 437.13330712866616,
+      "theta_zero_crossings": 1,
+      "theta_Pcb_zero_crossings": 1,
+      "log_k_thirds_theta_Pcb_rms": [
+        0.004409099614642714,
+        0.001925236732732645,
+        0.00047520094922303546
+      ],
+      "max_abs_decomposition_residual": 9.259086553026208e-17,
+      "max_abs_decomposition_residual_relative_to_thetaP_peak": 1.845680512271886e-14
+    },
+    "nk96_moderate": {
+      "direct_theta_half_pair_rms": 0.0005434333009379483,
+      "direct_theta_Pcb_half_pair_rms": 0.0005322814846689793,
+      "density_derived_velocity_Pcb_half_pair_rms": 0.0005322828757582342,
+      "wake_to_direct_theta_ratio": 424.7884698020968,
+      "wake_to_direct_theta_Pcb_ratio": 433.68820256540243,
+      "wake_to_density_derived_proxy_ratio": 433.68706914739107,
+      "theta_zero_crossings": 0,
+      "theta_Pcb_zero_crossings": 0,
+      "log_k_thirds_theta_Pcb_rms": [
+        0.004504055217659639,
+        0.00219849459583823,
+        0.000462497953857375
+      ],
+      "max_abs_decomposition_residual": 9.812029660993815e-17,
+      "max_abs_decomposition_residual_relative_to_thetaP_peak": 1.9206693851218615e-14
+    },
+    "precision_convergence": {
+      "theta_Pcb_standard_to_moderate_relative_change_approx": 0.0078,
+      "wake_to_theta_Pcb_standard_to_moderate_relative_change_approx": -0.0077,
+      "retained_for_quantitative_claims": true
     }
   },
-  "reference_independent_96_mode_check": {
-    "density_proxy_half_pair_rms_approx": 0.00052815,
-    "relative_difference_vs_48_mode_approx": 0.017
+  "response_selected_direction": {
+    "wake_half_pair_fraction": 0.18644923053132711,
+    "nk48_standard": {
+      "density_derived_velocity_Pcb_half_pair_rms": 0.0006547802239846086,
+      "direct_theta_half_pair_rms": 0.00022103700181376584,
+      "direct_theta_Pcb_half_pair_rms": 0.0006547375721265696,
+      "wake_to_direct_theta_ratio": 843.5204468092606,
+      "wake_to_direct_theta_Pcb_ratio": 284.76940757461824,
+      "max_relative_moment_mismatch": 3.5796869912122257e-16
+    },
+    "nk96_standard": {
+      "direct_theta_half_pair_rms": 0.00021827193090231614,
+      "direct_theta_Pcb_half_pair_rms": 0.0006464617200898742,
+      "density_derived_velocity_Pcb_half_pair_rms": 0.0006464779244086267,
+      "wake_to_direct_theta_Pcb_ratio": 288.4149590565178,
+      "theta_Pcb_zero_crossings": 1,
+      "log_k_thirds_theta_Pcb_rms": [
+        0.0004103208713952627,
+        0.0002753474627460469,
+        0.0006502873933303797
+      ],
+      "max_abs_decomposition_residual": 8.283304597789254e-17,
+      "max_abs_decomposition_residual_relative_to_thetaP_peak": 9.095535319007609e-14
+    },
+    "nk96_moderate": {
+      "direct_theta_half_pair_rms": 0.000006405639376446808,
+      "direct_theta_Pcb_half_pair_rms": 0.000010669648447319053,
+      "density_derived_velocity_Pcb_half_pair_rms": 0.000010670810511705817,
+      "wake_to_direct_theta_Pcb_ratio": 17474.730442330172,
+      "theta_Pcb_zero_crossings": 5,
+      "log_k_thirds_theta_Pcb_rms": [
+        0.000404297520588857,
+        0.000013803502811775109,
+        0.000008893736386611537
+      ],
+      "max_abs_decomposition_residual": 7.567731163948821e-17,
+      "max_abs_decomposition_residual_relative_to_thetaP_peak": 6.08894005763951e-14
+    },
+    "precision_convergence": {
+      "theta_Pcb_standard_to_moderate_relative_change_approx": -0.9835,
+      "retained_for_quantitative_claims": false,
+      "reason": "The response-selected direction is precision sensitive; middle/high-k response collapses under tighter integration tolerances and zero crossings increase. Earlier ~285-288 wake/linear ratios are development diagnostics only."
+    }
   },
-  "theta_transfer_available": false,
-  "operator_optimization_note": "The small-probe optimizer overpredicted the selected direction's absolute final response and is not used quantitatively. Direct endpoint CLASS values are the retained result.",
-  "high_precision_note": "The resource-heavy high-precision profile was not adopted after repeated OOM termination in the development WSL environment. The quoted standard-precision values are supported by independent dz, k-grid and denominator-mask stability checks.",
-  "guardrail": "Restricted to the tested smooth source-matched deformation class; no absolute bispectrum or survey S/N is inferred."
+  "decomposition_identity": "delta(theta P)=bar(theta) delta(P)+bar(P) delta(theta)",
+  "normalization_note": "Pure theta and theta*P_cb are distinct transfer-level quantities. theta*P_cb includes hidden-state changes in both theta and P_cb. Their wake ratios are not expected to coincide.",
+  "raw_theta_note": "The pure-theta fractional RMS is more precision sensitive than theta*P_cb and is not used as the headline quantitative comparison.",
+  "moderate_precision_note": "The retained moderate test tightens integration tolerances only and leaves ncdm hierarchy size and momentum-grid resolution unchanged. The more aggressive high-precision preset repeatedly exhausted development-machine memory.",
+  "final_control_pending": "A deterministic response-independent coefficient-space-orthogonal null direction is provided as the final robustness control and should be run at standard and moderate precision before any two-direction manuscript claim.",
+  "guardrail": "Restricted to transfer-level response diagnostics in the tested smooth source-matched class; no kSZ/RSD survey S/N or theorem over all distributions is inferred."
 }
