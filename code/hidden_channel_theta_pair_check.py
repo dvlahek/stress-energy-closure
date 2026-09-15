@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 r"""Direct-theta validation of hidden kinetic information retention.
 
-This is the velocity-transfer counterpart of hidden_channel_pair_check.py.  It
+This is the velocity-transfer counterpart of hidden_channel_pair_check.py. It
 requests CLASS vTk output explicitly and compares the same source-matched pair
 in three transfer-level quantities at one redshift:
 
@@ -10,7 +10,7 @@ in three transfer-level quantities at one redshift:
 3. the density-weighted direct-theta proxy (theta_rel P_cb).
 
 The local resonant wake is evaluated for the same pair using the same half-pair
-normalization.  These are response-level diagnostics, not survey S/N forecasts
+normalization. These are response-level diagnostics, not survey S/N forecasts
 and not a kSZ forecast.
 """
 from __future__ import annotations
@@ -72,7 +72,7 @@ def write_psd(path: Path, q, f):
     hd.write_psd(path, q, f)
 
 
-def build_state_isolated(psd: Path, mass: float, zgrid, kh):
+def build_state_isolated(psd: Path, mass: float, zgrid, kh, precision="standard"):
     workdir = psd.parent
     workdir.mkdir(parents=True, exist_ok=True)
 
@@ -93,6 +93,7 @@ def build_state_isolated(psd: Path, mass: float, zgrid, kh):
             "--z-grid", ",".join(repr(float(z)) for z in zgrid),
             "--kh-npy", str(kh_path.resolve()),
             "--out-npz", str(out_path.resolve()),
+            "--precision", str(precision),
         ]
         subprocess.run(cmd, check=True)
 
@@ -112,6 +113,7 @@ def build_state_isolated(psd: Path, mass: float, zgrid, kh):
                 "transfer_keys": json.loads(str(d["transfer_keys_json"].item())),
                 "cdm_velocity_key": str(d["cdm_velocity_key"].item()),
                 "ncdm_velocity_key": str(d["ncdm_velocity_key"].item()),
+                "precision": str(d["precision"].item()) if "precision" in d else str(precision),
             }
     finally:
         for p in (kh_path, out_path):
@@ -150,6 +152,7 @@ def main():
     ap.add_argument("--kmin", type=float, default=0.003)
     ap.add_argument("--kmax", type=float, default=0.20)
     ap.add_argument("--nk", type=int, default=48)
+    ap.add_argument("--precision", choices=("standard", "moderate"), default="standard")
     args = ap.parse_args()
 
     out = Path(args.outdir)
@@ -165,7 +168,7 @@ def main():
             )
         q, f0, fp, fm, weights = load_selected(args.pair_csv, args.mass, args.z_match)
 
-    tag = f"{args.direction}_z{args.z:.3f}_theta_std"
+    tag = f"{args.direction}_z{args.z:.3f}_theta_{args.precision}"
     p0 = out / f"{tag}_fd.dat"
     pp = out / f"{tag}_plus.dat"
     pm = out / f"{tag}_minus.dat"
@@ -176,12 +179,12 @@ def main():
     kh = np.geomspace(args.kmin, args.kmax, args.nk)
     zgrid = [float(args.z)]
 
-    print(f"STATE 1/3 FD direction={args.direction} z={args.z}", flush=True)
-    s0 = build_state_isolated(p0, args.mass, zgrid, kh)
+    print(f"STATE 1/3 FD direction={args.direction} z={args.z} precision={args.precision}", flush=True)
+    s0 = build_state_isolated(p0, args.mass, zgrid, kh, precision=args.precision)
     print("STATE 2/3 PLUS", flush=True)
-    sp = build_state_isolated(pp, args.mass, zgrid, kh)
+    sp = build_state_isolated(pp, args.mass, zgrid, kh, precision=args.precision)
     print("STATE 3/3 MINUS", flush=True)
-    sm = build_state_isolated(pm, args.mass, zgrid, kh)
+    sm = build_state_isolated(pm, args.mass, zgrid, kh, precision=args.precision)
 
     z = float(args.z)
     r0 = s0["state"][z]
@@ -215,7 +218,7 @@ def main():
     summary = {
         "calculation": "direct CLASS velocity-transfer hidden-channel validation",
         "direction": args.direction,
-        "precision": "standard",
+        "precision": args.precision,
         "mass_eV": args.mass,
         "z": z,
         "k_range_h_Mpc": [args.kmin, args.kmax],
