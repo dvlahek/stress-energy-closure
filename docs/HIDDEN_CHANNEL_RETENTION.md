@@ -97,7 +97,7 @@ This supports the limited statement that, for the tested reference source-matche
 
 The result is not a theorem over all source-matched distributions, not an absolute bispectrum amplitude, and not a kSZ or RSD survey signal-to-noise forecast.
 
-A separate response-independent coefficient-space-orthogonal null direction is provided as the final robustness control. Its definition does not use CLASS response amplitudes.
+A separate response-independent coefficient-space-orthogonal null direction is provided as the final robustness control. It is constructed by Gram-Schmidt orthogonalizing the first canonical null-basis coefficient vector against normalized CREF, followed by the same pointwise normalization and 30% cap. No CLASS response amplitude or response optimizer enters this definition.
 
 ## Reproduction
 
@@ -107,11 +107,20 @@ Direct `theta` pair check:
 python code/hidden_channel_theta_pair_check.py --direction cref --z 0.3 --nk 48
 ```
 
-`k`-resolved standard and moderate checks:
+`k`-resolved CREF standard and moderate checks:
 
 ```bash
 python code/hidden_channel_theta_kprofile.py --direction cref --z 0.3 --nk 96 --precision standard
 python code/hidden_channel_theta_kprofile.py --direction cref --z 0.3 --nk 96 --precision moderate
 ```
+
+Final response-independent second-direction control:
+
+```bash
+python code/hidden_channel_theta_kprofile.py --direction orthogonal --z 0.3 --nk 96 --precision standard
+python code/hidden_channel_theta_kprofile.py --direction orthogonal --z 0.3 --nk 96 --precision moderate
+```
+
+The `orthogonal` JSON records its coefficient vector and its dot product with normalized CREF, so the response-independent construction is auditable.
 
 The original aggressive high-precision profile is not part of this result because it repeatedly exceeded the available memory in the development WSL environment. The moderate profile changes only integration tolerances and is the retained precision-convergence control.
