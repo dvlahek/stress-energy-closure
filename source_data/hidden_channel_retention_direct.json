@@ -1,0 +1,37 @@
+{
+  "calculation": "direct hidden-channel observable-retention comparison",
+  "status": "response_diagnostic_not_survey_forecast",
+  "class_commit_expected": "e85808324f51fc694d12e3ed7439552a3c3f9540",
+  "mass_eV": 0.06,
+  "z_match": 1100.0,
+  "z": 0.3,
+  "fractional_deformation_cap": 0.30,
+  "k_range_h_Mpc": [0.003, 0.2],
+  "nk_direct": 48,
+  "half_pair_convention": true,
+  "linear_proxy": "v_nu-cdm * P_cb",
+  "mode_weight": "k^3 Delta ln k",
+  "wake_sigma_kms": 200.0,
+  "results": {
+    "reference_cref": {
+      "density_proxy_half_pair_rms": 0.0005369172869387564,
+      "wake_half_pair_fraction": 0.23084420034493347,
+      "wake_to_linear_ratio": 429.94369144099613,
+      "max_relative_moment_mismatch": 3.579686991212226e-16
+    },
+    "selected_linear_search_direction": {
+      "density_proxy_half_pair_rms": 0.0006547802239846086,
+      "wake_half_pair_fraction": 0.18644923053132711,
+      "wake_to_linear_ratio": 284.75085792406253,
+      "max_relative_moment_mismatch": 3.5796869912122257e-16
+    }
+  },
+  "reference_independent_96_mode_check": {
+    "density_proxy_half_pair_rms_approx": 0.00052815,
+    "relative_difference_vs_48_mode_approx": 0.017
+  },
+  "theta_transfer_available": false,
+  "operator_optimization_note": "The small-probe optimizer overpredicted the selected direction's absolute final response and is not used quantitatively. Direct endpoint CLASS values are the retained result.",
+  "high_precision_note": "The resource-heavy high-precision profile was not adopted after repeated OOM termination in the development WSL environment. The quoted standard-precision values are supported by independent dz, k-grid and denominator-mask stability checks.",
+  "guardrail": "Restricted to the tested smooth source-matched deformation class; no absolute bispectrum or survey S/N is inferred."
+}
