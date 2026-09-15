@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 r"""k-resolved decomposition of direct-theta hidden-state retention.
 
-This is the follow-up to hidden_channel_theta_pair_check.py. It evaluates the
-same source-matched pair at one redshift but writes the fractional response as a
+This is the follow-up to hidden_channel_theta_pair_check.py. It evaluates a
+source-matched pair at one redshift but writes the fractional response as a
 function of k instead of only an RMS summary. The goal is to distinguish the
 pure velocity-divergence response from the density-weighted parity-odd proxy and
 to verify exactly how P_cb changes the response.
@@ -20,7 +20,11 @@ with the exact identity
   delta_thetaP = bar_theta * delta_P + bar_P * delta_theta.
 
 The density-derived velocity-times-P_cb proxy is written on the same grid as an
-independent control. No survey S/N is inferred.
+independent control. The ``orthogonal`` direction is a deterministic,
+response-independent coefficient-space control: the first canonical null-basis
+axis is Gram-Schmidt orthogonalized against CREF, then pointwise normalized and
+used with the same deformation cap. No CLASS response amplitude enters its
+definition. No survey S/N is inferred.
 """
 from __future__ import annotations
 
@@ -68,10 +72,48 @@ def zero_crossings(x, mask):
     return int(np.sum(s[1:] * s[:-1] < 0))
 
 
+def reconstruct_orthogonal_control(mass: float, z_match: float, frac: float):
+    """Build a deterministic response-independent null direction.
+
+    Start from the first canonical coefficient-space basis vector, remove its
+    projection onto normalized CREF, normalize the remaining coefficient vector,
+    then impose the same pointwise relative-shape normalization and +/- cap as
+    the reference pair. This uses no CLASS transfer response or optimizer output.
+    """
+    q = np.linspace(0.0, 20.0, 4000)
+    f0, weights, _, _, shapes, _, _ = cro.kinetic_objects(q, mass, z_match)
+    cref = ht.CREF / np.linalg.norm(ht.CREF)
+    e0 = np.zeros_like(cref)
+    e0[0] = 1.0
+    coeff = e0 - float(np.dot(e0, cref)) * cref
+    ncoeff = float(np.linalg.norm(coeff))
+    if not np.isfinite(ncoeff) or ncoeff <= 0:
+        raise RuntimeError("failed to construct coefficient-space orthogonal control")
+    coeff /= ncoeff
+
+    rel_shapes = shapes / np.maximum(f0[None, :], 1e-300)
+    nrm = hd.normalization_for_coeff(coeff, rel_shapes)
+    if nrm is None:
+        raise RuntimeError("failed to pointwise-normalize orthogonal control")
+    shape = nrm * (coeff @ shapes)
+    fp = f0 + frac * shape
+    fm = f0 - frac * shape
+    if min(float(np.min(fp)), float(np.min(fm))) <= 0:
+        raise RuntimeError("orthogonal control violates positivity")
+
+    metadata = {
+        "definition": "Gram-Schmidt first canonical null-basis axis against normalized CREF; no response optimization",
+        "coefficients": coeff.tolist(),
+        "coefficient_dot_normalized_cref": float(np.dot(coeff, cref)),
+        "pointwise_normalization": float(nrm),
+    }
+    return q, f0, fp, fm, weights, metadata
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--outdir", default="hidden_channel_theta_kprofiles")
-    ap.add_argument("--direction", choices=("cref", "selected"), required=True)
+    ap.add_argument("--direction", choices=("cref", "orthogonal", "selected"), required=True)
     ap.add_argument("--pair-csv", type=Path,
                     default=Path("hidden_channel_operator_diagnostics/best_proxy_pair.csv"))
     ap.add_argument("--mass", type=float, default=0.06)
@@ -89,12 +131,25 @@ def main():
     out = Path(args.outdir)
     out.mkdir(parents=True, exist_ok=True)
 
+    direction_definition = None
     if args.direction == "cref":
         q, f0, fp, fm, weights = ht.reconstruct_cref(args.mass, args.z_match, args.frac)
+        direction_definition = {
+            "definition": "fixed reference/CREF null direction",
+            "coefficients": (ht.CREF / np.linalg.norm(ht.CREF)).tolist(),
+        }
+    elif args.direction == "orthogonal":
+        q, f0, fp, fm, weights, direction_definition = reconstruct_orthogonal_control(
+            args.mass, args.z_match, args.frac
+        )
     else:
         if not args.pair_csv.exists():
             raise FileNotFoundError(f"Selected-pair file not found: {args.pair_csv}")
         q, f0, fp, fm, weights = ht.load_selected(args.pair_csv, args.mass, args.z_match)
+        direction_definition = {
+            "definition": "response-selected development direction; precision-sensitive and not retained for quantitative claims",
+            "pair_csv": str(args.pair_csv),
+        }
 
     tag = f"{args.direction}_z{args.z:.3f}_nk{args.nk}_{args.precision}"
     p0 = out / f"{tag}_fd.dat"
@@ -161,6 +216,8 @@ def main():
         w = csv.DictWriter(f, fieldnames=list(rows[0].keys()))
         w.writeheader(); w.writerows(rows)
 
+    wake = hd.wake_half_pair_fraction(q, f0, fp, fm, args.mass, z, args.sigma_kms)
+
     edges = np.geomspace(args.kmin, args.kmax, 4)
     bins = []
     for j in range(3):
@@ -168,15 +225,19 @@ def main():
             mb = common & (kh >= edges[j]) & (kh < edges[j + 1])
         else:
             mb = common & (kh >= edges[j]) & (kh <= edges[j + 1])
+        bin_theta = weighted_rms(delta_theta, kh, mb)
+        bin_thetaP = weighted_rms(delta_thetaP, kh, mb)
+        bin_vP = weighted_rms(delta_vP, kh, mb)
         bins.append({
             "k_range_h_Mpc": [float(edges[j]), float(edges[j + 1])],
             "n_modes": int(np.sum(mb)),
-            "theta_rms": weighted_rms(delta_theta, kh, mb),
-            "theta_Pcb_rms": weighted_rms(delta_thetaP, kh, mb),
-            "density_derived_velocity_Pcb_rms": weighted_rms(delta_vP, kh, mb),
+            "theta_rms": bin_theta,
+            "theta_Pcb_rms": bin_thetaP,
+            "density_derived_velocity_Pcb_rms": bin_vP,
+            "wake_to_theta_Pcb_contrast_same_wake_numerator": wake / max(bin_thetaP, 1e-300),
+            "wake_to_density_derived_proxy_contrast_same_wake_numerator": wake / max(bin_vP, 1e-300),
         })
 
-    wake = hd.wake_half_pair_fraction(q, f0, fp, fm, args.mass, z, args.sigma_kms)
     stats = cro.pair_stats(f0, fp, fm, q, weights)
 
     max_profile = max(float(np.nanmax(np.abs(delta_thetaP[common]))), 1e-300)
@@ -188,6 +249,7 @@ def main():
     summary = {
         "calculation": "k-resolved direct-theta retention decomposition",
         "direction": args.direction,
+        "direction_definition": direction_definition,
         "precision": args.precision,
         "mass_eV": args.mass,
         "z": z,
@@ -216,8 +278,8 @@ def main():
         "interpretation_guardrail": (
             "Pure theta and theta*P_cb are different transfer-level quantities; their wake ratios "
             "need not agree. The wake fraction used here has no k dependence after common potential "
-            "factors cancel, so bin-specific wake/theta ratios would only reuse the same wake numerator. "
-            "This diagnostic is not a kSZ or RSD survey forecast."
+            "factors cancel, so bin-specific contrasts reuse the same wake numerator and are not "
+            "independent wake observables. This diagnostic is not a kSZ or RSD survey forecast."
         ),
         "profile_csv": str(csv_path),
     }
