@@ -33,15 +33,7 @@ An independent density-derived control reconstructs relative velocity from the r
 - wake / density-derived proxy: `437.13330712866616`
 - max relative matched-moment mismatch: `3.579686991212226e-16`
 
-The direct-theta-times-`P_cb` and density-derived proxies agree to much better than one percent.
-
-The three logarithmic `k`-third RMS values for `theta P_cb` are:
-
-1. `0.003 <= k < 0.0121644 h/Mpc`: `4.409099614642714e-3`
-2. `0.0121644 <= k < 0.0493242 h/Mpc`: `1.925236732732645e-3`
-3. `0.0493242 <= k <= 0.2 h/Mpc`: `4.7520094922303546e-4`
-
-The suppression therefore persists over the tested interval but is scale dependent. The wake fraction used in this diagnostic has no `k` dependence after common potential factors cancel, so a bin-specific wake/linear number would reuse the same wake numerator and is not treated as an independent wake observable.
+The three logarithmic `k`-third RMS values for `theta P_cb` are `4.409099614642714e-3`, `1.925236732732645e-3`, and `4.7520094922303546e-4`. The suppression therefore persists over the tested interval but is scale dependent.
 
 ### Moderate precision, `nk = 96`
 
@@ -53,15 +45,7 @@ The convergence check tightens only integration tolerances while keeping the ncd
 - wake / direct `theta P_cb`: `433.68820256540243`
 - wake / density-derived proxy: `433.68706914739107`
 
-Relative to standard precision, the headline `theta P_cb` RMS shifts by about `+0.78%`, and the wake/linear contrast by about `-0.77%`.
-
-The moderate-precision `theta P_cb` RMS values in the same three logarithmic `k` thirds are:
-
-1. `4.504055217659639e-3`
-2. `2.19849459583823e-3`
-3. `4.62497953857375e-4`
-
-The middle subrange is more precision sensitive than the integrated result, so no claim of a constant pointwise contrast is made.
+Relative to standard precision, the headline `theta P_cb` RMS shifts by about `+0.78%`, and the wake/linear contrast by about `-0.77%`. The pure `theta` fractional RMS is more precision sensitive and is not used as the headline quantitative comparison.
 
 ## Exact decomposition check
 
@@ -69,58 +53,67 @@ For each `k`, the code verifies
 
 `delta(theta P) = bar(theta) delta(P) + bar(P) delta(theta)`.
 
-For CREF at standard precision, the maximum absolute decomposition residual is `9.259086553026208e-17`, corresponding to `1.845680512271886e-14` relative to the peak `theta P` profile. The selected-direction residual is of the same absolute size. The difference in the quoted relative residual is caused by the smaller selected-direction profile amplitude, not by a failure of the identity.
-
-This confirms that pure `theta` and `theta P_cb` are genuinely different transfer-level quantities, not two normalizations of one quantity.
+The maximum absolute residuals are of order `1e-16`. This confirms that pure `theta` and `theta P_cb` are genuinely different transfer-level quantities, not two normalizations of one quantity.
 
 ## Response-selected direction: diagnostic only
 
-At standard precision the response-selected direction gave
+At standard precision the response-selected direction gave direct `theta P_cb` RMS `6.464617200898742e-4` and wake/direct-`theta P_cb = 288.4149590565178`.
 
-- direct `theta P_cb` RMS: `6.464617200898742e-4`
-- density-derived `v P_cb` RMS: `6.464779244086267e-4`
-- wake response: `0.18644923053132711`
-- wake / direct `theta P_cb`: `288.4149590565178`.
+Under the moderate-precision tolerance test the same direction gives direct `theta P_cb` RMS `1.0669648447319053e-5`. The middle and high-`k` responses collapse and the zero-crossing count increases. This direction is therefore precision sensitive and is excluded from manuscript-level quantitative claims. Its earlier `~285`–`288` wake/linear ratio is retained only as development history.
 
-However, under the moderate-precision tolerance test the same direction gives
+## Response-independent orthogonal control
 
-- direct `theta P_cb` RMS: `1.0669648447319053e-5`
-- density-derived `v P_cb` RMS: `1.0670810511705817e-5`.
+A separate null direction is constructed without using CLASS response amplitudes. The first canonical null-basis coefficient vector is Gram-Schmidt orthogonalized against normalized CREF, then normalized under the same pointwise cap and 30% deformation amplitude.
 
-The middle and high-`k` responses collapse and the zero-crossing count increases. The response-selected direction is therefore precision sensitive and is excluded from manuscript-level quantitative claims. Its earlier `~285`–`288` wake/linear ratio is retained only as development history.
+The resulting coefficient vector is
+
+`[0.9946511694474491, 0.006310711676011596, -0.017566041166059896, -0.050820407796465655, -0.07125215639341684, -0.04975278129587607, -0.013628548959082238]`.
+
+Its dot product with normalized CREF is `-1.9082402331634368e-17`, and the matched-moment mismatch is `2.386457994141484e-16`.
+
+### Standard precision, `nk = 96`
+
+- direct `theta P_cb` RMS: `1.1713198944007974e-3`
+- density-derived `v P_cb` RMS: `1.1713282196477968e-3`
+- wake response: `0.1101394327438084`
+- wake / direct `theta P_cb`: `94.03019044609631`
+- zero crossings in `theta P_cb`: `0`
+- `k`-third `theta P_cb` RMS: `1.1711868750611771e-2`, `5.588669319796887e-3`, `9.56803625365203e-4`
+- same-wake-numerator contrasts by `k` third: `9.4041`, `19.7076`, `115.1118`
+
+### Moderate precision, `nk = 96`
+
+- direct `theta P_cb` RMS: `1.3876806621063746e-3`
+- density-derived `v P_cb` RMS: `1.3876847572915057e-3`
+- wake response: `0.1101394327438084`
+- wake / direct `theta P_cb`: `79.36943689668965`
+- zero crossings in `theta P_cb`: `0`
+- `k`-third `theta P_cb` RMS: `1.1763629823371717e-2`, `5.7193927604100294e-3`, `1.2065386778474646e-3`
+- same-wake-numerator contrasts by `k` third: `9.3627`, `19.2572`, `91.2855`
+
+The integrated `theta P_cb` RMS changes by about `+18.47%` from standard to moderate precision, so this second direction is not precision-converged at the percent level. The change is concentrated at high `k`: the low, middle and high thirds shift by about `+0.44%`, `+2.34%`, and `+26.10%`, respectively.
+
+The qualitative conclusion is nevertheless stable. The response-independent control keeps zero crossings at zero, the direct and density-derived proxies agree at the `1e-5` relative level or better, and the integrated wake/linear contrast remains between about `79` and `94`.
+
+This direction is therefore retained as a qualitative response-independent robustness control, not as a second precision-grade headline coefficient.
 
 ## Retained interpretation
 
-The robust quantitative result is the reference/CREF deformation. Its integrated density-weighted direct velocity-divergence response remains about `5.3e-4` under the standard-to-moderate precision change, while the same pair has a resonant wake response of `0.230844`. The wake-to-linear contrast therefore remains about `4.3e2`.
+The precision-grade quantitative result is the reference/CREF deformation. Its integrated density-weighted direct velocity-divergence response remains about `5.3e-4` under the standard-to-moderate precision change, while the same pair has a resonant wake response of `0.230844`. The wake-to-linear contrast therefore remains about `4.3e2`.
 
-This supports the limited statement that, for the tested reference source-matched deformation, the resonant kernel retains substantially more hidden kinetic information than the integrated linear relative-velocity proxy.
+The orthogonal response-independent control provides a separate qualitative confirmation with an integrated contrast of about `79`–`94`, but its `~18%` precision shift prevents using one exact number as a second headline coefficient.
 
 The result is not a theorem over all source-matched distributions, not an absolute bispectrum amplitude, and not a kSZ or RSD survey signal-to-noise forecast.
 
-A separate response-independent coefficient-space-orthogonal null direction is provided as the final robustness control. It is constructed by Gram-Schmidt orthogonalizing the first canonical null-basis coefficient vector against normalized CREF, followed by the same pointwise normalization and 30% cap. No CLASS response amplitude or response optimizer enters this definition.
+The wake fraction used here has no `k` dependence after common potential factors cancel. Bin-specific wake/linear numbers therefore reuse the same wake numerator and are not independent wake observables.
 
 ## Reproduction
-
-Direct `theta` pair check:
-
-```bash
-python code/hidden_channel_theta_pair_check.py --direction cref --z 0.3 --nk 48
-```
-
-`k`-resolved CREF standard and moderate checks:
 
 ```bash
 python code/hidden_channel_theta_kprofile.py --direction cref --z 0.3 --nk 96 --precision standard
 python code/hidden_channel_theta_kprofile.py --direction cref --z 0.3 --nk 96 --precision moderate
-```
-
-Final response-independent second-direction control:
-
-```bash
 python code/hidden_channel_theta_kprofile.py --direction orthogonal --z 0.3 --nk 96 --precision standard
 python code/hidden_channel_theta_kprofile.py --direction orthogonal --z 0.3 --nk 96 --precision moderate
 ```
-
-The `orthogonal` JSON records its coefficient vector and its dot product with normalized CREF, so the response-independent construction is auditable.
 
 The original aggressive high-precision profile is not part of this result because it repeatedly exceeded the available memory in the development WSL environment. The moderate profile changes only integration tolerances and is the retained precision-convergence control.
