@@ -3,9 +3,8 @@
 Code, source-data summaries and reproducibility workflows accompanying the manuscript
 **“Gravitational response recovers kinetic information beyond stress-energy.”**
 
-This repository contains the publication-facing analysis only. Development history, transport retries
-and rejected exploratory paths are preserved in Git and development branches, but are not part of the
-reviewer-facing reproducibility snapshot.
+This repository contains the publication-facing analysis and the material required to reproduce the
+reported calculations and observational validation.
 
 ## Reviewer quick start
 
@@ -96,8 +95,8 @@ docs/                    final reproducibility notes
 .github/workflows/       publication-facing workflows
 ```
 
-The canonical submission snapshot is the `nature-physics-submission` branch until it is merged into
-`main` and tagged for release. Development branches are not required to reproduce the manuscript.
+The default `main` branch is the canonical publication-facing snapshot. The matching
+`nature-physics-submission` branch is kept as an explicit submission reference.
 
 ## Citation and license
 
