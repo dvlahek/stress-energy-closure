@@ -32,8 +32,10 @@ Start with:
 
 - `REVIEWER_GUIDE.md` — claim-to-code/source-data map.
 - `docs/PHASE7_REPRODUCIBILITY.md` — final observational definitions and rerun instructions.
+- `docs/HIDDEN_CHANNEL_RETENTION.md` — direct same-pair wake versus linear-transfer retention control.
 - `source_data/README.md` — publication-facing numerical outputs.
 - `source_data/phase7_validation_manifest.json` — machine-readable observational hierarchy.
+- `HISTORY.md` — development history for the recent observable-retention tests.
 
 ## Reproducing the core theory calculations
 
@@ -62,7 +64,15 @@ test. The final DESI-BGS-like nine-tracer parity-odd wake forecast at `m_nu = 0.
 pointwise deformation cap gives projected `S/N = 0.8605447` (`0.8607548` in the corresponding linear
 calculation).
 
-These are sensitivity calculations, not detections.
+A separate direct response-level control compares the same source-matched pairs under two kernels at
+`m_nu = 0.06 eV` and `z = 0.3`. For the reference direction, the linear neutrino-CDM relative-velocity
+proxy has half-pair RMS response `5.369e-4`, while the resonant wake response is `0.230844`, a factor
+`429.94` larger. A second independently selected source-matched direction gives `6.548e-4` versus
+`0.186449`, a factor `284.75`. Both pairs preserve the matched source moments to about `3.58e-16`.
+This comparison is a response diagnostic, not an absolute bispectrum or survey signal-to-noise forecast.
+See `docs/HIDDEN_CHANNEL_RETENTION.md` and `source_data/hidden_channel_retention_direct.json`.
+
+These are sensitivity calculations or response diagnostics, not detections.
 
 ## DESI DR1 validation
 
