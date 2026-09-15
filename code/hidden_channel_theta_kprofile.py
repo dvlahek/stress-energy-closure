@@ -61,7 +61,6 @@ def zero_crossings(x, mask):
         return 0
     y = x[ids]
     s = np.sign(y)
-    # Ignore exact zeros when counting sign changes.
     nz = s != 0
     s = s[nz]
     if s.size < 2:
@@ -84,6 +83,7 @@ def main():
     ap.add_argument("--kmax", type=float, default=0.20)
     ap.add_argument("--nk", type=int, default=96)
     ap.add_argument("--mask-threshold", type=float, default=1e-4)
+    ap.add_argument("--precision", choices=("standard", "moderate"), default="standard")
     args = ap.parse_args()
 
     out = Path(args.outdir)
@@ -96,7 +96,7 @@ def main():
             raise FileNotFoundError(f"Selected-pair file not found: {args.pair_csv}")
         q, f0, fp, fm, weights = ht.load_selected(args.pair_csv, args.mass, args.z_match)
 
-    tag = f"{args.direction}_z{args.z:.3f}_nk{args.nk}"
+    tag = f"{args.direction}_z{args.z:.3f}_nk{args.nk}_{args.precision}"
     p0 = out / f"{tag}_fd.dat"
     pp = out / f"{tag}_plus.dat"
     pm = out / f"{tag}_minus.dat"
@@ -107,12 +107,12 @@ def main():
     kh = np.geomspace(args.kmin, args.kmax, args.nk)
     zgrid = [float(args.z)]
 
-    print(f"STATE 1/3 FD direction={args.direction} z={args.z}", flush=True)
-    s0 = ht.build_state_isolated(p0, args.mass, zgrid, kh)
+    print(f"STATE 1/3 FD direction={args.direction} z={args.z} precision={args.precision}", flush=True)
+    s0 = ht.build_state_isolated(p0, args.mass, zgrid, kh, precision=args.precision)
     print("STATE 2/3 PLUS", flush=True)
-    sp = ht.build_state_isolated(pp, args.mass, zgrid, kh)
+    sp = ht.build_state_isolated(pp, args.mass, zgrid, kh, precision=args.precision)
     print("STATE 3/3 MINUS", flush=True)
-    sm = ht.build_state_isolated(pm, args.mass, zgrid, kh)
+    sm = ht.build_state_isolated(pm, args.mass, zgrid, kh, precision=args.precision)
 
     if not (s0["theta_available"] and sp["theta_available"] and sm["theta_available"]):
         raise RuntimeError("direct theta transfer unavailable")
@@ -161,7 +161,6 @@ def main():
         w = csv.DictWriter(f, fieldnames=list(rows[0].keys()))
         w.writeheader(); w.writerows(rows)
 
-    # Logarithmic thirds of the k interval, useful for identifying edge domination.
     edges = np.geomspace(args.kmin, args.kmax, 4)
     bins = []
     for j in range(3):
@@ -189,6 +188,7 @@ def main():
     summary = {
         "calculation": "k-resolved direct-theta retention decomposition",
         "direction": args.direction,
+        "precision": args.precision,
         "mass_eV": args.mass,
         "z": z,
         "k_range_h_Mpc": [args.kmin, args.kmax],
@@ -215,7 +215,9 @@ def main():
         "identity": "delta(theta P)=bar(theta) delta(P)+bar(P) delta(theta)",
         "interpretation_guardrail": (
             "Pure theta and theta*P_cb are different transfer-level quantities; their wake ratios "
-            "need not agree. This diagnostic is not a kSZ or RSD survey forecast."
+            "need not agree. The wake fraction used here has no k dependence after common potential "
+            "factors cancel, so bin-specific wake/theta ratios would only reuse the same wake numerator. "
+            "This diagnostic is not a kSZ or RSD survey forecast."
         ),
         "profile_csv": str(csv_path),
     }
