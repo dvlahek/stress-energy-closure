@@ -1,9 +1,12 @@
 {
-  "snapshot_date": "2026-09-14",
-  "snapshot_branch": "observable-octupole-control",
-  "source_branch_parent": "publication-reproducibility",
+  "snapshot_date": "2026-09-15",
+  "snapshot_branch": "nature-physics-submission",
   "class_commit": "e85808324f51fc694d12e3ed7439552a3c3f9540",
   "analysis_status": "CLOSED",
+  "blinding": {
+    "fully_blinded": false,
+    "statement": "Real-data outputs were inspected during pipeline development. Final tracer definitions, separation/redshift bins, nuisance model, production seed and independent closure seeds were fixed before the final closure tests. No result is described as a blinded measurement."
+  },
   "primary_observational_inference": {
     "role": "SOLE_HEADLINE_REAL_DATA_INFERENCE",
     "source": "source_data/phase7_desi_fullsample_summary.json",
@@ -12,42 +15,64 @@
     "conservative_wake_sigma": 0.08516605996859057,
     "conservative_wake_z": -0.867730828112121,
     "empirical_two_sided_pvalue": 0.3939393939393939,
-    "single_sentence_rationale": "This is the sole headline observational coefficient because the direct real-data analysis was fixed before later mock-covariance and orthogonal-control closure; Gfinder, EZmock, Abacus and ell=3 are validation/control layers rather than alternative headline estimates."
+    "single_sentence_rationale": "This is the sole headline observational coefficient because it is the direct frozen real-data analysis; Gfinder, EZmock, AbacusSummit, stochastic-seed and ell=3 results are validation/control layers rather than alternative headline estimates."
   },
   "completed_validation_layers": {
     "desi_dr1_zresolved": {
       "role": "baseline_real_data_validation",
+      "source": "source_data/wake_phase7_desi_dr1_zresolved_summary.json",
       "conservative_wake_amplitude": 0.0318435,
       "conservative_wake_sigma": 0.2224905,
       "status": "PASS_NULL"
     },
     "desi_dr1_gfinder_mass_proxy": {
       "role": "tracer_proxy_robustness_cross_check",
+      "source": "source_data/phase7_gfinder_massproxy_summary.json",
       "conservative_wake_amplitude": 0.06878387421106935,
       "conservative_wake_sigma": 0.08276078686237884,
+      "data_vector_sha256": "a64e522738d5b42ccc1d8cad1cb51767fea3a8d1d019b0d0bf2b0431e49c7ab9",
       "headline_status": "NOT_PRIMARY",
       "status": "PASS_NULL"
     },
     "ezmock_random_rank_placebo": {
       "role": "geometry_covariance_false_positive_cross_check",
+      "source": "source_data/phase7_ezmock_local/aggregate_validation_summary.json",
+      "raw_aggregate_summary": "source_data/phase7_ezmock_local/aggregate/summary_ezmock_placebo_covariance.json",
       "mock_count": 30,
       "mock_ids": "3-32",
       "oas_condition_number": 10.677983574525063,
       "conservative_wake_amplitude": -0.11481177799715447,
       "conservative_wake_sigma": 0.08199514300447702,
       "empirical_two_sided_pvalue": 0.0967741935483871,
+      "unit_injection_mean": 0.9999999999999375,
       "headline_status": "NOT_PRIMARY",
+      "reason_not_primary": "The released EZmock files used here do not provide the luminosity field required for the physical luminosity-ranked tracer construction.",
+      "status": "PASS"
+    },
+    "stochastic_seed_control": {
+      "role": "pair_monte_carlo_closure",
+      "source": "source_data/phase7_seed_control_summary.json",
+      "workflow_run_id": 34888489895,
+      "production_seed": 20260913,
+      "independent_seeds": [20260917, 20260929, 20261007],
+      "conservative_wake_amplitude_mean": -0.06476822491750485,
+      "conservative_wake_amplitude_std": 0.014969537484336083,
+      "conservative_wake_z_range": [-1.013866049811166, -0.7619674766357311],
+      "empirical_two_sided_pvalue_range": [0.2727272727272727, 0.45454545454545453],
       "status": "PASS"
     },
     "abacus_physical_mock_calibration": {
       "role": "physical_mock_covariance_window_injection_cross_check",
+      "source": "source_data/phase7_abacus_final_summary.json",
+      "amplitude_sweep_source": "source_data/phase7_abacus_injection_amplitude_sweep.json",
       "workflow_run_id": 34780454743,
-      "final_completion_status": "25/25 PASS",
       "mock_count": 25,
       "mock_ids": "0-24",
       "vector_dimension": 18,
       "mock_to_dimension_ratio": 1.3888888888888888,
       "sample_covariance_rank": 18,
+      "sample_covariance_condition_number": 864.5979387713957,
+      "oas_shrinkage": 0.22539897066103604,
       "oas_condition_number": 29.437041342166438,
       "conservative_wake_amplitude": -0.10561626678300673,
       "conservative_wake_sigma": 0.059370661884118714,
@@ -56,18 +81,12 @@
       "hartlap_control_amplitude": -0.06100297588747683,
       "hartlap_control_sigma": 0.0845031416378325,
       "hartlap_control_z": -0.7219018690325885,
+      "unit_injection_mean": 1.0000000000000262,
+      "amplitude_sweep_range": [-2.0, 2.0],
+      "amplitude_sweep_slope": 1.0000000000000262,
       "headline_status": "NOT_PRIMARY",
+      "reason_not_primary": "The ensemble contains 25 mocks for an 18-dimensional vector and the inferred significance is covariance-estimator dependent: OAS gives -1.779 sigma while the raw-sample/Hartlap control gives -0.722 sigma. This layer is therefore retained as physical-mock validation, not as the headline likelihood.",
       "status": "PASS_NULL"
-    },
-    "stochastic_seed_control": {
-      "role": "pair_monte_carlo_closure",
-      "workflow_run_id": 34888489895,
-      "production_seed": 20260913,
-      "independent_seeds": [20260917, 20260929, 20261007],
-      "conservative_wake_amplitude_mean": -0.06476822491750485,
-      "conservative_wake_amplitude_std": 0.014969537484336083,
-      "conservative_wake_z_range": [-1.013866049811166, -0.7619674766357311],
-      "status": "PASS"
     },
     "ell3_octupole_control": {
       "role": "orthogonal_odd_multipole_null_control",
@@ -85,21 +104,15 @@
       "status": "PASS_NULL_CONTROL"
     }
   },
-  "abacus_documentation_resolution": {
-    "old_state": "24/25 was an earlier pre-closure documentation state while mock 11 was in a transport-only retry.",
-    "final_state": "25/25 PASS; workflow run 34780454743 completed successfully and the final aggregate is frozen.",
-    "science_change": false
-  },
-  "blinding": {
-    "fully_blinded": false,
-    "statement": "Real-data outputs were inspected during pipeline development. Final tracer definitions, separation/redshift bins, nuisance model, production seed and independent closure seeds were fixed before the final closure tests."
-  },
   "pending_closure_layers": {},
   "provenance_guardrails": [
     "There is exactly one publication-facing headline observational coefficient: the full-sample luminosity-rank conservative DESI dipole fit.",
-    "Gfinder, EZmock, Abacus and ell=3 are validation/control layers, not alternative headline estimates.",
+    "Gfinder, EZmock, AbacusSummit, stochastic-seed and ell=3 outputs are validation/control layers, not alternative headline estimates.",
+    "EZmock is a random-rank geometry/covariance/placebo ensemble, not a luminosity-matched physical covariance.",
+    "AbacusSummit is the physical luminosity-ranked high-fidelity mock layer; the final ensemble contains 25 completed realizations.",
     "The ell=3 condition number 440.8145 refers to the ridge-regularized jackknife covariance used for inversion, not the raw covariance.",
-    "Final Abacus status is 25/25 PASS; any 24/25 wording is stale pre-closure documentation preserved only in Git history.",
+    "The conservative nuisance-projected DESI result is the production inference; the minimal two-template fit is retained only as a diagnostic.",
+    "The Abacus amplitude sweep is a compressed-vector / forward-window linear-response validation, not an independent catalog-level signal injection before pair compression.",
     "No observational result is presented as a neutrino-wake detection."
   ]
 }
