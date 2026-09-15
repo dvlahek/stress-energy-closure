@@ -64,15 +64,23 @@ test. The final DESI-BGS-like nine-tracer parity-odd wake forecast at `m_nu = 0.
 pointwise deformation cap gives projected `S/N = 0.8605447` (`0.8607548` in the corresponding linear
 calculation).
 
-A separate direct response-level control compares the same source-matched pairs under two kernels at
-`m_nu = 0.06 eV` and `z = 0.3`. For the reference direction, the linear neutrino-CDM relative-velocity
-proxy has half-pair RMS response `5.369e-4`, while the resonant wake response is `0.230844`, a factor
-`429.94` larger. A second independently selected source-matched direction gives `6.548e-4` versus
-`0.186449`, a factor `284.75`. Both pairs preserve the matched source moments to about `3.58e-16`.
-This comparison is a response diagnostic, not an absolute bispectrum or survey signal-to-noise forecast.
-See `docs/HIDDEN_CHANNEL_RETENTION.md` and `source_data/hidden_channel_retention_direct.json`.
+A separate transfer-level control compares the same source-matched reference/CREF pair under the
+direct CLASS neutrino-CDM velocity-divergence kernel and the resonant wake kernel at `m_nu = 0.06 eV`
+and `z = 0.3`. With `nk=96`, the density-weighted direct `theta_(nu-cdm) P_cb` half-pair RMS is
+`5.2816e-4` at standard precision and `5.3228e-4` after tightening the integration tolerances, while
+the corresponding resonant wake half-pair response is `0.230844`. The integrated wake-to-linear
+contrast therefore remains about `4.3e2` and changes by less than one percent under this precision test.
+The independently reconstructed density-derived `v_(nu-cdm) P_cb` proxy agrees closely with the direct
+velocity-transfer result in both precision settings.
 
-These are sensitivity calculations or response diagnostics, not detections.
+A response-optimized second direction is documented only as development history: its standard-precision
+linear response collapses under tighter tolerances and is therefore excluded from quantitative claims.
+A deterministic response-independent coefficient-space-orthogonal direction is provided as the final
+second-direction robustness control.
+
+These response comparisons are transfer-level diagnostics, not absolute bispectrum amplitudes, kSZ/RSD
+survey forecasts, or detections. See `docs/HIDDEN_CHANNEL_RETENTION.md`,
+`source_data/hidden_channel_retention_direct.json`, and `HISTORY.md`.
 
 ## DESI DR1 validation
 
