@@ -1,9 +1,9 @@
 {
   "status": "PASS_NULL_CONTROL",
-  "scope": "Predeclared exploratory orthogonal odd-sector ell=3 control on the frozen DESI DR1 BGS five-tracer luminosity-rank sample. No physical wake template is fit to ell=3.",
+  "scope": "Orthogonal odd-sector ell=3 control on the frozen DESI DR1 BGS five-tracer luminosity-rank sample. No physical wake template is fit to ell=3.",
   "headline_status": "NOT_A_HEADLINE_CANDIDATE",
-  "primary_observational_inference": "The sole publication-facing headline coefficient remains the conservative full-sample five-tracer luminosity-rank DESI DR1 dipole fit: A_wake = -0.0739012 +/- 0.0851661 (-0.868 sigma). Gfinder, EZmock, Abacus and ell=3 are validation/control layers.",
-  "predeclared_decision_rule": "empirical p >= 0.05: consistent with null; empirical p < 0.05: investigate survey/estimator systematics before any physical interpretation",
+  "primary_observational_inference": "The sole publication-facing headline coefficient remains the conservative full-sample five-tracer luminosity-rank DESI DR1 dipole fit: A_wake = -0.0739012 +/- 0.0851661 (-0.868 sigma). Gfinder, EZmock, AbacusSummit and ell=3 are validation/control layers.",
+  "decision_rule": "empirical p >= 0.05: consistent with null; empirical p < 0.05: investigate survey/estimator systematics before any physical interpretation",
   "observable": {
     "ell": 3,
     "basis": "7 P_3(mu) = (7/2)(5 mu^3 - 3 mu)",
