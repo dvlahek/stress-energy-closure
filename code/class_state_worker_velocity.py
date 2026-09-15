@@ -6,11 +6,12 @@ transfer functions from CLASS, evaluates one PSD state, serializes only the
 arrays needed by the direct-theta pair check, and exits so native CLASS memory
 is returned to the OS.
 
-The optional ``moderate`` precision level is a deliberately restrained
-convergence check. It tightens the ncdm/background and perturbation tolerances
-and moderately increases momentum/hierarchy resolution without using the much
-more expensive publication high-precision preset that previously exhausted
-WSL memory.
+The optional ``moderate`` precision level is a low-memory convergence check.
+It tightens only numerical tolerances while leaving the default ncdm momentum
+quadrature and hierarchy sizes unchanged. This is intentional: earlier
+convergence presets that simultaneously increased ``l_max_ncdm`` and the q-grid
+used nearly all memory on a ~10 GiB WSL instance, so they mixed a tolerance test
+with a much more expensive state-space-resolution test.
 """
 from __future__ import annotations
 
@@ -25,18 +26,14 @@ import hidden_channel_forensics as hf
 import hidden_channel_operator_diagnostics as hd
 
 
+# Low-memory precision ladder: tighten integration/background tolerances only.
+# Do not alter l_max_ncdm or q-grid controls here; those dominate memory use and
+# are tested separately by the standard-resolution k-grid checks.
 MODERATE_PRECISION = {
     "tol_ncdm_bg": 1.0e-8,
     "tol_ncdm_newtonian": 1.0e-8,
     "tol_perturbations_integration": 3.0e-7,
-    "perturbations_sampling_stepsize": 0.03,
-    "l_max_ncdm": 30,
-    "q_linstep": 0.20,
-    "q_logstep_spline": 20.0,
-    "q_logstep_trapzd": 0.50,
-    "q_numstep_transition": 250,
-    "l_logstep": 1.03,
-    "l_linstep": 20,
+    "perturbations_sampling_stepsize": 0.05,
 }
 
 
