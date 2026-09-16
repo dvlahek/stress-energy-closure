@@ -1,7 +1,6 @@
 # Source data
 
-This directory contains the compact publication-facing numerical outputs for
-**“Gravitational response recovers kinetic information beyond stress-energy.”**
+This directory contains compact numerical outputs and provenance for the study **“Gravitational response retains kinetic information beyond stress-energy.”**
 
 ## Core theory and forecast outputs
 
@@ -13,14 +12,13 @@ This directory contains the compact publication-facing numerical outputs for
 - `ExtendedData_direct_memory_convergence.csv` — direct-versus-memory convergence.
 - `CLASS_forecast_validation_summary.json` — CLASS benchmark/validation.
 - `CLASS_response_optimization_mass_sweep.csv` — optimized 0.03–0.60 eV tensor-response sweep.
-- `wake_final_forecast_summary.json`, `wake_robustness_summary.csv` — final parity-odd wake forecast and robustness controls.
+- `hidden_channel_retention_direct.json` — direct `theta_(nu-cdm) P_cb` versus wake retention and precision controls.
+- `wake_final_forecast_summary.json`, `wake_robustness_summary.csv` — parity-odd wake forecast and robustness controls.
 - `wake_independent_validation_summary.json` — independent Fisher and related validation checks.
 
 ## DESI DR1 observational outputs
 
-The sole publication-facing primary observational inference is
-`phase7_desi_fullsample_summary.json`, the conservative full-sample five-tracer luminosity-rank DESI
-DR1 result:
+The primary observational inference is `phase7_desi_fullsample_summary.json`, the conservative full-sample five-tracer luminosity-rank DESI DR1 result:
 
 `A_wake = -0.0739012 +/- 0.0851661`, empirical two-sided permutation `p = 0.39394`.
 
@@ -36,16 +34,16 @@ Associated files:
 - `phase7_ezmock_local/aggregate_validation_summary.json` — compact 30-realization EZmock placebo summary and hashes.
 - `phase7_ezmock_local/aggregate/` — final EZmock aggregate covariance/vector/window products.
 - `phase7_ezmock_local/realizations/mock_03` through `mock_32` — retained homogeneous EZmock realization outputs.
-- `phase7_octupole_control/` — publication-facing `ell=3` odd-multipole control outputs.
+- `phase7_octupole_control/` — `ell=3` odd-multipole control outputs.
 
 ## Interpretation guardrails
 
 - CMB, RSD and wake forecast files are sensitivity calculations, not detections.
-- The full-sample luminosity-rank conservative DESI fit is the sole headline observational coefficient.
+- The full-sample luminosity-rank conservative DESI fit is the primary observational coefficient.
 - Gfinder is a tracer-proxy robustness control.
 - EZmock is a survey-geometry/covariance/placebo layer because the released files used here do not provide the luminosity field required for the physical split.
 - AbacusSummit is the physical luminosity-ranked high-fidelity mock validation layer; all 25 final realizations completed.
 - The `ell=3` octupole is an orthogonal null control and is not a separate wake measurement.
 - No observational result is presented as a neutrino-wake detection.
 
-See `../REVIEWER_GUIDE.md` and `../docs/PHASE7_REPRODUCIBILITY.md` for the claim-to-code map and exact rerun definitions.
+See `../REPRODUCIBILITY.md` and `../docs/OBSERVATIONAL_REPRODUCIBILITY.md` for the result-to-code map and rerun definitions.
