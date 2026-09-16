@@ -1,0 +1,22 @@
+{
+  "calculation": "kSZ-tagged neutrino-wake kinetic screening",
+  "status": "kernel_level_screening_not_survey_forecast",
+  "mass_eV": 0.06,
+  "z_match": 1100.0,
+  "fractional_deformation_cap": 0.3,
+  "quadrature_order": 128,
+  "reference_point": {
+    "z": 0.3,
+    "sigma_v_kms": 200.0,
+    "wake_pair_fraction": 0.4616884006898657,
+    "ksz_pair_fraction": 0.4995247963254773,
+    "tagged_power_pair_fraction": 0.49317224634183643,
+    "ksz_information_gain_over_wake": 1.0819522335390612
+  },
+  "grid": {
+    "z_values": [0.05, 0.1, 0.2, 0.3, 0.4, 0.6, 0.8, 1.0],
+    "sigma_v_kms_values": [100, 150, 200, 250, 300, 350, 500, 700, 1000],
+    "maximum_ksz_information_gain_over_wake": 1.1315618839907469
+  },
+  "interpretation": "A single line-of-sight velocity tag modestly changes hidden-state retention relative to the untagged wake. No absolute kSZ signal-to-noise is inferred."
+}
