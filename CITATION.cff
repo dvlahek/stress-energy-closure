@@ -1,6 +1,6 @@
 cff-version: 1.2.0
-title: "Gravitational response recovers kinetic information beyond stress-energy"
-message: "If you use this software, please cite the associated manuscript."
+title: "Gravitational response retains kinetic information beyond stress-energy"
+message: "If you use this software or source data, please cite the associated study."
 type: software
 authors:
   - family-names: Vlahek
