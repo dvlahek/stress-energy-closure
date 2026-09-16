@@ -15,6 +15,7 @@ This file maps the main reported results to the scripts and compact source-data 
 | Direct versus memory-form validation | `code/direct_vs_memory.py` | `source_data/ExtendedData_direct_memory_convergence.csv` |
 | Optimized tensor CMB response | `code/class_response_optimize.py` | `source_data/CLASS_response_optimization_mass_sweep.csv` |
 | Linear relative-velocity retention control | `code/hidden_channel_theta_kprofile.py`, `code/class_state_worker_velocity.py` | `source_data/hidden_channel_retention_direct.json` |
+| kSZ-tagged wake screening control | `code/ksz_wake_screening.py`, `code/ksz_relative_velocity_alignment.py` | `source_data/ksz_wake_screening_summary.json` |
 | Parity-odd wake forecast | `code/wake_desi_multitracer_fisher.py`, `code/wake_desi_robustness.py` | `source_data/wake_final_forecast_summary.json`, `source_data/wake_robustness_summary.csv` |
 | Primary DESI DR1 odd-sector inference | `code/desi_dr1_phase7_multitracer_fullsample.py` | `source_data/phase7_desi_fullsample_summary.json`, `source_data/wake_phase7_multitracer_real_vector.csv` |
 | Mass-proxy robustness | `code/desi_phase7_gfinder_massproxy.py` | `source_data/phase7_gfinder_massproxy_summary.json` |
@@ -62,6 +63,8 @@ The machine-readable hierarchy is stored in `source_data/phase7_validation_manif
 The precision-grade transfer-level control is the reference/CREF deformation. At `nk=96`, the direct `theta_(nu-cdm) P_cb` half-pair RMS changes from `5.2816e-4` to `5.3228e-4` under the moderate precision test, while the wake response is `0.230844`. The corresponding integrated wake-to-linear contrast changes from `437.07` to `433.69`.
 
 A response-independent orthogonal direction gives a qualitative cross-check with integrated contrasts `94.0` and `79.4` at standard and moderate precision. The response-optimized development direction is excluded from quantitative results because it is precision sensitive.
+
+A separate kSZ-tagged screening control adds one line-of-sight velocity weight to the wake kernel. At `z=0.3` and `sigma_v=200 km/s`, the untagged and tagged pair fractions are `0.461688` and `0.499525`, an `8.20%` gain. Across the tested grid, the gain remains below `13.16%`. This is a kernel-level screening control, not an absolute kSZ survey forecast.
 
 ## Observational reruns
 
