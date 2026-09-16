@@ -45,7 +45,7 @@ The convergence check tightens only integration tolerances while keeping the ncd
 - wake / direct `theta P_cb`: `433.68820256540243`
 - wake / density-derived proxy: `433.68706914739107`
 
-Relative to standard precision, the headline `theta P_cb` RMS shifts by about `+0.78%`, and the wake/linear contrast by about `-0.77%`. The pure `theta` fractional RMS is more precision sensitive and is not used as the headline quantitative comparison.
+Relative to standard precision, the retained `theta P_cb` RMS shifts by about `+0.78%`, and the wake/linear contrast by about `-0.77%`. The pure `theta` fractional RMS is more precision sensitive and is not used for the main quantitative comparison.
 
 ## Exact decomposition check
 
@@ -59,7 +59,7 @@ The maximum absolute residuals are of order `1e-16`. This confirms that pure `th
 
 At standard precision the response-selected direction gave direct `theta P_cb` RMS `6.464617200898742e-4` and wake/direct-`theta P_cb = 288.4149590565178`.
 
-Under the moderate-precision tolerance test the same direction gives direct `theta P_cb` RMS `1.0669648447319053e-5`. The middle and high-`k` responses collapse and the zero-crossing count increases. This direction is therefore precision sensitive and is excluded from manuscript-level quantitative claims. Its earlier `~285`–`288` wake/linear ratio is retained only as development history.
+Under the moderate-precision tolerance test the same direction gives direct `theta P_cb` RMS `1.0669648447319053e-5`. The middle and high-`k` responses collapse and the zero-crossing count increases. This direction is therefore precision sensitive and is excluded from quantitative results. Its earlier `~285`–`288` wake/linear ratio is retained only as development history.
 
 ## Response-independent orthogonal control
 
@@ -95,13 +95,13 @@ The integrated `theta P_cb` RMS changes by about `+18.47%` from standard to mode
 
 The qualitative conclusion is nevertheless stable. The response-independent control keeps zero crossings at zero, the direct and density-derived proxies agree at the `1e-5` relative level or better, and the integrated wake/linear contrast remains between about `79` and `94`.
 
-This direction is therefore retained as a qualitative response-independent robustness control, not as a second precision-grade headline coefficient.
+This direction is therefore retained as a qualitative response-independent robustness control, not as a second precision-grade coefficient.
 
 ## Retained interpretation
 
 The precision-grade quantitative result is the reference/CREF deformation. Its integrated density-weighted direct velocity-divergence response remains about `5.3e-4` under the standard-to-moderate precision change, while the same pair has a resonant wake response of `0.230844`. The wake-to-linear contrast therefore remains about `4.3e2`.
 
-The orthogonal response-independent control provides a separate qualitative confirmation with an integrated contrast of about `79`–`94`, but its `~18%` precision shift prevents using one exact number as a second headline coefficient.
+The orthogonal response-independent control provides a separate qualitative confirmation with an integrated contrast of about `79`–`94`, but its `~18%` precision shift prevents using one exact number as a second precision-grade coefficient.
 
 The result is not a theorem over all source-matched distributions, not an absolute bispectrum amplitude, and not a kSZ or RSD survey signal-to-noise forecast.
 
