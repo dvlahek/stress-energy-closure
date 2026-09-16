@@ -2,7 +2,7 @@
 
 ## 2026-09-15 — Observable-retention deep dive
 
-The observable hierarchy was extended beyond the published CMB/RSD/wake comparison to test how the same source-matched hidden kinetic directions survive in other response kernels.
+The observable hierarchy was extended beyond the CMB/RSD/wake comparison to test how source-matched hidden kinetic directions survive in other response kernels.
 
 ### Screening branches
 
@@ -15,7 +15,7 @@ The observable hierarchy was extended beyond the published CMB/RSD/wake comparis
 
 A seven-dimensional matched-moment response operator was constructed from small symmetric CLASS probes. The linearized optimization predicted a large `~3.17e-2` density-weighted proxy response for one direction, but direct nonlinear CLASS validation gave only `~6e-4`. The prediction therefore overfit the tiny small-probe response and is not used quantitatively.
 
-The direct endpoint response initially appeared stable under changes in redshift finite-difference step, k-grid density and denominator mask. A later precision-convergence test showed that the response-optimized direction is not robust to tightened CLASS integration tolerances. It is therefore excluded from manuscript-level quantitative claims.
+The direct endpoint response initially appeared stable under changes in redshift finite-difference step, k-grid density and denominator mask. A later precision-convergence test showed that the response-optimized direction is not robust to tightened CLASS integration tolerances. It is therefore excluded from quantitative results.
 
 ### Direct CLASS velocity-transfer cross-check
 
@@ -57,14 +57,14 @@ For CREF, the moderate-precision `nk=96` run gave
 - density-derived `v P_cb` RMS: `5.322828757582342e-4`,
 - wake / direct-`theta P_cb`: `433.68820256540243`.
 
-The main `theta P_cb` RMS changed by only about `+0.78%` from standard to moderate precision, and the wake/linear contrast changed by about `-0.77%`. The pure `theta` fractional RMS is more precision sensitive and is not used as the headline quantitative comparison.
+The main `theta P_cb` RMS changed by only about `+0.78%` from standard to moderate precision, and the wake/linear contrast changed by about `-0.77%`. The pure `theta` fractional RMS is more precision sensitive and is not used for the main quantitative comparison.
 
 For the response-selected direction, the moderate-precision result changed qualitatively:
 
 - standard direct `theta P_cb` RMS: `6.464617200898742e-4`,
 - moderate direct `theta P_cb` RMS: `1.0669648447319053e-5`.
 
-The middle and high-`k` responses collapse under tighter tolerances and the number of zero crossings increases. The response-selected direction is therefore excluded from manuscript-level quantitative claims. Its previously quoted wake/linear factors (`~285`–`288`) are retained only as development history.
+The middle and high-`k` responses collapse under tighter tolerances and the number of zero crossings increases. The response-selected direction is therefore excluded from quantitative results. Its previously quoted wake/linear factors (`~285`–`288`) are retained only as development history.
 
 ### Response-independent orthogonal control
 
@@ -87,18 +87,18 @@ At moderate precision:
 
 The standard-to-moderate change in the integrated `theta P_cb` RMS is `+18.47%`, so this control is not precision-converged at the percent level. The change is driven mainly by the high-`k` third, whose RMS increases by about `26.1%`; the low and middle thirds change by about `0.44%` and `2.34%`. The qualitative separation remains strong: the integrated wake/linear contrast stays between about `79` and `94`, and the direct-theta-times-`P_cb` and density-derived proxies agree at the `1e-5` relative level or better in both precision settings.
 
-This control is therefore retained as a response-independent qualitative robustness check, not as a second precision-grade headline coefficient.
+This control is therefore retained as a response-independent qualitative robustness check, not as a second precision-grade coefficient.
 
 ### Current retained conclusion
 
 The precision-grade quantitative control remains CREF: its integrated density-weighted direct velocity-divergence response is `5.28e-4` at standard precision and `5.32e-4` at moderate precision, compared with a resonant wake half-pair response of `0.230844`. The corresponding integrated wake-to-linear contrast remains about `4.3e2`.
 
-The orthogonal response-independent control gives a separate qualitative confirmation that the resonant kernel can retain much more of the hidden kinetic perturbation than the integrated linear velocity kernel, with an integrated contrast of about `79`–`94` across the two precision settings. Because that second control shifts by about `18%`, it is not used as an exact second manuscript coefficient.
+The orthogonal response-independent control gives a separate qualitative confirmation that the resonant kernel can retain much more of the hidden kinetic perturbation than the integrated linear velocity kernel, with an integrated contrast of about `79`–`94` across the two precision settings. Because that second control shifts by about `18%`, it is not used as an exact second coefficient.
 
 This is a transfer-level response diagnostic, not a kSZ or RSD survey forecast and not a theorem over all source-matched distributions.
 
 ### Resource note
 
-The aggressive publication high-precision CLASS profile is not used for this diagnostic because it repeatedly exceeded the available development-machine memory. The moderate convergence test is intentionally narrower: it changes integration tolerances without simultaneously changing hierarchy size or momentum-grid resolution.
+The aggressive high-precision CLASS profile is not used for this diagnostic because it repeatedly exceeded the available development-machine memory. The moderate convergence test is intentionally narrower: it changes integration tolerances without simultaneously changing hierarchy size or momentum-grid resolution.
 
 See `docs/HIDDEN_CHANNEL_RETENTION.md` and `source_data/hidden_channel_retention_direct.json` for the current reproducible status.
