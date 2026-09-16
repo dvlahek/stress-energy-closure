@@ -10,6 +10,7 @@ This file maps the main reported results to the scripts and compact source-data 
 | Causal response distinguishes matched kinetic states | `code/injectivity_tomography.py` | `source_data/Fig2_identifiability_summary.csv` |
 | Finite-window inversion is ill-conditioned | `code/prediction_transfer.py`, `code/noise_sweep.py` | `source_data/Fig3_tomography_summary.csv`, `source_data/Fig3_noise_sweep.csv` |
 | Massive/massless identifiability boundary | `code/mass_sweep.py` | `source_data/Fig4_mass_sweep.csv` |
+| Several-species aggregate-response ambiguity | analytic result; no numerical dependency | not applicable |
 | Finite source-jet hierarchy | `code/hierarchy_test.py` | `source_data/Fig5_hierarchy.csv` |
 | Direct versus memory-form validation | `code/direct_vs_memory.py` | `source_data/ExtendedData_direct_memory_convergence.csv` |
 | Optimized tensor CMB response | `code/class_response_optimize.py` | `source_data/CLASS_response_optimization_mass_sweep.csv` |
@@ -20,6 +21,8 @@ This file maps the main reported results to the scripts and compact source-data 
 | EZmock geometry/covariance placebo | `code/desi_phase7_ezmock_placebo_realization.py`, `code/desi_phase7_ezmock_aggregate.py` | `source_data/phase7_ezmock_local/aggregate_validation_summary.json` |
 | Abacus physical-mock validation | `code/desi_phase7_mock_realization.py`, `code/desi_phase7_mock_aggregate.py` | `source_data/phase7_abacus_final_summary.json` |
 | Odd `ell=3` control | `code/desi_dr1_phase7_octupole_control.py` | `source_data/phase7_octupole_control/summary_octupole_control_compact.json` |
+
+The several-species result is a closed analytic statement: the complete tensor response determines the summed speed-space measure, while the species decomposition remains non-unique without additional information. It therefore has no separate numerical reproduction step.
 
 ## Core local calculations
 
