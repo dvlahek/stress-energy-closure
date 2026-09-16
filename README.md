@@ -12,7 +12,7 @@ The calculations separate three questions:
 2. can their later gravitational responses differ and identify hidden kinetic information?
 3. how much of that information survives projection into realistic observables?
 
-For massive isotropic collisionless matter, the complete ideal causal transverse-traceless response at fixed known nonzero mass and wave number identifies the radial kinetic distribution in the stated class. The isotropic massless limit removes this radial encoding. On finite response windows the forward map remains injective but compact, so inversion is unstable.
+For massive isotropic collisionless matter, the complete ideal causal transverse-traceless response at fixed known nonzero mass and wave number identifies the radial kinetic distribution in the stated class. The isotropic massless limit removes this radial encoding. For several massive species, the same response identifies the aggregate speed-space measure but does not generally determine its decomposition into species. On finite response windows the forward map remains injective but compact, so inversion is unstable.
 
 The observational analysis includes a direct DESI DR1 odd-sector null test. The primary coefficient is
 
