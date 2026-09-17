@@ -14,11 +14,13 @@ The calculations separate three questions:
 
 For massive isotropic collisionless matter, the complete ideal causal transverse-traceless response at fixed known nonzero mass and wave number identifies the radial kinetic distribution in the stated class. The isotropic massless limit removes this radial encoding. For several massive species, the same response identifies the aggregate speed-space measure but does not generally determine its decomposition into species. On finite response windows the forward map remains injective but compact, so inversion is unstable.
 
-The observational analysis includes a direct DESI DR1 odd-sector null test. The primary coefficient is
+The observational analysis includes a direct DESI DR1 odd-sector null test. The final 256-permutation null calibration gives
 
-`A_wake = -0.0739012 +/- 0.0851661` (`-0.868 sigma`),
+`A_wake = -0.0768409 +/- 0.0851660` (`-0.902 sigma`),
 
-with empirical two-sided permutation `p = 0.39394`.
+with empirical two-sided permutation `p = 0.37354`.
+
+The originally frozen 32-permutation run gave `A_wake = -0.0739012 +/- 0.0851661` and `p = 0.39394`. The larger permutation ensemble changes only the null calibration; tracer definitions, bins, pair geometry, covariance, nuisance model, templates and production seed are unchanged.
 
 Gfinder, EZmock, AbacusSummit, stochastic-seed and `ell=3` octupole results are validation/control layers and are not alternative primary estimates.
 
@@ -63,9 +65,9 @@ These response comparisons are transfer-level diagnostics, not absolute bispectr
 
 ## DESI DR1 validation
 
-Primary real-data inference:
+Primary real-data inference with the refined 256-permutation null calibration:
 
-- full-sample five-tracer luminosity-rank DESI DR1: `A_wake = -0.0739012 +/- 0.0851661`, empirical two-sided `p = 0.39394`.
+- full-sample five-tracer luminosity-rank DESI DR1: `A_wake = -0.0768409 +/- 0.0851660`, empirical two-sided `p = 0.37354`.
 
 Independent controls:
 
