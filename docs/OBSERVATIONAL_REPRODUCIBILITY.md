@@ -7,6 +7,7 @@ This document records the frozen observational analysis, validation layers and r
 The observational validation suite is complete.
 
 - DESI DR1 BGS full-sample luminosity-rank inference: complete.
+- 256-permutation refinement of the frozen null calibration: complete.
 - Gfinder mass-proxy robustness test: complete.
 - EZmock 30-realization geometry/covariance placebo ensemble: complete.
 - AbacusSummit physical luminosity-ranked validation: 25/25 realizations complete.
@@ -19,19 +20,29 @@ No observational result is presented as a neutrino-wake detection.
 
 The hidden-state template is generated at `m_nu = 0.06 eV`, `z_match = 1100`, with a 30% pointwise deformation cap. CLASS-based calculations use pinned `class_public` commit `e85808324f51fc694d12e3ed7439552a3c3f9540`.
 
-The real-data odd vector uses public DESI DR1 BGS clustering catalogs over `0.10 < z < 0.40`, five luminosity-ranked tracer populations, separation bins from `20` to `140 h^-1 Mpc`, angular exclusion `theta < 0.05 deg`, 48 uniformly sampled eligible neighbours per anchor with inverse-probability pair weights, 30 jackknife regions and 32 frozen-geometry null permutations.
+The real-data odd vector uses public DESI DR1 BGS clustering catalogs over `0.10 < z < 0.40`, five luminosity-ranked tracer populations, separation bins from `20` to `140 h^-1 Mpc`, angular exclusion `theta < 0.05 deg`, 48 uniformly sampled eligible neighbours per anchor with inverse-probability pair weights and 30 jackknife regions.
 
 The production pair-Monte-Carlo seed is `20260913`. Independent closure seeds are `20260917`, `20260929` and `20261007`.
 
+The original frozen production realization used 32 fixed-geometry luminosity-mark permutations. After the analysis and closure tests were fixed, the same production realization was rerun with 256 permutations to refine the permutation-null mean and empirical p-value. No tracer definition, binning, sampled pair geometry, covariance, nuisance model, template or production seed was changed.
+
 ## Primary observational inference
 
-The primary coefficient is the conservative full-sample five-tracer luminosity-rank DESI DR1 result in `source_data/phase7_desi_fullsample_summary.json`:
+The final reported null calibration is the 256-permutation conservative full-sample five-tracer luminosity-rank DESI DR1 result in `source_data/phase7_desi_fullsample_perm256_summary.json`:
+
+`A_wake = -0.0768409 +/- 0.0851660` (`-0.902 sigma`), with empirical two-sided permutation `p = 0.37354`.
+
+The corresponding global 18-dimensional permutation test gives `p = 0.95720`.
+
+For auditability, the original 32-permutation result remains archived in `source_data/phase7_desi_fullsample_summary.json`:
 
 `A_wake = -0.0739012 +/- 0.0851661` (`-0.868 sigma`), with empirical two-sided permutation `p = 0.39394`.
 
+The small shift between the two runs reflects the more precisely estimated permutation-null mean. The fitted uncertainty is unchanged to numerical precision.
+
 This coefficient is primary because it is the direct frozen real-data analysis. Gfinder, EZmock, AbacusSummit and `ell=3` are independent validation/control layers, not alternative primary estimates.
 
-The analysis was not fully blinded because real-data outputs were inspected during pipeline development. Final tracer definitions, separation/redshift bins, nuisance model, production seed and independent closure seeds were fixed before the final closure tests.
+The analysis was not fully blinded because real-data outputs were inspected during pipeline development. Final tracer definitions, separation/redshift bins, nuisance model, production seed and independent closure seeds were fixed before the final closure tests. The 256-permutation extension was performed only to refine null calibration after those choices were fixed.
 
 ## Real-data estimator
 
@@ -39,10 +50,16 @@ Main script:
 
 `code/desi_dr1_phase7_multitracer_fullsample.py`
 
+Refined local runner:
+
+`scripts/run_desi_perm256_full_linux.sh`
+
 Retained outputs:
 
-- `source_data/phase7_desi_fullsample_summary.json`
-- `source_data/wake_phase7_multitracer_real_vector.csv`
+- `source_data/phase7_desi_fullsample_perm256_summary.json`
+- `source_data/wake_phase7_multitracer_real_vector_perm256.csv`
+- `source_data/phase7_desi_fullsample_summary.json` — original 32-permutation realization retained for auditability.
+- `source_data/wake_phase7_multitracer_real_vector.csv` — original 32-permutation vector.
 
 The five luminosity ranks are defined independently within narrow redshift cells and NGC/SGC. The 18-component odd data vector is fitted with the frozen wake template and a conservative per-redshift odd nuisance basis.
 
@@ -139,6 +156,12 @@ Outputs are archived in `source_data/phase7_octupole_control/`.
 git clone https://github.com/dvlahek/stress-energy-closure.git
 cd stress-energy-closure
 python -m pip install -r requirements.txt
+```
+
+To reproduce the refined DESI null calibration on Linux:
+
+```bash
+bash scripts/run_desi_perm256_full_linux.sh
 ```
 
 Core theory calculations can then be run with the commands in the root `README.md`. Observational workflows requiring public survey catalogs or CLASS use the external inputs specified by the corresponding scripts/workflows; large external catalogs are intentionally not stored in this repository.
