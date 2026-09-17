@@ -13,18 +13,22 @@ This directory contains compact numerical outputs and provenance for the study *
 - `CLASS_forecast_validation_summary.json` — CLASS benchmark/validation.
 - `CLASS_response_optimization_mass_sweep.csv` — optimized 0.03–0.60 eV tensor-response sweep.
 - `hidden_channel_retention_direct.json` — direct `theta_(nu-cdm) P_cb` versus wake retention and precision controls.
+- `ksz_wake_screening_summary.json` — kSZ-tagged wake screening control.
 - `wake_final_forecast_summary.json`, `wake_robustness_summary.csv` — parity-odd wake forecast and robustness controls.
 - `wake_independent_validation_summary.json` — independent Fisher and related validation checks.
 
 ## DESI DR1 observational outputs
 
-The primary observational inference is `phase7_desi_fullsample_summary.json`, the conservative full-sample five-tracer luminosity-rank DESI DR1 result:
+The final reported null calibration is stored in `phase7_desi_fullsample_perm256_summary.json` and uses 256 frozen-geometry luminosity-mark permutations:
 
-`A_wake = -0.0739012 +/- 0.0851661`, empirical two-sided permutation `p = 0.39394`.
+`A_wake = -0.0768409 +/- 0.0851660`, empirical two-sided permutation `p = 0.37354`.
 
-Associated files:
+The corresponding 18-component null-corrected vector is `wake_phase7_multitracer_real_vector_perm256.csv`.
 
-- `wake_phase7_multitracer_real_vector.csv` — frozen 18-component full-sample DESI odd vector.
+For auditability, the originally frozen 32-permutation realization is retained as `phase7_desi_fullsample_summary.json` with vector `wake_phase7_multitracer_real_vector.csv`. It gave `A_wake = -0.0739012 +/- 0.0851661` and `p = 0.39394`. The 256-permutation refinement changes only the number of null shuffles. Tracer definitions, bins, pair geometry, covariance, nuisance model, templates and production seed are unchanged.
+
+Associated validation files:
+
 - `wake_phase7_desi_dr1_zresolved_summary.json` — redshift-resolved baseline validation.
 - `phase7_gfinder_massproxy_summary.json` — independent physical mass-proxy robustness result.
 - `phase7_seed_control_summary.json` — production seed plus three independent stochastic closure seeds.
@@ -40,6 +44,7 @@ Associated files:
 
 - CMB, RSD and wake forecast files are sensitivity calculations, not detections.
 - The full-sample luminosity-rank conservative DESI fit is the primary observational coefficient.
+- The 256-permutation result is a null-calibration refinement of the frozen production estimator, not a new optimization.
 - Gfinder is a tracer-proxy robustness control.
 - EZmock is a survey-geometry/covariance/placebo layer because the released files used here do not provide the luminosity field required for the physical split.
 - AbacusSummit is the physical luminosity-ranked high-fidelity mock validation layer; all 25 final realizations completed.
