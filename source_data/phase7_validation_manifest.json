@@ -1,21 +1,43 @@
 {
-  "snapshot_date": "2026-09-15",
-  "snapshot_branch": "nature-physics-submission",
+  "snapshot_date": "2026-09-17",
+  "snapshot_branch": "main",
   "class_commit": "e85808324f51fc694d12e3ed7439552a3c3f9540",
   "analysis_status": "CLOSED",
   "blinding": {
     "fully_blinded": false,
-    "statement": "Real-data outputs were inspected during pipeline development. Final tracer definitions, separation/redshift bins, nuisance model, production seed and independent closure seeds were fixed before the final closure tests. No result is described as a blinded measurement."
+    "statement": "Real-data outputs were inspected during pipeline development. Final tracer definitions, separation/redshift bins, nuisance model, production seed and independent closure seeds were fixed before the final closure tests. The later 256-permutation extension changed only the size of the frozen-geometry null ensemble. No result is described as a blinded measurement."
   },
   "primary_observational_inference": {
     "role": "SOLE_HEADLINE_REAL_DATA_INFERENCE",
-    "source": "source_data/phase7_desi_fullsample_summary.json",
+    "source": "source_data/phase7_desi_fullsample_perm256_summary.json",
+    "vector_source": "source_data/wake_phase7_multitracer_real_vector_perm256.csv",
     "estimator": "full-sample five-tracer luminosity-rank conservative nuisance-projected DESI DR1 dipole fit",
-    "conservative_wake_amplitude": -0.07390121574359165,
-    "conservative_wake_sigma": 0.08516605996859057,
-    "conservative_wake_z": -0.867730828112121,
-    "empirical_two_sided_pvalue": 0.3939393939393939,
-    "single_sentence_rationale": "This is the sole headline observational coefficient because it is the direct frozen real-data analysis; Gfinder, EZmock, AbacusSummit, stochastic-seed and ell=3 results are validation/control layers rather than alternative headline estimates."
+    "conservative_wake_amplitude": -0.0768408858811831,
+    "conservative_wake_sigma": 0.08516603940819857,
+    "conservative_wake_z": -0.902247966620671,
+    "empirical_two_sided_pvalue": 0.3735408560311284,
+    "global_permutation_pvalue": 0.9571984435797666,
+    "permutation_count": 256,
+    "single_sentence_rationale": "This is the sole headline observational coefficient because it is the direct frozen real-data analysis with the null ensemble extended from 32 to 256 permutations; Gfinder, EZmock, AbacusSummit, stochastic-seed and ell=3 results are validation/control layers rather than alternative headline estimates.",
+    "permutation_refinement": {
+      "original_source": "source_data/phase7_desi_fullsample_summary.json",
+      "original_vector_source": "source_data/wake_phase7_multitracer_real_vector.csv",
+      "original_permutation_count": 32,
+      "original_wake_amplitude": -0.07390121574359165,
+      "original_wake_sigma": 0.08516605996859057,
+      "original_empirical_two_sided_pvalue": 0.3939393939393939,
+      "changed_quantity": "number of frozen-geometry luminosity-mark permutations only",
+      "unchanged": [
+        "tracer definition",
+        "redshift bins",
+        "separation bins",
+        "sampled pair geometry",
+        "jackknife covariance construction",
+        "nuisance model",
+        "wake and Doppler templates",
+        "production seed"
+      ]
+    }
   },
   "completed_validation_layers": {
     "desi_dr1_zresolved": {
@@ -106,7 +128,8 @@
   },
   "pending_closure_layers": {},
   "provenance_guardrails": [
-    "There is exactly one publication-facing headline observational coefficient: the full-sample luminosity-rank conservative DESI dipole fit.",
+    "There is exactly one headline observational coefficient: the full-sample luminosity-rank conservative DESI dipole fit.",
+    "The 256-permutation result refines only the permutation-null calibration of the frozen production estimator and is not a new optimization.",
     "Gfinder, EZmock, AbacusSummit, stochastic-seed and ell=3 outputs are validation/control layers, not alternative headline estimates.",
     "EZmock is a random-rank geometry/covariance/placebo ensemble, not a luminosity-matched physical covariance.",
     "AbacusSummit is the physical luminosity-ranked high-fidelity mock layer; the final ensemble contains 25 completed realizations.",
