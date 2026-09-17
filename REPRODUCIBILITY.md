@@ -17,7 +17,8 @@ This file maps the main reported results to the scripts and compact source-data 
 | Linear relative-velocity retention control | `code/hidden_channel_theta_kprofile.py`, `code/class_state_worker_velocity.py` | `source_data/hidden_channel_retention_direct.json` |
 | kSZ-tagged wake screening control | `code/ksz_wake_screening.py`, `code/ksz_relative_velocity_alignment.py` | `source_data/ksz_wake_screening_summary.json` |
 | Parity-odd wake forecast | `code/wake_desi_multitracer_fisher.py`, `code/wake_desi_robustness.py` | `source_data/wake_final_forecast_summary.json`, `source_data/wake_robustness_summary.csv` |
-| Primary DESI DR1 odd-sector inference | `code/desi_dr1_phase7_multitracer_fullsample.py` | `source_data/phase7_desi_fullsample_summary.json`, `source_data/wake_phase7_multitracer_real_vector.csv` |
+| Primary DESI DR1 odd-sector inference | `code/desi_dr1_phase7_multitracer_fullsample.py` | `source_data/phase7_desi_fullsample_perm256_summary.json`, `source_data/wake_phase7_multitracer_real_vector_perm256.csv` |
+| Original frozen 32-permutation DESI realization | `code/desi_dr1_phase7_multitracer_fullsample.py` | `source_data/phase7_desi_fullsample_summary.json`, `source_data/wake_phase7_multitracer_real_vector.csv` |
 | Mass-proxy robustness | `code/desi_phase7_gfinder_massproxy.py` | `source_data/phase7_gfinder_massproxy_summary.json` |
 | EZmock geometry/covariance placebo | `code/desi_phase7_ezmock_placebo_realization.py`, `code/desi_phase7_ezmock_aggregate.py` | `source_data/phase7_ezmock_local/aggregate_validation_summary.json` |
 | Abacus physical-mock validation | `code/desi_phase7_mock_realization.py`, `code/desi_phase7_mock_aggregate.py` | `source_data/phase7_abacus_final_summary.json` |
@@ -50,9 +51,17 @@ CLASS-based calculations use pinned `class_public` commit
 
 ## Observational inference hierarchy
 
-The primary DESI DR1 coefficient is
+The final reported DESI DR1 null calibration uses 256 frozen-geometry luminosity-mark permutations and gives
 
-`A_wake = -0.0739012 +/- 0.0851661` (`-0.868 sigma`), empirical two-sided permutation `p = 0.39394`.
+`A_wake = -0.0768409 +/- 0.0851660` (`-0.902 sigma`), empirical two-sided permutation `p = 0.37354`.
+
+The originally frozen 32-permutation realization gave `A_wake = -0.0739012 +/- 0.0851661` and `p = 0.39394`. The 256-permutation rerun changes only the number of null permutations. The tracer definition, redshift and separation bins, pair geometry, covariance, nuisance model, templates and production seed remain unchanged.
+
+To reproduce the refined null calibration on Linux, run
+
+```bash
+bash scripts/run_desi_perm256_full_linux.sh
+```
 
 Gfinder, EZmock, AbacusSummit, stochastic-seed and `ell=3` results test tracer definition, survey geometry/covariance, physical mocks, pair-sampling stability and higher odd multipoles. They are validation layers, not alternative primary estimates.
 
