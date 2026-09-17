@@ -1,0 +1,54 @@
+{
+  "status": "PASS_NULL",
+  "scope": "Full-data DESI DR1 BGS five-tracer luminosity-rank proxy odd-sector matched-filter test; not an absolute halo-mass or DESI wake constraint.",
+  "refinement_role": "final permutation-null calibration with the frozen production analysis",
+  "refinement_note": "The tracer definition, redshift and separation bins, pair geometry, jackknife covariance, nuisance model, templates and production seed were unchanged. Only the number of frozen-geometry luminosity-mark permutations was increased from 32 to 256 after the original real-data analysis, to refine null calibration.",
+  "original_32_permutation_result": {
+    "wake_amplitude": -0.07390121574359165,
+    "wake_sigma": 0.08516605996859057,
+    "wake_z": -0.867730828112121,
+    "empirical_two_sided_pvalue": 0.3939393939393939
+  },
+  "data_count": 300043,
+  "random_count": 600086,
+  "vector_dimension": 18,
+  "production_seed": 20260913,
+  "jackknife": {
+    "regions": 30,
+    "raw_covariance_rank": 18,
+    "regularized_condition_number": 932.3920816549149,
+    "ridge_added": 1.6477301645210386e-10
+  },
+  "permutation_control": {
+    "count": 256,
+    "mahalanobis_data": 8.10254188150945,
+    "global_empirical_pvalue": 0.9571984435797666,
+    "conservative_wake_empirical_two_sided_pvalue": 0.3735408560311284
+  },
+  "template_metric_wake_doppler_cosine": -0.9414760789646702,
+  "minimal_fit": {
+    "wake_amplitude": 0.005031647241866466,
+    "wake_sigma": 0.018054803348309945,
+    "wake_z": 0.27868745755890295,
+    "chi2": 7.346388861990153,
+    "dof": 16,
+    "pvalue": 0.9659926847606878
+  },
+  "conservative_fit": {
+    "wake_amplitude": -0.0768408858811831,
+    "wake_sigma": 0.08516603940819857,
+    "wake_z": -0.902247966620671,
+    "chi2": 3.381881214450591,
+    "dof": 8,
+    "pvalue": 0.9081610342541291,
+    "empirical_two_sided_pvalue": 0.3735408560311284
+  },
+  "uploaded_bundle_sha256": {
+    "data_vector_multitracer.csv": "e4eadfb2fcd4591e92d8cbd87c9ed74ee62e7bd30db99a522af3fbbc675dc92f",
+    "jackknife_covariance_multitracer.csv": "16c68d1654e3f6fdd3335f9f55a6b4c732a79870f8695485a1818e8d49f04b81",
+    "permutation_vectors_multitracer.csv": "3eacfd5c796d753bdf9219d66043e180c3e0c5d15b388996d68e44dcd55e5325",
+    "summary_multitracer.json": "3d85a8074a0fb11de661ad5ef5212cd699eb14a271d00d08f91f0c8eef88ae42",
+    "template_summary.json": "062fb688b6432289b8bab8db2c42befebc8add7fc98c834a72fc19184e306183"
+  },
+  "guardrail": "The 256-permutation run is a null-calibration refinement of the frozen production estimator. It is not a new tracer optimization or a neutrino-wake detection claim."
+}
