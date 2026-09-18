@@ -169,6 +169,6 @@ def main():
            z_effective_pair_weighted=ze,counts={'LRG':len(L['z']),'ELG':len(E['z']),'LRG_random':len(LR['z']),'ELG_random':len(ER['z'])},
            jackknife_regions=nj,seed=a.seed,dipole_ridge=r1,octupole_ridge=r3,
            guardrail='data-vector measurement only; wake interpretation requires the separate frozen shape fit')
-    (out/'summary_lrg_elg.json').write_text(json.dumps(S,indent=2)+'\\n');print(json.dumps(S,indent=2))
+    (out/'summary_lrg_elg.json').write_text(json.dumps(S,indent=2));print(json.dumps(S,indent=2))
 
 if __name__=='__main__':main()
