@@ -1,0 +1,116 @@
+name: DESI DR1 genuine cross-population odd test
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [dr1-genuine-multitracer]
+    paths:
+      - 'code/desi_dr1_genuine_multitracer.py'
+      - 'code/wake_genuine_multitracer_template.py'
+      - 'docs/DESI_DR1_GENUINE_MULTITRACER_PREREG.md'
+      - '.github/workflows/desi_dr1_genuine_multitracer.yml'
+
+jobs:
+  genuine-multitracer:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 240
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Python dependencies
+        run: python -m pip install --upgrade pip setuptools wheel numpy scipy astropy cython
+
+      - name: Fetch pinned CLASS
+        run: |
+          git init class_public
+          git -C class_public remote add origin https://github.com/lesgourg/class_public.git
+          git -C class_public fetch --depth 1 origin e85808324f51fc694d12e3ed7439552a3c3f9540
+          git -C class_public checkout --detach FETCH_HEAD
+          test "$(git -C class_public rev-parse HEAD)" = "e85808324f51fc694d12e3ed7439552a3c3f9540"
+
+      - name: Install CLASS
+        run: python -m pip install ./class_public
+
+      - name: Build frozen high-z shape templates
+        run: |
+          python code/wake_genuine_multitracer_template.py \
+            --outdir genuine_template \
+            --mass 0.06 --z-match 1100 --frac 0.30 \
+            --z-grid 0.375,0.425,0.825,0.875,0.925,0.975,1.025,1.075 \
+            --s-min 20 --s-max 140 --s-step 2
+
+      - name: Download public DESI DR1 LRG and ELG clustering catalogs
+        shell: bash
+        run: |
+          set -euo pipefail
+          PRIMARY='https://data.desi.lbl.gov/public/dr1'
+          AWS='https://desidata.s3.amazonaws.com/dr1'
+          ROOT='survey/catalogs/dr1/LSS/iron/LSScats/v1.5'
+
+          fetch_one () {
+            rel="$1"; out="$2"
+            rm -f "$out"
+            if curl -fL --retry 1 --retry-delay 3 --connect-timeout 15 --max-time 600 -o "$out" "$PRIMARY/$rel"; then
+              echo "Downloaded $rel from DESI primary"
+            else
+              echo "DESI primary unavailable for $rel; trying official DESI AWS mirror"
+              rm -f "$out"
+              curl -fL --retry 4 --retry-all-errors --retry-delay 5 --connect-timeout 20 --max-time 2400 -o "$out" "$AWS/$rel"
+            fi
+            test -s "$out"
+          }
+
+          for cap in NGC SGC; do
+            fetch_one "$ROOT/LRG_${cap}_clustering.dat.fits" "LRG_${cap}_clustering.dat.fits"
+            fetch_one "$ROOT/LRG_${cap}_0_clustering.ran.fits" "LRG_${cap}_0_clustering.ran.fits"
+            fetch_one "$ROOT/ELG_LOPnotqso_${cap}_clustering.dat.fits" "ELG_LOPnotqso_${cap}_clustering.dat.fits"
+            fetch_one "$ROOT/ELG_LOPnotqso_${cap}_0_clustering.ran.fits" "ELG_LOPnotqso_${cap}_0_clustering.ran.fits"
+          done
+
+          python - <<'PY'
+          from astropy.io import fits
+          from pathlib import Path
+          files=sorted(Path('.').glob('*clustering*.fits'))
+          assert len(files)==8, files
+          for p in files:
+              with fits.open(p,memmap=True) as h:
+                  h.verify('exception')
+                  d=h[1].data
+                  assert d is not None and len(d)>0
+                  names={x.upper() for x in d.names}
+                  for req in ('RA','DEC','Z'):
+                      assert req in names, (p,req)
+                  print('FITS_OK',p,len(d),list(d.names)[:12])
+          PY
+
+      - name: Run preregistered genuine LRG x ELG test
+        run: |
+          python code/desi_dr1_genuine_multitracer.py \
+            --lrg-data LRG_NGC_clustering.dat.fits LRG_SGC_clustering.dat.fits \
+            --lrg-random LRG_NGC_0_clustering.ran.fits LRG_SGC_0_clustering.ran.fits \
+            --elg-data ELG_LOPnotqso_NGC_clustering.dat.fits ELG_LOPnotqso_SGC_clustering.dat.fits \
+            --elg-random ELG_LOPnotqso_NGC_0_clustering.ran.fits ELG_LOPnotqso_SGC_0_clustering.ran.fits \
+            --templates genuine_template/genuine_multitracer_templates.csv \
+            --outdir genuine_multitracer \
+            --sep-edges 20,40,60,80,100,120,140 \
+            --dz-random 0.02 --random-factor 2.0 \
+            --neighbors-per-anchor 48 --theta-min-deg 0.05 \
+            --jackknife 30 --seed 20260918
+
+      - name: Record provenance
+        run: |
+          git rev-parse HEAD > genuine_multitracer/REPOSITORY_COMMIT.txt
+          git -C class_public rev-parse HEAD > genuine_multitracer/CLASS_COMMIT.txt
+          cp docs/DESI_DR1_GENUINE_MULTITRACER_PREREG.md genuine_multitracer/
+          cp genuine_template/template_summary.json genuine_multitracer/
+          cp genuine_template/genuine_multitracer_templates.csv genuine_multitracer/
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: desi-dr1-genuine-lrg-elg-odd
+          path: genuine_multitracer/
+          if-no-files-found: error
