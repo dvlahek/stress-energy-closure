@@ -31,7 +31,7 @@ source .venv/bin/activate
 engine.
 
 ```bash
-USE_GPU=0 python -m pip install 'git+https://github.com/cosmodesi/pycorr#egg=pycorr[corrfunc]'
+python -m pip install --no-build-isolation "pycorr[corrfunc] @ git+https://github.com/cosmodesi/pycorr.git@main"
 ```
 
 Check:
