@@ -63,7 +63,7 @@ def class_params(psd: Path, mass: float):
         "T_ncdm": cro.T_NCDM,
         "deg_ncdm": 1.0,
         "P_k_max_h/Mpc": 0.25,
-        "z_max_pk": 0.7,
+        "z_max_pk": max(0.7, float(np.max(ZBINS)) + 0.05),
     }
 
 
