@@ -71,6 +71,8 @@ def main():
         info=st0["z"][z]
         k=np.asarray(base.KOBS,float); pk=np.asarray(info["pk"],float)
         geom=phys.class_geometry(p0,args.mass,z)
+        fg=np.asarray(info["f"],float)
+        fscalar=float(np.median(fg[k<=0.05])) if np.any(k<=0.05) else float(np.median(fg))
         hid=wpt.signed_hidden_response(q,f0,fp,fm,st0,stp,stm,args.mass,z)
 
         sfine=np.arange(edges[0],edges[-1]+0.5*args.fine_step,args.fine_step)
@@ -83,7 +85,11 @@ def main():
         nb=phys.volume_bin_average(sfine,nf,edges)
         wab=phys.volume_bin_average(sfine,waf,edges)
         raw_w.extend(wb.tolist()); raw_nu.extend(nb.tolist()); raw_wa.extend(wab.tolist())
-        metadata.append({"zlo":lo,"zhi":hi,"z_effective":z,"geometry":geom})
+        metadata.append({
+            "zlo":lo,"zhi":hi,"z_effective":z,"geometry":geom,
+            "growth_f_reference":fscalar,
+            "growth_f_k_minmax":[float(np.min(fg)),float(np.max(fg))]
+        })
 
     raw_w=np.asarray(raw_w,float); raw_nu=np.asarray(raw_nu,float); raw_wa=np.asarray(raw_wa,float)
     wn,sw=phys.normalized(raw_w); nn,sn=phys.normalized(raw_nu); wan,swa=phys.normalized(raw_wa)
