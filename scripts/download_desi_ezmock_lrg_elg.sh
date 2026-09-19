@@ -60,7 +60,7 @@ download_one() {
     return
   fi
   echo "GET  $url"
-  curl -fL --retry 4 --retry-delay 2 --continue-at - -o "$dst" "$url"
+  curl --http1.1 -fL --retry 8 --retry-delay 3 --retry-all-errors --continue-at - -o "$dst" "$url"
 }
 
 for ((m=START; m<=END; m++)); do
