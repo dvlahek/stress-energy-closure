@@ -103,10 +103,19 @@ def main():
 
     mp,mm=cro.moments(fp,q,weights),cro.moments(fm,q,weights)
     mis=np.abs(mp-mm)/np.maximum(0.5*(np.abs(mp)+np.abs(mm)),1e-300)
+    def cosine(a,b):
+        den=float(np.sqrt(np.dot(a,a)*np.dot(b,b)))
+        return float(np.dot(a,b)/den) if den>0 else None
+
     summary={
         "scope":"Globally normalized 18D z-resolved physical basis for DESI DR1 LRGxELG",
         "z_bins":metadata,
         "global_normalization_scales":{"wake":sw,"relativistic_nu1":sn,"wide_angle":swa},
+        "flattened_unweighted_template_cosines":{
+            "wake_vs_relativistic_nu1":cosine(wn,nn),
+            "wake_vs_wide_angle":cosine(wn,wan),
+            "relativistic_nu1_vs_wide_angle":cosine(nn,wan),
+        },
         "max_relative_moment_mismatch":float(np.max(mis)),
         "guardrail":(
             "One normalization is used over the full (z,s) vector, so relative redshift evolution "
