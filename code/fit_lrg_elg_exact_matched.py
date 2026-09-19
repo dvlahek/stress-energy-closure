@@ -117,6 +117,21 @@ def gls_profile(y, cov, signal, nuisance, signal_name, nuisance_names, nmock=Non
     numerator = float(signal_perp @ psi @ y)
     matched_z = float(numerator / np.sqrt(denom)) if denom > 0.0 else None
 
+    signal_norm2 = float(signal @ psi @ signal)
+    retained_signal_norm_fraction = (
+        float(np.sqrt(max(denom, 0.0) / signal_norm2)) if signal_norm2 > 0.0 else None
+    )
+    nuisance_metric_cosines = {}
+    for i, name in enumerate(nuisance_names):
+        ni = nuisance[:, i]
+        ni_norm2 = float(ni @ psi @ ni)
+        if signal_norm2 > 0.0 and ni_norm2 > 0.0:
+            nuisance_metric_cosines[name] = float(
+                (signal @ psi @ ni) / np.sqrt(signal_norm2 * ni_norm2)
+            )
+        else:
+            nuisance_metric_cosines[name] = None
+
     params = {}
     for i, name in enumerate(nuisance_names):
         err = float(np.sqrt(max(c1[i, i], 0.0)))
@@ -139,6 +154,10 @@ def gls_profile(y, cov, signal, nuisance, signal_name, nuisance_names, nmock=Non
         "pvalue_signal_two_sided": p_two_sided,
         "gaussian_equivalent_sigma_two_sided": z_abs,
         "matched_filter_z_signed": matched_z,
+        "template_geometry": {
+            "wake_vs_nuisance_metric_cosines": nuisance_metric_cosines,
+            "wake_metric_norm_retained_after_nuisance_projection": retained_signal_norm_fraction,
+        },
         "hartlap_factor": alpha,
         "hartlap_applied": applied,
         "nuisance_rank": int(np.linalg.matrix_rank(nuisance)) if nuisance.shape[1] else 0,
