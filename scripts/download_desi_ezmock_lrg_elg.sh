@@ -54,13 +54,15 @@ fi
 download_one() {
   local url="$1"
   local dst="$2"
+  local tmp="${dst}.part"
   mkdir -p "$(dirname "$dst")"
   if [[ -s "$dst" ]]; then
     echo "HAVE $dst"
     return
   fi
   echo "GET  $url"
-  curl --http1.1 -fL --retry 8 --retry-delay 3 --retry-all-errors --continue-at - -o "$dst" "$url"
+  curl --http1.1 -fL --retry 8 --retry-delay 3 --retry-all-errors --continue-at - -o "$tmp" "$url"
+  mv -f -- "$tmp" "$dst"
 }
 
 for ((m=START; m<=END; m++)); do
