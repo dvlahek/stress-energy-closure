@@ -5,7 +5,7 @@ START=1
 COUNT=20
 NRANDOM=1
 INROOT="data/desi_dr1_ezmock_dark_v1"
-OUTROOT="mocks_zresolved"
+OUTROOT="mocks_zresolved_desi"
 NTHREADS=16
 
 while [[ $# -gt 0 ]]; do
@@ -45,7 +45,7 @@ for ((m=START; m<=END; m++)); do
     --z-edges 0.80,0.90,1.00,1.10 \
     --mu-bins 240 \
     --theta-min-deg 0.05 \
-  --distance-cosmology desi \
+    --distance-cosmology desi \
     --nthreads "$NTHREADS" \
     --skip-reverse
 done
