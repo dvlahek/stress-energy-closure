@@ -143,6 +143,12 @@ def main():
             comments="",
         )
 
+    try:
+        import cosmoprimo
+        cosmoprimo_version = getattr(cosmoprimo, "__version__", "unknown")
+    except Exception:
+        cosmoprimo_version = None
+
     summary = {
         "scope": "Exact-pair redshift-resolved genuine DESI DR1 LRGxELG odd-sector vector",
         "frozen_z_edges": zedges.tolist(),
@@ -152,6 +158,7 @@ def main():
         "los": "midpoint",
         "distance_cosmology": args.distance_cosmology,
         "distance_units": "Mpc/h",
+        "cosmoprimo_version": cosmoprimo_version,
         "separation_edges_Mpc_over_h": sedges.tolist(),
         "mu_bins": int(args.mu_bins),
         "theta_min_deg": float(args.theta_min_deg),
