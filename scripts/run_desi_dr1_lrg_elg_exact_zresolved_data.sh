@@ -20,4 +20,5 @@ python code/desi_dr1_lrg_elg_exact_zresolved.py \
   --z-edges 0.80,0.90,1.00,1.10 \
   --mu-bins 240 \
   --theta-min-deg 0.05 \
+  --distance-cosmology desi \
   --nthreads "$NTHREADS"
