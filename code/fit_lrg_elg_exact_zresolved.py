@@ -91,7 +91,8 @@ def main():
     ap=argparse.ArgumentParser()
     ap.add_argument("--measurement",required=True)
     ap.add_argument("--covariance",required=True)
-    ap.add_argument("--template",required=True)
+    ap.add_argument("--template",required=True, help="Signal template CSV containing wake_shape")
+    ap.add_argument("--nuisance-template", help="Optional separate nuisance-template CSV; defaults to --template")
     ap.add_argument("--nuisance-cols",default="")
     ap.add_argument("--subtract-mock-mean",action="store_true")
     ap.add_argument("--outdir",required=True)
@@ -99,13 +100,18 @@ def main():
 
     m=np.genfromtxt(args.measurement,delimiter=",",names=True)
     t=np.genfromtxt(args.template,delimiter=",",names=True)
+    nt_path = args.nuisance_template if args.nuisance_template else args.template
+    nt=np.genfromtxt(nt_path,delimiter=",",names=True)
     B=np.load(args.covariance,allow_pickle=False)
 
     keys_m=np.column_stack([m["zlo"],m["zhi"],m["s_Mpc_over_h"]]).astype(float)
     keys_t=np.column_stack([t["zlo"],t["zhi"],t["s_Mpc_over_h"]]).astype(float)
+    keys_nt=np.column_stack([nt["zlo"],nt["zhi"],nt["s_Mpc_over_h"]]).astype(float)
     keys_c=np.column_stack([B["zlo"],B["zhi"],B["separation"]]).astype(float)
-    if not np.allclose(keys_m,keys_t,rtol=0,atol=1e-12) or not np.allclose(keys_m,keys_c,rtol=0,atol=1e-12):
-        raise RuntimeError("measurement/template/covariance z-s grids differ")
+    if (not np.allclose(keys_m,keys_t,rtol=0,atol=1e-12)
+            or not np.allclose(keys_m,keys_nt,rtol=0,atol=1e-12)
+            or not np.allclose(keys_m,keys_c,rtol=0,atol=1e-12)):
+        raise RuntimeError("measurement/signal-template/nuisance-template/covariance z-s grids differ")
 
     y=np.asarray(m["xi1_LRG_to_ELG"],float)
     mean=np.asarray(B["mean_xi1"],float)
@@ -114,7 +120,7 @@ def main():
     n=int(np.asarray(B["n_mocks"]).item())
     wake=np.asarray(t["wake_shape"],float)
     names=[x.strip() for x in args.nuisance_cols.split(",") if x.strip()]
-    N=np.column_stack([np.asarray(t[x],float) for x in names]) if names else np.empty((len(y),0))
+    N=np.column_stack([np.asarray(nt[x],float) for x in names]) if names else np.empty((len(y),0))
 
     P,a=precision(C,n)
     q=float(y@P@y)
@@ -132,12 +138,16 @@ def main():
             "gaussian_equivalent_signed_upper_tail_z":float(norm.isf(p)) if 0<p<1 else None,
         },
         "nuisance_columns":names,
-        "template_sha256":sha(args.template),
+        "signal_template":args.template,
+        "signal_template_sha256":sha(args.template),
+        "nuisance_template":nt_path,
+        "nuisance_template_sha256":sha(nt_path),
         "fit":gls(y,C,n,wake,N,names),
         "guardrail":(
             "The 0.80-0.90, 0.90-1.00 and 1.00-1.10 bins are frozen a priori. "
             "Do not alter redshift or separation cuts after inspecting this result. "
-            "The standard odd basis remains diagnostic until tracer coefficients and survey window are physically linked."
+            "The linked standard benchmark is fixed independently of the odd data, but final inference still requires "
+            "survey-window convolution and stronger finite-mock calibration."
         ),
     }
     out=Path(args.outdir); out.mkdir(parents=True,exist_ok=True)
