@@ -45,6 +45,7 @@ for ((m=START; m<=END; m++)); do
     --z-edges 0.80,0.90,1.00,1.10 \
     --mu-bins 240 \
     --theta-min-deg 0.05 \
+  --distance-cosmology desi \
     --nthreads "$NTHREADS" \
     --skip-reverse
 done
