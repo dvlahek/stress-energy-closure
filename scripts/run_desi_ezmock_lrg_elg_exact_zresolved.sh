@@ -7,6 +7,7 @@ NRANDOM=1
 INROOT="data/desi_dr1_ezmock_dark_v1"
 OUTROOT="mocks_zresolved_desi"
 NTHREADS=16
+REGION="both"
 
 while [[ $# -gt 0 ]]; do
   case "$1" in
@@ -16,6 +17,7 @@ while [[ $# -gt 0 ]]; do
     --inroot) INROOT="$2"; shift 2 ;;
     --outroot) OUTROOT="$2"; shift 2 ;;
     --nthreads) NTHREADS="$2"; shift 2 ;;
+    --region) REGION="$2"; shift 2 ;;
     *) echo "Unknown argument: $1" >&2; exit 2 ;;
   esac
 done
@@ -30,15 +32,42 @@ for ((m=START; m<=END; m++)); do
     continue
   fi
 
-  lr=(); er=()
+  lr=(); er=(); ld=(); ed=()
+  case "$REGION" in
+    both)
+      ld=("${indir}/LRG_ffa_NGC_clustering.dat.fits" "${indir}/LRG_ffa_SGC_clustering.dat.fits")
+      ed=("${indir}/ELG_LOP_ffa_NGC_clustering.dat.fits" "${indir}/ELG_LOP_ffa_SGC_clustering.dat.fits")
+      ;;
+    NGC)
+      ld=("${indir}/LRG_ffa_NGC_clustering.dat.fits")
+      ed=("${indir}/ELG_LOP_ffa_NGC_clustering.dat.fits")
+      ;;
+    SGC)
+      ld=("${indir}/LRG_ffa_SGC_clustering.dat.fits")
+      ed=("${indir}/ELG_LOP_ffa_SGC_clustering.dat.fits")
+      ;;
+    *) echo "REGION must be both, NGC, or SGC" >&2; exit 2 ;;
+  esac
   for ((r=0; r<NRANDOM; r++)); do
-    lr+=("${indir}/LRG_ffa_NGC_${r}_clustering.ran.fits" "${indir}/LRG_ffa_SGC_${r}_clustering.ran.fits")
-    er+=("${indir}/ELG_LOP_ffa_NGC_${r}_clustering.ran.fits" "${indir}/ELG_LOP_ffa_SGC_${r}_clustering.ran.fits")
+    case "$REGION" in
+      both)
+        lr+=("${indir}/LRG_ffa_NGC_${r}_clustering.ran.fits" "${indir}/LRG_ffa_SGC_${r}_clustering.ran.fits")
+        er+=("${indir}/ELG_LOP_ffa_NGC_${r}_clustering.ran.fits" "${indir}/ELG_LOP_ffa_SGC_${r}_clustering.ran.fits")
+        ;;
+      NGC)
+        lr+=("${indir}/LRG_ffa_NGC_${r}_clustering.ran.fits")
+        er+=("${indir}/ELG_LOP_ffa_NGC_${r}_clustering.ran.fits")
+        ;;
+      SGC)
+        lr+=("${indir}/LRG_ffa_SGC_${r}_clustering.ran.fits")
+        er+=("${indir}/ELG_LOP_ffa_SGC_${r}_clustering.ran.fits")
+        ;;
+    esac
   done
 
   python code/desi_dr1_lrg_elg_exact_zresolved.py \
-    --lrg-data "${indir}/LRG_ffa_NGC_clustering.dat.fits" "${indir}/LRG_ffa_SGC_clustering.dat.fits" \
-    --elg-data "${indir}/ELG_LOP_ffa_NGC_clustering.dat.fits" "${indir}/ELG_LOP_ffa_SGC_clustering.dat.fits" \
+    --lrg-data "${ld[@]}" \
+    --elg-data "${ed[@]}" \
     --lrg-random "${lr[@]}" \
     --elg-random "${er[@]}" \
     --outdir "$out" \
