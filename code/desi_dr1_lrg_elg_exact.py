@@ -23,8 +23,35 @@ from astropy.io import fits
 
 from pycorr import TwoPointCorrelationFunction, project_to_poles
 
-COSMO = FlatLambdaCDM(H0=67.4, Om0=0.315, Tcmb0=2.7255)
-H = 0.674
+LEGACY_COSMO = FlatLambdaCDM(H0=67.4, Om0=0.315, Tcmb0=2.7255)
+LEGACY_H = 0.674
+_DISTANCE_COSMOLOGY = "desi"
+_DESI_COSMO = None
+
+
+def set_distance_cosmology(name):
+    global _DISTANCE_COSMOLOGY, _DESI_COSMO
+    name = str(name).lower()
+    if name not in {"desi", "legacy_astropy"}:
+        raise ValueError(f"Unknown distance cosmology: {name}")
+    if name == "desi" and _DESI_COSMO is None:
+        try:
+            from cosmoprimo.fiducial import DESI
+        except ImportError as exc:
+            raise RuntimeError(
+                "DESI fiducial distances require cosmoprimo. Install with: pip install cosmoprimo"
+            ) from exc
+        _DESI_COSMO = DESI()
+    _DISTANCE_COSMOLOGY = name
+
+
+def distance_mpc_over_h(z):
+    z = np.asarray(z, dtype="f8")
+    if _DISTANCE_COSMOLOGY == "desi":
+        if _DESI_COSMO is None:
+            set_distance_cosmology("desi")
+        return np.asarray(_DESI_COSMO.comoving_radial_distance(z), dtype="f8")
+    return np.asarray(LEGACY_COSMO.comoving_distance(z).value * LEGACY_H, dtype="f8")
 
 
 def col(data, *names, default=None):
@@ -69,7 +96,7 @@ def read_catalog(paths, zmin, zmax):
 
 def rdd(cat):
     ra, dec, z, _ = cat
-    chi = np.asarray(COSMO.comoving_distance(z).value * H, dtype="f8")
+    chi = distance_mpc_over_h(z)
     return [ra, dec, chi]
 
 
@@ -134,6 +161,12 @@ def main():
     ap.add_argument("--sep-edges", default="20,40,60,80,100,120,140")
     ap.add_argument("--mu-bins", type=int, default=240)
     ap.add_argument("--theta-min-deg", type=float, default=0.05)
+    ap.add_argument(
+        "--distance-cosmology",
+        choices=("desi", "legacy_astropy"),
+        default="desi",
+        help="Redshift-to-distance mapping. Production default is cosmoprimo.fiducial.DESI; legacy_astropy reproduces the earlier H0=67.4, Om0=0.315 mapping.",
+    )
     ap.add_argument("--nthreads", type=int, default=max(1, os.cpu_count() or 1))
     ap.add_argument(
         "--skip-reverse",
@@ -141,6 +174,8 @@ def main():
         help="Skip the ELG->LRG sign-reversal validation to save time.",
     )
     args = ap.parse_args()
+
+    set_distance_cosmology(args.distance_cosmology)
 
     out = Path(args.outdir)
     out.mkdir(parents=True, exist_ok=True)
@@ -225,6 +260,8 @@ def main():
         "estimator": "cross Landy-Szalay in (s,mu), projected to ell=1 and ell=3",
         "orientation": "LRG->ELG",
         "los": "midpoint",
+        "distance_cosmology": args.distance_cosmology,
+        "distance_units": "Mpc/h",
         "z_range": [args.zmin, args.zmax],
         "object_weighted_z_proxy": weighted_zeff(lrg, elg),
         "counts": counts,
