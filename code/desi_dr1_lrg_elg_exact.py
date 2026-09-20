@@ -36,12 +36,12 @@ def set_distance_cosmology(name):
         raise ValueError(f"Unknown distance cosmology: {name}")
     if name == "desi" and _DESI_COSMO is None:
         try:
-            from cosmoprimo.fiducial import DESI
+            from cosmoprimo.fiducial import TabulatedDESI
         except ImportError as exc:
             raise RuntimeError(
-                "DESI fiducial distances require cosmoprimo. Install with: python -m pip install git+https://github.com/cosmodesi/cosmoprimo.git@701f498eb936a172b91e0ccbd6f52f1770f7154c"
+                "DESI fiducial distances require cosmoprimo. Install the pinned Git version from requirements.txt."
             ) from exc
-        _DESI_COSMO = DESI()
+        _DESI_COSMO = TabulatedDESI()
     _DISTANCE_COSMOLOGY = name
 
 
