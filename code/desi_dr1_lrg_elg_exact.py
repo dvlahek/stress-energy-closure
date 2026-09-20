@@ -253,6 +253,11 @@ def main():
         corrfunc_version = getattr(Corrfunc, "__version__", "unknown")
     except Exception:
         corrfunc_version = "unknown"
+    try:
+        import cosmoprimo
+        cosmoprimo_version = getattr(cosmoprimo, "__version__", "unknown")
+    except Exception:
+        cosmoprimo_version = None
 
     summary = {
         "scope": "Exact-pair genuine DESI DR1 LRGxELG odd-multipole data vector; significance requires mock covariance.",
@@ -276,6 +281,7 @@ def main():
         "weights": "WEIGHT * WEIGHT_FKP for data and randoms",
         "pycorr_version": pycorr_version,
         "corrfunc_version": corrfunc_version,
+        "cosmoprimo_version": cosmoprimo_version,
         "sign_reversal": reverse,
         "guardrail": (
             "Do not quote a physical significance from this file alone. "
