@@ -41,7 +41,7 @@ def read_zw(paths, zmin, zmax):
 
 def shell_volume_per_sr(zedges):
     # Mpc/h distances; an overall constant survey area cancels from d ln nbar/dz.
-    r=np.asarray(exact.COSMO.comoving_distance(zedges).value*exact.H,float)
+    r=np.asarray(exact.distance_mpc_over_h(zedges),float)
     return (r[1:]**3-r[:-1]**3)/3.0
 
 
@@ -101,8 +101,10 @@ def main():
     ap.add_argument("--measurement",required=True,
                     help="z-resolved measurement CSV defining frozen bins and z_eff")
     ap.add_argument("--out",required=True)
+    ap.add_argument("--distance-cosmology",choices=("desi","legacy_astropy"),default="desi")
     args=ap.parse_args()
 
+    exact.set_distance_cosmology(args.distance_cosmology)
     a=np.genfromtxt(args.measurement,delimiter=",",names=True)
     bins=[]
     seen=set()
@@ -122,6 +124,7 @@ def main():
         "definition":"f_evo = -(1+z) d ln(nbar_comoving)/dz",
         "weights":"WEIGHT only; FKP deliberately excluded from selection-function calibration",
         "geometry":"weighted dN/dz divided by fiducial comoving shell volume per steradian; survey area cancels in logarithmic derivative",
+        "distance_cosmology":args.distance_cosmology,
         "predeclared_fit_ensemble":"dz in {0.01,0.02} x polynomial degree in {2,3}; benchmark is median, half-range is smoothing sensitivity diagnostic",
         "LRG":tracer_summary(zl,wl,bins),
         "ELG":tracer_summary(ze,we,bins),
