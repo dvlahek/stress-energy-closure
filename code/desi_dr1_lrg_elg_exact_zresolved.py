@@ -45,9 +45,17 @@ def main():
     ap.add_argument("--sep-edges", default="20,40,60,80,100,120,140")
     ap.add_argument("--mu-bins", type=int, default=240)
     ap.add_argument("--theta-min-deg", type=float, default=0.05)
+    ap.add_argument(
+        "--distance-cosmology",
+        choices=("desi", "legacy_astropy"),
+        default="desi",
+        help="Redshift-to-distance mapping; production default is DESI fiducial.",
+    )
     ap.add_argument("--nthreads", type=int, default=max(1, os.cpu_count() or 1))
     ap.add_argument("--skip-reverse", action="store_true")
     args = ap.parse_args()
+
+    exact.set_distance_cosmology(args.distance_cosmology)
 
     zedges = parse_edges(args.z_edges)
     sedges = np.asarray([float(x) for x in args.sep_edges.split(",")], dtype="f8")
@@ -142,6 +150,8 @@ def main():
         "multipoles": [1, 3],
         "orientation": "LRG->ELG",
         "los": "midpoint",
+        "distance_cosmology": args.distance_cosmology,
+        "distance_units": "Mpc/h",
         "separation_edges_Mpc_over_h": sedges.tolist(),
         "mu_bins": int(args.mu_bins),
         "theta_min_deg": float(args.theta_min_deg),
