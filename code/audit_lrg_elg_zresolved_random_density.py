@@ -35,11 +35,28 @@ def stats(A,B):
     varB=np.var(B,axis=0,ddof=1)
     good=varB>0
     ratios=np.sqrt(varD[good]/varB[good])
+    trace_ratio=float(np.sum(varD)/np.sum(varB))
+    # If r1 uses one random realization and nested r4 averages that same realization
+    # with three independent additional ones, Var(r4-r1)=3 Var_R(r4).
+    # This gives a useful approximate decomposition of random-catalog variance.
+    r4_random_frac=trace_ratio/3.0
+    r1_total_over_r4=1.0+trace_ratio
+    r1_random_frac=(4.0*r4_random_frac)/r1_total_over_r4
+    r2_total_over_r4=(1.0-r4_random_frac)+2.0*r4_random_frac
+    r2_random_frac=(2.0*r4_random_frac)/r2_total_over_r4
     return {
         "global_rms_r4_minus_r1":float(np.sqrt(np.mean(D**2))),
         "global_rms_r4_mock_scatter":float(np.sqrt(np.mean(survey**2))),
         "global_rms_ratio":float(np.sqrt(np.mean(D**2))/np.sqrt(np.mean(survey**2))),
-        "trace_covariance_ratio_delta_over_r4":float(np.sum(varD)/np.sum(varB)),
+        "trace_covariance_ratio_delta_over_r4":trace_ratio,
+        "nested_random_model_estimate":{
+            "r4_random_fraction_of_r4_total_trace":r4_random_frac,
+            "r2_random_fraction_of_r2_total_trace":r2_random_frac,
+            "r1_random_fraction_of_r1_total_trace":r1_random_frac,
+            "r1_total_trace_over_r4_total_trace":r1_total_over_r4,
+            "r2_total_trace_over_r4_total_trace":r2_total_over_r4,
+            "note":"Approximate only: assumes independent equal-variance random realizations and additive 1/Nrandom scaling; r4 contains the r1 random realization."
+        },
         "component_sigma_ratio_median":float(np.median(ratios)),
         "component_sigma_ratio_max":float(np.max(ratios)),
         "mean_shift_rms":float(np.sqrt(np.mean(D.mean(axis=0)**2))),
