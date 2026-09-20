@@ -25,7 +25,7 @@ def main():
         "z_range":[float(args.zmin),float(args.zmax)],
         "n_grid":int(args.nz),
         "legacy":"Astropy FlatLambdaCDM(H0=67.4, Om0=0.315, Tcmb0=2.7255) times h=0.674",
-        "production":"cosmoprimo.fiducial.DESI().comoving_radial_distance(z), Mpc/h",
+        "production":"cosmoprimo.fiducial.TabulatedDESI().comoving_radial_distance(z), Mpc/h",
         "max_abs_distance_shift_Mpc_over_h":float(np.max(np.abs(new-old))),
         "max_abs_fractional_shift":float(np.max(np.abs(rel))),
         "rms_fractional_shift":float(np.sqrt(np.mean(rel**2))),
