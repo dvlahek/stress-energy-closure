@@ -6,7 +6,7 @@ COUNT=40
 NRANDOM=1
 NTHREADS=16
 INROOT="data/desi_dr1_ezmock_dark_v1"
-OUTROOT="mocks_zresolved"
+OUTROOT="mocks_zresolved_desi"
 KEEP_INPUTS=0
 
 while [[ $# -gt 0 ]]; do
