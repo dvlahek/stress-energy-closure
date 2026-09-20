@@ -2,11 +2,12 @@
 set -euo pipefail
 
 ROOT="${1:-data/desi_dr1_lrg_elg}"
-OUT="${2:-lrg_elg_exact_zresolved_r4}"
+OUT="${2:-lrg_elg_exact_zresolved_r4_desi}"
 NTHREADS="${3:-16}"
+NRANDOM="${4:-4}"
 
 lr=(); er=()
-for r in 0 1 2 3; do
+for ((r=0; r<NRANDOM; r++)); do
   lr+=("${ROOT}/LRG_NGC_${r}_clustering.ran.fits" "${ROOT}/LRG_SGC_${r}_clustering.ran.fits")
   er+=("${ROOT}/ELG_LOPnotqso_NGC_${r}_clustering.ran.fits" "${ROOT}/ELG_LOPnotqso_SGC_${r}_clustering.ran.fits")
 done
