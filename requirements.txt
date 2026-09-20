@@ -2,4 +2,4 @@ numpy>=1.24
 scipy>=1.10
 matplotlib>=3.7
 astropy>=5.3
-cosmoprimo>=1.0.0
+cosmoprimo @ git+https://github.com/cosmodesi/cosmoprimo.git@701f498eb936a172b91e0ccbd6f52f1770f7154c
