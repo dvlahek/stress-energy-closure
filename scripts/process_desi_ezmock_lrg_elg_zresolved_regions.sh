@@ -3,7 +3,7 @@ set -euo pipefail
 
 START=1
 COUNT=40
-NRANDOM=1
+NRANDOM=4
 NTHREADS=16
 INROOT="data/desi_dr1_ezmock_dark_v1"
 OUTNGC="mocks_zresolved_desi_ngc"
