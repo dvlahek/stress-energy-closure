@@ -1,0 +1,97 @@
+{
+  "scope": "Exact broad-bin DESI DR1 LRGxELG odd-sector 40-mock development checkpoint",
+  "status": "historical development checkpoint; superseded for inference by the frozen z-resolved analysis",
+  "n_mocks": 40,
+  "dimension": {
+    "dipole": 6,
+    "octupole": 6,
+    "joint": 12
+  },
+  "hartlap": {
+    "p6": 0.8205128,
+    "p12": 0.6666667
+  },
+  "covariance": {
+    "condition_xi1": 55,
+    "condition_xi3": 7.2,
+    "condition_joint": 75.1,
+    "positive_definite": true
+  },
+  "data": {
+    "random_counts": {
+      "LRG": 23063043,
+      "ELG": 24817766
+    },
+    "sign_reversal": {
+      "dipole_max_abs_forward_plus_reverse": 1.4726e-11,
+      "octupole_max_abs_forward_plus_reverse": 5.1537e-11,
+      "dipole_relative_sign_residual": 1.0976e-8,
+      "octupole_relative_sign_residual": 3.3427e-8
+    },
+    "xi1_times_1e3": [
+      -1.21,
+      -1.342,
+      -0.392,
+      -0.218,
+      -0.438,
+      -0.091
+    ],
+    "xi3_times_1e3": [
+      1.542,
+      -1.024,
+      -0.821,
+      -0.544,
+      0.058,
+      0.027
+    ],
+    "rms": {
+      "xi1": 0.000782,
+      "xi3": 0.000856
+    }
+  },
+  "omnibus_mean_subtracted": {
+    "dipole": {
+      "chi2": 4.2059,
+      "dof": 6,
+      "pvalue": 0.6488
+    },
+    "octupole": {
+      "chi2": 4.4934,
+      "dof": 6,
+      "pvalue": 0.6102
+    },
+    "joint": {
+      "chi2": 8.2072,
+      "dof": 12,
+      "pvalue": 0.7687
+    },
+    "loo_empirical_p_plus_one": {
+      "dipole": 0.634,
+      "octupole": 0.585,
+      "joint": 0.707
+    }
+  },
+  "wake_only": {
+    "amplitude": 0.001302537,
+    "sigma": 0.001050137,
+    "z": 1.240349,
+    "delta_chi2": 1.5385,
+    "pvalue": 0.21485
+  },
+  "linked_standard": {
+    "standard_amplitude": -0.001221522,
+    "standard_sigma": 0.001701748,
+    "standard_z": -0.7178,
+    "wake_amplitude": 0.0000580748,
+    "wake_sigma": 0.002043696,
+    "wake_z": 0.02842,
+    "chi2_nuisance_only": 2.20618,
+    "chi2_nuisance_plus_wake": 2.20537,
+    "delta_chi2": 0.0008075,
+    "pvalue": 0.97733,
+    "wake_linked_metric_cosine": -0.851286,
+    "wake_metric_norm_retained": 0.524703,
+    "squared_information_retained": 0.2753
+  },
+  "interpretation": "No broad-bin odd-sector excess after the linked standard nuisance. Redshift resolution was then frozen a priori to test if physical redshift evolution breaks the template degeneracy."
+}
