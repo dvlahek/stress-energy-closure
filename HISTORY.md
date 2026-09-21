@@ -230,6 +230,23 @@ The brute-force estimator closure therefore passes at floating-point precision. 
 
 See `source_data/lrg_elg_bruteforce_pair_closure_2026-09-21.json`.
 
+
+### Data-blind attribution of the NGC/SGC degeneracy gap
+
+To determine if the much stronger SGC wake/standard degeneracy is caused mainly by the cap-specific nuisance template or by the regional covariance metric, the NGC and SGC wake templates, linked-standard templates, and covariance matrices were crossed in all eight combinations. No observed DESI data vector enters this audit.
+
+The two wake templates are essentially identical in Euclidean shape (`cosine = 0.9999998`), and the two cap-specific linked-standard templates are also extremely similar (`cosine = 0.997825`).
+
+Under the NGC covariance metric, both template pairs remain only moderately degenerate: `|rho| = 0.648` for the NGC pair and `0.610` for the SGC pair. Under the SGC covariance metric, both become strongly degenerate: `|rho| = 0.924` for the NGC pair and `0.906` for the SGC pair.
+
+Controlled metric swaps therefore change `|rho|` by about `+0.277` to `+0.296`, while template-pair swaps at fixed metric change it by only about `0.018` to `0.038` in magnitude. The regional sensitivity gap is consequently dominated by the covariance/survey-noise metric rather than by the small cap-specific nuisance-template difference.
+
+The retained wake information fraction after nuisance projection is `0.5803` in NGC and `0.1787` in SGC. Including the absolute metric norm, the projected wake information is about `3.52x` larger in NGC than SGC. This explains why the SGC amplitude error is much larger even though its cap-specific physical template is almost the same.
+
+This result does not isolate pure survey-window geometry: the regional covariance also contains shot noise, sample variance, selection effects, and other survey-noise contributions. The SGC null therefore remains a weak control, not a contradictory measurement.
+
+See `source_data/lrg_elg_regional_degeneracy_attribution_2026-09-21.json`.
+
 ### Production status
 
 A new 200-realization full-sky r4 EZmock campaign has been started. The inspection order remains frozen:
