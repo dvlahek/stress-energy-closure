@@ -1,0 +1,394 @@
+{
+  "scope": "Consolidated development checkpoint for the exact DESI DR1 LRGxELG odd-sector analysis",
+  "date": "2026-09-21",
+  "status": "development/validation branch; preserve historical ordering and guardrails; not the repository's primary reported DESI full-sample coefficient",
+  "estimator": {
+    "engine": "pycorr + Corrfunc",
+    "estimator": "cross Landy-Szalay",
+    "los": "midpoint",
+    "orientation": "LRG->ELG",
+    "multipoles": [
+      1,
+      3
+    ],
+    "z_range": [
+      0.8,
+      1.1
+    ],
+    "z_edges": [
+      0.8,
+      0.9,
+      1,
+      1.1
+    ],
+    "separation_edges_Mpc_over_h": [
+      20,
+      40,
+      60,
+      80,
+      100,
+      120,
+      140
+    ],
+    "separation_centers_Mpc_over_h": [
+      30,
+      50,
+      70,
+      90,
+      110,
+      130
+    ],
+    "mu_bins_production": 240,
+    "theta_min_deg": 0.05,
+    "weights": "WEIGHT * WEIGHT_FKP",
+    "production_random_realizations": 4,
+    "distance_cosmology_production": "cosmoprimo.fiducial.TabulatedDESI()"
+  },
+  "broad_exact_40_mock_checkpoint": {
+    "data_random_counts": {
+      "LRG": 23063043,
+      "ELG": 24817766
+    },
+    "sign_reversal": {
+      "dipole_max_abs_forward_plus_reverse": 1.4726e-11,
+      "octupole_max_abs_forward_plus_reverse": 5.1537e-11,
+      "dipole_relative_sign_residual": 1.0976e-8,
+      "octupole_relative_sign_residual": 3.3427e-8
+    },
+    "data_vector_x1_times_1e3": [
+      -1.21,
+      -1.342,
+      -0.392,
+      -0.218,
+      -0.438,
+      -0.091
+    ],
+    "data_vector_x3_times_1e3": [
+      1.542,
+      -1.024,
+      -0.821,
+      -0.544,
+      0.058,
+      0.027
+    ],
+    "data_rms": {
+      "xi1": 0.000782,
+      "xi3": 0.000856
+    },
+    "estimator_version_cosines_r2_to_r4": {
+      "xi1": 0.979,
+      "xi3": 0.974
+    },
+    "covariance": {
+      "n_mocks": 40,
+      "hartlap_p6": 0.8205128,
+      "hartlap_p12": 0.6666667,
+      "condition_xi1": 55,
+      "condition_xi3": 7.2,
+      "condition_joint": 75.1,
+      "positive_definite": true
+    },
+    "mean_subtracted_omnibus": {
+      "dipole": {
+        "chi2": 4.2059,
+        "dof": 6,
+        "pvalue": 0.6488
+      },
+      "octupole": {
+        "chi2": 4.4934,
+        "dof": 6,
+        "pvalue": 0.6102
+      },
+      "joint": {
+        "chi2": 8.2072,
+        "dof": 12,
+        "pvalue": 0.7687
+      },
+      "loo_empirical_p_plus_one": {
+        "dipole": 0.634,
+        "octupole": 0.585,
+        "joint": 0.707
+      }
+    },
+    "wake_only_matched_filter": {
+      "amplitude": 0.001302537,
+      "sigma": 0.001050137,
+      "z": 1.240349,
+      "delta_chi2": 1.5385,
+      "pvalue": 0.21485
+    },
+    "linked_standard_fit": {
+      "standard_amplitude": -0.001221522,
+      "standard_sigma": 0.001701748,
+      "standard_z": -0.7178,
+      "wake_amplitude": 0.0000580748,
+      "wake_sigma": 0.002043696,
+      "wake_z": 0.02842,
+      "chi2_nuisance_only": 2.20618,
+      "chi2_nuisance_plus_wake": 2.20537,
+      "delta_chi2": 0.0008075,
+      "pvalue": 0.97733,
+      "wake_linked_metric_cosine": -0.851286,
+      "wake_metric_norm_retained": 0.524703,
+      "squared_information_retained": 0.2753
+    },
+    "interpretation": "Broad-bin omnibus tests are null; after the linked standard odd-sector nuisance the broad wake matched-filter excess disappears. This motivated the a-priori z-resolved analysis."
+  },
+  "zresolved_legacy_astropy_40_mock_checkpoint": {
+    "frozen_file": "docs/desi_zresolved_frozen_checkpoint_2026-09-20.json",
+    "commit": "9067028",
+    "estimator_distance_cosmology": "legacy Astropy FlatLambdaCDM mapping",
+    "z_effective": [
+      0.851083844440171,
+      0.9494780782368448,
+      1.0476871962238978
+    ],
+    "counts": [
+      {
+        "z": [
+          0.8,
+          0.9
+        ],
+        "LRG": 441844,
+        "ELG": 304090,
+        "LRG_random": 11851056,
+        "ELG_random": 7437277
+      },
+      {
+        "z": [
+          0.9,
+          1
+        ],
+        "LRG": 290682,
+        "ELG": 358681,
+        "LRG_random": 7796718,
+        "ELG_random": 8767037
+      },
+      {
+        "z": [
+          1,
+          1.1
+        ],
+        "LRG": 127296,
+        "ELG": 353594,
+        "LRG_random": 3415269,
+        "ELG_random": 8613452
+      }
+    ],
+    "dipole_vectors": [
+      [
+        -0.001988958881,
+        -0.001715907243,
+        0.0001938620836,
+        0.0001907408732,
+        -0.0002207527624,
+        -0.0003926280619
+      ],
+      [
+        -0.0006156102739,
+        -0.001570219597,
+        -0.0008822238319,
+        -0.0008251580271,
+        -0.0008258528565,
+        -0.0006903511145
+      ],
+      [
+        0.001612036533,
+        0.001275050832,
+        0.001186704617,
+        0.001564870626,
+        0.000124999624,
+        -0.0002267199917
+      ]
+    ],
+    "octupole_vectors": [
+      [
+        0.002073728696,
+        -0.00157525186,
+        0.0003097750709,
+        0.00008865815421,
+        -0.00056246715,
+        -0.0007051790111
+      ],
+      [
+        0.002303221458,
+        0.00002006776062,
+        -0.0005366428644,
+        -0.00196587844,
+        -0.0003413633389,
+        0.0001617920611
+      ],
+      [
+        0.001258384907,
+        -0.002843043825,
+        -0.00207689347,
+        0.0007513302892,
+        0.0003664719557,
+        0.001747242553
+      ]
+    ],
+    "covariance": {
+      "n_mocks": 40,
+      "dipole_dimension": 18,
+      "joint_dimension": 36,
+      "hartlap_dipole": 0.5128205128,
+      "hartlap_joint": 0.0512820513,
+      "dipole_condition": 113.9967,
+      "joint_condition": 9633.8,
+      "joint_precision_status": "not used for inference at N=40"
+    },
+    "wake_only": {
+      "null_chi2": 10.8512296257,
+      "null_dof": 18,
+      "null_pvalue": 0.9005628054,
+      "amplitude": 0.0026376084,
+      "sigma": 0.0013664482,
+      "z": 1.93026596,
+      "delta_chi2": 3.72593,
+      "pvalue": 0.05357
+    },
+    "linked_standard": {
+      "standard_amplitude": 0.0036332432,
+      "standard_sigma": 0.0026547183,
+      "standard_z": 1.3686,
+      "wake_amplitude": 0.004204532,
+      "wake_sigma": 0.0017826952,
+      "wake_z_nominal": 2.3585254193,
+      "chi2_nuisance_only": 10.8148835929,
+      "chi2_nuisance_plus_wake": 5.2522414394,
+      "delta_chi2": 5.5626421536,
+      "pvalue": 0.0183477,
+      "wake_standard_metric_cosine": -0.642236081,
+      "wake_metric_norm_retained": 0.766506892,
+      "squared_information_retained": 0.5875
+    },
+    "finite_mock_audit": {
+      "data_z_nominal": 2.3585254193,
+      "sellentin_heavens_minus2loglambda": 7.9633,
+      "sellentin_heavens_sqrt_diagnostic": 2.8219,
+      "empirical_abs_z": {
+        "n_ge_data": 2,
+        "p_plus_one": 0.0731707,
+        "sigma_two_sided": 1.791764
+      },
+      "empirical_sellentin_heavens": {
+        "n_ge_data": 1,
+        "p_plus_one": 0.0487805,
+        "sigma_two_sided": 1.970505
+      },
+      "interpretation": "With 40 mocks the nominal 2.36 sigma cannot be treated as a calibrated 2.36-sigma tail; empirical resolution is about 1.8-2.0 sigma."
+    }
+  },
+  "linked_standard_physics": {
+    "source_model": "Bonvin et al. 2023 Eq. (8)",
+    "external_reference": "Friedman-Shaw et al. JCAP 03 (2025) 059 / arXiv:2410.04705",
+    "full_sky_reference_inputs": {
+      "b_LRG": 2,
+      "b_ELG": 1.3,
+      "s_LRG": 1,
+      "s_ELG": 0.4014285714,
+      "bD_ELG_below_z1": -5.4714285714
+    },
+    "full_sky_dr1_fevo": {
+      "LRG": [
+        6.97909,
+        14.93649,
+        21.70033
+      ],
+      "ELG": [
+        -3.94792,
+        2.42122,
+        4.10995
+      ],
+      "smoothing_half_ranges_LRG": [
+        0.333,
+        0.561,
+        0.443
+      ],
+      "smoothing_half_ranges_ELG": [
+        0.462,
+        1.16,
+        0.198
+      ]
+    },
+    "unweighted_cosines": {
+      "wake_vs_linked": -0.785865,
+      "wake_vs_linked_no_bD": -0.924892,
+      "linked_with_vs_without_bD": 0.932001
+    },
+    "retained_wake_norm_with_bD": 0.618398,
+    "retained_wake_squared_information_with_bD": 0.3824,
+    "retained_wake_norm_no_bD": 0.38023,
+    "retained_wake_squared_information_no_bD": 0.1446,
+    "guardrail": "The linked model is a benchmark nuisance shape, not a final survey-window-convolved DESI standard-odd prediction."
+  },
+  "desi_fiducial_distance_upgrade": {
+    "commits": [
+      "f0dbebe",
+      "ed820c1",
+      "c05b202",
+      "3109c0b",
+      "0767493"
+    ],
+    "implementation": "cosmoprimo.fiducial.TabulatedDESI()",
+    "max_fractional_distance_shift_vs_legacy_mapping_approx": 0.000104,
+    "interpretation": "Numerically negligible at current precision, but data and mocks are required to use the same DESI mapping for production."
+  },
+  "paired_random_density_r1_r4_audit": {
+    "commit": "94c3521",
+    "n_pairs": 10,
+    "dipole": {
+      "global_rms_r4_minus_r1": 0.0004264629,
+      "global_rms_r4_mock_scatter": 0.00098416235,
+      "global_rms_ratio": 0.4333258,
+      "trace_covariance_ratio_delta_over_r4": 0.1718365,
+      "component_sigma_ratio_median": 0.40149,
+      "component_sigma_ratio_max": 0.7815,
+      "mean_shift_rms": 0.00012423,
+      "approximate_r4_random_fraction_of_total_trace": 0.0573,
+      "approximate_r1_random_fraction_of_r1_total_trace": 0.2
+    },
+    "octupole": {
+      "global_rms_ratio": 0.4136,
+      "trace_covariance_ratio_delta_over_r4": 0.16365,
+      "component_sigma_ratio_median": 0.4272,
+      "component_sigma_ratio_max": 0.6932
+    },
+    "joint": {
+      "global_rms_ratio": 0.42127,
+      "trace_covariance_ratio_delta_over_r4": 0.16679
+    },
+    "data_r1_to_r4_dipole": {
+      "rms_shift": 0.00040044,
+      "median_abs_shift_in_component_sigma": 0.326,
+      "max_abs_shift_in_component_sigma": 1.037
+    },
+    "decision": "nrandom=1 is not acceptable for final 18D inference; production is frozen at nrandom=4.",
+    "production_commits": [
+      "380f739",
+      "8474ef5"
+    ]
+  },
+  "regional_checkpoint_file": "source_data/lrg_elg_ngc_sgc_regional_checkpoint_2026-09-21.json",
+  "mu_bin_convergence_file": "source_data/lrg_elg_mubin_convergence_r4.json",
+  "production_200_mock_campaign": {
+    "status": "running",
+    "n_target": 200,
+    "nrandom": 4,
+    "vector_dimension": 18,
+    "expected_hartlap_factor": 0.9045226130653267,
+    "inspection_order": [
+      "covariance diagnostics",
+      "zero null",
+      "nuisance-only",
+      "wake"
+    ],
+    "no_intermediate_wake_peeking": true
+  },
+  "historical_exploratory_warning": {
+    "old_mc_octupole_chi2_approx": 18.95,
+    "old_mc_octupole_dof": 6,
+    "old_mc_octupole_pvalue_approx": 0.00425,
+    "status": "superseded exploratory MC estimator; never use as evidence"
+  }
+}
