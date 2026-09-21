@@ -1,0 +1,40 @@
+{
+  "scope": "Paired random-density audit for the DESI-fiducial z-resolved LRGxELG estimator",
+  "n_pairs": 10,
+  "comparison": "nested r1 versus r4 random catalogs",
+  "dipole": {
+    "global_rms_r4_minus_r1": 0.0004264629,
+    "global_rms_r4_mock_scatter": 0.00098416235,
+    "global_rms_ratio": 0.4333258,
+    "trace_covariance_ratio_delta_over_r4": 0.1718365,
+    "component_sigma_ratio_median": 0.40149,
+    "component_sigma_ratio_max": 0.7815,
+    "mean_shift_rms": 0.00012423,
+    "nested_random_model_estimate": {
+      "approximate_r4_random_fraction_of_r4_total_trace": 0.0573,
+      "approximate_r1_random_fraction_of_r1_total_trace": 0.2,
+      "note": "Approximate nested 1/Nrandom decomposition; r4 contains the r1 realization plus three additional independent random realizations."
+    }
+  },
+  "octupole": {
+    "global_rms_ratio": 0.4136,
+    "trace_covariance_ratio_delta_over_r4": 0.16365,
+    "component_sigma_ratio_median": 0.4272,
+    "component_sigma_ratio_max": 0.6932
+  },
+  "joint": {
+    "global_rms_ratio": 0.42127,
+    "trace_covariance_ratio_delta_over_r4": 0.16679
+  },
+  "data_r1_to_r4": {
+    "dipole_rms_shift": 0.00040044,
+    "dipole_median_abs_shift_in_component_sigma": 0.326,
+    "dipole_max_abs_shift_in_component_sigma": 1.037
+  },
+  "decision": "nrandom=1 is not acceptable for final 18D inference; production is frozen at nrandom=4.",
+  "code_commit": "94c3521",
+  "production_default_commits": [
+    "380f739",
+    "8474ef5"
+  ]
+}
