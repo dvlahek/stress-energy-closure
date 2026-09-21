@@ -208,6 +208,28 @@ The octupole is slightly more sensitive to angular discretization but remains ne
 
 The mu-bin robustness test therefore passes. The production choice remains frozen at 240 bins; no significance-based retuning is performed.
 
+
+### Independent brute-force pair-count closure
+
+A deterministic small-subset validation was added to compare the production `pycorr`/Corrfunc estimator against an independent pure-NumPy implementation of the weighted cross-pair histograms, Landy-Szalay algebra and `ell=1,3` projection.
+
+The test used the NGC `0.80 <= z < 0.90` slice with 1200 LRG, 1200 ELG, 6000 LRG random and 6000 ELG random objects, fixed seed `1729`, 24 mu bins, the production separation bins, `theta >= 0.05 deg` and DESI fiducial distances.
+
+The first checker run failed because the independent script defined the separation vector as `x1-x2`. Inspection of the pinned pycorr reference implementation showed that pycorr uses `x2-x1`, i.e. catalog 1 -> catalog 2. This reversed the sign of every odd multipole in the checker and mirrored the mu-bin pair counts. The validation code was corrected in commit `10f463e`; the production estimator itself was unchanged.
+
+After the correction:
+
+- all four pair-count normalizations agree exactly to printed precision;
+- weighted `D1D2`, `D1R2`, `R1D2` and `R1R2` histograms agree at relative levels of order `1e-16`;
+- the full `xi(s,mu)` grid agrees with maximum absolute difference `1.28e-15`;
+- the dipole agrees with maximum absolute difference `2.05e-16`;
+- the octupole agrees with maximum absolute difference `1.53e-16`;
+- all six separation-bin centers agree exactly.
+
+The brute-force estimator closure therefore passes at floating-point precision. This closes the remaining implementation-level validation of orientation, midpoint line of sight, weighted cross-Landy-Szalay normalization and odd-multipole projection before the 200-mock inference.
+
+See `source_data/lrg_elg_bruteforce_pair_closure_2026-09-21.json`.
+
 ### Production status
 
 A new 200-realization full-sky r4 EZmock campaign has been started. The inspection order remains frozen:
