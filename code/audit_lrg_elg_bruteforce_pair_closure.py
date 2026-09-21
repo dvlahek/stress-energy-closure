@@ -54,10 +54,11 @@ def brute_pair_counts(cat1, cat2, sedges, muedges, theta_min_deg, block=256):
     """Weighted cross-pair histogram using Corrfunc's midpoint convention.
 
     With x1 and x2 the two comoving position vectors:
-      svec = x1 - x2
+      svec = x2 - x1
       lvec = (x1 + x2) / 2
       mu = dot(svec,lvec) / (|svec||lvec|)
-    The factor 1/2 cancels from mu.
+    This matches pycorr's reference convention: the separation vector points
+    from catalog 1 to catalog 2. The factor 1/2 cancels from mu.
     """
     xyz1, unit1, w1 = xyz_unit(cat1)
     xyz2, unit2, w2 = xyz_unit(cat2)
@@ -86,7 +87,7 @@ def brute_pair_counts(cat1, cat2, sedges, muedges, theta_min_deg, block=256):
         mu = np.zeros_like(s)
         good_denom = denom > 0.0
         mu[good_denom] = (
-            r1sq[i0:i1, None] - r2sq[None, :]
+            r2sq[None, :] - r1sq[i0:i1, None]
         )[good_denom] / denom[good_denom]
 
         cosang = u1 @ unit2.T
@@ -97,6 +98,7 @@ def brute_pair_counts(cat1, cat2, sedges, muedges, theta_min_deg, block=256):
             good_denom
             & (si >= 0) & (si < ns)
             & (mi >= 0) & (mi < nm)
+            & (cosang > -1.0)
             & (cosang <= cos_theta_max)
         )
         if not np.any(valid):
@@ -278,7 +280,7 @@ def main():
         },
         "estimator": {
             "orientation": "LRG->ELG",
-            "pair_vector_convention": "x1-x2",
+            "pair_vector_convention": "x2-x1 (catalog 1 -> catalog 2; matches pinned pycorr reference implementation)",
             "los": "midpoint",
             "landy_szalay": "(D1D2-D1R2-R1D2+R1R2)/R1R2 using separately normalized weighted cross-counts",
             "distance_cosmology": args.distance_cosmology,
