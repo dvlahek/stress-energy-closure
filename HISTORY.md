@@ -103,6 +103,69 @@ The aggressive high-precision CLASS profile is not used for this diagnostic beca
 
 See `docs/HIDDEN_CHANNEL_RETENTION.md` and `source_data/hidden_channel_retention_direct.json` for the current reproducible status.
 
+## 2026-09-18 to 2026-09-20 — Exact DESI LRGxELG estimator and 40-mock checkpoints
+
+This section backfills the exact-estimator development sequence that preceded the 2026-09-21 regional tests. The results are retained for provenance even when superseded by later z-resolved or DESI-fiducial production choices.
+
+### Broad exact estimator and 40-mock covariance
+
+The exploratory Monte-Carlo pair estimator was replaced by an exact `pycorr`/Corrfunc cross-Landy-Szalay estimator with midpoint line of sight, `20–140 Mpc/h` in six separation bins, 240 mu bins, `theta >= 0.05 deg`, and `WEIGHT * WEIGHT_FKP` weights.
+
+On the broad `0.8 < z < 1.1` sample, the forward/reverse tracer-order closure reached absolute residuals `1.47e-11` for the dipole and `5.15e-11` for the octupole. The exact broad data vectors were
+
+- `xi1 x 1e3 = (-1.210, -1.342, -0.392, -0.218, -0.438, -0.091)`,
+- `xi3 x 1e3 = (+1.542, -1.024, -0.821, -0.544, +0.058, +0.027)`.
+
+With 40 identically processed mocks, the broad covariance was positive definite with condition numbers about `55`, `7.2`, and `75.1` for dipole, octupole, and joint blocks. Mean-subtracted omnibus tests were null:
+
+- dipole: `chi2 = 4.2059 / 6`, `p = 0.6488`,
+- octupole: `chi2 = 4.4934 / 6`, `p = 0.6102`,
+- joint: `chi2 = 8.2072 / 12`, `p = 0.7687`.
+
+The wake-only broad matched filter gave `A = 0.00130254 +/- 0.00105014`, `Z = 1.24035`. After the linked standard odd-sector nuisance was included, the wake amplitude collapsed to `5.81e-05 +/- 0.00204370`, `Z = 0.0284`, with wake/standard metric cosine `-0.8513` and retained wake metric norm `0.5247`. The broad-bin analysis was therefore treated as a clean null after the physically linked nuisance.
+
+See `source_data/lrg_elg_exact_broad_40mock_checkpoint.json`.
+
+### Frozen z-resolved 18D checkpoint
+
+To reduce the strong broad-bin degeneracy without post-hoc separation cuts, three redshift bins were frozen a priori: `0.80–0.90`, `0.90–1.00`, and `1.00–1.10`, retaining the same six separation bins. This defines an 18-component dipole vector.
+
+The 40-mock covariance had Hartlap factor `0.5128205`, dipole condition number `113.997`, and remained positive definite. The 36D dipole+octupole precision matrix was not used at `N=40` because its Hartlap factor was only `0.05128` and condition number about `9634`.
+
+For the historical legacy-distance checkpoint:
+
+- zero null: `chi2 = 10.8512 / 18`, `p = 0.90056`,
+- wake-only: `A = 0.00263761 +/- 0.00136645`, `Z = 1.93027`,
+- linked-standard + wake: `A_wake = 0.00420453 +/- 0.00178270`, nominal `Z = 2.35853`, `Delta chi2 = 5.56264`, `p = 0.01835`,
+- wake/standard metric cosine: `-0.64224`,
+- retained wake metric norm: `0.76651`.
+
+The finite-mock leave-one-out calibration reduced the interpretable tail resolution: empirical absolute-`Z` gave `p+1 = 0.07317` (`1.7918 sigma` two-sided), while the Sellentin-Heavens likelihood-ratio rank gave `p+1 = 0.04878` (`1.9705 sigma`). The nominal `2.36 sigma` value was therefore not treated as a calibrated `2.36 sigma` detection.
+
+This checkpoint was frozen in `docs/desi_zresolved_frozen_checkpoint_2026-09-20.json` at commit `9067028` and must not be overwritten.
+
+### Physical linked-standard benchmark
+
+The nuisance model was linked to the relativistic/Doppler and leading wide-angle odd contributions using the Bonvin et al. form, with external tracer-bias, magnification-bias and Doppler-bias inputs and DR1-specific evolution-bias estimates from weighted `N(z)`. In the full-sky benchmark the wake/linked cosine was about `-0.786` with Doppler bias included, compared with `-0.925` without it. Including the Doppler-bias structure increased the retained wake norm from about `0.380` to `0.618`, demonstrating that redshift structure materially improves identifiability.
+
+The `0.9 < z < 1.0` ELG evolution-bias estimate was the least stable smoothing component and is retained as a benchmark nuisance input rather than a precision calibration.
+
+### DESI fiducial-distance upgrade
+
+The exact estimator, z-resolved estimator and evolution-bias calibration were upgraded to use `cosmoprimo.fiducial.TabulatedDESI()` consistently for data and mocks. The maximum fractional distance shift relative to the earlier Astropy mapping was only about `1.0e-4`, so this was numerically negligible for the current vector but required for production consistency.
+
+Relevant commits: `f0dbebe`, `ed820c1`, `c05b202`, `3109c0b`, `0767493`.
+
+### Paired r1/r4 random-density audit
+
+Ten paired mocks were processed with one and four nested random realizations. For the 18D dipole, the RMS `r4-r1` shift was `4.2646e-4`, about `0.433` of the r4 mock scatter. The trace covariance ratio `Cov(r4-r1)/Cov(r4)` was `0.17184`; component shift ratios had median `0.401` and maximum `0.782`. In the real data, the r1-to-r4 dipole shift had RMS `4.0044e-4`, median `0.326` component sigma and maximum `1.037` component sigma.
+
+Under the nested `1/Nrandom` variance model, the residual random-catalog contribution was estimated at about `5.7%` of the r4 total trace and about `20%` of the r1 total trace. This was sufficient to reject `nrandom=1` for final 18D inference.
+
+Production was therefore frozen at `nrandom=4`. The audit code is commit `94c3521`; regional and production defaults were updated in commits `380f739` and `8474ef5`.
+
+See `source_data/lrg_elg_zresolved_random_density_audit_10pair.json` and `source_data/lrg_elg_exact_development_checkpoint_2026-09-21.json`.
+
 ## 2026-09-21 — DESI LRGxELG regional robustness and estimator convergence
 
 The z-resolved LRGxELG odd-sector validation was extended before the frozen 200-mock full-sky production run.
