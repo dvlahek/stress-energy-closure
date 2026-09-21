@@ -40,6 +40,14 @@ Associated validation files:
 - `phase7_ezmock_local/realizations/mock_03` through `mock_32` — retained homogeneous EZmock realization outputs.
 - `phase7_octupole_control/` — `ell=3` odd-multipole control outputs.
 
+- `lrg_elg_exact_broad_40mock_checkpoint.json` — historical exact broad-bin 40-mock covariance, omnibus, wake-only and linked-standard checkpoint.
+- `lrg_elg_zresolved_random_density_audit_10pair.json` — paired nested r1/r4 random-catalog density audit that froze production at `nrandom=4`.
+- `lrg_elg_exact_development_checkpoint_2026-09-21.json` — consolidated exact LRGxELG development timeline covering broad 40-mock, z-resolved 40-mock, finite-mock calibration, DESI-fiducial upgrade, random-density decision, regional status and 200-mock guardrails.
+- `lrg_elg_ngc_sgc_regional_checkpoint_2026-09-21.json` — cap-specific NGC/SGC robustness checkpoint including nominal fits and finite-mock interpretation.
+- `lrg_elg_regional_cap_specific_nuisance_2026-09-21.json` — NGC/SGC-specific magnification, Doppler and evolution-bias nuisance inputs used in the regional linked-standard templates.
+- `lrg_elg_ngc_mock0008_health_2026-09-21.json` — technical audit showing the single extreme NGC mock is valid and retained.
+- `lrg_elg_mubin_convergence_r4.json` — 120/240/480 angular-discretization convergence audit; production remains frozen at 240 mu bins.
+
 ## Interpretation guardrails
 
 - CMB, RSD and wake forecast files are sensitivity calculations, not detections.
