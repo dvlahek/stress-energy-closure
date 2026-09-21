@@ -50,6 +50,8 @@ Associated validation files:
 
 - `lrg_elg_bruteforce_pair_closure_2026-09-21.json` — deterministic independent NumPy-vs-pycorr/Corrfunc closure of pair counts, cross-Landy-Szalay `xi(s,mu)` and odd multipoles; passes at floating-point precision.
 
+- `lrg_elg_regional_degeneracy_attribution_2026-09-21.json` — data-blind NGC/SGC template-versus-covariance attribution showing that the regional wake-standard degeneracy gap is dominated by the covariance/survey-noise metric rather than the small cap-specific template difference.
+
 ## Interpretation guardrails
 
 - CMB, RSD and wake forecast files are sensitivity calculations, not detections.
