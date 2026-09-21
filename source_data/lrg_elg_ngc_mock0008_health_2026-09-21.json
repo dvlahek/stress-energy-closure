@@ -1,0 +1,54 @@
+{
+  "scope": "Technical health audit for the only NGC mock more extreme than the regional data",
+  "date": "2026-09-21",
+  "mock": "mocks_zresolved_desi_ngc/exact_z_0008",
+  "status": "VALID",
+  "original_tail_statistics": {
+    "loo_matched_filter_z": -4.55206,
+    "delta_chi2_hartlap": 20.7212,
+    "q0_raw": 95.6632,
+    "sellentin_heavens_minus2loglambda": 14.4744
+  },
+  "independent_rerun": {
+    "max_abs_dipole_difference": 1.0386656812411132e-16,
+    "rms_dipole_difference": 4.811014073532352e-17
+  },
+  "loo_zero_mean_mahalanobis": {
+    "q_raw": 98.38786356996764,
+    "hartlap_factor": 0.5,
+    "q_hartlap": 49.19393178498382
+  },
+  "catalog_random_count_health": "All catalog and random counts were within approximately +/-1.4 ensemble standard deviations; no count anomaly was identified.",
+  "reverse_orientation_closure": [
+    {
+      "z_bin": [
+        0.8,
+        0.9
+      ],
+      "dipole_max_abs_forward_plus_reverse": 1.15e-9,
+      "dipole_relative": 2.57e-7,
+      "octupole_relative": 0.00000185
+    },
+    {
+      "z_bin": [
+        0.9,
+        1
+      ],
+      "dipole_max_abs_forward_plus_reverse": 4.88e-9,
+      "dipole_relative": 0.0000023,
+      "octupole_max_abs_forward_plus_reverse": 1.71e-8,
+      "octupole_relative": 0.0000193
+    },
+    {
+      "z_bin": [
+        1,
+        1.1
+      ],
+      "dipole_max_abs_forward_plus_reverse": 8e-10,
+      "dipole_relative": 4.93e-7,
+      "octupole_relative": 9.12e-7
+    }
+  ],
+  "conclusion": "No objective catalog, random, estimator, reproducibility, or sign-reversal failure was found. Statistical extremeness alone is not a removal criterion; mock 0008 remains in the ensemble.",
+  "code_commit": "098449619d66a5eb895eb03dbfdc243118d2d45f"
+}
