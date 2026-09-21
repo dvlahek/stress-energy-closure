@@ -3,4 +3,4 @@
 # DESI odd-sector estimator stack.
 # pycorr is pinned to the current tested upstream commit; its corrfunc extra
 # installs the DESI Corrfunc fork required by engine="corrfunc".
-git+https://github.com/cosmodesi/pycorr.git@eaac8808c0866422b09bfa7351a39eb79607afd4#egg=pycorr[corrfunc]
+pycorr[corrfunc] @ git+https://github.com/cosmodesi/pycorr.git@eaac8808c0866422b09bfa7351a39eb79607afd4
