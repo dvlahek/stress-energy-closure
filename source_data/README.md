@@ -48,6 +48,8 @@ Associated validation files:
 - `lrg_elg_ngc_mock0008_health_2026-09-21.json` — technical audit showing the single extreme NGC mock is valid and retained.
 - `lrg_elg_mubin_convergence_r4.json` — 120/240/480 angular-discretization convergence audit; production remains frozen at 240 mu bins.
 
+- `lrg_elg_bruteforce_pair_closure_2026-09-21.json` — deterministic independent NumPy-vs-pycorr/Corrfunc closure of pair counts, cross-Landy-Szalay `xi(s,mu)` and odd multipoles; passes at floating-point precision.
+
 ## Interpretation guardrails
 
 - CMB, RSD and wake forecast files are sensitivity calculations, not detections.
