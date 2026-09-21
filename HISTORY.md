@@ -102,3 +102,55 @@ This is a transfer-level response diagnostic, not a kSZ or RSD survey forecast a
 The aggressive high-precision CLASS profile is not used for this diagnostic because it repeatedly exceeded the available development-machine memory. The moderate convergence test is intentionally narrower: it changes integration tolerances without simultaneously changing hierarchy size or momentum-grid resolution.
 
 See `docs/HIDDEN_CHANNEL_RETENTION.md` and `source_data/hidden_channel_retention_direct.json` for the current reproducible status.
+
+## 2026-09-21 — DESI LRGxELG regional robustness and estimator convergence
+
+The z-resolved LRGxELG odd-sector validation was extended before the frozen 200-mock full-sky production run.
+
+### Cap-specific NGC/SGC robustness
+
+The regional split used separate NGC and SGC covariance matrices and cap-specific linked-standard nuisance templates. The external magnification/Doppler inputs were kept distinct between caps, and the DR1 evolution-bias benchmark was estimated separately from each cap's weighted selection function.
+
+For the 18-component dipole with 40 r4 mocks per cap:
+
+- NGC: wake amplitude `0.00670552 +/- 0.00184800`, nominal `Z = 3.62853`, `Delta chi2 = 13.1662`.
+- SGC: wake amplitude `-0.000361950 +/- 0.00346529`, nominal `Z = -0.10445`, `Delta chi2 = 0.01091`.
+- The approximate independent-cap amplitude difference is `1.80 sigma`, so the split is treated as inconclusive rather than a clean agreement or disagreement test.
+- After nuisance projection, the retained wake metric norm is `0.76175` in NGC and `0.42275` in SGC. The SGC split is therefore substantially less informative for this fixed matched filter.
+
+The 40-mock leave-one-out calibration places the NGC data near the mock tail but cannot resolve the nominal Gaussian significance: one mock is more extreme than the NGC data, giving the +1 empirical value `p = 2/41 = 0.04878` (`1.9705 sigma` two-sided). SGC is fully consistent with the mock ensemble.
+
+### Extreme NGC mock audit
+
+The only NGC mock more extreme than the data, mock `0008` with LOO matched-filter `Z = -4.55206`, was audited rather than removed.
+
+An independent r4 rerun reproduced the stored dipole to
+
+- maximum absolute difference `1.04e-16`,
+- RMS difference `4.81e-17`.
+
+Catalog and random counts were non-pathological, and the reverse-orientation closure remained numerically small. No objective catalog, random, estimator, or reproducibility failure was found. Mock `0008` is therefore retained as a valid tail realization.
+
+### Angular-discretization convergence
+
+The frozen production estimator uses 240 mu bins. Full-sky r4 reruns at 120 and 480 mu bins were compared without changing redshift bins, separation bins, random density, angular cut, cosmology, weights, or tracer definitions.
+
+For the 18D dipole:
+
+- `120 - 240`: median component shift `0.00445` mock sigma, maximum `0.01058`, covariance-metric shift `sqrt(Delta chi2) = 0.03545`.
+- `480 - 240`: median component shift `0.00222` mock sigma, maximum `0.02971`, covariance-metric shift `sqrt(Delta chi2) = 0.02873`.
+- `480 - 120`: covariance-metric shift `sqrt(Delta chi2) = 0.03725`.
+
+The octupole is slightly more sensitive to angular discretization but remains negligible relative to mock scatter; the largest 120/240/480 covariance-metric shift is `0.11868`.
+
+The mu-bin robustness test therefore passes. The production choice remains frozen at 240 bins; no significance-based retuning is performed.
+
+### Production status
+
+A new 200-realization full-sky r4 EZmock campaign has been started. The inspection order remains frozen:
+
+`covariance diagnostics -> zero null -> nuisance-only -> wake`.
+
+Intermediate wake significances are not inspected during production.
+
+See `source_data/lrg_elg_ngc_sgc_regional_checkpoint_2026-09-21.json` and `source_data/lrg_elg_mubin_convergence_r4.json`.
