@@ -256,3 +256,17 @@ A new 200-realization full-sky r4 EZmock campaign has been started. The inspecti
 Intermediate wake significances are not inspected during production.
 
 See `source_data/lrg_elg_ngc_sgc_regional_checkpoint_2026-09-21.json` and `source_data/lrg_elg_mubin_convergence_r4.json`.
+
+## 2026-09-22 — Production mock target revised before unblinding
+
+The DESI-fiducial full-sky r4 mock campaign was originally planned for 200 realizations. Because the streamed mock download/processing rate is substantially slower than expected, the primary stopping rule was revised to 120 realizations while the campaign was at approximately 65 completed mocks and before inspecting any new covariance, null, nuisance-only, or wake inference from the growing ensemble.
+
+The revised frozen rule is:
+
+- primary inference checkpoint: `N = 120` full-sky r4 mocks;
+- do not inspect intermediate wake significance at `N < 120`;
+- at `N = 120`, inspect in the fixed order `covariance diagnostics -> zero null -> nuisance-only -> wake -> finite-mock calibration`;
+- extension from 120 to 200 is optional and is reserved for tail refinement if the 120-mock result is sufficiently close to the empirical-resolution limit to justify the extra computation;
+- no redshift bins, separation bins, random density, mu binning, nuisance inputs, tracer ordering, angular cut, or wake template may be changed based on the 120-mock result.
+
+For the 18-dimensional dipole covariance, the Hartlap factor at `N = 120` is `100/119 = 0.840336`. The +1 empirical tail resolution is `1/121 = 0.008264`.
