@@ -1,0 +1,42 @@
+{
+  "scope": "Pre-registered stopping rule for DESI DR1 LRGxELG full-sky r4 mock production",
+  "date": "2026-09-22",
+  "decision_point_completed_mocks_approx": 65,
+  "observed_new_inference_before_decision": false,
+  "primary_target_n_mocks": 120,
+  "optional_extension_target_n_mocks": 200,
+  "vector_dimension": 18,
+  "hartlap_factor_at_120": 0.8403361344537815,
+  "empirical_p_plus_one_floor_at_120": 0.008264462809917356,
+  "frozen_inspection_order": [
+    "covariance diagnostics",
+    "zero null",
+    "nuisance-only",
+    "wake",
+    "finite-mock calibration"
+  ],
+  "extension_rule": "Continue from 120 to 200 only as a tail-refinement step if the 120-mock result is sufficiently close to the finite-ensemble tail-resolution limit to justify additional computation. Do not use the 120 result to retune the estimator or templates.",
+  "frozen_analysis_choices": {
+    "nrandom": 4,
+    "mu_bins": 240,
+    "z_edges": [
+      0.8,
+      0.9,
+      1,
+      1.1
+    ],
+    "separation_edges_Mpc_over_h": [
+      20,
+      40,
+      60,
+      80,
+      100,
+      120,
+      140
+    ],
+    "theta_min_deg": 0.05,
+    "orientation": "LRG->ELG",
+    "los": "midpoint",
+    "distance_cosmology": "DESI TabulatedDESI"
+  }
+}
