@@ -1,0 +1,137 @@
+{
+  "scope": "Final manifest for the exact DESI DR1 LRGxELG odd-sector 120-mock analysis branch",
+  "date": "2026-09-23",
+  "status": "FROZEN_COMPLETE",
+  "manuscript_role": {
+    "role": "secondary exact-pair observational consistency branch",
+    "primary_observational_result_unchanged": "phase7 luminosity-rank DESI analysis remains the primary reported observational coefficient in this repository",
+    "interpretation": "This branch provides an independently constructed exact-pair odd-sector consistency test within DESI DR1; it is not a replacement for phase7 and is not presented as a detection."
+  },
+  "frozen_estimator": {
+    "tracer_pair": "LRG x ELG",
+    "orientation": "LRG->ELG",
+    "estimator": "cross Landy-Szalay in (s,mu), projected to odd multipoles",
+    "primary_multipole": 1,
+    "control_multipole": 3,
+    "line_of_sight": "midpoint",
+    "distance_cosmology": "cosmoprimo.fiducial.TabulatedDESI",
+    "units": "Mpc/h",
+    "z_edges": [
+      0.8,
+      0.9,
+      1,
+      1.1
+    ],
+    "separation_edges_Mpc_over_h": [
+      20,
+      40,
+      60,
+      80,
+      100,
+      120,
+      140
+    ],
+    "mu_bins": 240,
+    "theta_min_deg": 0.05,
+    "random_density": 4,
+    "weights": "WEIGHT * WEIGHT_FKP",
+    "primary_vector_dimension": 18,
+    "mock_mean_subtracted": true
+  },
+  "stopping_rule": {
+    "primary_n_mocks": 120,
+    "extension_to_200": "optional tail refinement only if the N=120 result approached the empirical p-value floor; not required by the frozen rule",
+    "file": "source_data/lrg_elg_120mock_stopping_rule_2026-09-22.json",
+    "commit": "164838bb2341139d52b70a994eab771d6c480cb2"
+  },
+  "validation_chain": [
+    {
+      "stage": "covariance",
+      "status": "PASS",
+      "file": "source_data/lrg_elg_covariance_r4_120_checkpoint_2026-09-23.json",
+      "commit": "6221888b052c032884b59de1ab389bf2e73157c8",
+      "headline": "18D dipole covariance positive definite; condition number 34.07; Hartlap 0.8403"
+    },
+    {
+      "stage": "pre-wake null and nuisance-only audit",
+      "status": "PASS",
+      "file": "source_data/lrg_elg_null_stage_r4_120_checkpoint_2026-09-23.json",
+      "commit": "c953f891fae4558db3ddd166cd7b4ecf7fa29efc",
+      "headline": "zero-null chi2=12.662/18, p=0.811; nuisance-only residual p=0.772"
+    },
+    {
+      "stage": "pre-window nominal wake unblinding",
+      "status": "SUPERSEDED_BY_WINDOWED_FINAL",
+      "file": "source_data/lrg_elg_wake_fit_r4_120_unblinding_2026-09-23.json",
+      "commit": "dcb1fe2d6b330da13da34edc8184fd53ea7fe659",
+      "headline": "nominal Z=2.217"
+    },
+    {
+      "stage": "pre-window finite-mock calibration",
+      "status": "SUPERSEDED_BY_WINDOWED_FINAL",
+      "file": "source_data/lrg_elg_finite_mock_r4_120_checkpoint_2026-09-23.json",
+      "commit": "5c309e9dea9d083a481cb7a6167059a52028d69c",
+      "headline": "empirical 1.84 sigma |Z| and 1.96 sigma SH; retained for chronology"
+    },
+    {
+      "stage": "fine RR window geometry",
+      "status": "PASS",
+      "file": "source_data/lrg_elg_rr_window_r4_checkpoint_2026-09-23.json",
+      "commit": "5c941af44666468523efbd88fba52375876bec31",
+      "headline": "data-blind RR geometry measured on the frozen r4 randoms"
+    },
+    {
+      "stage": "RR-window forward model",
+      "status": "PASS",
+      "file": "source_data/lrg_elg_windowed_forward_r4_checkpoint_2026-09-23.json",
+      "commit": "181fc48029025232543ce7e50999542934e2a3c2",
+      "headline": "wake shape essentially unchanged; linear even-to-odd leakage RMS is 7.38% of physical odd-standard RMS"
+    },
+    {
+      "stage": "windowed nominal matched filter",
+      "status": "FINAL_NOMINAL",
+      "file": "source_data/lrg_elg_windowed_wake_fit_r4_120_checkpoint_2026-09-23.json",
+      "commit": "1bf71dace50d8fee572e978fd70c7c2711a03c3a",
+      "headline": "wake amplitude 0.00327466 +/- 0.00148162; nominal Z=2.21019"
+    },
+    {
+      "stage": "windowed finite-mock calibration",
+      "status": "FINAL",
+      "file": "source_data/lrg_elg_windowed_finite_mock_r4_120_final_2026-09-23.json",
+      "commit": "ae91db4e87a0cb34b5bcd4be28d9dbd869b78640",
+      "headline": "7/120 LOO mocks exceed |Z| data score; 5/120 exceed SH LR data score"
+    }
+  ],
+  "final_result": {
+    "nominal": {
+      "wake_amplitude": 0.0032746600634077725,
+      "sigma_hartlap": 0.0014816203798568358,
+      "z_signed": 2.2101883234922783,
+      "delta_chi2": 4.884932425301602,
+      "two_sided_gaussian_p": 0.02709209500835634
+    },
+    "finite_mock_abs_z": {
+      "n_ge_data": 7,
+      "p_plus_one": 0.06611570247933884,
+      "two_sided_gaussian_equivalent_sigma": 1.8376384268780583
+    },
+    "finite_mock_sellentin_heavens": {
+      "n_ge_data": 5,
+      "p_plus_one": 0.049586776859504134,
+      "two_sided_gaussian_equivalent_sigma": 1.9635114370458409
+    },
+    "window_robustness": {
+      "prewindow_nominal_z": 2.217193709715432,
+      "windowed_nominal_z": 2.2101883234922783,
+      "empirical_tail_counts_changed": false,
+      "statement": "Explicit DESI RR-window convolution, including fixed linear Kaiser even-to-odd leakage, leaves the finite-mock interpretation unchanged."
+    }
+  },
+  "allowed_manuscript_language": "A pre-specified matched filter applied to the DESI DR1 LRG-ELG odd sector yields a nominal 2.21-sigma excess. Leave-one-out finite-mock calibration gives 1.84 sigma using the matched-filter statistic and 1.96 sigma using the Sellentin-Heavens likelihood-ratio tail. We therefore treat the result as a stable approximately two-sigma hint, not as a detection. Explicit survey-window convolution leaves the inference essentially unchanged.",
+  "guardrails": [
+    "Do not alter redshift bins, separation bins, theta cut, tracer ordering, random density, estimator settings, template construction, nuisance construction, or window settings in response to the observed significance.",
+    "Do not quote the pre-window 2.217-sigma checkpoint as the final result; it is retained only for provenance.",
+    "Do not present this exact LRGxELG branch as the repository's primary DESI observational coefficient; phase7 remains primary.",
+    "Any future optimization must be prospective and validated on theory/mocks or on a genuinely external replication before unblinding."
+  ]
+}
