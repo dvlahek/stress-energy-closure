@@ -1,0 +1,52 @@
+{
+  "scope": "Data-blind RR-window-convolved forward model for frozen DESI DR1 LRGxELG templates",
+  "date": "2026-09-23",
+  "status": "PASS; window correction modest but nonzero",
+  "uses_observed_odd_data_vector": false,
+  "output_multipoles": [
+    1,
+    3
+  ],
+  "input_multipoles": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "theory": {
+    "wake": "frozen hidden-state ell=1 template",
+    "standard_odd": "linked Bonvin relativistic + leading wide-angle ell=1 benchmark",
+    "standard_even": "linear Kaiser LRGxELG ell=0,2,4 with fixed b_LRG=2.0, b_ELG=1.3 and per-bin growth f",
+    "mass_eV": 0.06,
+    "z_match": 1100,
+    "pointwise_cap": 0.3
+  },
+  "prewindow_recomputation_closure": {
+    "wake_cosine_vs_frozen": 0.9999999974240674,
+    "wake_max_abs_normalized_difference": 0.0000627805709968593,
+    "standard_cosine_vs_frozen": 0.9999999982603035,
+    "standard_max_abs_normalized_difference": 0.00006722039226331189
+  },
+  "window_effect_on_frozen_shapes": {
+    "wake_prewindow_vs_windowed_cosine": 0.9999844733366111,
+    "wake_max_abs_normalized_change": 0.00600399030421217,
+    "standard_prewindow_vs_windowed_oddonly_cosine": 0.9999925266192968,
+    "standard_prewindow_vs_windowed_total_cosine": 0.9989602349595682,
+    "standard_oddonly_vs_total_windowed_cosine": 0.9990901173746622
+  },
+  "even_to_odd_leakage": {
+    "rms_even_leakage_raw": 0.00007470913770960981,
+    "rms_windowed_physical_odd_standard_raw": 0.0010120023109003707,
+    "rms_ratio_even_leakage_to_physical_odd_standard": 0.07382309003142656,
+    "max_abs_even_leakage_raw": 0.0002493255153995993,
+    "max_abs_physical_odd_standard_raw": 0.002840737562825448
+  },
+  "normalization_scales": {
+    "wake_windowed": 0.05452133930195052,
+    "standard_odd_windowed": 0.002840737562825448,
+    "standard_total_windowed": 0.002591412047425849
+  },
+  "interpretation": "PASS. The pre-window recomputation reproduces the frozen templates essentially exactly. RR-window convolution leaves the wake and linked odd-standard shapes nearly unchanged. Linear Kaiser even-to-odd leakage is nonzero at about 7.4% of the physical odd-standard RMS and should be included in the final nuisance template, but the window correction is modest rather than dominant.",
+  "next_stage": "Archive generated windowed template products, then refit the frozen 120-mock data with wake_windowed_shape plus standard_total_windowed_shape, followed by the same 120-mock finite-ensemble calibration."
+}
