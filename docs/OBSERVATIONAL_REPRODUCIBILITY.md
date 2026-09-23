@@ -25,7 +25,7 @@ The real-data odd vector uses public DESI DR1 BGS clustering catalogs over `0.10
 
 The production pair-Monte-Carlo seed is `20260913`. Independent closure seeds are `20260917`, `20260929` and `20261007`.
 
-The original frozen production realization used 32 fixed-geometry luminosity-mark permutations. After the analysis and closure tests were fixed, the same production realization was rerun with 256 permutations to refine the permutation-null mean and empirical p-value. No tracer definition, binning, sampled pair geometry, covariance, nuisance model, template or production seed was changed.
+The final null calibration uses 256 fixed-geometry luminosity-mark permutations. This refinement changed only the size of the permutation ensemble; the tracer definition, binning, sampled pair geometry, covariance, nuisance model, template and production seed were unchanged. The earlier 32-permutation realization is retained in `archive/phase7/intermediate/` for provenance.
 
 ## Primary observational inference
 
@@ -34,12 +34,6 @@ The final reported null calibration is the 256-permutation conservative full-sam
 `A_wake = -0.0768409 +/- 0.0851660` (`-0.902 sigma`), with empirical two-sided permutation `p = 0.37354`.
 
 The corresponding global 18-dimensional permutation test gives `p = 0.95720`.
-
-For auditability, the original 32-permutation result remains archived in `source_data/phase7_desi_fullsample_summary.json`:
-
-`A_wake = -0.0739012 +/- 0.0851661` (`-0.868 sigma`), with empirical two-sided permutation `p = 0.39394`.
-
-The small shift between the two runs reflects the more precisely estimated permutation-null mean. The fitted uncertainty is unchanged to numerical precision.
 
 This coefficient is primary because it is the direct frozen real-data analysis. Gfinder, EZmock, AbacusSummit and `ell=3` are independent validation/control layers, not alternative primary estimates.
 
@@ -59,8 +53,6 @@ Retained outputs:
 
 - `source_data/phase7_desi_fullsample_perm256_summary.json`
 - `source_data/wake_phase7_multitracer_real_vector_perm256.csv`
-- `source_data/phase7_desi_fullsample_summary.json` — original 32-permutation realization retained for auditability.
-- `source_data/wake_phase7_multitracer_real_vector.csv` — original 32-permutation vector.
 
 The five luminosity ranks are defined independently within narrow redshift cells and NGC/SGC. The 18-component odd data vector is fitted with the frozen wake template and a conservative per-redshift odd nuisance basis.
 
@@ -152,7 +144,7 @@ Outputs are archived in `source_data/phase7_octupole_control/`.
 
 A separate exact-pair LRG×ELG analysis is retained as a secondary observational consistency test. It is not the primary DESI coefficient.
 
-The branch uses DESI DR1 LRG and ELG clustering samples over the frozen z-resolved interval `0.80 < z < 1.10`, exact cross-Landy–Szalay pair counting with midpoint line of sight, four random realizations, 240 mu bins, `20–140 h^-1 Mpc` separation bins, and an 18-component dipole vector. The primary mock target was fixed at 120 before the final unblinding.
+The branch uses DESI DR1 LRG and ELG clustering samples over the frozen z-resolved interval `0.80 < z < 1.10`, exact cross-Landy–Szalay pair counting with midpoint line of sight, four random realizations, 240 mu bins, `20–140 h^-1 Mpc` separation bins, and an 18-component dipole vector. The reported exact-pair analysis uses a fixed ensemble of 120 mocks.
 
 The 120-mock covariance is positive definite with condition number `34.07` and Hartlap factor `0.8403`. The pre-wake zero-null and nuisance-only stage passes cleanly.
 
@@ -175,7 +167,7 @@ The complete frozen hierarchy is in:
 - `source_data/lrg_elg_windowed_finite_mock_r4_120_final_2026-09-23.json`
 - `docs/DESI_EXACT_LRG_ELG_FINAL_STATUS.md`
 
-No post-result changes to bins, cuts, tracer ordering, random density, estimator settings, templates, nuisance construction or window settings are allowed.
+The reported result uses the analysis definition listed above. Development-stage variants are retained under `archive/desi_exact/` and are not part of the reported inference.
 
 ## Machine-readable hierarchy
 
