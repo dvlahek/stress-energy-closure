@@ -312,3 +312,21 @@ After the covariance and Stage-1 null/nuisance-only audits passed, the pre-regis
 The nominal excess is slightly smaller than the frozen 40-mock value (`Z = 2.3585`) but remains at the same approximately two-sigma scale with the better-conditioned 120-mock covariance. No conclusion is drawn until the pre-specified leave-one-out empirical and Sellentin-Heavens finite-mock calibration is completed.
 
 See `source_data/lrg_elg_wake_fit_r4_120_unblinding_2026-09-23.json`.
+
+### 120-mock finite-mock calibration — final primary checkpoint
+
+The pre-specified leave-one-out finite-mock audit was completed for the frozen 18D full-sky r4 wake matched filter.
+
+- nominal Hartlap-Gaussian data score: `Z = 2.21719`, `Delta chi2 = 4.91595`;
+- empirical `|Z|` tail: `7` LOO mocks at least as extreme, `p+1 = 0.06612`, equivalent two-sided Gaussian `1.83764 sigma`;
+- empirical Sellentin-Heavens likelihood-ratio tail: `5` LOO mocks at least as extreme, `p+1 = 0.04959`, equivalent two-sided Gaussian `1.96351 sigma`;
+- data SH diagnostic: `-2 log Lambda = 5.36389`, `sqrt = 2.31601`;
+- empirical resolution floor at `N=120`: `1/121 = 0.008264`.
+
+The finite-mock conclusion is essentially unchanged from the frozen 40-mock checkpoint (`1.79 sigma` from empirical |Z| and `1.97 sigma` from the SH tail). Increasing the ensemble to 120 therefore stabilizes, rather than erases, the earlier approximately two-sigma hint.
+
+Primary observational conclusion: the frozen full-sky DESI matched filter shows a stable approximately two-sigma hint after finite-mock calibration, not a detection. No post-unblinding changes to bins, templates, cuts, nuisance inputs, random density, tracer ordering, or estimator settings are allowed.
+
+The principal remaining physical-modeling limitation is the absence of a full survey-window-convolved forward model for the standard-plus-wake templates.
+
+See `source_data/lrg_elg_finite_mock_r4_120_checkpoint_2026-09-23.json`.
