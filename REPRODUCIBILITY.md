@@ -19,7 +19,6 @@ This file maps the main reported results to the scripts and compact source-data 
 | Parity-odd wake forecast | `code/wake_desi_multitracer_fisher.py`, `code/wake_desi_robustness.py` | `source_data/wake_final_forecast_summary.json`, `source_data/wake_robustness_summary.csv` |
 | Primary DESI DR1 odd-sector inference | `code/desi_dr1_phase7_multitracer_fullsample.py` | `source_data/phase7_desi_fullsample_perm256_summary.json`, `source_data/wake_phase7_multitracer_real_vector_perm256.csv` |
 | Secondary exact DESI DR1 LRG×ELG odd-sector consistency test | `code/desi_dr1_lrg_elg_exact_zresolved.py`, `code/fit_lrg_elg_exact_zresolved.py`, `code/audit_lrg_elg_zresolved_matched.py`, `code/build_lrg_elg_zresolved_rr_window.py`, `code/build_lrg_elg_zresolved_windowed_forward.py` | `source_data/lrg_elg_exact_final_manifest_2026-09-23.json`, `source_data/lrg_elg_windowed_finite_mock_r4_120_final_2026-09-23.json` |
-| Original frozen 32-permutation DESI realization | `code/desi_dr1_phase7_multitracer_fullsample.py` | `source_data/phase7_desi_fullsample_summary.json`, `source_data/wake_phase7_multitracer_real_vector.csv` |
 | Mass-proxy robustness | `code/desi_phase7_gfinder_massproxy.py` | `source_data/phase7_gfinder_massproxy_summary.json` |
 | EZmock geometry/covariance placebo | `code/desi_phase7_ezmock_placebo_realization.py`, `code/desi_phase7_ezmock_aggregate.py` | `source_data/phase7_ezmock_local/aggregate_validation_summary.json` |
 | Abacus physical-mock validation | `code/desi_phase7_mock_realization.py`, `code/desi_phase7_mock_aggregate.py` | `source_data/phase7_abacus_final_summary.json` |
@@ -56,8 +55,6 @@ The final reported DESI DR1 null calibration uses 256 frozen-geometry luminosity
 
 `A_wake = -0.0768409 +/- 0.0851660` (`-0.902 sigma`), empirical two-sided permutation `p = 0.37354`.
 
-The originally frozen 32-permutation realization gave `A_wake = -0.0739012 +/- 0.0851661` and `p = 0.39394`. The 256-permutation rerun changes only the number of null permutations. The tracer definition, redshift and separation bins, pair geometry, covariance, nuisance model, templates and production seed remain unchanged.
-
 To reproduce the refined null calibration on Linux, run
 
 ```bash
@@ -66,7 +63,7 @@ bash scripts/run_desi_perm256_full_linux.sh
 
 Gfinder, EZmock, AbacusSummit, stochastic-seed and `ell=3` results test tracer definition, survey geometry/covariance, physical mocks, pair-sampling stability and higher odd multipoles. They are validation layers, not alternative primary estimates.
 
-The machine-readable hierarchy is stored in `source_data/phase7_validation_manifest.json`.
+The machine-readable hierarchy is stored in `source_data/phase7_validation_manifest.json`. Earlier development realizations are retained under `archive/` and are not part of the standard reproduction path.
 
 ### Secondary exact LRG×ELG branch
 
@@ -74,7 +71,7 @@ A separate exact-pair DESI DR1 LRG×ELG analysis is retained as a secondary cons
 
 Its **final window-convolved** matched-filter result is `Z=2.21019`. Leave-one-out finite-mock calibration gives `p+1=0.06612` (1.84 sigma two-sided equivalent) from the absolute matched-filter score and `p+1=0.04959` (1.96 sigma) from the Sellentin–Heavens likelihood-ratio tail. The result is interpreted as a stable approximately two-sigma hint, not as a detection.
 
-This branch does **not** replace the primary phase7 DESI coefficient. Its frozen settings, validation chain, superseded pre-window checkpoints and final result are recorded in `source_data/lrg_elg_exact_final_manifest_2026-09-23.json` and `docs/DESI_EXACT_LRG_ELG_FINAL_STATUS.md`.
+This branch does **not** replace the primary phase7 DESI coefficient. Its final analysis definition, validation chain and reported result are recorded in `source_data/lrg_elg_exact_final_manifest_2026-09-23.json` and `docs/DESI_EXACT_LRG_ELG_FINAL_STATUS.md`. Development-stage checkpoints are retained under `archive/desi_exact/`.
 
 ## Retention-control status
 
