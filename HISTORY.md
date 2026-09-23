@@ -352,3 +352,15 @@ The RR mu distribution is measurably asymmetric and the asymmetry increases with
 This is not by itself an odd-signal prediction. It establishes that explicit even-to-odd survey-window propagation is required. The next frozen step is the RR response matrix `M_{ell_out,ell_in}` with input `ell=0,1,2,3,4` and output `ell=1,3`, followed by propagation of the frozen wake, linked odd standard, and linear Kaiser even sector before any refit.
 
 See `source_data/lrg_elg_rr_window_r4_checkpoint_2026-09-23.json`.
+
+### RR-window-convolved forward model — PASS
+
+The frozen data-blind forward model was executed after the fine r4 RR-window product passed. The ideal-shell recomputation closes essentially exactly against the previously frozen templates: wake cosine `0.9999999974` with maximum normalized difference `6.28e-5`, and linked-standard cosine `0.9999999983` with maximum difference `6.72e-5`.
+
+The actual RR-window correction is modest. The wake pre-window/windowed cosine is `0.99998447` with maximum normalized shape change `0.0060`. The linked odd-standard pre-window/windowed cosine is `0.99999253`. Including linear Kaiser even-to-odd leakage changes the total standard shape more visibly but still mildly (`pre-window vs total windowed cosine = 0.99896023`; odd-only vs total-windowed cosine `0.99909012`).
+
+The even-to-odd leakage RMS is `7.47e-5`, corresponding to `7.38%` of the windowed physical odd-standard RMS (`1.012e-3`); the maximum leakage is `2.49e-4` versus a maximum odd-standard amplitude `2.84e-3`. This correction is therefore nonzero and should be carried into the final nuisance template, but it is not dominant.
+
+The generated windowed products must be archived before any refit. The next allowed inference stage is the same frozen 120-mock matched filter using `wake_windowed_shape` and `standard_total_windowed_shape`, followed by the same finite-mock LOO/Sellentin-Heavens calibration.
+
+See `source_data/lrg_elg_windowed_forward_r4_checkpoint_2026-09-23.json`.
