@@ -342,3 +342,13 @@ The forward response includes input multipoles `ell=0,1,2,3,4` and observed `ell
 Before any refit, the following must be archived: RR-only mu asymmetry, constant-radial matrix closure, recomputed ideal-shell closure against the frozen pre-window templates, window-induced shape changes, and the absolute/relative even-to-odd leakage. No settings may be changed to increase the wake significance.
 
 See `source_data/lrg_elg_window_forward_plan_2026-09-23.json`.
+
+### Fine r4 RR-window counts — PASS
+
+The data-blind fine `R_LRG R_ELG(s,mu)` product was completed with the frozen r4 random set, 1 Mpc/h radial bins, 240 mu bins, midpoint LOS, DESI distances, and the production theta cut.
+
+The RR mu distribution is measurably asymmetric and the asymmetry increases with separation and redshift. In `1.0 < z < 1.1`, the mirror-L1 fraction rises from `0.0453` in `20-40 Mpc/h` to `0.1528` in `120-140 Mpc/h`. Lower-redshift bins show the same monotonic pattern at smaller amplitude.
+
+This is not by itself an odd-signal prediction. It establishes that explicit even-to-odd survey-window propagation is required. The next frozen step is the RR response matrix `M_{ell_out,ell_in}` with input `ell=0,1,2,3,4` and output `ell=1,3`, followed by propagation of the frozen wake, linked odd standard, and linear Kaiser even sector before any refit.
+
+See `source_data/lrg_elg_rr_window_r4_checkpoint_2026-09-23.json`.
