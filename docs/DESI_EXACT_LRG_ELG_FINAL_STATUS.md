@@ -1,7 +1,7 @@
-# DESI DR1 exact LRG×ELG odd-sector branch — final frozen status
+# DESI DR1 exact LRG×ELG odd-sector consistency analysis
 
 Date: 2026-09-23  
-Status: **complete and frozen**
+Status: **final manuscript analysis**
 
 ## Role in the manuscript
 
@@ -28,7 +28,7 @@ No result in this branch is presented as a detection.
 - cosmology for distances: `cosmoprimo.fiducial.TabulatedDESI`
 - primary vector: 18-dimensional dipole
 
-The primary mock target was frozen at 120 before the final inference. The optional continuation to 200 was reserved only for empirical-tail refinement if the 120-mock result approached the finite-ensemble resolution floor.
+The reported inference uses 120 identically processed mock realizations.
 
 ## Validation chain
 
@@ -42,7 +42,7 @@ The primary mock target was frozen at 120 before the final inference. The option
    - condition number: `34.07385`;
    - Hartlap factor: `0.840336`.
 
-3. **Pre-wake null stage**
+3. **Null and nuisance validation**
    - zero-null: `chi2=12.66197` for 18 dof, `p=0.81125`;
    - linked-standard nuisance-only residual: `p=0.77184`.
 
@@ -74,15 +74,13 @@ Finite-mock calibration with 120 leave-one-out mock scores gives:
   - `p+1 = 0.04959`
   - two-sided equivalent: **1.96 sigma**
 
-The pre-window nominal result was `Z=2.21719`. The final windowed value is `Z=2.21019`, and both finite-mock tail counts are unchanged.
+Explicit survey-window convolution changes the nominal matched-filter value only marginally, and the finite-mock tail counts are unchanged.
 
-## Final interpretation
-
-The scientifically allowed interpretation is:
+## Interpretation
 
 > A pre-specified matched filter applied to the DESI DR1 LRG–ELG odd sector yields a nominal 2.21-sigma excess. Leave-one-out finite-mock calibration gives 1.84 sigma using the matched-filter statistic and 1.96 sigma using the Sellentin–Heavens likelihood-ratio tail. We therefore treat the result as a stable approximately two-sigma hint, not as a detection. Explicit survey-window convolution leaves the inference essentially unchanged.
 
-This branch is frozen. Do not alter bins, cuts, tracer ordering, random density, estimator settings, template construction, nuisance construction, or window settings in response to the observed significance.
+This is the analysis definition used for the reported manuscript result. Earlier regional, pre-window and finite-ensemble development checkpoints are retained under `archive/desi_exact/`.
 
 ## Reproduction map
 
