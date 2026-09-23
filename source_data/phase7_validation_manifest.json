@@ -20,8 +20,8 @@
     "permutation_count": 256,
     "single_sentence_rationale": "This is the sole headline observational coefficient because it is the direct frozen real-data analysis with the null ensemble extended from 32 to 256 permutations; Gfinder, EZmock, AbacusSummit, stochastic-seed and ell=3 results are validation/control layers rather than alternative headline estimates.",
     "permutation_refinement": {
-      "original_source": "source_data/phase7_desi_fullsample_summary.json",
-      "original_vector_source": "source_data/wake_phase7_multitracer_real_vector.csv",
+      "original_source": "archive/phase7/intermediate/phase7_desi_fullsample_summary_32perm.json",
+      "original_vector_source": "archive/phase7/intermediate/wake_phase7_multitracer_real_vector_32perm.csv",
       "original_permutation_count": 32,
       "original_wake_amplitude": -0.07390121574359165,
       "original_wake_sigma": 0.08516605996859057,
@@ -76,11 +76,21 @@
       "source": "source_data/phase7_seed_control_summary.json",
       "workflow_run_id": 34888489895,
       "production_seed": 20260913,
-      "independent_seeds": [20260917, 20260929, 20261007],
+      "independent_seeds": [
+        20260917,
+        20260929,
+        20261007
+      ],
       "conservative_wake_amplitude_mean": -0.06476822491750485,
       "conservative_wake_amplitude_std": 0.014969537484336083,
-      "conservative_wake_z_range": [-1.013866049811166, -0.7619674766357311],
-      "empirical_two_sided_pvalue_range": [0.2727272727272727, 0.45454545454545453],
+      "conservative_wake_z_range": [
+        -1.013866049811166,
+        -0.7619674766357311
+      ],
+      "empirical_two_sided_pvalue_range": [
+        0.2727272727272727,
+        0.45454545454545453
+      ],
       "status": "PASS"
     },
     "abacus_physical_mock_calibration": {
@@ -104,7 +114,10 @@
       "hartlap_control_sigma": 0.0845031416378325,
       "hartlap_control_z": -0.7219018690325885,
       "unit_injection_mean": 1.0000000000000262,
-      "amplitude_sweep_range": [-2.0, 2.0],
+      "amplitude_sweep_range": [
+        -2,
+        2
+      ],
       "amplitude_sweep_slope": 1.0000000000000262,
       "headline_status": "NOT_PRIMARY",
       "reason_not_primary": "The ensemble contains 25 mocks for an 18-dimensional vector and the inferred significance is covariance-estimator dependent: OAS gives -1.779 sigma while the raw-sample/Hartlap control gives -0.722 sigma. This layer is therefore retained as physical-mock validation, not as the headline likelihood.",
@@ -121,13 +134,13 @@
       "raw_covariance_condition_number_reported": false,
       "global_empirical_pvalue": 0.8181818181818182,
       "max_abs_single_bin_z_diagnostic": 1.3220659244304396,
-      "dipole_reproduction_max_abs_difference": 0.0,
-      "dipole_reproduction_correlation": 1.0,
+      "dipole_reproduction_max_abs_difference": 0,
+      "dipole_reproduction_correlation": 1,
       "status": "PASS_NULL_CONTROL"
     }
   },
   "pending_closure_layers": {},
-  "provenance_guardrails": [
+  "analysis_notes": [
     "There is exactly one headline observational coefficient: the full-sample luminosity-rank conservative DESI dipole fit.",
     "The 256-permutation result refines only the permutation-null calibration of the frozen production estimator and is not a new optimization.",
     "Gfinder, EZmock, AbacusSummit, stochastic-seed and ell=3 outputs are validation/control layers, not alternative headline estimates.",
