@@ -379,3 +379,18 @@ Using the frozen RR-window-convolved wake and total standard nuisance template (
 The result is essentially unchanged from the pre-window 120-mock fit (`Z = 2.21719`). The explicit survey-window correction therefore does not explain or materially enhance the wake-aligned excess. The same 120-mock LOO/Sellentin-Heavens calibration must still be completed with this exact windowed template before final inference.
 
 See `source_data/lrg_elg_windowed_wake_fit_r4_120_checkpoint_2026-09-23.json`.
+
+### Final DESI RR-window-convolved finite-mock calibration
+
+The complete production DESI exact LRGxELG branch is now closed. Using the frozen RR-window-convolved wake and total standard nuisance template with the 120-mock covariance:
+
+- nominal matched-filter `Z = 2.21019`, `Delta chi2 = 4.88493`;
+- empirical leave-one-out `|Z|` tail: `7` mocks at least as extreme, `p+1 = 0.06612`, equivalent `1.83764 sigma` two-sided;
+- empirical Sellentin-Heavens likelihood-ratio tail: `5` mocks at least as extreme, `p+1 = 0.04959`, equivalent `1.96351 sigma` two-sided;
+- data SH diagnostic: `-2 log Lambda = 5.32761`, `sqrt = 2.30816`.
+
+The finite-mock empirical tail counts are unchanged from the pre-window analysis. The explicit DESI RR-window convolution, including fixed linear Kaiser even-to-odd leakage, therefore leaves the approximately two-sigma hint intact. This is not a detection.
+
+This is the final frozen DESI exact LRGxELG result for this branch. No post-result changes to bins, cuts, tracer ordering, random density, templates, nuisance construction, or window settings are allowed.
+
+See `source_data/lrg_elg_windowed_finite_mock_r4_120_final_2026-09-23.json`.
