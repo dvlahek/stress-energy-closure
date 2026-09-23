@@ -1,0 +1,48 @@
+{
+  "scope": "DESI DR1 LRGxELG 120-mock finite-mock calibration of frozen wake matched filter",
+  "date": "2026-09-23",
+  "status": "COMPLETE",
+  "n_mocks": 120,
+  "vector_dimension": 18,
+  "nuisance_columns": [
+    "standard_linked_shape"
+  ],
+  "data_score": {
+    "z_signed": 2.217193709715432,
+    "abs_z": 2.217193709715432,
+    "amplitude": 0.0034061943890049376,
+    "sigma_hartlap": 0.0015362637797858938,
+    "delta_chi2_hartlap": 4.915947946401677,
+    "q0_raw": 14.821347148886678,
+    "q1_raw": 8.971369092668683,
+    "minus2_log_lambda_sellentin_heavens": 5.363894428841348,
+    "sqrt_minus2_log_lambda_SH_diagnostic": 2.3160082963671242
+  },
+  "empirical_abs_z": {
+    "n_ge_data": 7,
+    "p_plus_one": 0.06611570247933884,
+    "two_sided_gaussian_equivalent_sigma": 1.8376384268780583,
+    "loo_median_abs_z": 0.5657979456416476,
+    "loo_max_abs_z": 3.5641302529199597
+  },
+  "empirical_sellentin_heavens_lr": {
+    "n_ge_data": 5,
+    "p_plus_one": 0.049586776859504134,
+    "two_sided_gaussian_equivalent_sigma": 1.9635114370458409,
+    "loo_median_minus2loglambda": 0.35186039855665907,
+    "loo_max_minus2loglambda": 11.4209993668603
+  },
+  "empirical_resolution": {
+    "minimum_p_plus_one": 0.008264462809917356,
+    "note": "With 120 mocks the empirical calibration cannot resolve a smaller tail probability."
+  },
+  "comparison_to_frozen_40_mock_finite_calibration": {
+    "abs_z_sigma_40": 1.791764,
+    "abs_z_sigma_120": 1.8376384268780583,
+    "sh_sigma_40": 1.970505,
+    "sh_sigma_120": 1.9635114370458409,
+    "interpretation": "The finite-mock significance is essentially unchanged when increasing the ensemble from 40 to 120 mocks."
+  },
+  "interpretation": "The frozen full-sky DESI matched filter shows a stable approximately two-sigma hint after finite-mock calibration, not a detection. The nominal Hartlap-Gaussian significance is 2.217 sigma, while empirical LOO calibrations give 1.84 sigma from |Z| and 1.96 sigma from the Sellentin-Heavens likelihood-ratio statistic.",
+  "guardrail": "Do not alter bins, templates, cuts, nuisance inputs, random density, tracer ordering, or estimator settings based on this result. Survey-window-convolved forward modeling remains the principal physical-modeling limitation."
+}
