@@ -270,3 +270,18 @@ The revised frozen rule is:
 - no redshift bins, separation bins, random density, mu binning, nuisance inputs, tracer ordering, angular cut, or wake template may be changed based on the 120-mock result.
 
 For the 18-dimensional dipole covariance, the Hartlap factor at `N = 120` is `100/119 = 0.840336`. The +1 empirical tail resolution is `1/121 = 0.008264`.
+
+## 2026-09-23 — 120-mock covariance checkpoint
+
+The pre-registered `N=120` full-sky r4 mock target was reached before wake unblinding. The primary 18-dimensional dipole covariance passes the frozen numerical diagnostics:
+
+- Hartlap factor `0.840336` (up from `0.512821` at `N=40`);
+- condition number `34.07` (down from about `114` at `N=40`);
+- minimum eigenvalue `1.23e-7` and maximum eigenvalue `4.19e-6`;
+- positive definite.
+
+The octupole and 36-dimensional joint covariance are also positive definite, with condition numbers `15.18` and `58.06`, respectively. The primary inference nevertheless remains frozen to the 18D dipole; the improved joint covariance is not used to expand the analysis after seeing the 120-mock diagnostics.
+
+The next allowed stage is the pre-specified zero-null plus nuisance-only audit. Wake significance remains blinded until that stage is read and archived.
+
+See `source_data/lrg_elg_covariance_r4_120_checkpoint_2026-09-23.json`.
