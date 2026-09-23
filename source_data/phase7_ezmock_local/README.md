@@ -42,7 +42,6 @@ realizations.
 - `aggregate/ezmock_placebo_covariance_sample.csv` — raw sample covariance.
 - `aggregate/ezmock_placebo_vectors.csv` — retained realization vectors.
 - `aggregate/ezmock_placebo_window_templates.csv` — retained forward-window templates.
-- `realizations/mock_03` through `mock_32` — compact per-realization outputs.
+- Per-realization outputs are preserved under `../../archive/phase7/ezmock_realizations/` and are not required for the manuscript-facing aggregate.
 
-The complete ensemble can be regenerated with `scripts/run_ezmock_placebo_local.sh` and the final
-aggregation scripts referenced in `docs/PHASE7_REPRODUCIBILITY.md`.
+The complete ensemble can be regenerated with `scripts/run_ezmock_placebo_local.sh`; the retained aggregate and its role in the analysis are documented in `../../docs/OBSERVATIONAL_REPRODUCIBILITY.md`.
