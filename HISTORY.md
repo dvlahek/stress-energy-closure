@@ -364,3 +364,18 @@ The even-to-odd leakage RMS is `7.47e-5`, corresponding to `7.38%` of the window
 The generated windowed products must be archived before any refit. The next allowed inference stage is the same frozen 120-mock matched filter using `wake_windowed_shape` and `standard_total_windowed_shape`, followed by the same finite-mock LOO/Sellentin-Heavens calibration.
 
 See `source_data/lrg_elg_windowed_forward_r4_checkpoint_2026-09-23.json`.
+
+### Final RR-window-convolved 120-mock matched filter
+
+Using the frozen RR-window-convolved wake and total standard nuisance template (linked physical odd contribution plus fixed linear Kaiser even-to-odd leakage), the 18D full-sky fit gives:
+
+- wake amplitude: `0.00327466 +/- 0.00148162`;
+- nominal `Z = 2.21019`;
+- `Delta chi2 = 4.88493`, two-sided `p = 0.02709`;
+- total standard amplitude: `0.00239302 +/- 0.00169587` (`Z = 1.411`);
+- wake/standard covariance-metric cosine: `-0.76046`;
+- retained wake metric norm after nuisance projection: `0.64938`.
+
+The result is essentially unchanged from the pre-window 120-mock fit (`Z = 2.21719`). The explicit survey-window correction therefore does not explain or materially enhance the wake-aligned excess. The same 120-mock LOO/Sellentin-Heavens calibration must still be completed with this exact windowed template before final inference.
+
+See `source_data/lrg_elg_windowed_wake_fit_r4_120_checkpoint_2026-09-23.json`.
