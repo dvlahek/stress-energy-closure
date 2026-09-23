@@ -52,6 +52,8 @@ Associated validation files:
 
 - `lrg_elg_regional_degeneracy_attribution_2026-09-21.json` — data-blind NGC/SGC template-versus-covariance attribution showing that the regional wake-standard degeneracy gap is dominated by the covariance/survey-noise metric rather than the small cap-specific template difference.
 
+- `lrg_elg_finite_mock_r4_120_checkpoint_2026-09-23.json` — final 120-mock finite-ensemble calibration of the frozen full-sky r4 wake matched filter; empirical |Z| gives 1.84 sigma and Sellentin-Heavens LR gives 1.96 sigma, supporting a stable ~2 sigma hint rather than a detection.
+
 ## Interpretation guardrails
 
 - CMB, RSD and wake forecast files are sensitivity calculations, not detections.
