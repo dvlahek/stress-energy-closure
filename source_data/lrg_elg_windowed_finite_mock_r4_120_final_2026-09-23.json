@@ -1,0 +1,49 @@
+{
+  "scope": "Final RR-window-convolved DESI DR1 LRGxELG 120-mock finite-ensemble calibration",
+  "date": "2026-09-23",
+  "status": "COMPLETE",
+  "n_mocks": 120,
+  "vector_dimension": 18,
+  "nuisance_columns": [
+    "standard_linked_shape"
+  ],
+  "data_score": {
+    "z_signed": 2.2101883234922783,
+    "abs_z": 2.2101883234922783,
+    "amplitude": 0.0032746600634077725,
+    "sigma_hartlap": 0.0014816203798568358,
+    "delta_chi2_hartlap": 4.884932425301602,
+    "q0_raw": 14.86251690476148,
+    "q1_raw": 9.049447318652573,
+    "minus2_log_lambda_sellentin_heavens": 5.3276140214785155,
+    "sqrt_minus2_log_lambda_SH_diagnostic": 2.3081624772702884
+  },
+  "empirical_abs_z": {
+    "n_ge_data": 7,
+    "p_plus_one": 0.06611570247933884,
+    "two_sided_gaussian_equivalent_sigma": 1.8376384268780583,
+    "loo_median_abs_z": 0.5832241047083735,
+    "loo_max_abs_z": 3.503439339832071
+  },
+  "empirical_sellentin_heavens_lr": {
+    "n_ge_data": 5,
+    "p_plus_one": 0.049586776859504134,
+    "two_sided_gaussian_equivalent_sigma": 1.9635114370458409,
+    "loo_median_minus2loglambda": 0.354256589151051,
+    "loo_max_minus2loglambda": 11.024941226269844
+  },
+  "empirical_resolution": {
+    "minimum_p_plus_one": 0.008264462809917356
+  },
+  "comparison_to_prewindow": {
+    "prewindow_nominal_z": 2.217193709715432,
+    "windowed_nominal_z": 2.2101883234922783,
+    "prewindow_empirical_abs_z_sigma": 1.8376384268780583,
+    "windowed_empirical_abs_z_sigma": 1.8376384268780583,
+    "prewindow_empirical_sh_sigma": 1.9635114370458409,
+    "windowed_empirical_sh_sigma": 1.9635114370458409,
+    "interpretation": "The survey-window-convolved forward model leaves both finite-mock empirical tail counts unchanged."
+  },
+  "interpretation": "Final production DESI result: nominal Hartlap-Gaussian wake-aligned excess 2.210 sigma; finite-mock LOO calibration gives 1.84 sigma from |Z| and 1.96 sigma from the Sellentin-Heavens likelihood-ratio tail. This is a stable approximately two-sigma hint, not a detection, and it is robust to explicit DESI RR-window convolution including fixed linear Kaiser even-to-odd leakage.",
+  "guardrail": "This is the final frozen DESI exact LRGxELG result for this analysis branch. Do not alter bins, cuts, tracer ordering, random density, templates, nuisance construction, or window settings based on the observed significance."
+}
