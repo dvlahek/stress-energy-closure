@@ -1,0 +1,59 @@
+{
+  "scope": "DESI DR1 LRGxELG 120-mock full-sky r4 covariance checkpoint",
+  "date": "2026-09-23",
+  "status": "PASS",
+  "n_mocks": 120,
+  "primary_vector": "18D dipole",
+  "frozen_grid": {
+    "z_edges": [
+      0.8,
+      0.9,
+      1,
+      1.1
+    ],
+    "separation_centers_Mpc_over_h": [
+      30,
+      50,
+      70,
+      90,
+      110,
+      130
+    ]
+  },
+  "hartlap": {
+    "xi1": 0.8403361344537815,
+    "xi3": 0.8403361344537815,
+    "joint": 0.6890756302521008
+  },
+  "diagnostics": {
+    "xi1": {
+      "dimension": 18,
+      "condition_number": 34.073846546989,
+      "min_eigenvalue": 1.2283895312709078e-7,
+      "max_eigenvalue": 0.000004185595638845271,
+      "positive_definite": true
+    },
+    "xi3": {
+      "dimension": 18,
+      "condition_number": 15.178808099396482,
+      "min_eigenvalue": 3.098990676306356e-7,
+      "max_eigenvalue": 0.0000047038984777473146,
+      "positive_definite": true
+    },
+    "joint": {
+      "dimension": 36,
+      "condition_number": 58.06011020537322,
+      "min_eigenvalue": 8.642255586056372e-8,
+      "max_eigenvalue": 0.000005017703117494372,
+      "positive_definite": true
+    }
+  },
+  "comparison_to_40_mock_dipole": {
+    "condition_number_40": 113.9967,
+    "condition_number_120": 34.073846546989,
+    "hartlap_40": 0.5128205128205128,
+    "hartlap_120": 0.8403361344537815
+  },
+  "interpretation": "PASS. The 18D dipole covariance is positive definite and substantially better conditioned than the 40-mock checkpoint. Primary inference remains frozen to the 18D dipole despite the numerically healthier 36D joint covariance.",
+  "next_stage": "zero-null plus nuisance-only audit before any wake fit"
+}
