@@ -1,35 +1,35 @@
 # Gravitational response retains kinetic information beyond stress-energy
 
-Reproducibility repository for the study **“Gravitational response retains kinetic information beyond stress-energy.”**
+This repository contains the analysis code and compact source data for the study **“Gravitational response retains kinetic information beyond stress-energy.”**
 
-The repository contains the analysis code, compact source-data products and validation workflows needed to reproduce the reported theoretical, numerical and observational results.
+The central question is simple: two collisionless states can have the same instantaneous stress-energy tensor and therefore the same gravitational source at one time, while retaining different kinetic structure. We test if that hidden structure can be recovered from the subsequent gravitational response and how much of the information survives projection into realistic observables.
 
-## Scientific overview
+## Main results
 
-The calculations separate three questions:
+The theoretical analysis establishes that, for massive isotropic collisionless matter in the stated class, the complete ideal causal response contains information that is not determined by the instantaneous stress-energy tensor alone. The corresponding finite-window inverse problem remains identifiable but becomes ill-conditioned. The massless isotropic limit removes the same radial kinetic encoding.
 
-1. can two collisionless states have the same instantaneous gravitational source?
-2. can their later gravitational responses differ and identify hidden kinetic information?
-3. how much of that information survives projection into realistic observables?
+The observational part contains two DESI DR1 analyses with different roles:
 
-For massive isotropic collisionless matter, the complete ideal causal transverse-traceless response at fixed known nonzero mass and wave number identifies the radial kinetic distribution in the stated class. The isotropic massless limit removes this radial encoding. For several massive species, the same response identifies the aggregate speed-space measure but does not generally determine its decomposition into species. On finite response windows the forward map remains injective but compact, so inversion is unstable.
+- **Primary DESI analysis:** a frozen five-tracer luminosity-rank odd-sector estimator with 256 permutation realizations. The conservative wake coefficient is
+  [
+  A_{\rm wake}=-0.07684\pm0.08517,
+  ]
+  with empirical two-sided permutation (p=0.3735).
+- **Secondary exact LRG×ELG consistency analysis:** an exact cross-Landy–Szalay dipole estimator with 120 mock realizations and explicit survey-window convolution. The final nominal matched-filter value is (2.21\sigma). Finite-mock calibration gives (1.84\sigma) from the absolute matched-filter score and (1.96\sigma) from the Sellentin–Heavens likelihood-ratio tail.
 
-The observational analysis includes a direct DESI DR1 odd-sector null test. The final 256-permutation null calibration gives
+The second result is therefore treated as an approximately (2\sigma) consistency hint, not as a detection. No observational result in this repository is presented as evidence for a neutrino-wake detection.
 
-`A_wake = -0.0768409 +/- 0.0851660` (`-0.902 sigma`),
+## Reproducibility
 
-with empirical two-sided permutation `p = 0.37354`.
-
-The originally frozen 32-permutation run gave `A_wake = -0.0739012 +/- 0.0851661` and `p = 0.39394`. The larger permutation ensemble changes only the null calibration; tracer definitions, bins, pair geometry, covariance, nuisance model, templates and production seed are unchanged.
-
-Gfinder, EZmock, AbacusSummit, stochastic-seed and `ell=3` octupole results are validation/control layers and are not alternative primary estimates.
-
-## Quick start
-
-Python 3.10 or newer is recommended.
+Install the Python dependencies with
 
 ```bash
 python -m pip install -r requirements.txt
+```
+
+The central theory calculations can be reproduced with
+
+```bash
 python code/ev_flrw_controls.py --full
 python code/injectivity_tomography.py
 python code/prediction_transfer.py
@@ -42,58 +42,33 @@ python code/direct_vs_memory.py --full
 CLASS-based calculations use `class_public` commit
 `e85808324f51fc694d12e3ed7439552a3c3f9540`.
 
-For a result-to-code map and rerun notes, start with:
+For the observational analyses and the exact result-to-code mapping, see:
 
-- `REPRODUCIBILITY.md` — central result-to-code/source-data map.
-- `docs/OBSERVATIONAL_REPRODUCIBILITY.md` — frozen observational definitions and validation layers.
-- `docs/DESI_EXACT_LRG_ELG_FINAL_STATUS.md` — final frozen status of the secondary exact LRG×ELG 120-mock branch.
-- `docs/HIDDEN_CHANNEL_RETENTION.md` — direct same-pair wake versus linear-transfer retention control.
-- `source_data/README.md` — compact numerical outputs and provenance.
-- `source_data/phase7_validation_manifest.json` — machine-readable observational hierarchy.
-- `HISTORY.md` — development history and diagnostic decisions.
+- `REPRODUCIBILITY.md`
+- `docs/OBSERVATIONAL_REPRODUCIBILITY.md`
+- `docs/DESI_EXACT_LRG_ELG_FINAL_STATUS.md`
+- `source_data/README.md`
 
-## Observable projection
+Machine-readable analysis summaries are provided in:
 
-Within the tested smooth ten-function matched-moment class, the optimized ideal full-sky tensor B-mode response remains below `S/N = 0.04` for all six tested relic masses from 0.03 to 0.60 eV. The nonlinear even-parity RSD control reaches projected `S/N = 0.28792` in the reported reference test. The final DESI-BGS-like nine-tracer parity-odd wake forecast at `m_nu = 0.06 eV` and a 30% pointwise deformation cap gives projected `S/N = 0.8605447` (`0.8607548` in the corresponding linear calculation).
-
-A separate transfer-level control compares source-matched kinetic pairs under the direct CLASS neutrino-CDM velocity-divergence kernel and the resonant wake kernel at `m_nu = 0.06 eV` and `z = 0.3`. For the reference/CREF deformation with `nk=96`, the density-weighted direct `theta_(nu-cdm) P_cb` half-pair RMS is `5.2816e-4` at standard precision and `5.3228e-4` after tightening the integration tolerances, while the corresponding resonant wake half-pair response is `0.230844`. The integrated wake-to-linear contrast therefore remains about `4.3e2` and changes by less than one percent under this precision test. The independently reconstructed density-derived `v_(nu-cdm) P_cb` proxy agrees closely with the direct velocity-transfer result in both precision settings.
-
-A deterministic response-independent orthogonal null direction provides a separate qualitative robustness control. Its integrated wake-to-`theta P_cb` contrast is `94.0` at standard precision and `79.4` at moderate precision. The corresponding linear RMS changes by about `18.5%`, driven mainly by the high-`k` third, so this second direction is retained as a qualitative control instead of a precision-grade coefficient.
-
-A response-optimized direction is kept only in the development history: its standard-precision linear response collapses under tighter tolerances and is excluded from quantitative results.
-
-These response comparisons are transfer-level diagnostics, not absolute bispectrum amplitudes, kSZ/RSD survey forecasts or detections.
-
-## DESI DR1 validation
-
-Primary real-data inference with the refined 256-permutation null calibration:
-
-- full-sample five-tracer luminosity-rank DESI DR1: `A_wake = -0.0768409 +/- 0.0851660`, empirical two-sided `p = 0.37354`.
-
-Independent controls:
-
-- Gfinder mass-proxy tracer-definition check: `+0.06878 +/- 0.08276`;
-- 30-realization EZmock geometry/covariance placebo: empirical two-sided `p = 0.0968`;
-- 25-realization AbacusSummit physical luminosity-ranked mock validation: OAS cross-check `-1.779 sigma`, with raw-sample/Hartlap control `-0.722 sigma`;
-- production seed plus three independent fixed closure seeds: conservative `|z| < 1.02`;
-- odd `ell=3` control: global empirical permutation `p = 0.81818`, with exact dipole reproduction.
-- secondary exact LRG×ELG z-resolved consistency branch: final windowed matched filter `Z = 2.210`, with 120-mock empirical calibration `1.84 sigma` (`|Z|`) and `1.96 sigma` (Sellentin–Heavens); interpreted as an approximately two-sigma hint, not a detection.
-
-All 25 AbacusSummit realizations used in the final physical-mock ensemble completed successfully. No observational result in this repository is presented as a neutrino-wake detection.
+- `source_data/phase7_validation_manifest.json`
+- `source_data/lrg_elg_exact_final_manifest_2026-09-23.json`
 
 ## Repository structure
 
 ```text
-code/                    analysis and validation scripts
-scripts/                 local rerun helpers
-observational_forecast/  CLASS provenance and diagnostic notes
-source_data/             compact numerical outputs and provenance
-docs/                    reproducibility and validation notes
-.github/workflows/       automated analysis workflows
+code/                    analysis and validation code
+scripts/                 reproducible local workflows
+source_data/             final numerical products used by the manuscript
+docs/                    methods and reproducibility notes
+observational_forecast/  forecast inputs and supporting notes
+archive/                 superseded and development-stage material
 ```
 
-The default `main` branch is the canonical reproducible snapshot.
+The `archive/` directory is retained for provenance. Its contents are not part of the reported manuscript inference and are not required for the standard reproduction path.
 
 ## Citation and license
 
-If you use this code or source data, please cite the associated study. Bibliographic information can be added to `CITATION.cff` when available. Code and source-data summaries are released under the MIT License.
+If you use this code or source data, please cite the associated study. Bibliographic information can be added to `CITATION.cff` when available.
+
+Code and compact source-data products are released under the MIT License.
