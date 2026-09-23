@@ -46,6 +46,7 @@ For a result-to-code map and rerun notes, start with:
 
 - `REPRODUCIBILITY.md` — central result-to-code/source-data map.
 - `docs/OBSERVATIONAL_REPRODUCIBILITY.md` — frozen observational definitions and validation layers.
+- `docs/DESI_EXACT_LRG_ELG_FINAL_STATUS.md` — final frozen status of the secondary exact LRG×ELG 120-mock branch.
 - `docs/HIDDEN_CHANNEL_RETENTION.md` — direct same-pair wake versus linear-transfer retention control.
 - `source_data/README.md` — compact numerical outputs and provenance.
 - `source_data/phase7_validation_manifest.json` — machine-readable observational hierarchy.
@@ -76,6 +77,7 @@ Independent controls:
 - 25-realization AbacusSummit physical luminosity-ranked mock validation: OAS cross-check `-1.779 sigma`, with raw-sample/Hartlap control `-0.722 sigma`;
 - production seed plus three independent fixed closure seeds: conservative `|z| < 1.02`;
 - odd `ell=3` control: global empirical permutation `p = 0.81818`, with exact dipole reproduction.
+- secondary exact LRG×ELG z-resolved consistency branch: final windowed matched filter `Z = 2.210`, with 120-mock empirical calibration `1.84 sigma` (`|Z|`) and `1.96 sigma` (Sellentin–Heavens); interpreted as an approximately two-sigma hint, not a detection.
 
 All 25 AbacusSummit realizations used in the final physical-mock ensemble completed successfully. No observational result in this repository is presented as a neutrino-wake detection.
 
