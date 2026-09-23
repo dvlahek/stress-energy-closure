@@ -1,5 +1,3 @@
-- `lrg_elg_windowed_finite_mock_r4_120_final_2026-09-23.json` — final frozen DESI exact LRGxELG result after explicit RR-window convolution: nominal Z=2.210, empirical |Z| tail 1.84 sigma and Sellentin-Heavens LR tail 1.96 sigma; window correction leaves the finite-mock tail counts unchanged.
-
 # Source data
 
 This directory contains compact numerical outputs and provenance for the study **“Gravitational response retains kinetic information beyond stress-energy.”**
@@ -54,7 +52,23 @@ Associated validation files:
 
 - `lrg_elg_regional_degeneracy_attribution_2026-09-21.json` — data-blind NGC/SGC template-versus-covariance attribution showing that the regional wake-standard degeneracy gap is dominated by the covariance/survey-noise metric rather than the small cap-specific template difference.
 
-- `lrg_elg_finite_mock_r4_120_checkpoint_2026-09-23.json` — final 120-mock finite-ensemble calibration of the frozen full-sky r4 wake matched filter; empirical |Z| gives 1.84 sigma and Sellentin-Heavens LR gives 1.96 sigma, supporting a stable ~2 sigma hint rather than a detection.
+
+### Secondary exact LRG×ELG 120-mock branch — frozen
+
+This branch is a secondary exact-pair consistency analysis and does **not** replace the primary phase7 observational coefficient.
+
+- `lrg_elg_exact_final_manifest_2026-09-23.json` — top-level machine-readable hierarchy for the complete exact LRG×ELG branch, including frozen settings, stage roles and final interpretation.
+- `lrg_elg_120mock_stopping_rule_2026-09-22.json` — pre-registered primary target of 120 mocks and frozen inspection order.
+- `lrg_elg_covariance_r4_120_checkpoint_2026-09-23.json` — positive-definite 18D covariance, condition number 34.07, Hartlap 0.8403.
+- `lrg_elg_null_stage_r4_120_checkpoint_2026-09-23.json` — pre-wake zero-null and nuisance-only PASS.
+- `lrg_elg_wake_fit_r4_120_unblinding_2026-09-23.json` and `lrg_elg_finite_mock_r4_120_checkpoint_2026-09-23.json` — retained pre-window checkpoints; **superseded for final inference** by the window-convolved result.
+- `lrg_elg_rr_window_r4_checkpoint_2026-09-23.json` — data-blind fine random-pair survey-window geometry.
+- `lrg_elg_windowed_forward_r4_checkpoint_2026-09-23.json` — survey-window forward-model PASS; even-to-odd leakage RMS is 7.38% of the physical odd-standard RMS.
+- `lrg_elg_windowed_forward_r4/` — archived window matrix, windowed templates, raw components and inference template.
+- `lrg_elg_windowed_wake_fit_r4_120_checkpoint_2026-09-23.json` — final nominal windowed fit, `Z=2.21019`.
+- `lrg_elg_windowed_finite_mock_r4_120_final_2026-09-23.json` — **final frozen inference**: empirical `|Z|` tail 1.84 sigma and Sellentin–Heavens LR tail 1.96 sigma; the window correction leaves the empirical tail counts unchanged.
+
+Human-readable final status: `../docs/DESI_EXACT_LRG_ELG_FINAL_STATUS.md`.
 
 ## Interpretation guardrails
 
