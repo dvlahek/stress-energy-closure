@@ -285,3 +285,15 @@ The octupole and 36-dimensional joint covariance are also positive definite, wit
 The next allowed stage is the pre-specified zero-null plus nuisance-only audit. Wake significance remains blinded until that stage is read and archived.
 
 See `source_data/lrg_elg_covariance_r4_120_checkpoint_2026-09-23.json`.
+
+### 120-mock Stage-1 null and nuisance-only audit
+
+The pre-specified Stage-1 audit was run before wake unblinding using the frozen full-sky r4 data vector, 120-mock covariance, and linked-standard nuisance shape.
+
+- zero null: `chi2 = 12.66197 / 18`, `p = 0.81125`;
+- nuisance-only amplitude: `-0.0005243 +/- 0.0011522`, `Z = -0.455`;
+- nuisance-only residual: `chi2 = 12.45491 / 17`, `p = 0.77184`.
+
+The covariance remains positive definite with condition number `34.07`. This stage therefore passes cleanly and authorizes the next pre-registered step: wake matched-filter unblinding.
+
+See `source_data/lrg_elg_null_stage_r4_120_checkpoint_2026-09-23.json`.
