@@ -1,3 +1,5 @@
+- `lrg_elg_windowed_finite_mock_r4_120_final_2026-09-23.json` — final frozen DESI exact LRGxELG result after explicit RR-window convolution: nominal Z=2.210, empirical |Z| tail 1.84 sigma and Sellentin-Heavens LR tail 1.96 sigma; window correction leaves the finite-mock tail counts unchanged.
+
 # Source data
 
 This directory contains compact numerical outputs and provenance for the study **“Gravitational response retains kinetic information beyond stress-energy.”**
