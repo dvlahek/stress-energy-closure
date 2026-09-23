@@ -297,3 +297,18 @@ The pre-specified Stage-1 audit was run before wake unblinding using the frozen 
 The covariance remains positive definite with condition number `34.07`. This stage therefore passes cleanly and authorizes the next pre-registered step: wake matched-filter unblinding.
 
 See `source_data/lrg_elg_null_stage_r4_120_checkpoint_2026-09-23.json`.
+
+### 120-mock wake unblinding
+
+After the covariance and Stage-1 null/nuisance-only audits passed, the pre-registered 120-mock wake matched filter was unblinded.
+
+- wake amplitude: `0.00340619 +/- 0.00153626`;
+- nominal Hartlap-Gaussian `Z = 2.21719`;
+- `Delta chi2 = 4.91595`, two-sided `p = 0.02661`;
+- linked-standard amplitude in the joint fit: `0.00263680 +/- 0.00183312`;
+- wake/standard covariance-metric cosine: `-0.77776`;
+- retained wake metric norm after nuisance projection: `0.62856`.
+
+The nominal excess is slightly smaller than the frozen 40-mock value (`Z = 2.3585`) but remains at the same approximately two-sigma scale with the better-conditioned 120-mock covariance. No conclusion is drawn until the pre-specified leave-one-out empirical and Sellentin-Heavens finite-mock calibration is completed.
+
+See `source_data/lrg_elg_wake_fit_r4_120_unblinding_2026-09-23.json`.
