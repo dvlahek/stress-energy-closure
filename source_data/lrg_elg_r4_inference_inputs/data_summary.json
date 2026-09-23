@@ -1,0 +1,88 @@
+{
+  "scope": "Exact-pair redshift-resolved genuine DESI DR1 LRGxELG odd-sector vector",
+  "frozen_z_edges": [
+    0.8,
+    0.9,
+    1.0,
+    1.1
+  ],
+  "vector_order": "z-bin major, separation-bin minor",
+  "multipoles": [
+    1,
+    3
+  ],
+  "orientation": "LRG->ELG",
+  "los": "midpoint",
+  "distance_cosmology": "desi",
+  "distance_units": "Mpc/h",
+  "cosmoprimo_version": "1.0.0",
+  "separation_edges_Mpc_over_h": [
+    20.0,
+    40.0,
+    60.0,
+    80.0,
+    100.0,
+    120.0,
+    140.0
+  ],
+  "mu_bins": 240,
+  "theta_min_deg": 0.05,
+  "weights": "WEIGHT * WEIGHT_FKP for data and randoms",
+  "bins": [
+    {
+      "index": 0,
+      "zlo": 0.8,
+      "zhi": 0.9,
+      "object_weighted_z_proxy": 0.851083844440171,
+      "counts": {
+        "LRG": 441844,
+        "ELG": 304090,
+        "LRG_random": 11851056,
+        "ELG_random": 7437277
+      },
+      "sign_reversal": {
+        "dipole_max_abs_forward_plus_reverse": 2.021336743818214e-11,
+        "octupole_max_abs_forward_plus_reverse": 7.074286989539047e-11,
+        "dipole_relative_sign_residual": 1.0078906471199259e-08,
+        "octupole_relative_sign_residual": 3.3995906762417266e-08
+      }
+    },
+    {
+      "index": 1,
+      "zlo": 0.9,
+      "zhi": 1.0,
+      "object_weighted_z_proxy": 0.9494780782368448,
+      "counts": {
+        "LRG": 290682,
+        "ELG": 358681,
+        "LRG_random": 7796718,
+        "ELG_random": 8767037
+      },
+      "sign_reversal": {
+        "dipole_max_abs_forward_plus_reverse": 6.4654637980249285e-12,
+        "octupole_max_abs_forward_plus_reverse": 2.2627921576951794e-11,
+        "dipole_relative_sign_residual": 4.1334311972274914e-09,
+        "octupole_relative_sign_residual": 9.774044457320324e-09
+      }
+    },
+    {
+      "index": 2,
+      "zlo": 1.0,
+      "zhi": 1.1,
+      "object_weighted_z_proxy": 1.0476871962238978,
+      "counts": {
+        "LRG": 127296,
+        "ELG": 353594,
+        "LRG_random": 3415269,
+        "ELG_random": 8613452
+      },
+      "sign_reversal": {
+        "dipole_max_abs_forward_plus_reverse": 2.415471224729779e-12,
+        "octupole_max_abs_forward_plus_reverse": 8.453357859625893e-12,
+        "dipole_relative_sign_residual": 1.463257207170264e-09,
+        "octupole_relative_sign_residual": 3.000421493938427e-09
+      }
+    }
+  ],
+  "guardrail": "The three redshift bins are frozen before inspection of the z-resolved data. Use identically processed mocks for covariance; do not merge, move or select bins after inspecting which choice increases significance."
+}
