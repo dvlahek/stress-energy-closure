@@ -133,5 +133,11 @@
     "Do not quote the pre-window 2.217-sigma checkpoint as the final result; it is retained only for provenance.",
     "Do not present this exact LRGxELG branch as the repository's primary DESI observational coefficient; phase7 remains primary.",
     "Any future optimization must be prospective and validated on theory/mocks or on a genuinely external replication before unblinding."
-  ]
+  ],
+  "final_raw_audit": {
+    "file": "source_data/lrg_elg_windowed_forward_r4/finite_mock_audit_windowed_r4_120.json",
+    "commit": "dfa7a03f6ed0597d68239b837b32c0f27279c707",
+    "contents": "Full windowed 120-mock leave-one-out score table, including all 120 matched-filter and Sellentin-Heavens diagnostics.",
+    "status": "ARCHIVED"
+  }
 }
