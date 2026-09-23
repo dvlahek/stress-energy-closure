@@ -1,85 +1,82 @@
 # Source data
 
-This directory contains compact numerical outputs and provenance for the study **“Gravitational response retains kinetic information beyond stress-energy.”**
+This directory contains the compact numerical products used by the manuscript and its reported validation analyses.
 
-## Core theory and forecast outputs
+Development-stage checkpoints and superseded realizations are stored under `../archive/` and are not part of the standard manuscript reproduction path.
 
-- `Fig1_prediction_summary.csv` — stress-energy-matched nonlinear response example.
-- `Fig2_identifiability_summary.csv` — matched-moment and response-separation checks.
+## Theory and forecast products
+
+- `Fig1_prediction_summary.csv` — matched-source nonlinear response example.
+- `Fig2_identifiability_summary.csv` — response-based identifiability test.
 - `Fig3_tomography_summary.csv`, `Fig3_noise_sweep.csv` — finite-window reconstruction and noise sensitivity.
 - `Fig4_mass_sweep.csv` — massive/massless control.
 - `Fig5_hierarchy.csv` — finite source-jet hierarchy.
 - `ExtendedData_direct_memory_convergence.csv` — direct-versus-memory convergence.
-- `CLASS_forecast_validation_summary.json` — CLASS benchmark/validation.
-- `CLASS_response_optimization_mass_sweep.csv` — optimized 0.03–0.60 eV tensor-response sweep.
-- `hidden_channel_retention_direct.json` — direct `theta_(nu-cdm) P_cb` versus wake retention and precision controls.
-- `ksz_wake_screening_summary.json` — kSZ-tagged wake screening control.
-- `wake_final_forecast_summary.json`, `wake_robustness_summary.csv` — parity-odd wake forecast and robustness controls.
-- `wake_independent_validation_summary.json` — independent Fisher and related validation checks.
+- `CLASS_forecast_validation_summary.json` — CLASS validation summary.
+- `CLASS_response_optimization_mass_sweep.csv` — optimized response sweep over relic mass.
+- `hidden_channel_retention_direct.json` — direct transfer-level retention control.
+- `ksz_wake_screening_summary.json` — kSZ-tagged screening control.
+- `wake_final_forecast_summary.json`, `wake_robustness_summary.csv` — parity-odd wake forecast and robustness.
+- `wake_independent_validation_summary.json` — independent forecast validation.
 
-## DESI DR1 observational outputs
+## Primary DESI DR1 analysis
 
-The final reported null calibration is stored in `phase7_desi_fullsample_perm256_summary.json` and uses 256 frozen-geometry luminosity-mark permutations:
+The primary reported observational coefficient is the frozen five-tracer luminosity-rank odd-sector analysis:
 
-`A_wake = -0.0768409 +/- 0.0851660`, empirical two-sided permutation `p = 0.37354`.
+- `phase7_desi_fullsample_perm256_summary.json`
+- `wake_phase7_multitracer_real_vector_perm256.csv`
+- `phase7_validation_manifest.json`
 
-The corresponding 18-component null-corrected vector is `wake_phase7_multitracer_real_vector_perm256.csv`.
+Reported result:
 
-For auditability, the originally frozen 32-permutation realization is retained as `phase7_desi_fullsample_summary.json` with vector `wake_phase7_multitracer_real_vector.csv`. It gave `A_wake = -0.0739012 +/- 0.0851661` and `p = 0.39394`. The 256-permutation refinement changes only the number of null shuffles. Tracer definitions, bins, pair geometry, covariance, nuisance model, templates and production seed are unchanged.
+[
+A_{\rm wake}=-0.0768409\pm0.0851660,
+]
 
-Associated validation files:
+with empirical two-sided permutation (p=0.37354).
 
-- `wake_phase7_desi_dr1_zresolved_summary.json` — redshift-resolved baseline validation.
-- `phase7_gfinder_massproxy_summary.json` — independent physical mass-proxy robustness result.
-- `phase7_seed_control_summary.json` — production seed plus three independent stochastic closure seeds.
-- `phase7_abacus_final_summary.json` — final 25-realization AbacusSummit physical-mock validation.
-- `phase7_abacus_injection_amplitude_sweep.json` — compressed-vector forward-window amplitude calibration.
-- `phase7_validation_manifest.json` — machine-readable primary/validation hierarchy.
-- `phase7_ezmock_local/aggregate_validation_summary.json` — compact 30-realization EZmock placebo summary and hashes.
-- `phase7_ezmock_local/aggregate/` — final EZmock aggregate covariance/vector/window products.
-- `phase7_ezmock_local/realizations/mock_03` through `mock_32` — retained homogeneous EZmock realization outputs.
-- `phase7_octupole_control/` — `ell=3` odd-multipole control outputs.
+Supporting validation products retained here because they are part of the manuscript validation chain include:
 
-- `lrg_elg_exact_broad_40mock_checkpoint.json` — historical exact broad-bin 40-mock covariance, omnibus, wake-only and linked-standard checkpoint.
-- `lrg_elg_zresolved_random_density_audit_10pair.json` — paired nested r1/r4 random-catalog density audit that froze production at `nrandom=4`.
-- `lrg_elg_exact_development_checkpoint_2026-09-21.json` — consolidated exact LRGxELG development timeline covering broad 40-mock, z-resolved 40-mock, finite-mock calibration, DESI-fiducial upgrade, random-density decision, regional status and 200-mock guardrails.
-- `lrg_elg_ngc_sgc_regional_checkpoint_2026-09-21.json` — cap-specific NGC/SGC robustness checkpoint including nominal fits and finite-mock interpretation.
-- `lrg_elg_regional_cap_specific_nuisance_2026-09-21.json` — NGC/SGC-specific magnification, Doppler and evolution-bias nuisance inputs used in the regional linked-standard templates.
-- `lrg_elg_ngc_mock0008_health_2026-09-21.json` — technical audit showing the single extreme NGC mock is valid and retained.
-- `lrg_elg_mubin_convergence_r4.json` — 120/240/480 angular-discretization convergence audit; production remains frozen at 240 mu bins.
+- `phase7_gfinder_massproxy_summary.json`
+- `phase7_seed_control_summary.json`
+- `phase7_abacus_final_summary.json`
+- `phase7_abacus_injection_amplitude_sweep.json`
+- `phase7_ezmock_local/`
+- `phase7_octupole_control/`
+- `wake_phase7_desi_dr1_zresolved_summary.json`
 
-- `lrg_elg_bruteforce_pair_closure_2026-09-21.json` — deterministic independent NumPy-vs-pycorr/Corrfunc closure of pair counts, cross-Landy-Szalay `xi(s,mu)` and odd multipoles; passes at floating-point precision.
+The earlier 32-permutation realization is preserved under `../archive/phase7/intermediate/`.
 
-- `lrg_elg_regional_degeneracy_attribution_2026-09-21.json` — data-blind NGC/SGC template-versus-covariance attribution showing that the regional wake-standard degeneracy gap is dominated by the covariance/survey-noise metric rather than the small cap-specific template difference.
+## Secondary exact LRG×ELG consistency analysis
 
+The exact-pair branch is reported as an independent consistency analysis, not as the primary DESI coefficient.
 
-### Secondary exact LRG×ELG 120-mock branch — frozen
+Final paper-facing products:
 
-This branch is a secondary exact-pair consistency analysis and does **not** replace the primary phase7 observational coefficient.
+- `lrg_elg_exact_final_manifest_2026-09-23.json` — machine-readable final analysis definition and result hierarchy.
+- `lrg_elg_windowed_finite_mock_r4_120_final_2026-09-23.json` — compact final inference summary.
+- `lrg_elg_windowed_forward_r4/` — survey-window matrix, final templates, forward-model summary and full 120-mock leave-one-out audit.
+- `lrg_elg_r4_inference_inputs/` — frozen data vector and theory inputs.
+- `lrg_elg_covariance_r4_120_checkpoint_2026-09-23.json` — final covariance diagnostics.
 
-- `lrg_elg_exact_final_manifest_2026-09-23.json` — top-level machine-readable hierarchy for the complete exact LRG×ELG branch, including frozen settings, stage roles and final interpretation.
-- `lrg_elg_120mock_stopping_rule_2026-09-22.json` — pre-registered primary target of 120 mocks and frozen inspection order.
-- `lrg_elg_covariance_r4_120_checkpoint_2026-09-23.json` — positive-definite 18D covariance, condition number 34.07, Hartlap 0.8403.
-- `lrg_elg_null_stage_r4_120_checkpoint_2026-09-23.json` — pre-wake zero-null and nuisance-only PASS.
-- `lrg_elg_wake_fit_r4_120_unblinding_2026-09-23.json` and `lrg_elg_finite_mock_r4_120_checkpoint_2026-09-23.json` — retained pre-window checkpoints; **superseded for final inference** by the window-convolved result.
-- `lrg_elg_rr_window_r4_checkpoint_2026-09-23.json` — data-blind fine random-pair survey-window geometry.
-- `lrg_elg_windowed_forward_r4_checkpoint_2026-09-23.json` — survey-window forward-model PASS; even-to-odd leakage RMS is 7.38% of the physical odd-standard RMS.
-- `lrg_elg_windowed_forward_r4/` — archived window matrix, windowed templates, raw components and inference template.
-- `lrg_elg_windowed_wake_fit_r4_120_checkpoint_2026-09-23.json` — final nominal windowed fit, `Z=2.21019`.
-- `lrg_elg_windowed_finite_mock_r4_120_final_2026-09-23.json` — **final frozen inference**: empirical `|Z|` tail 1.84 sigma and Sellentin–Heavens LR tail 1.96 sigma; the window correction leaves the empirical tail counts unchanged.
-- `lrg_elg_windowed_forward_r4/finite_mock_audit_windowed_r4_120.json` — full final windowed 120-mock leave-one-out audit with all matched-filter and Sellentin–Heavens mock scores.
+Validation products retained in the paper-facing tree:
 
-Human-readable final status: `../docs/DESI_EXACT_LRG_ELG_FINAL_STATUS.md`.
+- `lrg_elg_bruteforce_pair_closure_2026-09-21.json` — independent NumPy versus pycorr/Corrfunc estimator closure.
+- `lrg_elg_mubin_convergence_r4.json` — angular-discretization convergence.
+- `lrg_elg_zresolved_random_density_audit_10pair.json` — random-catalog density validation.
 
-## Interpretation guardrails
+Final result:
 
-- CMB, RSD and wake forecast files are sensitivity calculations, not detections.
-- The full-sample luminosity-rank conservative DESI fit is the primary observational coefficient.
-- The 256-permutation result is a null-calibration refinement of the frozen production estimator, not a new optimization.
-- Gfinder is a tracer-proxy robustness control.
-- EZmock is a survey-geometry/covariance/placebo layer because the released files used here do not provide the luminosity field required for the physical split.
-- AbacusSummit is the physical luminosity-ranked high-fidelity mock validation layer; all 25 final realizations completed.
-- The `ell=3` octupole is an orthogonal null control and is not a separate wake measurement.
-- No observational result is presented as a neutrino-wake detection.
+[
+A_{\rm wake}=0.00327466\pm0.00148162,
+qquad
+Z_{\rm nominal}=2.21019.
+]
 
-See `../REPRODUCIBILITY.md` and `../docs/OBSERVATIONAL_REPRODUCIBILITY.md` for the result-to-code map and rerun definitions.
+The 120-mock leave-one-out calibration gives (1.84\sigma) from the absolute matched-filter score and (1.96\sigma) from the Sellentin–Heavens likelihood-ratio tail. The result is described as an approximately (2\sigma) hint, not as a detection.
+
+Earlier 40-mock, regional, pre-window and intermediate checkpoints are preserved under `../archive/desi_exact/`.
+
+## Reproducibility
+
+See `../REPRODUCIBILITY.md` for the result-to-code map and `../docs/OBSERVATIONAL_REPRODUCIBILITY.md` for the observational analysis definitions.
