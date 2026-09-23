@@ -13,6 +13,7 @@ The observational validation suite is complete.
 - AbacusSummit physical luminosity-ranked validation: 25/25 realizations complete.
 - production seed plus three independent stochastic closure seeds: complete.
 - odd `ell=3` octupole control: complete.
+- Exact DESI DR1 LRG×ELG z-resolved odd-sector 120-mock consistency branch with explicit RR-window convolution: complete and frozen.
 
 No observational result is presented as a neutrino-wake detection.
 
@@ -145,6 +146,36 @@ For inversion the code uses `C_reg = C_JK + r I` with
 The reported `kappa = 440.8145` is `cond(C_reg)`, the condition number of the ridge-regularized covariance used in the Mahalanobis inverse. It is not the raw jackknife covariance condition number.
 
 Outputs are archived in `source_data/phase7_octupole_control/`.
+
+
+## Secondary exact LRG×ELG consistency branch
+
+A separate exact-pair LRG×ELG analysis is retained as a secondary observational consistency test. It is not the primary DESI coefficient.
+
+The branch uses DESI DR1 LRG and ELG clustering samples over the frozen z-resolved interval `0.80 < z < 1.10`, exact cross-Landy–Szalay pair counting with midpoint line of sight, four random realizations, 240 mu bins, `20–140 h^-1 Mpc` separation bins, and an 18-component dipole vector. The primary mock target was fixed at 120 before the final unblinding.
+
+The 120-mock covariance is positive definite with condition number `34.07` and Hartlap factor `0.8403`. The pre-wake zero-null and nuisance-only stage passes cleanly.
+
+The final forward model uses fine DESI random-pair `R_LRG R_ELG(s,mu)` counts. It propagates the frozen wake and linked odd standard templates through the actual survey window and includes fixed linear Kaiser `ell=0,2,4` leakage into the observed odd sector. The even-to-odd leakage RMS is `7.38%` of the physical odd-standard RMS, while the wake pre-window/windowed cosine is `0.999984`.
+
+The final windowed matched-filter fit gives
+
+`A_wake = 0.00327466 +/- 0.00148162`, nominal `Z = 2.21019`.
+
+The 120-mock leave-one-out empirical calibration gives:
+
+- absolute matched-filter score: 7 mocks at least as extreme, `p+1 = 0.06612`, equivalent to `1.84 sigma` two-sided;
+- Sellentin–Heavens likelihood-ratio tail: 5 mocks at least as extreme, `p+1 = 0.04959`, equivalent to `1.96 sigma` two-sided.
+
+The finite-mock tail counts are unchanged relative to the pre-window checkpoint. The branch is therefore interpreted as a stable approximately two-sigma hint, not as a detection.
+
+The complete frozen hierarchy is in:
+
+- `source_data/lrg_elg_exact_final_manifest_2026-09-23.json`
+- `source_data/lrg_elg_windowed_finite_mock_r4_120_final_2026-09-23.json`
+- `docs/DESI_EXACT_LRG_ELG_FINAL_STATUS.md`
+
+No post-result changes to bins, cuts, tracer ordering, random density, estimator settings, templates, nuisance construction or window settings are allowed.
 
 ## Machine-readable hierarchy
 
