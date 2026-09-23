@@ -67,6 +67,7 @@ This branch is a secondary exact-pair consistency analysis and does **not** repl
 - `lrg_elg_windowed_forward_r4/` — archived window matrix, windowed templates, raw components and inference template.
 - `lrg_elg_windowed_wake_fit_r4_120_checkpoint_2026-09-23.json` — final nominal windowed fit, `Z=2.21019`.
 - `lrg_elg_windowed_finite_mock_r4_120_final_2026-09-23.json` — **final frozen inference**: empirical `|Z|` tail 1.84 sigma and Sellentin–Heavens LR tail 1.96 sigma; the window correction leaves the empirical tail counts unchanged.
+- `lrg_elg_windowed_forward_r4/finite_mock_audit_windowed_r4_120.json` — full final windowed 120-mock leave-one-out audit with all matched-filter and Sellentin–Heavens mock scores.
 
 Human-readable final status: `../docs/DESI_EXACT_LRG_ELG_FINAL_STATUS.md`.
 
