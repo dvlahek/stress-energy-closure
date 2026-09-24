@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Matched eBOSS realistic-mock 0001 fine-RR comparison, randoms only.
+"""Matched eBOSS realistic-mock fine-RR comparison, randoms only.
 
 Read the four SHA-verified matched realistic EZmock random FITS catalogues,
 apply the already audited input-only numerical-zero and multiplicative
@@ -177,6 +177,7 @@ def main() -> int:
     ap.add_argument("--out", default="eboss_workspace/matched_mock_fine_rr.json")
     ap.add_argument("--cache-dir", default="eboss_workspace/matched_mock_fine_rr")
     ap.add_argument("--threads", type=int, default=2)
+    ap.add_argument("--mock-id", type=int, choices=(1, 500, 1000), default=MOCK_ID)
     ap.add_argument("--timeout", type=float, default=120)
     ap.add_argument("--self-test", action="store_true")
     args = ap.parse_args()
@@ -185,6 +186,7 @@ def main() -> int:
         return 0
     if not args.observed_rr or not args.observed_audit:
         ap.error("Successful observed high-z fine-RR NPZ and JSON are required")
+    mock_id = int(args.mock_id)
     if args.threads < 1 or args.timeout <= 0:
         ap.error("Invalid thread count or download timeout")
     provenance = json.loads(Path(args.observed_audit).read_text())
@@ -197,6 +199,8 @@ def main() -> int:
     release = json.loads(MOCK_REFERENCE.read_text())
     if release["status"] != "mock_random_sample_selection_compatible":
         raise ValueError("The matched mock random selection audit is incomplete")
+    if mock_id not in release["sample_realization_ids"]:
+        raise ValueError("Mock ID is outside the preselected and audited sample")
     known = {
         (int(x["id"]), x["tracer"], x["cap"]): x
         for x in release["mock_random_catalogues"]
@@ -213,9 +217,9 @@ def main() -> int:
     for cap in ("NGC", "SGC"):
         cats, sources = {}, {}
         for tracer in ("LRG", "ELG"):
-            item = known[(MOCK_ID, tracer, cap)]
+            item = known[(mock_id, tracer, cap)]
             relative = mock_path(
-                "eBOSS_" + tracer, cap, "ran", MOCK_ID)
+                "eBOSS_" + tracer, cap, "ran", mock_id)
             path = root / Path(relative).name
             try:
                 sha, size = fetch_with_retry(
@@ -249,8 +253,8 @@ def main() -> int:
                 coordinates(cats["ELG"], PRIMARY_GEOMETRY),
                 fine, mu, args.threads,
             )
-            arrays[f"mock_fine_rr_{cap}_0001"] = raw
-            arrays[f"mock_fine_norm_{cap}_0001"] = np.array(
+            arrays[f"mock_fine_rr_{cap}_{mock_id:04d}"] = raw
+            arrays[f"mock_fine_norm_{cap}_{mock_id:04d}"] = np.array(
                 [meta["pair_weight_normalization"]], dtype="f8")
             comparison = histogram_distance(
                 raw / meta["pair_weight_normalization"],
@@ -276,7 +280,7 @@ def main() -> int:
                         np.abs(obs_p[ell] - mock_p[ell]))),
                 }
             cases.append({
-                "cap": cap, "mock_realization_id": MOCK_ID,
+                "cap": cap, "mock_realization_id": mock_id,
                 "inputs": sources, "compiled_mock_counter": meta,
                 "fine_rr_comparison": count_comparison,
                 "conditional_response_difference": operator,
@@ -296,9 +300,9 @@ def main() -> int:
         "study": "One-realization observed-vs-matched-mock fine RR selection audit",
         "revision_commit": os.environ.get("GITHUB_SHA"),
         "source_observed_fine_rr_run": os.environ.get("SOURCE_WORKFLOW_RUN"),
-        "status": "mock_0001_fine_rr_comparison_complete" if complete else "partial",
+        "status": f"mock_{mock_id:04d}_fine_rr_comparison_complete" if complete else "partial",
         "mock_reference": str(MOCK_REFERENCE.relative_to(ROOT)),
-        "realization_id": MOCK_ID, "tracers": ["LRG", "ELG"],
+        "realization_id": mock_id, "tracers": ["LRG", "ELG"],
         "candidate_redshift_slice": list(Z_HIGH),
         "candidate_slice_frozen_for_inference": False,
         "separation_step_mpc_over_h": 1.0,
