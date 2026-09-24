@@ -236,7 +236,7 @@ def main():
         "wake_to_direct_theta_Pcb_ratio": None if theta_pk is None else wake / max(theta_pk, 1e-300),
         "max_relative_moment_mismatch": stats["max_relative_moment_mismatch"],
         "transfer_keys": s0["transfer_keys"],
-        "guardrail": "Transfer-level single-redshift control. Direct theta is not a kSZ or RSD survey forecast."
+        "analysis_scope": "We compare direct and density-derived velocity transfer functions at one redshift; survey sensitivity is not evaluated."
     }
 
     js = out / f"{tag}.json"

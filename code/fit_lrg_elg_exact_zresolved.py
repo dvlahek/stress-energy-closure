@@ -143,11 +143,10 @@ def main():
         "nuisance_template":nt_path,
         "nuisance_template_sha256":sha(nt_path),
         "fit":gls(y,C,n,wake,N,names),
-        "guardrail":(
-            "The 0.80-0.90, 0.90-1.00 and 1.00-1.10 bins are frozen a priori. "
-            "Do not alter redshift or separation cuts after inspecting this result. "
-            "The linked standard benchmark is fixed independently of the odd data, but final inference still requires "
-            "survey-window convolution and stronger finite-mock calibration."
+        "analysis_scope":(
+            "We fit the specified redshift and separation bins with the supplied wake and linked-standard templates. "
+            "The final survey-window treatment is contained in the input templates; "
+            "finite-mock tail calibration is evaluated separately."
         ),
     }
     out=Path(args.outdir); out.mkdir(parents=True,exist_ok=True)

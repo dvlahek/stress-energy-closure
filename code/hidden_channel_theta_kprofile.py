@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 r"""k-resolved decomposition of direct-theta hidden-state retention.
 
-This is the follow-up to hidden_channel_theta_pair_check.py. It evaluates a
+We evaluate a
 source-matched pair at one redshift but writes the fractional response as a
 function of k instead of only an RMS summary. The goal is to distinguish the
 pure velocity-divergence response from the density-weighted parity-odd proxy and
@@ -275,11 +275,11 @@ def main():
         "log_k_thirds": bins,
         "max_relative_moment_mismatch": stats["max_relative_moment_mismatch"],
         "identity": "delta(theta P)=bar(theta) delta(P)+bar(P) delta(theta)",
-        "interpretation_guardrail": (
-            "Pure theta and theta*P_cb are different transfer-level quantities; their wake ratios "
-            "need not agree. The wake fraction used here has no k dependence after common potential "
-            "factors cancel, so bin-specific contrasts reuse the same wake numerator and are not "
-            "independent wake observables. This diagnostic is not a kSZ or RSD survey forecast."
+        "analysis_scope": (
+            "We distinguish the velocity-divergence response from its density-weighted counterpart. "
+            "The wake fraction has no k dependence after the common potential factors cancel; "
+            "bin-specific contrasts consequently share one wake numerator. "
+            "These calculations do not estimate kSZ or RSD survey sensitivity."
         ),
         "profile_csv": str(csv_path),
     }

@@ -502,7 +502,7 @@ def main():
             "direction_specific": "optimization raises proxy RMS by orders of magnitude or above 0.03",
             "numerical_warning": "result shifts materially with dz factor, k grid, mask threshold, or deformation amplitude",
         },
-        "guardrail": "The operator optimization is within the tested ten-function smooth deformation class and three matched source moments; it is not a theorem over all distributions.",
+        "analysis_scope": "The optimization covers the tested ten-function smooth deformation class with three matched source moments.",
     }
     (out / "summary.json").write_text(json.dumps(summary, indent=2) + "\n", encoding="utf-8")
     print("HIDDEN_CHANNEL_OPERATOR_DIAGNOSTICS")

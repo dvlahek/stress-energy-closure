@@ -128,10 +128,10 @@ def main():
         "predeclared_fit_ensemble":"dz in {0.01,0.02} x polynomial degree in {2,3}; benchmark is median, half-range is smoothing sensitivity diagnostic",
         "LRG":tracer_summary(zl,wl,bins),
         "ELG":tracer_summary(ze,we,bins),
-        "guardrail":(
-            "Observed N(z) contains cosmic variance and residual selection effects. "
-            "Use these values as DR1-specific benchmark inputs, not as final calibrated evolution biases. "
-            "Final inference should validate against the official DESI selection function / random construction."
+        "analysis_scope":(
+            "The observed redshift distribution includes sample variance and residual selection effects. "
+            "We use the resulting evolution coefficients as DR1-specific benchmark inputs, "
+            "not as fully calibrated selection-function parameters."
         ),
     }
     p=Path(args.out); p.parent.mkdir(parents=True,exist_ok=True)

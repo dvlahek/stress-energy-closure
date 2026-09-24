@@ -143,7 +143,7 @@ def main():
       'window_model':'pair-level response to xi_odd^{ij}=(m_j-m_i) mu T(s,z), evaluated through the identical sampled DD geometry and RR normalization',
       'wake_forward_response':wake.tolist(),'doppler_forward_response':dop.tolist(),
       'xi1_proxy_odd':xi1.tolist(),
-      'guardrail':'Mock result is a survey/window calibration of the luminosity-proxy estimator, not yet a halo-mass wake constraint.'
+      'analysis_scope':'We use each realization to evaluate the luminosity-proxy estimator and survey-window response.'
     }
     (out/f'{stem}_summary.json').write_text(json.dumps(summary,indent=2)+'\n')
     print('PHASE7_MOCK_REALIZATION',json.dumps(summary))

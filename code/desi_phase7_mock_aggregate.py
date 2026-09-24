@@ -144,7 +144,7 @@ def main():
       'real_data_fit_hartlap_sample_covariance':{'minimal':fit2_h,'conservative':fitc_h},
       'mock_null_wake_amplitudes':aw.tolist(),
       'unit_injection_recovery':{'mean':float(rec.mean()),'std':float(rec.std(ddof=1)),'median':float(np.median(rec)),'nominal_one_sigma_coverage_fraction':coverage,'fit_sigma_reference':sigma_ref},
-      'interpretation_guardrail':'The amplitude is calibrated to the predeclared luminosity-rank proxy pair model. A physical halo-mass wake amplitude requires a separate proxy-to-halo calibration.'
+      'analysis_scope':'We calibrate the estimator for the specified luminosity-rank tracer model. Interpreting its amplitude in halo-mass terms requires an independent tracer-to-halo calibration.'
     }
     (out/'summary_abacus_window_covariance.json').write_text(json.dumps(summary,indent=2)+'\n')
     print('PHASE7_MOCK_AGGREGATE',json.dumps(summary,indent=2))
