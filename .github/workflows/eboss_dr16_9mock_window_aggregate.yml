@@ -45,13 +45,13 @@ jobs:
         run: python scripts/aggregate_eboss_dr16_9mock_window.py --self-test
 
   all-shards-and-observed-randoms:
-    if: github.event_name == 'workflow_dispatch' || (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success')
+    if: github.event_name == 'push' || github.event_name == 'workflow_dispatch' || (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success')
     runs-on: ubuntu-latest
     timeout-minutes: 55
     env:
       GH_TOKEN: ${{ github.token }}
-      SOURCE_MOCK_RUN: ${{ github.event.workflow_run.id || inputs.source_run_id }}
-      SOURCE_MOCK_SHA: ${{ github.event.workflow_run.head_sha || inputs.source_sha }}
+      SOURCE_MOCK_RUN: ${{ github.event.workflow_run.id || inputs.source_run_id || '36015246541' }}
+      SOURCE_MOCK_SHA: ${{ github.event.workflow_run.head_sha || inputs.source_sha || '9150992ac06c03cf1b16c5fdd4e3bb3856f89ff0' }}
       PINNED_OBS_RUN: '35995805473'
     steps:
       - uses: actions/checkout@v4
