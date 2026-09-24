@@ -1,0 +1,126 @@
+{
+  "snapshot_date": "2026-09-24",
+  "kind": "curated_complete_blinded_observed_random_fine_RR_four_bins",
+  "status": "full_four_bin_fine_RR_geometric_closure_passed",
+  "source_workflow": "https://github.com/dvlahek/stress-energy-closure/actions/runs/35995805473",
+  "source_artifact": "https://github.com/dvlahek/stress-energy-closure/actions/runs/35995805473/artifacts/10805839934",
+  "source_commit": "c842da035f4522926466cc28af5e8956e8286270",
+  "source_script": "scripts/audit_eboss_dr16_fine_rr_allbins.py",
+  "candidate_redshift_bins": [
+    [
+      0.6,
+      0.7
+    ],
+    [
+      0.7,
+      0.8
+    ],
+    [
+      0.8,
+      0.9
+    ],
+    [
+      0.9,
+      1
+    ]
+  ],
+  "bins_frozen_for_inference": false,
+  "caps": [
+    "NGC",
+    "SGC"
+  ],
+  "fine_s_step_mpc_over_h": 1,
+  "s_range_mpc_over_h": [
+    20,
+    140
+  ],
+  "mu_bins": 240,
+  "los": "midpoint",
+  "orientation": "LRG->ELG",
+  "cases": [
+    {
+      "cap": "NGC",
+      "zlo": 0.6,
+      "zhi": 0.7,
+      "positive_full_fine_cells": 28800,
+      "total_fine_cells": 28800,
+      "independent_fine_to_coarse_relative_l1": 9.29439297703564e-16,
+      "disjoint_half_A_vs_full_relative_l1": 0.0062354939970241715,
+      "disjoint_half_B_vs_full_relative_l1": 0.006197765006503439
+    },
+    {
+      "cap": "NGC",
+      "zlo": 0.7,
+      "zhi": 0.8,
+      "positive_full_fine_cells": 28800,
+      "total_fine_cells": 28800,
+      "independent_fine_to_coarse_relative_l1": 1.0183575478769729e-15,
+      "disjoint_half_A_vs_full_relative_l1": 0.0023387338701124855,
+      "disjoint_half_B_vs_full_relative_l1": 0.0023519749313352665
+    },
+    {
+      "cap": "NGC",
+      "zlo": 0.8,
+      "zhi": 0.9,
+      "positive_full_fine_cells": 28800,
+      "total_fine_cells": 28800,
+      "independent_fine_to_coarse_relative_l1": 6.079024529711439e-16,
+      "disjoint_half_A_vs_full_relative_l1": 0.00539168334777121,
+      "disjoint_half_B_vs_full_relative_l1": 0.0053947979557194175
+    },
+    {
+      "cap": "NGC",
+      "zlo": 0.9,
+      "zhi": 1,
+      "positive_full_fine_cells": 28800,
+      "total_fine_cells": 28800,
+      "independent_fine_to_coarse_relative_l1": 5.621958831795529e-16,
+      "disjoint_half_A_vs_full_relative_l1": 0.006158961635770472,
+      "disjoint_half_B_vs_full_relative_l1": 0.006171221906280866
+    },
+    {
+      "cap": "SGC",
+      "zlo": 0.6,
+      "zhi": 0.7,
+      "positive_full_fine_cells": 28800,
+      "total_fine_cells": 28800,
+      "independent_fine_to_coarse_relative_l1": 1.1048010063752306e-15,
+      "disjoint_half_A_vs_full_relative_l1": 0.003441068721133941,
+      "disjoint_half_B_vs_full_relative_l1": 0.0034926128836850067
+    },
+    {
+      "cap": "SGC",
+      "zlo": 0.7,
+      "zhi": 0.8,
+      "positive_full_fine_cells": 28800,
+      "total_fine_cells": 28800,
+      "independent_fine_to_coarse_relative_l1": 1.2779855557774434e-15,
+      "disjoint_half_A_vs_full_relative_l1": 0.0019201265485096594,
+      "disjoint_half_B_vs_full_relative_l1": 0.0019405949380544322
+    },
+    {
+      "cap": "SGC",
+      "zlo": 0.8,
+      "zhi": 0.9,
+      "positive_full_fine_cells": 28800,
+      "total_fine_cells": 28800,
+      "independent_fine_to_coarse_relative_l1": 1.0964042707760447e-15,
+      "disjoint_half_A_vs_full_relative_l1": 0.0020499555666778605,
+      "disjoint_half_B_vs_full_relative_l1": 0.002041606574270538
+    },
+    {
+      "cap": "SGC",
+      "zlo": 0.9,
+      "zhi": 1,
+      "positive_full_fine_cells": 28800,
+      "total_fine_cells": 28800,
+      "independent_fine_to_coarse_relative_l1": 5.772610062742845e-16,
+      "disjoint_half_A_vs_full_relative_l1": 0.006981621862318179,
+      "disjoint_half_B_vs_full_relative_l1": 0.006955061158721696
+    }
+  ],
+  "all_eight_independent_fine_to_coarse_tests_passed": true,
+  "observed_galaxy_positions_read": false,
+  "observed_odd_data_vector_read": false,
+  "scope_note": "Full observed-random geometric closure and disjoint halves only. This is not physical survey-window convolution, estimator covariance or a frozen eBOSS odd-data protocol."
+}
