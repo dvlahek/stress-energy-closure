@@ -1,0 +1,35 @@
+name: eBOSS DR16 observed-mock weight and alpha audit
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/audit_eboss_dr16_weight_alpha.py'
+      - '.github/workflows/eboss_dr16_weight_alpha.yml'
+  workflow_dispatch:
+
+jobs:
+  weight-alpha:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install array and FITS dependencies
+        run: python -m pip install 'numpy>=1.24' 'astropy>=5.3'
+      - name: Check numerical-zero and input-weight logic
+        run: python scripts/audit_eboss_dr16_weight_alpha.py --self-test
+      - name: Audit all observed and matched-realistic-mock data/random weights
+        run: |
+          python scripts/audit_eboss_dr16_weight_alpha.py \
+            --chunk-rows 150000 \
+            --out eboss_workspace/weight_alpha_audit.json
+      - name: Save compact weighted-selection report, never FITS files
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: eboss-dr16-weight-alpha-audit
+          path: eboss_workspace/weight_alpha_audit.json
+          if-no-files-found: warn
