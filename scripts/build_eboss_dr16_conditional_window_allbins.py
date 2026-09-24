@@ -21,7 +21,7 @@ from pathlib import Path
 
 import numpy as np
 
-from audit_eboss_dr16_full_random_rr import BINS
+BINS = ((0.6, 0.7), (0.7, 0.8), (0.8, 0.9), (0.9, 1.0))
 from build_eboss_dr16_conditional_window import (
     CAPS, OUT_ELLS, IN_ELLS, THINNING, CONSTANT_CLOSURE_TOL,
     build_blocks, closure_summary, conditional_window_block,
