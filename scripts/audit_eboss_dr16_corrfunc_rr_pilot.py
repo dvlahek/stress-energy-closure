@@ -80,7 +80,7 @@ def corrfunc_rr(cat1, cat2, sedges, muedges, distance_profile, nthreads):
         raise ValueError("RR pair normalization is nonpositive")
     normalized = counts / backend_norm
     return normalized, {
-        "backend": "pycorr/orrfunc" .replace("orrfunc", "Corrfunc"),
+        "backend": "pycorr/Corrfunc",
         "weighted_rr_total": float(np.sum(counts, dtype="f8")),
         "weighted_pair_normalization": backend_norm,
         "pair_norm_relative_difference_vs_direct_sums": norm_rel,
