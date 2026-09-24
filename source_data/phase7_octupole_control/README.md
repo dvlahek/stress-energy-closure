@@ -1,34 +1,9 @@
-# Phase-7 octupole control source data
+# DESI DR1 octupole control
 
-This directory contains the publication-facing outputs of the fixed DESI DR1 odd-octupole (`ell=3`)
-control performed on the frozen five-tracer luminosity-rank sample.
+This directory contains the measured luminosity-rank octupole vector, jackknife covariance and numerical summary for the 32-permutation higher-multipole consistency test.
 
-The primary octupole statistic is the global permutation-calibrated Mahalanobis distance. No physical
-neutrino-wake template is fitted to `ell=3`.
+The octupole has empirical permutation $p=0.81818$ and maximum single-bin $|z|=1.3221$. No physical wake template is fitted to the octupole.
 
-Final result: `CONSISTENT_WITH_NULL`, with empirical permutation `p = 0.8181818` and maximum
-single-bin diagnostic `|z| = 1.3221`.
+The dipole output from the same run agrees exactly with `reference_dipole_32perm.csv`. We retain this reference because the primary dipole measurement was subsequently recalibrated using 256 permutations. The equality check applies to the recorded 32-permutation realization, not to the later null-corrected vector.
 
-The dipole reproduction gate passed exactly against the frozen Phase-7 vector: maximum absolute
-difference `0`, RMS difference `0`, correlation `1`.
-
-Publication-facing files:
-
-- `summary_octupole_control_compact.json`;
-- `data_vector_octupole_control.csv`;
-- `jackknife_covariance_octupole.csv`;
-- `REPOSITORY_COMMIT.txt`;
-- `STOCHASTIC_SEED.txt`;
-- `SHA256SUMS.txt`.
-
-`SHA256SUMS.txt` also records hashes for the locally generated dipole covariance and dipole/octupole
-permutation matrices. These matrices are reproducible from the recorded code commit and seed and are
-not required as primary source-data tables.
-
-Run provenance:
-
-- code commit used for the measurement: `e24251e68d2f5c669341e0d0af458452af3f7a73`;
-- stochastic seed: `20260913`.
-
-This is an orthogonal control only. It is not a second neutrino-wake measurement and not an
-alternative headline result.
+The directory also includes the measured octupole data vector, octupole covariance, run commit, seed and file checksums. See `docs/OBSERVABLE_OCTUPOLE_CONTROL.md` for the estimator definition and covariance convention.
