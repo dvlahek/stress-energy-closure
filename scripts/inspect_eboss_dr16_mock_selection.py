@@ -13,6 +13,8 @@ import hashlib
 import json
 import os
 from pathlib import Path
+import time
+from urllib.error import HTTPError, URLError
 from urllib.parse import urlsplit
 from urllib.request import Request, urlopen
 
@@ -64,6 +66,20 @@ def fetch_data(url: str, destination: Path, byte_limit: int, timeout: float
             partial.unlink()
 
 
+def fetch_with_retry(url: str, destination: Path, byte_limit: int, timeout: float
+                     ) -> tuple[str, int]:
+    for attempt in range(3):
+        try:
+            return fetch_data(url, destination, byte_limit, timeout)
+        except (OSError, HTTPError, URLError, TimeoutError) as exc:
+            if attempt == 2:
+                raise
+            print(f"RETRY_MOCK_DOWNLOAD {attempt + 1}/2 {destination.name}: {exc}",
+                  flush=True)
+            time.sleep(2 * (attempt + 1))
+    raise RuntimeError("Unreachable mock download retry state")
+
+
 def inspect(path: Path, tracer: str, cap: str, rid: int,
             sha: str, nbytes: int) -> tuple[dict, set[int]]:
     with fits.open(path, memmap=False) as hdus:
@@ -98,6 +114,11 @@ def inspect(path: Path, tracer: str, cap: str, rid: int,
                     candidate & finite & (w <= 0))),
                 "near_zero_candidate_rows_abs_le_1e_20": int(np.count_nonzero(
                     candidate & finite & (np.abs(w) <= 1e-20))),
+                "near_zero_candidate_rows_abs_le_1e_12": int(np.count_nonzero(
+                    candidate & finite & (np.abs(w) <= 1e-12))),
+                "min_abs_candidate_weight_above_1e_12": (
+                    float(np.min(np.abs(w[candidate & finite & (np.abs(w) > 1e-12)])))
+                    if np.any(candidate & finite & (np.abs(w) > 1e-12)) else None),
                 "nonpositive_outside_candidate_rows": int(np.count_nonzero(
                     (~candidate) & finite & (w <= 0))),
                 "min_finite": float(np.min(w[finite])) if finite.any() else None,
@@ -151,7 +172,7 @@ def main() -> int:
                 relative = mock_path(tracer, cap, "dat", rid)
                 local = cache / Path(relative).name
                 try:
-                    sha, length = fetch_data(
+                    sha, length = fetch_with_retry(
                         BASE + relative, local, args.max_file_mib * 1024 * 1024,
                         args.timeout)
                     info, occupied = inspect(local, kind, cap, rid, sha, length)
