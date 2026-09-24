@@ -1,0 +1,62 @@
+name: eBOSS DR16 remaining full fine RR candidate bins
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/audit_eboss_dr16_fine_rr_remaining.py'
+      - '.github/workflows/eboss_dr16_fine_rr_remaining.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  fine-rr-by-candidate-z:
+    strategy:
+      fail-fast: false
+      matrix:
+        bin_index: [0, 1, 2]
+    runs-on: ubuntu-latest
+    timeout-minutes: 115
+    env:
+      GH_TOKEN: ${{ github.token }}
+      PINNED_COARSE_RUN: '35980901380'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install the pinned DESI-compatible compiled pair-counter stack
+        run: |
+          python -m pip install --upgrade pip setuptools wheel
+          python -m pip install -r requirements-desi.txt
+      - name: Independent synthetic fine-rebin, orientation and normalization tests
+        run: python scripts/audit_eboss_dr16_fine_rr_remaining.py --self-test
+      - name: Retrieve SHA-pinned prior full coarse RR, not any galaxy data
+        run: |
+          gh run download "$PINNED_COARSE_RUN" \
+            --repo "$GITHUB_REPOSITORY" \
+            --name eboss-dr16-full-observed-random-rr \
+            --dir coarse_source
+          test -s coarse_source/full_random_rr_audit.json
+          test -s coarse_source/full_random_rr_audit.npz
+      - name: Count full observed random-only one-Mpc RR for candidate z bin
+        run: |
+          python scripts/audit_eboss_dr16_fine_rr_remaining.py \
+            --bin-index "${{ matrix.bin_index }}" \
+            --coarse-audit coarse_source/full_random_rr_audit.json \
+            --coarse-rr coarse_source/full_random_rr_audit.npz \
+            --cache-dir eboss_workspace/fine_rr_randoms_z${{ matrix.bin_index }} \
+            --threads 2 \
+            --out eboss_workspace/fine_rr_z${{ matrix.bin_index }}_audit.json
+      - name: Retain full fine RR and both disjoint halves per cap and candidate z
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: eboss-dr16-fine-rr-z${{ matrix.bin_index }}
+          path: |
+            eboss_workspace/fine_rr_z${{ matrix.bin_index }}_audit.json
+            eboss_workspace/fine_rr_z${{ matrix.bin_index }}_audit.npz
+          if-no-files-found: warn
