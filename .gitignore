@@ -9,7 +9,7 @@ Thumbs.db
 ev_*_output/
 *.png
 
-# Local observational production artefacts (compact publication snapshots live in source_data/)
+# Local catalogues and generated observational output
 /class_public/
 /phase7_template/
 /phase7_ezmock_local/

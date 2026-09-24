@@ -93,7 +93,8 @@ Relevant runners:
 
 - `scripts/run_desi_dr1_lrg_elg_exact_zresolved_data.sh`
 - `scripts/process_desi_ezmock_lrg_elg_zresolved_streaming.sh`
-- `scripts/run_desi_r4_200_chunk.sh`
+- `scripts/run_desi_ezmock_lrg_elg_exact_zresolved.sh`
+- `scripts/run_desi_r4_120_chunk.sh`
 - `scripts/run_desi_lrg_elg_rr_window_r4.sh`
 - `scripts/run_desi_lrg_elg_windowed_forward.sh`
 
