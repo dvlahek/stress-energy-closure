@@ -1,0 +1,66 @@
+{
+  "snapshot_date": "2026-09-24",
+  "kind": "curated_complete_blinded_all_four_candidate_bin_conditional_finite_RR_window",
+  "status": "all_four_bin_conditional_finite_bin_response_validated",
+  "source_workflow": "https://github.com/dvlahek/stress-energy-closure/actions/runs/35997956357",
+  "source_artifact": "https://github.com/dvlahek/stress-energy-closure/actions/runs/35997956357/artifacts/10807206023",
+  "source_commit": "3d45a8280438a38650673563e70dd32e9ca22cf9",
+  "source_script": "scripts/build_eboss_dr16_conditional_window_allbins.py",
+  "input_full_observed_fine_rr_workflow": "https://github.com/dvlahek/stress-energy-closure/actions/runs/35995805473",
+  "input_full_observed_fine_rr_commit": "c842da035f4522926466cc28af5e8956e8286270",
+  "candidate_redshift_bins": [
+    [
+      0.6,
+      0.7
+    ],
+    [
+      0.7,
+      0.8
+    ],
+    [
+      0.8,
+      0.9
+    ],
+    [
+      0.9,
+      1
+    ]
+  ],
+  "candidate_bins_frozen_for_inference": false,
+  "caps": [
+    "NGC",
+    "SGC"
+  ],
+  "n_cases": 8,
+  "input_ells": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "output_ells": [
+    1,
+    3
+  ],
+  "fine_s_step_mpc_over_h": 1,
+  "output_s_edges_mpc_over_h": [
+    20,
+    40,
+    60,
+    80,
+    100,
+    120,
+    140
+  ],
+  "signed_mu_bins": 240,
+  "largest_absolute_constant_in_s_legendre_closure_error": 7.000001757236562e-7,
+  "largest_absolute_signed_mu_reversal_parity_error": 4.163336342344337e-17,
+  "includes_full_and_disjoint_random_half_matrices": true,
+  "includes_predeclared_unitless_even_to_odd_radial_ramp_probes": true,
+  "observed_galaxy_positions_read": false,
+  "observed_odd_data_vector_read": false,
+  "physical_complete_survey_window_convolution_built": false,
+  "mock_ensemble_window_validated_in_this_artifact": false,
+  "scope_note": "Validated conditional finite-bin response for all eight observed random-only cap-by-z cases; not an independently validated physical survey-window convolution, mock galaxy covariance, exact joint sky mask, or frozen odd-sector inference protocol."
+}
