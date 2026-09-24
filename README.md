@@ -1,33 +1,26 @@
-# Gravitational response retains kinetic information beyond stress-energy
+# Kinetic information beyond stress-energy in gravitational response
 
-This repository contains the analysis code and compact source data for the study **“Gravitational response retains kinetic information beyond stress-energy.”**
+This repository provides the code, numerical source data and validation results for our Einstein–Vlasov study of gravitational response and kinetic-state identifiability.
 
-The central question is simple: two collisionless states can have the same instantaneous stress-energy tensor and therefore the same gravitational source at one time, while retaining different kinetic structure. We test if that hidden structure can be recovered from the subsequent gravitational response and how much of the information survives projection into realistic observables.
+Two collisionless distributions can agree in their instantaneous stress-energy tensor while differing in their momentum-space structure. We construct source-matched states and calculate their subsequent gravitational response. We then examine which distinctions survive finite observation windows and the projection into cosmological observables.
 
-## Main results
+## Results
 
-The theoretical analysis establishes that, for massive isotropic collisionless matter in the stated class, the complete ideal causal response contains information that is not determined by the instantaneous stress-energy tensor alone. The corresponding finite-window inverse problem remains identifiable but becomes ill-conditioned. The massless isotropic limit removes the same radial kinetic encoding.
+The calculations establish response-level distinctions between the source-matched massive states considered here. Finite-window reconstruction is more poorly conditioned than the ideal causal-response problem. We also evaluate the massless isotropic limit and the dependence on the kinetic hierarchy.
 
-The observational part contains two DESI DR1 analyses with different roles:
+The observational analysis uses DESI DR1 in two complementary tests. The five-tracer luminosity-rank analysis is our primary reported DESI measurement. Its conservative wake coefficient is $A_{\rm wake}=-0.07684\pm0.08517$, with empirical two-sided permutation $p=0.3735$ from 256 permutations.
 
-- **Primary DESI analysis:** a frozen five-tracer luminosity-rank odd-sector estimator with 256 permutation realizations. The conservative wake coefficient is
-  [
-  A_{\rm wake}=-0.07684\pm0.08517,
-  ]
-  with empirical two-sided permutation (p=0.3735).
-- **Secondary exact LRG×ELG consistency analysis:** an exact cross-Landy–Szalay dipole estimator with 120 mock realizations and explicit survey-window convolution. The final nominal matched-filter value is (2.21\sigma). Finite-mock calibration gives (1.84\sigma) from the absolute matched-filter score and (1.96\sigma) from the Sellentin–Heavens likelihood-ratio tail.
+The separate exact LRG–ELG dipole analysis uses 120 mock realizations and an explicit random-pair survey-window model. It gives a nominal matched-filter value of $2.21\sigma$. Empirical finite-mock calibration gives $1.84\sigma$ from the absolute matched-filter statistic and $1.96\sigma$ from the Sellentin–Heavens likelihood-ratio statistic. We treat this result as a tentative consistency indication, not a detection.
 
-The second result is therefore treated as an approximately (2\sigma) consistency hint, not as a detection. No observational result in this repository is presented as evidence for a neutrino-wake detection.
+## Reproducing the calculations
 
-## Reproducibility
-
-Install the Python dependencies with
+Install the Python dependencies with:
 
 ```bash
 python -m pip install -r requirements.txt
 ```
 
-The central theory calculations can be reproduced with
+The central theory calculations can be run with:
 
 ```bash
 python code/ev_flrw_controls.py --full
@@ -39,36 +32,20 @@ python code/hierarchy_test.py
 python code/direct_vs_memory.py --full
 ```
 
-CLASS-based calculations use `class_public` commit
-`e85808324f51fc694d12e3ed7439552a3c3f9540`.
+The CLASS calculations use `class_public` commit `e85808324f51fc694d12e3ed7439552a3c3f9540`.
 
-For the observational analyses and the exact result-to-code mapping, see:
+The observational estimator definitions, required public inputs and result-to-code mapping are documented in `REPRODUCIBILITY.md` and `docs/OBSERVATIONAL_REPRODUCIBILITY.md`. The exact LRG–ELG analysis is described separately in `docs/DESI_EXACT_LRG_ELG_FINAL_STATUS.md`. Numerical products are indexed in `source_data/README.md`.
 
-- `REPRODUCIBILITY.md`
-- `docs/OBSERVATIONAL_REPRODUCIBILITY.md`
-- `docs/DESI_EXACT_LRG_ELG_FINAL_STATUS.md`
-- `source_data/README.md`
+## Directory structure
 
-Machine-readable analysis summaries are provided in:
+- `code/`: numerical models, estimators and validation.
+- `scripts/`: local survey-data and mock workflows.
+- `source_data/`: numerical products underlying the reported results.
+- `docs/`: analysis definitions and reproducibility notes.
+- `observational_forecast/`: forecast inputs and supporting calculations.
 
-- `source_data/phase7_validation_manifest.json`
-- `source_data/lrg_elg_exact_final_manifest_2026-09-23.json`
-
-## Repository structure
-
-```text
-code/                    analysis and validation code
-scripts/                 reproducible local workflows
-source_data/             final numerical products used by the manuscript
-docs/                    methods and reproducibility notes
-observational_forecast/  forecast inputs and supporting notes
-archive/                 superseded and development-stage material
-```
-
-The `archive/` directory is retained for provenance. Its contents are not part of the reported manuscript inference and are not required for the standard reproduction path.
+Earlier implementations and intermediate results are retained on the [research archive branch](https://github.com/dvlahek/stress-energy-closure/tree/archive/research-development-2026-09-24). The archive is separate from the manuscript reproduction path.
 
 ## Citation and license
 
-If you use this code or source data, please cite the associated study. Bibliographic information can be added to `CITATION.cff` when available.
-
-Code and compact source-data products are released under the MIT License.
+Citation metadata is provided in `CITATION.cff`. The code is distributed under the MIT License.
