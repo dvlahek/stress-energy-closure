@@ -1,0 +1,34 @@
+name: eBOSS DR16 synthetic cross-Landy-Szalay closure
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/check_eboss_cross_ls_synthetic.py'
+      - 'scripts/check_eboss_rr_scalar.py'
+      - 'scripts/audit_eboss_dr16_rr_pair_closure.py'
+      - '.github/workflows/eboss_dr16_cross_ls_synthetic.yml'
+  workflow_dispatch:
+
+jobs:
+  synthetic-cross-ls:
+    runs-on: ubuntu-latest
+    timeout-minutes: 9
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install array and FITS dependencies
+        run: python -m pip install 'numpy>=1.24' 'scipy>=1.10' 'astropy>=5.3'
+      - name: Compare four independent pair terms and synthetic odd parity
+        run: |
+          python scripts/check_eboss_cross_ls_synthetic.py \
+            --out eboss_workspace/synthetic_cross_ls_closure.json
+      - name: Retain synthetic closure metadata
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: eboss-dr16-synthetic-cross-ls
+          path: eboss_workspace/synthetic_cross_ls_closure.json
+          if-no-files-found: warn
