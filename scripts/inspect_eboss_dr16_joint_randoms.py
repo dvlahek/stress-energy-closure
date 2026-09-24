@@ -129,9 +129,9 @@ def overlap(a: np.ndarray, b: np.ndarray, threshold: int) -> dict:
         "joint_supported_pixels": n_both, "union_supported_pixels": union,
         "joint_fraction_of_lrg_pixels": n_both / n_a if n_a else None,
         "joint_fraction_of_elg_pixels": n_both / n_b if n_b else None,
-        "pixel_area_square_deg_approx": RA_STEP * SIN_DEC_STEP * (180 / np.pi) ** 2,
+        "pixel_area_square_deg_approx": RA_STEP * (np.pi / 180) * SIN_DEC_STEP * (180 / np.pi) ** 2,
         "joint_pixel_area_square_deg_approx": (
-            n_both * RA_STEP * SIN_DEC_STEP * (180 / np.pi) ** 2),
+            n_both * RA_STEP * (np.pi / 180) * SIN_DEC_STEP * (180 / np.pi) ** 2),
         "interpretation": (
             "Diagnostic intersection of tracer random supports on the stated grid; "
             "not an exact joint mask, pair-window estimate or effective survey area."
