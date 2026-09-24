@@ -1,0 +1,109 @@
+{
+  "study": "Predeclared blinded nine-realization eBOSS DR16 matched mock-random RR and common-support pilot",
+  "registered_on": "2026-09-24",
+  "stage": "pre-odd random-only input and window response",
+  "predeclared_mock_realization_ids": [
+    1,
+    125,
+    250,
+    375,
+    500,
+    625,
+    750,
+    875,
+    1000
+  ],
+  "previously_audited_ids": [
+    1,
+    500,
+    1000
+  ],
+  "newly_audited_ids": [
+    125,
+    250,
+    375,
+    625,
+    750,
+    875
+  ],
+  "survey_caps": [
+    "NGC",
+    "SGC"
+  ],
+  "tracers": [
+    "eBOSS_LRG",
+    "eBOSS_ELG"
+  ],
+  "role": "ran",
+  "release": "https://data.sdss.org/sas/dr17/eboss/lss/EZmocks/v1_0_0/realistic/",
+  "candidate_z_bins": [
+    [
+      0.6,
+      0.7
+    ],
+    [
+      0.7,
+      0.8
+    ],
+    [
+      0.8,
+      0.9
+    ],
+    [
+      0.9,
+      1
+    ]
+  ],
+  "highz_window_pilot": [
+    0.9,
+    1
+  ],
+  "separate_physical_window_or_mock_covariance": false,
+  "orientation": "LRG->ELG",
+  "los": "midpoint",
+  "primary_geometry": "published_multitracer",
+  "separation_edges_fine_mpc_over_h": "20..140 in 1 Mpc/h",
+  "separation_edges_coarse_mpc_over_h": [
+    20,
+    40,
+    60,
+    80,
+    100,
+    120,
+    140
+  ],
+  "mu_bins": 240,
+  "theta_min_deg": 0.05,
+  "weight_product": "WEIGHT_SYSTOT*WEIGHT_CP*WEIGHT_NOZ*WEIGHT_FKP",
+  "numerical_zero_systot_absolute_threshold": 1e-12,
+  "deterministic_disjoint_half_seed_root": 4071,
+  "diagnostic_sky_grid": {
+    "ra_step_deg": 0.5,
+    "sin_dec_step": 0.01,
+    "minimum_randoms_per_tracer_per_pixel": [
+      1,
+      5,
+      10,
+      15,
+      25
+    ],
+    "predeclared_reporting_threshold": 15,
+    "exact_mask": false
+  },
+  "required_checks": [
+    "full compressed file SHA256 for each of 36 mock random files",
+    "FITS schema and all-row coordinate/weight health",
+    "numeric zero 1e-20 vs 1e-12 gap for mock candidate weight",
+    "joint LRG/ELG angular support for candidate bin and four z slices per cap",
+    "all 28800 highz fine RR cells supported",
+    "independent highz fine-to-coarse closure relative L1 <= 1e-8",
+    "highz full and deterministic disjoint half RR counts and finite-bin conditional matrix parity/constant closure",
+    "ensemble response scatter retains all nine fixed mock IDs without cherry picking"
+  ],
+  "stop_rule": "No mock ID, seed, cap, redshift bin, threshold or response block may be replaced, excluded or tuned based on any observed galaxy odd statistic or a mock window result. Failed or missing inputs remain documented as incomplete.",
+  "sample_size_note": "Nine distinct mocks are a fixed preliminary window/input ensemble, not an estimator covariance or a calibrated observational significance test.",
+  "observed_galaxy_data_read": false,
+  "observed_odd_data_vector_read": false,
+  "wake_template_fitted_or_tuned": false,
+  "protocol_frozen_for_inference": false
+}
