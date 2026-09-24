@@ -1,0 +1,24 @@
+name: eBOSS DR16 independent scalar RR closure
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/check_eboss_rr_scalar.py'
+      - 'scripts/audit_eboss_dr16_rr_pair_closure.py'
+      - '.github/workflows/eboss_dr16_rr_scalar.yml'
+  workflow_dispatch:
+
+jobs:
+  independent-rr:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install minimal scientific dependencies
+        run: python -m pip install 'numpy>=1.24' 'scipy>=1.10' 'astropy>=5.3'
+      - name: Compare direct scalar and independent block-vectorized RR counts
+        run: python scripts/check_eboss_rr_scalar.py
