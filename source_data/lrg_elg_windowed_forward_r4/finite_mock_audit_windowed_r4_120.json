@@ -31,7 +31,6 @@
     "loo_max_minus2loglambda": 11.024941226269844
   },
   "resolution_note": "With 120 mocks the minimum p+1 is 1/121=0.00826446; the empirical calibration therefore cannot resolve a smaller tail probability.",
-  "guardrail": "Templates and bins must remain frozen. LOO uses N-1 mocks for each held-out score while the data score uses all N, so this is a finite-ensemble diagnostic. Increase the mock ensemble for publication-level tail calibration.",
   "loo_scores": [
     {
       "index": 0,
@@ -1593,5 +1592,6 @@
       "minus2_log_lambda_sellentin_heavens": 0.24327953105608469,
       "sqrt_minus2_log_lambda_SH_diagnostic": 0.49323374890216576
     }
-  ]
+  ],
+  "analysis_scope": "Each leave-one-out mock score uses the remaining N-1 realizations, while the data score uses all N. Empirical tail probabilities are calculated with the +1 finite-sample correction."
 }

@@ -3,13 +3,16 @@
   "status": "response_diagnostic_not_survey_forecast",
   "class_commit_expected": "e85808324f51fc694d12e3ed7439552a3c3f9540",
   "mass_eV": 0.06,
-  "z_match": 1100.0,
+  "z_match": 1100,
   "z": 0.3,
-  "fractional_deformation_cap": 0.30,
-  "k_range_h_Mpc": [0.003, 0.2],
+  "fractional_deformation_cap": 0.3,
+  "k_range_h_Mpc": [
+    0.003,
+    0.2
+  ],
   "half_pair_convention": true,
   "mode_weight": "k^3 Delta ln k",
-  "wake_sigma_kms": 200.0,
+  "wake_sigma_kms": 200,
   "class_output_direct_theta": "mPk,dTk,vTk",
   "reference_cref": {
     "wake_half_pair_fraction": 0.23084420034493347,
@@ -19,7 +22,11 @@
       "density_derived_velocity_Pcb_half_pair_rms": 0.0005280865049182505,
       "wake_to_direct_theta_Pcb_ratio": 437.0726313189232,
       "theta_Pcb_zero_crossings": 1,
-      "log_k_thirds_theta_Pcb_rms": [0.004409099614642714, 0.001925236732732645, 0.00047520094922303546],
+      "log_k_thirds_theta_Pcb_rms": [
+        0.004409099614642714,
+        0.001925236732732645,
+        0.00047520094922303546
+      ],
       "max_abs_decomposition_residual": 9.259086553026208e-17
     },
     "nk96_moderate": {
@@ -28,7 +35,11 @@
       "density_derived_velocity_Pcb_half_pair_rms": 0.0005322828757582342,
       "wake_to_direct_theta_Pcb_ratio": 433.68820256540243,
       "theta_Pcb_zero_crossings": 0,
-      "log_k_thirds_theta_Pcb_rms": [0.004504055217659639, 0.00219849459583823, 0.000462497953857375],
+      "log_k_thirds_theta_Pcb_rms": [
+        0.004504055217659639,
+        0.00219849459583823,
+        0.000462497953857375
+      ],
       "max_abs_decomposition_residual": 9.812029660993815e-17
     },
     "precision_convergence": {
@@ -39,7 +50,15 @@
   },
   "response_independent_orthogonal_control": {
     "definition": "Gram-Schmidt first canonical null-basis axis against normalized CREF; no response optimization",
-    "coefficients": [0.9946511694474491, 0.006310711676011596, -0.017566041166059896, -0.050820407796465655, -0.07125215639341684, -0.04975278129587607, -0.013628548959082238],
+    "coefficients": [
+      0.9946511694474491,
+      0.006310711676011596,
+      -0.017566041166059896,
+      -0.050820407796465655,
+      -0.07125215639341684,
+      -0.04975278129587607,
+      -0.013628548959082238
+    ],
     "coefficient_dot_normalized_cref": -1.9082402331634368e-17,
     "pointwise_normalization": 0.9991095941193696,
     "wake_half_pair_fraction": 0.1101394327438084,
@@ -50,8 +69,16 @@
       "density_derived_velocity_Pcb_half_pair_rms": 0.0011713282196477968,
       "wake_to_direct_theta_Pcb_ratio": 94.03019044609631,
       "theta_Pcb_zero_crossings": 0,
-      "log_k_thirds_theta_Pcb_rms": [0.011711868750611771, 0.005588669319796887, 0.000956803625365203],
-      "same_wake_numerator_contrasts_by_k_third": [9.40408700687115, 19.707631001472684, 115.11184722128243],
+      "log_k_thirds_theta_Pcb_rms": [
+        0.011711868750611771,
+        0.005588669319796887,
+        0.000956803625365203
+      ],
+      "same_wake_numerator_contrasts_by_k_third": [
+        9.40408700687115,
+        19.707631001472684,
+        115.11184722128243
+      ],
       "max_abs_decomposition_residual": 8.153200337090993e-17
     },
     "nk96_moderate": {
@@ -60,17 +87,29 @@
       "density_derived_velocity_Pcb_half_pair_rms": 0.0013876847572915057,
       "wake_to_direct_theta_Pcb_ratio": 79.36943689668965,
       "theta_Pcb_zero_crossings": 0,
-      "log_k_thirds_theta_Pcb_rms": [0.011763629823371717, 0.0057193927604100294, 0.0012065386778474646],
-      "same_wake_numerator_contrasts_by_k_third": [9.362708143449552, 19.257189942645656, 91.28545546530142],
+      "log_k_thirds_theta_Pcb_rms": [
+        0.011763629823371717,
+        0.0057193927604100294,
+        0.0012065386778474646
+      ],
+      "same_wake_numerator_contrasts_by_k_third": [
+        9.362708143449552,
+        19.257189942645656,
+        91.28545546530142
+      ],
       "max_abs_decomposition_residual": 8.348356728138384e-17
     },
     "precision_convergence": {
       "theta_Pcb_standard_to_moderate_relative_change": 0.184715,
       "wake_to_theta_Pcb_standard_to_moderate_relative_change": -0.155915,
-      "log_k_third_relative_changes": [0.004420, 0.023391, 0.261010],
+      "log_k_third_relative_changes": [
+        0.00442,
+        0.023391,
+        0.26101
+      ],
       "retained_as_qualitative_response_independent_control": true,
-      "retained_as_precision_grade_headline_coefficient": false,
-      "reason": "The integrated response shifts by about 18.5%, driven mainly by the high-k third, while the response remains smooth, zero-crossing-free, and strongly separated from the wake in both precision settings."
+      "reason": "The integrated response shifts by about 18.5%, driven mainly by the high-k third, while the response remains smooth, zero-crossing-free, and strongly separated from the wake in both precision settings.",
+      "quantitative_reference": false
     }
   },
   "response_selected_direction": {
@@ -78,12 +117,12 @@
     "nk96_standard_direct_theta_Pcb_half_pair_rms": 0.0006464617200898742,
     "nk96_moderate_direct_theta_Pcb_half_pair_rms": 0.000010669648447319053,
     "retained_for_quantitative_claims": false,
-    "reason": "The response-selected direction is precision sensitive; middle/high-k response collapses under tighter integration tolerances and zero crossings increase. Earlier ~285-288 wake/linear ratios are development diagnostics only."
+    "reason": "The response-selected mode is sensitive to integration tolerances, particularly at intermediate and high wavenumber, and is excluded from the quantitative comparison."
   },
   "decomposition_identity": "delta(theta P)=bar(theta) delta(P)+bar(P) delta(theta)",
   "normalization_note": "Pure theta and theta*P_cb are distinct transfer-level quantities. theta*P_cb includes hidden-state changes in both theta and P_cb. Their wake ratios are not expected to coincide.",
-  "headline_quantitative_control": "reference_cref",
   "secondary_qualitative_control": "response_independent_orthogonal_control",
-  "moderate_precision_note": "The retained moderate test tightens integration tolerances only and leaves ncdm hierarchy size and momentum-grid resolution unchanged. The more aggressive high-precision preset repeatedly exhausted development-machine memory.",
-  "guardrail": "Restricted to transfer-level response diagnostics in the tested smooth source-matched class; no kSZ/RSD survey S/N or theorem over all distributions is inferred."
+  "moderate_precision_note": "The reported precision comparison refines integration tolerances while keeping the momentum grid and multipole hierarchy fixed.",
+  "primary_quantitative_control": "reference_cref",
+  "analysis_scope": "We compare transfer-level responses in the stated source-matched deformation class. This calculation does not determine survey sensitivity or establish a result for arbitrary distributions."
 }

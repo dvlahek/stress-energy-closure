@@ -7,24 +7,24 @@
   },
   "dipole": {
     "mu120_minus_mu240": {
-      "rms_abs": 7.561928887784327e-06,
-      "max_abs": 1.813777560060034e-05,
+      "rms_abs": 0.000007561928887784327,
+      "max_abs": 0.00001813777560060034,
       "median_abs_shift_in_mock_sigma": 0.004453547811837344,
       "max_abs_shift_in_mock_sigma": 0.010581687073112208,
       "hartlap_metric_delta_chi2": 0.0012566964726383766,
       "hartlap_metric_sqrt_delta_chi2": 0.03544991498774541
     },
     "mu480_minus_mu240": {
-      "rms_abs": 1.9286080396126274e-05,
-      "max_abs": 7.393946414403795e-05,
+      "rms_abs": 0.000019286080396126274,
+      "max_abs": 0.00007393946414403795,
       "median_abs_shift_in_mock_sigma": 0.002220040536819955,
       "max_abs_shift_in_mock_sigma": 0.029711097188386656,
       "hartlap_metric_delta_chi2": 0.0008255196608149746,
       "hartlap_metric_sqrt_delta_chi2": 0.02873185794227332
     },
     "mu480_minus_mu120": {
-      "rms_abs": 1.7920511421435692e-05,
-      "max_abs": 5.5801688543437615e-05,
+      "rms_abs": 0.000017920511421435692,
+      "max_abs": 0.000055801688543437615,
       "median_abs_shift_in_mock_sigma": 0.004142427399943298,
       "max_abs_shift_in_mock_sigma": 0.024654945166326443,
       "hartlap_metric_delta_chi2": 0.0013874619157154726,
@@ -33,15 +33,15 @@
   },
   "octupole": {
     "mu120_minus_mu240": {
-      "rms_abs": 2.6942505084547788e-05,
-      "max_abs": 6.558318986344975e-05,
+      "rms_abs": 0.000026942505084547788,
+      "max_abs": 0.00006558318986344975,
       "median_abs_shift_in_mock_sigma": 0.01952978306219675,
       "max_abs_shift_in_mock_sigma": 0.045394935919156006,
       "hartlap_metric_delta_chi2": 0.005775714042957202,
       "hartlap_metric_sqrt_delta_chi2": 0.07599811868038052
     },
     "mu480_minus_mu240": {
-      "rms_abs": 4.10375918931944e-05,
+      "rms_abs": 0.0000410375918931944,
       "max_abs": 0.00015353689457377998,
       "median_abs_shift_in_mock_sigma": 0.0059635408344568715,
       "max_abs_shift_in_mock_sigma": 0.06443179020975472,
@@ -49,7 +49,7 @@
       "hartlap_metric_sqrt_delta_chi2": 0.07704114435210303
     },
     "mu480_minus_mu120": {
-      "rms_abs": 5.142108762769349e-05,
+      "rms_abs": 0.00005142108762769349,
       "max_abs": 0.00014396039582963973,
       "median_abs_shift_in_mock_sigma": 0.01853457775801892,
       "max_abs_shift_in_mock_sigma": 0.06600507152270196,
@@ -57,6 +57,6 @@
       "hartlap_metric_sqrt_delta_chi2": 0.11867712156767873
     }
   },
-  "interpretation": "PASS. All 120/240/480 differences are negligible relative to mock scatter. The frozen production choice remains 240 mu bins; no significance-based retuning is performed.",
-  "guardrail": "This is an estimator-convergence diagnostic. Do not choose the mu binning based on wake significance. Production remains frozen at 240 unless numerical non-convergence is objectively demonstrated."
+  "interpretation": "The 120/240/480 angular-bin comparison gives differences below the mock scatter for the tested dipole and octupole vectors. We retain 240 angular bins for the reported estimator.",
+  "analysis_scope": "The comparison changes only the angular discretization at fixed data selection and pair weights."
 }

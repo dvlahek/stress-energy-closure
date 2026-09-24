@@ -44,6 +44,6 @@
     "windowed_empirical_sh_sigma": 1.9635114370458409,
     "interpretation": "The survey-window-convolved forward model leaves both finite-mock empirical tail counts unchanged."
   },
-  "interpretation": "Final production DESI result: nominal Hartlap-Gaussian wake-aligned excess 2.210 sigma; finite-mock LOO calibration gives 1.84 sigma from |Z| and 1.96 sigma from the Sellentin-Heavens likelihood-ratio tail. This is a stable approximately two-sigma hint, not a detection, and it is robust to explicit DESI RR-window convolution including fixed linear Kaiser even-to-odd leakage.",
-  "guardrail": "This is the final frozen DESI exact LRGxELG result for this analysis branch. Do not alter bins, cuts, tracer ordering, random density, templates, nuisance construction, or window settings based on the observed significance."
+  "interpretation": "The RR-window-convolved matched filter gives nominal Z=2.210. Finite-mock calibration yields two-sided equivalents of 1.84 sigma and 1.96 sigma for the absolute matched-filter and Sellentin–Heavens statistics. We interpret the result as a tentative consistency indication, not a detection.",
+  "analysis_scope": "The reported inference uses the specified bins, pair orientation, random density, survey-window model and theoretical templates."
 }

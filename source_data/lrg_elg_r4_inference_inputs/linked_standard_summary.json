@@ -2,12 +2,12 @@
   "scope": "DR1-specific z-resolved linked-standard benchmark",
   "source_model": "Bonvin et al. 2023 Eq. (8)",
   "external_bias_inputs": {
-    "b_lrg": 2.0,
+    "b_lrg": 2,
     "b_elg": 1.3,
-    "s_lrg": 1.0,
+    "s_lrg": 1,
     "s_elg": 0.4014285714285714,
     "bD_elg_below_transition": -5.4714285714285715,
-    "bD_transition_z": 1.0
+    "bD_transition_z": 1
   },
   "evolution_bias_source": "lrg_elg_dr1_evolution_bias.json",
   "per_bin": [
@@ -15,9 +15,9 @@
       "zlo": 0.8,
       "zhi": 0.9,
       "z_effective": 0.851083844440171,
-      "b_lrg": 2.0,
+      "b_lrg": 2,
       "b_elg": 1.3,
-      "s_lrg": 1.0,
+      "s_lrg": 1,
       "s_elg": 0.4014285714285714,
       "fevo_lrg": 6.979090765821617,
       "fevo_elg": -3.947921562218742,
@@ -33,11 +33,11 @@
     },
     {
       "zlo": 0.9,
-      "zhi": 1.0,
+      "zhi": 1,
       "z_effective": 0.9494780782368447,
-      "b_lrg": 2.0,
+      "b_lrg": 2,
       "b_elg": 1.3,
-      "s_lrg": 1.0,
+      "s_lrg": 1,
       "s_elg": 0.4014285714285714,
       "fevo_lrg": 14.936486944460164,
       "fevo_elg": 2.421218873657301,
@@ -52,18 +52,18 @@
       "A_wide_angle_no_bd": -0.24282578701069643
     },
     {
-      "zlo": 1.0,
+      "zlo": 1,
       "zhi": 1.1,
       "z_effective": 1.0476871962238976,
-      "b_lrg": 2.0,
+      "b_lrg": 2,
       "b_elg": 1.3,
-      "s_lrg": 1.0,
+      "s_lrg": 1,
       "s_elg": 0.4014285714285714,
       "fevo_lrg": 21.700328499414482,
       "fevo_elg": 4.109948578234407,
       "fevo_half_range_lrg": 0.4430775181284776,
       "fevo_half_range_elg": 0.19772408496011695,
-      "bD_elg": 0.0,
+      "bD_elg": 0,
       "fevo_eff_elg": 4.109948578234407,
       "growth_f": 0.8823759941177513,
       "A_relativistic": 28.929085633938616,
@@ -81,5 +81,5 @@
     "wake_vs_linked_no_bd": -0.9248918356163381,
     "linked_with_vs_without_bd": 0.9320009295325401
   },
-  "guardrail": "This is a linked benchmark, not the final DR1 standard-odd prediction. The evolution bias is DR1-specific, but b,s and b_D use external 0.8<z<1 averages; the z>1 Doppler-bias benchmark is set to zero. Do not tune these inputs on the odd data."
+  "analysis_scope": "The linked standard model uses DR1-specific evolution-bias estimates and external tracer-bias, magnification and Doppler inputs. Above z=1 the benchmark Doppler-bias term is set to zero."
 }

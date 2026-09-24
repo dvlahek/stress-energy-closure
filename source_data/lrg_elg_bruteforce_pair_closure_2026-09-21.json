@@ -4,8 +4,16 @@
   "purpose": "Numerical estimator validation only; no wake significance is evaluated.",
   "subset": {
     "region": "NGC",
-    "z_range": [0.8, 0.9],
-    "sizes": {"D1": 1200, "D2": 1200, "R1": 6000, "R2": 6000},
+    "z_range": [
+      0.8,
+      0.9
+    ],
+    "sizes": {
+      "D1": 1200,
+      "D2": 1200,
+      "R1": 6000,
+      "R2": 6000
+    },
     "seed": 1729,
     "hashes_sha256": {
       "D1": "7ce027d1315f0579b36f27e28eb8177fb7f908c7bf785ade9b703e8736ba7690",
@@ -14,10 +22,22 @@
       "R2": "63179f047cc2ec6e46a0616461914a902c7be612d225ac16232bddcda14805a7"
     },
     "sample_index_ranges": {
-      "D1": [44, 306942],
-      "D2": [190, 229914],
-      "R1": [671, 1936240],
-      "R2": [89, 1233926]
+      "D1": [
+        44,
+        306942
+      ],
+      "D2": [
+        190,
+        229914
+      ],
+      "R1": [
+        671,
+        1936240
+      ],
+      "R2": [
+        89,
+        1233926
+      ]
     }
   },
   "estimator": {
@@ -26,22 +46,66 @@
     "los": "midpoint",
     "landy_szalay": "(D1D2-D1R2-R1D2+R1R2)/R1R2 using separately normalized weighted cross-counts",
     "distance_cosmology": "desi",
-    "separation_edges_Mpc_over_h": [20.0,40.0,60.0,80.0,100.0,120.0,140.0],
+    "separation_edges_Mpc_over_h": [
+      20,
+      40,
+      60,
+      80,
+      100,
+      120,
+      140
+    ],
     "mu_bins": 24,
     "theta_min_deg": 0.05,
     "weights": "WEIGHT * WEIGHT_FKP"
   },
   "normalization_comparison": {
-    "D1D2": {"manual": 146390.36085083638, "pycorr": 146390.36085083638, "relative_difference": 0.0},
-    "D1R2": {"manual": 632908.9790293383, "pycorr": 632908.9790293383, "relative_difference": 0.0},
-    "R1D2": {"manual": 737024.776150457, "pycorr": 737024.776150457, "relative_difference": 0.0},
-    "R1R2": {"manual": 3186477.5514012077, "pycorr": 3186477.5514012077, "relative_difference": 0.0}
+    "D1D2": {
+      "manual": 146390.36085083638,
+      "pycorr": 146390.36085083638,
+      "relative_difference": 0
+    },
+    "D1R2": {
+      "manual": 632908.9790293383,
+      "pycorr": 632908.9790293383,
+      "relative_difference": 0
+    },
+    "R1D2": {
+      "manual": 737024.776150457,
+      "pycorr": 737024.776150457,
+      "relative_difference": 0
+    },
+    "R1R2": {
+      "manual": 3186477.5514012077,
+      "pycorr": 3186477.5514012077,
+      "relative_difference": 0
+    }
   },
   "weighted_pair_count_comparison": {
-    "D1D2": {"max_abs": 7.105427357601002e-15, "max_abs_over_reference_peak": 3.448894138870193e-16, "l1_relative": 1.3495332414306022e-16, "rms_abs": 1.6650261130927085e-15},
-    "D1R2": {"max_abs": 4.263256414560601e-14, "max_abs_over_reference_peak": 5.036414479443804e-16, "l1_relative": 1.2713682177126263e-16, "rms_abs": 6.738808867830415e-15},
-    "R1D2": {"max_abs": 4.263256414560601e-14, "max_abs_over_reference_peak": 4.431267858672379e-16, "l1_relative": 1.2728836691214228e-16, "rms_abs": 7.720641304371205e-15},
-    "R1R2": {"max_abs": 2.2737367544323206e-13, "max_abs_over_reference_peak": 5.354809709682769e-16, "l1_relative": 1.8755440714189263e-16, "rms_abs": 4.6745531417047795e-14}
+    "D1D2": {
+      "max_abs": 7.105427357601002e-15,
+      "max_abs_over_reference_peak": 3.448894138870193e-16,
+      "l1_relative": 1.3495332414306022e-16,
+      "rms_abs": 1.6650261130927085e-15
+    },
+    "D1R2": {
+      "max_abs": 4.263256414560601e-14,
+      "max_abs_over_reference_peak": 5.036414479443804e-16,
+      "l1_relative": 1.2713682177126263e-16,
+      "rms_abs": 6.738808867830415e-15
+    },
+    "R1D2": {
+      "max_abs": 4.263256414560601e-14,
+      "max_abs_over_reference_peak": 4.431267858672379e-16,
+      "l1_relative": 1.2728836691214228e-16,
+      "rms_abs": 7.720641304371205e-15
+    },
+    "R1R2": {
+      "max_abs": 2.2737367544323206e-13,
+      "max_abs_over_reference_peak": 5.354809709682769e-16,
+      "l1_relative": 1.8755440714189263e-16,
+      "rms_abs": 4.6745531417047795e-14
+    }
   },
   "smu_correlation_comparison": {
     "max_abs": 1.27675647831893e-15,
@@ -52,23 +116,33 @@
     "total_bins": 144
   },
   "multipole_comparison": {
-    "ell1": {"max_abs": 2.0469737016526324e-16, "max_abs_over_reference_peak": 1.1734295170303993e-15, "l1_relative": 1.2808018334859837e-15, "rms_abs": 1.344979488247393e-16},
-    "ell3": {"max_abs": 1.5265566588595902e-16, "max_abs_over_reference_peak": 1.0194603293822227e-15, "l1_relative": 1.2438017149559888e-15, "rms_abs": 1.130280288148416e-16},
-    "full_finite_separation_rows": [0,1,2,3,4,5],
-    "separation_grid_max_abs": 0.0
+    "ell1": {
+      "max_abs": 2.0469737016526324e-16,
+      "max_abs_over_reference_peak": 1.1734295170303993e-15,
+      "l1_relative": 1.2808018334859837e-15,
+      "rms_abs": 1.344979488247393e-16
+    },
+    "ell3": {
+      "max_abs": 1.5265566588595902e-16,
+      "max_abs_over_reference_peak": 1.0194603293822227e-15,
+      "l1_relative": 1.2438017149559888e-15,
+      "rms_abs": 1.130280288148416e-16
+    },
+    "full_finite_separation_rows": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "separation_grid_max_abs": 0
   },
   "thresholds": {
-    "pair_and_norm_relative": 5e-09,
-    "smu_max_abs": 5e-09,
-    "pole_max_abs": 5e-09
+    "pair_and_norm_relative": 5e-9,
+    "smu_max_abs": 5e-9,
+    "pole_max_abs": 5e-9
   },
-  "development_note": {
-    "initial_checker_status": "FAIL",
-    "initial_failure_cause": "The independent checker initially used x1-x2 for the pair vector. Pinned pycorr reference code uses x2-x1. This exactly reversed odd multipoles and mirrored mu-bin pair counts.",
-    "production_impact": "none",
-    "fix_commit": "10f463e641903f49aab002670a3cb386d1a1b861",
-    "interpretation": "The initial failure was in the independent validation script, not in the production pycorr/Corrfunc estimator. After matching the documented pycorr convention, all pair counts, xi(s,mu), and ell=1,3 multipoles agree to floating-point precision."
-  },
-  "conclusion": "PASS. The independent NumPy implementation reproduces pycorr/Corrfunc normalization, weighted pair counts, cross-Landy-Szalay xi(s,mu), and odd multipoles at approximately 1e-15 relative/absolute precision on the deterministic subset.",
-  "guardrail": "This closure is numerical estimator validation only and must not be used to tune redshift bins, separation bins, nuisance parameters, or wake templates."
+  "conclusion": "The independent NumPy calculation reproduces the pycorr/Corrfunc weighted pair histograms, cross-Landy–Szalay estimator and odd-multipole projections to floating-point precision on the deterministic subset.",
+  "analysis_scope": "This numerical test validates the estimator implementation; the theoretical templates are evaluated separately."
 }
