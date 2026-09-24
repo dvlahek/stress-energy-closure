@@ -1,117 +1,35 @@
-# Phase-7 odd-octupole control
+# DESI DR1 luminosity-rank octupole control
 
-This document records the final `ell=3` odd-multipole control used in the manuscript reproducibility
-snapshot. It does not modify the primary DESI dipole inference.
+We measure the odd octupole on the same DESI DR1 BGS tracer sample and sampled pair geometry used for the luminosity-rank dipole. This provides a higher-multipole consistency test without fitting a second wake amplitude.
 
-## Observable
+## Observable and null distribution
 
-The odd dipole uses
+The dipole and octupole angular weights are $3\mu$ and $7P_3(\mu)=7(5\mu^3-3\mu)/2$, respectively. We construct an 18-component octupole vector with three redshift intervals and six separation bins. Its global test statistic is the Mahalanobis distance from the permutation-null mean, calibrated with 32 within-stratum luminosity-mark permutations.
 
-\[
-(2\ell+1)P_\ell(\mu)=3\mu,\qquad \ell=1.
-\]
+We use 30 delete-one jackknife regions. For inversion, the jackknife covariance is regularized as
 
-The control additionally measures
+$$
+C_{\mathrm{reg}}=C_{\mathrm{JK}}+rI,\qquad
+r=\max\left[10^{-7}\lambda_{\max}(C_{\mathrm{JK}}),
+10^{-6}\operatorname{median}\operatorname{diag}(C_{\mathrm{JK}}),10^{-14}\right].
+$$
 
-\[
-7P_3(\mu)=\frac{7}{2}(5\mu^3-3\mu),\qquad \ell=3,
-\]
+The reported condition number, $440.8145$, refers to $C_{\mathrm{reg}}$. The unregularized covariance has rank 18; its condition number was not reported in this run.
 
-from the same DESI DR1 BGS galaxies, luminosity-rank marks, sampled pair geometry, redshift bins,
-separation bins, random catalogues and jackknife regions.
+## Results
 
-No neutrino-wake template is fitted to the octupole. It is an orthogonal odd-sector null/consistency
-observable and is not a candidate headline coefficient.
+The global octupole Mahalanobis statistic is 15.6936. Its empirical permutation $p$-value is 0.81818; the asymptotic chi-square diagnostic gives $p=0.61392$. The largest single-bin fluctuation has $|z|=1.3221$. These results are consistent with the permutation null.
 
-## Fixed test
+The same calculation reproduces the **corresponding 32-permutation dipole reference vector** exactly: the maximum absolute difference and RMS difference are zero, and the correlation is one. This is an implementation check, not an additional independent measurement. The reference vector is stored in `source_data/phase7_octupole_control/reference_dipole_32perm.csv`.
 
-The primary statistic is the global Mahalanobis distance of the permutation-null-corrected
-18-component octupole vector, calibrated by the same 32 within-stratum mark permutations used for the
-dipole.
+The primary reported DESI dipole coefficient uses a later 256-permutation null calibration, $A_{\rm wake}=-0.0768409\pm0.0851660$ with empirical two-sided $p=0.37354$. The octupole reproduction check is not a direct equality test against that later null-corrected vector.
 
-The fixed decision rule is:
+## Source data and reproduction
 
-- empirical `p >= 0.05`: consistent with the null;
-- empirical `p < 0.05`: investigate estimator/survey systematics before physical interpretation.
-
-The maximum single-bin `|z|` is diagnostic only.
-
-## Dipole reproduction gate
-
-The same run remeasures the dipole using the identical pair sample and compares the null-corrected
-vector against `source_data/wake_phase7_multitracer_real_vector.csv`.
-
-The reproduction gate passes exactly:
-
-- maximum absolute difference: `0.0`;
-- RMS difference: `0.0`;
-- correlation: `1.0`.
-
-Thus the additional `ell=3` code path leaves the frozen dipole observable unchanged.
-
-## Covariance convention
-
-The octupole jackknife covariance `C_JK` is formed from 30 delete-one regions and has raw rank
-`18/18`. For inversion the code uses
-
-\[
-C_{\rm reg}=C_{\rm JK}+rI,
-\]
-
-with
-
-\[
-r=\max\!\left(10^{-7}\lambda_{\max}(C_{\rm JK}),
-10^{-6}\,\mathrm{median}[\mathrm{diag}(C_{\rm JK})],10^{-14}\right).
-\]
-
-The reported condition number
-
-`kappa = 440.8145`
-
-is `cond(C_reg)`, the condition number of the ridge-regularized covariance used in the Mahalanobis
-inverse. It is not the condition number of the raw jackknife covariance. The raw covariance is full
-rank; its condition number is not separately reported by this run. The octupole ridge is
-`3.373602582674635e-10`.
-
-## Final result
-
-- raw jackknife covariance rank: `18/18`;
-- ridge-regularized covariance condition number: `440.815`;
-- global Mahalanobis statistic: `15.6936`;
-- empirical permutation p-value: `0.8181818`;
-- asymptotic chi-square diagnostic p-value: `0.6139214`;
-- maximum single-bin diagnostic: `|z| = 1.3221`.
-
-The largest single-bin fluctuation occurs at `0.2 < z < 0.3` and `s = 110 h^-1 Mpc`, with
-`xi3_null_corrected = -0.0132833 +/- 0.0100474` (`z = -1.3221`).
-
-**STATUS: CONSISTENT_WITH_NULL / PASS_NULL_CONTROL**
-
-This is an angular-control result only. The sole publication-facing headline observational
-coefficient remains the conservative full-sample luminosity-rank DESI dipole result,
-`A_wake = -0.0739012 +/- 0.0851661` (`-0.868 sigma`).
-
-## Archived outputs
-
-Publication-facing outputs are under `source_data/phase7_octupole_control/`:
-
-- `summary_octupole_control_compact.json`;
-- `data_vector_octupole_control.csv`;
-- `jackknife_covariance_octupole.csv`;
-- `REPOSITORY_COMMIT.txt`;
-- `STOCHASTIC_SEED.txt`;
-- `SHA256SUMS.txt`.
-
-`SHA256SUMS.txt` also records hashes of the locally generated dipole covariance and permutation
-matrices so a rerun can be verified without storing those larger diagnostic matrices in the source-data
-snapshot.
-
-## Local rerun
+The measured vector, covariance, compact numerical summary, reference dipole and provenance files are in `source_data/phase7_octupole_control/`. The local workflow is:
 
 ```bash
-git fetch origin
-git switch nature-physics-submission
-git pull --ff-only origin nature-physics-submission
 bash scripts/run_phase7_octupole_control_local.sh
 ```
+
+The workflow uses the same source catalogues and recorded pair-sampling seed as the original octupole calculation. Large external DESI catalogues are not stored in this repository.
