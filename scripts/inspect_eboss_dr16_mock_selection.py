@@ -93,6 +93,13 @@ def inspect(path: Path, tracer: str, cap: str, rid: int,
             wdiag[name] = {
                 "nonfinite_rows": int(np.count_nonzero(~finite)),
                 "nonpositive_rows": int(np.count_nonzero(finite & (w <= 0))),
+                "nonfinite_candidate_rows": int(np.count_nonzero(candidate & ~finite)),
+                "nonpositive_candidate_rows": int(np.count_nonzero(
+                    candidate & finite & (w <= 0))),
+                "near_zero_candidate_rows_abs_le_1e_20": int(np.count_nonzero(
+                    candidate & finite & (np.abs(w) <= 1e-20))),
+                "nonpositive_outside_candidate_rows": int(np.count_nonzero(
+                    (~candidate) & finite & (w <= 0))),
                 "min_finite": float(np.min(w[finite])) if finite.any() else None,
                 "max_finite": float(np.max(w[finite])) if finite.any() else None,
             }
@@ -189,7 +196,9 @@ def main() -> int:
     complete = len(records) == len(ids) * len(CAPS) * len(TRACERS) and not errors
     health = all(
         rec["invalid_coordinate_z_rows"] == 0 and
-        all(x["nonfinite_rows"] == 0 and x["nonpositive_rows"] == 0
+        all(x["nonfinite_candidate_rows"] == 0 and
+            x["nonpositive_candidate_rows"] == 0 and
+            x["near_zero_candidate_rows_abs_le_1e_20"] == 0
             for x in rec["weight_column_diagnostics"].values())
         for rec in records
     )
@@ -197,7 +206,9 @@ def main() -> int:
         "study": "eBOSS DR16 realistic EZmock data-only selection sample",
         "revision_commit": os.environ.get("GITHUB_SHA"),
         "release_url": BASE, "realization_ids_checked": ids,
-        "status": "sample_data_inspected" if complete and health else "partial",
+        "status": ("sample_candidate_weights_healthy" if complete and health
+                   else "candidate_weight_policy_unresolved" if complete
+                   else "partial"),
         "candidate_z_interval": [CANDIDATE_LO, CANDIDATE_HI],
         "candidate_z_interval_frozen": False,
         "real_data_selection_reference": str(REFERENCE.relative_to(ROOT)),
