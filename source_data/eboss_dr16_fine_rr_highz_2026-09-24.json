@@ -1,0 +1,83 @@
+{
+  "snapshot_date": "2026-09-24",
+  "kind": "compact_blinded_full_observed_random_highz_fine_rr",
+  "source_workflow": "https://github.com/dvlahek/stress-energy-closure/actions/runs/35983196267",
+  "source_artifact": "https://github.com/dvlahek/stress-energy-closure/actions/runs/35983196267/artifacts/10801640499",
+  "source_script": "scripts/audit_eboss_dr16_fine_rr_highz.py",
+  "source_commit": "5dbfca45c25c7af57bf05693022bfa98b499209d",
+  "source_full_coarse_reference": "source_data/eboss_dr16_full_observed_rr_2026-09-24.json",
+  "status": "fine_RR_high_z_geometric_closure_passed",
+  "candidate_z_interval": [
+    0.9,
+    1
+  ],
+  "candidate_interval_frozen": false,
+  "full_observed_random_catalogue_counts_from_prior_full_rr": {
+    "NGC": {
+      "LRG": 375515,
+      "ELG": 762827
+    },
+    "SGC": {
+      "LRG": 214862,
+      "ELG": 620263
+    }
+  },
+  "s_fine_step_mpc_over_h": 1,
+  "s_fine_edges_mpc_over_h": [
+    20,
+    140
+  ],
+  "s_coarse_edges_mpc_over_h": [
+    20,
+    40,
+    60,
+    80,
+    100,
+    120,
+    140
+  ],
+  "mu_bins": 240,
+  "orientation": "LRG->ELG",
+  "los": "midpoint",
+  "weights": "four-factor pure eBOSS random weight product",
+  "primary_geometry": {
+    "h": 0.6777,
+    "Om0": 0.307,
+    "Tcmb0": 0
+  },
+  "secondary_geometry": {
+    "h": 0.676,
+    "Om0": 0.31,
+    "Tcmb0": 0
+  },
+  "synthetic_independent_rebin_and_orientation_test_passed": true,
+  "cap_results": [
+    {
+      "cap": "NGC",
+      "rebin_fine_to_coarse_relative_l1": 5.595363412121519e-16,
+      "positive_full_fine_cells": 28800,
+      "total_full_fine_cells": 28800,
+      "half_A_to_full_relative_l1": 0.006158961635770477,
+      "half_B_to_full_relative_l1": 0.006171221906280868,
+      "secondary_vs_primary_same_randoms_relative_l1": 0.005544742042617304
+    },
+    {
+      "cap": "SGC",
+      "rebin_fine_to_coarse_relative_l1": 5.773524294242818e-16,
+      "positive_full_fine_cells": 28800,
+      "total_full_fine_cells": 28800,
+      "half_A_to_full_relative_l1": 0.006981621862318182,
+      "half_B_to_full_relative_l1": 0.006955061158721701,
+      "secondary_vs_primary_same_randoms_relative_l1": 0.0052277568041010644
+    }
+  ],
+  "limits": {
+    "observed_galaxies_read": false,
+    "odd_data_vector_read": false,
+    "mock_fine_rr_not_yet_validated": true,
+    "full_four_z_bin_fine_rr_not_yet_computed": true,
+    "physical_forward_model_not_validated": true,
+    "covariance_not_estimated": true
+  },
+  "note": "Rebinning fine RR to the coarse grid agrees with an independent compiled coarse pair count at floating precision. Disjoint halves and predeclared secondary distances quantify input sensitivity. These are random-only candidate window inputs."
+}
