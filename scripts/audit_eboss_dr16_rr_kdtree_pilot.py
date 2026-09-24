@@ -177,7 +177,7 @@ def select_catalogue_draws(path: Path, maxrows: int, seeds: tuple[int, ...],
         hdus.verify("exception")
         hdu = hdus[1]
         table = hdu.data
-        if not {"RA", "DEC", "Z", *WEIGHTS}.issubset(table.columns.names):
+        if not {"RA", "DEC", "Z", *WEIGHTS}.issubset(hdu.columns.names):
             raise ValueError("Missing required FITS columns")
         ra = np.asarray(table["RA"], dtype="f8")
         dec = np.asarray(table["DEC"], dtype="f8")
