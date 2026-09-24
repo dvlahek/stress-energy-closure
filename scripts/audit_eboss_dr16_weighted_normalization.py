@@ -88,6 +88,10 @@ def inspect(path: Path, tracer: str, cap: str, role: str, survey: str,
     declared = None
     chunk_column_available = False
     elg_random_cp_noz_not_one = 0
+    sys_abs_le_1e_20 = 0
+    sys_abs_le_1e_12 = 0
+    sys_max_abs_below_tolerance = 0.0
+    sys_min_above_tolerance = None
     with fits.open(path, memmap=(path.suffix != ".gz")) as hdus:
         hdus.verify("exception")
         tables = [h for h in hdus if isinstance(h, fits.BinTableHDU)]
@@ -122,6 +126,21 @@ def inspect(path: Path, tracer: str, cap: str, role: str, survey: str,
                     name: np.asarray(data[name][mask], dtype="f8")
                     for name in WEIGHT_COLUMNS
                 }
+                # Audit numerical-zero separation independently of the gate.
+                sy = np.abs(w["WEIGHT_SYSTOT"])
+                sys_abs_le_1e_20 += int(np.count_nonzero(sy <= 1e-20))
+                near_zero = sy <= SYSTOT_NUMERICAL_ZERO_TOL
+                sys_abs_le_1e_12 += int(np.count_nonzero(near_zero))
+                if np.any(near_zero):
+                    sys_max_abs_below_tolerance = max(
+                        sys_max_abs_below_tolerance,
+                        float(np.max(sy[near_zero])))
+                above = sy > SYSTOT_NUMERICAL_ZERO_TOL
+                if np.any(above):
+                    minimum = float(np.min(sy[above]))
+                    sys_min_above_tolerance = (
+                        minimum if sys_min_above_tolerance is None
+                        else min(sys_min_above_tolerance, minimum))
                 # The helper must fail rather than silently remove a
                 # significant negative or nonfinite candidate weight.
                 total, keep = validated_weight_product(w)
@@ -148,6 +167,9 @@ def inspect(path: Path, tracer: str, cap: str, role: str, survey: str,
                         ))
     if invalid_candidate_coords:
         raise ValueError("Invalid RA/DEC within candidate redshift interval")
+    if sys_abs_le_1e_20 != sys_abs_le_1e_12:
+        raise ValueError(
+            "Numerical-zero WEIGHT_SYSTOT entries have no verified magnitude gap")
     counts = [report_bucket(v) for v in bins]
     return {
         "survey": survey, "tracer": tracer, "cap": cap,
@@ -160,6 +182,11 @@ def inspect(path: Path, tracer: str, cap: str, role: str, survey: str,
         "candidate_retained_rows": sum(v["retained_rows"] for v in counts),
         "candidate_numerical_zero_exclusions": sum(
             v["numerical_zero_excluded"] for v in counts),
+        "candidate_systot_abs_le_1e_20": sys_abs_le_1e_20,
+        "candidate_systot_abs_le_1e_12": sys_abs_le_1e_12,
+        "candidate_systot_max_abs_below_tolerance": (
+            sys_max_abs_below_tolerance if sys_abs_le_1e_12 else None),
+        "candidate_systot_min_abs_above_tolerance": sys_min_above_tolerance,
         "candidate_total_weight": sum(v["sum_weights"] for v in counts),
         "candidate_total_completeness_weight": sum(
             v["sum_completeness_weight"] for v in counts),
