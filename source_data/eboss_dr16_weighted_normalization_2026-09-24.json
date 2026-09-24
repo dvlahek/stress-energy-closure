@@ -1,0 +1,287 @@
+{
+  "snapshot_date": "2026-09-24",
+  "kind": "curated_compact_eBOSS_observed_vs_realistic_0001_weighted_input_normalization",
+  "source_script": "scripts/audit_eboss_dr16_weighted_normalization.py",
+  "source_weight_convention": "scripts/eboss_dr16_fiducial.py",
+  "source_workflow": "https://github.com/dvlahek/stress-energy-closure/actions/runs/35980111179",
+  "source_artifact": "https://github.com/dvlahek/stress-energy-closure/actions/runs/35980111179/artifacts/10799747604",
+  "source_commit": "d18a42c7cc6fbbb81945035a0f1f735a734fd9f9",
+  "status": "sample_weighted_normalization_audited",
+  "candidate_z_interval": [
+    0.6,
+    1
+  ],
+  "candidate_interval_frozen": false,
+  "mock_id": 1,
+  "files_read": 16,
+  "real_files_read": 8,
+  "mock_files_read": 8,
+  "weight_product": "WEIGHT_FKP * WEIGHT_SYSTOT * WEIGHT_CP * WEIGHT_NOZ",
+  "near_zero_abs_threshold": 1e-12,
+  "near_zero_separation_verified_for_all_16_files": true,
+  "per_file_records": [
+    {
+      "survey": "observed",
+      "cap": "NGC",
+      "tracer": "LRG",
+      "role": "data",
+      "candidate_rows": 107500,
+      "numerical_zero_excluded": 1,
+      "weighted_sum_rounded_for_log": 66973.51,
+      "sha256": "5eb836c7e6e69eb2cbc3b2dfe2f27826b6e5ac59d1c87e279a81a916f6edc77e",
+      "max_abs_systot_numerical_zero": 2.7892517222407664e-31,
+      "min_abs_systot_above_threshold": 0.8129807413806046,
+      "abs_le_1e_20_count_equals_abs_le_1e_12_count": true
+    },
+    {
+      "survey": "observed",
+      "cap": "NGC",
+      "tracer": "LRG",
+      "role": "random",
+      "candidate_rows": 5460719,
+      "numerical_zero_excluded": 58,
+      "weighted_sum_rounded_for_log": 3281736,
+      "sha256": "5da0bf41e267968310ada55ea3bf27c9a3808bba77050e66c54d84dec62b6281",
+      "max_abs_systot_numerical_zero": 2.7892517222407664e-31,
+      "min_abs_systot_above_threshold": 0.4232842616857589,
+      "abs_le_1e_20_count_equals_abs_le_1e_12_count": true
+    },
+    {
+      "survey": "observed",
+      "cap": "NGC",
+      "tracer": "ELG",
+      "role": "data",
+      "candidate_rows": 76395,
+      "numerical_zero_excluded": 0,
+      "weighted_sum_rounded_for_log": 38982.36,
+      "sha256": "f6fd50b19548a9e1b5361eec00402551d2e00036f666fef16142db75ac311d8a"
+    },
+    {
+      "survey": "observed",
+      "cap": "NGC",
+      "tracer": "ELG",
+      "role": "random",
+      "candidate_rows": 3402927,
+      "numerical_zero_excluded": 0,
+      "weighted_sum_rounded_for_log": 1412297,
+      "sha256": "7b9a5ea54ea99fa1d56ec20206e920d171c807c626c29b6a4dcc766d0ee36698"
+    },
+    {
+      "survey": "observed",
+      "cap": "SGC",
+      "tracer": "LRG",
+      "role": "data",
+      "candidate_rows": 67316,
+      "numerical_zero_excluded": 0,
+      "weighted_sum_rounded_for_log": 42388.48,
+      "sha256": "aec4b569ad957d829aa8337bf2c7d00e25dc777e2e5849552893cbead70071dc"
+    },
+    {
+      "survey": "observed",
+      "cap": "SGC",
+      "tracer": "LRG",
+      "role": "random",
+      "candidate_rows": 3453453,
+      "numerical_zero_excluded": 0,
+      "weighted_sum_rounded_for_log": 2111052,
+      "sha256": "4aabcaa99cc2855d38eddd5fac903d3281e9436e5ba5b8c230050db3da92d230"
+    },
+    {
+      "survey": "observed",
+      "cap": "SGC",
+      "tracer": "ELG",
+      "role": "data",
+      "candidate_rows": 82596,
+      "numerical_zero_excluded": 0,
+      "weighted_sum_rounded_for_log": 38702.18,
+      "sha256": "0ec867d5152c80b3529d68d55c8b3a55517cb0197d35e0b74cc6b8d99d929a87"
+    },
+    {
+      "survey": "observed",
+      "cap": "SGC",
+      "tracer": "ELG",
+      "role": "random",
+      "candidate_rows": 3314169,
+      "numerical_zero_excluded": 0,
+      "weighted_sum_rounded_for_log": 1402565,
+      "sha256": "f3097c653c54b3b0e2033a0d586c77f9a8975aeb3397c441f92703797e7db9a1"
+    },
+    {
+      "survey": "realistic_mock",
+      "cap": "NGC",
+      "tracer": "LRG",
+      "role": "data",
+      "candidate_rows": 110491,
+      "numerical_zero_excluded": 1,
+      "weighted_sum_rounded_for_log": 66904.2,
+      "sha256": "67862ecb7860eef939f03c459ba424709cd37e8bbf00aa916f2bb2d351896536",
+      "max_abs_systot_numerical_zero": 6.44414607739426e-31,
+      "min_abs_systot_above_threshold": 0.9268299341201782,
+      "abs_le_1e_20_count_equals_abs_le_1e_12_count": true
+    },
+    {
+      "survey": "realistic_mock",
+      "cap": "NGC",
+      "tracer": "LRG",
+      "role": "random",
+      "candidate_rows": 2390486,
+      "numerical_zero_excluded": 15,
+      "weighted_sum_rounded_for_log": 1387775,
+      "sha256": "2f7966ab7de195353cf4d0b14f0fe4d14e4633cef5d156722e8a822518893dca",
+      "max_abs_systot_numerical_zero": 6.44414607739426e-31,
+      "min_abs_systot_above_threshold": 0.4917324185371399,
+      "abs_le_1e_20_count_equals_abs_le_1e_12_count": true
+    },
+    {
+      "survey": "realistic_mock",
+      "cap": "NGC",
+      "tracer": "ELG",
+      "role": "data",
+      "candidate_rows": 76450,
+      "numerical_zero_excluded": 0,
+      "weighted_sum_rounded_for_log": 38869.21,
+      "sha256": "aa399797762153b0ccff4960928c55336b35dc1131a44fbc735a7e668fbeb31e"
+    },
+    {
+      "survey": "realistic_mock",
+      "cap": "NGC",
+      "tracer": "ELG",
+      "role": "random",
+      "candidate_rows": 2331837,
+      "numerical_zero_excluded": 0,
+      "weighted_sum_rounded_for_log": 1005381,
+      "sha256": "c36c4ad26ee62696c0df99c6106c895a6931bdc56e84164e0a52b55f0e88c1c9"
+    },
+    {
+      "survey": "realistic_mock",
+      "cap": "SGC",
+      "tracer": "LRG",
+      "role": "data",
+      "candidate_rows": 68579,
+      "numerical_zero_excluded": 1,
+      "weighted_sum_rounded_for_log": 42215.49,
+      "sha256": "ba271958cf01a10c293b7c2876a5cad688c4618228c82378273cdb5451ae8a46",
+      "max_abs_systot_numerical_zero": 2.8782530251635375e-30,
+      "min_abs_systot_above_threshold": 0.8896088600158691,
+      "abs_le_1e_20_count_equals_abs_le_1e_12_count": true
+    },
+    {
+      "survey": "realistic_mock",
+      "cap": "SGC",
+      "tracer": "LRG",
+      "role": "random",
+      "candidate_rows": 1529711,
+      "numerical_zero_excluded": 20,
+      "weighted_sum_rounded_for_log": 908453.5,
+      "sha256": "94c8940734f3c647a2b883124392cd39855034a212ce9c6a05a6bd052bba8efe",
+      "max_abs_systot_numerical_zero": 2.8782530251635375e-30,
+      "min_abs_systot_above_threshold": 0.46332404017448425,
+      "abs_le_1e_20_count_equals_abs_le_1e_12_count": true
+    },
+    {
+      "survey": "realistic_mock",
+      "cap": "SGC",
+      "tracer": "ELG",
+      "role": "data",
+      "candidate_rows": 83075,
+      "numerical_zero_excluded": 0,
+      "weighted_sum_rounded_for_log": 38802.34,
+      "sha256": "a7df8700eed4e4dbcc97cd184007efff2fcbe7e354001ed1334b1bf572d9595a"
+    },
+    {
+      "survey": "realistic_mock",
+      "cap": "SGC",
+      "tracer": "ELG",
+      "role": "random",
+      "candidate_rows": 2475269,
+      "numerical_zero_excluded": 0,
+      "weighted_sum_rounded_for_log": 1003568,
+      "sha256": "1af8f7f95f6d477049c80302300e97ed2c0aa7f584a0595d61f78dea80057e38"
+    }
+  ],
+  "candidate_weighted_data_to_random_alpha": [
+    {
+      "survey": "observed",
+      "cap": "NGC",
+      "tracer": "LRG",
+      "candidate_weighted_alpha_rounded_for_log": 0.02040795202,
+      "elg_chunks": 0
+    },
+    {
+      "survey": "observed",
+      "cap": "NGC",
+      "tracer": "ELG",
+      "candidate_weighted_alpha_rounded_for_log": 0.02760209554,
+      "elg_chunks": 2
+    },
+    {
+      "survey": "observed",
+      "cap": "SGC",
+      "tracer": "LRG",
+      "candidate_weighted_alpha_rounded_for_log": 0.02007931133,
+      "elg_chunks": 0
+    },
+    {
+      "survey": "observed",
+      "cap": "SGC",
+      "tracer": "ELG",
+      "candidate_weighted_alpha_rounded_for_log": 0.02759386426,
+      "elg_chunks": 2
+    },
+    {
+      "survey": "realistic_mock",
+      "cap": "NGC",
+      "tracer": "LRG",
+      "candidate_weighted_alpha_rounded_for_log": 0.0482096954,
+      "elg_chunks": 0
+    },
+    {
+      "survey": "realistic_mock",
+      "cap": "NGC",
+      "tracer": "ELG",
+      "candidate_weighted_alpha_rounded_for_log": 0.03866115634,
+      "elg_chunks": 2
+    },
+    {
+      "survey": "realistic_mock",
+      "cap": "SGC",
+      "tracer": "LRG",
+      "candidate_weighted_alpha_rounded_for_log": 0.04646962329,
+      "elg_chunks": 0
+    },
+    {
+      "survey": "realistic_mock",
+      "cap": "SGC",
+      "tracer": "ELG",
+      "candidate_weighted_alpha_rounded_for_log": 0.03866439512,
+      "elg_chunks": 2
+    }
+  ],
+  "elg_random_candidate_CP_NOZ_unity_both_caps_and_mock": true,
+  "elg_per_chunk_normalizations_in_source_artifact": true,
+  "geometry": {
+    "primary": {
+      "name": "published_multitracer",
+      "h": 0.6777,
+      "omega_m": 0.307
+    },
+    "secondary": {
+      "name": "dr16_elg_bao",
+      "h": 0.676,
+      "omega_m": 0.31
+    },
+    "flat_matter_lambda_only_Tcmb0": 0,
+    "max_fractional_comoving_distance_difference_over_0p6_to_1p0": 0.0017524296694149122
+  },
+  "limitations": {
+    "only_mock_0001_contents_rechecked": true,
+    "mock_full_1000_not_checked": true,
+    "exact_common_mask_not_certified": true,
+    "production_rr_window_not_computed": true,
+    "data_galaxy_pair_counts_computed": false,
+    "observed_odd_vector_read": false,
+    "wake_template_tuned": false,
+    "cross_covariance_calculated": false
+  },
+  "scope_note": "The full artifact contains exact weighted sums, redshift-bin alpha values, ELG per-chunk alpha values, SHA256 and all numerical-zero magnitudes. This compact snapshot reproduces rounded workflow-log summary and exact threshold-gap magnitudes."
+}
