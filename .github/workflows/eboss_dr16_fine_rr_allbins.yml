@@ -1,0 +1,39 @@
+name: eBOSS DR16 all-bin fine-RR geometric closure
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/audit_eboss_dr16_fine_rr_allbins.py'
+      - '.github/workflows/eboss_dr16_fine_rr_allbins.yml'
+  workflow_dispatch:
+
+jobs:
+  allbin-fine-rr:
+    runs-on: ubuntu-latest
+    timeout-minutes: 115
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install pinned compiled DESI-compatible pair counter
+        run: |
+          python -m pip install --upgrade pip setuptools wheel
+          python -m pip install -r requirements-desi.txt
+      - name: Check synthetic all-bin fine-to-coarse closure
+        run: python scripts/audit_eboss_dr16_fine_rr_allbins.py --self-test
+      - name: Count full observed random RR on 1-Mpc grid in all four candidate z bins
+        run: |
+          python scripts/audit_eboss_dr16_fine_rr_allbins.py \
+            --threads 2 \
+            --out eboss_workspace/fine_rr_allbins_audit.json
+      - name: Retain all-bin fine RR counts and deterministic half-sample diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: eboss-dr16-fine-rr-allbins
+          path: |
+            eboss_workspace/fine_rr_allbins_audit.json
+            eboss_workspace/fine_rr_allbins_audit.npz
+          if-no-files-found: warn
