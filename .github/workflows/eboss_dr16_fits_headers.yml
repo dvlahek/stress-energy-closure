@@ -1,0 +1,33 @@
+name: eBOSS DR16 FITS header inventory
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/inspect_eboss_dr16_fits_headers.py'
+      - 'scripts/inspect_eboss_dr16_catalogues.py'
+      - '.github/workflows/eboss_dr16_fits_headers.yml'
+  workflow_dispatch:
+
+jobs:
+  headers:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Validate bounded FITS header reader with synthetic data
+        run: python scripts/inspect_eboss_dr16_fits_headers.py --self-test
+      - name: Read only official FITS headers
+        run: |
+          python scripts/inspect_eboss_dr16_fits_headers.py \
+            --out eboss_workspace/fits_header_inventory.json
+      - name: Retain header metadata
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: eboss-dr16-fits-headers
+          path: eboss_workspace/fits_header_inventory.json
+          if-no-files-found: warn
