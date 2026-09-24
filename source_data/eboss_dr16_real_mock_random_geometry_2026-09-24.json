@@ -1,0 +1,119 @@
+{
+  "snapshot_date": "2026-09-24",
+  "kind": "compact_selection_only_real_vs_realistic_mock_random_geometry_snapshot",
+  "source_script": "scripts/compare_eboss_dr16_random_geometry.py",
+  "source_workflow": "https://github.com/dvlahek/stress-energy-closure/actions/runs/35972116163",
+  "source_artifact": "https://github.com/dvlahek/stress-energy-closure/actions/runs/35972116163/artifacts/10796980063",
+  "source_commit": "6d1ae05e85ec220d390443abc2a67776245c1c14",
+  "status": "random_geometry_diagnostic_complete",
+  "candidate_z_interval": [
+    0.6,
+    1
+  ],
+  "candidate_z_interval_frozen": false,
+  "tracer_definition": "eBOSS_LRG x eBOSS_ELG",
+  "input_files_sha256_matched_to_retained_reference": {
+    "observed_random_files": 4,
+    "realistic_mock_random_files": 12
+  },
+  "mock_realization_ids": [
+    1,
+    500,
+    1000
+  ],
+  "sky_grid": {
+    "ra_step_deg": 0.5,
+    "sin_dec_step": 0.01,
+    "thresholds_in_real_equivalent_randoms": [
+      1,
+      5,
+      10,
+      15,
+      25,
+      50
+    ]
+  },
+  "comparison_definition": "Jaccard intersection-over-union of thresholded LRG-and-ELG random sky-pixel support. Mock counts are normalized to observed random totals separately by tracer, cap and candidate/redshift bin.",
+  "candidate_joint_support_threshold_15": [
+    {
+      "id": "0001",
+      "cap": "NGC",
+      "randoms_per_tracer_per_pixel_threshold": 15,
+      "rounded_jaccard": 0.989712,
+      "observed_joint_pixels": 970,
+      "density_normalized_mock_joint_pixels": 964
+    },
+    {
+      "id": "0001",
+      "cap": "SGC",
+      "randoms_per_tracer_per_pixel_threshold": 15,
+      "rounded_jaccard": 0.997756,
+      "observed_joint_pixels": 2228,
+      "density_normalized_mock_joint_pixels": 2223
+    },
+    {
+      "id": "0500",
+      "cap": "NGC",
+      "randoms_per_tracer_per_pixel_threshold": 15,
+      "rounded_jaccard": 0.992806,
+      "observed_joint_pixels": 970,
+      "density_normalized_mock_joint_pixels": 969
+    },
+    {
+      "id": "0500",
+      "cap": "SGC",
+      "randoms_per_tracer_per_pixel_threshold": 15,
+      "rounded_jaccard": 0.998654,
+      "observed_joint_pixels": 2228,
+      "density_normalized_mock_joint_pixels": 2227
+    },
+    {
+      "id": "1000",
+      "cap": "NGC",
+      "randoms_per_tracer_per_pixel_threshold": 15,
+      "rounded_jaccard": 0.987654,
+      "observed_joint_pixels": 970,
+      "density_normalized_mock_joint_pixels": 962
+    },
+    {
+      "id": "1000",
+      "cap": "SGC",
+      "randoms_per_tracer_per_pixel_threshold": 15,
+      "rounded_jaccard": 0.997756,
+      "observed_joint_pixels": 2228,
+      "density_normalized_mock_joint_pixels": 2223
+    }
+  ],
+  "upper_z_bin_0p9_to_1p0_rounded_jaccard_ranges": {
+    "NGC": {
+      "threshold_15": [
+        0.961841,
+        0.970852
+      ],
+      "threshold_25": [
+        0.845614,
+        0.863318
+      ]
+    },
+    "SGC": {
+      "threshold_15": [
+        0.943831,
+        0.964088
+      ],
+      "threshold_25": [
+        0.706587,
+        0.708848
+      ]
+    }
+  },
+  "interpretation": "The full candidate interval has close normalized mock-versus-real random support on the diagnostic grid, but upper-redshift-bin support is strongly threshold-sensitive. This diagnostic does not prove the continuous survey mask or pair-window model, especially at low random density.",
+  "limits": {
+    "source_artifact_contains_per_id_per_zbin_threshold_and_tracer_details": true,
+    "no_real_data_odd_vector_read": true,
+    "no_galaxy_pair_count": true,
+    "no_RR_pair_window": true,
+    "no_covariance_estimated": true,
+    "full_1000_mock_ensemble_not_validated": true,
+    "do_not_select_threshold_to_maximize_agreement": true
+  }
+}
