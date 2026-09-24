@@ -1,0 +1,59 @@
+name: eBOSS DR16 nine-mock matched-density and coarse radial control
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/audit_eboss_dr16_9mock_density_radial.py'
+      - '.github/workflows/eboss_dr16_9mock_density_radial.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  fixed-matched-density-radial:
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install SHA-pinned eBOSS numerical and FITS dependencies
+        run: |
+          python -m pip install --upgrade pip setuptools wheel
+          python -m pip install -r requirements-desi.txt
+      - name: Check exact-count, sky grid, and radial selection algebra
+        run: python scripts/audit_eboss_dr16_9mock_density_radial.py --self-test
+      - name: Retrieve pinned complete nine-mock window ensemble
+        run: |
+          gh run download 36017670812 --repo "$GITHUB_REPOSITORY" \
+            --name eboss-dr16-nine-mock-window-ensemble --dir ensemble
+          test -s ensemble/ninemock_window_ensemble.json
+      - name: Retrieve all nine fixed matching random-only mock shards
+        run: |
+          gh run download 36015246541 --repo "$GITHUB_REPOSITORY" --dir shards
+          for ID in 1 125 250 375 500 625 750 875 1000; do
+            for CAP in NGC SGC; do
+              test -s "shards/eboss-ninemock-window-id$ID/$CAP.json"
+              test -s "shards/eboss-ninemock-window-id$ID/$CAP.npz"
+            done
+          done
+      - name: Compare exact-count sky maps and coarse radial selection, randoms only
+        run: |
+          python scripts/audit_eboss_dr16_9mock_density_radial.py \
+            --ensemble-audit ensemble/ninemock_window_ensemble.json \
+            --shards-dir shards \
+            --out eboss_workspace/ninemock_density_radial.json
+      - name: Preserve complete fixed nine-mock diagnostics or failure evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: eboss-dr16-nine-mock-density-radial-control
+          path: eboss_workspace/ninemock_density_radial.json
+          if-no-files-found: warn
+          retention-days: 90
