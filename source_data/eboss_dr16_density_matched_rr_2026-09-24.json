@@ -1,0 +1,273 @@
+{
+  "snapshot_date": "2026-09-24",
+  "kind": "compact_preodd_exact_countmatched_observed_random_fine_RR_control",
+  "source_script": "scripts/audit_eboss_dr16_density_matched_fine_rr.py",
+  "source_workflow": "https://github.com/dvlahek/stress-energy-closure/actions/runs/35988843579",
+  "source_artifact": "https://github.com/dvlahek/stress-energy-closure/actions/runs/35988843579/artifacts/10803691864",
+  "source_commit": "3959cf5173299a9c7957c20d4b184c7573b75ce2",
+  "status": "density_matched_random_only_control_complete",
+  "input_fine_rr": "source_data/eboss_dr16_fine_rr_highz_2026-09-24.json",
+  "input_mock_fine_rr": "source_data/eboss_dr16_mock_fine_rr_3id_2026-09-24.json",
+  "preselected_mock_realization_ids": [
+    1,
+    500,
+    1000
+  ],
+  "candidate_redshift_interval": [
+    0.9,
+    1
+  ],
+  "fixed_random_drawing_seeds": [
+    4071,
+    8159,
+    12239,
+    16381
+  ],
+  "caps": [
+    "NGC",
+    "SGC"
+  ],
+  "exact_count_matching_per_mock_cap_tracer": true,
+  "per_draw_pair_weight_normalization": true,
+  "per_draw_Kish_weighted_effective_count_recorded_in_full_artifact": true,
+  "fine_s_step_mpc_over_h": 1,
+  "mu_bins": 240,
+  "per_case_summary": [
+    {
+      "cap": "NGC",
+      "mock_realization_id": 1,
+      "mock_vs_full_observed_normalized_fine_rr_relative_l1": 0.0132886762523544,
+      "count_matched_observed_thinning_relative_l1_range": [
+        0.005820211894941331,
+        0.006842275107895737
+      ]
+    },
+    {
+      "cap": "NGC",
+      "mock_realization_id": 500,
+      "mock_vs_full_observed_normalized_fine_rr_relative_l1": 0.011156118428114542,
+      "count_matched_observed_thinning_relative_l1_range": [
+        0.005742641053664339,
+        0.00724920641510388
+      ]
+    },
+    {
+      "cap": "NGC",
+      "mock_realization_id": 1000,
+      "mock_vs_full_observed_normalized_fine_rr_relative_l1": 0.01474406937702102,
+      "count_matched_observed_thinning_relative_l1_range": [
+        0.006437740812731859,
+        0.014283237194672862
+      ]
+    },
+    {
+      "cap": "SGC",
+      "mock_realization_id": 1,
+      "mock_vs_full_observed_normalized_fine_rr_relative_l1": 0.009072552599536121,
+      "count_matched_observed_thinning_relative_l1_range": [
+        0.0048226157433412025,
+        0.00681773214054742
+      ]
+    },
+    {
+      "cap": "SGC",
+      "mock_realization_id": 500,
+      "mock_vs_full_observed_normalized_fine_rr_relative_l1": 0.011625248137451333,
+      "count_matched_observed_thinning_relative_l1_range": [
+        0.004446842853111684,
+        0.006301190611438637
+      ]
+    },
+    {
+      "cap": "SGC",
+      "mock_realization_id": 1000,
+      "mock_vs_full_observed_normalized_fine_rr_relative_l1": 0.01457043142763517,
+      "count_matched_observed_thinning_relative_l1_range": [
+        0.0046813999516014905,
+        0.007834693766790711
+      ]
+    }
+  ],
+  "per_seed_summary": [
+    {
+      "cap": "NGC",
+      "mock_realization_id": 1,
+      "seed": 4071,
+      "thinned_observed_vs_full_observed_relative_l1": 0.006244993669471041,
+      "mock_vs_countmatched_observed_relative_l1": 0.014179542804484689
+    },
+    {
+      "cap": "NGC",
+      "mock_realization_id": 1,
+      "seed": 8159,
+      "thinned_observed_vs_full_observed_relative_l1": 0.005820211894941331,
+      "mock_vs_countmatched_observed_relative_l1": 0.015352268372787962
+    },
+    {
+      "cap": "NGC",
+      "mock_realization_id": 1,
+      "seed": 12239,
+      "thinned_observed_vs_full_observed_relative_l1": 0.006842275107895737,
+      "mock_vs_countmatched_observed_relative_l1": 0.01353247827377177
+    },
+    {
+      "cap": "NGC",
+      "mock_realization_id": 1,
+      "seed": 16381,
+      "thinned_observed_vs_full_observed_relative_l1": 0.006042934256525881,
+      "mock_vs_countmatched_observed_relative_l1": 0.015436567967011542
+    },
+    {
+      "cap": "NGC",
+      "mock_realization_id": 500,
+      "seed": 4071,
+      "thinned_observed_vs_full_observed_relative_l1": 0.00724920641510388,
+      "mock_vs_countmatched_observed_relative_l1": 0.014696884852315977
+    },
+    {
+      "cap": "NGC",
+      "mock_realization_id": 500,
+      "seed": 8159,
+      "thinned_observed_vs_full_observed_relative_l1": 0.006812120376609849,
+      "mock_vs_countmatched_observed_relative_l1": 0.014562198741770192
+    },
+    {
+      "cap": "NGC",
+      "mock_realization_id": 500,
+      "seed": 12239,
+      "thinned_observed_vs_full_observed_relative_l1": 0.005742641053664339,
+      "mock_vs_countmatched_observed_relative_l1": 0.012204501944455978
+    },
+    {
+      "cap": "NGC",
+      "mock_realization_id": 500,
+      "seed": 16381,
+      "thinned_observed_vs_full_observed_relative_l1": 0.006042724805119147,
+      "mock_vs_countmatched_observed_relative_l1": 0.013736613077049268
+    },
+    {
+      "cap": "NGC",
+      "mock_realization_id": 1000,
+      "seed": 4071,
+      "thinned_observed_vs_full_observed_relative_l1": 0.006437740812731859,
+      "mock_vs_countmatched_observed_relative_l1": 0.014573810186347859
+    },
+    {
+      "cap": "NGC",
+      "mock_realization_id": 1000,
+      "seed": 8159,
+      "thinned_observed_vs_full_observed_relative_l1": 0.014283237194672862,
+      "mock_vs_countmatched_observed_relative_l1": 0.02158267379508554
+    },
+    {
+      "cap": "NGC",
+      "mock_realization_id": 1000,
+      "seed": 12239,
+      "thinned_observed_vs_full_observed_relative_l1": 0.007617179371088075,
+      "mock_vs_countmatched_observed_relative_l1": 0.013526359527916346
+    },
+    {
+      "cap": "NGC",
+      "mock_realization_id": 1000,
+      "seed": 16381,
+      "thinned_observed_vs_full_observed_relative_l1": 0.007968214702101994,
+      "mock_vs_countmatched_observed_relative_l1": 0.013952998859617932
+    },
+    {
+      "cap": "SGC",
+      "mock_realization_id": 1,
+      "seed": 4071,
+      "thinned_observed_vs_full_observed_relative_l1": 0.006638382765509175,
+      "mock_vs_countmatched_observed_relative_l1": 0.01037946350372211
+    },
+    {
+      "cap": "SGC",
+      "mock_realization_id": 1,
+      "seed": 8159,
+      "thinned_observed_vs_full_observed_relative_l1": 0.0061450890612348525,
+      "mock_vs_countmatched_observed_relative_l1": 0.012545940400002996
+    },
+    {
+      "cap": "SGC",
+      "mock_realization_id": 1,
+      "seed": 12239,
+      "thinned_observed_vs_full_observed_relative_l1": 0.00681773214054742,
+      "mock_vs_countmatched_observed_relative_l1": 0.009615785134968104
+    },
+    {
+      "cap": "SGC",
+      "mock_realization_id": 1,
+      "seed": 16381,
+      "thinned_observed_vs_full_observed_relative_l1": 0.0048226157433412025,
+      "mock_vs_countmatched_observed_relative_l1": 0.009785329837281552
+    },
+    {
+      "cap": "SGC",
+      "mock_realization_id": 500,
+      "seed": 4071,
+      "thinned_observed_vs_full_observed_relative_l1": 0.004446842853111684,
+      "mock_vs_countmatched_observed_relative_l1": 0.013187908314843497
+    },
+    {
+      "cap": "SGC",
+      "mock_realization_id": 500,
+      "seed": 8159,
+      "thinned_observed_vs_full_observed_relative_l1": 0.004916513251900104,
+      "mock_vs_countmatched_observed_relative_l1": 0.013394946416783664
+    },
+    {
+      "cap": "SGC",
+      "mock_realization_id": 500,
+      "seed": 12239,
+      "thinned_observed_vs_full_observed_relative_l1": 0.006301190611438637,
+      "mock_vs_countmatched_observed_relative_l1": 0.014153791615836301
+    },
+    {
+      "cap": "SGC",
+      "mock_realization_id": 500,
+      "seed": 16381,
+      "thinned_observed_vs_full_observed_relative_l1": 0.0048223281578915166,
+      "mock_vs_countmatched_observed_relative_l1": 0.011403397661300866
+    },
+    {
+      "cap": "SGC",
+      "mock_realization_id": 1000,
+      "seed": 4071,
+      "thinned_observed_vs_full_observed_relative_l1": 0.004825319976456432,
+      "mock_vs_countmatched_observed_relative_l1": 0.014143934220001514
+    },
+    {
+      "cap": "SGC",
+      "mock_realization_id": 1000,
+      "seed": 8159,
+      "thinned_observed_vs_full_observed_relative_l1": 0.0046813999516014905,
+      "mock_vs_countmatched_observed_relative_l1": 0.014870603027725075
+    },
+    {
+      "cap": "SGC",
+      "mock_realization_id": 1000,
+      "seed": 12239,
+      "thinned_observed_vs_full_observed_relative_l1": 0.007834693766790711,
+      "mock_vs_countmatched_observed_relative_l1": 0.02115284406816834
+    },
+    {
+      "cap": "SGC",
+      "mock_realization_id": 1000,
+      "seed": 16381,
+      "thinned_observed_vs_full_observed_relative_l1": 0.007256391733039001,
+      "mock_vs_countmatched_observed_relative_l1": 0.02022919338111269
+    }
+  ],
+  "predeclared_even_to_odd_radial_ramp_probe_comparisons_in_source_artifact": true,
+  "limits": {
+    "four_draws_from_shared_observed_random_catalogue_not_independent_ensembles": true,
+    "matching_raw_count_not_same_as_matching_weighted_effective_count": true,
+    "mock_internal_finite_random_noise_not_estimated_by_this_audit": true,
+    "no_inferential_p_value_or_mock_adequacy_verdict": true,
+    "no_real_or_mock_galaxy_pairs": true,
+    "no_observed_odd_vector": true,
+    "no_wake_template_tuning": true,
+    "no_cross_covariance": true
+  },
+  "note": "The full JSON artifact records exact target LRG/ELG row counts, source file SHA256s, sampled row-index hashes and sumw, Kish N_eff, 24 fine RR comparisons, and six predeclared even-to-odd ramp operator probes per draw."
+}
