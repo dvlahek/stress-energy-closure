@@ -1,0 +1,68 @@
+name: eBOSS DR16 nine-mock random-only window pilot
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/audit_eboss_dr16_9mock_rr_shard.py'
+      - '.github/workflows/eboss_dr16_9mock_rr_window.yml'
+      - 'source_data/eboss_dr16_predeclared_9mock_window_pilot_2026-09-24.json'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  mock-synthetic-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install pinned production pair-counting dependencies
+        run: |
+          python -m pip install --upgrade pip setuptools wheel
+          python -m pip install -r requirements-desi.txt
+      - name: Independent finite-bin mock input and operator unit tests
+        run: python scripts/audit_eboss_dr16_9mock_rr_shard.py --self-test
+
+  per-realization:
+    needs: mock-synthetic-gate
+    runs-on: ubuntu-latest
+    timeout-minutes: 110
+    strategy:
+      fail-fast: false
+      max-parallel: 9
+      matrix:
+        mock_id: [1, 125, 250, 375, 500, 625, 750, 875, 1000]
+    env:
+      MOCK_ID: ${{ matrix.mock_id }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install pinned numerical and Corrfunc stack
+        run: |
+          python -m pip install --upgrade pip setuptools wheel
+          python -m pip install -r requirements-desi.txt
+      - name: Validate matched random FITS and measure NGC and SGC high-z RR
+        run: |
+          mkdir -p results
+          for CAP in NGC SGC; do
+            python scripts/audit_eboss_dr16_9mock_rr_shard.py \
+              --mock-id "$MOCK_ID" --cap "$CAP" --threads 2 \
+              --cache-dir eboss_workspace/ninemock_fits \
+              --out "results/$CAP.json"
+          done
+      - name: Preserve both cap-shards including partial failure evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: eboss-ninemock-window-id${{ matrix.mock_id }}
+          path: results/
+          if-no-files-found: warn
+          retention-days: 90
