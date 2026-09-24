@@ -27,6 +27,7 @@ from inspect_eboss_dr16_selection import WEIGHTS, Z_EDGES
 ROOT = Path(__file__).resolve().parents[1]
 REFERENCE = ROOT / "source_data/eboss_dr16_data_selection_audit_2026-09-24.json"
 CANDIDATE_LO, CANDIDATE_HI = 0.6, 1.0
+NUMERICAL_ZERO_WEIGHT_TOL = 1e-12
 
 
 def fetch_data(url: str, destination: Path, byte_limit: int, timeout: float
@@ -103,9 +104,12 @@ def inspect(path: Path, tracer: str, cap: str, rid: int,
             for lo, hi in zip(Z_EDGES[:-1], Z_EDGES[1:])
         ]
         wdiag = {}
+        retained_candidate = candidate.copy()
         for name in WEIGHTS:
             w = np.asarray(table.data[name], dtype=np.float64)
             finite = np.isfinite(w)
+            lower = NUMERICAL_ZERO_WEIGHT_TOL if name == "WEIGHT_SYSTOT" else 0.0
+            retained_candidate &= finite & (w > lower)
             wdiag[name] = {
                 "nonfinite_rows": int(np.count_nonzero(~finite)),
                 "nonpositive_rows": int(np.count_nonzero(finite & (w <= 0))),
@@ -134,6 +138,10 @@ def inspect(path: Path, tracer: str, cap: str, rid: int,
             "header_rows": int(table.header["NAXIS2"]),
             "invalid_coordinate_z_rows": int(np.count_nonzero(~valid)),
             "candidate_0p6_to_1p0_rows": int(np.count_nonzero(candidate)),
+            "candidate_retained_after_numerical_zero_selection": int(
+                np.count_nonzero(retained_candidate)),
+            "candidate_excluded_by_numerical_zero_selection": int(
+                np.count_nonzero(candidate & ~retained_candidate)),
             "raw_zbin_counts": zcounts,
             "weight_column_diagnostics": wdiag,
             "candidate_coarse_data_occupied_cells": len(pixels),
@@ -217,21 +225,34 @@ def main() -> int:
     complete = len(records) == len(ids) * len(CAPS) * len(TRACERS) and not errors
     health = all(
         rec["invalid_coordinate_z_rows"] == 0 and
-        all(x["nonfinite_candidate_rows"] == 0 and
-            x["nonpositive_candidate_rows"] == 0 and
-            x["near_zero_candidate_rows_abs_le_1e_20"] == 0
-            for x in rec["weight_column_diagnostics"].values())
+        all(
+            x["nonfinite_candidate_rows"] == 0 and (
+                (x["near_zero_candidate_rows_abs_le_1e_20"] ==
+                 x["near_zero_candidate_rows_abs_le_1e_12"] and
+                 x["nonpositive_candidate_rows"] <=
+                 x["near_zero_candidate_rows_abs_le_1e_12"])
+                if name == "WEIGHT_SYSTOT"
+                else (x["nonpositive_candidate_rows"] == 0 and
+                      x["near_zero_candidate_rows_abs_le_1e_12"] == 0))
+            for name, x in rec["weight_column_diagnostics"].items())
         for rec in records
     )
     report = {
         "study": "eBOSS DR16 realistic EZmock data-only selection sample",
         "revision_commit": os.environ.get("GITHUB_SHA"),
         "release_url": BASE, "realization_ids_checked": ids,
-        "status": ("sample_candidate_weights_healthy" if complete and health
-                   else "candidate_weight_policy_unresolved" if complete
-                   else "partial"),
+        "status": ("sample_candidate_selection_validated_with_numerical_zero_convention"
+                   if complete and health else "candidate_weight_policy_unresolved"
+                   if complete else "partial"),
         "candidate_z_interval": [CANDIDATE_LO, CANDIDATE_HI],
         "candidate_z_interval_frozen": False,
+        "numerical_zero_weight_convention": {
+            "column": "WEIGHT_SYSTOT",
+            "exclude_if_weight_le": NUMERICAL_ZERO_WEIGHT_TOL,
+            "same_selection_required_on_real_and_mock_data_and_randoms": True,
+            "applied_to_published_real_and_mock_randoms_here": False,
+            "rule_is_pre_odd_sector_and_not_a_template_fit": True,
+        },
         "real_data_selection_reference": str(REFERENCE.relative_to(ROOT)),
         "mock_data_catalogues": records,
         "coarse_data_occupancy_by_realization_cap": joint,
@@ -240,8 +261,12 @@ def main() -> int:
         "mock_covariance_estimated": False,
         "real_data_odd_vector_inspected": False,
         "note": "The three checked realization IDs sample released mock data only. "
-                "Counts, n(z) and coarse occupancy do not certify paired mock random "
-                "selection or the adequacy of the ensemble covariance.",
+                "Weights with absolute magnitude <= 1e-12 are separated from the "
+                "other candidate WEIGHT_SYSTOT values by the recorded numerical gap. "
+                "This candidate-only rule is a proposed input-sanitization convention; "
+                "it must also be checked against data and matched mock randoms before "
+                "the protocol is frozen. Counts, n(z) and coarse occupancy do not "
+                "certify the joint mock selection or covariance.",
     }
     target = Path(args.out)
     target.parent.mkdir(parents=True, exist_ok=True)
