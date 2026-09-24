@@ -1,0 +1,34 @@
+{
+  "snapshot_date": "2026-09-24",
+  "kind": "curated_compact_snapshot_of_read_only_directory_audit",
+  "release_url": "https://data.sdss.org/sas/dr17/eboss/lss/EZmocks/",
+  "release_version": "v1_0_0",
+  "analysis_role": "prospective_eBOSS_DR16_LRG_ELG_mock_discovery",
+  "audited_workflow_run": "https://github.com/dvlahek/stress-energy-closure/actions/runs/35966739277",
+  "audit_script": "scripts/audit_eboss_dr16_mock_pairs.py",
+  "status": "filename_sets_complete",
+  "total_public_mock_data_and_random_files_listed": 36010,
+  "listing_paths_sha256": "f3caa2f09e4e03bb9fc7fd08a72aabb8534ae12437afc6f6ff610daa70f8c7ff",
+  "fingerprint_definition": "SHA256 of the lexicographically sorted relative paths to the 36010 identified catalogue-like files, joined with newline and terminated with newline; not a checksum of FITS contents",
+  "expected_ids": {
+    "first": 1,
+    "last": 1000
+  },
+  "matched_lrg_elg_tracer_and_random_ids_by_mode_and_cap": {
+    "complete": {
+      "NGC": 1000,
+      "SGC": 1000
+    },
+    "realistic": {
+      "NGC": 1000,
+      "SGC": 1000
+    }
+  },
+  "realistic_random_mode": "per-realization tracer-specific random FITS",
+  "complete_random_mode": "per-realization shuffled random FITS and separately released tracer/cap common random FITS",
+  "released_file_contents_validated": false,
+  "physical_common_initial_conditions_verified_from_files": false,
+  "mock_selection_and_weights_verified": false,
+  "cross_tracer_covariance_computed": false,
+  "interpretation": "The public release has matching LRG and ELG data and corresponding random filenames for all realization IDs 0001-1000 in both caps. This confirms filename-level pairing only; it does not certify mock contents, selection or covariance."
+}
