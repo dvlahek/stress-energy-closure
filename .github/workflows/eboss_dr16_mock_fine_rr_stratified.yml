@@ -1,0 +1,65 @@
+name: eBOSS DR16 stratified mock fine-RR follow-up
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/eboss_dr16_mock_fine_rr_stratified.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  stratified-fine-mock:
+    runs-on: ubuntu-latest
+    timeout-minutes: 110
+    env:
+      GH_TOKEN: ${{ github.token }}
+      SOURCE_WORKFLOW_RUN: '35983196267'
+      SOURCE_WORKFLOW_SHA: '5dbfca45c25c7af57bf05693022bfa98b499209d'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install pinned compiled pair-counter dependencies
+        run: |
+          python -m pip install --upgrade pip setuptools wheel
+          python -m pip install -r requirements-desi.txt
+      - name: Verify mock normalization and conditional response on synthetic data
+        run: python scripts/compare_eboss_dr16_mock_fine_rr.py --self-test
+      - name: Retrieve validated observed fine RR once
+        run: |
+          gh run download "$SOURCE_WORKFLOW_RUN" \
+            --repo "$GITHUB_REPOSITORY" \
+            --name eboss-dr16-fine-rr-highz \
+            --dir fine_rr_input
+          test -s fine_rr_input/fine_rr_highz_audit.json
+          test -s fine_rr_input/fine_rr_highz_audit.npz
+      - name: Audit preselected realistic mock ID 0500 without galaxy pairs
+        run: |
+          python scripts/compare_eboss_dr16_mock_fine_rr.py \
+            --observed-rr fine_rr_input/fine_rr_highz_audit.npz \
+            --observed-audit fine_rr_input/fine_rr_highz_audit.json \
+            --mock-id 500 --threads 2 \
+            --out eboss_workspace/matched_mock_fine_rr_0500.json
+      - name: Audit preselected realistic mock ID 1000 without galaxy pairs
+        run: |
+          python scripts/compare_eboss_dr16_mock_fine_rr.py \
+            --observed-rr fine_rr_input/fine_rr_highz_audit.npz \
+            --observed-audit fine_rr_input/fine_rr_highz_audit.json \
+            --mock-id 1000 --threads 2 \
+            --out eboss_workspace/matched_mock_fine_rr_1000.json
+      - name: Retain both matched fine RR audits and raw random-only histograms
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: eboss-dr16-stratified-matched-mock-fine-rr
+          path: |
+            eboss_workspace/matched_mock_fine_rr_0500.json
+            eboss_workspace/matched_mock_fine_rr_0500.npz
+            eboss_workspace/matched_mock_fine_rr_1000.json
+            eboss_workspace/matched_mock_fine_rr_1000.npz
+          if-no-files-found: warn
