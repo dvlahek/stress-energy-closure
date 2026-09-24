@@ -42,7 +42,9 @@ def classify(name):
         return None
 
     tracer = None
-    if re.search(r"eboss[_-]lrg[_-]clustering", lower):
+    if re.search(r"eboss[_-]lrgpcmass[_-]clustering", lower):
+        tracer = "LRGpCMASS"
+    elif re.search(r"eboss[_-]lrg[_-]clustering", lower):
         tracer = "LRG"
     elif re.search(r"eboss[_-]elg[_-]clustering", lower):
         tracer = "ELG"
@@ -85,12 +87,34 @@ def read_index(url: str) -> dict:
                 classified.append({"name": name, "url": file_url,
                                    "tracer": tracer, "cap": cap, "role": role})
     found.sort(key=lambda item: item["name"].lower())
+    available = {(item["tracer"], item["cap"], item["role"]) for item in classified}
+    required = [
+        (tracer, cap, role)
+        for tracer in ("LRGpCMASS", "ELG")
+        for cap in ("NGC", "SGC")
+        for role in ("data", "random")
+    ]
+    missing = [
+        {"tracer": tracer, "cap": cap, "role": role}
+        for tracer, cap, role in required
+        if (tracer, cap, role) not in available
+    ]
     return {
         "requested_url": url,
         "effective_url": effective_url,
         "content_type": content_type,
         "matched_links": found,
         "classified_catalogues": sorted(classified, key=lambda item: item["name"].lower()),
+        "replication_sample_check": {
+            "required_tracers": ["LRGpCMASS", "ELG"],
+            "complete": not missing,
+            "missing": missing,
+            "note": (
+                "LRGpCMASS is the combined BOSS CMASS plus eBOSS LRG sample specified in "
+                "the replication protocol. The pure eBOSS LRG catalogue is listed separately "
+                "and is not used as a substitute."
+            ),
+        },
         "note": (
             "The directory listing is a catalogue-discovery aid. File versions, "
             "tracer samples and columns must be checked before pair counting."
