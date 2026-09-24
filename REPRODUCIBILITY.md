@@ -81,6 +81,10 @@ A response-independent orthogonal direction gives a qualitative cross-check with
 
 A separate kSZ-tagged screening control adds one line-of-sight velocity weight to the wake kernel. At `z=0.3` and `sigma_v=200 km/s`, the untagged and tagged pair fractions are `0.461688` and `0.499525`, an `8.20%` gain. Across the tested grid, the gain remains below `13.16%`. This is a kernel-level screening control, not an absolute kSZ survey forecast.
 
+## Retained summaries and regenerated outputs
+
+The final source-data manifests and compact validation summaries preserve the reported numerical results and provenance. Some are publication summaries assembled from raw runner outputs; they are not interchangeable with those runners' JSON output schemas. In particular, the octupole runner writes `summary_octupole_control.json`, while the repository retains `source_data/phase7_octupole_control/summary_octupole_control_compact.json`. Compare the corresponding numerical quantities when regenerating the analysis; do not overwrite the retained compact summary with a raw output file. The octupole directory keeps the original-run checksum list separately from the checksums of the six files currently released.
+
 ## Observational reruns
 
 The observational definitions, validation analyses and local execution instructions are in `docs/OBSERVATIONAL_REPRODUCIBILITY.md`.
