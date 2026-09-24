@@ -1,0 +1,249 @@
+{
+  "snapshot_date": "2026-09-24",
+  "kind": "compact_provenance_full_observed_eBOSS_candidate_bin_RR",
+  "source_workflow": "https://github.com/dvlahek/stress-energy-closure/actions/runs/35980901380",
+  "source_artifact": "https://github.com/dvlahek/stress-energy-closure/actions/runs/35980901380/artifacts/10799863889",
+  "source_commit": "eab30356c5cab01cba8131e7c460bf8e32a5a90c",
+  "source_script": "scripts/audit_eboss_dr16_full_random_rr.py",
+  "status": "full_observed_random_candidate_bin_RR_computed",
+  "redshift_interval_candidate_not_frozen": [
+    0.6,
+    1
+  ],
+  "bins_per_cap": 4,
+  "caps": [
+    "NGC",
+    "SGC"
+  ],
+  "s_edges_mpc_over_h": [
+    20,
+    40,
+    60,
+    80,
+    100,
+    120,
+    140
+  ],
+  "mu_bins": 240,
+  "orientation": "LRG_to_ELG",
+  "los": "midpoint",
+  "weights": "WEIGHT_SYSTOT*WEIGHT_CP*WEIGHT_NOZ*WEIGHT_FKP with audited numerical-zero exclusion",
+  "distance_primary": {
+    "h": 0.6777,
+    "Om0": 0.307,
+    "Tcmb0": 0
+  },
+  "distance_secondary_high_z_only": {
+    "h": 0.676,
+    "Om0": 0.31,
+    "Tcmb0": 0
+  },
+  "file_sha256_source": "source_data/eboss_dr16_weighted_normalization_2026-09-24.json",
+  "input_random_redshift_counts": [
+    {
+      "cap": "NGC",
+      "tracer": "LRG",
+      "zlo": 0.6,
+      "zhi": 0.7,
+      "input_rows": 1865395,
+      "retained_rows": 1865337
+    },
+    {
+      "cap": "NGC",
+      "tracer": "LRG",
+      "zlo": 0.7,
+      "zhi": 0.8,
+      "input_rows": 2032468,
+      "retained_rows": 2032468
+    },
+    {
+      "cap": "NGC",
+      "tracer": "LRG",
+      "zlo": 0.8,
+      "zhi": 0.9,
+      "input_rows": 1187341,
+      "retained_rows": 1187341
+    },
+    {
+      "cap": "NGC",
+      "tracer": "LRG",
+      "zlo": 0.9,
+      "zhi": 1,
+      "input_rows": 375515,
+      "retained_rows": 375515
+    },
+    {
+      "cap": "NGC",
+      "tracer": "ELG",
+      "zlo": 0.6,
+      "zhi": 0.7,
+      "input_rows": 209800,
+      "retained_rows": 209800
+    },
+    {
+      "cap": "NGC",
+      "tracer": "ELG",
+      "zlo": 0.7,
+      "zhi": 0.8,
+      "input_rows": 1067533,
+      "retained_rows": 1067533
+    },
+    {
+      "cap": "NGC",
+      "tracer": "ELG",
+      "zlo": 0.8,
+      "zhi": 0.9,
+      "input_rows": 1362767,
+      "retained_rows": 1362767
+    },
+    {
+      "cap": "NGC",
+      "tracer": "ELG",
+      "zlo": 0.9,
+      "zhi": 1,
+      "input_rows": 762827,
+      "retained_rows": 762827
+    },
+    {
+      "cap": "SGC",
+      "tracer": "LRG",
+      "zlo": 0.6,
+      "zhi": 0.7,
+      "input_rows": 1283232,
+      "retained_rows": 1283232
+    },
+    {
+      "cap": "SGC",
+      "tracer": "LRG",
+      "zlo": 0.7,
+      "zhi": 0.8,
+      "input_rows": 1254378,
+      "retained_rows": 1254378
+    },
+    {
+      "cap": "SGC",
+      "tracer": "LRG",
+      "zlo": 0.8,
+      "zhi": 0.9,
+      "input_rows": 700981,
+      "retained_rows": 700981
+    },
+    {
+      "cap": "SGC",
+      "tracer": "LRG",
+      "zlo": 0.9,
+      "zhi": 1,
+      "input_rows": 214862,
+      "retained_rows": 214862
+    },
+    {
+      "cap": "SGC",
+      "tracer": "ELG",
+      "zlo": 0.6,
+      "zhi": 0.7,
+      "input_rows": 217339,
+      "retained_rows": 217339
+    },
+    {
+      "cap": "SGC",
+      "tracer": "ELG",
+      "zlo": 0.7,
+      "zhi": 0.8,
+      "input_rows": 1197880,
+      "retained_rows": 1197880
+    },
+    {
+      "cap": "SGC",
+      "tracer": "ELG",
+      "zlo": 0.8,
+      "zhi": 0.9,
+      "input_rows": 1278687,
+      "retained_rows": 1278687
+    },
+    {
+      "cap": "SGC",
+      "tracer": "ELG",
+      "zlo": 0.9,
+      "zhi": 1,
+      "input_rows": 620263,
+      "retained_rows": 620263
+    }
+  ],
+  "full_vs_deterministic_disjoint_halves_relative_l1": [
+    {
+      "cap": "NGC",
+      "zlo": 0.6,
+      "zhi": 0.7,
+      "halfA_vs_full_relative_l1": 0.004641338335527332,
+      "halfB_vs_full_relative_l1": 0.004596565077161508
+    },
+    {
+      "cap": "NGC",
+      "zlo": 0.7,
+      "zhi": 0.8,
+      "halfA_vs_full_relative_l1": 0.0014255123403837339,
+      "halfB_vs_full_relative_l1": 0.001410873835558336
+    },
+    {
+      "cap": "NGC",
+      "zlo": 0.8,
+      "zhi": 0.9,
+      "halfA_vs_full_relative_l1": 0.0051814899163788635,
+      "halfB_vs_full_relative_l1": 0.005186683842751699
+    },
+    {
+      "cap": "NGC",
+      "zlo": 0.9,
+      "zhi": 1,
+      "halfA_vs_full_relative_l1": 0.0021512134281235465,
+      "halfB_vs_full_relative_l1": 0.002162313517451483
+    },
+    {
+      "cap": "SGC",
+      "zlo": 0.6,
+      "zhi": 0.7,
+      "halfA_vs_full_relative_l1": 0.0016155863707741091,
+      "halfB_vs_full_relative_l1": 0.0016479705978575975
+    },
+    {
+      "cap": "SGC",
+      "zlo": 0.7,
+      "zhi": 0.8,
+      "halfA_vs_full_relative_l1": 0.0012955676611674757,
+      "halfB_vs_full_relative_l1": 0.0013079868478497571
+    },
+    {
+      "cap": "SGC",
+      "zlo": 0.8,
+      "zhi": 0.9,
+      "halfA_vs_full_relative_l1": 0.0007476907359119336,
+      "halfB_vs_full_relative_l1": 0.0007190301174268869
+    },
+    {
+      "cap": "SGC",
+      "zlo": 0.9,
+      "zhi": 1,
+      "halfA_vs_full_relative_l1": 0.0048319329125442526,
+      "halfB_vs_full_relative_l1": 0.004833070593527405
+    }
+  ],
+  "all_8_full_histograms_have_all_1440_smu_cells_nonzero": true,
+  "secondary_high_z_relative_l1_from_full_artifact": {
+    "NGC": 0.00521992,
+    "SGC": 0.0049496
+  },
+  "source_artifact_contents": [
+    "full_random_rr_audit.json",
+    "full_random_rr_audit.npz"
+  ],
+  "limitations": {
+    "not_fine_separation_window": true,
+    "no_mock_RR_window": true,
+    "no_even_to_odd_forward_model": true,
+    "no_observed_galaxy_pairs": true,
+    "no_odd_data_vector_read": true,
+    "no_covariance": true,
+    "candidate_z_bins_not_frozen": true
+  },
+  "scope_note": "Full observed random-only candidate pair histograms are input to a later finite-bin forward model, not an inferred eBOSS odd-sector measurement. Half-sample comparisons assess raw RR sampling, not nuisance or theoretical-window error."
+}
