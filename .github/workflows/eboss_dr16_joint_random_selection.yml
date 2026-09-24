@@ -1,0 +1,36 @@
+name: eBOSS DR16 joint random selection
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/inspect_eboss_dr16_joint_randoms.py'
+      - '.github/workflows/eboss_dr16_joint_random_selection.yml'
+  workflow_dispatch:
+
+jobs:
+  random-selection:
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install FITS and array readers
+        run: python -m pip install 'numpy>=1.24' 'astropy>=5.3'
+      - name: Verify diagnostic geometry without accessing catalogues
+        run: python scripts/inspect_eboss_dr16_joint_randoms.py --self-test
+      - name: Verify published randoms and gridded joint selection
+        run: |
+          python scripts/inspect_eboss_dr16_joint_randoms.py \
+            --out eboss_workspace/joint_random_selection_audit.json \
+            --cache-dir eboss_workspace/public_random_catalogues \
+            --max-file-mib 1024 --chunk-rows 200000
+      - name: Retain selection metadata only
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: eboss-dr16-joint-random-selection
+          path: eboss_workspace/joint_random_selection_audit.json
+          if-no-files-found: warn
