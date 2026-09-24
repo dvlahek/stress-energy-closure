@@ -603,6 +603,8 @@ def run(args):
         "note":"Random-only normalized weighted n(z), not galaxy odd signal; ELG chunks compared only for exact shared labels. Larger full cohort, official veto mask and pair estimator remain independent requirements."
     }
     json_write_atomic(out_dir/"fine_weighted_nz_summary.json",report)
+    # A successful new report supersedes any error marker from an earlier run.
+    (out_dir/"fine_weighted_nz_failure.json").unlink(missing_ok=True)
     print("EBOSS_FINE_WEIGHTED_NZ",report["status"],len(cases),flush=True)
 
 
