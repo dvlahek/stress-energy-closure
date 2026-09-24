@@ -1,14 +1,10 @@
 #!/usr/bin/env python3
-"""Exploratory DESI DR1 odd-octupole consistency control.
+"""DESI DR1 luminosity-rank odd-octupole consistency test.
 
-This script freezes the Phase-7 five-tracer luminosity-rank sample and pair
-sampling used by desi_dr1_phase7_multitracer_fullsample.py, then measures both
-the odd dipole (ell=1) and the odd octupole (ell=3) from the same sampled pair
-geometry.
-
-The octupole is a null/consistency observable only. No wake template is fit to
-ell=3. The predeclared primary test is the global permutation-calibrated
-Mahalanobis p-value of the null-corrected octupole.
+We measure the dipole and octupole on the same pair sample and evaluate the
+18-component octupole against the within-stratum permutation distribution.
+We do not fit a physical wake template to the octupole. The dipole comparison
+uses the recorded 32-permutation reference from this control analysis.
 """
 from __future__ import annotations
 
@@ -148,7 +144,7 @@ def main():
     ap.add_argument("--data", nargs="+", required=True)
     ap.add_argument("--random", nargs="+", required=True)
     ap.add_argument("--outdir", required=True)
-    ap.add_argument("--reference-dipole", default="source_data/wake_phase7_multitracer_real_vector.csv")
+    ap.add_argument("--reference-dipole", default="source_data/phase7_octupole_control/reference_dipole_32perm.csv")
     ap.add_argument("--zmin", type=float, default=0.10)
     ap.add_argument("--zmax", type=float, default=0.40)
     ap.add_argument("--dz-proxy", type=float, default=0.02)
@@ -289,9 +285,9 @@ def main():
 
     summary = {
         "scope": (
-            "Exploratory orthogonal odd-sector control on the frozen DESI DR1 BGS "
-            "five-tracer luminosity-rank sample. The ell=3 octupole is tested only "
-            "against a permutation null; no physical wake template is fit to ell=3."
+            "Odd-octupole consistency test on the DESI DR1 BGS "
+            "five-tracer luminosity-rank sample. The ell=3 octupole is tested "
+            "against its permutation distribution; no wake template is fitted to ell=3."
         ),
         "predeclared_before_data_inspection": {
             "primary_observable": "odd octupole ell=3",
@@ -301,7 +297,7 @@ def main():
                 "empirical p >= 0.05: consistent with null; empirical p < 0.05: "
                 "investigate survey/estimator systematics before any physical interpretation"
             ),
-            "dipole_role": "reproduction/control only",
+            "dipole_role": "reference-vector reproduction test",
             "no_octupole_wake_template_fit": True
         },
         "configuration": {
@@ -341,10 +337,10 @@ def main():
             "max_abs_single_bin_index": int(test3["max_abs_single_bin_index"])
         },
         "proxy_strata": proxy_info,
-        "interpretation_guardrail": (
-            "This test is not a second neutrino-wake measurement. It is an orthogonal "
-            "odd-multipole null/control using exactly the same frozen tracer sample and "
-            "sampled pair geometry as the Phase-7 dipole analysis."
+        "analysis_scope": (
+            "The octupole is a separate odd-multipole consistency observable. "
+            "The dipole reference uses the corresponding 32-permutation realization; "
+            "the primary DESI dipole coefficient uses 256 permutations."
         )
     }
     (out / "summary_octupole_control.json").write_text(json.dumps(summary, indent=2) + "\n")
