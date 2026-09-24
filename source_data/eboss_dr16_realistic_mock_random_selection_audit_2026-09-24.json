@@ -1,0 +1,209 @@
+{
+  "snapshot_date": "2026-09-24",
+  "kind": "compact_evidence_from_full_realistic_EZmock_random_input_audit",
+  "source_workflow": "https://github.com/dvlahek/stress-energy-closure/actions/runs/35971623535",
+  "source_artifact": "https://github.com/dvlahek/stress-energy-closure/actions/runs/35971623535/artifacts/10795843202",
+  "source_commit": "3888d35f56a8ed1b3cdc44f809547a751b237ac1",
+  "source_script": "scripts/inspect_eboss_dr16_mock_randoms.py",
+  "release": "https://data.sdss.org/sas/dr17/eboss/lss/EZmocks/v1_0_0/realistic/",
+  "status": "mock_random_sample_selection_compatible",
+  "sample_realization_ids": [
+    1,
+    500,
+    1000
+  ],
+  "cap_names": [
+    "NGC",
+    "SGC"
+  ],
+  "tracer_definition": "eBOSS_LRG and eBOSS_ELG, not LRGpCMASS",
+  "candidate_z_interval": [
+    0.6,
+    1
+  ],
+  "candidate_z_interval_frozen": false,
+  "proposed_input_rule": {
+    "column": "WEIGHT_SYSTOT",
+    "numerical_zero_abs_tolerance": 1e-12,
+    "verified_abs_le_1e_20_equals_abs_le_1e_12_in_sample": true,
+    "no_significantly_negative_candidate_weights_in_sample": true,
+    "other_required_weights_positive_finite_in_candidate": true,
+    "full_ensemble_validation_required": true
+  },
+  "mock_random_catalogues": [
+    {
+      "id": "0001",
+      "tracer": "LRG",
+      "cap": "NGC",
+      "header_rows": 2798889,
+      "candidate_random_rows": 2390486,
+      "candidate_zero_weight_exclusions": 15,
+      "compressed_file_sha256": "2f7966ab7de195353cf4d0b14f0fe4d14e4633cef5d156722e8a822518893dca"
+    },
+    {
+      "id": "0001",
+      "tracer": "ELG",
+      "cap": "NGC",
+      "header_rows": 2553832,
+      "candidate_random_rows": 2331837,
+      "candidate_zero_weight_exclusions": 0,
+      "compressed_file_sha256": "c36c4ad26ee62696c0df99c6106c895a6931bdc56e84164e0a52b55f0e88c1c9"
+    },
+    {
+      "id": "0001",
+      "tracer": "LRG",
+      "cap": "SGC",
+      "header_rows": 1850003,
+      "candidate_random_rows": 1529711,
+      "candidate_zero_weight_exclusions": 20,
+      "compressed_file_sha256": "94c8940734f3c647a2b883124392cd39855034a212ce9c6a05a6bd052bba8efe"
+    },
+    {
+      "id": "0001",
+      "tracer": "ELG",
+      "cap": "SGC",
+      "header_rows": 2699559,
+      "candidate_random_rows": 2475269,
+      "candidate_zero_weight_exclusions": 0,
+      "compressed_file_sha256": "1af8f7f95f6d477049c80302300e97ed2c0aa7f584a0595d61f78dea80057e38"
+    },
+    {
+      "id": "0500",
+      "tracer": "LRG",
+      "cap": "NGC",
+      "header_rows": 2786184,
+      "candidate_random_rows": 2497050,
+      "candidate_zero_weight_exclusions": 126,
+      "compressed_file_sha256": "61b0be17647b2f120013a0ada648b6fb73267a2c66fc9337970c8ed837fa4338"
+    },
+    {
+      "id": "0500",
+      "tracer": "ELG",
+      "cap": "NGC",
+      "header_rows": 2567648,
+      "candidate_random_rows": 2337903,
+      "candidate_zero_weight_exclusions": 0,
+      "compressed_file_sha256": "3eefa2d8ebb2c06db105aee8638c44db9506af83b847e397c4d9361d26503af1"
+    },
+    {
+      "id": "0500",
+      "tracer": "LRG",
+      "cap": "SGC",
+      "header_rows": 1848767,
+      "candidate_random_rows": 1631879,
+      "candidate_zero_weight_exclusions": 22,
+      "compressed_file_sha256": "a61d04e7e3e3d8bbb4c5d881a7b868db2457a1d4a45dbbe0fb61ecd5bf817130"
+    },
+    {
+      "id": "0500",
+      "tracer": "ELG",
+      "cap": "SGC",
+      "header_rows": 2711657,
+      "candidate_random_rows": 2480527,
+      "candidate_zero_weight_exclusions": 0,
+      "compressed_file_sha256": "7796d2dcffa4323178f15099a8f787f954de1383b603c853891d3c3198722bce"
+    },
+    {
+      "id": "1000",
+      "tracer": "LRG",
+      "cap": "NGC",
+      "header_rows": 2767091,
+      "candidate_random_rows": 2362858,
+      "candidate_zero_weight_exclusions": 106,
+      "compressed_file_sha256": "b2e8e4a21728cf80152a2e2062eb1d3f8e7bef67478ef4c294d2c064949b8862"
+    },
+    {
+      "id": "1000",
+      "tracer": "ELG",
+      "cap": "NGC",
+      "header_rows": 2557953,
+      "candidate_random_rows": 2333376,
+      "candidate_zero_weight_exclusions": 0,
+      "compressed_file_sha256": "5697b34ea1a86b695d1064cb25a26b054760add8df79eb19006ec09068a99b78"
+    },
+    {
+      "id": "1000",
+      "tracer": "LRG",
+      "cap": "SGC",
+      "header_rows": 1840440,
+      "candidate_random_rows": 1630325,
+      "candidate_zero_weight_exclusions": 46,
+      "compressed_file_sha256": "cf7e2349babe984803b317ef88479ecf055a3ac3df3591cf23324b986041f465"
+    },
+    {
+      "id": "1000",
+      "tracer": "ELG",
+      "cap": "SGC",
+      "header_rows": 2706105,
+      "candidate_random_rows": 2484855,
+      "candidate_zero_weight_exclusions": 0,
+      "compressed_file_sha256": "5e49c5b8f53f7c6b5c61383ea9124cd0546556edfca6a8b7510ae1ed220708ae"
+    }
+  ],
+  "candidate_zero_weight_exclusions_total": 335,
+  "diagnostic_grid": {
+    "ra_step_deg": 0.5,
+    "sin_dec_step": 0.01,
+    "published_thresholds_in_artifact": [
+      1,
+      5,
+      10,
+      15,
+      25
+    ],
+    "threshold_15_support": [
+      {
+        "id": "0001",
+        "cap": "NGC",
+        "min_randoms_per_tracer_per_cell": 15,
+        "joint_supported_pixels": 953,
+        "elg_supported_pixels": 2013
+      },
+      {
+        "id": "0001",
+        "cap": "SGC",
+        "min_randoms_per_tracer_per_cell": 15,
+        "joint_supported_pixels": 2221,
+        "elg_supported_pixels": 2238
+      },
+      {
+        "id": "0500",
+        "cap": "NGC",
+        "min_randoms_per_tracer_per_cell": 15,
+        "joint_supported_pixels": 958,
+        "elg_supported_pixels": 2013
+      },
+      {
+        "id": "0500",
+        "cap": "SGC",
+        "min_randoms_per_tracer_per_cell": 15,
+        "joint_supported_pixels": 2225,
+        "elg_supported_pixels": 2238
+      },
+      {
+        "id": "1000",
+        "cap": "NGC",
+        "min_randoms_per_tracer_per_cell": 15,
+        "joint_supported_pixels": 952,
+        "elg_supported_pixels": 2013
+      },
+      {
+        "id": "1000",
+        "cap": "SGC",
+        "min_randoms_per_tracer_per_cell": 15,
+        "joint_supported_pixels": 2223,
+        "elg_supported_pixels": 2237
+      }
+    ]
+  },
+  "limits": {
+    "mock_data_reference": "source_data/eboss_dr16_realistic_mock_selection_audit_2026-09-24.json",
+    "full_1000_mock_ensemble_validated": false,
+    "real_data_odd_vector_read": false,
+    "physical_pair_counts_computed": false,
+    "rr_window_computed": false,
+    "cross_covariance_computed": false,
+    "exact_common_mask_established": false
+  },
+  "scope_note": "Each listed SHA256 is the full compressed mock-random FITS file checksum. The source workflow artifact holds individual weight diagnostics and multi-threshold/redshift-bin joint-grid support. This is a bounded sample, not validation of all 1000 realizations or estimator inference."
+}
