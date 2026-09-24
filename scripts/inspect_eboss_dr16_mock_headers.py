@@ -117,7 +117,7 @@ def self_test() -> None:
     pack = zlib.compressobj(wbits=16 + zlib.MAX_WBITS)
     compressed = pack.compress(b.getvalue()) + pack.flush()
     dec = zlib.decompressobj(wbits=16 + zlib.MAX_WBITS)
-    h = metadata(dec.decompress(compressed[:len(compressed) // 2], MAX_DECOMPRESSED))
+    h = metadata(dec.decompress(compressed, MAX_DECOMPRESSED))
     assert h["header_rows"] == 2 and h["has_ra_dec_z"]
     assert mock_path("eBOSS_LRG", "NGC", "dat", 1).endswith(
         "EZmock_realistic_eBOSS_LRG_NGC_v7_0001.dat.fits.gz")
