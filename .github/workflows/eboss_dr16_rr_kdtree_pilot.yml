@@ -1,0 +1,35 @@
+name: eBOSS DR16 high-density sparse RR pilot
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/audit_eboss_dr16_rr_kdtree_pilot.py'
+      - '.github/workflows/eboss_dr16_rr_kdtree_pilot.yml'
+  workflow_dispatch:
+
+jobs:
+  sparse-rr-pilot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install array, sparse-search and FITS dependencies
+        run: python -m pip install 'numpy>=1.24' 'scipy>=1.10' 'astropy>=5.3'
+      - name: Verify KD-tree RR against independent scalar pair enumeration
+        run: python scripts/audit_eboss_dr16_rr_kdtree_pilot.py --self-test
+      - name: Calculate predeclared 12k and 40k blinded RR pilot
+        run: |
+          python scripts/audit_eboss_dr16_rr_kdtree_pilot.py \
+            --chunk 128 \
+            --out eboss_workspace/rr_kdtree_pilot.json
+      - name: Retain random-only RR pilot without FITS catalogues
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: eboss-dr16-rr-kdtree-pilot
+          path: eboss_workspace/rr_kdtree_pilot.json
+          if-no-files-found: warn
