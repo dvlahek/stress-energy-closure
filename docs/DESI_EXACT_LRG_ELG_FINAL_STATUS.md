@@ -1,8 +1,6 @@
 # DESI DR1 exact LRG×ELG odd-sector consistency analysis
 
 Date: 2026-09-23  
-Status: **final manuscript analysis**
-
 ## Role in the manuscript
 
 This exact-pair LRG×ELG branch is a **secondary observational consistency analysis**. It does not replace the repository's primary DESI DR1 luminosity-rank `phase7` inference.
@@ -11,7 +9,7 @@ The purpose of this branch is narrower: test a pre-specified parity-odd wake sha
 
 No result in this branch is presented as a detection.
 
-## Frozen estimator
+## Estimator definition
 
 - tracers: DESI DR1 LRG × ELG
 - orientation: LRG→ELG
@@ -35,7 +33,7 @@ The reported inference uses 120 identically processed mock realizations.
 1. **Estimator validation**
    - independent NumPy brute-force pair closure agrees with pycorr/Corrfunc to floating-point precision;
    - 240 mu bins pass the 120/240/480 convergence audit;
-   - the random-density audit freezes production at `nrandom=4`.
+   - the random-density audit supports the adopted `nrandom=4` setting.
 
 2. **120-mock covariance**
    - 18D dipole covariance is positive definite;
@@ -47,7 +45,7 @@ The reported inference uses 120 identically processed mock realizations.
    - linked-standard nuisance-only residual: `p=0.77184`.
 
 4. **Survey-window forward model**
-   - fine DESI `R_LRG R_ELG(s,mu)` counts measured on the frozen r4 random set;
+   - fine DESI `R_LRG R_ELG(s,mu)` counts measured with four random realizations;
    - wake pre-window/windowed cosine: `0.99998447`;
    - even-to-odd linear Kaiser leakage RMS: `7.38%` of the physical odd-standard RMS;
    - the explicit RR window therefore changes the template modestly but non-negligibly.
@@ -78,9 +76,7 @@ Explicit survey-window convolution changes the nominal matched-filter value only
 
 ## Interpretation
 
-> A pre-specified matched filter applied to the DESI DR1 LRG–ELG odd sector yields a nominal 2.21-sigma excess. Leave-one-out finite-mock calibration gives 1.84 sigma using the matched-filter statistic and 1.96 sigma using the Sellentin–Heavens likelihood-ratio tail. We therefore treat the result as a stable approximately two-sigma hint, not as a detection. Explicit survey-window convolution leaves the inference essentially unchanged.
-
-This is the analysis definition used for the reported manuscript result. Earlier regional, pre-window and finite-ensemble development checkpoints are retained under `archive/desi_exact/`.
+We obtain a nominal $2.21\sigma$ wake-aligned excess with a pre-specified matched filter. The leave-one-out mock distribution gives two-sided equivalents of $1.84\sigma$ for the absolute matched-filter statistic and $1.96\sigma$ for the Sellentin–Heavens likelihood-ratio statistic. The data therefore provide a tentative consistency indication, not a detection. The result changes negligibly when we include the measured survey window and the fixed even-to-odd contribution from linear Kaiser clustering.
 
 ## Reproduction map
 
@@ -101,10 +97,10 @@ Relevant runners:
 - `scripts/run_desi_lrg_elg_rr_window_r4.sh`
 - `scripts/run_desi_lrg_elg_windowed_forward.sh`
 
-Final machine-readable manifest:
+Analysis definition and numerical summary:
 
 - `source_data/lrg_elg_exact_final_manifest_2026-09-23.json`
 
-Final compact inference checkpoint:
+Finite-mock inference:
 
 - `source_data/lrg_elg_windowed_finite_mock_r4_120_final_2026-09-23.json`

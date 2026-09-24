@@ -1,6 +1,6 @@
 # Hidden-channel observable-retention control
 
-Status: transfer-level response diagnostic, not a survey forecast.
+This calculation compares transfer-level responses for source-matched kinetic states. It does not estimate survey signal-to-noise.
 
 This note records the direct same-pair checks used to compare an integrated linear neutrino-CDM relative-velocity response with the resonant wake response for source-matched kinetic states.
 
@@ -59,7 +59,7 @@ The maximum absolute residuals are of order `1e-16`. This confirms that pure `th
 
 At standard precision the response-selected direction gave direct `theta P_cb` RMS `6.464617200898742e-4` and wake/direct-`theta P_cb = 288.4149590565178`.
 
-Under the moderate-precision tolerance test the same direction gives direct `theta P_cb` RMS `1.0669648447319053e-5`. The middle and high-`k` responses collapse and the zero-crossing count increases. This direction is therefore precision sensitive and is excluded from quantitative results. Its earlier `~285`–`288` wake/linear ratio is retained only as development history.
+Under the moderate-precision tolerance test the same direction gives direct `theta P_cb` RMS `1.0669648447319053e-5`. The middle and high-`k` responses collapse and the zero-crossing count increases. This direction is therefore precision sensitive and is excluded from quantitative results. We exclude this direction from the quantitative comparison because its response is not stable under the tested integration tolerances.
 
 ## Response-independent orthogonal control
 
@@ -116,4 +116,4 @@ python code/hidden_channel_theta_kprofile.py --direction orthogonal --z 0.3 --nk
 python code/hidden_channel_theta_kprofile.py --direction orthogonal --z 0.3 --nk 96 --precision moderate
 ```
 
-The original aggressive high-precision profile is not part of this result because it repeatedly exceeded the available memory in the development WSL environment. The moderate profile changes only integration tolerances and is the retained precision-convergence control.
+The reported convergence comparison changes integration tolerances while keeping the ncdm hierarchy size and momentum-grid resolution fixed. The calculation does not establish convergence under simultaneous refinement of these additional numerical settings.

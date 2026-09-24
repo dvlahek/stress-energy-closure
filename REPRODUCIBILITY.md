@@ -63,7 +63,7 @@ bash scripts/run_desi_perm256_full_linux.sh
 
 Gfinder, EZmock, AbacusSummit, stochastic-seed and `ell=3` results test tracer definition, survey geometry/covariance, physical mocks, pair-sampling stability and higher odd multipoles. They are validation layers, not alternative primary estimates.
 
-The machine-readable hierarchy is stored in `source_data/phase7_validation_manifest.json`. Earlier development realizations are retained under `archive/` and are not part of the standard reproduction path.
+The primary analysis and its validation inputs are specified in `source_data/phase7_validation_manifest.json`. Earlier numerical realizations are available in the [research archive](https://github.com/dvlahek/stress-energy-closure/tree/archive/research-development-2026-09-24).
 
 ### Secondary exact LRG×ELG branch
 
@@ -71,7 +71,7 @@ A separate exact-pair DESI DR1 LRG×ELG analysis is retained as a secondary cons
 
 Its **final window-convolved** matched-filter result is `Z=2.21019`. Leave-one-out finite-mock calibration gives `p+1=0.06612` (1.84 sigma two-sided equivalent) from the absolute matched-filter score and `p+1=0.04959` (1.96 sigma) from the Sellentin–Heavens likelihood-ratio tail. The result is interpreted as a stable approximately two-sigma hint, not as a detection.
 
-This branch does **not** replace the primary phase7 DESI coefficient. Its final analysis definition, validation chain and reported result are recorded in `source_data/lrg_elg_exact_final_manifest_2026-09-23.json` and `docs/DESI_EXACT_LRG_ELG_FINAL_STATUS.md`. Development-stage checkpoints are retained under `archive/desi_exact/`.
+The exact-pair test is reported separately from the primary luminosity-rank coefficient. Its analysis definition and results are given in `source_data/lrg_elg_exact_final_manifest_2026-09-23.json` and `docs/DESI_EXACT_LRG_ELG_FINAL_STATUS.md`.
 
 ## Retention-control status
 
@@ -83,6 +83,6 @@ A separate kSZ-tagged screening control adds one line-of-sight velocity weight t
 
 ## Observational reruns
 
-The frozen observational definitions, validation layers and local checkout instructions are in `docs/OBSERVATIONAL_REPRODUCIBILITY.md`.
+The observational definitions, validation analyses and local execution instructions are in `docs/OBSERVATIONAL_REPRODUCIBILITY.md`.
 
 Large external survey catalogs are not stored in this repository. Scripts and workflows document the required public inputs and retained compact outputs.

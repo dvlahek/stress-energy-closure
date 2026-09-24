@@ -1,7 +1,6 @@
 # Phase-7 EZmock placebo ensemble
 
-This directory contains the publication-facing outputs of the DESI DR1 BGS EZmock
-geometry/covariance/placebo validation.
+This directory contains the DESI DR1 BGS EZmock geometry and covariance validation results.
 
 The released EZmock BGS products used here do not expose the luminosity field required for the
 physical five-tracer luminosity split. The tracer assignment is therefore an equal-count rank within
@@ -34,7 +33,7 @@ Unit-injection recovery is unbiased to numerical precision: mean recovered ampli
 standard deviation `0.0615`. The forward window is stable at the percent level across the retained
 realizations.
 
-## Publication-facing files
+## Numerical products
 
 - `aggregate_validation_summary.json` — compact final validation summary and SHA256 hashes.
 - `aggregate/summary_ezmock_placebo_covariance.json` — full aggregate numerical summary.
@@ -42,6 +41,6 @@ realizations.
 - `aggregate/ezmock_placebo_covariance_sample.csv` — raw sample covariance.
 - `aggregate/ezmock_placebo_vectors.csv` — retained realization vectors.
 - `aggregate/ezmock_placebo_window_templates.csv` — retained forward-window templates.
-- Per-realization outputs are preserved under `../../archive/phase7/ezmock_realizations/` and are not required for the manuscript-facing aggregate.
+- Individual realization outputs are retained on the [research archive branch](https://github.com/dvlahek/stress-energy-closure/tree/archive/research-development-2026-09-24/archive/phase7/ezmock_realizations). The covariance and validation reported here use the aggregate products listed above.
 
 The complete ensemble can be regenerated with `scripts/run_ezmock_placebo_local.sh`; the retained aggregate and its role in the analysis are documented in `../../docs/OBSERVATIONAL_REPRODUCIBILITY.md`.
