@@ -36,6 +36,7 @@ OBS_REF = ROOT / "source_data/eboss_dr16_weighted_normalization_2026-09-24.json"
 COARSE_REF = ROOT / "source_data/eboss_dr16_full_observed_rr_2026-09-24.json"
 PRIOR_MOCK_REF = ROOT / "source_data/eboss_dr16_realistic_mock_random_selection_audit_2026-09-24.json"
 SOURCE_ENSEMBLE_RUN = "36017670812"
+SOURCE_ENSEMBLE_SHA = "054005edc6ca193176b129e1951e4bd3ce8751a7"
 SOURCE_MOCK_RUN = "36015246541"
 SOURCE_MOCK_SHA = "9150992ac06c03cf1b16c5fdd4e3bb3856f89ff0"
 FINE_EDGES = np.linspace(0.6, 1.0, 41, dtype="f8")
@@ -305,6 +306,7 @@ def preflight(args):
         raise ValueError("Require downloaded pinned nine-mock ensemble JSON")
     ensemble = json.loads(Path(args.ensemble_json).read_text())
     if (ensemble.get("status") != "nine_mock_random_only_window_pilot_complete"
+            or ensemble.get("revision_commit") != SOURCE_ENSEMBLE_SHA
             or tuple(ensemble.get("predeclared_mock_ids", [])) != IDS
             or ensemble.get("source_mock_shard_workflow_run") != SOURCE_MOCK_RUN
             or ensemble.get("source_mock_shard_commit") != SOURCE_MOCK_SHA
@@ -368,6 +370,44 @@ def self_test():
                          x["normalized_weighted_nz"])[
         "weighted_normalized_total_variation"] == 0
     assert chunk_label(b" test_A  ") == "test_A"
+    from tempfile import TemporaryDirectory
+    with TemporaryDirectory() as tmp:
+        zrows = np.array([.59,.60,.61,.69,.71,.99,1.0,.75])
+        wsys = np.array([1.,1.,1.,1.,1e-31,1.,1.,1.])
+        cols = [
+            fits.Column(name="RA", format="D",
+                        array=np.arange(8,dtype="f8")+50),
+            fits.Column(name="DEC", format="D",
+                        array=np.arange(8,dtype="f8")),
+            fits.Column(name="Z", format="D", array=zrows),
+            fits.Column(name="WEIGHT_SYSTOT", format="D", array=wsys),
+            fits.Column(name="WEIGHT_CP", format="D",
+                        array=np.ones(8)),
+            fits.Column(name="WEIGHT_NOZ", format="D",
+                        array=np.ones(8)),
+            fits.Column(name="WEIGHT_FKP", format="D",
+                        array=2*np.ones(8)),
+            fits.Column(name="chunk", format="8A",
+                        array=np.array(["A","A","A","B","B","B","C","B"])),
+        ]
+        path = Path(tmp)/"synthetic_random.fits"
+        fits.HDUList([fits.PrimaryHDU(),
+                      fits.BinTableHDU.from_columns(cols)]).writeto(path)
+        digest,size = sha256_bytes(path)
+        record = scan_fits(path,tracer="ELG",cap="SGC",kind="mock",
+                           digest=digest,size=size,expected_rows=8)
+        assert record["candidate_raw_rows"] == 6
+        assert record["excluded_numerical_zero_systot_rows"] == 1
+        assert record["full"]["retained_rows"] == 5
+        np.testing.assert_allclose(record["full"]["sum_weights"],10.)
+        assert set(record["per_exact_chunk"]) == {"A","B"}
+        assert record["per_exact_chunk"]["A"]["retained_rows"] == 2
+        assert record["per_exact_chunk"]["B"]["retained_rows"] == 3
+        np.testing.assert_allclose(
+            record["full"]["normalized_weighted_nz"],
+            record["full"]["normalized_unweighted_nz"])
+        assert compare(record,record,mid=1)["full_weighted_nz_difference"][
+            "weighted_normalized_total_variation"] == 0
     assert PROTOCOL.is_file()
     print("EBOSS_NINEMOCK_FINE_WEIGHTED_NZ_SELF_TEST_OK", flush=True)
 
