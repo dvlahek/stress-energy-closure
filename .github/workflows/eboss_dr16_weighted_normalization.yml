@@ -1,0 +1,38 @@
+name: eBOSS DR16 weighted normalization and fiducials
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/eboss_dr16_fiducial.py'
+      - 'scripts/audit_eboss_dr16_weighted_normalization.py'
+      - '.github/workflows/eboss_dr16_weighted_normalization.yml'
+  workflow_dispatch:
+
+jobs:
+  preodd-weighted-normalization:
+    runs-on: ubuntu-latest
+    timeout-minutes: 48
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install FITS distance and array dependencies
+        run: python -m pip install 'numpy>=1.24' 'scipy>=1.10' 'astropy>=5.3'
+      - name: Test independent distances and pure-tracer weight algebra
+        run: |
+          python scripts/eboss_dr16_fiducial.py
+          python scripts/audit_eboss_dr16_weighted_normalization.py --self-test
+      - name: Audit observed and matched mock data/random input weights
+        run: |
+          python scripts/audit_eboss_dr16_weighted_normalization.py \
+            --chunk-rows 150000 \
+            --out eboss_workspace/eboss_weighted_normalization.json
+      - name: Retain input-only normalizations and file checksums
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: eboss-dr16-weighted-input-normalization
+          path: eboss_workspace/eboss_weighted_normalization.json
+          if-no-files-found: warn
