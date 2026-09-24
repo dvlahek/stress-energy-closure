@@ -1,0 +1,90 @@
+{
+  "snapshot_date": "2026-09-24",
+  "kind": "compact_blinded_eBOSS_highz_conditional_finite_bin_RR_response",
+  "source_script": "scripts/build_eboss_dr16_conditional_window.py",
+  "source_workflow": "https://github.com/dvlahek/stress-energy-closure/actions/runs/35983931117",
+  "source_artifact": "https://github.com/dvlahek/stress-energy-closure/actions/runs/35983931117/artifacts/10801835163",
+  "source_commit": "4c11d3e1fec1e371647a1cf37ad7e62b574374a6",
+  "input_observed_fine_RR_commit": "5dbfca45c25c7af57bf05693022bfa98b499209d",
+  "input_observed_fine_RR_source": "source_data/eboss_dr16_fine_rr_highz_2026-09-24.json",
+  "status": "conditional_finite_bin_response_validated",
+  "candidate_z_interval": [
+    0.9,
+    1
+  ],
+  "candidate_interval_frozen": false,
+  "caps": [
+    "NGC",
+    "SGC"
+  ],
+  "input_ells": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "output_ells": [
+    1,
+    3
+  ],
+  "fine_s_step_mpc_over_h": 1,
+  "output_s_edges_mpc_over_h": [
+    20,
+    40,
+    60,
+    80,
+    100,
+    120,
+    140
+  ],
+  "mu_bins": 240,
+  "definition": "For each signed mu bin, expected cross-Landy-Szalay xi is averaged over fine-s using RR_i,mu / sum_fine RR_i,mu; then project uniformly in signed mu with integrated Legendre-product kernels.",
+  "unit_tests": {
+    "synthetic_constant_theory_parity_and_linear_radial_probe_passed": true,
+    "full_real_random_constant_theory_parity_passed": true
+  },
+  "checks": [
+    {
+      "cap": "NGC",
+      "constant_in_s_orthogonality_max_abs_residual": 7.000001757103205e-7,
+      "signed_mu_reversal_parity_max_abs_residual": 2.7755575615628914e-17
+    },
+    {
+      "cap": "SGC",
+      "constant_in_s_orthogonality_max_abs_residual": 7.00000175700129e-7,
+      "signed_mu_reversal_parity_max_abs_residual": 2.7863995832877464e-17
+    }
+  ],
+  "predeclared_unitless_linear_radial_gradient_monopole_to_dipole": {
+    "NGC": {
+      "max_abs_full_response": 0.005140395532241957,
+      "max_abs_half_vs_full_shift": 0.00017234213660332481
+    },
+    "SGC": {
+      "max_abs_full_response": 0.004794747168207391,
+      "max_abs_half_vs_full_shift": 0.00023730393429178317
+    }
+  },
+  "predeclared_unitless_linear_radial_gradient_monopole_to_octupole": {
+    "NGC": {
+      "max_abs_full_response": 0.0005829394589905901,
+      "max_abs_half_vs_full_shift": 0.00042685034665118177
+    },
+    "SGC": {
+      "max_abs_full_response": 0.0011394612710367942,
+      "max_abs_half_vs_full_shift": 0.0003408582287736376
+    }
+  },
+  "limits": {
+    "raw_RR_moments_are_not_galaxy_odd_multipoles": true,
+    "synthetic_probe_is_not_a_physical_template": true,
+    "full_physical_window_not_certified": true,
+    "other_candidate_z_bins_not_yet_fine": true,
+    "matched_mock_window_not_yet_checked": true,
+    "odd_data_vector_not_read": true,
+    "wake_amplitude_not_fitted": true,
+    "cross_covariance_not_computed": true
+  },
+  "scope_note": "The constant-theory closure residual is O(1e-7), consistent with the mu edge extension ±(1+1e-7) inherited from the estimator. Preserve finite-random uncertainty on small octupole mixing blocks. Full matrix arrays are in the pinned workflow artifact."
+}
