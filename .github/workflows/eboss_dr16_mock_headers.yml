@@ -1,0 +1,35 @@
+name: eBOSS DR16 matched mock FITS headers
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/inspect_eboss_dr16_mock_headers.py'
+      - '.github/workflows/eboss_dr16_mock_headers.yml'
+  workflow_dispatch:
+
+jobs:
+  check-mock-headers:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install FITS and array dependencies
+        run: python -m pip install 'numpy>=1.24' 'astropy>=5.3'
+      - name: Check bounded gzip/FITS decoder
+        run: python scripts/inspect_eboss_dr16_mock_headers.py --self-test
+      - name: Inspect realistic LRG and ELG mock header sample
+        run: |
+          python scripts/inspect_eboss_dr16_mock_headers.py \
+            --ids 1,500,1000 \
+            --out eboss_workspace/mock_header_audit.json
+      - name: Retain mock-header metadata only
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: eboss-dr16-realistic-mock-headers
+          path: eboss_workspace/mock_header_audit.json
+          if-no-files-found: warn
