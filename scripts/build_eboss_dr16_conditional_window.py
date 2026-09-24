@@ -171,6 +171,9 @@ def main() -> int:
         raise ValueError("The prior fine-RR pre-odd geometry gate did not pass")
     if provenance["observed_odd_data_vector_read"]:
         raise ValueError("Refusing any input carrying an observed odd data vector")
+    expected_source = os.environ.get("SOURCE_WORKFLOW_SHA")
+    if expected_source and provenance.get("revision_commit") != expected_source:
+        raise ValueError("Fine-RR provenance does not match the source workflow commit")
     counts = np.load(args.fine_rr, allow_pickle=False)
     fine = np.asarray(counts["fine_sedges_mpc_over_h"], dtype="f8")
     coarse = np.asarray(counts["coarse_sedges_mpc_over_h"], dtype="f8")
