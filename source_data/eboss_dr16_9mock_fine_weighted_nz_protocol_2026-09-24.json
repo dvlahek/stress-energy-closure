@@ -1,0 +1,63 @@
+{
+  "study": "Prospectively fixed fine weighted eBOSS observed-random vs nine realistic EZmock-random n(z) audit",
+  "date": "2026-09-24",
+  "parent_window_protocol_commit": "5fe7a0017da6e8a0b0b9de9cf2114d7c0ca9d0bd",
+  "parent_matched_density_control_run": 36019405382,
+  "required_source_ensemble_run": 36017670812,
+  "required_source_mock_run": 36015246541,
+  "required_source_mock_commit": "9150992ac06c03cf1b16c5fdd4e3bb3856f89ff0",
+  "mock_ids": [
+    1,
+    125,
+    250,
+    375,
+    500,
+    625,
+    750,
+    875,
+    1000
+  ],
+  "caps": [
+    "NGC",
+    "SGC"
+  ],
+  "tracers": [
+    "LRG",
+    "ELG"
+  ],
+  "role": "random_only",
+  "fine_z_edges_definition": "np.linspace(0.6,1.0,41,dtype=np.float64); forty fixed bins, width 0.01",
+  "candidate_z": [
+    0.6,
+    1
+  ],
+  "weight_columns": [
+    "WEIGHT_SYSTOT",
+    "WEIGHT_CP",
+    "WEIGHT_NOZ",
+    "WEIGHT_FKP"
+  ],
+  "combined_weight": "WEIGHT_SYSTOT*WEIGHT_CP*WEIGHT_NOZ*WEIGHT_FKP",
+  "systot_zero_gate_abs": 1e-12,
+  "near_zero_gap_diagnostic_abs": 1e-20,
+  "eligibility": "finite coordinates (RA in [0,360), DEC in [-90,90]) and z in [0.6,1.0), finite positive combined weight after rejecting WEIGHT_SYSTOT <= 1e-12; fail on significantly negative weights within candidate",
+  "required_identity": "SHA256 full observed FITS equals previously committed four observed-random SHA256; full compressed mock FITS equals 36 mock random SHA256 in successful pinned nine-mock ensemble JSON; earlier 3 mock input SHA pins checked again",
+  "chunk_policy": "ELG CHUNK must exist in both observed and mock random FITS; normalize labels as decoded stripped text; compare only exact matching labels and report all nonmatching labels without pooling; do not assume identical chunk labels",
+  "predeclared_metrics": [
+    "Per-cap, per-tracer normalized weighted forty-bin n(z), total weighted sum, Kish effective count",
+    "Unweighted forty-bin n(z) as a diagnostic",
+    "Weighted normalized total-variation distance and max absolute normalized bin difference for each fixed mock versus observed per cap and tracer",
+    "Per-cap ELG exact-label CHUNK weighted normalized forty-bin n(z) and weighted total-variation distance only on shared labels",
+    "Observed-versus-mock weighted four coarse z-bin fractions obtained by exact aggregation of the forty fine bins",
+    "Across all nine fixed mocks descriptive min, median, max by cap/tracer and per exactly shared chunk"
+  ],
+  "status_scope": "Local one-cap/one-id runs are pilot shards; only all nine IDs both caps can be called nine_mock_fine_weighted_nz_control_complete. These are window-input checks, not validated physical selection or odd-sector results.",
+  "resampling_or_tuning": "No bin edges, subset of mocks, individual cap, chunk label, weight variant, or reporting threshold is chosen in response to any odd data vector or a large/small mock difference.",
+  "observed_galaxy_positions_read": false,
+  "mock_galaxy_positions_read": false,
+  "observed_odd_data_vector_read": false,
+  "wake_template_fitted_or_tuned": false,
+  "joint_mock_covariance_computed": false,
+  "official_exact_joint_mask_certified": false,
+  "inference_protocol_frozen": false
+}
