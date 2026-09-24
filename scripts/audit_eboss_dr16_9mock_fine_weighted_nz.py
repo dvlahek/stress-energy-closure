@@ -16,6 +16,7 @@ import hashlib
 import json
 import os
 from pathlib import Path
+import time
 
 import numpy as np
 from astropy.io import fits
@@ -63,18 +64,36 @@ def acquire(path, expected_sha, *, observed, filename=None, url=None,
     if no_download:
         raise FileNotFoundError(f"No SHA-verified catalogue in cache: {path}")
     path.parent.mkdir(parents=True, exist_ok=True)
-    if observed:
-        actual, digest, size = download(
-            filename, path.parent, 1024 * 1024 * 1024, timeout)
-        if actual != path:
-            raise ValueError("Observed random download landed at unexpected path")
-    else:
-        digest, size = fetch_with_retry(url, path, 512 * 1024 * 1024, timeout)
-    if digest != expected_sha:
+    # A byte-complete HTTP transfer can still fail the pinned SHA256:
+    # retry the *same pinned URL*, never replace the expected fingerprint.
+    # Every mismatching payload is deleted, and every actual SHA is logged.
+    attempts = 1 if observed else 3
+    last_digest, last_size = None, None
+    for attempt in range(1, attempts + 1):
+        if observed:
+            actual, digest, size = download(
+                filename, path.parent, 1024 * 1024 * 1024, timeout)
+            if actual != path:
+                raise ValueError("Observed random download landed at unexpected path")
+        else:
+            digest, size = fetch_with_retry(
+                url, path, 512 * 1024 * 1024, timeout)
+        if digest == expected_sha:
+            print("FINE_NZ_INPUT_SHA_OK", path.name, size, digest, flush=True)
+            return path, digest, size
+        last_digest, last_size = digest, size
         path.unlink(missing_ok=True)
-        raise ValueError(f"Downloaded random FITS SHA256 differs from pinned input: {path}")
-    print("FINE_NZ_INPUT_SHA_OK", path.name, size, digest, flush=True)
-    return path, digest, size
+        print("FINE_NZ_SHA_MISMATCH", path.name,
+              f"attempt={attempt}/{attempts}",
+              f"bytes={size}", f"expected={expected_sha}",
+              f"actual={digest}", flush=True)
+        if attempt < attempts:
+            time.sleep(2 * attempt)
+    raise ValueError(
+        "Pinned random FITS SHA256 mismatch after "
+        f"{attempts} attempt(s): {path}; expected={expected_sha}; "
+        f"last_actual={last_digest}; last_bytes={last_size}. "
+        "Do not repin or skip the fixed mock based on this failure.")
 
 
 def chunk_label(value):
@@ -408,6 +427,45 @@ def self_test():
             record["full"]["normalized_unweighted_nz"])
         assert compare(record,record,mid=1)["full_weighted_nz_difference"][
             "weighted_normalized_total_variation"] == 0
+    # Integrity recovery unit test: a wrong but complete first payload
+    # must be rejected, and the same immutable pin is retained on retry.
+    with TemporaryDirectory() as tmp:
+        good, bad = b"fixed-pinned-synthetic-fits", b"wrong-response"
+        expected = hashlib.sha256(good).hexdigest()
+        previous_fetch = globals()["fetch_with_retry"]
+        seen = []
+        def mock_fetch(url, destination, byte_limit, timeout):
+            seen.append(url)
+            payload = bad if len(seen) == 1 else good
+            destination.write_bytes(payload)
+            return hashlib.sha256(payload).hexdigest(), len(payload)
+        globals()["fetch_with_retry"] = mock_fetch
+        try:
+            local = Path(tmp) / "synthetic.ran.fits.gz"
+            got = acquire(local, expected, observed=False,
+                          url=MOCK_BASE + "synthetic", timeout=1)
+            assert len(seen) == 2 and got[1] == expected
+            np.testing.assert_array_equal(
+                np.frombuffer(local.read_bytes(), dtype="u1"),
+                np.frombuffer(good, dtype="u1"))
+            local.unlink()
+            seen.clear()
+            def always_bad(url, destination, byte_limit, timeout):
+                seen.append(url)
+                destination.write_bytes(bad)
+                return hashlib.sha256(bad).hexdigest(), len(bad)
+            globals()["fetch_with_retry"] = always_bad
+            try:
+                acquire(local, expected, observed=False,
+                        url=MOCK_BASE + "synthetic", timeout=1)
+            except ValueError as exc:
+                assert expected in str(exc) and "last_actual=" in str(exc)
+            else:
+                raise AssertionError("A persistent SHA mismatch must fail closed")
+            assert len(seen) == 3 and not local.exists()
+        finally:
+            globals()["fetch_with_retry"] = previous_fetch
+    print("EBOSS_FINE_NZ_PINNED_SHA_RETRY_SELF_TEST_OK", flush=True)
     assert PROTOCOL.is_file()
     print("EBOSS_NINEMOCK_FINE_WEIGHTED_NZ_SELF_TEST_OK", flush=True)
 
