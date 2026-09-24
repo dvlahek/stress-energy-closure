@@ -312,6 +312,15 @@ def main():
                             raise ValueError("FITS row count differs from published inventory")
                         bad = health(result, expected_candidate, expected_retained)
                         if bad:
+                            print("WEIGHT_ALPHA_HEALTH_DETAILS",
+                                  catalogue_type, cap, tracer, role,
+                                  "candidate", result["candidate_rows"],
+                                  "retained", result["candidate_retained_rows"],
+                                  "expected", expected_retained,
+                                  "SYSTOT", json.dumps(
+                                      result["weight_columns"]["WEIGHT_SYSTOT"],
+                                      sort_keys=True),
+                                  "issues", bad, flush=True)
                             raise ValueError("; ".join(bad))
                         result.update({
                             "catalogue": catalogue_type, "tracer": tracer, "cap": cap,
