@@ -1,0 +1,108 @@
+{
+  "snapshot_date": "2026-09-24",
+  "kind": "compact_data_blind_three_fixed_realistic_mock_fine_RR_comparison",
+  "status": "three_preselected_mock_fine_rr_comparisons_complete",
+  "preselected_realistic_ids": [
+    1,
+    500,
+    1000
+  ],
+  "first_realization_source": "source_data/eboss_dr16_mock_0001_fine_rr_2026-09-24.json",
+  "other_realization_source_workflow": "https://github.com/dvlahek/stress-energy-closure/actions/runs/35984421963",
+  "other_realization_source_artifact": "https://github.com/dvlahek/stress-energy-closure/actions/runs/35984421963/artifacts/10801263733",
+  "other_realization_source_commit": "b4e8434f389b399ab7142af1894b14c82907d5b8",
+  "input_observed_fine_rr": "source_data/eboss_dr16_fine_rr_highz_2026-09-24.json",
+  "candidate_z_interval": [
+    0.9,
+    1
+  ],
+  "candidate_selection_frozen": false,
+  "cap_names": [
+    "NGC",
+    "SGC"
+  ],
+  "s_fine_step_mpc_over_h": 1,
+  "mu_bins": 240,
+  "orientation": "LRG->ELG",
+  "ls_geometry": "midpoint",
+  "full_weights": "WEIGHT_SYSTOT*WEIGHT_CP*WEIGHT_NOZ*WEIGHT_FKP",
+  "primary_distance": {
+    "h": 0.6777,
+    "Om0": 0.307,
+    "Tcmb0": 0
+  },
+  "positive_fine_RR_cells_each_case": 28800,
+  "total_fine_RR_cells_each_case": 28800,
+  "per_realization_cap": [
+    {
+      "id": 1,
+      "cap": "NGC",
+      "normalized_rr_relative_l1": 0.0132886762523544,
+      "max_raw_rr_p1_shift": 0.002974351743737537,
+      "synthetic_linear_probe_max_abs_shift_1_from_0": 0.0007776544935588223,
+      "synthetic_linear_probe_max_abs_shift_3_from_0": 0.0011234735005902425
+    },
+    {
+      "id": 1,
+      "cap": "SGC",
+      "normalized_rr_relative_l1": 0.009072552599536121,
+      "max_raw_rr_p1_shift": 0.0016868283682298195,
+      "synthetic_linear_probe_max_abs_shift_1_from_0": 0.0005227740666405977,
+      "synthetic_linear_probe_max_abs_shift_3_from_0": 0.0009660539919145198
+    },
+    {
+      "id": 500,
+      "cap": "NGC",
+      "normalized_rr_relative_l1": 0.011156118428114542,
+      "max_raw_rr_p1_shift": 0.0035567410944076228,
+      "synthetic_linear_probe_max_abs_shift_1_from_0": 0.0006290262132913182,
+      "synthetic_linear_probe_max_abs_shift_3_from_0": 0.0010219173115249534
+    },
+    {
+      "id": 500,
+      "cap": "SGC",
+      "normalized_rr_relative_l1": 0.011625248137451333,
+      "max_raw_rr_p1_shift": 0.0058948444423888025,
+      "synthetic_linear_probe_max_abs_shift_1_from_0": 0.0006813409183509429,
+      "synthetic_linear_probe_max_abs_shift_3_from_0": 0.0014902598806923496
+    },
+    {
+      "id": 1000,
+      "cap": "NGC",
+      "normalized_rr_relative_l1": 0.01474406937702102,
+      "max_raw_rr_p1_shift": 0.006356270470389981,
+      "synthetic_linear_probe_max_abs_shift_1_from_0": 0.0012790013768283334,
+      "synthetic_linear_probe_max_abs_shift_3_from_0": 0.0018727344919089834
+    },
+    {
+      "id": 1000,
+      "cap": "SGC",
+      "normalized_rr_relative_l1": 0.01457043142763517,
+      "max_raw_rr_p1_shift": 0.002079089051440053,
+      "synthetic_linear_probe_max_abs_shift_1_from_0": 0.0008032524190595336,
+      "synthetic_linear_probe_max_abs_shift_3_from_0": 0.0015075756744271167
+    }
+  ],
+  "relative_l1_ranges": {
+    "NGC": [
+      0.011156118428114542,
+      0.01474406937702102
+    ],
+    "SGC": [
+      0.009072552599536121,
+      0.01457043142763517
+    ]
+  },
+  "limitations": {
+    "only_3_of_1000_mock_realizations_checked": true,
+    "random_density_varies_with_mock": true,
+    "no_mock_ensemble_window_scatter_estimated": true,
+    "no_mock_galaxy_positions_read": true,
+    "no_observed_galaxy_positions_read": true,
+    "no_observed_odd_vector_read": true,
+    "no_wake_template_tuning": true,
+    "no_statistical_covariance": true,
+    "no_production_physical_window_certified": true
+  },
+  "note": "All three IDs were chosen before the odd-sector vector. Differences are descriptive, sample-dependent input geometry diagnostics. The full workflow artifacts contain individual SHA256 digests, fine arrays and conditional operator block values; no mismatch threshold or selection was optimized on observed odd results."
+}
