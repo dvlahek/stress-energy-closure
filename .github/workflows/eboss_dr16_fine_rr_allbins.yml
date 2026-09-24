@@ -36,4 +36,6 @@ jobs:
           path: |
             eboss_workspace/fine_rr_allbins_audit.json
             eboss_workspace/fine_rr_allbins_audit.npz
+            eboss_workspace/fine_rr_allbins_audit.checkpoint.json
+            eboss_workspace/fine_rr_allbins_audit.checkpoint.npz
           if-no-files-found: warn
