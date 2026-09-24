@@ -1,0 +1,73 @@
+name: eBOSS DR16 conditional random-only RR window
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/build_eboss_dr16_conditional_window.py'
+      - '.github/workflows/eboss_dr16_conditional_window.yml'
+  workflow_dispatch:
+  workflow_run:
+    workflows:
+      - 'eBOSS DR16 high-z fine-RR geometric closure'
+    types: [completed]
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  synthetic-operator:
+    if: github.event_name != 'workflow_run'
+    runs-on: ubuntu-latest
+    timeout-minutes: 9
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install array dependencies
+        run: python -m pip install 'numpy>=1.24'
+      - name: Check constant-theory closure, mu parity and radial-gradient probe
+        run: python scripts/build_eboss_dr16_conditional_window.py --self-test
+
+  from-fine-artifact:
+    if: github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 13
+    env:
+      GH_TOKEN: ${{ github.token }}
+      SOURCE_WORKFLOW_RUN: ${{ github.event.workflow_run.id }}
+      SOURCE_WORKFLOW_SHA: ${{ github.event.workflow_run.head_sha }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install array dependencies
+        run: python -m pip install 'numpy>=1.24'
+      - name: Independently check the window response algebra
+        run: python scripts/build_eboss_dr16_conditional_window.py --self-test
+      - name: Retrieve only the successful fine-RR source workflow artifact
+        run: |
+          gh run download "$SOURCE_WORKFLOW_RUN" \
+            --repo "$GITHUB_REPOSITORY" \
+            --name eboss-dr16-fine-rr-highz \
+            --dir fine_rr_input
+          test -s fine_rr_input/fine_rr_highz_audit.json
+          test -s fine_rr_input/fine_rr_highz_audit.npz
+      - name: Build blinded conditional finite-bin response
+        run: |
+          python scripts/build_eboss_dr16_conditional_window.py \
+            --fine-rr fine_rr_input/fine_rr_highz_audit.npz \
+            --fine-audit fine_rr_input/fine_rr_highz_audit.json \
+            --out eboss_workspace/conditional_rr_window_audit.json
+      - name: Retain the random-only response matrices and QA
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: eboss-dr16-conditional-rr-window
+          path: |
+            eboss_workspace/conditional_rr_window_audit.json
+            eboss_workspace/conditional_rr_window_audit.npz
+          if-no-files-found: warn
