@@ -2,22 +2,13 @@
 
 This document records the frozen observational analysis, validation layers and rerun information used for the reported DESI DR1 results.
 
-## Analysis status
+## Observational analyses
 
-The observational validation suite is complete.
+We report two DESI DR1 tests. The five-tracer luminosity-rank dipole is the primary DESI measurement. A separate exact LRG–ELG cross-correlation tests the prescribed wake shape with 120 mocks and the measured random-pair survey window.
 
-- DESI DR1 BGS full-sample luminosity-rank inference: complete.
-- 256-permutation refinement of the frozen null calibration: complete.
-- Gfinder mass-proxy robustness test: complete.
-- EZmock 30-realization geometry/covariance placebo ensemble: complete.
-- AbacusSummit physical luminosity-ranked validation: 25/25 realizations complete.
-- production seed plus three independent stochastic closure seeds: complete.
-- odd `ell=3` octupole control: complete.
-- Exact DESI DR1 LRG×ELG z-resolved odd-sector 120-mock consistency branch with explicit RR-window convolution: complete and frozen.
+We assess the luminosity-rank estimator using Gfinder tracer membership, random-rank EZmocks, AbacusSummit realizations, independent pair-sampling seeds and an odd-octupole control. These tests probe different aspects of selection, covariance, pair sampling and survey geometry. They are not combined into a single detection statistic.
 
-No observational result is presented as a neutrino-wake detection.
-
-## Frozen scientific choices
+## Analysis definition
 
 The hidden-state template is generated at `m_nu = 0.06 eV`, `z_match = 1100`, with a 30% pointwise deformation cap. CLASS-based calculations use pinned `class_public` commit `e85808324f51fc694d12e3ed7439552a3c3f9540`.
 
@@ -25,7 +16,7 @@ The real-data odd vector uses public DESI DR1 BGS clustering catalogs over `0.10
 
 The production pair-Monte-Carlo seed is `20260913`. Independent closure seeds are `20260917`, `20260929` and `20261007`.
 
-The final null calibration uses 256 fixed-geometry luminosity-mark permutations. This refinement changed only the size of the permutation ensemble; the tracer definition, binning, sampled pair geometry, covariance, nuisance model, template and production seed were unchanged. The earlier 32-permutation realization is retained in `archive/phase7/intermediate/` for provenance.
+The final null calibration uses 256 fixed-geometry luminosity-mark permutations. This refinement changed only the size of the permutation ensemble; the tracer definition, binning, sampled pair geometry, covariance, nuisance model, template and production seed were unchanged. The original 32-permutation realization is available on the [research archive branch](https://github.com/dvlahek/stress-energy-closure/tree/archive/research-development-2026-09-24/archive/phase7/intermediate).
 
 ## Primary observational inference
 
@@ -111,7 +102,7 @@ Outputs:
 
 ## Stochastic seed closure
 
-The production seed and three independent closure seeds all retain the conservative result within `|z| < 1.02`. Across the four seeds, `mean(A_wake) = -0.0647682`, with seed-to-seed standard deviation `0.0149695`.
+The reference seed and three independent pair-sampling seeds all give conservative coefficients within `|z| < 1.02`. Across the four seeds, `mean(A_wake) = -0.0647682`, with seed-to-seed standard deviation `0.0149695`.
 
 Output: `source_data/phase7_seed_control_summary.json`
 
@@ -137,7 +128,7 @@ For inversion the code uses `C_reg = C_JK + r I` with
 
 The reported `kappa = 440.8145` is `cond(C_reg)`, the condition number of the ridge-regularized covariance used in the Mahalanobis inverse. It is not the raw jackknife covariance condition number.
 
-Outputs are archived in `source_data/phase7_octupole_control/`.
+The measured vector, covariance and numerical summary are provided in `source_data/phase7_octupole_control/`.
 
 
 ## Secondary exact LRG×ELG consistency branch
@@ -161,17 +152,17 @@ The 120-mock leave-one-out empirical calibration gives:
 
 The finite-mock tail counts are unchanged relative to the pre-window checkpoint. The branch is therefore interpreted as a stable approximately two-sigma hint, not as a detection.
 
-The complete frozen hierarchy is in:
+The analysis definition and numerical results are in:
 
 - `source_data/lrg_elg_exact_final_manifest_2026-09-23.json`
 - `source_data/lrg_elg_windowed_finite_mock_r4_120_final_2026-09-23.json`
 - `docs/DESI_EXACT_LRG_ELG_FINAL_STATUS.md`
 
-The reported result uses the analysis definition listed above. Development-stage variants are retained under `archive/desi_exact/` and are not part of the reported inference.
+The earlier regional and pre-window calculations are retained on the [research archive branch](https://github.com/dvlahek/stress-energy-closure/tree/archive/research-development-2026-09-24/archive/desi_exact).
 
-## Machine-readable hierarchy
+## Analysis metadata
 
-`source_data/phase7_validation_manifest.json` is the top-level machine-readable declaration of the primary result and validation roles.
+`source_data/phase7_validation_manifest.json` records the luminosity-rank analysis definition, primary coefficient and validation results.
 
 ## Local checkout
 
