@@ -1,0 +1,100 @@
+name: eBOSS DR16 nine-mock joint random window aggregation
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/aggregate_eboss_dr16_9mock_window.py'
+      - '.github/workflows/eboss_dr16_9mock_window_aggregate.yml'
+  workflow_run:
+    workflows:
+      - 'eBOSS DR16 nine-mock random-only window pilot'
+    types: [completed]
+  workflow_dispatch:
+    inputs:
+      source_run_id:
+        description: 'Successful nine-mock matrix run ID'
+        required: true
+        default: '36015246541'
+        type: string
+      source_sha:
+        description: 'Pinned SHA of mock matrix run'
+        required: true
+        default: '9150992ac06c03cf1b16c5fdd4e3bb3856f89ff0'
+        type: string
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  synthetic-aggregation:
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install aggregation imports and pinned cosmology
+        run: |
+          python -m pip install --upgrade pip setuptools wheel
+          python -m pip install -r requirements-desi.txt
+      - name: Validate the predeclared joint-grid overlap algebra
+        run: python scripts/aggregate_eboss_dr16_9mock_window.py --self-test
+
+  all-shards-and-observed-randoms:
+    if: github.event_name == 'workflow_dispatch' || (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success')
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    env:
+      GH_TOKEN: ${{ github.token }}
+      SOURCE_MOCK_RUN: ${{ github.event.workflow_run.id || inputs.source_run_id }}
+      SOURCE_MOCK_SHA: ${{ github.event.workflow_run.head_sha || inputs.source_sha }}
+      PINNED_OBS_RUN: '35995805473'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install pinned cosmology and numerical dependencies
+        run: |
+          python -m pip install --upgrade pip setuptools wheel
+          python -m pip install -r requirements-desi.txt
+      - name: Validate the joint-grid matching test
+        run: python scripts/aggregate_eboss_dr16_9mock_window.py --self-test
+      - name: Download every predeclared mock random-only shard
+        run: |
+          gh run download "$SOURCE_MOCK_RUN" \
+            --repo "$GITHUB_REPOSITORY" --dir shards
+          for ID in 1 125 250 375 500 625 750 875 1000; do
+            test -s "shards/eboss-ninemock-window-id$ID/NGC.json"
+            test -s "shards/eboss-ninemock-window-id$ID/NGC.npz"
+            test -s "shards/eboss-ninemock-window-id$ID/SGC.json"
+            test -s "shards/eboss-ninemock-window-id$ID/SGC.npz"
+          done
+      - name: Download only successful full four-bin observed random-only RR
+        run: |
+          gh run download "$PINNED_OBS_RUN" \
+            --repo "$GITHUB_REPOSITORY" \
+            --name eboss-dr16-fine-rr-allbins --dir observed_fine
+          test -s observed_fine/fine_rr_allbins_audit.json
+          test -s observed_fine/fine_rr_allbins_audit.npz
+      - name: Independently compare all nine mock windows and observed joint random sky grids
+        run: |
+          python scripts/aggregate_eboss_dr16_9mock_window.py \
+            --shards-dir shards \
+            --observed-audit observed_fine/fine_rr_allbins_audit.json \
+            --observed-rr observed_fine/fine_rr_allbins_audit.npz \
+            --out eboss_workspace/ninemock_window_ensemble.json
+      - name: Retain all fixed-ensemble diagnostics and response matrices
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: eboss-dr16-nine-mock-window-ensemble
+          path: |
+            eboss_workspace/ninemock_window_ensemble.json
+            eboss_workspace/ninemock_window_ensemble.npz
+          if-no-files-found: warn
+          retention-days: 90
