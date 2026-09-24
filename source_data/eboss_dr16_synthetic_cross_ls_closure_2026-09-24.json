@@ -1,0 +1,50 @@
+{
+  "snapshot_date": "2026-09-24",
+  "kind": "compact_synthetic_only_independent_eBOSS_cross_Landy_Szalay_closure",
+  "source_script": "scripts/check_eboss_cross_ls_synthetic.py",
+  "source_workflow": "https://github.com/dvlahek/stress-energy-closure/actions/runs/35975652686",
+  "source_artifact": "https://github.com/dvlahek/stress-energy-closure/actions/runs/35975652686/artifacts/10797877774",
+  "source_commit": "732b2541bf7a68538839fa1d0ddbbc9909f19b61",
+  "status": "synthetic_scalar_and_vectorized_closure_passed",
+  "synthetic_seed": 99271,
+  "pair_terms": [
+    "D1D2",
+    "D1R2",
+    "R1D2",
+    "R1R2"
+  ],
+  "pair_orientation": "LRG_to_ELG then ELG_to_LRG",
+  "los": "midpoint",
+  "test_cases": [
+    {
+      "theta_min_deg": 0,
+      "supported_s_mu_cells": 164,
+      "worst_independent_scalar_weighted_bin_count_abs_residual": 1.0231815394945443e-12
+    },
+    {
+      "theta_min_deg": 0.05,
+      "supported_s_mu_cells": 164,
+      "worst_independent_scalar_weighted_bin_count_abs_residual": 1.0231815394945443e-12
+    },
+    {
+      "theta_min_deg": 0.5,
+      "supported_s_mu_cells": 156,
+      "worst_independent_scalar_weighted_bin_count_abs_residual": 6.821210263296962e-13
+    }
+  ],
+  "checked_properties": {
+    "all_four_histograms_match_independent_scalar_reference": true,
+    "all_four_pair_normalizations_match": true,
+    "cross_Landy_Szalay_field_matches_independent_scalar": true,
+    "reversed_xi_field_mirrors_signed_mu": true,
+    "raw_synthetic_odd_pole_1_and_3_change_sign": true
+  },
+  "limitations": {
+    "synthetic_only": true,
+    "no_real_eboss_galaxies_opened": true,
+    "no_observed_odd_data_vector_read": true,
+    "zero_filled_unsupported_mu_cells_only_for_synthetic_parity_test": true,
+    "physical_eboss_fiducial_and_random_weights_not_finalized": true,
+    "full_survey_window_not_computed": true
+  }
+}
