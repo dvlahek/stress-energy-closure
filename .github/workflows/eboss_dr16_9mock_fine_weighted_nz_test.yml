@@ -1,0 +1,27 @@
+name: eBOSS DR16 nine-mock local fine weighted n(z) synthetic gate
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/audit_eboss_dr16_9mock_fine_weighted_nz.py'
+      - '.github/workflows/eboss_dr16_9mock_fine_weighted_nz_test.yml'
+      - 'source_data/eboss_dr16_9mock_fine_weighted_nz_protocol_2026-09-24.json'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  synthetic-weighted-nz:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install FITS and array dependencies for data-blind synthetic test
+        run: python -m pip install 'numpy>=1.24' 'astropy>=5.3'
+      - name: Test fixed 0.01-z and synthetic ELG-chunk FITS input gates
+        run: python scripts/audit_eboss_dr16_9mock_fine_weighted_nz.py --self-test
