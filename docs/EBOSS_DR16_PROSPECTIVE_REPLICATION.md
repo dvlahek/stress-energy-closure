@@ -1,6 +1,6 @@
 # eBOSS DR16 LRG×ELG: catalogue inventory and prospective replication
 
-Status: pre-analysis catalogue and mock metadata validation, 2026-09-24. We have parsed all eight public FITS headers, audited matching EZmock filenames and inspected the four full public LRG/ELG data catalogues for selection metadata only. We have not downloaded full random or mock FITS catalogues, validated the common selection function or calculated an eBOSS odd-sector vector. The analysis protocol is not yet frozen.
+Status: pre-analysis catalogue and mock validation, 2026-09-24. We have parsed all eight public real-data and random FITS headers, inspected the four full data catalogues and all four full random catalogues for selection metadata, audited 1000 matched EZmock filename sets, and checked 24 bounded realistic-mock FITS headers. The exact common mask, full mock selection and cross-covariance remain unvalidated. No eBOSS odd-sector vector has been calculated or inspected, and the analysis protocol is not yet frozen.
 
 ## Scientific question
 
@@ -38,7 +38,7 @@ These are FITS `NAXIS2` values, not galaxy counts after quality, redshift or com
 
 We downloaded the four public clustering data FITS files into a temporary CI workspace and calculated a full SHA256 digest for each. The selection audit verifies FITS structure and the finiteness and positivity of the four published weight columns. For the *candidate* interval `0.6 <= z < 1.0`, before common-footprint selection, the files contain 107,500 and 67,316 LRG objects in NGC and SGC, and 76,395 and 82,596 ELG objects. The 0.6–1.0 candidate contains all objects in these two eBOSS LRG clustering data files, but excludes the ELG objects above z=1.0. These counts do not define final analysis bins or a statistical test.
 
-A coarse data-object sky-occupancy diagnostic finds 37 jointly occupied cells out of 66 ELG-occupied cells in NGC, and 70 out of 70 in SGC, on the diagnostic grid. This is **not** a measurement of the common survey mask: sparse samples, cell boundaries and the absence of a joint random-mask selection can affect it. We must validate the angular overlap against both tracers' released random catalogues, separately by cap, before choosing the final sample.
+A coarse data-object sky-occupancy diagnostic finds 37 jointly occupied cells out of 66 ELG-occupied cells in NGC, and 70 out of 70 in SGC, on the diagnostic grid. This is **not** a measurement of the common survey mask: sparse samples, cell boundaries and the absence of a joint random-mask selection can affect it. The full-random diagnostic below now checks the gridded intersection by cap. An exact common selection and survey window still need to be established before choosing the final sample.
 
 The [data-only selection workflow](https://github.com/dvlahek/stress-energy-closure/actions/runs/35967074244) and `source_data/eboss_dr16_data_selection_audit_2026-09-24.json` retain the full-data SHA256 digests, raw redshift counts and coarse diagnostic. The workflow did not calculate pair counts, multipoles, matched-filter scores or any wake amplitude.
 
@@ -47,6 +47,14 @@ We also enumerate the public [eBOSS DR16 EZmock v1_0_0 release](https://data.sds
 The published mock-construction study ([Zhao et al., 2021](https://academic.oup.com/mnras/article/503/1/1149/6149160)) states that the tracers in a given realization share initial conditions and the underlying density field. A published [LRG–ELG cross-correlation analysis](https://academic.oup.com/mnras/article/511/4/5492/6527584) uses the joint EZmock ensemble. We have verified matching released filenames, not the FITS contents or the consistency of their weighting and selection. In particular, the published multi-tracer analysis notes limitations of separately populated tracer mocks for small-scale cross correlations. We therefore retain a mock-adequacy check on the final scales rather than treating the existence of 1000 files as sufficient calibration.
 
 The release also contains `eBOSS_LRGpCMASS` products, which are distinct from the `eBOSS_LRG` sample inventoried above. We have not selected between those tracer definitions; the choice and the corresponding data/mock provenance must be recorded before unblinding.
+
+## Full random-catalogue selection diagnostic
+
+The [full-random selection workflow](https://github.com/dvlahek/stress-energy-closure/actions/runs/35967630362) downloaded and verified all four public random FITS files. The retained numerical summary is `source_data/eboss_dr16_joint_random_selection_audit_2026-09-24.json`; its workflow artifact contains the full selection-only output. The declared row counts and SHA256 digests were recorded for all four catalogues. All random rows have valid coordinates and redshifts, and the four inspected weight columns have finite positive values.
+
+For the candidate `0.6 <= z < 1.0` interval, we formed a *diagnostic* random support on a grid with `0.5 deg` in RA and `0.01` in `sin(dec)`. Requiring at least 25 LRG randoms and 25 ELG randoms in the same cell gives 965 joint cells in NGC (of 2,013 supported ELG cells) and 2,228 in SGC (of 2,238 supported ELG cells). The corresponding joint-cell counts in the four `0.6-0.7`, `0.7-0.8`, `0.8-0.9`, `0.9-1.0` intervals are `938, 944, 922, 818` in NGC and `2045, 2206, 2204, 1812` in SGC. These are thresholded, finite-grid random supports, **not** an exact common survey mask, effective area or RR-window matrix. We retain the distinction between NGC and SGC; pixel threshold, angular boundary and selection-function robustness still require validation.
+
+A separate [bounded realistic-mock header audit](https://github.com/dvlahek/stress-energy-closure/actions/runs/35967950354) inspected the LRG and ELG data and random FITS headers of realizations `0001`, `0500` and `1000`, in both caps. All 24 headers parsed, and each tracer/role schema is consistent across the inspected IDs and caps. The realistic mock files provide `RA`, `DEC`, `Z` and the four weight columns, but the header audit does not validate the full mock selection. For example, LRG NGC realization `0001` declares 129,262 data rows, compared with 107,500 in the public real LRG NGC catalogue. The discrepancy needs a redshift/selection comparison before mock covariance is accepted.
 
 ## Validation gates before measuring the odd signal
 
