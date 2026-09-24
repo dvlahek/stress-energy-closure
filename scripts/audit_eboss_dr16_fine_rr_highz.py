@@ -52,7 +52,7 @@ def rebin_to_coarse(raw: np.ndarray, fine: np.ndarray,
     result = np.zeros((len(coarse) - 1, raw.shape[1]), dtype="f8")
     for k, (lo, hi) in enumerate(zip(coarse[:-1], coarse[1:])):
         keep = (fine[:-1] >= lo - 1e-12) & (fine[1:] <= hi + 1e-12)
-        if not np.any(keep) or abs(fine[keep][0] - lo) > 1e-12:
+        if not np.any(keep) or abs(fine[np.flatnonzero(keep)[0]] - lo) > 1e-12:
             raise ValueError("Fine edges do not cover an output separation bin")
         if abs(fine[np.flatnonzero(keep)[-1] + 1] - hi) > 1e-12:
             raise ValueError("Fine edges end before an output separation bin")
