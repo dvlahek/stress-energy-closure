@@ -1,82 +1,29 @@
-# Source data
+# Numerical source data
 
-This directory contains the compact numerical products used by the manuscript and its reported validation analyses.
+This directory contains numerical results and validation products used in the manuscript. The result-to-code mapping is given in [REPRODUCIBILITY.md](../REPRODUCIBILITY.md). Earlier implementations and intermediate outputs are retained on the [research archive branch](https://github.com/dvlahek/stress-energy-closure/tree/archive/research-development-2026-09-24).
 
-Development-stage checkpoints and superseded realizations are stored under `../archive/` and are not part of the standard manuscript reproduction path.
+## Einstein–Vlasov response and forecasts
 
-## Theory and forecast products
+The `Fig1_`–`Fig5_` tables contain the numerical results for source-matched evolution, inverse reconstruction, mass dependence and kinetic hierarchy. `ExtendedData_direct_memory_convergence.csv` records the direct/memory comparison. The `CLASS_`, `hidden_channel_retention_direct.json`, `ksz_wake_screening_summary.json` and `wake_` products contain the corresponding transfer-level, forecast and consistency calculations.
 
-- `Fig1_prediction_summary.csv` — matched-source nonlinear response example.
-- `Fig2_identifiability_summary.csv` — response-based identifiability test.
-- `Fig3_tomography_summary.csv`, `Fig3_noise_sweep.csv` — finite-window reconstruction and noise sensitivity.
-- `Fig4_mass_sweep.csv` — massive/massless control.
-- `Fig5_hierarchy.csv` — finite source-jet hierarchy.
-- `ExtendedData_direct_memory_convergence.csv` — direct-versus-memory convergence.
-- `CLASS_forecast_validation_summary.json` — CLASS validation summary.
-- `CLASS_response_optimization_mass_sweep.csv` — optimized response sweep over relic mass.
-- `hidden_channel_retention_direct.json` — direct transfer-level retention control.
-- `ksz_wake_screening_summary.json` — kSZ-tagged screening control.
-- `wake_final_forecast_summary.json`, `wake_robustness_summary.csv` — parity-odd wake forecast and robustness.
-- `wake_independent_validation_summary.json` — independent forecast validation.
+## DESI DR1 luminosity-rank analysis
 
-## Primary DESI DR1 analysis
+The reported five-tracer analysis is represented by:
 
-The primary reported observational coefficient is the frozen five-tracer luminosity-rank odd-sector analysis:
+- `phase7_desi_fullsample_perm256_summary.json` and `wake_phase7_multitracer_real_vector_perm256.csv`: DESI measurement and permutation calibration.
+- `phase7_validation_manifest.json`: analysis definition and validation references.
+- `phase7_gfinder_massproxy_summary.json`, `phase7_seed_control_summary.json`, `phase7_abacus_final_summary.json` and `phase7_abacus_injection_amplitude_sweep.json`: robustness and mock validation.
+- `phase7_ezmock_local/` and `phase7_octupole_control/`: random-rank mock and higher-multipole controls.
 
-- `phase7_desi_fullsample_perm256_summary.json`
-- `wake_phase7_multitracer_real_vector_perm256.csv`
-- `phase7_validation_manifest.json`
+The conservative fitted coefficient is $A_{\rm wake}=-0.0768409\pm0.0851660$, with empirical two-sided permutation $p=0.37354$.
 
-Reported result:
+## DESI DR1 LRG–ELG cross-correlation
 
-[
-A_{\rm wake}=-0.0768409\pm0.0851660,
-]
+The exact-pair analysis uses the products in `lrg_elg_r4_inference_inputs/` and `lrg_elg_windowed_forward_r4/`. The latter includes the window matrix, convolved templates and individual leave-one-out mock statistics.
 
-with empirical two-sided permutation (p=0.37354).
+- `lrg_elg_windowed_finite_mock_r4_120_final_2026-09-23.json`: final numerical inference.
+- `lrg_elg_exact_final_manifest_2026-09-23.json`: analysis definition and result references.
+- `lrg_elg_covariance_r4_120_checkpoint_2026-09-23.json`: covariance diagnostics.
+- `lrg_elg_bruteforce_pair_closure_2026-09-21.json`, `lrg_elg_mubin_convergence_r4.json` and `lrg_elg_zresolved_random_density_audit_10pair.json`: estimator and numerical validation.
 
-Supporting validation products retained here because they are part of the manuscript validation chain include:
-
-- `phase7_gfinder_massproxy_summary.json`
-- `phase7_seed_control_summary.json`
-- `phase7_abacus_final_summary.json`
-- `phase7_abacus_injection_amplitude_sweep.json`
-- `phase7_ezmock_local/`
-- `phase7_octupole_control/`
-- `wake_phase7_desi_dr1_zresolved_summary.json`
-
-The earlier 32-permutation realization is preserved under `../archive/phase7/intermediate/`.
-
-## Secondary exact LRG×ELG consistency analysis
-
-The exact-pair branch is reported as an independent consistency analysis, not as the primary DESI coefficient.
-
-Final paper-facing products:
-
-- `lrg_elg_exact_final_manifest_2026-09-23.json` — machine-readable final analysis definition and result hierarchy.
-- `lrg_elg_windowed_finite_mock_r4_120_final_2026-09-23.json` — compact final inference summary.
-- `lrg_elg_windowed_forward_r4/` — survey-window matrix, final templates, forward-model summary and full 120-mock leave-one-out audit.
-- `lrg_elg_r4_inference_inputs/` — frozen data vector and theory inputs.
-- `lrg_elg_covariance_r4_120_checkpoint_2026-09-23.json` — final covariance diagnostics.
-
-Validation products retained in the paper-facing tree:
-
-- `lrg_elg_bruteforce_pair_closure_2026-09-21.json` — independent NumPy versus pycorr/Corrfunc estimator closure.
-- `lrg_elg_mubin_convergence_r4.json` — angular-discretization convergence.
-- `lrg_elg_zresolved_random_density_audit_10pair.json` — random-catalog density validation.
-
-Final result:
-
-[
-A_{\rm wake}=0.00327466\pm0.00148162,
-qquad
-Z_{\rm nominal}=2.21019.
-]
-
-The 120-mock leave-one-out calibration gives (1.84\sigma) from the absolute matched-filter score and (1.96\sigma) from the Sellentin–Heavens likelihood-ratio tail. The result is described as an approximately (2\sigma) hint, not as a detection.
-
-Earlier 40-mock, regional, pre-window and intermediate checkpoints are preserved under `../archive/desi_exact/`.
-
-## Reproducibility
-
-See `../REPRODUCIBILITY.md` for the result-to-code map and `../docs/OBSERVATIONAL_REPRODUCIBILITY.md` for the observational analysis definitions.
+The window-convolved fit gives $A_{\rm wake}=0.00327466\pm0.00148162$ and nominal $Z=2.21019$. Empirical calibration with 120 mocks gives two-sided equivalents of $1.84\sigma$ and $1.96\sigma$ for the two specified statistics. The inference is interpreted as an approximately two-sigma indication, not as a detection.
