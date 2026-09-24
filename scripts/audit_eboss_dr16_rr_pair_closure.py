@@ -181,6 +181,7 @@ def select_fixed_random(
             & (z >= zlo) & (z < zhi)
         )
         count_before_weight = int(np.count_nonzero(allowed))
+        base_candidate = allowed.copy()
         nonfinite = {}
         nonpositive = {}
         numerical_zero = {}
@@ -188,11 +189,14 @@ def select_fixed_random(
             w = np.asarray(data[name], dtype="f8")
             finite = np.isfinite(w)
             floor = NUMERICAL_ZERO_WEIGHT_TOL if name == "WEIGHT_SYSTOT" else 0.0
-            nonfinite[name] = int(np.count_nonzero(allowed & ~finite))
-            nonpositive[name] = int(np.count_nonzero(allowed & finite & (w <= 0)))
+            nonfinite[name] = int(np.count_nonzero(base_candidate & ~finite))
+            nonpositive[name] = int(np.count_nonzero(
+                base_candidate & finite & (w <= 0)))
             numerical_zero[name] = int(np.count_nonzero(
-                allowed & finite & (np.abs(w) <= NUMERICAL_ZERO_WEIGHT_TOL)))
-            if np.any(allowed & finite & (w < -NUMERICAL_ZERO_WEIGHT_TOL)):
+                base_candidate & finite &
+                (np.abs(w) <= NUMERICAL_ZERO_WEIGHT_TOL)))
+            if np.any(base_candidate & finite &
+                      (w < -NUMERICAL_ZERO_WEIGHT_TOL)):
                 raise ValueError(f"Significant negative {name} in random slice")
             allowed &= finite & (w > floor)
         eligible = np.flatnonzero(allowed)
