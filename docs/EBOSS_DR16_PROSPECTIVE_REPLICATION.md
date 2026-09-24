@@ -1,6 +1,6 @@
 # eBOSS DR16 LRG×ELG: catalogue inventory and prospective replication
 
-Status: catalogue-link inventory only, 2026-09-24. No eBOSS FITS files have been downloaded or validated in this repository, and no eBOSS odd-sector data vector has been measured or inspected. The analysis definition below is a prospective plan, not a frozen protocol.
+Status: pre-analysis catalogue-header and mock-filename validation, 2026-09-24. We have read bounded ranges of the public FITS headers and enumerated mock filenames. No complete eBOSS FITS catalogue has been downloaded or checked against a full-file SHA256 digest, no catalogue rows have been analyzed, and no eBOSS odd-sector vector has been calculated or inspected. The analysis definition remains prospective and is not a frozen protocol.
 
 ## Scientific question
 
@@ -19,7 +19,26 @@ The read-only inventory workflow enumerated the public [SDSS DR16 LSS catalogue 
 
 Each file has the URL formed by appending its published filename to the SDSS directory above. The [inventory workflow run](https://github.com/dvlahek/stress-energy-closure/actions/runs/35965943010) retains the complete read-only listing as artifact `eboss-dr16-release-index`. This inventory establishes file locations only. A successful filename inventory does not establish FITS validity, redshift or footprint overlap, compatible random selection, weight conventions or mock calibration.
 
-The SDSS [DR16 LSS documentation](https://www.sdss4.org/dr17/spectro/lss/) describes the released clustering data and random catalogues. SDSS also publishes a [DR16 multi-tracer EZmock collection](https://sdss.org/dr20/data_access/value-added-catalogs/?vac_id=68). Its listing does not, by itself, establish a jointly usable LRG×ELG mock ensemble or its cross-covariance.
+The SDSS [DR16 LSS documentation](https://www.sdss4.org/dr17/spectro/lss/) describes the released clustering data and random catalogues. The catalogue-header and mock-filename checks below establish the published file structure. They do not establish the physical overlap, survey selection or a calibrated cross-tracer covariance.
+
+## Header and mock-filename validation
+
+We inspect FITS metadata through bounded HTTP range requests without reading catalogue rows. All eight public clustering files have a binary-table extension with `RA`, `DEC`, `Z`, `WEIGHT_SYSTOT`, `WEIGHT_CP`, `WEIGHT_NOZ` and `WEIGHT_FKP`. The declared row counts are:
+
+| Tracer | Cap | Data header rows | Random header rows |
+| --- | --- | ---: | ---: |
+| LRG | NGC | 107,500 | 5,460,719 |
+| LRG | SGC | 67,316 | 3,453,453 |
+| ELG | NGC | 83,769 | 3,728,363 |
+| ELG | SGC | 89,967 | 3,609,460 |
+
+These are FITS `NAXIS2` values, not galaxy counts after quality, redshift or common-footprint cuts. We have not checked the contents or determined the formula for combining eBOSS weights. The [header inventory workflow](https://github.com/dvlahek/stress-energy-closure/actions/runs/35966541598) and `source_data/eboss_dr16_fits_header_audit_2026-09-24.json` record the metadata.
+
+We also enumerate the public [eBOSS DR16 EZmock v1_0_0 release](https://data.sdss.org/sas/dr17/eboss/lss/EZmocks/v1_0_0/). Both `complete` and `realistic` branches provide eBOSS LRG and ELG data files for IDs `0001`–`1000` in NGC and SGC. The complete mocks have per-realization shuffled randoms and separate shared random catalogues; the realistic mocks have per-realization randoms. The filename audit finds all 1000 joint LRG–ELG IDs in both caps, with no missing data or matched-random filenames. The [pairing-audit workflow](https://github.com/dvlahek/stress-energy-closure/actions/runs/35966739277) and `source_data/eboss_dr16_mock_filename_audit_2026-09-24.json` retain the counts and the listing fingerprint.
+
+The published mock-construction study ([Zhao et al., 2021](https://academic.oup.com/mnras/article/503/1/1149/6149160)) states that the tracers in a given realization share initial conditions and the underlying density field. A published [LRG–ELG cross-correlation analysis](https://academic.oup.com/mnras/article/511/4/5492/6527584) uses the joint EZmock ensemble. We have verified matching released filenames, not the FITS contents or the consistency of their weighting and selection. In particular, the published multi-tracer analysis notes limitations of separately populated tracer mocks for small-scale cross correlations. We therefore retain a mock-adequacy check on the final scales rather than treating the existence of 1000 files as sufficient calibration.
+
+The release also contains `eBOSS_LRGpCMASS` products, which are distinct from the `eBOSS_LRG` sample inventoried above. We have not selected between those tracer definitions; the choice and the corresponding data/mock provenance must be recorded before unblinding.
 
 ## Validation gates before measuring the odd signal
 
