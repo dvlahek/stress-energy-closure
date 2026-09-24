@@ -1,0 +1,39 @@
+name: eBOSS DR16 high-z fine-RR geometric closure
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/audit_eboss_dr16_fine_rr_highz.py'
+      - '.github/workflows/eboss_dr16_fine_rr_highz.yml'
+  workflow_dispatch:
+
+jobs:
+  highz-fine-rr:
+    runs-on: ubuntu-latest
+    timeout-minutes: 65
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install pinned compiled DESI-compatible pair-counter stack
+        run: |
+          python -m pip install --upgrade pip setuptools wheel
+          python -m pip install -r requirements-desi.txt
+      - name: Check synthetic fine-to-coarse rebin and orientation
+        run: python scripts/audit_eboss_dr16_fine_rr_highz.py --self-test
+      - name: Count observed high-z random pairs on a one-Mpc separation grid
+        run: |
+          python scripts/audit_eboss_dr16_fine_rr_highz.py \
+            --threads 2 \
+            --out eboss_workspace/fine_rr_highz_audit.json
+      - name: Retain fine RR histograms and geometric checks
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: eboss-dr16-fine-rr-highz
+          path: |
+            eboss_workspace/fine_rr_highz_audit.json
+            eboss_workspace/fine_rr_highz_audit.npz
+          if-no-files-found: warn
