@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Inspect eBOSS catalogue metadata without measuring clustering.
 
-We list release-directory filenames or inspect FITS headers and column names.
+We list release-directory filenames, classify the published data and random catalogues, and inspect FITS headers and column names.
 No galaxy positions, redshifts, pair counts or odd multipoles are evaluated.
 """
 from __future__ import annotations
@@ -16,6 +16,7 @@ from urllib.request import Request, urlopen
 
 
 DEFAULT_INDEX = "https://data.sdss.org/sas/dr16/eboss/lss/catalogs/DR16/"
+FITS_SUFFIXES = (".fits", ".fits.gz", ".fits.fz", ".fit", ".fit.gz")
 
 
 class Links(HTMLParser):
@@ -32,6 +33,37 @@ class Links(HTMLParser):
                 break
 
 
+def classify(name):
+    """Classify a published filename without assuming a particular DR16 suffix."""
+    lower = name.lower()
+    if not lower.endswith(FITS_SUFFIXES):
+        return None
+    if "clustering" not in lower or re.search(r"(?:^|[_-])rec(?:[_.-]|$)", lower):
+        return None
+
+    tracer = None
+    if re.search(r"eboss[_-]lrg[_-]clustering", lower):
+        tracer = "LRG"
+    elif re.search(r"eboss[_-]elg[_-]clustering", lower):
+        tracer = "ELG"
+    if tracer is None:
+        return None
+
+    cap_match = re.search(r"(?:^|[_-])(NGC|SGC)(?:[_\.-]|$)", name, re.I)
+    cap = cap_match.group(1).upper() if cap_match else "unspecified"
+
+    if re.search(r"(?:^|[_\.-])(ran|random|randoms)(?:[_\.-]|$)", name, re.I):
+        role = "random"
+    elif re.search(r"(?:^|[_\.-])(dat|data)(?:[_\.-]|$)", name, re.I):
+        role = "data"
+    else:
+        # The plain clustering FITS file is the data catalogue; random catalogues
+        # carry an explicit random/ran marker in the SDSS naming convention.
+        role = "data"
+    return tracer, cap, role
+
+
+
 def read_index(url: str) -> dict:
     req = Request(url, headers={"User-Agent": "scientific-catalogue-metadata-audit/1.0"})
     with urlopen(req, timeout=45) as response:
@@ -41,16 +73,24 @@ def read_index(url: str) -> dict:
     parser = Links()
     parser.feed(html)
     found = []
+    classified = []
     for href in parser.links:
         name = href.rsplit("/", 1)[-1]
         if re.search(r"LRG|ELG|DR16|clustering|\.fits|EZmock", href, re.I):
-            found.append({"name": name or href, "url": urljoin(effective_url, href)})
+            file_url = urljoin(effective_url, href)
+            found.append({"name": name or href, "url": file_url})
+            category = classify(name)
+            if category is not None:
+                tracer, cap, role = category
+                classified.append({"name": name, "url": file_url,
+                                   "tracer": tracer, "cap": cap, "role": role})
     found.sort(key=lambda item: item["name"].lower())
     return {
         "requested_url": url,
         "effective_url": effective_url,
         "content_type": content_type,
         "matched_links": found,
+        "classified_catalogues": sorted(classified, key=lambda item: item["name"].lower()),
         "note": (
             "The directory listing is a catalogue-discovery aid. File versions, "
             "tracer samples and columns must be checked before pair counting."
