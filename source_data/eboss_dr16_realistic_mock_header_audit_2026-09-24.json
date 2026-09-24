@@ -1,0 +1,77 @@
+{
+  "snapshot_date": "2026-09-24",
+  "kind": "curated_compact_snapshot_of_bounded_realistic_mock_FITS_header_audit",
+  "source_script": "scripts/inspect_eboss_dr16_mock_headers.py",
+  "source_workflow": "https://github.com/dvlahek/stress-energy-closure/actions/runs/35967950354",
+  "source_artifact": "https://github.com/dvlahek/stress-energy-closure/actions/runs/35967950354/artifacts/10795225009",
+  "source_commit": "45f01874dcbe96406455eb314390f615d0c7c710",
+  "mock_release": "https://data.sdss.org/sas/dr17/eboss/lss/EZmocks/v1_0_0/realistic/",
+  "status": "sample_headers_validated",
+  "realization_ids": [
+    1,
+    500,
+    1000
+  ],
+  "caps": [
+    "NGC",
+    "SGC"
+  ],
+  "tracers": [
+    "eBOSS_LRG",
+    "eBOSS_ELG"
+  ],
+  "roles": [
+    "dat",
+    "ran"
+  ],
+  "headers_checked": 24,
+  "headers_parsed": 24,
+  "all_have_ra_dec_z": true,
+  "schema_consistent_within_tracer_role": true,
+  "lrg_column_names": [
+    "RA",
+    "DEC",
+    "Z",
+    "WEIGHT_FKP",
+    "WEIGHT_NOZ",
+    "WEIGHT_CP",
+    "NZ",
+    "WEIGHT_SYSTOT"
+  ],
+  "elg_column_names": [
+    "RA",
+    "DEC",
+    "Z",
+    "WEIGHT_FKP",
+    "WEIGHT_NOZ",
+    "WEIGHT_CP",
+    "NZ",
+    "WEIGHT_SYSTOT",
+    "chunk"
+  ],
+  "data_header_row_counts": {
+    "1000": {
+      "LRG_NGC": 127838,
+      "LRG_SGC": 77742,
+      "ELG_NGC": 84838,
+      "ELG_SGC": 89973
+    },
+    "0001": {
+      "LRG_NGC": 129262,
+      "LRG_SGC": 82921,
+      "ELG_NGC": 83747,
+      "ELG_SGC": 90650
+    },
+    "0500": {
+      "LRG_NGC": 121724,
+      "LRG_SGC": 78074,
+      "ELG_NGC": 84206,
+      "ELG_SGC": 91525
+    }
+  },
+  "full_mock_FITS_contents_verified": false,
+  "realistic_mock_selection_verified": false,
+  "per_realization_cross_covariance_calculated": false,
+  "odd_sector_data_vector_measured": false,
+  "scope_note": "A bounded gzip/FITS header check establishes available columns and declared row counts, not the number or quality of usable objects. The mock NGC LRG total-row difference from real data requires a redshift and selection comparison. The original 24-record artifact retains individual filenames and header metadata."
+}
