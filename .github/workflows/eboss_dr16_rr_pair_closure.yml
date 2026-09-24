@@ -1,0 +1,36 @@
+name: eBOSS DR16 weighted RR pair closure
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/audit_eboss_dr16_rr_pair_closure.py'
+      - '.github/workflows/eboss_dr16_rr_pair_closure.yml'
+  workflow_dispatch:
+
+jobs:
+  rr-pair-closure:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install FITS and geometry dependencies
+        run: python -m pip install 'numpy>=1.24' 'astropy>=5.3'
+      - name: Test independent weighted RR mirror closure on synthetic catalogues
+        run: python scripts/audit_eboss_dr16_rr_pair_closure.py --self-test
+      - name: Validate fixed-subsample observed and mock RR pair reversal
+        run: |
+          python scripts/audit_eboss_dr16_rr_pair_closure.py \
+            --mock-id 1 --sample 1200 \
+            --zlo 0.8 --zhi 0.9 \
+            --out eboss_workspace/rr_pair_closure.json
+      - name: Retain random-only geometric closure artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: eboss-dr16-weighted-rr-pair-closure
+          path: eboss_workspace/rr_pair_closure.json
+          if-no-files-found: warn
