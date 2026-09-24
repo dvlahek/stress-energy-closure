@@ -1,0 +1,35 @@
+name: eBOSS DR16 realistic mock data selection
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/inspect_eboss_dr16_mock_selection.py'
+      - '.github/workflows/eboss_dr16_mock_selection.yml'
+  workflow_dispatch:
+
+jobs:
+  mock-selection:
+    runs-on: ubuntu-latest
+    timeout-minutes: 22
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install FITS and array dependencies
+        run: python -m pip install 'numpy>=1.24' 'astropy>=5.3'
+      - name: Check selection code without reading catalogues
+        run: python scripts/inspect_eboss_dr16_mock_selection.py --self-test
+      - name: Inspect three preselected realistic mock data realizations
+        run: |
+          python scripts/inspect_eboss_dr16_mock_selection.py \
+            --ids 1,500,1000 \
+            --out eboss_workspace/mock_selection_audit.json
+      - name: Retain selection metadata only
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: eboss-dr16-realistic-mock-selection
+          path: eboss_workspace/mock_selection_audit.json
+          if-no-files-found: warn
