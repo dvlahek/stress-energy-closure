@@ -1,0 +1,161 @@
+{
+  "snapshot_date": "2026-09-24",
+  "kind": "compact_fixed_eBOSS_observed_random_only_compiled_RR_pilot",
+  "source_script": "scripts/audit_eboss_dr16_corrfunc_rr_pilot.py",
+  "source_workflow": "https://github.com/dvlahek/stress-energy-closure/actions/runs/35980394889",
+  "source_artifact": "https://github.com/dvlahek/stress-energy-closure/actions/runs/35980394889/artifacts/10800485381",
+  "source_commit": "7c5a0dd2d7c11f1398380e1353aaa854bb4f139d",
+  "status": "pilot_random_only_rr_checked",
+  "synthetic_scalar_vs_corrfunc_compiled_RR_self_test_passed": true,
+  "candidate_z_bin": [
+    0.9,
+    1
+  ],
+  "candidate_redshift_bin_frozen": false,
+  "caps": [
+    "NGC",
+    "SGC"
+  ],
+  "orientation": "eBOSS_LRG->eBOSS_ELG",
+  "weights": "pure-eBOSS four-column product after near-zero rule",
+  "distance_primary": {
+    "h": 0.6777,
+    "omega_m": 0.307,
+    "Tcmb0": 0
+  },
+  "distance_secondary": {
+    "h": 0.676,
+    "omega_m": 0.31,
+    "Tcmb0": 0
+  },
+  "sample_levels_per_tracer": [
+    6000,
+    18000,
+    54000
+  ],
+  "fixed_independent_seeds": [
+    4071,
+    8159
+  ],
+  "input_fits": [
+    {
+      "cap": "NGC",
+      "tracer": "LRG",
+      "eligible_in_high_z": 375515,
+      "full_fits_sha256": "5da0bf41e267968310ada55ea3bf27c9a3808bba77050e66c54d84dec62b6281"
+    },
+    {
+      "cap": "NGC",
+      "tracer": "ELG",
+      "eligible_in_high_z": 762827,
+      "full_fits_sha256": "7b9a5ea54ea99fa1d56ec20206e920d171c807c626c29b6a4dcc766d0ee36698"
+    },
+    {
+      "cap": "SGC",
+      "tracer": "LRG",
+      "eligible_in_high_z": 214862,
+      "full_fits_sha256": "4aabcaa99cc2855d38eddd5fac903d3281e9436e5ba5b8c230050db3da92d230"
+    },
+    {
+      "cap": "SGC",
+      "tracer": "ELG",
+      "eligible_in_high_z": 620263,
+      "full_fits_sha256": "f3097c653c54b3b0e2033a0d586c77f9a8975aeb3397c441f92703797e7db9a1"
+    }
+  ],
+  "per_seed_levels": [
+    {
+      "cap": "NGC",
+      "seed": 4071,
+      "n": 6000,
+      "normalized_rr_fraction_within_test_s_bins": 0.0050364508
+    },
+    {
+      "cap": "NGC",
+      "seed": 4071,
+      "n": 18000,
+      "normalized_rr_fraction_within_test_s_bins": 0.0049874595
+    },
+    {
+      "cap": "NGC",
+      "seed": 4071,
+      "n": 54000,
+      "normalized_rr_fraction_within_test_s_bins": 0.0049221952
+    },
+    {
+      "cap": "NGC",
+      "seed": 8159,
+      "n": 6000,
+      "normalized_rr_fraction_within_test_s_bins": 0.0050751196
+    },
+    {
+      "cap": "NGC",
+      "seed": 8159,
+      "n": 18000,
+      "normalized_rr_fraction_within_test_s_bins": 0.0053360299
+    },
+    {
+      "cap": "NGC",
+      "seed": 8159,
+      "n": 54000,
+      "normalized_rr_fraction_within_test_s_bins": 0.005128992
+    },
+    {
+      "cap": "SGC",
+      "seed": 4071,
+      "n": 6000,
+      "normalized_rr_fraction_within_test_s_bins": 0.01373608
+    },
+    {
+      "cap": "SGC",
+      "seed": 4071,
+      "n": 18000,
+      "normalized_rr_fraction_within_test_s_bins": 0.013968451
+    },
+    {
+      "cap": "SGC",
+      "seed": 4071,
+      "n": 54000,
+      "normalized_rr_fraction_within_test_s_bins": 0.01398411
+    },
+    {
+      "cap": "SGC",
+      "seed": 8159,
+      "n": 6000,
+      "normalized_rr_fraction_within_test_s_bins": 0.01419653
+    },
+    {
+      "cap": "SGC",
+      "seed": 8159,
+      "n": 18000,
+      "normalized_rr_fraction_within_test_s_bins": 0.013853355
+    },
+    {
+      "cap": "SGC",
+      "seed": 8159,
+      "n": 54000,
+      "normalized_rr_fraction_within_test_s_bins": 0.013844987
+    }
+  ],
+  "compared_l1": [
+    {
+      "cap": "NGC",
+      "between_independent_seed_n54000_relative_l1": 0.0403192,
+      "secondary_vs_primary_same_sample_relative_l1": 0.00522366
+    },
+    {
+      "cap": "SGC",
+      "between_independent_seed_n54000_relative_l1": 0.0109191,
+      "secondary_vs_primary_same_sample_relative_l1": 0.00491884
+    }
+  ],
+  "limits": {
+    "only_real_randoms_used": true,
+    "no_real_galaxy_positions_read": true,
+    "no_observed_odd_vector_read": true,
+    "no_full_random_RR_counts_yet": true,
+    "no_final_window_convolution": true,
+    "no_covariance": true
+  },
+  "scope_note": "Compiled pycorr/Corrfunc verified against independent scalar/NumPy on identical synthetic catalogue. The high-z pilot demonstrates density sensitivity and tests a predeclared distance variant without selecting a wake statistic."
+}
