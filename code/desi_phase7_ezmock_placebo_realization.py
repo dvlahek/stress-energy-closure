@@ -140,7 +140,7 @@ def main():
       'sanity':{'max_abs_xi0':max_xi0,'max_abs_xi1':max_xi1,'gate_max_abs_xi0':0.30,'gate_max_abs_xi1':0.20},
       'window_model':'pair-level response to xi_odd^{ij}=(m_j-m_i) mu T(s,z), evaluated through the identical sampled DD geometry and RR normalization',
       'wake_forward_response':wake.tolist(),'doppler_forward_response':dop.tolist(),'xi1_proxy_odd':xi1.tolist(),
-      'analysis_scope':'The available EZmock BGS catalogues do not provide the luminosity field required by the five-tracer measurement. We assign equal-count random ranks for a survey-geometry and covariance control, using each realization's random catalogues.'
+      'analysis_scope':'The available EZmock BGS catalogues do not provide the luminosity field required by the five-tracer measurement. We assign equal-count random ranks for a survey-geometry and covariance control, using the random catalogues supplied for each realization.'
     }
     (out/f'{stem}_summary.json').write_text(json.dumps(summary,indent=2)+'\n')
     print('PHASE7_EZMOCK_PLACEBO_REALIZATION',json.dumps(summary))
