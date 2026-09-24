@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Local runner for the frozen DESI DR1 Phase-7 odd-octupole control.
-# This is exploratory and must be run before inspecting any ell=3 result.
+# Reproduce the DESI DR1 luminosity-rank octupole control.
+# The reference dipole is the original 32-permutation realization used by this control.
 #
 # Usage:
 #   bash scripts/run_phase7_octupole_control_local.sh
@@ -68,7 +68,7 @@ python code/desi_dr1_phase7_octupole_control.py \
   --data "$DNGC" "$DSGC" \
   --random "$RNGC" "$RSGC" \
   --outdir "$OUTDIR" \
-  --reference-dipole source_data/wake_phase7_multitracer_real_vector.csv \
+  --reference-dipole source_data/phase7_octupole_control/reference_dipole_32perm.csv \
   --zmin 0.10 --zmax 0.40 --dz-proxy 0.02 --ntracer 5 \
   --analysis-z-edges 0.10,0.20,0.30,0.40 \
   --sep-edges 20,40,60,80,100,120,140 \
