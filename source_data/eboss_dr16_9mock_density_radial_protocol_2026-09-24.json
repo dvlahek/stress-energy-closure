@@ -1,0 +1,86 @@
+{
+  "study": "Blinded nine-realization eBOSS matched-count angular and coarse radial selection control",
+  "registered_on": "2026-09-24",
+  "parent_predeclaration_commit": "5fe7a0017da6e8a0b0b9de9cf2114d7c0ca9d0bd",
+  "source_mock_shard_run": 36015246541,
+  "source_mock_shard_commit": "9150992ac06c03cf1b16c5fdd4e3bb3856f89ff0",
+  "source_observed_random_rr_run": 35995805473,
+  "source_window_ensemble_run": 36017670812,
+  "mock_ids": [
+    1,
+    125,
+    250,
+    375,
+    500,
+    625,
+    750,
+    875,
+    1000
+  ],
+  "caps": [
+    "NGC",
+    "SGC"
+  ],
+  "tracers": [
+    "LRG",
+    "ELG"
+  ],
+  "candidate_z_bins": [
+    [
+      0.6,
+      0.7
+    ],
+    [
+      0.7,
+      0.8
+    ],
+    [
+      0.8,
+      0.9
+    ],
+    [
+      0.9,
+      1
+    ]
+  ],
+  "candidate_combined_z": [
+    0.6,
+    1
+  ],
+  "fixed_angular_grid": {
+    "ra_step_deg": 0.5,
+    "sin_dec_step": 0.01,
+    "thresholds_randoms_per_tracer_per_pixel": [
+      1,
+      5,
+      10,
+      15,
+      25
+    ],
+    "threshold_15_is_diagnostic_not_an_optimization_target": true
+  },
+  "matched_density_rule": "For each cap, redshift slice, and tracer independently, define target count as the smallest full count among observed randoms and all nine fixed mock randoms; draw two fixed-seed exact-count multinomial replicates from each already audited binned sky map, without changing the underlying masks.",
+  "control_seeds": {
+    "observed_seed_base": 7711,
+    "mock_seed_base": 12911,
+    "replicates_per_catalogue": 2
+  },
+  "metrics": [
+    "Four-bin unweighted redshift fractions and total-variation distance between each mock and observed random catalogue per tracer/cap",
+    "Full-resolution normalized tracer sky-map total-variation distance per z bin",
+    "Exact-count multinomial resample observed-vs-mock joint support Jaccard at all fixed thresholds for both replicate indices",
+    "Observed-within-observed and mock-within-mock resample joint support Jaccard at the same matched count and threshold",
+    "Per-tracer matched-count resample sky-map total-variation distance and within-catalogue finite-count reference"
+  ],
+  "interpretation": "Exploratory, data-blind finite-random selection diagnostic only; binned pixel counts do not encode continuous angular vetoes and multinomial replicates are correlated through their parent full catalogues. Four-bin counts do not establish fine weighted n(z). No p-value, sigma, exact angular mask, or covariance is estimated.",
+  "limitations": [
+    "Mock shard arrays have unweighted sky counts, not weighted effective sky maps",
+    "Existing mock source records retain four broad z-bin counts but not sub-bin weighted n(z)",
+    "Resampling an empirical sky map cannot distinguish catalogue-dependent systematic geometry from its inherited pixel probabilities",
+    "Physical analysis must use mask documentation and actual pair-level common footprint before unblinding"
+  ],
+  "real_galaxy_positions_read": false,
+  "observed_odd_data_vector_read": false,
+  "wake_fitted_or_tuned": false,
+  "protocol_frozen_for_inference": false
+}
