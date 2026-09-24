@@ -1,0 +1,29 @@
+name: eBOSS DR16 catalogue inventory
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/inspect_eboss_dr16_catalogues.py'
+      - '.github/workflows/eboss_dr16_catalogue_inventory.yml'
+
+jobs:
+  inventory:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Inventory released LRG and ELG file links (no FITS downloads)
+        run: |
+          python scripts/inspect_eboss_dr16_catalogues.py \
+            --out eboss_workspace/release_index.json
+      - name: Retain read-only inventory
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: eboss-dr16-release-index
+          path: eboss_workspace/release_index.json
+          if-no-files-found: warn
