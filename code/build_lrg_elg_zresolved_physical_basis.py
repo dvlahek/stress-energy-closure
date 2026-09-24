@@ -123,10 +123,9 @@ def main():
             "relativistic_nu1_vs_wide_angle":cosine(nn,wan),
         },
         "max_relative_moment_mismatch":float(np.max(mis)),
-        "guardrail":(
-            "One normalization is used over the full (z,s) vector, so relative redshift evolution "
-            "is preserved. The nu1 and wide-angle columns are radial-basis diagnostics until tracer "
-            "bias, magnification bias, evolution bias and the DESI window are linked physically."
+        "analysis_scope":(
+            "We normalize the full redshift–separation vector once, preserving its relative redshift dependence. "
+            "The radial standard components require tracer calibration and survey-window treatment."
         ),
     }
     (out/"basis_summary.json").write_text(json.dumps(summary,indent=2)+"\n")

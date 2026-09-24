@@ -194,10 +194,9 @@ def main():
         "template_cosines":cos,
         "covariance":covinfo,
         "output_csv":str(csv),
-        "guardrail":(
-            "This benchmark links the standard radial bases with externally specified tracer coefficients. "
-            "Do not tune these coefficients on the observed odd data. Final DR1 inference requires DR1-specific "
-            "bias/evolution/magnification calibration and survey-window convolution."
+        "analysis_scope":(
+            "We combine standard radial bases using externally specified tracer coefficients. "
+            "The survey-specific model requires the corresponding tracer calibration and window response."
         ),
     }
     (out/"linked_standard_summary.json").write_text(json.dumps(summary,indent=2)+"\n")

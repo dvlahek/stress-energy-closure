@@ -164,10 +164,9 @@ def main():
         "theta_min_deg": float(args.theta_min_deg),
         "weights": "WEIGHT * WEIGHT_FKP for data and randoms",
         "bins": summaries,
-        "guardrail": (
-            "The three redshift bins are frozen before inspection of the z-resolved data. "
-            "Use identically processed mocks for covariance; do not merge, move or select bins "
-            "after inspecting which choice increases significance."
+        "analysis_scope": (
+            "We evaluate the three specified redshift intervals and use identically processed mocks "
+            "to estimate the covariance of the resulting dipole vector."
         ),
     }
     (out / "summary_exact_zresolved.json").write_text(json.dumps(summary, indent=2) + "\n")

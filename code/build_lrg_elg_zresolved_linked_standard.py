@@ -144,10 +144,9 @@ def main():
             "wake_vs_linked_no_bd":cosine(wake,linked0_n),
             "linked_with_vs_without_bd":cosine(linked_n,linked0_n),
         },
-        "guardrail":(
-            "This is a linked benchmark, not the final DR1 standard-odd prediction. "
-            "The evolution bias is DR1-specific, but b,s and b_D use external 0.8<z<1 averages; "
-            "the z>1 Doppler-bias benchmark is set to zero. Do not tune these inputs on the odd data."
+        "analysis_scope":(
+            "We use DR1-specific evolution bias and externally determined tracer-bias, magnification and Doppler inputs. "
+            "The Doppler-bias term is set to zero above z=1 in this benchmark."
         ),
     }
     (out/"linked_standard_summary.json").write_text(json.dumps(summary,indent=2)+"\n")

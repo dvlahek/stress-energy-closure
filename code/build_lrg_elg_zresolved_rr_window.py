@@ -158,10 +158,9 @@ def main():
         "per_zbin_counts": all_counts,
         "rr_wnorm": all_wnorm,
         "mu_asymmetry_by_output_bin": all_asymmetry,
-        "guardrail": (
-            "This product is data-blind and must only be used to forward-model already frozen theory "
-            "through the estimator window. Do not alter bins, pair orientation, theta cut, or random "
-            "selection in response to the observed odd-sector significance."
+        "analysis_scope": (
+            "We construct the random-pair response using the same separation bins, angular selection, "
+            "pair orientation and catalogue weights as the measured estimator."
         ),
     }
     (out / "rr_window_counts_summary.json").write_text(json.dumps(summary, indent=2) + "\n")

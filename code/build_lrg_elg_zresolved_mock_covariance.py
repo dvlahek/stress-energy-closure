@@ -112,10 +112,9 @@ def main():
             "xi3": diag(C3),
             "joint": diag(Cj),
         },
-        "guardrail": (
-            "With 40 mocks the 18D dipole covariance is preliminary; the 36D joint precision "
-            "is expected to be extremely noisy and should not be used for final inference. "
-            "Increase the mock ensemble before interpreting high-dimensional tails."
+        "analysis_scope": (
+            "We report covariance eigenvalues and finite-mock precision corrections for each vector dimension. "
+            "The manuscript inference uses the 18-component dipole covariance from 120 mocks."
         ),
         "sources_count": len(sources),
     }

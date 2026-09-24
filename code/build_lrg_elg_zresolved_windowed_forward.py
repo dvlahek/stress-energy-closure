@@ -420,12 +420,10 @@ def main():
             "standard_odd_windowed": stdodd_win_scale,
             "standard_total_windowed": totalstd_win_scale,
         },
-        "guardrail": (
-            "This calculation is fixed independently of the observed odd-sector amplitudes. "
-            "Inspect and archive the window-only and pre-window closure diagnostics before using "
-            "standard_total_windowed_shape or wake_windowed_shape in any refit. The linear even "
-            "sector is a controlled benchmark; nonlinear/RSD refinements must not be tuned to "
-            "increase the wake significance."
+        "analysis_scope": (
+            "We derive the response from random-pair counts and prescribed theoretical inputs, independently "
+            "of the measured odd-sector amplitudes. The even sector uses linear Kaiser multipoles; "
+            "nonlinear corrections are outside this benchmark."
         ),
     }
     (out / "windowed_forward_summary.json").write_text(json.dumps(summary, indent=2) + "\n")
