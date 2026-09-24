@@ -1,0 +1,87 @@
+{
+  "snapshot_date": "2026-09-24",
+  "kind": "curated_compact_eBOSS_random_only_RR_geometry_closure",
+  "source_code": "scripts/audit_eboss_dr16_rr_pair_closure.py",
+  "source_workflow": "https://github.com/dvlahek/stress-energy-closure/actions/runs/35974890146",
+  "source_artifact": "https://github.com/dvlahek/stress-energy-closure/actions/runs/35974890146/artifacts/10797707901",
+  "source_commit": "b63f9c9d743fbe916f7d2fd9da18205b0d67d03d",
+  "independent_scalar_reference": {
+    "source_code": "scripts/check_eboss_rr_scalar.py",
+    "workflow": "https://github.com/dvlahek/stress-energy-closure/actions/runs/35975090912",
+    "source_commit": "7a3297ac50fc918e7aece473368cc6296ad5e50a",
+    "theta_min_values_deg": [
+      0,
+      0.05,
+      0.5
+    ],
+    "orientations": [
+      "LRG_to_ELG",
+      "ELG_to_LRG"
+    ],
+    "all_six_scalar_histogram_comparisons_passed": true
+  },
+  "status": "sample_RR_pair_reversal_and_independent_scalar_closure_passed",
+  "tested_input": "Observed DR16 randoms and realistic EZmock randoms from realization 0001, NGC and SGC",
+  "sample_size_per_tracer_per_cap": 1200,
+  "seed": 4071,
+  "diagnostic_z_interval": [
+    0.8,
+    0.9
+  ],
+  "z_interval_frozen_for_inference": false,
+  "diagnostic_separation_edges_mpc_over_h": [
+    20,
+    40,
+    60,
+    80,
+    100,
+    120,
+    140
+  ],
+  "mu_bins": 24,
+  "theta_min_deg": 0.05,
+  "orientation": "first LRG second ELG; reverse first ELG second LRG",
+  "los": "midpoint",
+  "provisional_weight": "WEIGHT_FKP*WEIGHT_SYSTOT*WEIGHT_CP*WEIGHT_NOZ after candidate numerical-zero rule",
+  "weights_verified_for_final_eboss_rr_window": false,
+  "provisional_distance": "FlatLambdaCDM H0=67.4 Om0=0.315 Tcmb0=2.7255 converted to Mpc/h using h=0.674",
+  "distance_is_eboss_fiducial": false,
+  "per_case": [
+    {
+      "catalogue": "observed",
+      "cap": "NGC",
+      "accepted_weighted_rr_pairs": 8433,
+      "forward_reverse_mu_mirror_l1_relative": 9.444367967361055e-17,
+      "closure_passed": true
+    },
+    {
+      "catalogue": "realistic_mock",
+      "cap": "NGC",
+      "accepted_weighted_rr_pairs": 7849,
+      "forward_reverse_mu_mirror_l1_relative": 1.1098224968361717e-16,
+      "closure_passed": true
+    },
+    {
+      "catalogue": "observed",
+      "cap": "SGC",
+      "accepted_weighted_rr_pairs": 21556,
+      "forward_reverse_mu_mirror_l1_relative": 1.1004609076878649e-16,
+      "closure_passed": true
+    },
+    {
+      "catalogue": "realistic_mock",
+      "cap": "SGC",
+      "accepted_weighted_rr_pairs": 23335,
+      "forward_reverse_mu_mirror_l1_relative": 1.2917111470482399e-16,
+      "closure_passed": true
+    }
+  ],
+  "limits": {
+    "full_random_density_RR_window_computed": false,
+    "random_density_convergence_checked": false,
+    "observed_galaxy_positions_read": false,
+    "odd_data_vector_read": false,
+    "mock_covariance_computed": false,
+    "source_artifact_retains_full_weighted_RR_histograms": true
+  }
+}
