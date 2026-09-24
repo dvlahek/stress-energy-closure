@@ -146,6 +146,6 @@ def main():
             for key in ['delta_n','delta_rho','delta_P','delta_Q','delta_adddot','max_abs_delta_a']:
                 fh.write(f"  massive_{key}: {m[key]:.12e}\n")
             fh.write("\n")
-    print("Output:",out.resolve()); print("Zip the whole output folder and send it back.")
+    print("Output:", out.resolve())
 
 if __name__=="__main__": main()
