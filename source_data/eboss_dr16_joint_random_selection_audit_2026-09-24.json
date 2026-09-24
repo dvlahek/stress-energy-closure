@@ -1,0 +1,95 @@
+{
+  "snapshot_date": "2026-09-24",
+  "kind": "curated_compact_snapshot_of_full_random_selection_diagnostic",
+  "source_script": "scripts/inspect_eboss_dr16_joint_randoms.py",
+  "source_workflow": "https://github.com/dvlahek/stress-energy-closure/actions/runs/35967630362",
+  "source_artifact": "https://github.com/dvlahek/stress-energy-closure/actions/runs/35967630362/artifacts/10794123824",
+  "source_commit": "b59bacfeb9ae9b000c2dba10a0841f89dcdc1ba4",
+  "release": "https://data.sdss.org/sas/dr16/eboss/lss/catalogs/DR16/",
+  "status": "four_random_catalogues_checked",
+  "candidate_z_interval": [
+    0.6,
+    1
+  ],
+  "candidate_z_interval_frozen": false,
+  "diagnostic_grid": {
+    "ra_step_deg": 0.5,
+    "sin_dec_step": 0.01,
+    "approx_pixel_area_square_deg": 0.28647889756541167,
+    "minimum_randoms_per_tracer_per_pixel": 25,
+    "not_an_exact_mask": true
+  },
+  "randoms": [
+    {
+      "tracer": "LRG",
+      "cap": "NGC",
+      "rows": 5460719,
+      "candidate_rows": 5460719,
+      "sha256": "5da0bf41e267968310ada55ea3bf27c9a3808bba77050e66c54d84dec62b6281"
+    },
+    {
+      "tracer": "LRG",
+      "cap": "SGC",
+      "rows": 3453453,
+      "candidate_rows": 3453453,
+      "sha256": "4aabcaa99cc2855d38eddd5fac903d3281e9436e5ba5b8c230050db3da92d230"
+    },
+    {
+      "tracer": "ELG",
+      "cap": "NGC",
+      "rows": 3728363,
+      "candidate_rows": 3402927,
+      "sha256": "7b9a5ea54ea99fa1d56ec20206e920d171c807c626c29b6a4dcc766d0ee36698"
+    },
+    {
+      "tracer": "ELG",
+      "cap": "SGC",
+      "rows": 3609460,
+      "candidate_rows": 3314169,
+      "sha256": "f3097c653c54b3b0e2033a0d586c77f9a8975aeb3397c441f92703797e7db9a1"
+    }
+  ],
+  "validity": {
+    "all_coordinate_redshift_rows_valid": true,
+    "all_four_weight_columns_finite_positive": true,
+    "weight_columns": [
+      "WEIGHT_SYSTOT",
+      "WEIGHT_CP",
+      "WEIGHT_NOZ",
+      "WEIGHT_FKP"
+    ]
+  },
+  "joint_support": {
+    "NGC": {
+      "lrg_supported_pixels": 11271,
+      "elg_supported_pixels": 2013,
+      "joint_supported_pixels": 965,
+      "joint_fraction_of_elg_pixels": 0.4793840039741679,
+      "by_zbin_joint_pixels": {
+        "0.6-0.7": 938,
+        "0.7-0.8": 944,
+        "0.8-0.9": 922,
+        "0.9-1.0": 818,
+        "1.0-1.1": 0
+      }
+    },
+    "SGC": {
+      "lrg_supported_pixels": 7563,
+      "elg_supported_pixels": 2238,
+      "joint_supported_pixels": 2228,
+      "joint_fraction_of_elg_pixels": 0.9955317247542449,
+      "by_zbin_joint_pixels": {
+        "0.6-0.7": 2045,
+        "0.7-0.8": 2206,
+        "0.8-0.9": 2204,
+        "0.9-1.0": 1812,
+        "1.0-1.1": 0
+      }
+    }
+  },
+  "odd_sector_data_vector_inspected": false,
+  "pair_counts_computed": false,
+  "rr_window_computed": false,
+  "mock_covariance_computed": false,
+  "scope_note": "These statistics describe gridded overlap of random-catalogue supports. They do not define an exact joint mask, effective area, survey-window matrix or frozen redshift selection. Validate the spatial selection and independently matched mocks before odd-sector inference."
+}
