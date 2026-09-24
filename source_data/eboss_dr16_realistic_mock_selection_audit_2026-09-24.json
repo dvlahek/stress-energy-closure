@@ -1,0 +1,115 @@
+{
+  "snapshot_date": "2026-09-24",
+  "kind": "curated_compact_snapshot_of_realistic_EZmock_data_only_selection_sample",
+  "source_script": "scripts/inspect_eboss_dr16_mock_selection.py",
+  "source_workflow": "https://github.com/dvlahek/stress-energy-closure/actions/runs/35968730737",
+  "source_artifact": "https://github.com/dvlahek/stress-energy-closure/actions/runs/35968730737/artifacts/10795028413",
+  "source_commit": "2b4c3fe0f7378c4a3b7584d26f0ae48627601535",
+  "release": "https://data.sdss.org/sas/dr17/eboss/lss/EZmocks/v1_0_0/realistic/",
+  "status": "sample_candidate_selection_validated_with_numerical_zero_convention",
+  "mock_realization_ids": [
+    1,
+    500,
+    1000
+  ],
+  "tracers": [
+    "eBOSS_LRG",
+    "eBOSS_ELG"
+  ],
+  "caps": [
+    "NGC",
+    "SGC"
+  ],
+  "full_mock_data_catalogues_read": 12,
+  "errors": [],
+  "candidate_z_interval": [
+    0.6,
+    1
+  ],
+  "candidate_z_interval_frozen": false,
+  "input_zero_convention": {
+    "column": "WEIGHT_SYSTOT",
+    "numerical_zero_if_abs_le": 1e-12,
+    "reject_significant_negative_below": -1e-12,
+    "other_weight_columns_require_positive_finite": true,
+    "threshold_gap_verified_on_three_id_data_sample": true,
+    "counts_at_abs_le_1e_20_equal_counts_at_abs_le_1e_12": true,
+    "minimum_other_candidate_LRG_systematic_weight_gt": 0.88,
+    "significant_negative_candidate_weight_count": 0,
+    "rule_applied_to_mock_randoms": false,
+    "rule_applied_to_full_1000_mock_ensemble": false
+  },
+  "candidate_rows_raw_retained_excluded": {
+    "1000": {
+      "LRG_NGC": [
+        109156,
+        109151,
+        5
+      ],
+      "LRG_SGC": [
+        68881,
+        68879,
+        2
+      ],
+      "ELG_NGC": [
+        77408,
+        77408,
+        0
+      ],
+      "ELG_SGC": [
+        82590,
+        82590,
+        0
+      ]
+    },
+    "0001": {
+      "LRG_NGC": [
+        110491,
+        110490,
+        1
+      ],
+      "LRG_SGC": [
+        68579,
+        68578,
+        1
+      ],
+      "ELG_NGC": [
+        76450,
+        76450,
+        0
+      ],
+      "ELG_SGC": [
+        83075,
+        83075,
+        0
+      ]
+    },
+    "0500": {
+      "LRG_NGC": [
+        109080,
+        109075,
+        5
+      ],
+      "LRG_SGC": [
+        68915,
+        68914,
+        1
+      ],
+      "ELG_NGC": [
+        76613,
+        76613,
+        0
+      ],
+      "ELG_SGC": [
+        83734,
+        83734,
+        0
+      ]
+    }
+  },
+  "data_odd_vector_read": false,
+  "pair_counts_computed": false,
+  "mock_random_contents_verified": false,
+  "cross_covariance_estimated": false,
+  "scope_note": "Three representative realistic realization IDs have been inspected for data-only selection and numerical-zero hygiene. This is not a validation of the full mock ensemble, paired mock randoms, exact cross-survey selection or statistical inference. The original CI artifact retains the compressed-file SHA256 values, redshift fractions, weight diagnostics and coarse occupancy of all 12 files."
+}
