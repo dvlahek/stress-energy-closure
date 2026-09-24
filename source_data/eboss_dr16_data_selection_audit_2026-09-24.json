@@ -1,0 +1,111 @@
+{
+  "snapshot_date": "2026-09-24",
+  "kind": "curated_compact_snapshot_of_data_only_selection_audit",
+  "source_script": "scripts/inspect_eboss_dr16_selection.py",
+  "source_workflow": "https://github.com/dvlahek/stress-energy-closure/actions/runs/35967074244",
+  "source_commit": "238bb9d77baca5c9edb63dba31de9a8f24a6da6b",
+  "catalogue_release": "https://data.sdss.org/sas/dr16/eboss/lss/catalogs/DR16/",
+  "status": "four_data_catalogues_checked",
+  "tracer_definition": "eBOSS_LRG (not LRGpCMASS) and eBOSS_ELG",
+  "candidate_z_interval": [
+    0.6,
+    1
+  ],
+  "candidate_z_interval_frozen": false,
+  "catalogues": [
+    {
+      "tracer": "LRG",
+      "cap": "NGC",
+      "filename": "eBOSS_LRG_clustering_data-NGC-vDR16.fits",
+      "sha256": "5eb836c7e6e69eb2cbc3b2dfe2f27826b6e5ac59d1c87e279a81a916f6edc77e",
+      "rows": 107500,
+      "candidate_rows": 107500,
+      "zbin_counts": [
+        36707,
+        40002,
+        23409,
+        7382,
+        0
+      ]
+    },
+    {
+      "tracer": "LRG",
+      "cap": "SGC",
+      "filename": "eBOSS_LRG_clustering_data-SGC-vDR16.fits",
+      "sha256": "aec4b569ad957d829aa8337bf2c7d00e25dc777e2e5849552893cbead70071dc",
+      "rows": 67316,
+      "candidate_rows": 67316,
+      "zbin_counts": [
+        25002,
+        24458,
+        13671,
+        4185,
+        0
+      ]
+    },
+    {
+      "tracer": "ELG",
+      "cap": "NGC",
+      "filename": "eBOSS_ELG_clustering_data-NGC-vDR16.fits",
+      "sha256": "f6fd50b19548a9e1b5361eec00402551d2e00036f666fef16142db75ac311d8a",
+      "rows": 83769,
+      "candidate_rows": 76395,
+      "zbin_counts": [
+        4636,
+        23913,
+        30618,
+        17228,
+        7374
+      ]
+    },
+    {
+      "tracer": "ELG",
+      "cap": "SGC",
+      "filename": "eBOSS_ELG_clustering_data-SGC-vDR16.fits",
+      "sha256": "0ec867d5152c80b3529d68d55c8b3a55517cb0197d35e0b74cc6b8d99d929a87",
+      "rows": 89967,
+      "candidate_rows": 82596,
+      "zbin_counts": [
+        5410,
+        29849,
+        31844,
+        15493,
+        7371
+      ]
+    }
+  ],
+  "zbin_edges": [
+    0.6,
+    0.7,
+    0.8,
+    0.9,
+    1,
+    1.1
+  ],
+  "all_rows_have_finite_ra_dec_z": true,
+  "all_four_weight_columns_finite_and_positive": true,
+  "coarse_sky_occupancy_grid": {
+    "ra_bin_deg": 4,
+    "sin_dec_bin": 0.05,
+    "uses_candidate_z_interval": true
+  },
+  "coarse_data_occupancy_not_random_mask": {
+    "NGC": {
+      "lrg": 343,
+      "elg": 66,
+      "both": 37
+    },
+    "SGC": {
+      "lrg": 236,
+      "elg": 70,
+      "both": 70
+    }
+  },
+  "full_random_catalogues_downloaded": false,
+  "mock_catalogue_contents_validated": false,
+  "joint_random_selection_verified": false,
+  "pair_counts_computed": false,
+  "odd_multipoles_computed": false,
+  "wake_fit_computed": false,
+  "scope_note": "Redshift counts and coarse sky occupancy describe the public data selection only. The final joint footprint, random weighting, mock calibration and statistical protocol remain to be fixed before measuring the odd sector."
+}

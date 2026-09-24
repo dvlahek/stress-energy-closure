@@ -27,3 +27,7 @@ The exact-pair analysis uses the products in `lrg_elg_r4_inference_inputs/` and 
 - `lrg_elg_bruteforce_pair_closure_2026-09-21.json`, `lrg_elg_mubin_convergence_r4.json` and `lrg_elg_zresolved_random_density_audit_10pair.json`: estimator and numerical validation.
 
 The window-convolved fit gives $A_{\rm wake}=0.00327466\pm0.00148162$ and nominal $Z=2.21019$. Empirical calibration with 120 mocks gives two-sided equivalents of $1.84\sigma$ and $1.96\sigma$ for the two specified statistics. The inference is interpreted as an approximately two-sigma indication, not as a detection.
+
+## eBOSS DR16 prospective metadata (no odd-sector measurement)
+
+The `eboss_dr16_fits_header_audit_2026-09-24.json`, `eboss_dr16_mock_filename_audit_2026-09-24.json` and `eboss_dr16_data_selection_audit_2026-09-24.json` retain public catalogue metadata, released mock-file matching and data-only selection checks. They do not contain an eBOSS parity-odd vector, covariance or wake inference. See [the prospective replication protocol](../docs/EBOSS_DR16_PROSPECTIVE_REPLICATION.md) for their validation scope and the checks still required before unblinding.

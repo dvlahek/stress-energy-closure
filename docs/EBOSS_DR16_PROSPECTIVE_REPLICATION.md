@@ -1,6 +1,6 @@
 # eBOSS DR16 LRG×ELG: catalogue inventory and prospective replication
 
-Status: pre-analysis catalogue-header and mock-filename validation, 2026-09-24. We have read bounded ranges of the public FITS headers and enumerated mock filenames. No complete eBOSS FITS catalogue has been downloaded or checked against a full-file SHA256 digest, no catalogue rows have been analyzed, and no eBOSS odd-sector vector has been calculated or inspected. The analysis definition remains prospective and is not a frozen protocol.
+Status: pre-analysis catalogue and mock metadata validation, 2026-09-24. We have parsed all eight public FITS headers, audited matching EZmock filenames and inspected the four full public LRG/ELG data catalogues for selection metadata only. We have not downloaded full random or mock FITS catalogues, validated the common selection function or calculated an eBOSS odd-sector vector. The analysis protocol is not yet frozen.
 
 ## Scientific question
 
@@ -33,6 +33,14 @@ We inspect FITS metadata through bounded HTTP range requests without reading cat
 | ELG | SGC | 89,967 | 3,609,460 |
 
 These are FITS `NAXIS2` values, not galaxy counts after quality, redshift or common-footprint cuts. We have not checked the contents or determined the formula for combining eBOSS weights. The [header inventory workflow](https://github.com/dvlahek/stress-energy-closure/actions/runs/35966541598) and `source_data/eboss_dr16_fits_header_audit_2026-09-24.json` record the metadata.
+
+### Data-only selection checks
+
+We downloaded the four public clustering data FITS files into a temporary CI workspace and calculated a full SHA256 digest for each. The selection audit verifies FITS structure and the finiteness and positivity of the four published weight columns. For the *candidate* interval `0.6 <= z < 1.0`, before common-footprint selection, the files contain 107,500 and 67,316 LRG objects in NGC and SGC, and 76,395 and 82,596 ELG objects. The 0.6–1.0 candidate contains all objects in these two eBOSS LRG clustering data files, but excludes the ELG objects above z=1.0. These counts do not define final analysis bins or a statistical test.
+
+A coarse data-object sky-occupancy diagnostic finds 37 jointly occupied cells out of 66 ELG-occupied cells in NGC, and 70 out of 70 in SGC, on the diagnostic grid. This is **not** a measurement of the common survey mask: sparse samples, cell boundaries and the absence of a joint random-mask selection can affect it. We must validate the angular overlap against both tracers' released random catalogues, separately by cap, before choosing the final sample.
+
+The [data-only selection workflow](https://github.com/dvlahek/stress-energy-closure/actions/runs/35967074244) and `source_data/eboss_dr16_data_selection_audit_2026-09-24.json` retain the full-data SHA256 digests, raw redshift counts and coarse diagnostic. The workflow did not calculate pair counts, multipoles, matched-filter scores or any wake amplitude.
 
 We also enumerate the public [eBOSS DR16 EZmock v1_0_0 release](https://data.sdss.org/sas/dr17/eboss/lss/EZmocks/v1_0_0/). Both `complete` and `realistic` branches provide eBOSS LRG and ELG data files for IDs `0001`–`1000` in NGC and SGC. The complete mocks have per-realization shuffled randoms and separate shared random catalogues; the realistic mocks have per-realization randoms. The filename audit finds all 1000 joint LRG–ELG IDs in both caps, with no missing data or matched-random filenames. The [pairing-audit workflow](https://github.com/dvlahek/stress-energy-closure/actions/runs/35966739277) and `source_data/eboss_dr16_mock_filename_audit_2026-09-24.json` retain the counts and the listing fingerprint.
 

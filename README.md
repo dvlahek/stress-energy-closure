@@ -34,7 +34,7 @@ python code/direct_vs_memory.py --full
 
 The CLASS calculations use `class_public` commit `e85808324f51fc694d12e3ed7439552a3c3f9540`.
 
-The observational estimator definitions, required public inputs and result-to-code mapping are documented in `REPRODUCIBILITY.md` and `docs/OBSERVATIONAL_REPRODUCIBILITY.md`. The exact LRG–ELG analysis is described separately in `docs/DESI_EXACT_LRG_ELG_FINAL_STATUS.md`. Numerical products are indexed in `source_data/README.md`.
+The observational estimator definitions, required public inputs and result-to-code mapping are documented in `REPRODUCIBILITY.md` and `docs/OBSERVATIONAL_REPRODUCIBILITY.md`. The exact LRG–ELG analysis is described separately in `docs/DESI_EXACT_LRG_ELG_FINAL_STATUS.md`. The eBOSS DR16 [prospective replication protocol](docs/EBOSS_DR16_PROSPECTIVE_REPLICATION.md) records catalogue and mock metadata only; no eBOSS odd-sector measurement is reported. Numerical products are indexed in `source_data/README.md`.
 
 ## Directory structure
 
