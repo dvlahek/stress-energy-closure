@@ -1,0 +1,56 @@
+name: eBOSS DR16 matched mock fine-RR pinned replay
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/eboss_dr16_mock_fine_rr_replay.yml'
+  workflow_dispatch:
+
+permissions:
+  actions: read
+  contents: read
+
+jobs:
+  pinned-mock-fine-rr:
+    runs-on: ubuntu-latest
+    timeout-minutes: 70
+    env:
+      GH_TOKEN: ${{ github.token }}
+      SOURCE_WORKFLOW_RUN: '35983196267'
+      SOURCE_WORKFLOW_SHA: '5dbfca45c25c7af57bf05693022bfa98b499209d'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install pinned compiled pair counter
+        run: |
+          python -m pip install --upgrade pip setuptools wheel
+          python -m pip install -r requirements-desi.txt
+      - name: Test mock-to-observed random-density normalization and response
+        run: python scripts/compare_eboss_dr16_mock_fine_rr.py --self-test
+      - name: Retrieve exactly the validated observed fine-RR artifact
+        run: |
+          gh run download "$SOURCE_WORKFLOW_RUN" \
+            --repo "$GITHUB_REPOSITORY" \
+            --name eboss-dr16-fine-rr-highz \
+            --dir fine_rr_input
+          test -s fine_rr_input/fine_rr_highz_audit.json
+          test -s fine_rr_input/fine_rr_highz_audit.npz
+      - name: Compare SHA-verified EZmock 0001 and observed high-z fine RR
+        run: |
+          python scripts/compare_eboss_dr16_mock_fine_rr.py \
+            --observed-rr fine_rr_input/fine_rr_highz_audit.npz \
+            --observed-audit fine_rr_input/fine_rr_highz_audit.json \
+            --threads 2 \
+            --out eboss_workspace/matched_mock_fine_rr.json
+      - name: Retain mock-to-observed window-input diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: eboss-dr16-matched-mock-fine-rr-pinned
+          path: |
+            eboss_workspace/matched_mock_fine_rr.json
+            eboss_workspace/matched_mock_fine_rr.npz
+          if-no-files-found: warn
