@@ -1,0 +1,35 @@
+name: eBOSS DR16 selection-only data audit
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/inspect_eboss_dr16_selection.py'
+      - '.github/workflows/eboss_dr16_selection_audit.yml'
+  workflow_dispatch:
+
+jobs:
+  validate-selection:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install FITS and array readers
+        run: python -m pip install 'numpy>=1.24' 'astropy>=5.3'
+      - name: Test redshift-bin boundaries
+        run: python scripts/inspect_eboss_dr16_selection.py --self-test
+      - name: Read public data-only selection metadata
+        run: |
+          python scripts/inspect_eboss_dr16_selection.py \
+            --out eboss_workspace/data_selection_audit.json \
+            --cache-dir eboss_workspace/public_data_catalogues
+      - name: Retain selection audit, not catalogue FITS
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: eboss-dr16-selection-metadata
+          path: eboss_workspace/data_selection_audit.json
+          if-no-files-found: warn
