@@ -168,7 +168,7 @@ def main():
     S=dict(scope='genuine DESI DR1 LRG->ELG cross-population odd multipoles',z_range=[a.zmin,a.zmax],
            z_effective_pair_weighted=ze,counts={'LRG':len(L['z']),'ELG':len(E['z']),'LRG_random':len(LR['z']),'ELG_random':len(ER['z'])},
            jackknife_regions=nj,seed=a.seed,dipole_ridge=r1,octupole_ridge=r3,
-           guardrail='data-vector measurement only; wake interpretation requires the separate frozen shape fit')
+           analysis_scope='This file measures the data vector; the physical fit is performed separately.')
     (out/'summary_lrg_elg.json').write_text(json.dumps(S,indent=2));print(json.dumps(S,indent=2))
 
 if __name__=='__main__':main()

@@ -283,10 +283,9 @@ def main():
         "corrfunc_version": corrfunc_version,
         "cosmoprimo_version": cosmoprimo_version,
         "sign_reversal": reverse,
-        "guardrail": (
-            "Do not quote a physical significance from this file alone. "
-            "Use an identically processed mock ensemble for covariance and a frozen "
-            "standard-odd plus wake template model for inference."
+        "analysis_scope": (
+            "We measure the cross-correlation vector here. Statistical inference uses the matched "
+            "mock covariance and the specified standard-odd and wake templates."
         ),
     }
     (out / "summary_exact.json").write_text(json.dumps(summary, indent=2) + "\n")

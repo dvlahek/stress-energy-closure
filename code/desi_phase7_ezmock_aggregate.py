@@ -103,7 +103,7 @@ def main():
       'placebo_null_wake_amplitudes':aw.tolist(),
       'unit_injection_recovery':{'mean':float(rec.mean()),'std':float(rec.std(ddof=1)),'median':float(np.median(rec)),'nominal_one_sigma_coverage_fraction':coverage,'fit_sigma_reference':sigma},
       'absolute_likelihood_claim':False,
-      'guardrail':'The released DR1 EZmock BGS files used here do not contain R_MAG_APP/R_MAG_ABS. This ensemble tests geometry, pair compression, covariance conditioning and false-positive behaviour with equal-count random ranks. Every included realization uses its own released clustering random catalogs at approximately 2x selected random density. It is not a luminosity-matched covariance. OAS is the primary covariance estimator; the sample/Hartlap result is retained as a finite-mock control. Abacus is the physical luminosity-ranked validation.'
+      'analysis_scope':'The released EZmock catalogues lack the luminosity field used for the measured tracer ranks. We therefore use equal-count random ranks to evaluate survey geometry, covariance conditioning and false positives. Each realization uses its own random catalogues. We use OAS covariance and report the sample/Hartlap estimator as a finite-ensemble comparison. The physical luminosity-ranked validation uses AbacusSummit.'
     }
     (out/'summary_ezmock_placebo_covariance.json').write_text(json.dumps(summary,indent=2)+'\n')
     print('PHASE7_EZMOCK_PLACEBO_AGGREGATE',json.dumps(summary,indent=2))

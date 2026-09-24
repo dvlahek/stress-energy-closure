@@ -171,7 +171,7 @@ def main():
              'mass_tracer_summary':med,'z_bins':zmeta,'jackknife':{'regions':int(nj),'rank':int(np.linalg.matrix_rank(cov_raw)),'condition_number':float(np.linalg.cond(cov))},
              'permutation':{'count':int(len(null)),'global_empirical_pvalue':pemp,'wake_empirical_two_sided_pvalue':p_aw},
              'fit_minimal':fit2,'fit_conservative':fitc,
-             'guardrail':'No mass threshold was selected from the odd data. Gfinder membership introduces an additional selection function, so this is a physical-proxy robustness test rather than the primary DESI likelihood.'}
+             'analysis_scope':'We apply the externally defined Gfinder membership as an alternative tracer proxy. Its selection function differs from that of the primary luminosity-rank sample.'}
     (out/'summary_gfinder_massproxy.json').write_text(json.dumps(summary,indent=2)+'\n')
     print('PHASE7_GFINDER_MASSPROXY',json.dumps(summary,indent=2))
 

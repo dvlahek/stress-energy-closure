@@ -264,7 +264,7 @@ def main():
       'fit_null_corrected_doppler_plus_wake':fit2,
       'fit_null_corrected_conservative_per_z_odd_plus_wake':fitc,
       'proxy_strata':proxy_info,
-      'interpretation_guardrail':'Tracer count, proxy definition, redshift bins, separation bins and pair-sampling rule are fixed before inspecting this statistic. Any significance is exploratory until validated with independent pair-MC seeds and DESI mocks.'
+      'analysis_scope':'We use the specified tracer ranks, redshift and separation bins and pair-sampling rule. Independent pair-sampling seeds and survey mocks provide validation.'
     }
     (out/'summary_multitracer.json').write_text(json.dumps(summary,indent=2)+'\n')
     print('PHASE7_MULTITRACER_FULLSAMPLE',json.dumps(summary,indent=2))

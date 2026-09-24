@@ -140,7 +140,7 @@ def main():
       'sanity':{'max_abs_xi0':max_xi0,'max_abs_xi1':max_xi1,'gate_max_abs_xi0':0.30,'gate_max_abs_xi1':0.20},
       'window_model':'pair-level response to xi_odd^{ij}=(m_j-m_i) mu T(s,z), evaluated through the identical sampled DD geometry and RR normalization',
       'wake_forward_response':wake.tolist(),'doppler_forward_response':dop.tolist(),'xi1_proxy_odd':xi1.tolist(),
-      'guardrail':'EZmock public DR1 files used here lack released luminosity columns. This is an equal-count random-rank placebo covariance/systematics control, not a luminosity-matched covariance and not a halo-mass wake constraint. Each included realization uses its own released clustering random catalogs at approximately 2x selected random density. Abacus remains the physical luminosity-ranked mock validation.'
+      'analysis_scope':'The available EZmock BGS catalogues do not provide the luminosity field required by the five-tracer measurement. We assign equal-count random ranks for a survey-geometry and covariance control, using each realization's random catalogues.'
     }
     (out/f'{stem}_summary.json').write_text(json.dumps(summary,indent=2)+'\n')
     print('PHASE7_EZMOCK_PLACEBO_REALIZATION',json.dumps(summary))

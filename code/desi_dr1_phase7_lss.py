@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Nature-Astronomy-grade Phase-7 DESI DR1 odd-sector deployment pilot.
 
-This analysis intentionally uses the public clustering-ready BGS catalogs,
+We use the public clustering-ready BGS catalogs,
 DESI clustering weights and survey randoms instead of the Gfinder-only smoke
 test. A 50/50 luminosity-ranked split is made independently in narrow
 redshift bins, which keeps the two tracer n(z) distributions closely matched
