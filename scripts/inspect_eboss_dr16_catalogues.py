@@ -59,7 +59,9 @@ def classify(name):
     elif re.search(r"(?:^|[_\.-])(dat|data)(?:[_\.-]|$)", name, re.I):
         role = "data"
     else:
-        role = "unclassified"
+        # The plain clustering FITS file is the data catalogue; random catalogues
+        # carry an explicit random/ran marker in the SDSS naming convention.
+        role = "data"
     return tracer, cap, role
 
 
