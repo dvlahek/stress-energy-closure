@@ -116,6 +116,9 @@ def inspect(path: Path, tracer: str, cap: str, rid: int,
                 "nonfinite_candidate_rows": int(np.count_nonzero(candidate & ~finite)),
                 "nonpositive_candidate_rows": int(np.count_nonzero(
                     candidate & finite & (w <= 0))),
+                "significant_negative_candidate_rows_below_minus_1e_12": int(
+                    np.count_nonzero(candidate & finite &
+                                     (w < -NUMERICAL_ZERO_WEIGHT_TOL))),
                 "near_zero_candidate_rows_abs_le_1e_20": int(np.count_nonzero(
                     candidate & finite & (np.abs(w) <= 1e-20))),
                 "near_zero_candidate_rows_abs_le_1e_12": int(np.count_nonzero(
@@ -229,8 +232,7 @@ def main() -> int:
             x["nonfinite_candidate_rows"] == 0 and (
                 (x["near_zero_candidate_rows_abs_le_1e_20"] ==
                  x["near_zero_candidate_rows_abs_le_1e_12"] and
-                 x["nonpositive_candidate_rows"] <=
-                 x["near_zero_candidate_rows_abs_le_1e_12"])
+                 x["significant_negative_candidate_rows_below_minus_1e_12"] == 0)
                 if name == "WEIGHT_SYSTOT"
                 else (x["nonpositive_candidate_rows"] == 0 and
                       x["near_zero_candidate_rows_abs_le_1e_12"] == 0))
