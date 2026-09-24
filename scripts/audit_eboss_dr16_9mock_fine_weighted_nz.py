@@ -564,12 +564,20 @@ def main():
     ap.add_argument("--no-download",action="store_true")
     ap.add_argument("--keep-mock-cache",action="store_true")
     ap.add_argument("--self-test",action="store_true")
+    ap.add_argument("--preflight-only",action="store_true",
+                    help="Verify pinned nine-mock ensemble and SHA manifest without FITS download")
     args=ap.parse_args()
     if args.self_test:
         self_test()
         return 0
     if args.timeout<=0:
         ap.error("Timeout must be positive")
+    if args.preflight_only:
+        mock_sha,obs_sha,obs_counts,prior = preflight(args)
+        print("EBOSS_FINE_WEIGHTED_NZ_PINNED_INPUT_PREFLIGHT_OK",
+              len(mock_sha),len(obs_sha),len(obs_counts),len(prior),
+              flush=True)
+        return 0
     run(args)
     return 0
 
