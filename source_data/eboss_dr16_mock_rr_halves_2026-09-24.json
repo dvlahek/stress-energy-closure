@@ -1,0 +1,130 @@
+{
+  "snapshot_date": "2026-09-24",
+  "kind": "compact_preodd_three_mock_internal_random_half_RR_and_even_odd_probe_control",
+  "source_script": "scripts/audit_eboss_dr16_mock_rr_halves.py",
+  "source_workflow": "https://github.com/dvlahek/stress-energy-closure/actions/runs/35989692068",
+  "source_artifact": "https://github.com/dvlahek/stress-energy-closure/actions/runs/35989692068/artifacts/10803219917",
+  "source_commit": "2d0b4f2bd35ae2a6ed8cac97edccc24b640a9011",
+  "input_densitymatched_observed_control": "source_data/eboss_dr16_density_matched_rr_2026-09-24.json",
+  "input_three_realistic_mock_fine_RR": "source_data/eboss_dr16_mock_fine_rr_3id_2026-09-24.json",
+  "status": "three_mock_internal_random_half_controls_complete",
+  "mock_realization_ids": [
+    1,
+    500,
+    1000
+  ],
+  "caps": [
+    "NGC",
+    "SGC"
+  ],
+  "candidate_z_interval": [
+    0.9,
+    1
+  ],
+  "candidate_z_bin_frozen": false,
+  "fine_separation_step_mpc_over_h": 1,
+  "mu_bins": 240,
+  "orientation": "LRG->ELG",
+  "los": "midpoint",
+  "four_predeclared_permutation_seeds": [
+    4071,
+    8159,
+    12239,
+    16381
+  ],
+  "two_disjoint_halves_per_seed_per_tracer": true,
+  "separate_half_pair_weight_normalization": true,
+  "per_case_summary": [
+    {
+      "cap": "NGC",
+      "mock_realization_id": 1,
+      "mock_vs_full_observed_fine_RR_relative_L1": 0.0132886762523544,
+      "countmatched_observed_thinning_relative_L1_range": [
+        0.005820211894941331,
+        0.006842275107895737
+      ],
+      "mock_internal_disjoint_half_vs_full_relative_L1_range": [
+        0.011316137736102613,
+        0.013624291980368361
+      ]
+    },
+    {
+      "cap": "SGC",
+      "mock_realization_id": 1,
+      "mock_vs_full_observed_fine_RR_relative_L1": 0.009072552599536121,
+      "countmatched_observed_thinning_relative_L1_range": [
+        0.0048226157433412025,
+        0.00681773214054742
+      ],
+      "mock_internal_disjoint_half_vs_full_relative_L1_range": [
+        0.009538730804852798,
+        0.011934605880437089
+      ]
+    },
+    {
+      "cap": "NGC",
+      "mock_realization_id": 500,
+      "mock_vs_full_observed_fine_RR_relative_L1": 0.011156118428114542,
+      "countmatched_observed_thinning_relative_L1_range": [
+        0.005742641053664339,
+        0.00724920641510388
+      ],
+      "mock_internal_disjoint_half_vs_full_relative_L1_range": [
+        0.01147115139943724,
+        0.013587998268277716
+      ]
+    },
+    {
+      "cap": "SGC",
+      "mock_realization_id": 500,
+      "mock_vs_full_observed_fine_RR_relative_L1": 0.011625248137451333,
+      "countmatched_observed_thinning_relative_L1_range": [
+        0.004446842853111684,
+        0.006301190611438637
+      ],
+      "mock_internal_disjoint_half_vs_full_relative_L1_range": [
+        0.009020137755796267,
+        0.012015224150837955
+      ]
+    },
+    {
+      "cap": "NGC",
+      "mock_realization_id": 1000,
+      "mock_vs_full_observed_fine_RR_relative_L1": 0.01474406937702102,
+      "countmatched_observed_thinning_relative_L1_range": [
+        0.006437740812731859,
+        0.014283237194672862
+      ],
+      "mock_internal_disjoint_half_vs_full_relative_L1_range": [
+        0.011551817800396802,
+        0.018072648191390418
+      ]
+    },
+    {
+      "cap": "SGC",
+      "mock_realization_id": 1000,
+      "mock_vs_full_observed_fine_RR_relative_L1": 0.01457043142763517,
+      "countmatched_observed_thinning_relative_L1_range": [
+        0.0046813999516014905,
+        0.007834693766790711
+      ],
+      "mock_internal_disjoint_half_vs_full_relative_L1_range": [
+        0.00883364517714307,
+        0.010103178068586975
+      ]
+    }
+  ],
+  "per_seed_and_even_to_odd_ramp_probe_details_in_source_artifact": true,
+  "limits": {
+    "half_vs_full_and_independent_mock_vs_observed_are_not_identically_distributed": true,
+    "reusing_one_realization_across_permutations_produces_correlated_trials": true,
+    "matching_raw_counts_does_not_match_weighted_Kish_effective_counts": true,
+    "three_mock_realizations_are_not_a_validated_full_ensemble": true,
+    "no_formal_pvalue": true,
+    "no_real_or_mock_galaxy_pairs": true,
+    "no_odd_data_vector": true,
+    "no_wake_template_tuning": true,
+    "no_cross_covariance": true
+  },
+  "scope_note": "Mock internal half-to-full sampling residuals are comparable in bulk RR L1 to observed-versus-mock window-input differences. This is consistent with substantial finite-random sampling but cannot rule out selection-function mismatch or certify weak octupole leakage."
+}
