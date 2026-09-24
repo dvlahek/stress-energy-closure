@@ -19,6 +19,7 @@ from __future__ import annotations
 
 import argparse
 import gc
+import hashlib
 import json
 import os
 from pathlib import Path
@@ -80,6 +81,14 @@ def main() -> int:
         "--cache-dir", default="eboss_workspace/fine_rr_allbins_randoms")
     ap.add_argument("--threads", type=int, default=2)
     ap.add_argument("--timeout", type=float, default=120)
+    ap.add_argument("--caps", nargs="+", choices=("NGC", "SGC"),
+                    default=("NGC", "SGC"),
+                    help="Optional local shard by Galactic cap")
+    ap.add_argument("--z-indices", nargs="+", type=int, choices=range(4),
+                    default=tuple(range(4)),
+                    help="Optional local shard; 0=0.6-0.7, ..., 3=0.9-1.0")
+    ap.add_argument("--reuse-verified-cache", action="store_true",
+                    help="Keep SHA256-verified FITS files and reuse on later local shards")
     ap.add_argument("--self-test", action="store_true")
     args = ap.parse_args()
 
@@ -123,15 +132,55 @@ def main() -> int:
     }
     cases, input_files, errors = [], [], []
     cache = Path(args.cache_dir)
+    requested_caps = tuple(dict.fromkeys(args.caps))
+    requested_z_indices = tuple(dict.fromkeys(args.z_indices))
+    out = Path(args.out)
+    out.parent.mkdir(parents=True, exist_ok=True)
+
+    def checkpoint() -> None:
+        """Persist all completed cases before starting the next expensive count."""
+        partial = {
+            "study": "Checkpoint of blinded eBOSS fine random-only RR",
+            "revision_commit": os.environ.get("GITHUB_SHA"),
+            "status": "partial_checkpoint",
+            "requested_caps": list(requested_caps),
+            "requested_z_indices": list(requested_z_indices),
+            "completed_case_count": len(cases),
+            "input_file_evidence": input_files,
+            "cases": cases,
+            "errors": errors,
+            "uses_observed_galaxy_positions": False,
+            "uses_observed_odd_data_vector": False,
+        }
+        # First commit the compressed counts, then the JSON status marker.
+        tmp_npz = out.with_suffix(".checkpoint.tmp.npz")
+        tmp_json = out.with_suffix(".checkpoint.tmp.json")
+        np.savez_compressed(tmp_npz, **arrays)
+        tmp_npz.replace(out.with_suffix(".checkpoint.npz"))
+        tmp_json.write_text(json.dumps(partial, indent=2) + "\n",
+                            encoding="utf-8")
+        tmp_json.replace(out.with_suffix(".checkpoint.json"))
+        print("EBOSS_ALLBIN_CHECKPOINT", len(cases), out, flush=True)
 
     for ci, cap in enumerate(("NGC", "SGC")):
+        if cap not in requested_caps:
+            continue
         by_tracer = {}
         for tracer in ("LRG", "ELG"):
             filename, expected_rows = RANDOMS[(tracer, cap)]
             path = cache / filename
             try:
-                path, sha, size = download(
-                    filename, cache, 1024 * 1024 * 1024, args.timeout)
+                if args.reuse_verified_cache and path.is_file():
+                    digest = hashlib.sha256()
+                    size = 0
+                    with path.open("rb") as src:
+                        for block in iter(lambda: src.read(1024 * 1024), b""):
+                            size += len(block)
+                            digest.update(block)
+                    sha = digest.hexdigest()
+                else:
+                    path, sha, size = download(
+                        filename, cache, 1024 * 1024 * 1024, args.timeout)
                 if sha != known[(cap, tracer)]["sha256"]:
                     raise ValueError("Observed random FITS SHA256 changed")
                 all_bins, summary = read_random_bins(
@@ -156,13 +205,15 @@ def main() -> int:
                 errors.append(f"{cap}/{tracer}: {exc}")
                 print("ALLBIN_FINE_INPUT_ERROR", errors[-1], flush=True)
             finally:
-                if path.exists():
+                if path.exists() and not args.reuse_verified_cache:
                     path.unlink()
 
         if set(by_tracer) != {"LRG", "ELG"}:
             continue
 
         for iz, (lo, hi) in enumerate(BINS):
+            if iz not in requested_z_indices:
+                continue
             try:
                 lrg, elg = by_tracer["LRG"][iz], by_tracer["ELG"][iz]
                 lsubs, lseed = deterministic_subsets(lrg, ci, 0, iz)
@@ -208,9 +259,12 @@ def main() -> int:
                         "pair_weight_normalization": float(norm),
                         "normalized_rr_fraction_in_candidate_s_bins":
                             meta["normalized_rr_weight_fraction_in_test_bins"],
-                        "raw_rr_odd_geometry_coarse":
-                            odd_rr_geometry(
-                                rebin_to_coarse(rr, fine, coarse), mu),
+                        "raw_rr_odd_geometry_coarse": {
+                            ell: values.tolist()
+                            for ell, values in odd_rr_geometry(
+                                rebin_to_coarse(rr, fine, coarse), mu
+                            ).items()
+                        },
                         "npz_rr_key": f"fine_rr_{cap}_z{iz}_{sample}",
                     }
                     print(
@@ -285,6 +339,7 @@ def main() -> int:
                     half_checks["half_B"][
                         "normalized_rr_l1_over_larger_sample_l1"],
                     flush=True)
+                checkpoint()
             except (OSError, ValueError, RuntimeError, KeyError,
                     MemoryError) as exc:
                 errors.append(f"{cap}/z{iz}: {exc}")
@@ -293,13 +348,22 @@ def main() -> int:
         del by_tracer
         gc.collect()
 
-    complete = len(cases) == 8 and not errors
+    full_request = (
+        set(requested_caps) == {"NGC", "SGC"}
+        and set(requested_z_indices) == set(range(4))
+    )
+    complete = (len(cases) == len(requested_caps) * len(requested_z_indices)
+                and not errors)
     report = {
         "study": "Full four-bin observed eBOSS random-only fine RR geometry",
         "revision_commit": os.environ.get("GITHUB_SHA"),
         "status": (
             "full_four_bin_fine_RR_geometric_closure_passed"
-            if complete else "partial"),
+            if complete and full_request
+            else "local_rr_shard_complete" if complete
+            else "partial"),
+        "requested_caps": list(requested_caps),
+        "requested_z_indices": list(requested_z_indices),
         "candidate_redshift_bins": [list(x) for x in BINS],
         "candidate_bins_frozen_for_inference": False,
         "caps": ["NGC", "SGC"],
@@ -326,10 +390,13 @@ def main() -> int:
             "sensitivity. It does not freeze the analysis protocol or "
             "measure a galaxy odd multipole."),
     }
-    out = Path(args.out)
-    out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
-    np.savez_compressed(out.with_suffix(".npz"), **arrays)
+    tmp_npz = out.with_suffix(".final.tmp.npz")
+    tmp_json = out.with_suffix(".final.tmp.json")
+    np.savez_compressed(tmp_npz, **arrays)
+    tmp_npz.replace(out.with_suffix(".npz"))
+    tmp_json.write_text(json.dumps(report, indent=2) + "\n",
+                        encoding="utf-8")
+    tmp_json.replace(out)
     print("EBOSS_ALLBIN_FINE_RR_AUDIT", report["status"], out, flush=True)
     return 0 if complete else 2
 
