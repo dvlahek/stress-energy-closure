@@ -1,0 +1,53 @@
+name: eBOSS DR16 conditional RR window pinned replay
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/eboss_dr16_conditional_window_replay.yml'
+  workflow_dispatch:
+
+permissions:
+  actions: read
+  contents: read
+
+jobs:
+  pinned-conditional-window:
+    runs-on: ubuntu-latest
+    timeout-minutes: 13
+    env:
+      GH_TOKEN: ${{ github.token }}
+      SOURCE_WORKFLOW_RUN: '35983196267'
+      SOURCE_WORKFLOW_SHA: '5dbfca45c25c7af57bf05693022bfa98b499209d'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install NumPy
+        run: python -m pip install 'numpy>=1.24'
+      - name: Verify synthetic finite-bin response properties
+        run: python scripts/build_eboss_dr16_conditional_window.py --self-test
+      - name: Retrieve and identify validated pinned fine RR artifact
+        run: |
+          gh run download "$SOURCE_WORKFLOW_RUN" \
+            --repo "$GITHUB_REPOSITORY" \
+            --name eboss-dr16-fine-rr-highz \
+            --dir fine_rr_input
+          test -s fine_rr_input/fine_rr_highz_audit.json
+          test -s fine_rr_input/fine_rr_highz_audit.npz
+      - name: Construct random-only conditional finite-bin response
+        run: |
+          python scripts/build_eboss_dr16_conditional_window.py \
+            --fine-rr fine_rr_input/fine_rr_highz_audit.npz \
+            --fine-audit fine_rr_input/fine_rr_highz_audit.json \
+            --out eboss_workspace/conditional_rr_window_audit.json
+      - name: Retain independently checked conditional response
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: eboss-dr16-conditional-window-pinned
+          path: |
+            eboss_workspace/conditional_rr_window_audit.json
+            eboss_workspace/conditional_rr_window_audit.npz
+          if-no-files-found: warn
