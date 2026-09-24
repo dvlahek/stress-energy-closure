@@ -92,7 +92,7 @@ def main():
         "dipole":stats(a1,b1),
         "octupole":stats(a3,b3),
         "joint":stats(np.concatenate([a1,a3],axis=1),np.concatenate([b1,b3],axis=1)),
-        "interpretation_guardrail":"This quantifies extra variance from using one instead of four random realizations. It does not replace the final survey covariance."
+        "analysis_scope":"We estimate the additional random-catalog variance by comparing one and four random realizations; this is separate from the survey covariance."
     }
 
     if args.data_r1 and args.data_r4:

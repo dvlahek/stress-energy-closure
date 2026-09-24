@@ -307,10 +307,9 @@ def main():
             "smu_max_abs": args.tol_xi_abs,
             "pole_max_abs": args.tol_pole_abs,
         },
-        "guardrail": (
-            "This closure must not be used to tune redshift bins, separation bins, nuisance parameters, "
-            "or wake templates. A failure indicates an estimator implementation issue to diagnose before "
-            "unblinding the 200-mock wake fit."
+        "analysis_scope": (
+            "We compare independent weighted pair counts, Landy–Szalay normalization and odd multipole projections. "
+            "Agreement tests the estimator implementation; it does not constrain the physical templates."
         ),
     }
     (out / "bruteforce_pair_closure_summary.json").write_text(json.dumps(result, indent=2) + "\n")

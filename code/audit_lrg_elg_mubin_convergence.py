@@ -84,9 +84,9 @@ def main():
             "mu480_minus_mu240": summarize(o480-o240, s3, C3, n),
             "mu480_minus_mu120": summarize(o480-o120, s3, C3, n),
         },
-        "guardrail": (
-            "This is an estimator-convergence diagnostic. Do not choose the mu binning based on wake significance. "
-            "Production remains frozen at 240 unless numerical non-convergence is objectively demonstrated."
+        "analysis_scope": (
+            "We compare 120, 240 and 480 angular bins at fixed catalogue selection and pair weighting. "
+            "The numerical differences are evaluated against mock scatter."
         ),
     }
     Path(args.out).write_text(json.dumps(result, indent=2) + "\n")

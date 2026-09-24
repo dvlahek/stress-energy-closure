@@ -51,7 +51,7 @@ def main():
       "zero_null":{"chi2":qzero,"dof":p,"pvalue":float(chi2.sf(qzero,p))},
       "nuisance_only":{"amplitude":amp,"sigma":sig,"z_signed":amp/sig,"chi2":qn,"dof_residual":p-1,"pvalue_residual":float(chi2.sf(qn,p-1))},
       "mock_mean_subtracted":bool(args.subtract_mock_mean),
-      "guardrail":"Read and archive this stage before running the wake matched filter. A large change relative to the frozen 40-mock checkpoint indicates covariance instability."
+      "analysis_scope":"We evaluate the zero-null and nuisance-only residuals using the covariance adopted for the matched-filter analysis."
     }
     Path(args.out).write_text(json.dumps(out,indent=2)+"\n")
     print(json.dumps(out,indent=2))

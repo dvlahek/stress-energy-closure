@@ -185,10 +185,9 @@ def main():
             f"With {n} mocks the minimum p+1 is 1/{n+1}={1/(n+1):.6g}; "
             "the empirical calibration therefore cannot resolve a smaller tail probability."
         ),
-        "guardrail":(
-            "Templates and bins must remain frozen. LOO uses N-1 mocks for each held-out score "
-            "while the data score uses all N, so this is a finite-ensemble diagnostic. "
-            "Increase the mock ensemble for publication-level tail calibration."
+        "analysis_scope":(
+            "Each held-out score uses N-1 mocks, while the data score uses all N mocks. "
+            "The empirical tail probability uses the finite-sample +1 correction."
         ),
         "loo_scores":loo,
     }

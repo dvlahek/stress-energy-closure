@@ -252,10 +252,9 @@ def main():
         },
         "physical_standard_shape": physical,
         "max_relative_moment_mismatch": float(np.max(mis)),
-        "guardrail": (
-            "The two basis columns may be used for geometry diagnostics. Do not select "
-            "their amplitudes from the observed odd data. A physical standard_odd_shape "
-            "requires externally calibrated b, s and f_evo values and eventual DESI-window convolution."
+        "analysis_scope": (
+            "We calculate radial bases for the relativistic and leading wide-angle contributions. "
+            "Physical amplitudes require externally determined tracer biases and survey-window convolution."
         ),
     }
     (out / "basis_summary.json").write_text(json.dumps(summary, indent=2) + "\n")

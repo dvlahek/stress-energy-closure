@@ -33,7 +33,7 @@ def main():
             {"z":float(zz),"legacy_Mpc_over_h":float(oo),"desi_Mpc_over_h":float(nn),"fractional_shift":float(rr)}
             for zz,oo,nn,rr in zip(z[::stride],old[::stride],new[::stride],rel[::stride])
         ],
-        "guardrail":"Even a small mapping change moves pairs across fixed s bins. Final data and mock covariance must therefore use the same production mapping."
+        "analysis_scope":"We use the same fiducial distance mapping for data and mocks because distance changes can move pairs between separation bins."
     }
     Path(args.out).write_text(json.dumps(result,indent=2)+"\n")
     print(json.dumps(result,indent=2))
