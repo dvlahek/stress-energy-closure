@@ -147,11 +147,16 @@ def inspect(path: Path, chunk_rows: int) -> dict:
     return acc
 
 
-def health(acc: dict, expected_candidate: int, expected_retained: int) -> list[str]:
+def health(acc: dict, expected_candidate: int, expected_retained: int | None) -> list[str]:
     failures = []
     if acc["candidate_rows"] != expected_candidate:
         failures.append("Candidate row count disagrees with retained source audit")
-    if acc["candidate_retained_rows"] != expected_retained:
+    # Earlier public-input snapshots checked strictly positive columns but did
+    # not apply this predeclared numerical-zero threshold. Their raw candidate
+    # totals must match; their retained totals must not be assumed in advance.
+    # The mock sample snapshots, in contrast, explicitly retain post-cut totals.
+    if (expected_retained is not None and
+            acc["candidate_retained_rows"] != expected_retained):
         failures.append("Retained input row count disagrees with retained source audit")
     if acc["invalid_coordinate_z_rows"]:
         failures.append("Invalid coordinate/redshift")
@@ -275,7 +280,7 @@ def main():
                         expected_candidate = (
                             expected_info["candidate_rows"]
                             if role == "data" else expected_info["candidate_rows"])
-                        expected_retained = expected_candidate
+                        expected_retained = None
                         local = cache / catalogue_type / filename
                     else:
                         kind = "dat" if role == "data" else "ran"
