@@ -1,0 +1,176 @@
+{
+  "snapshot_date": "2026-09-24",
+  "kind": "curated_compact_snapshot_of_bounded_public_fits_header_audit",
+  "source_workflow": "https://github.com/dvlahek/stress-energy-closure/actions/runs/35966541598",
+  "source_script": "scripts/inspect_eboss_dr16_fits_headers.py",
+  "release_url": "https://data.sdss.org/sas/dr16/eboss/lss/catalogs/DR16/",
+  "status": "eight_bintable_headers_parsed",
+  "records": [
+    {
+      "filename": "eBOSS_ELG_clustering_data-NGC-vDR16.fits",
+      "tracer": "ELG",
+      "cap": "NGC",
+      "role": "data",
+      "header_rows": 83769,
+      "columns": [
+        "RA",
+        "DEC",
+        "Z",
+        "WEIGHT_SYSTOT",
+        "WEIGHT_CP",
+        "WEIGHT_NOZ",
+        "NZ",
+        "WEIGHT_FKP",
+        "chunk",
+        "EBOSS_TARGET_ID"
+      ],
+      "http_range_status": 206
+    },
+    {
+      "filename": "eBOSS_ELG_clustering_data-SGC-vDR16.fits",
+      "tracer": "ELG",
+      "cap": "SGC",
+      "role": "data",
+      "header_rows": 89967,
+      "columns": [
+        "RA",
+        "DEC",
+        "Z",
+        "WEIGHT_SYSTOT",
+        "WEIGHT_CP",
+        "WEIGHT_NOZ",
+        "NZ",
+        "WEIGHT_FKP",
+        "chunk",
+        "EBOSS_TARGET_ID"
+      ],
+      "http_range_status": 206
+    },
+    {
+      "filename": "eBOSS_ELG_clustering_random-NGC-vDR16.fits",
+      "tracer": "ELG",
+      "cap": "NGC",
+      "role": "random",
+      "header_rows": 3728363,
+      "columns": [
+        "RA",
+        "DEC",
+        "Z",
+        "WEIGHT_SYSTOT",
+        "WEIGHT_CP",
+        "WEIGHT_NOZ",
+        "NZ",
+        "WEIGHT_FKP",
+        "chunk"
+      ],
+      "http_range_status": 206
+    },
+    {
+      "filename": "eBOSS_ELG_clustering_random-SGC-vDR16.fits",
+      "tracer": "ELG",
+      "cap": "SGC",
+      "role": "random",
+      "header_rows": 3609460,
+      "columns": [
+        "RA",
+        "DEC",
+        "Z",
+        "WEIGHT_SYSTOT",
+        "WEIGHT_CP",
+        "WEIGHT_NOZ",
+        "NZ",
+        "WEIGHT_FKP",
+        "chunk"
+      ],
+      "http_range_status": 206
+    },
+    {
+      "filename": "eBOSS_LRG_clustering_data-NGC-vDR16.fits",
+      "tracer": "LRG",
+      "cap": "NGC",
+      "role": "data",
+      "header_rows": 107500,
+      "columns": [
+        "RA",
+        "DEC",
+        "Z",
+        "WEIGHT_FKP",
+        "WEIGHT_SYSTOT",
+        "WEIGHT_CP",
+        "WEIGHT_NOZ",
+        "NZ",
+        "LRG_ID"
+      ],
+      "http_range_status": 206
+    },
+    {
+      "filename": "eBOSS_LRG_clustering_data-SGC-vDR16.fits",
+      "tracer": "LRG",
+      "cap": "SGC",
+      "role": "data",
+      "header_rows": 67316,
+      "columns": [
+        "RA",
+        "DEC",
+        "Z",
+        "WEIGHT_FKP",
+        "WEIGHT_SYSTOT",
+        "WEIGHT_CP",
+        "WEIGHT_NOZ",
+        "NZ",
+        "LRG_ID"
+      ],
+      "http_range_status": 206
+    },
+    {
+      "filename": "eBOSS_LRG_clustering_random-NGC-vDR16.fits",
+      "tracer": "LRG",
+      "cap": "NGC",
+      "role": "random",
+      "header_rows": 5460719,
+      "columns": [
+        "RA",
+        "DEC",
+        "Z",
+        "WEIGHT_FKP",
+        "WEIGHT_SYSTOT",
+        "WEIGHT_CP",
+        "WEIGHT_NOZ",
+        "NZ"
+      ],
+      "http_range_status": 206
+    },
+    {
+      "filename": "eBOSS_LRG_clustering_random-SGC-vDR16.fits",
+      "tracer": "LRG",
+      "cap": "SGC",
+      "role": "random",
+      "header_rows": 3453453,
+      "columns": [
+        "RA",
+        "DEC",
+        "Z",
+        "WEIGHT_FKP",
+        "WEIGHT_SYSTOT",
+        "WEIGHT_CP",
+        "WEIGHT_NOZ",
+        "NZ"
+      ],
+      "http_range_status": 206
+    }
+  ],
+  "all_have_ra_dec_z": true,
+  "weight_columns_present": [
+    "WEIGHT_SYSTOT",
+    "WEIGHT_CP",
+    "WEIGHT_NOZ",
+    "WEIGHT_FKP"
+  ],
+  "full_fits_files_downloaded": false,
+  "full_fits_checksums_verified": false,
+  "rows_validated": false,
+  "usable_redshift_and_overlap_validated": false,
+  "weights_combination_validated": false,
+  "odd_sector_data_vector_calculated": false,
+  "scope_note": "FITS NAXIS2 and TTYPE metadata were read from HTTP partial responses. No catalogue rows, selection functions, mock contents or odd-sector statistics were interpreted."
+}
