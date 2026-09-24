@@ -1,0 +1,72 @@
+name: eBOSS DR16 mock-internal random-half controls
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/audit_eboss_dr16_mock_rr_halves.py'
+      - '.github/workflows/eboss_dr16_mock_rr_halves.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  mock-half-control:
+    runs-on: ubuntu-latest
+    timeout-minutes: 115
+    env:
+      GH_TOKEN: ${{ github.token }}
+      PINNED_DENSITY_RUN: '35988843579'
+      PINNED_OBSERVED_RUN: '35983196267'
+      PINNED_MOCK_0001_RUN: '35984016654'
+      PINNED_MOCK_STRATIFIED_RUN: '35984421963'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install pinned compiled pair-counter dependencies
+        run: |
+          python -m pip install --upgrade pip setuptools wheel
+          python -m pip install -r requirements-desi.txt
+      - name: Check deterministic disjoint half partition and weight sums
+        run: python scripts/audit_eboss_dr16_mock_rr_halves.py --self-test
+      - name: Retrieve only the three successful pinned random-only source artifacts
+        run: |
+          gh run download "$PINNED_DENSITY_RUN" \
+            --repo "$GITHUB_REPOSITORY" \
+            --name eboss-dr16-density-matched-random-only-rr \
+            --dir observed_density_control
+          gh run download "$PINNED_MOCK_0001_RUN" \
+            --repo "$GITHUB_REPOSITORY" \
+            --name eboss-dr16-matched-mock-fine-rr-pinned \
+            --dir mock_0001_input
+          gh run download "$PINNED_MOCK_STRATIFIED_RUN" \
+            --repo "$GITHUB_REPOSITORY" \
+            --name eboss-dr16-stratified-matched-mock-fine-rr \
+            --dir mock_stratified_input
+          test -s observed_density_control/density_matched_rr_audit.json
+          test -s mock_0001_input/matched_mock_fine_rr.json
+          test -s mock_0001_input/matched_mock_fine_rr.npz
+          test -s mock_stratified_input/matched_mock_fine_rr_0500.json
+          test -s mock_stratified_input/matched_mock_fine_rr_0500.npz
+          test -s mock_stratified_input/matched_mock_fine_rr_1000.json
+          test -s mock_stratified_input/matched_mock_fine_rr_1000.npz
+      - name: Compare 4 disjoint-half partitions per mock and cap
+        run: |
+          python scripts/audit_eboss_dr16_mock_rr_halves.py \
+            --mock-0001-rr mock_0001_input/matched_mock_fine_rr.npz \
+            --mock-0001-audit mock_0001_input/matched_mock_fine_rr.json \
+            --mock-stratified-dir mock_stratified_input \
+            --density-control observed_density_control/density_matched_rr_audit.json \
+            --threads 2 \
+            --out eboss_workspace/mock_random_half_control.json
+      - name: Retain blinded mock-internal half-sample and response diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: eboss-dr16-mock-random-half-control
+          path: eboss_workspace/mock_random_half_control.json
+          if-no-files-found: warn
