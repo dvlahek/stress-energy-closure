@@ -1,0 +1,76 @@
+name: eBOSS DR16 matched mock fine-RR comparison
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/compare_eboss_dr16_mock_fine_rr.py'
+      - '.github/workflows/eboss_dr16_mock_fine_rr.yml'
+  workflow_dispatch:
+  workflow_run:
+    workflows:
+      - 'eBOSS DR16 high-z fine-RR geometric closure'
+    types: [completed]
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  synthetic-mock-comparison:
+    if: github.event_name != 'workflow_run'
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install FITS and math dependencies
+        run: python -m pip install 'numpy>=1.24' 'scipy>=1.10' 'astropy>=5.3'
+      - name: Check normalized RR and matrix invariance to catalogue density
+        run: python scripts/compare_eboss_dr16_mock_fine_rr.py --self-test
+
+  compare-public-mock:
+    if: github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 65
+    env:
+      GH_TOKEN: ${{ github.token }}
+      SOURCE_WORKFLOW_RUN: ${{ github.event.workflow_run.id }}
+      SOURCE_WORKFLOW_SHA: ${{ github.event.workflow_run.head_sha }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install pinned compiled pair counting stack
+        run: |
+          python -m pip install --upgrade pip setuptools wheel
+          python -m pip install -r requirements-desi.txt
+      - name: Independently test random density normalization
+        run: python scripts/compare_eboss_dr16_mock_fine_rr.py --self-test
+      - name: Download only the successful observed fine-RR run artifact
+        run: |
+          gh run download "$SOURCE_WORKFLOW_RUN" \
+            --repo "$GITHUB_REPOSITORY" \
+            --name eboss-dr16-fine-rr-highz \
+            --dir fine_rr_input
+          test -s fine_rr_input/fine_rr_highz_audit.json
+          test -s fine_rr_input/fine_rr_highz_audit.npz
+      - name: Compare matched EZmock 0001 and observed random-only RR
+        run: |
+          python scripts/compare_eboss_dr16_mock_fine_rr.py \
+            --observed-rr fine_rr_input/fine_rr_highz_audit.npz \
+            --observed-audit fine_rr_input/fine_rr_highz_audit.json \
+            --threads 2 \
+            --out eboss_workspace/matched_mock_fine_rr.json
+      - name: Retain matched mock random-only fine RR and matrix diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: eboss-dr16-matched-mock-fine-rr
+          path: |
+            eboss_workspace/matched_mock_fine_rr.json
+            eboss_workspace/matched_mock_fine_rr.npz
+          if-no-files-found: warn
