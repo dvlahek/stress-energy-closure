@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - 'scripts/inspect_eboss_dr16_mock_index.py'
+      - 'scripts/audit_eboss_dr16_mock_pairs.py'
       - '.github/workflows/eboss_dr16_mock_inventory.yml'
   workflow_dispatch:
 
@@ -22,10 +23,18 @@ jobs:
           python scripts/inspect_eboss_dr16_mock_index.py \
             --max-depth 4 --max-pages 60 \
             --out eboss_workspace/mock_release_index.json
+      - name: Audit matching LRG and ELG realization IDs
+        run: |
+          python scripts/audit_eboss_dr16_mock_pairs.py --self-test
+          python scripts/audit_eboss_dr16_mock_pairs.py \
+            --index eboss_workspace/mock_release_index.json \
+            --out eboss_workspace/mock_pair_summary.json
       - name: Retain public-file inventory
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: eboss-dr16-mock-index
-          path: eboss_workspace/mock_release_index.json
+          path: |
+            eboss_workspace/mock_release_index.json
+            eboss_workspace/mock_pair_summary.json
           if-no-files-found: warn
