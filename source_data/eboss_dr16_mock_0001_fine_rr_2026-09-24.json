@@ -1,0 +1,84 @@
+{
+  "snapshot_date": "2026-09-24",
+  "kind": "compact_preodd_observed_vs_realistic_mock_0001_highz_fine_RR",
+  "source_script": "scripts/compare_eboss_dr16_mock_fine_rr.py",
+  "source_workflow": "https://github.com/dvlahek/stress-energy-closure/actions/runs/35984016654",
+  "source_artifact": "https://github.com/dvlahek/stress-energy-closure/actions/runs/35984016654/artifacts/10801238163",
+  "source_commit": "009ff8873ae149e622a9ef22a33ada73d59fcc86",
+  "observed_fine_source_commit": "5dbfca45c25c7af57bf05693022bfa98b499209d",
+  "mock_random_selection_reference": "source_data/eboss_dr16_realistic_mock_random_selection_audit_2026-09-24.json",
+  "status": "mock_0001_fine_rr_comparison_complete",
+  "mock_id": 1,
+  "preselected_ids": [
+    1,
+    500,
+    1000
+  ],
+  "candidate_z_interval": [
+    0.9,
+    1
+  ],
+  "candidate_selection_frozen": false,
+  "fine_s_step_mpc_over_h": 1,
+  "mu_bins": 240,
+  "orientation": "LRG->ELG",
+  "los": "midpoint",
+  "data_blind": true,
+  "primary_geometry": {
+    "h": 0.6777,
+    "Om0": 0.307,
+    "Tcmb0": 0
+  },
+  "four_factor_weight_rule": true,
+  "caps": {
+    "NGC": {
+      "observed_randoms": {
+        "LRG": 375515,
+        "ELG": 762827
+      },
+      "mock_randoms": {
+        "LRG": 163089,
+        "ELG": 522515
+      },
+      "observed_and_mock_positive_smu_cells": 28800,
+      "total_smu_cells": 28800,
+      "normalized_rr_mock_vs_observed_relative_l1": 0.0132886762523544,
+      "max_abs_raw_rr_P1_difference": 0.002974351743737537,
+      "max_abs_raw_rr_P3_difference": 0.0017531716160070104,
+      "simple_linear_probe_max_abs_mock_minus_observed": {
+        "1<-0": 0.0007776544935588223,
+        "3<-0": 0.0011234735005902425
+      }
+    },
+    "SGC": {
+      "observed_randoms": {
+        "LRG": 214862,
+        "ELG": 620263
+      },
+      "mock_randoms": {
+        "LRG": 93220,
+        "ELG": 472662
+      },
+      "observed_and_mock_positive_smu_cells": 28800,
+      "total_smu_cells": 28800,
+      "normalized_rr_mock_vs_observed_relative_l1": 0.009072552599536121,
+      "max_abs_raw_rr_P1_difference": 0.0016868283682298195,
+      "max_abs_raw_rr_P3_difference": 0.0008491202959856467,
+      "simple_linear_probe_max_abs_mock_minus_observed": {
+        "1<-0": 0.0005227740666405977,
+        "3<-0": 0.0009660539919145198
+      }
+    }
+  },
+  "limits": {
+    "single_realization_not_ensemble": true,
+    "full_1000_mock_RR_selection_not_checked": true,
+    "no_observed_galaxy_positions_read": true,
+    "no_mock_galaxy_positions_read": true,
+    "no_odd_data_vector_read": true,
+    "no_wake_fit": true,
+    "no_cross_covariance": true,
+    "no_physical_even_to_odd_window_validation": true
+  },
+  "scope_note": "Fine RR and conditional-response differences are descriptive geometric selection diagnostics on one fixed mock realization. Smaller or larger values alone are not evidence for or against physical wake, and a one-realization difference cannot validate the mock window or its uncertainty. Full per-bin response blocks are in the source artifact."
+}
