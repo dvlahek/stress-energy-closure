@@ -1,0 +1,35 @@
+name: eBOSS DR16 realistic mock random selection
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/inspect_eboss_dr16_mock_randoms.py'
+      - '.github/workflows/eboss_dr16_mock_randoms.yml'
+  workflow_dispatch:
+
+jobs:
+  mock-randoms:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install FITS and array dependencies
+        run: python -m pip install 'numpy>=1.24' 'astropy>=5.3'
+      - name: Test the input weight rule and joint-grid geometry
+        run: python scripts/inspect_eboss_dr16_mock_randoms.py --self-test
+      - name: Audit paired mock random catalogues for preselected IDs
+        run: |
+          python scripts/inspect_eboss_dr16_mock_randoms.py \
+            --ids 1,500,1000 --max-file-mib 512 --chunk-rows 150000 \
+            --out eboss_workspace/mock_random_selection_audit.json
+      - name: Retain diagnostic metadata only
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: eboss-dr16-realistic-mock-random-selection
+          path: eboss_workspace/mock_random_selection_audit.json
+          if-no-files-found: warn
