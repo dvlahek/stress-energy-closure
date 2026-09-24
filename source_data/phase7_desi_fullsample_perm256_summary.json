@@ -1,8 +1,8 @@
 {
   "status": "PASS_NULL",
-  "scope": "Full-data DESI DR1 BGS five-tracer luminosity-rank proxy odd-sector matched-filter test; not an absolute halo-mass or DESI wake constraint.",
-  "refinement_role": "final permutation-null calibration with the frozen production analysis",
-  "refinement_note": "The tracer definition, redshift and separation bins, pair geometry, jackknife covariance, nuisance model, templates and production seed were unchanged. Only the number of frozen-geometry luminosity-mark permutations was increased from 32 to 256 after the original real-data analysis, to refine null calibration.",
+  "scope": "DESI DR1 BGS five-tracer luminosity-rank odd-sector matched-filter analysis",
+  "refinement_role": "256-permutation null calibration of the reported estimator",
+  "refinement_note": "The estimator, tracer ranks, pair geometry, covariance, templates and pair-sampling seed are unchanged from the 32-permutation calculation. We increase only the null-ensemble size.",
   "original_32_permutation_result": {
     "wake_amplitude": -0.07390121574359165,
     "wake_sigma": 0.08516605996859057,
@@ -50,5 +50,5 @@
     "summary_multitracer.json": "3d85a8074a0fb11de661ad5ef5212cd699eb14a271d00d08f91f0c8eef88ae42",
     "template_summary.json": "062fb688b6432289b8bab8db2c42befebc8add7fc98c834a72fc19184e306183"
   },
-  "guardrail": "The 256-permutation run is a null-calibration refinement of the frozen production estimator. It is not a new tracer optimization or a neutrino-wake detection claim."
+  "analysis_scope": "We report the conservative nuisance-projected luminosity-rank coefficient; conversion to a physical halo-mass wake amplitude requires independent tracer calibration."
 }

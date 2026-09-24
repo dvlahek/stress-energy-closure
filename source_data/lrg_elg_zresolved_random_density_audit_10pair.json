@@ -31,10 +31,5 @@
     "dipole_median_abs_shift_in_component_sigma": 0.326,
     "dipole_max_abs_shift_in_component_sigma": 1.037
   },
-  "decision": "nrandom=1 is not acceptable for final 18D inference; production is frozen at nrandom=4.",
-  "code_commit": "94c3521",
-  "production_default_commits": [
-    "380f739",
-    "8474ef5"
-  ]
+  "conclusion": "The four-random estimator has lower random-catalog variance than the one-random estimator. We use four realizations for the reported 18-component dipole analysis."
 }

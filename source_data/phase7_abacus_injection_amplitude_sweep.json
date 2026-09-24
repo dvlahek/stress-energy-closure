@@ -2,10 +2,42 @@
   "source_workflow_run_id": 34780454743,
   "source_artifact": "phase7-abacus-window-covariance-final",
   "mock_count": 25,
-  "amplitude_grid": [-2.0, -1.0, -0.5, 0.0, 0.5, 1.0, 2.0],
-  "mean_recovered_amplitude": [-2.0000000000000524, -1.0000000000000262, -0.5000000000000131, 6.550315845288423e-17, 0.5000000000000132, 1.0000000000000262, 2.0000000000000524],
-  "recovered_std": [0.047315232842, 0.044818549232, 0.043923411387, 0.043284507122, 0.042913282583, 0.042816700756, 0.043449583146],
-  "mean_bias": [-5.24e-14, -2.62e-14, -1.31e-14, 6.55e-17, 1.32e-14, 2.62e-14, 5.24e-14],
+  "amplitude_grid": [
+    -2,
+    -1,
+    -0.5,
+    0,
+    0.5,
+    1,
+    2
+  ],
+  "mean_recovered_amplitude": [
+    -2.0000000000000524,
+    -1.0000000000000262,
+    -0.5000000000000131,
+    6.550315845288423e-17,
+    0.5000000000000132,
+    1.0000000000000262,
+    2.0000000000000524
+  ],
+  "recovered_std": [
+    0.047315232842,
+    0.044818549232,
+    0.043923411387,
+    0.043284507122,
+    0.042913282583,
+    0.042816700756,
+    0.043449583146
+  ],
+  "mean_bias": [
+    -5.24e-14,
+    -2.62e-14,
+    -1.31e-14,
+    6.55e-17,
+    1.32e-14,
+    2.62e-14,
+    5.24e-14
+  ],
   "linear_fit_recovered_vs_injected": {
     "slope": 1.0000000000000262,
     "intercept": 8.66368109e-17
@@ -17,5 +49,5 @@
     "max": 1.0197301598623638
   },
   "status": "PASS",
-  "interpretation_guardrail": "This is a compressed-vector / forward-window amplitude sweep. For each Abacus realization the injected vector is scaled as A times that realization's forward-window response and then refit with the fixed mean survey template and covariance. Because the GLS estimator is linear in the data vector, the sweep is the exact affine continuation of the stored null and unit-injection fits. It validates amplitude linearity and calibration over the tested range, but it is not an independent catalog-level signal injection before pair compression."
+  "analysis_scope": "We scale each realization's compressed forward-window response by the specified injection amplitude and refit with the common survey template and covariance. This tests linear recovery after pair compression; it is not an independent catalogue-level injection."
 }

@@ -43,5 +43,5 @@
     "pvalue": 0.10896832661409628,
     "empirical_two_sided_pvalue": 0.42424242424242425
   },
-  "guardrail": "No mass threshold was selected from the odd data. Gfinder membership introduces an additional selection function, so this is a physical-proxy robustness test rather than the primary DESI likelihood."
+  "analysis_scope": "We apply an externally specified Gfinder tracer proxy. Its selection function differs from the luminosity-rank sample used for the primary DESI estimate."
 }

@@ -1,6 +1,6 @@
 {
   "status": "PASS_NULL",
-  "publication_role": "physical_mock_covariance_window_injection_cross_check_not_primary",
+  "publication_role": "physical_mock_validation",
   "scope": "Final AbacusSummit cut-sky covariance and pair-window calibration for the five-tracer luminosity-proxy DESI DR1 odd-sector estimator.",
   "workflow_run_id": 34780454743,
   "workflow_conclusion": "success",
@@ -43,8 +43,8 @@
     "conservative_pvalue": 0.639981040199824
   },
   "covariance_interpretation": {
-    "headline_status": "NOT_PRIMARY",
-    "reason": "The ensemble contains 25 mocks for an 18-dimensional vector. OAS regularization improves conditioning but the inferred significance remains covariance-estimator dependent: -1.779 sigma with OAS versus -0.722 sigma with the raw-sample/Hartlap control. The Abacus result therefore validates physical mock covariance, survey-window response and injection recovery and does not replace the primary real-data DESI fit."
+    "reason": "The ensemble contains 25 mocks for an 18-dimensional vector. OAS regularization improves conditioning but the inferred significance remains covariance-estimator dependent: -1.779 sigma with OAS versus -0.722 sigma with the raw-sample/Hartlap control. The Abacus result therefore validates physical mock covariance, survey-window response and injection recovery and does not replace the primary real-data DESI fit.",
+    "role": "Physical-mock covariance and window validation"
   },
   "mock_null_wake_amplitudes": {
     "mean": 6.675215935558753e-17,
@@ -67,6 +67,6 @@
     "doppler_fractional_std_median": 0.007835628919159064,
     "doppler_fractional_std_max": 0.01224660931963663
   },
-  "interpretation": "PASS_NULL. All 25 AbacusSummit realizations completed. The OAS-calibrated conservative real-data coefficient is a sub-2-sigma fluctuation with empirical two-sided p=0.0769; the raw-sample/Hartlap control is 0.72 sigma. No detection is claimed. Unit injections are recovered without measurable bias. This layer is a high-fidelity validation cross-check, not the publication headline likelihood.",
-  "guardrail": "The amplitude is calibrated to the frozen luminosity-rank proxy pair model. A physical halo-mass wake amplitude requires a separate proxy-to-halo calibration. The finite 25-mock covariance ensemble prevents this cross-check from superseding the primary full-sample DESI inference."
+  "interpretation": "All 25 AbacusSummit realizations were processed. The OAS-calibrated conservative coefficient has empirical two-sided p=0.0769, and the raw-sample/Hartlap comparison is covariance-estimator dependent. Unit injections recover the imposed amplitude to numerical precision.",
+  "analysis_scope": "The wake coefficient uses luminosity-rank tracer calibration. Physical halo-mass interpretation requires an independent tracer-to-halo mapping; the 25-realization ensemble is used as a validation sample."
 }
