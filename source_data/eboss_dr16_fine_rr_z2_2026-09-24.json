@@ -1,0 +1,144 @@
+{
+  "snapshot_date": "2026-09-24",
+  "kind": "compact_observed_eBOSS_random_only_full_fine_RR_remaining_candidate_z2",
+  "source_workflow": "https://github.com/dvlahek/stress-energy-closure/actions/runs/35994203364",
+  "source_workflow_job": "https://github.com/dvlahek/stress-energy-closure/actions/runs/35994203364/job/107615169842",
+  "source_script": "scripts/audit_eboss_dr16_fine_rr_remaining.py",
+  "source_commit": "d64fdfd5b2ab6aa00ad964b5fc0de961ff1acbb3",
+  "source_artifact_name": "eboss-dr16-fine-rr-z2",
+  "source_artifact_id": 10806445061,
+  "source_coarse_workflow": "https://github.com/dvlahek/stress-energy-closure/actions/runs/35980901380",
+  "status": "remaining_candidate_bin_fine_RR_geometric_closure_passed",
+  "candidate_z_interval": [
+    0.8,
+    0.9
+  ],
+  "candidate_selection_frozen_for_inference": false,
+  "orientation": "LRG->ELG",
+  "los": "midpoint",
+  "fine_separation_step_mpc_over_h": 1,
+  "coarse_s_edges_mpc_over_h": [
+    20,
+    40,
+    60,
+    80,
+    100,
+    120,
+    140
+  ],
+  "signed_mu_bin_count": 240,
+  "weight_product": "WEIGHT_SYSTOT*WEIGHT_CP*WEIGHT_NOZ*WEIGHT_FKP",
+  "primary_distance": {
+    "h": 0.6777,
+    "Om0": 0.307,
+    "Tcmb0": 0
+  },
+  "secondary_distance": {
+    "h": 0.676,
+    "Om0": 0.31,
+    "Tcmb0": 0
+  },
+  "input_random_provenance": [
+    {
+      "bin_index": 2,
+      "cap": "NGC",
+      "tracer": "LRG",
+      "retained_random_rows": 1187341,
+      "fits_sha256": "5da0bf41e267968310ada55ea3bf27c9a3808bba77050e66c54d84dec62b6281"
+    },
+    {
+      "bin_index": 2,
+      "cap": "NGC",
+      "tracer": "ELG",
+      "retained_random_rows": 1362767,
+      "fits_sha256": "7b9a5ea54ea99fa1d56ec20206e920d171c807c626c29b6a4dcc766d0ee36698"
+    },
+    {
+      "bin_index": 2,
+      "cap": "SGC",
+      "tracer": "LRG",
+      "retained_random_rows": 700981,
+      "fits_sha256": "4aabcaa99cc2855d38eddd5fac903d3281e9436e5ba5b8c230050db3da92d230"
+    },
+    {
+      "bin_index": 2,
+      "cap": "SGC",
+      "tracer": "ELG",
+      "retained_random_rows": 1278687,
+      "fits_sha256": "f3097c653c54b3b0e2033a0d586c77f9a8975aeb3397c441f92703797e7db9a1"
+    }
+  ],
+  "per_cap_and_sample_support": [
+    {
+      "bin_index": 2,
+      "cap": "NGC",
+      "sample": "full",
+      "positive_fine_cells": 28800,
+      "total_fine_cells": 28800
+    },
+    {
+      "bin_index": 2,
+      "cap": "NGC",
+      "sample": "half_A",
+      "positive_fine_cells": 28800,
+      "total_fine_cells": 28800
+    },
+    {
+      "bin_index": 2,
+      "cap": "NGC",
+      "sample": "half_B",
+      "positive_fine_cells": 28800,
+      "total_fine_cells": 28800
+    },
+    {
+      "bin_index": 2,
+      "cap": "SGC",
+      "sample": "full",
+      "positive_fine_cells": 28800,
+      "total_fine_cells": 28800
+    },
+    {
+      "bin_index": 2,
+      "cap": "SGC",
+      "sample": "half_A",
+      "positive_fine_cells": 28800,
+      "total_fine_cells": 28800
+    },
+    {
+      "bin_index": 2,
+      "cap": "SGC",
+      "sample": "half_B",
+      "positive_fine_cells": 28800,
+      "total_fine_cells": 28800
+    }
+  ],
+  "per_cap_checks": [
+    {
+      "bin_index": 2,
+      "cap": "NGC",
+      "fine_vs_fresh_coarse_relative_L1": 6.111614374735859e-16,
+      "fine_vs_pinned_prior_coarse_relative_L1": 6.177905082228714e-16,
+      "half_A_vs_full_fine_relative_L1": 0.005391683347771212,
+      "half_B_vs_full_fine_relative_L1": 0.00539479795571942,
+      "secondary_vs_primary_geometry_fine_relative_L1": 0.004985317942020476
+    },
+    {
+      "bin_index": 2,
+      "cap": "SGC",
+      "fine_vs_fresh_coarse_relative_L1": 1.0546022329540575e-15,
+      "fine_vs_pinned_prior_coarse_relative_L1": 1.0691514436687678e-15,
+      "half_A_vs_full_fine_relative_L1": 0.002049955566677861,
+      "half_B_vs_full_fine_relative_L1": 0.002041606574270539,
+      "secondary_vs_primary_geometry_fine_relative_L1": 0.004686384944457792
+    }
+  ],
+  "scope": {
+    "observed_galaxy_positions_read": false,
+    "observed_odd_vector_read": false,
+    "real_DD_or_DR_computed": false,
+    "wake_fit_or_template_tuning": false,
+    "statistical_covariance_computed": false,
+    "production_physical_window_certified": false
+  },
+  "note": "All fine random-only RR cells are supported for this candidate slice, with two independent coarse closures and disjoint thinning. Not the frozen eBOSS survey window."
+}
