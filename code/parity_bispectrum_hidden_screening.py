@@ -303,7 +303,7 @@ def main():
             "intermediate": "0.03-0.10: only continue if the fiducial literature forecast has very high S/N.",
             "weak": "<0.03: hidden-state direction is too suppressed in this channel."
         },
-        "guardrail": "No absolute bispectrum S/N is inferred from this screening layer."
+        "analysis_scope": "We evaluate a kernel-level bispectrum response; survey sensitivity is not estimated."
     }
     (out / "summary.json").write_text(json.dumps(summary, indent=2) + "\n", encoding="utf-8")
 

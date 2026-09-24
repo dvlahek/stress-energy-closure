@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Independent two-tracer Fisher sanity check.
 
-This file intentionally imports none of the wake forecast modules.  It checks
+We calculate the two-tracer limit independently of the wake forecast modules and verify
 from first principles that the covariance-matrix expression used by the
 multi-tracer code reduces, for two tracers, to the closed analytic formula
 
@@ -10,9 +10,7 @@ multi-tracer code reduces, for two tracers, to the closed analytic formula
 with C_ij = P a_i a_j + delta_ij/n_i and
 D_12 = i P mu^2 (b1-b2), D_21 = D_12*.
 
-The symbolic identity and a deterministic Monte-Carlo numerical check are both
-reported.  This is deliberately a separate implementation to guard against a
-shared coding error in the production Fisher routines.
+We report the analytic identity and a deterministic numerical comparison to the covariance-matrix expression.
 """
 from __future__ import annotations
 import argparse, json

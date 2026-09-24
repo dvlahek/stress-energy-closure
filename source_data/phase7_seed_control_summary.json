@@ -80,5 +80,5 @@
     "empirical_two_sided_pvalue_min": 0.2727272727272727,
     "empirical_two_sided_pvalue_max": 0.45454545454545453
   },
-  "interpretation": "PASS. The conservative nuisance-projected wake coefficient remains negative and consistent with zero for the production seed and all three predeclared independent pair-MC seeds. The minimal two-template fit is strongly seed-sensitive and is retained only as a diagnostic/control, not as the primary inference."
+  "interpretation": "The conservative nuisance-projected coefficients remain consistent with zero across the reference pair-sampling seed and three independent seeds. The minimal two-template fit exhibits larger seed dependence and is reported only as a diagnostic."
 }

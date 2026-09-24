@@ -4,14 +4,9 @@
 The standard dipole follows Bonvin et al. (MNRAS 525, 4611, 2023), Eq. (8):
 a relativistic/Doppler-like nu_1(d,z) contribution plus the leading
 wide-angle d/r * mu_2(d,z) contribution.  The hidden-state wake uses the
-frozen publication direction already used by build_lrg_elg_wake_template.py.
+same prescribed kinetic deformation used by build_lrg_elg_wake_template.py.
 
-This builder is deliberately pre-window.  It improves on the old single H/k
-toy nuisance by exposing the physically distinct radial basis functions and
-by volume-averaging all templates over the same separation bins as the data.
-A publication-level prediction still requires DESI-window convolution and
-externally calibrated tracer bias / magnification-bias / evolution-bias
-parameters.
+We calculate the relativistic and wide-angle radial contributions before survey-window convolution and integrate them over the specified separation bins. The survey-specific model combines these functions with external tracer coefficients and the measured random-pair window.
 """
 from __future__ import annotations
 
