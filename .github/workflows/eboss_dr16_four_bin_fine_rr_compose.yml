@@ -1,0 +1,98 @@
+name: eBOSS DR16 four-bin fine RR composition
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/compose_eboss_dr16_four_bin_fine_rr.py'
+      - '.github/workflows/eboss_dr16_four_bin_fine_rr_compose.yml'
+  workflow_dispatch:
+  workflow_run:
+    workflows:
+      - 'eBOSS DR16 remaining full fine RR candidate bins'
+    types: [completed]
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  synthetic-composition-check:
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install FITS and array dependencies
+        run: python -m pip install 'numpy>=1.24' 'scipy>=1.10' 'astropy>=5.3'
+      - name: Test four-bin composition shape and fail-closed mu support
+        run: python scripts/compose_eboss_dr16_four_bin_fine_rr.py --self-test
+
+  compose-four-candidate-bins:
+    if: >-
+      (github.event_name == 'workflow_run' &&
+       github.event.workflow_run.conclusion == 'success' &&
+       github.event.workflow_run.head_branch == 'main' &&
+       github.event.workflow_run.head_sha == 'd64fdfd5b2ab6aa00ad964b5fc0de961ff1acbb3')
+       || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    timeout-minutes: 24
+    env:
+      GH_TOKEN: ${{ github.token }}
+      PINNED_REMAINING_RUN: '35994203364'
+      PINNED_HIGHZ_RUN: '35983196267'
+      PINNED_COARSE_RUN: '35980901380'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install pinned array and FITS dependencies
+        run: python -m pip install 'numpy>=1.24' 'scipy>=1.10' 'astropy>=5.3'
+      - name: Independently test composition shape and missing-mu rejection
+        run: python scripts/compose_eboss_dr16_four_bin_fine_rr.py --self-test
+      - name: Download only the three pinned successful lower-z artifacts
+        run: |
+          for i in 0 1 2; do
+            gh run download "$PINNED_REMAINING_RUN" \
+              --repo "$GITHUB_REPOSITORY" \
+              --name "eboss-dr16-fine-rr-z$i" \
+              --dir "remaining_input/z$i"
+            test -s "remaining_input/z$i/fine_rr_z${i}_audit.json"
+            test -s "remaining_input/z$i/fine_rr_z${i}_audit.npz"
+          done
+      - name: Retrieve SHA-pinned high-z fine RR and independent full coarse RR
+        run: |
+          gh run download "$PINNED_HIGHZ_RUN" \
+            --repo "$GITHUB_REPOSITORY" \
+            --name eboss-dr16-fine-rr-highz \
+            --dir highz_input
+          gh run download "$PINNED_COARSE_RUN" \
+            --repo "$GITHUB_REPOSITORY" \
+            --name eboss-dr16-full-observed-random-rr \
+            --dir coarse_input
+          test -s highz_input/fine_rr_highz_audit.json
+          test -s highz_input/fine_rr_highz_audit.npz
+          test -s coarse_input/full_random_rr_audit.json
+          test -s coarse_input/full_random_rr_audit.npz
+      - name: Verify all eight cap-z geometric closures and compose separate-cap arrays
+        run: |
+          python scripts/compose_eboss_dr16_four_bin_fine_rr.py \
+            --remaining-root remaining_input \
+            --highz-audit highz_input/fine_rr_highz_audit.json \
+            --highz-rr highz_input/fine_rr_highz_audit.npz \
+            --coarse-audit coarse_input/full_random_rr_audit.json \
+            --coarse-rr coarse_input/full_random_rr_audit.npz \
+            --out eboss_workspace/four_bin_fine_rr_audit.json
+      - name: Retain complete four-bin random-only RR and independent QA
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: eboss-dr16-full-four-bin-fine-rr
+          path: |
+            eboss_workspace/four_bin_fine_rr_audit.json
+            eboss_workspace/four_bin_fine_rr_audit.npz
+          if-no-files-found: warn
