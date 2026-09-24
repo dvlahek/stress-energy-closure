@@ -1,0 +1,109 @@
+{
+  "snapshot_date": "2026-09-24",
+  "kind": "compact_fixed_plan_random_only_RR_sampling_density_evidence",
+  "source_script": "scripts/audit_eboss_dr16_rr_density.py",
+  "source_workflow": "https://github.com/dvlahek/stress-energy-closure/actions/runs/35975469704",
+  "source_artifact": "https://github.com/dvlahek/stress-energy-closure/actions/runs/35975469704/artifacts/10797493033",
+  "source_commit": "c57c9711115d8d02670c16e0665053a5fe4143f5",
+  "status": "fixed_density_diagnostic_complete",
+  "reference_real": "source_data/eboss_dr16_joint_random_selection_audit_2026-09-24.json",
+  "reference_mock": "source_data/eboss_dr16_realistic_mock_random_selection_audit_2026-09-24.json",
+  "mock_realization_id": 1,
+  "nested_random_sample_sizes_per_tracer": [
+    600,
+    1200,
+    2400
+  ],
+  "independent_seeds": [
+    4071,
+    8159
+  ],
+  "diagnostic_z_interval": [
+    0.8,
+    0.9
+  ],
+  "diagnostic_z_interval_frozen": false,
+  "distance_mapping": "legacy H0=67.4 Om0=0.315 diagnostic only",
+  "provisional_weight": "product of four published weight columns after numerical-zero selection",
+  "relative_l1_comparison_definition": "L1 difference between normalized weighted RR(s,mu) histograms divided by L1 of reference normalized weighted RR histogram; larger nested sample is reference within a seed; second seed is reference in between-seed comparison.",
+  "values_rounded_to_6_dp": [
+    {
+      "survey": "observed",
+      "cap": "NGC",
+      "between_seed_n2400_l1": 0.095845,
+      "per_seed": [
+        {
+          "seed": 4071,
+          "n600_to_2400_l1": 0.212873,
+          "n1200_to_2400_l1": 0.123421
+        },
+        {
+          "seed": 8159,
+          "n600_to_2400_l1": 0.205532,
+          "n1200_to_2400_l1": 0.099725
+        }
+      ]
+    },
+    {
+      "survey": "realistic_mock",
+      "cap": "NGC",
+      "between_seed_n2400_l1": 0.140103,
+      "per_seed": [
+        {
+          "seed": 4071,
+          "n600_to_2400_l1": 0.199119,
+          "n1200_to_2400_l1": 0.105012
+        },
+        {
+          "seed": 8159,
+          "n600_to_2400_l1": 0.241657,
+          "n1200_to_2400_l1": 0.087096
+        }
+      ]
+    },
+    {
+      "survey": "observed",
+      "cap": "SGC",
+      "between_seed_n2400_l1": 0.054953,
+      "per_seed": [
+        {
+          "seed": 4071,
+          "n600_to_2400_l1": 0.140149,
+          "n1200_to_2400_l1": 0.060645
+        },
+        {
+          "seed": 8159,
+          "n600_to_2400_l1": 0.12213,
+          "n1200_to_2400_l1": 0.050367
+        }
+      ]
+    },
+    {
+      "survey": "realistic_mock",
+      "cap": "SGC",
+      "between_seed_n2400_l1": 0.082653,
+      "per_seed": [
+        {
+          "seed": 4071,
+          "n600_to_2400_l1": 0.113277,
+          "n1200_to_2400_l1": 0.057977
+        },
+        {
+          "seed": 8159,
+          "n600_to_2400_l1": 0.13268,
+          "n1200_to_2400_l1": 0.049924
+        }
+      ]
+    }
+  ],
+  "interpretation": "At 2400 sampled random objects per tracer, between-seed residuals remain 0.055-0.140; the fixed-subsample RR histogram is unsuitable as the final production window. No sample-size or bin definition was selected by wake results.",
+  "limits": {
+    "real_odd_data_vector_opened": false,
+    "real_galaxy_pairs_computed": false,
+    "full_density_RR_window_computed": false,
+    "production_eboss_distance_and_weight_rules_validated": false,
+    "even_to_odd_leakage_forward_model_validated": false,
+    "cross_covariance_calculated": false
+  },
+  "note": "These are selection-only sampling-noise diagnostics for predeclared size/seed combinations. The source artifact preserves per-separation-bin and per-seed details."
+}
