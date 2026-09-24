@@ -1,0 +1,39 @@
+name: eBOSS DR16 full observed-random RR window inputs
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/audit_eboss_dr16_full_random_rr.py'
+      - '.github/workflows/eboss_dr16_full_random_rr.yml'
+  workflow_dispatch:
+
+jobs:
+  full-random-rr:
+    runs-on: ubuntu-latest
+    timeout-minutes: 115
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install pinned compiled LSS pair-counter stack
+        run: |
+          python -m pip install --upgrade pip setuptools wheel
+          python -m pip install -r requirements-desi.txt
+      - name: Independently check the full-density RR implementation
+        run: python scripts/audit_eboss_dr16_full_random_rr.py --self-test
+      - name: Count all observed random pairs in the four candidate z bins by cap
+        run: |
+          python scripts/audit_eboss_dr16_full_random_rr.py \
+            --threads 2 \
+            --out eboss_workspace/full_random_rr_audit.json
+      - name: Retain full candidate random-only RR histograms and closure audit
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: eboss-dr16-full-observed-random-rr
+          path: |
+            eboss_workspace/full_random_rr_audit.json
+            eboss_workspace/full_random_rr_audit.npz
+          if-no-files-found: warn
