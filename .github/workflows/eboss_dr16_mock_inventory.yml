@@ -1,0 +1,31 @@
+name: eBOSS DR16 mock directory inventory
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/inspect_eboss_dr16_mock_index.py'
+      - '.github/workflows/eboss_dr16_mock_inventory.yml'
+  workflow_dispatch:
+
+jobs:
+  inventory:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Inventory public EZmock directories only
+        run: |
+          python scripts/inspect_eboss_dr16_mock_index.py \
+            --max-depth 2 --max-pages 30 \
+            --out eboss_workspace/mock_release_index.json
+      - name: Retain public-file inventory
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: eboss-dr16-mock-index
+          path: eboss_workspace/mock_release_index.json
+          if-no-files-found: warn
