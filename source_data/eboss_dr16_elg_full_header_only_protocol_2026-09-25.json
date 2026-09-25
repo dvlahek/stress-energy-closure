@@ -5,7 +5,7 @@
   "source_root": "https://portal.nersc.gov/project/cosmo/data/sdss/dr17/eboss/lss/catalogs/DR16/",
   "source_file": "eBOSS_ELG_full_ALLdata-vDR16.fits",
   "source_filename_confirmed_in_sha_pinned_index": true,
-  "published_catalogue_description": "SDSS DR16 LSS documentation: full_ALLdata contains targets remaining after masks are applied; not a pre-veto production reference",
+  "published_catalogue_description": "Full_ALLdata includes mskbit; retention of bit8-positive rows is unverified at the header-only stage. The earlier post-veto-only interpretation is withdrawn; see blinded frozen label-audit follow-up.",
   "method": "HTTP 206 exact FITS 2880-byte Range requests for primary and first BINTABLE header only; stop at each END card, never request table-data offsets. Require zero-length primary HDU to reach next header without seeking through data. Record header and range SHA256 separately from complete file identity; no full file checksum claimed.",
   "max_total_header_blocks": 90,
   "max_requests": 90,
