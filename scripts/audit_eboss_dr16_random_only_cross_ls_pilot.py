@@ -18,7 +18,7 @@ import numpy as np
 from astropy.io import fits
 
 from audit_eboss_dr16_9mock_fine_weighted_nz import (
-    acquire, preflight, sha256_bytes, json_write_atomic,
+    acquire, preflight, json_write_atomic, SOURCE_MOCK_SHA,
 )
 from audit_eboss_dr16_rr_pair_closure import rr_histogram, mirrored_closure
 from check_eboss_cross_ls_synthetic import (
@@ -185,6 +185,39 @@ def algebra_case(lrg, elg, *, cap, kind, mid):
     }
 
 
+def committed_observed_highz_count(cap, tracer):
+    ref = ROOT / "source_data/eboss_dr16_full_observed_rr_2026-09-24.json"
+    audit = json.loads(ref.read_text(encoding="utf-8"))
+    matches = [x for x in audit["input_random_redshift_counts"]
+               if (x["cap"],x["tracer"],x["zlo"],x["zhi"])
+               == (cap,tracer,0.9,1.0)]
+    if len(matches)!=1 or int(matches[0]["retained_rows"])<=0:
+        raise ValueError("Missing unique pinned observed high-z random count")
+    return int(matches[0]["retained_rows"]),str(ref.relative_to(ROOT))
+
+
+def pinned_mock_shard_highz_count(shard, tracer, cap, mid, expected_sha, protocol):
+    if (shard.get("status")!="mock_random_rr_shard_complete"
+            or shard.get("mock_id")!=mid or shard.get("cap")!=cap
+            or shard.get("revision_commit")!=SOURCE_MOCK_SHA
+            or shard.get("predeclaration_commit")
+            !=protocol["source_predeclaration_commit"]
+            or shard.get("high_z")!=[0.9,1.0]
+            or shard.get("observed_odd_data_vector_read") is not False
+            or shard.get("mock_galaxy_data_read") is not False):
+        raise ValueError("Mock high-z count shard lacks pinned random-only provenance")
+    item=shard.get("inputs",{}).get(tracer,{})
+    counts=item.get("redshift_bin_retained_rows")
+    if (item.get("compressed_file_sha256")!=expected_sha
+            or not isinstance(counts,list) or len(counts)!=4
+            or any(not isinstance(v,int) or v<0 for v in counts)
+            or counts[3]!=item.get("high_z",{}).get("high_z_retained_rows")):
+        raise ValueError("Mock shard SHA, high-z count and independent input audit disagree")
+    if counts[3]<2*SPLIT_SIZE:
+        raise ValueError("Insufficient SHA-verified random high-z source rows")
+    return int(counts[3])
+
+
 def run(args):
     protocol = json.loads(PROTOCOL_PATH.read_text(encoding="utf-8"))
     if (protocol["highz"] != [0.9, 1.0]
@@ -194,6 +227,11 @@ def run(args):
         raise ValueError("Prospective random-only cross-LS protocol changed")
     if args.mock_id not in IDS or args.cap not in CAPS:
         raise ValueError("Outside preregistered cohort")
+    if args.mock_shard_dir and args.use_committed_first_mock_counts:
+        raise ValueError("Choose only one pinned high-z count fallback")
+    if (protocol.get("source_mock_run")!=36015246541
+            or protocol.get("source_mock_revision")!=SOURCE_MOCK_SHA):
+        raise ValueError("Pinned source mock cohort differs from prospective protocol")
     sha_mock, sha_obs, _, _ = preflight(args)
     out = Path(args.out_dir)
     checkpoint = Path(args.fine_checkpoint_dir)
@@ -219,6 +257,16 @@ def run(args):
                     raise ValueError("Input not backed by prior fine weighted n(z) SHA checkpoint")
                 expected_high = sum(fine["full"]["count_per_fine_bin"][30:])
                 high_reference = str(fine_path)
+            elif args.mock_shard_dir is not None:
+                if kind == "observed":
+                    expected_high,high_reference=committed_observed_highz_count(
+                        args.cap,tracer)
+                else:
+                    src=Path(args.mock_shard_dir)/f"{args.cap}.json"
+                    shard=json.loads(src.read_text(encoding="utf-8"))
+                    expected_high=pinned_mock_shard_highz_count(
+                        shard,tracer,args.cap,args.mock_id,sha,protocol)
+                    high_reference=str(src)
             elif args.use_committed_first_mock_counts and args.mock_id == 1:
                 if kind == "observed":
                     reference = json.loads((ROOT / "source_data/eboss_dr16_full_observed_rr_2026-09-24.json").read_text())
@@ -302,6 +350,31 @@ def self_test():
     assert tuple(protocol["mock_ids"])==IDS and tuple(protocol["caps"])==CAPS
     assert tuple(protocol["tracers"])==TRACERS
     assert np.allclose(EDGES_MU,-EDGES_MU[::-1],atol=1e-14,rtol=0)
+    obs_n,obs_src=committed_observed_highz_count("SGC","LRG")
+    assert obs_n>=2*SPLIT_SIZE and "full_observed_rr" in obs_src
+    mock_fixture={
+        "status":"mock_random_rr_shard_complete",
+        "mock_id":125,"cap":"NGC",
+        "revision_commit":SOURCE_MOCK_SHA,
+        "predeclaration_commit":protocol["source_predeclaration_commit"],
+        "high_z":[0.9,1.0],
+        "observed_odd_data_vector_read":False,
+        "mock_galaxy_data_read":False,
+        "inputs":{"LRG":{
+            "compressed_file_sha256":"a"*64,
+            "redshift_bin_retained_rows":[1400,1400,1400,1300],
+            "high_z":{"high_z_retained_rows":1300}}}}
+    assert pinned_mock_shard_highz_count(
+        mock_fixture,"LRG","NGC",125,"a"*64,protocol)==1300
+    try:
+        pinned_mock_shard_highz_count(
+            mock_fixture,"LRG","NGC",125,"b"*64,protocol)
+    except ValueError:
+        pass
+    else:
+        raise AssertionError("Mismatched mock SHA accepted")
+    print("EBOSS_RANDOM_ONLY_CROSS_LS_PINNED_NINEMOCK_SOURCE_SELF_TEST_OK",
+          flush=True)
     print("EBOSS_RANDOM_ONLY_CROSS_LS_SELF_TEST_OK",flush=True)
 
 
@@ -313,6 +386,8 @@ def main():
     ap.add_argument("--observed-cache-dir",default="eboss_workspace/local_rr/fits")
     ap.add_argument("--mock-cache-dir",default="eboss_workspace/local_pair_window/mock_fits")
     ap.add_argument("--fine-checkpoint-dir",default="eboss_workspace/local_nz")
+    ap.add_argument("--mock-shard-dir",type=Path,
+                    help="Pinned prior 36015246541 per-ID artifact containing NGC.json and SGC.json; alternative to local fine n(z) JSON for all nine fixed mocks")
     ap.add_argument("--out-dir",default="eboss_workspace/local_pair_window")
     ap.add_argument("--timeout",type=float,default=120)
     ap.add_argument("--no-download",action="store_true")
