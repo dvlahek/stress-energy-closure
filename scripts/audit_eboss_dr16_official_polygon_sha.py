@@ -130,13 +130,26 @@ def expected_products(protocol, inventory):
                          "source_url": item["source_url"], "root": elg_root})
     if len(products) != EXPECTED_COUNT or len(set(p["filename"] for p in products)) != EXPECTED_COUNT:
         raise ValueError("Fixed official polygon source cohort is incomplete or duplicated")
+    # Pin smaller ELG extra masks before the potentially large allsky LRG
+    # polygons; a timed-out full transfer then preserves useful, clearly
+    # labelled partial provenance instead of losing the whole run.
+    priority = {"elg_extra_polygon": 0, "lrg_noveto_footprint_polygon": 1,
+                "lrg_published_polygon": 2}
+    products.sort(key=lambda p: (
+        priority[p["role"]],
+        p["filename"] == "allsky_bright_star_mask_pix.ply",
+        p["filename"]))
     for item in products:
         validate_url(item["source_url"], item["root"], item["filename"])
     return products
 
 
-def audit(protocol, inventory, out_dir, timeout):
+def audit(protocol, inventory, out_dir, timeout, only_elg_extra=False):
     products = expected_products(protocol, inventory)
+    if only_elg_extra:
+        products = [p for p in products if p["role"] == "elg_extra_polygon"]
+        if len(products) != 3:
+            raise ValueError("Exactly three official ELG polygon inputs required")
     output = out_dir / "official_polygon_sha_manifest.json"
     if output.exists():
         prior = json.loads(output.read_text(encoding="utf-8"))
@@ -187,13 +200,19 @@ def audit(protocol, inventory, out_dir, timeout):
             "source_url": item["source_url"], "sha256": sha, "bytes": size,
         })
         atomic_json(output, report)
-    if len(report["products"]) != EXPECTED_COUNT:
-        raise ValueError("Published eleven-polygon SHA inventory incomplete")
-    report["status"] = "official_lrg_elg_polygon_bytes_pinned_only"
+    expected = 3 if only_elg_extra else EXPECTED_COUNT
+    if len(report["products"]) != expected:
+        raise ValueError("Published fixed polygon SHA inventory incomplete")
+    report["status"] = (
+        "official_elg_extra_polygon_bytes_pinned_only"
+        if only_elg_extra else "official_lrg_elg_polygon_bytes_pinned_only"
+    )
     report["note"] = (
-        "The eleven source polygon files are SHA-pinned. This does not "
-        "implement any official angular mask, ELG brick maskbits, LRG "
-        "veto union, completeness or exact LRGxELG pair selection.")
+        "Byte provenance only. Three extra ELG polygons are pinned in the "
+        "limited run; the full run requires eleven official source polygons. "
+        "This does not implement any official angular mask, ELG brick "
+        "maskbits, LRG veto union, completeness or exact pair selection."
+    )
     atomic_json(output, report)
     print("EBOSS_OFFICIAL_POLYGON_SHA_INVENTORY_COMPLETE",
           len(report["products"]), output, flush=True)
@@ -234,6 +253,8 @@ def main():
                     default=Path("eboss_workspace/official_mask_inventory"))
     ap.add_argument("--timeout", type=float, default=100)
     ap.add_argument("--self-test", action="store_true")
+    ap.add_argument("--only-elg-extra", action="store_true",
+                    help="Pin only the three small required ELG extra-veto polygons; never claim all eleven")
     args = ap.parse_args()
     if args.self_test:
         self_test()
@@ -245,7 +266,8 @@ def main():
     inv = json.loads(args.inventory_json.read_text(encoding="utf-8"))
     protocol = json.loads(PROTOCOL.read_text(encoding="utf-8"))
     try:
-        audit(protocol, inv, args.out_dir, args.timeout)
+        audit(protocol, inv, args.out_dir, args.timeout,
+              only_elg_extra=args.only_elg_extra)
     except Exception as exc:
         print("EBOSS_OFFICIAL_POLYGON_SHA_INVENTORY_FAILED", type(exc).__name__,
               str(exc), flush=True)
