@@ -1,0 +1,74 @@
+{
+  "snapshot_date": "2026-09-25",
+  "kind": "curated_compact_completed_predeclared_eBOSS_DR16_nine_mock_random_only_cross_LS_algebra",
+  "status": "nine_mock_random_only_cross_ls_algebra_complete",
+  "source_workflow": "https://github.com/dvlahek/stress-energy-closure/actions/runs/36119400564",
+  "source_workflow_attempt": 2,
+  "source_head_commit": "b2b181ca6aff5380268c8d764aaf34d2a4ba6b2b",
+  "source_artifact": "https://github.com/dvlahek/stress-energy-closure/actions/runs/36119400564/artifacts/10859107070",
+  "source_artifact_name": "eboss-dr16-nine-mock-cross-ls-algebra-aggregate",
+  "source_code": "scripts/aggregate_eboss_dr16_random_only_cross_ls.py",
+  "prospective_protocol": "source_data/eboss_dr16_random_only_cross_ls_protocol_2026-09-25.json",
+  "mock_ids": [
+    1,
+    125,
+    250,
+    375,
+    500,
+    625,
+    750,
+    875,
+    1000
+  ],
+  "caps": [
+    "NGC",
+    "SGC"
+  ],
+  "tracers": [
+    "LRG",
+    "ELG"
+  ],
+  "distinct_mock_realizations": 9,
+  "completed_cap_mock_shards": 18,
+  "observed_randoms_reused_per_cap": true,
+  "random_split_per_tracer": {
+    "pseudo_D": 600,
+    "pseudo_R": 600,
+    "source": "same SHA-pinned parent public random catalogue; disjoint",
+    "redshift": [
+      0.9,
+      1
+    ]
+  },
+  "checked_pair_terms": [
+    "D1D2",
+    "D1R2",
+    "R1D2",
+    "R1R2"
+  ],
+  "mock_random_reverse_cross_ls_mirror_abs_residual": {
+    "NGC": {
+      "min": 8.881784197001252e-16,
+      "median": 1.7763568394002505e-15,
+      "max": 2.6645352591003757e-15
+    },
+    "SGC": {
+      "min": 8.881784197001252e-16,
+      "median": 1.7763568394002505e-15,
+      "max": 3.219646771412954e-15
+    }
+  },
+  "minimum_RR_supported_s_mu_cells_across_mock_cases": 137,
+  "all_source_SHA_pins_accepted": true,
+  "all_case_parity_and_weight_norm_gates_passed": true,
+  "errors": [],
+  "prior_failed_attempt_explanation": "ID1000 SGC observed ELG random HTTP RemoteDisconnected (transport); only failed ID1000 job was retried successfully using unchanged pinned data.",
+  "scope_note": "Random-only pseudo D/R algebra and source normalization audit, not a galaxy-based physical null, official angular mask membership, even-to-odd leakage certification, valid covariance, observed galaxy odd signal or Einstein–Vlasov confirmation.",
+  "observed_galaxy_data_read": false,
+  "mock_galaxy_data_read": false,
+  "observed_odd_data_vector_read": false,
+  "physical_mask_certified": false,
+  "physical_window_convolution_validated": false,
+  "joint_mock_galaxy_covariance_estimated": false,
+  "inference_protocol_frozen": false
+}
