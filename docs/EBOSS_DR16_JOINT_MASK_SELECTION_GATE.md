@@ -132,7 +132,7 @@ published-polygon input checks. It does **not** assert an exact
 physical angular mask, validated pair-level convolution,
 mock-galaxy covariance or any observed galaxy odd statistic.
 
-## Additional ELG pixel-bit coordinate-contract check (open)
+## ELG extra pixel-bit coordinate-contract inconsistency (verified on fixed source pixels)
 
 The byte-identical published `scripts/eBOSS_ELG_extra.py` currently
 forms `theta = radians(90-dec)` and `phi = radians(360-ra)` and then
@@ -140,9 +140,23 @@ calls `healpy.ang2pix(..., theta, phi, lonlat=True)` when constructing
 its extra bit `2**8`. The documented `healpy.ang2pix` convention is:
 `lonlat=True` requires longitude and latitude **in degrees**;
 `lonlat=False` takes colatitude and longitude **in radians**.
-Those two statements are not syntactically consistent as written.
-Therefore the extra pixel bit is intentionally **not applied** in
-the current source and polygon membership pilots. Preserve the
+The preregistered source-only roundtrip now shows a concrete
+discrepancy on **all 37** published bit-8 HEALPix pixel centres:
+the upstream call as written returns a different pixel in 37/37
+cases, while `lonlat=False` with colatitude/longitude radians and
+the mathematically equivalent `lonlat=True` with
+longitude/latitude degrees recover 37/37 source pixel indices.
+This was independently tested with the pinned original script,
+without opening any galaxy or random coordinates. The retained
+machine-readable source and source-run provenance is
+`source_data/eboss_dr16_elg_bit8_coordinate_contract_2026-09-25.json`
+(workflow run `36138034521`).
+
+The roundtrip alone does **not** establish which convention generated
+the published DR16 pixel mask, nor does it prove that the official
+clustering catalogue was affected by the upstream script's inconsistency.
+Therefore the extra pixel bit remains intentionally **not applied** in
+our source and polygon membership pilots. Preserve the
 upstream file byte-for-byte, but resolve and independently test the
 actual reference-mask pixel convention before implementing bit 8.
 Do not silently replace the published formula with an assumed fix;
