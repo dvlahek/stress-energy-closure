@@ -119,12 +119,21 @@ def scan(protocol, out_dir, *, timeout, download_extra):
     source = protocol["source_data_roots"]
     root = accept_root(source["nersc_mirror"])
     base = root + source["elg_mask_directory"]
+    lrg_base = root + source["lrg_mask_directory"]
     root_bytes, root_sha, root_size = fetch_limited(
         root, max_bytes=MAX_INDEX_BYTES, root_url=root, timeout=timeout)
+    root_entries = listing_names(root_bytes.decode("utf-8"), root)
+    lrg_folder = source["lrg_mask_directory"].rstrip("/")
+    if (lrg_folder not in root_entries
+            or not root_entries[lrg_folder][1]
+            or root_entries[lrg_folder][0] != lrg_base):
+        raise ValueError("Official LRG/QSO mask directory not listed in DR16 index")
     elg_bytes, elg_sha, elg_size = fetch_limited(
         base, max_bytes=MAX_INDEX_BYTES, root_url=root, timeout=timeout)
-    root_entries = listing_names(root_bytes.decode("utf-8"), root)
+    lrg_bytes, lrg_sha, lrg_size = fetch_limited(
+        lrg_base, max_bytes=MAX_INDEX_BYTES, root_url=root, timeout=timeout)
     elg_entries = listing_names(elg_bytes.decode("utf-8"), base)
+    lrg_entries = listing_names(lrg_bytes.decode("utf-8"), lrg_base)
     mask_groups = {chunk: [] for chunk in CHUNKS}
     for name, (url, is_dir) in elg_entries.items():
         match = MASK_RE.fullmatch(name)
@@ -147,8 +156,14 @@ def scan(protocol, out_dir, *, timeout, download_extra):
         if ("lrg" in n.lower() or "mask" in n.lower()
             or "veto" in n.lower() or "sector" in n.lower())
     ]
-    if not root_entries or not elg_entries:
+    if not root_entries or not elg_entries or not lrg_entries:
         raise ValueError("Official listing has no usable safe links")
+    lrg_products = [
+        {"filename": name, "source_url": url, "is_directory": is_dir}
+        for name, (url, is_dir) in sorted(lrg_entries.items())
+        if not is_dir and name.lower().endswith(
+            (".ply", ".pol", ".fits", ".fits.gz", ".fits.fz", ".txt"))
+    ]
     report = {
         "status": "official_mask_index_incomplete",
         "study": "eBOSS DR16 official mask-source inventory only",
@@ -158,6 +173,12 @@ def scan(protocol, out_dir, *, timeout, download_extra):
                        "usable_entries": len(root_entries)},
         "elg_index": {"sha256": elg_sha, "bytes": elg_size,
                       "usable_entries": len(elg_entries)},
+        "lrg_index": {"sha256": lrg_sha, "bytes": lrg_size,
+                      "usable_entries": len(lrg_entries)},
+        "lrg_mask_directory": lrg_base,
+        "lrg_published_products": lrg_products,
+        "lrg_subdirectories": sorted(
+            n for n, (_, is_dir) in lrg_entries.items() if is_dir),
         "elg_chunks": {
             k: {"listed_maskbits": len(v),
                 "maskbit_filenames": [e["filename"] for e in v]}
@@ -180,6 +201,8 @@ def scan(protocol, out_dir, *, timeout, download_extra):
     }
     if any(not mask_groups[k] for k in CHUNKS):
         report["errors"].append("Missing one or more predeclared ELG maskbits chunk families")
+    if not lrg_products:
+        report["errors"].append("No published LRG/QSO mask products in official subdirectory")
     for name in EXTRAS:
         if not extras[name]["listed"]:
             report["errors"].append("Not listed in ELGmasks: " + name)
@@ -245,6 +268,7 @@ def self_test():
         raise AssertionError("Non-official origin accepted")
     src = json.loads(PROTOCOL.read_text())
     assert tuple(src["elg_chunks"]) == CHUNKS
+    assert src["source_data_roots"]["lrg_mask_directory"] == "LRGandQuasarmasks/"
     assert tuple(src["elg_extra_polygons"]) == EXTRAS
     assert src["observed_odd_data_vector_read"] is False
     print("EBOSS_OFFICIAL_MASK_SOURCE_INVENTORY_SELF_TEST_OK", flush=True)
@@ -287,6 +311,8 @@ def main():
     for chunk, item in report["elg_chunks"].items():
         print("EBOSS_ELG_MASKBITS_LISTED", chunk, item["listed_maskbits"],
               flush=True)
+    print("EBOSS_LRG_MASK_PRODUCTS_LISTED",
+          len(report["lrg_published_products"]), flush=True)
     return 0
 
 
