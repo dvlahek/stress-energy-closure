@@ -124,3 +124,38 @@ The `official_mask_index.json` file must never be treated as an
 exact common selection mask, estimator closure, mock covariance or
 observational significance calculation. The actual eBOSS odd vector
 remains sealed until those separate checks pass.
+
+## Verified LRG index and eleven-file polygon provenance
+
+The official DR16 LRGandQuasarmasks/ directory contains seven published
+polygons: `allsky_bright_star_mask_pix.ply`,
+`badfield_mask_unphot_seeing_extinction_pixs8_dr12.ply`,
+`bright_object_mask_rykoff_pix.ply`, `brightstarmask_tiling_final.ply`,
+`centerpost_mask_eboss_DR16_new.ply`,
+`collision_priority_mask_QSO_eboss_DR16_v9_singletiles.ply`, and
+`collision_priority_mask_lrg_eboss_DR16_new.ply`. The official root
+also contains `eBOSS_QSOandLRG_fullfootprintgeometry_noveto.ply`.
+These eight files and the three ELG extra polygons form the declared
+eleven-file *byte-provenance* set. Do not infer that all seven veto
+polygons should be indiscriminately unioned; the exact LRG selection
+rule and sector completeness still require independent certification.
+
+After obtaining `official_mask_index.json` as described above, run:
+
+```bash
+python scripts/audit_eboss_dr16_official_polygon_sha.py --self-test
+
+python scripts/audit_eboss_dr16_official_polygon_sha.py \
+  --inventory-json eboss_workspace/official_mask_inventory/official_mask_index.json \
+  --out-dir eboss_workspace/official_mask_inventory \
+  2>&1 | tee eboss_workspace/official_mask_inventory/polygon_sha.log
+```
+
+The runner verifies the three already pinned official directory SHA256
+indexes, streams the eleven exact published polygons with SHA256 and
+byte counts, rejects previously pinned byte changes, and records
+`official_polygon_sha_manifest.json`. A complete status
+`official_lrg_elg_polygon_bytes_pinned_only` does **not** certify
+any continuous angular mask, ELG brickmask FITS selection, exact
+LRG×ELG pair footprint or odd statistic. The four ELG brickmask
+image families must still be processed separately.
