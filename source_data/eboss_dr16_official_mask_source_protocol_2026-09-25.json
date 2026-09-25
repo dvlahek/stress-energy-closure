@@ -55,5 +55,21 @@
   "exact_joint_mask_certified": false,
   "inference_protocol_frozen": false,
   "stop_rule": "If an official URL, required extra polygon, chunk family or file fingerprint is missing/invalid, report incomplete. Do not infer masks from occupancy, repin for convenience, omit fixed chunks or open odd data.",
-  "lrg_inventory_policy": "Enumerate exact published LRGandQuasarmasks/ filenames, localize survey geometry, completeness and veto products; directory entries and SHA fingerprints alone do not certify MANGLE exclusion semantics or joint pair selection."
+  "lrg_inventory_policy": "Enumerate exact published LRGandQuasarmasks/ filenames, localize survey geometry, completeness and veto products; directory entries and SHA fingerprints alone do not certify MANGLE exclusion semantics or joint pair selection.",
+  "source_index_sha256": {
+    "dr16_root": "7e09e85c629b84de4879a99ca2db3f6cc84a317cde87d999a11dd8fead94dee7",
+    "lrg_directory": "cde2c9e0f9c3ccf2e05c4a3a118dae8624a77f437edfb3a3f25ca2454433070d",
+    "elg_directory": "0ebd4d2ad4b9b1849286961617ccf151ce7be7054242498c8d264914b677a8f8"
+  },
+  "lrg_published_polygons": [
+    "allsky_bright_star_mask_pix.ply",
+    "badfield_mask_unphot_seeing_extinction_pixs8_dr12.ply",
+    "bright_object_mask_rykoff_pix.ply",
+    "brightstarmask_tiling_final.ply",
+    "centerpost_mask_eboss_DR16_new.ply",
+    "collision_priority_mask_QSO_eboss_DR16_v9_singletiles.ply",
+    "collision_priority_mask_lrg_eboss_DR16_new.ply"
+  ],
+  "lrg_root_geometry_polygon": "eBOSS_QSOandLRG_fullfootprintgeometry_noveto.ply",
+  "physical_mask_rule_still_missing": "Published presence of these polygons does not specify which are applied to DR16 LRG, veto priority, sector completeness, boundary conventions or the exact LRG×ELG pair-level intersection. No physical mask may be claimed from file-byte provenance alone."
 }
