@@ -1,0 +1,34 @@
+{
+  "snapshot_date": "2026-09-25",
+  "kind": "official_DR16_LRG_exact_two_polygon_source_byte_SHA256_pins",
+  "source_workflow": "https://github.com/dvlahek/stress-energy-closure/actions/runs/36103812825",
+  "source_commit": "7922e42dd72fa4bfeed3a0775d2983b9681793c6",
+  "source_code": "scripts/audit_eboss_dr16_official_polygon_sha.py",
+  "source_index_run": 36099075387,
+  "source_index_sha256": {
+    "dr16_root": "7e09e85c629b84de4879a99ca2db3f6cc84a317cde87d999a11dd8fead94dee7",
+    "lrg_directory": "cde2c9e0f9c3ccf2e05c4a3a118dae8624a77f437edfb3a3f25ca2454433070d",
+    "elg_directory": "0ebd4d2ad4b9b1849286961617ccf151ce7be7054242498c8d264914b677a8f8"
+  },
+  "status": "two_official_LRG_polygon_byte_SHA256_pins_complete",
+  "products": [
+    {
+      "filename": "centerpost_mask_eboss_DR16_new.ply",
+      "sha256": "b9e2fffaa72f7b900e6bfbab1cf72c64ac23e58498a6e8b4bdb3237c803ebd0b",
+      "bytes": 48803,
+      "source_artifact": "https://github.com/dvlahek/stress-energy-closure/actions/runs/36103812825/artifacts/10849888856"
+    },
+    {
+      "filename": "collision_priority_mask_lrg_eboss_DR16_new.ply",
+      "sha256": "dd34d96300e7a8eefc9955d55541774a44ee5a0cb50240cdae302821a6f911f7",
+      "bytes": 127861043,
+      "source_artifact": "https://github.com/dvlahek/stress-energy-closure/actions/runs/36103812825/artifacts/10849779366"
+    }
+  ],
+  "other_six_published_LRG_QSO_polygons_SHA_pinned": false,
+  "observed_galaxy_data_read": false,
+  "observed_odd_data_vector_read": false,
+  "physical_mask_veto_semantics_certified": false,
+  "tracer_pair_window_certified": false,
+  "note": "Only two exact published LRG polygon file byte identities are pinned. Neither observed clustering galaxy catalogue nor odd signal has been opened. This does not certify the full published LRG veto union, continuous mask, or pair-level selection."
+}
