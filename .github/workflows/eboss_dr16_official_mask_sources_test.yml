@@ -1,0 +1,25 @@
+name: eBOSS DR16 official mask source inventory synthetic gate
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/audit_eboss_dr16_official_mask_sources.py"
+      - "source_data/eboss_dr16_official_mask_source_protocol_2026-09-25.json"
+      - ".github/workflows/eboss_dr16_official_mask_sources_test.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  synthetic-official-source-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Test official-source URL allowlist, mask families and no-galaxy gate
+        run: python scripts/audit_eboss_dr16_official_mask_sources.py --self-test
