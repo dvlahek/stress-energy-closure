@@ -67,17 +67,28 @@ def acquire(path, expected_sha, *, observed, filename=None, url=None,
     # A byte-complete HTTP transfer can still fail the pinned SHA256:
     # retry the *same pinned URL*, never replace the expected fingerprint.
     # Every mismatching payload is deleted, and every actual SHA is logged.
-    attempts = 1 if observed else 3
+    # Retry only transport failures for the same exact, pinned release
+    # URL. This does not relax the byte identity or accept a new source.
+    attempts = 3
     last_digest, last_size = None, None
     for attempt in range(1, attempts + 1):
-        if observed:
-            actual, digest, size = download(
-                filename, path.parent, 1024 * 1024 * 1024, timeout)
-            if actual != path:
-                raise ValueError("Observed random download landed at unexpected path")
-        else:
-            digest, size = fetch_with_retry(
-                url, path, 512 * 1024 * 1024, timeout)
+        try:
+            if observed:
+                actual, digest, size = download(
+                    filename, path.parent, 1024 * 1024 * 1024, timeout)
+                if actual != path:
+                    raise ValueError("Observed random download landed at unexpected path")
+            else:
+                digest, size = fetch_with_retry(
+                    url, path, 512 * 1024 * 1024, timeout)
+        except (OSError, TimeoutError) as exc:
+            if attempt == attempts:
+                raise
+            print("FINE_NZ_PINNED_INPUT_TRANSPORT_RETRY",
+                  path.name, f"attempt={attempt}/{attempts}",
+                  f"error={type(exc).__name__}", flush=True)
+            time.sleep(2 * attempt)
+            continue
         if digest == expected_sha:
             print("FINE_NZ_INPUT_SHA_OK", path.name, size, digest, flush=True)
             return path, digest, size
@@ -466,6 +477,32 @@ def self_test():
         finally:
             globals()["fetch_with_retry"] = previous_fetch
     print("EBOSS_FINE_NZ_PINNED_SHA_RETRY_SELF_TEST_OK", flush=True)
+    # A remote disconnect is a transport error, not a reason to repin the
+    # observed random catalogue or change its SHA256.
+    with TemporaryDirectory() as tmp:
+        previous_download = globals()["download"]
+        expected_bytes = b"synthetic-observed-random-only"
+        expected_sha = hashlib.sha256(expected_bytes).hexdigest()
+        observed_tries = []
+        def flaky_observed(filename, root, max_bytes, timeout):
+            observed_tries.append(filename)
+            if len(observed_tries) < 3:
+                raise ConnectionResetError("synthetic remote disconnect")
+            target = root / filename
+            target.write_bytes(expected_bytes)
+            return target, expected_sha, len(expected_bytes)
+        globals()["download"] = flaky_observed
+        try:
+            observed_file = Path(tmp) / "synthetic_observed_random.fits"
+            received = acquire(observed_file, expected_sha,
+                               observed=True, filename=observed_file.name,
+                               timeout=1)
+            assert len(observed_tries) == 3
+            assert received[1] == expected_sha
+            assert observed_file.read_bytes() == expected_bytes
+        finally:
+            globals()["download"] = previous_download
+    print("EBOSS_FINE_NZ_OBSERVED_TRANSPORT_RETRY_SELF_TEST_OK", flush=True)
     assert PROTOCOL.is_file()
     print("EBOSS_NINEMOCK_FINE_WEIGHTED_NZ_SELF_TEST_OK", flush=True)
 
