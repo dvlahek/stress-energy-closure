@@ -195,7 +195,7 @@ def self_test(p):
     a = header([card("SIMPLE", "T"), card("BITPIX", "8"), card("NAXIS", "0")])
     b = header([
         card("XTENSION", "'BINTABLE'"), card("BITPIX", "8"),
-        card("NAXIS", "2"), card("NAXIS1", "36"), card("NAXIS2", "2"),
+        card("NAXIS", "2"), card("NAXIS1", "28"), card("NAXIS2", "2"),
         card("PCOUNT", "0"), card("GCOUNT", "1"),
         card("TFIELDS", "4"), card("TTYPE1", "'RA'"),
         card("TFORM1", "'1D'"), card("TTYPE2", "'DEC'"),
@@ -203,7 +203,7 @@ def self_test(p):
         card("TFORM3", "'1J'"), card("TTYPE4", "'COMP_BOSS'"),
         card("TFORM4", "'1D'"),
     ])
-    data = a + b + b"X" * 72
+    data = a + b + b"X" * 56
     requested = []
 
     def fake_reader(offset):
