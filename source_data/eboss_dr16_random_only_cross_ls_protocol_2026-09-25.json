@@ -84,5 +84,11 @@
   "physical_mask_certified": false,
   "physical_window_convolution_validated": false,
   "joint_mock_galaxy_covariance_estimated": false,
-  "inference_protocol_frozen": false
+  "inference_protocol_frozen": false,
+  "allowed_comparable_highz_count_sources": {
+    "local_primary": "Prior successful locally SHA-pinned 40-bin fine n(z) per-catalogue JSON; sum last ten count bins (z in [0.9,1.0))",
+    "GH_fallback_observed": "source_data/eboss_dr16_full_observed_rr_2026-09-24.json input_random_redshift_counts retained_rows, cap/tracer, exact [0.9,1.0) high-z interval",
+    "GH_fallback_mock0001": "source_data/eboss_dr16_mock_0001_fine_rr_2026-09-24.json caps[cap].mock_randoms[tracer], exactly realization 0001; no other ID authorized to use this fallback.",
+    "common_identity": "All raw observed and mock compressed FITS must still pass full-byte SHA256 from pinned ensemble and original observed sources, independent of high-z count provenance."
+  }
 }
