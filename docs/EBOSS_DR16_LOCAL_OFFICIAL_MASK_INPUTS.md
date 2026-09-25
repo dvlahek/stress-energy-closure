@@ -197,3 +197,40 @@ Transfer bytes are SHA256-hashed and checked against their advertised
 HTTP Content-Length when available. An incomplete file is never
 accepted as a certified mask input. Exact mask veto composition is a
 separate scientific gate.
+
+## Official badfield 473 MB polygon: bounded Range transfer
+
+The direct official `badfield_mask_unphot_seeing_extinction_pixs8_dr12.ply`
+transfer timed out and was **not** SHA-certified. A separate bounded
+HTTP 206 probe confirmed a 65,536-byte prefix and a fixed official
+Content-Range size of 473,778,577 bytes; the prefix fingerprint and
+the exact source URL are committed in
+`source_data/eboss_dr16_badfield_range_probe_2026-09-25.json`.
+
+The separate resumable source-only runner requests exactly 4-MiB
+segments and requires each response to be HTTP 206 with identical
+start/end/total values and exact transferred bytes. It retries
+transient network errors at most three times per segment. A local
+`.part` file is *not* a certified mask; the complete file is
+renamed and its full SHA256 reported only after all pinned bytes
+are transferred and the published prefix is rechecked.
+
+```bash
+cd ~/stress-energy-closure
+git pull --ff-only origin main
+source .venv/bin/activate
+python scripts/download_eboss_dr16_badfield_ranged.py --self-test
+
+python scripts/download_eboss_dr16_badfield_ranged.py \
+  --inventory-json eboss_workspace/official_mask_inventory/official_mask_index.json \
+  --out-dir eboss_workspace/large_lrg_badfield \
+  --timeout 110
+```
+
+The corresponding GitHub source job is
+`https://github.com/dvlahek/stress-energy-closure/actions/runs/36104423777`.
+Check that the status is
+`EBOSS_LRG_BADFIELD_FULL_SHA256_PINNED` before considering this
+particular polygon's bytes certified. The allsky source is independent
+and not covered by this run. Neither run applies LRG veto logic
+or computes a physical cross window.
