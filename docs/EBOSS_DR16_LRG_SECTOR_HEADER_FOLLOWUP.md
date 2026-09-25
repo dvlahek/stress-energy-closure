@@ -77,3 +77,61 @@ The published tracer-specific randoms still define the cross-LS
 random-pair window `R_L R_E`. No common hard angular cut is inferred
 from a coarse occupancy grid, no veto is newly applied to released
 data/randoms, and the observed eBOSS odd-sector vector stays unopened.
+
+## User's official full-LRG header result and frozen byte-only follow-up
+
+The official header-only run completed locally and its JSON was uploaded.
+The uploaded 4,565-byte JSON has SHA256
+`901c5486e817da57a162d9bec74171a0fbc09f4e0901d72b87d7f4495ff51308`.
+This exact report fingerprint is separately frozen in
+`source_data/eboss_dr16_lrg_full_sector_header_uploaded_manifest_2026-09-25.json`
+and required by the next local raw-byte-only runner. The original report
+remains at `eboss_workspace/official_mask_inventory/lrg_full_sector_header_only.json`
+in the user's WSL checkout.
+
+The official LRG full FITS reports 196,485,120 bytes, 20,160 header
+bytes (header SHA256
+`a48b0d1055b5f7638dc77a86eb5ff5c861b629d19ff75cd8ae8122caa7e9014b`),
+311,848 declared rows at 630 bytes each, and 72 columns. It contains
+`SECTOR` (FITS J), `sector_SSR` (D), `sector_TSR` (D),
+and `COMP_BOSS` (D). These column identities are now verified as
+released **header structure** but their source-to-paper completeness
+equivalences are not inferred from names alone. No galaxy table row,
+sector value or odd statistic was read at this stage.
+
+The frozen follow-up protocol is
+`source_data/eboss_dr16_lrg_full_bytes_provenance_protocol_2026-09-25.json`.
+Its runner `scripts/audit_eboss_dr16_lrg_full_bytes_provenance.py`
+checks the precise previous uploaded report SHA, the earlier
+SHA-pinned release index, and all eight official LRG/QSO MANGLE polygon
+fingerprints, then streams the exact 196-MB official
+`eBOSS_LRG_full_ALLdata-vDR16.fits` to a quarantined local folder.
+It checks HTTP status 200, exact ETag, Last-Modified, byte count
+and the previously frozen first-header SHA256. It writes the **first-seen
+full-file SHA256 without interpreting a single FITS data row**. An
+already-downloaded exact local copy can alternatively be passed by
+`--existing-file /absolute/path/to/file.fits`.
+
+Run in the same audit-branch checkout:
+
+```bash
+cd ~/stress-energy-closure
+git pull --ff-only
+source .venv/bin/activate
+python -u scripts/audit_eboss_dr16_lrg_full_bytes_provenance.py --self-test
+python -u scripts/audit_eboss_dr16_lrg_full_bytes_provenance.py
+```
+
+[The synthetic byte-only CI passed](https://github.com/dvlahek/stress-energy-closure/actions/runs/36161956132).
+After the local full-file checksum is returned, freeze it in a separate
+sector-only protocol **before** reading any values of `SECTOR`,
+`sector_TSR`, `sector_SSR` or `COMP_BOSS`. Those fields may then
+be audited with aggregate sector-level output and official semantic
+source references, without opening individual LRG redshifts, weights,
+identifiers or the eBOSS odd vector.
+
+Do not redownload the 11 SHA-pinned polygons. Do not automatically
+apply all seven LRG/QSO veto names, insert new completeness cuts into
+published clustering catalogues, or infer a single joint LRG/ELG mask.
+The resulting science-pair window must remain the published
+tracer-specific LRG×ELG random-pair selection.
