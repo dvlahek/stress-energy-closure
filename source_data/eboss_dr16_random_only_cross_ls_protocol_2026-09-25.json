@@ -1,0 +1,88 @@
+{
+  "study": "Blinded random-only split-catalogue cross-Landy-Szalay and tracer-pair window audit",
+  "registered_on": "2026-09-25",
+  "purpose": "Check oriented LRG×ELG cross-pair estimator and tracer-specific released DR16 random selections, independently of unfinished official MANGLE/BRICKMASK byte audits. Never treat randomized pseudo-data as observed galaxies or a physical null significance test.",
+  "source_ensemble_run": 36017670812,
+  "source_ensemble_revision": "054005edc6ca193176b129e1951e4bd3ce8751a7",
+  "source_mock_run": 36015246541,
+  "source_mock_revision": "9150992ac06c03cf1b16c5fdd4e3bb3856f89ff0",
+  "existing_observed_full_fine_rr_run": 35995805473,
+  "source_predeclaration_commit": "5fe7a0017da6e8a0b0b9de9cf2114d7c0ca9d0bd",
+  "mock_ids": [
+    1,
+    125,
+    250,
+    375,
+    500,
+    625,
+    750,
+    875,
+    1000
+  ],
+  "caps": [
+    "NGC",
+    "SGC"
+  ],
+  "tracers": [
+    "LRG",
+    "ELG"
+  ],
+  "highz": [
+    0.9,
+    1
+  ],
+  "diagnostic_sample": {
+    "count_per_pseudo_D_or_R_per_tracer": 600,
+    "seed_base": 89021,
+    "split": "One deterministic permutation of each independently SHA-verified random catalogue high-z selection; first 600 rows pseudo-D, next 600 rows pseudo-R, disjoint, without replacement, equal sample sizes for LRG and ELG."
+  },
+  "geometry": {
+    "distance": "eboss_dr16_fiducial.PRIMARY_GEOMETRY published_multitracer",
+    "s_edges_mpc_h": [
+      20,
+      40,
+      60,
+      80,
+      100,
+      120,
+      140
+    ],
+    "mu_edges": "np.linspace(-1-1e-7,1+1e-7,25)",
+    "line_of_sight": "midpoint",
+    "theta_min_deg": 0.05,
+    "orientation": "LRG_to_ELG; independently recount ELG_to_LRG"
+  },
+  "weight": "WEIGHT_SYSTOT*WEIGHT_CP*WEIGHT_NOZ*WEIGHT_FKP; existing numerical-zero systematic gate ≤1e-12",
+  "four_pair_terms": [
+    "D_L D_E",
+    "D_L R_E",
+    "R_L D_E",
+    "R_L R_E"
+  ],
+  "fixed_checks": [
+    "Full file SHA matches published observed + nine-mock pinned ensemble",
+    "Fixed sampling with no overlap within each parent random catalogue",
+    "All four independently normalized cross pair terms with normalization sum(w_first)*sum(w_second)",
+    "Independently computed reversed tracer order mirrors each oriented RR histogram and swaps cross terms",
+    "Cross-LS xi(s,mu) mirrors on its full RR-supported cells; missing RR cells remain nan",
+    "P1 and P3 of raw normalized RR flip sign under independent reversal (geometry only)",
+    "Record pseudo-xi amplitudes without p-value/significance/detection",
+    "Independent scalar loop validates synthetic cross estimator before reading FITS"
+  ],
+  "algebra_thresholds": {
+    "reversal_relative_rr_l1": 1e-10,
+    "normalization_relative": 1e-12,
+    "cross_xi_mirror_abs": 1e-8,
+    "odd_rr_pole_mirror_abs": 1e-10
+  },
+  "pilot": "Observed SGC and mock 0001 SGC; full cohort observed both caps plus all nine mock IDs and both caps.",
+  "sampling_statistical_claim": "No inference about physical odd signal or expected pseudo-xi significance; pseudo D and R are split from same parent catalogue, hence correlated; finite sample stochastic errors are descriptive only.",
+  "mask_policy": "Use released separately constructed DR16 LRG/ELG clustering randoms without reapplying official veto polygons or forcing new common mask. Official mask membership and veto composition remain a separate pending source-based gate.",
+  "observed_galaxy_positions_read": false,
+  "mock_galaxy_positions_read": false,
+  "observed_odd_data_vector_read": false,
+  "physical_mask_certified": false,
+  "physical_window_convolution_validated": false,
+  "joint_mock_galaxy_covariance_estimated": false,
+  "inference_protocol_frozen": false
+}
