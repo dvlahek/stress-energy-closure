@@ -1,0 +1,51 @@
+name: eBOSS DR16 LRG small official polygons quick SHA gate
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/eboss_dr16_lrg_small_polygons.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  lrg-small-polygon:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    strategy:
+      fail-fast: false
+      matrix:
+        filename:
+          - centerpost_mask_eboss_DR16_new.ply
+          - collision_priority_mask_lrg_eboss_DR16_new.ply
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Source provenance gate
+        run: python scripts/audit_eboss_dr16_official_polygon_sha.py --self-test
+      - name: Download fixed official SDSS directory index
+        run: |
+          gh run download 36099075387 --repo "$GITHUB_REPOSITORY" \
+            --name eboss-dr16-official-mask-source-index --dir source
+      - name: SHA-pin one exact official LRG veto polygon
+        run: |
+          python scripts/audit_eboss_dr16_official_polygon_sha.py \
+            --inventory-json source/official_mask_index.json \
+            --only-filename "${{ matrix.filename }}" \
+            --out-dir "eboss_workspace/lrg_small/${{ matrix.filename }}" \
+            --timeout 85
+      - name: Save independent byte-provenance manifest
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: eboss-lrg-small-sha-${{ matrix.filename }}
+          path: eboss_workspace/lrg_small/${{ matrix.filename }}/official_polygon_sha_manifest.json
+          if-no-files-found: warn
+          retention-days: 90
