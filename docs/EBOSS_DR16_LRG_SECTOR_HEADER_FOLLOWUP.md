@@ -348,3 +348,52 @@ Upload the unchanged output JSON to archive its exact SHA256.
 Count agreement does not itself authenticate the historical LRG
 production program, the continuous mask or cross-tracer pair window,
 and no published science selection or odd-sector vector is changed.
+
+## Completed local Ross Table 2 conditional tally and exact uploaded artifact
+
+The fixed source-informed sequential replay ran in the user's WSL checkout
+against the previously SHA-pinned official full LRG FITS file. The local
+status is `LRG_ROSS_TABLE2_SOURCE_INFORMED_AGGREGATE_REPLAY_ONLY`.
+The exact uploaded 1,504-byte JSON has SHA256
+`d4346389c0f6ec31ad0f18edb05b9d7d9772191c0c5e9a4d365a7aa1d081929b`,
+archived unchanged as
+`source_data/eboss_dr16_lrg_ross_table2_sector_count_replay_2026-09-25.json`.
+The archived Git blob
+`5dc3cb01855f0354567bfe26873e967061d2ca1f` matches the one
+calculated from the uploaded bytes. Its separate fingerprint manifest is
+`source_data/eboss_dr16_lrg_ross_table2_sector_count_uploaded_manifest_2026-09-25.json`.
+The user's script reverified the full LRG FITS SHA256
+`39b831801adec04fe6dc5d6ab76a4b303aa58bfd303548cb7fddfae7d7f9331d`
+before the four-field-only reinspection. No observed odd vector or
+new science selection was accessed/applied.
+
+| Fixed candidate and stage | Official full-catalogue target count | Published Table 2 reference |
+|---|---:|---:|
+| Initial post-veto catalogue | 311,848 | 311,848 |
+| `COMP_BOSS <= 0.5` rejected | 58,575 | `C_eBOSS <= 0.5`: 58,575 |
+| Remaining after `COMP_BOSS > 0.5` | 253,273 | 253,273 |
+| Conditional `sector_SSR <= 0.5` rejected | **53** | `C_z <= 0.5`: **53** |
+| Final after `COMP_BOSS > 0.5` and `sector_SSR > 0.5` | **253,220** | **253,220** |
+| Conditional `sector_TSR <= 0.5` rejected | 675 | 53 |
+| Final after first cut and `sector_TSR > 0.5` | 252,598 | 253,220 |
+
+The exact sequential target-count agreement for `COMP_BOSS` and
+`sector_SSR` supports their interpretation as the first and second
+published LRG sector-cut fields **for this catalogue and these
+thresholds**. The `sector_TSR` second-stage candidate fails the
+published count by +622 rejected rows. The first-stage field was
+considered after seeing its aggregate count, so this is explicitly
+a source-informed follow-up, **not a pristine independent blind
+validation**. Count agreement is also not proof of the historical
+production executable, the MANGLE polygon priority/union, a continuous
+LRG/ELG mask, published random completeness weights or the physical
+LRG×ELG pair window. Neither catalogue membership nor weights are
+changed on the basis of these diagnostic filters.
+
+The next separate input-only work is to authenticate the published
+MANGLE LRG veto/sector production composition and the four ELG
+BRICKMASK image families/extra corrections. The existing DR16
+tracer-specific clustering randoms, rather than a fabricated
+common pixelized hard mask, remain the reference for subsequent
+random-pair window checks; estimator/mock-galaxy and joint covariance
+still require separate preregistered validation before unblinding.
