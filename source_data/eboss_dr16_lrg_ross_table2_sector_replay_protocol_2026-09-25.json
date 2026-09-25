@@ -1,0 +1,66 @@
+{
+  "study": "Source-informed follow-up: published Ross DR16 LRG Table 2 sequential-completeness count replay",
+  "registered_on": "2026-09-25",
+  "inference_classification": "POST-HOC against already seen aggregate sector diagnostics; fixed paper-table external reference was published before analysis; prospective only relative to not-yet-seen sequential field cross-tab. Do NOT describe as wholly blinded/preregistered independent confirmation.",
+  "source_audit_protocol": "source_data/eboss_dr16_lrg_sector_metadata_protocol_2026-09-25.json",
+  "uploaded_four_column_report_manifest": "source_data/eboss_dr16_lrg_sector_metadata_uploaded_manifest_2026-09-25.json",
+  "uploaded_four_column_report": "source_data/eboss_dr16_lrg_sector_metadata_audit_2026-09-25.json",
+  "source_fits_sha256": "39b831801adec04fe6dc5d6ab76a4b303aa58bfd303548cb7fddfae7d7f9331d",
+  "exact_four_column_report_sha256": "ead2ff920592af381bc65478a8393ed9c0238f0e150a343e50287168f8f0442c",
+  "four_column_report_git_blob_sha1": "792affb7e06008e432ddd1fdf288b17057e6754f",
+  "source_fits_path": "eboss_workspace/quarantine_official_lrg_sector/eBOSS_LRG_full_ALLdata-vDR16.fits",
+  "source_header_sha256": "a48b0d1055b5f7638dc77a86eb5ff5c861b629d19ff75cd8ae8122caa7e9014b",
+  "official_source": "https://portal.nersc.gov/project/cosmo/data/sdss/dr17/eboss/lss/catalogs/DR16/eBOSS_LRG_full_ALLdata-vDR16.fits",
+  "published_reference": {
+    "title": "Ross et al., MNRAS 498 (2020) 2354, Table 2 and Sec. 5.4, Eqs. (10)-(11)",
+    "url": "https://academic.oup.com/mnras/article/498/2/2354/5900562",
+    "cohort": "LRG targets in full tiled footprint after veto masks, before completeness cuts; NOT the z-selected clustering sample",
+    "paper_full_postveto_target_count": 311848,
+    "paper_angular_C_eBOSS_less_or_equal_0_5_removed_targets": 58575,
+    "paper_subsequent_C_z_less_or_equal_0_5_removed_targets": 53,
+    "paper_after_both_target_count": 253220,
+    "paper_sector_angular_completeness_cut": "C_eBOSS > 0.5",
+    "paper_sector_redshift_completeness_cut": "C_z > 0.5",
+    "sequential_order": "first C_eBOSS then C_z"
+  },
+  "post_aggregate_observed_field_counts_prior_to_this_protocol": {
+    "COMP_BOSS_less_or_equal_0_5_rows": 58575,
+    "sector_TSR_less_or_equal_0_5_rows": 59250,
+    "sector_SSR_less_or_equal_0_5_rows": 9528
+  },
+  "frozen_audit_hypothesis": "Test COMP_BOSS as candidate for paper C_eBOSS because its already observed <=0.5 aggregate equals Table 2 count. Compare sector_SSR and sector_TSR independently as candidate second-field C_z after the fixed first filter COMP_BOSS>0.5. This is a source-informed catalogue-consistency check not a production-code proof.",
+  "only_permitted_fields": [
+    "SECTOR",
+    "sector_TSR",
+    "sector_SSR",
+    "COMP_BOSS"
+  ],
+  "first_stage_field": "COMP_BOSS",
+  "second_stage_candidates": [
+    "sector_SSR",
+    "sector_TSR"
+  ],
+  "threshold": 0.5,
+  "strict_keep_expression": "> 0.5",
+  "fixed_comparison_output": [
+    "first rejected count using COMP_BOSS<=0.5",
+    "first retained count COMP_BOSS>0.5",
+    "for each fixed second-field candidate, rejected count after first retained, final retained count",
+    "difference from paper 58575 first stage, 53 second stage, 253220 final; no sector IDs, locations or row selections output"
+  ],
+  "no_optimization_or_selection_changes": true,
+  "absolute_tolerance": "Thresholds use exact IEEE float comparison to literal 0.5; no floating tolerance or post-hoc boundary adjustment",
+  "stop_rule": "Any parent artifact/file SHA, permitted field schema, exact publication cohort counts, zero/finite constraints or row accounting mismatch -> incomplete stop. Disagreement in a fixed candidate is a logged result, not a reason to optimize a new threshold.",
+  "forbidden": [
+    "individual galaxy positions/redshifts/IDs or weights",
+    "random/mock galaxies",
+    "new mask application",
+    "data-dependent threshold or candidate additions",
+    "any observed odd-sector data or pair counts"
+  ],
+  "reported_fields_do_not_authenticate_historical_production_code": true,
+  "physical_LRG_mask_certified": false,
+  "LRG_ELG_pair_window_certified": false,
+  "observed_odd_data_vector_read": false,
+  "report_output": "eboss_workspace/official_mask_inventory/lrg_ross_table2_sector_count_replay.json"
+}
