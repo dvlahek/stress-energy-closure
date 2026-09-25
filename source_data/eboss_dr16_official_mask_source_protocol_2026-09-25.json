@@ -5,7 +5,8 @@
   "source_data_roots": {
     "nersc_mirror": "https://portal.nersc.gov/project/cosmo/data/sdss/dr17/eboss/lss/catalogs/DR16/",
     "sdss_release": "https://data.sdss.org/sas/dr17/eboss/lss/catalogs/DR16/",
-    "elg_mask_directory": "ELGmasks/"
+    "elg_mask_directory": "ELGmasks/",
+    "lrg_mask_directory": "LRGandQuasarmasks/"
   },
   "published_brickmask": {
     "repository": "cheng-zhao/brickmask",
@@ -53,5 +54,6 @@
   "observed_odd_data_vector_read": false,
   "exact_joint_mask_certified": false,
   "inference_protocol_frozen": false,
-  "stop_rule": "If an official URL, required extra polygon, chunk family or file fingerprint is missing/invalid, report incomplete. Do not infer masks from occupancy, repin for convenience, omit fixed chunks or open odd data."
+  "stop_rule": "If an official URL, required extra polygon, chunk family or file fingerprint is missing/invalid, report incomplete. Do not infer masks from occupancy, repin for convenience, omit fixed chunks or open odd data.",
+  "lrg_inventory_policy": "Enumerate exact published LRGandQuasarmasks/ filenames, localize survey geometry, completeness and veto products; directory entries and SHA fingerprints alone do not certify MANGLE exclusion semantics or joint pair selection."
 }
