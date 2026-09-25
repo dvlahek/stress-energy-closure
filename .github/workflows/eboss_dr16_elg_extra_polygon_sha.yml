@@ -41,6 +41,10 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: eboss-dr16-elg-three-extra-polygon-sha
-          path: eboss_workspace/official_mask_inventory/official_polygon_sha_manifest.json
+          path: |
+            eboss_workspace/official_mask_inventory/official_polygon_sha_manifest.json
+            eboss_workspace/official_mask_inventory/official_polygons/ELG_centerpost.ply
+            eboss_workspace/official_mask_inventory/official_polygons/ELG_TDSSFES_62arcsec.pix.snap.balk.ply
+            eboss_workspace/official_mask_inventory/official_polygons/ebosselg_badphot.26Aug2019.ply
           if-no-files-found: warn
           retention-days: 90
