@@ -1,0 +1,74 @@
+{
+  "study": "Blinded eBOSS DR16 LRG full-catalogue sector-metadata consistency audit",
+  "registered_on": "2026-09-25",
+  "stage": "Four-field sector-only catalogue audit; no new selection, veto union or pair estimators",
+  "frozen_before_sector_row_decoding": true,
+  "parent_lrg_header_protocol": "source_data/eboss_dr16_lrg_sector_header_protocol_2026-09-25.json",
+  "parent_lrg_full_bytes_protocol": "source_data/eboss_dr16_lrg_full_bytes_provenance_protocol_2026-09-25.json",
+  "parent_lrg_header_local_report": "eboss_workspace/official_mask_inventory/lrg_full_sector_header_only.json",
+  "parent_lrg_full_bytes_local_report": "eboss_workspace/official_mask_inventory/lrg_full_bytes_provenance.json",
+  "archived_byte_identical_report": "source_data/eboss_dr16_lrg_full_bytes_provenance_local_2026-09-25.json",
+  "parent_lrg_full_bytes_report_sha256": "a8d515ff27c9368f65f93ee1803ae30b94eca29d945820b91807d1063c7b1d0d",
+  "parent_lrg_full_bytes_report_git_blob_sha1": "b6bd5db807db2f9bae892d1eb0e5356ab35eec42",
+  "parent_lrg_header_report_sha256": "901c5486e817da57a162d9bec74171a0fbc09f4e0901d72b87d7f4495ff51308",
+  "official_source_url": "https://portal.nersc.gov/project/cosmo/data/sdss/dr17/eboss/lss/catalogs/DR16/eBOSS_LRG_full_ALLdata-vDR16.fits",
+  "local_source_file": "eboss_workspace/quarantine_official_lrg_sector/eBOSS_LRG_full_ALLdata-vDR16.fits",
+  "official_source_file_size_bytes": 196485120,
+  "first_seen_full_file_sha256_frozen_before_sector_rows": "39b831801adec04fe6dc5d6ab76a4b303aa58bfd303548cb7fddfae7d7f9331d",
+  "first_header_bytes": 20160,
+  "first_header_sha256": "a48b0d1055b5f7638dc77a86eb5ff5c861b629d19ff75cd8ae8122caa7e9014b",
+  "expected_bintable_rows": 311848,
+  "expected_bintable_row_bytes": 630,
+  "expected_bintable_columns": 72,
+  "only_permitted_observed_row_columns": {
+    "SECTOR": "J",
+    "sector_TSR": "D",
+    "sector_SSR": "D",
+    "COMP_BOSS": "D"
+  },
+  "forbidden_observed_columns": [
+    "RA",
+    "DEC",
+    "Z",
+    "WEIGHT_CP",
+    "any WEIGHT*",
+    "LRG_ID",
+    "TARGETID",
+    "any observed individual galaxy identifiers/positions/spectra"
+  ],
+  "permitted_aggregate_outputs": [
+    "total rows and distinct numeric sector-label count; do not output individual sector IDs",
+    "aggregate rows per sector minimum/median/maximum",
+    "aggregate per-column finite count, minimum, median, maximum, exact zero, above 1 and <=0.5 counts (no cuts)",
+    "aggregate per-sector nonconstant column counts under fixed absolute tolerance",
+    "aggregate equality and absolute-difference diagnostics for three explicitly fixed candidate formulae; no choosing one after inspecting data"
+  ],
+  "fixed_numeric_abs_tolerance": 1e-10,
+  "candidate_formula_diagnostics_NO_SEMANTIC_CONCLUSION": [
+    "COMP_BOSS - sector_TSR",
+    "COMP_BOSS - sector_TSR * sector_SSR",
+    "sector_TSR - sector_SSR"
+  ],
+  "per_sector_grouping": "Use exact published integer SECTOR label only. Print aggregate counts, never sector IDs or one row per sector.",
+  "failure_rules": [
+    "Prior byte-only local JSON SHA differs from uploaded frozen copy",
+    "Any official FITS full-file/header SHA, byte count, BINTABLE structure or named column FITS format differs",
+    "Any non-finite sector numeric column values; do not silently impute",
+    "Any unsupported FITS column format or computed row stride mismatch",
+    "Any attempted decoding of other observed FITS columns or odd statistics"
+  ],
+  "interpretation": "Check only structural constancy and candidate numeric relations on published full-catalogue rows. It is NOT an independent historical MANGLE pipeline validation, identification of C_eBOSS and C_z, authorized completeness cut or validation of published clustering random selection.",
+  "published_lrg_sector_thresholds_FROM_LITERATURE_NOT_APPLIED": {
+    "C_eBOSS": "> 0.5",
+    "C_z": "> 0.5"
+  },
+  "published_reference": "Ross et al., MNRAS 498 (2020) 2354, section 5.2 / veto table; Zhao et al., MNRAS 503 (2021) 1149, matched EZmock sector handling",
+  "observed_coordinates_or_redshifts_decoded": false,
+  "observed_galaxy_weight_columns_decoded": false,
+  "mock_or_random_data_rows_read": false,
+  "observed_odd_data_vector_read": false,
+  "new_selection_rule_applied": false,
+  "physical_lrg_mask_certified": false,
+  "physical_lrg_elg_pair_window_certified": false,
+  "report_output": "eboss_workspace/official_mask_inventory/lrg_full_sector_metadata_audit.json"
+}
