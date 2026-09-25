@@ -73,3 +73,39 @@ The networking-free synthetic self-test passed in
 The official root listing has **not** been retrieved by that CI test.
 No reference bitmap was authenticated, and no physical mask/odd-data gate
 was opened.
+
+## Next local gate: single ELG full-catalogue FITS header only
+
+The SHA-matched official release index lists the candidate
+`eBOSS_ELG_full_ALLdata-vDR16.fits`. Published SDSS DR16 documentation
+describes `full_ALLdata` as **post-mask** targets. The header may reveal
+`MSKBIT` or cross-reference columns, but it cannot establish the
+production bit-8 coordinate convention or recover excluded targets.
+
+The frozen protocol is
+`source_data/eboss_dr16_elg_full_header_only_protocol_2026-09-25.json`.
+Its runner
+`scripts/audit_eboss_dr16_elg_full_header_only.py`
+requires the prior local index report, verifies the pinned source URL,
+and requests **only exact 2880-byte HTTP 206 FITS header blocks** from
+the official NERSC mirror. It stops after the primary and first
+BINTABLE `END` cards, before the first data row. An HTTP 200
+full-body response, an unexpected redirect or a missing range header
+fails closed. No whole-file FITS SHA is claimed from header bytes.
+
+```bash
+cd ~/stress-energy-closure
+git pull --ff-only
+source .venv/bin/activate
+python -u scripts/audit_eboss_dr16_elg_full_header_only.py --self-test
+python -u scripts/audit_eboss_dr16_elg_full_header_only.py \
+  --index-report eboss_workspace/official_mask_inventory/bit8_reference_index.json \
+  --out eboss_workspace/official_mask_inventory/elg_full_header_only.json
+```
+
+The synthetic CI test checks that no header parser request crosses the
+start of the first data row. The real official header metadata remains
+to be checked locally. In every case the independent pre-veto
+production reference gate stays **unresolved** until an authenticated
+reference with discriminating positive and negative bit-8 locations
+is available. The observed eBOSS odd sector remains blinded.
