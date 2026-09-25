@@ -1,0 +1,74 @@
+{
+  "study": "Blinded diagnostic of published eBOSS ELG additional MANGLE polygons on SHA-verified clustering RANDOMS",
+  "registered_on": "2026-09-25",
+  "source_polygon_sha_manifest": "source_data/eboss_dr16_elg_three_extra_polygon_sha_2026-09-25.json",
+  "source_index_workflow_run": 36099075387,
+  "source_3_polygon_sha_workflow_run": 36100783598,
+  "mask_implementation": "Use pymangle.Mangle on three byte-verified official additional polygons; membership = polyid(ra,dec) != -1. Upstream eBOSS_ELG_extra.py bit assignments 9, 10, 11. No bit8, no brickmask images, no LRG mask and no veto cut applied in this diagnostic.",
+  "source_upstream_commit": "b9eb684a579b56ec3dbdb46549224be7e3fa2830",
+  "source_upstream_script_git_blob": "d66c5e6ed6a8260b5e8dcc840795485345392ced",
+  "caps": [
+    "NGC",
+    "SGC"
+  ],
+  "candidate_z_bins": [
+    [
+      0.6,
+      0.7
+    ],
+    [
+      0.7,
+      0.8
+    ],
+    [
+      0.8,
+      0.9
+    ],
+    [
+      0.9,
+      1
+    ]
+  ],
+  "chunks_by_cap": {
+    "NGC": [
+      "eboss23",
+      "eboss25"
+    ],
+    "SGC": [
+      "eboss21",
+      "eboss22"
+    ]
+  },
+  "sample_policy": "Within each cap and exact ELG chunk and each fixed broad candidate z-bin, take first 2500 indices after deterministic np.random.default_rng(seed).permutation(n_group), disjoint within catalogue by z/chunk. Fail if n_group<2500. Stable independent seed per catalogue kind, mock ID, cap, chunk and z-bin.",
+  "sample_per_stratum": 2500,
+  "seed_base": 91307,
+  "mock_ids": [
+    1,
+    125,
+    250,
+    375,
+    500,
+    625,
+    750,
+    875,
+    1000
+  ],
+  "weights": "WEIGHT_SYSTOT*WEIGHT_CP*WEIGHT_NOZ*WEIGHT_FKP; existing numerical-zero systematic gate; finite positive rows only.",
+  "metrics": [
+    "For every cap exact chunk z-bin, retained candidate row count and deterministic sampled row count",
+    "For all three named extra polygons, unweighted and weighted fraction of sampled published randoms inside each polygon",
+    "Union and per-polygon membership bitmask distribution, separately for observed and fixed mock randoms",
+    "Cross-check exact source polygon SHA256 and each input random FITS SHA256 against pinned evidence"
+  ],
+  "comparison": "Side-by-side observed vs fixed nine mock source membership only. Do not infer discrepancy is physical signal or infer an exact cut from sample proportions.",
+  "scope": "Presence of veto polygons in published clustering randoms is a diagnostic only until published random construction and boundary conventions independently validated; do not assume exact zero. A 2500-per-stratum sample is not full-catalogue mask certification.",
+  "observed_galaxy_positions_read": false,
+  "mock_galaxy_positions_read": false,
+  "observed_odd_data_vector_read": false,
+  "official_elg_bit8_checked": false,
+  "full_brickmask_checked": false,
+  "official_lrg_mask_checked": false,
+  "joint_pair_window_certified": false,
+  "physical_window_convolution_validated": false,
+  "inference_protocol_frozen": false
+}
