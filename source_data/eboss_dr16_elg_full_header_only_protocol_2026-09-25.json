@@ -1,0 +1,45 @@
+{
+  "study": "Blinded eBOSS DR16 ELG full_ALLdata FITS header-only candidate triage",
+  "registration_date": "2026-09-25",
+  "source_index_protocol": "source_data/eboss_dr16_elg_bit8_reference_discovery_protocol_2026-09-25.json",
+  "source_root": "https://portal.nersc.gov/project/cosmo/data/sdss/dr17/eboss/lss/catalogs/DR16/",
+  "source_file": "eBOSS_ELG_full_ALLdata-vDR16.fits",
+  "source_filename_confirmed_in_sha_pinned_index": true,
+  "published_catalogue_description": "SDSS DR16 LSS documentation: full_ALLdata contains targets remaining after masks are applied; not a pre-veto production reference",
+  "method": "HTTP 206 exact FITS 2880-byte Range requests for primary and first BINTABLE header only; stop at each END card, never request table-data offsets. Require zero-length primary HDU to reach next header without seeking through data. Record header and range SHA256 separately from complete file identity; no full file checksum claimed.",
+  "max_total_header_blocks": 90,
+  "max_requests": 90,
+  "expected_first_extension": "BINTABLE",
+  "must_include_columns": [
+    "RA",
+    "DEC"
+  ],
+  "report_columns_matching_any": [
+    "MSK",
+    "MASK",
+    "BIT",
+    "VETO",
+    "TARGET",
+    "BRICK",
+    "CHUNK",
+    "ID"
+  ],
+  "abort_on": [
+    "HTTP 200 or missing/malformed Content-Range for any block",
+    "redirect outside exact pinned official release root",
+    "non-ASCII/missing END FITS header",
+    "primary HDU data length nonzero",
+    "first extension not BINTABLE",
+    "more than 90 header blocks"
+  ],
+  "independent_production_reference_gate": "Header field presence alone cannot establish bit8 production mask. Require authenticated pre-veto bit-coded full output or production bitmap with SHA256 and positive/negative positions. Never infer pipeline convention from post-veto survivors.",
+  "observed_galaxy_positions_read": false,
+  "observed_galaxy_rows_read": false,
+  "mock_galaxy_rows_read": false,
+  "observed_random_positions_read": false,
+  "mock_random_positions_read": false,
+  "observed_odd_data_vector_read": false,
+  "official_bit8_applied": false,
+  "physical_mask_certified": false,
+  "inference_protocol_frozen": false
+}
