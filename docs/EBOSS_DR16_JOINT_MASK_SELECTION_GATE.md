@@ -104,3 +104,24 @@ normalizations cannot be replaced by one pooled n(z).
 This checklist does not assert that official mask files have been
 retrieved or that any final physical mask, weighted n(z), mock-galaxy
 covariance or observed galaxy odd statistic has been certified.
+
+## Additional ELG pixel-bit coordinate-contract check (open)
+
+The byte-identical published `scripts/eBOSS_ELG_extra.py` currently
+forms `theta = radians(90-dec)` and `phi = radians(360-ra)` and then
+calls `healpy.ang2pix(..., theta, phi, lonlat=True)` when constructing
+its extra bit `2**8`. The documented `healpy.ang2pix` convention is:
+`lonlat=True` requires longitude and latitude **in degrees**;
+`lonlat=False` takes colatitude and longitude **in radians**.
+Those two statements are not syntactically consistent as written.
+Therefore the extra pixel bit is intentionally **not applied** in
+the current source and polygon membership pilots. Preserve the
+upstream file byte-for-byte, but resolve and independently test the
+actual reference-mask pixel convention before implementing bit 8.
+Do not silently replace the published formula with an assumed fix;
+compare original versus alternative pixel indexing with official
+reference bitmaps or a verified output catalogue.
+
+Primary sources:
+- https://github.com/cheng-zhao/brickmask/blob/b9eb684a579b56ec3dbdb46549224be7e3fa2830/scripts/eBOSS_ELG_extra.py
+- https://healpy.readthedocs.io/en/stable/generated/healpy.pixelfunc.ang2pix.html
