@@ -256,3 +256,64 @@ content digest. Only then commit and run any further separate
 sector-only comparison. No new veto union, sky mask, catalogue cut,
 LRG×ELG random selection, or observed odd measurement was carried
 out in this metadata diagnostic.
+
+## Archived actual sector report and external published Table 2 cross-check
+
+The exact user-uploaded four-column JSON is now archived unchanged in
+`source_data/eboss_dr16_lrg_sector_metadata_audit_2026-09-25.json`,
+SHA256 `ead2ff920592af381bc65478a8393ed9c0238f0e150a343e50287168f8f0442c`,
+3,462 bytes, Git blob `792affb7e06008e432ddd1fdf288b17057e6754f`.
+The archive blob SHA agrees with that computed from the original
+uploaded bytes. Its manifest is
+`source_data/eboss_dr16_lrg_sector_metadata_uploaded_manifest_2026-09-25.json`.
+The report confirms that the official full-file SHA256 was reverified
+before the four sector-only FITS fields were decoded; no new selection
+and no observed odd vector.
+
+A **separately published reference** now provides a strong numerical
+cross-check that was not recognized in the first sector-audit summary:
+Ross et al. (2020), MNRAS 498, 2354, **Table 2**, report for the LRG
+sample exactly `311848` targets in the tiled footprint *after
+veto masks* and `58575` targets in sectors rejected by the first
+completeness criterion `C_eBOSS <= 0.5`. The uploaded official
+`full_ALLdata` report contains exactly `311848` rows, and exactly
+`58575` have `COMP_BOSS <= 0.5`. The published totals are an
+external benchmark, not estimated from our catalogue. This is
+target-count agreement for a fixed release and fixed numerical
+boundary; it materially supports interpreting `COMP_BOSS` as the
+first-stage LRG angular-completeness field. It does **not** independently
+authenticate the historical code that assigned the column.
+
+Crucially, the paper states that its *additional* `53` LRG targets
+with `C_z <= 0.5` are counted **after removing all targets with
+`C_eBOSS <= 0.5`**, leaving `253220` after both cuts:
+`311848 - 58575 - 53 = 253220`. Therefore the *unconditional*
+counts `sector_SSR <= 0.5: 9528` and
+`sector_TSR <= 0.5: 59250` in our first audit are **not**
+comparable directly with the published sequential count of `53`.
+No claim that either field represents `C_z` is presently justified.
+
+Ross et al. explicitly define the quantities in equations (10)–(11):
+`C_eBOSS=(N_z,eboss+N_cp+N_badclass+N_star+N_zfail)/
+(N_z,eboss+N_cp+N_badclass+N_star+N_zfail+N_missed)`,
+and
+`C_z=(N_z,eboss+N_badclass+N_star)/
+(N_z,eboss+N_cp+N_badclass+N_star+N_zfail)`.
+Paper: https://academic.oup.com/mnras/article/498/2/2354/5900562
+(section 5.4 and Table 2).
+
+A **post-aggregate, source-informed** comparison protocol was committed
+separately as
+`source_data/eboss_dr16_lrg_ross_table2_sector_replay_protocol_2026-09-25.json`.
+It fixes `COMP_BOSS > 0.5` as the candidate first-stage field based
+on the already seen aggregate and the earlier-published Table 2.
+It fixes both `sector_SSR` and `sector_TSR` as candidate second
+fields, each with the same paper threshold `>0.5`. Its target is
+only the aggregate conditional counts `53` and `253220`.
+Because the initial `COMP_BOSS` count was already seen, the
+follow-up must be described as **source-informed, not a wholly
+prospective blind validation**. The comparison runner has not yet
+been committed or executed; no conditional count is claimed.
+Even exact published counts cannot on their own authenticate
+official veto-polygon composition, continuous mask or LRG×ELG
+physical pair selection.
