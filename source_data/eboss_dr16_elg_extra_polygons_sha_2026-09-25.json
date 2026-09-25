@@ -1,0 +1,44 @@
+{
+  "snapshot_date": "2026-09-25",
+  "kind": "official_SDSS_DR16_eBOSS_ELG_three_extra_veto_polygon_SHA256_byte_inventory",
+  "source_workflow": "https://github.com/dvlahek/stress-energy-closure/actions/runs/36100783598",
+  "source_artifact": "https://github.com/dvlahek/stress-energy-closure/actions/runs/36100783598/artifacts/10849178578",
+  "source_code": "scripts/audit_eboss_dr16_official_polygon_sha.py",
+  "source_index_run": 36099075387,
+  "index_sha256": {
+    "dr16_root": "7e09e85c629b84de4879a99ca2db3f6cc84a317cde87d999a11dd8fead94dee7",
+    "lrg_directory": "cde2c9e0f9c3ccf2e05c4a3a118dae8624a77f437edfb3a3f25ca2454433070d",
+    "elg_directory": "0ebd4d2ad4b9b1849286961617ccf151ce7be7054242498c8d264914b677a8f8"
+  },
+  "status": "official_elg_extra_polygon_bytes_pinned_only",
+  "products": [
+    {
+      "filename": "ELG_TDSSFES_62arcsec.pix.snap.balk.ply",
+      "sha256": "ad1e4c135c351008eec316d8ff7e95f749ffd1b1b207fdcbd5ebae2181bcee0c",
+      "bytes": 244078
+    },
+    {
+      "filename": "ELG_centerpost.ply",
+      "sha256": "2a9494725c9265894b9b463d6ccc8616d4979ed2c7bbc213764bf81b94e0b4c9",
+      "bytes": 48471
+    },
+    {
+      "filename": "ebosselg_badphot.26Aug2019.ply",
+      "sha256": "80aacd51459be796ccc493bad0450c9f8c26b0de7005dd2e3e5bfaadd0095a8d",
+      "bytes": 7762844
+    }
+  ],
+  "published_extra_source": {
+    "repository": "cheng-zhao/brickmask",
+    "commit": "b9eb684a579b56ec3dbdb46549224be7e3fa2830",
+    "file": "scripts/eBOSS_ELG_extra.py",
+    "git_blob_sha": "d66c5e6ed6a8260b5e8dcc840795485345392ced"
+  },
+  "observed_galaxy_data_read": false,
+  "observed_odd_data_vector_read": false,
+  "actual_elg_brickmask_pixel_membership_computed": false,
+  "lrg_polygon_sha_inventory_complete": false,
+  "mask_veto_semantics_certified": false,
+  "tracer_pair_window_certified": false,
+  "note": "Exactly three additional ELG polygon source bytes pinned; upstream code includes additional pixel mask bit and needs separate physical application. This is not exact ELG angular selection or joint LRGxELG footprint."
+}
