@@ -113,13 +113,21 @@ def inspect_remote_headers(response, p):
         raise ValueError("Official Last-Modified differs from pinned header request")
 
 
+class DiscardSink:
+    """Consume bytes without retaining the 189-MB file in RAM."""
+
+    @staticmethod
+    def write(data):
+        return len(data)
+
+
 def hash_existing(path, p):
     with path.open("rb") as f:
         # verify size first to avoid reading an unexpectedly large local file
         if path.stat().st_size != p["expected_file_bytes"]:
             raise ValueError("Local file size differs from pinned exact official size")
         return digest_stream(
-            f, io.BytesIO(), expected_bytes=p["expected_file_bytes"],
+            f, DiscardSink(), expected_bytes=p["expected_file_bytes"],
             header_bytes=p["expected_header_bytes"],
             header_sha=p["expected_header_sha256"],
         )
@@ -201,11 +209,11 @@ def main():
             raise ValueError("timeout must be positive")
         require_frozen_prior(p)
         path = args.existing_file or (ROOT / p["local_output"])
-        digest, nbytes, mode = (
-            (lambda d, n: (d, n, "verified_existing_local_bytes"))(
-                *hash_existing(path, p)
-            ) if args.existing_file else acquire(p, path, args.timeout)
-        )
+        if args.existing_file:
+            digest, nbytes = hash_existing(path, p)
+            mode = "verified_existing_local_bytes"
+        else:
+            digest, nbytes, mode = acquire(p, path, args.timeout)
         if out.is_file():
             earlier = load_json(out)
             if (earlier.get("status") != "OFFICIAL_ELG_FULL_BYTES_SHA_PINNED_ONLY"
