@@ -1,0 +1,33 @@
+{
+  "study": "Official eBOSS DR16 three ELG extra-veto polygon byte provenance",
+  "workflow_run": 36100783598,
+  "workflow_artifact_name": "eboss-dr16-elg-three-extra-polygon-sha",
+  "upstream_script_commit": "b9eb684a579b56ec3dbdb46549224be7e3fa2830",
+  "status": "official_elg_extra_polygon_bytes_pinned_only",
+  "source_root": "https://portal.nersc.gov/project/cosmo/data/sdss/dr17/eboss/lss/catalogs/DR16/ELGmasks/",
+  "products": [
+    {
+      "filename": "ELG_centerpost.ply",
+      "bit": 9,
+      "bytes": 48471,
+      "sha256": "2a9494725c9265894b9b463d6ccc8616d4979ed2c7bbc213764bf81b94e0b4c9"
+    },
+    {
+      "filename": "ELG_TDSSFES_62arcsec.pix.snap.balk.ply",
+      "bit": 10,
+      "bytes": 244078,
+      "sha256": "ad1e4c135c351008eec316d8ff7e95f749ffd1b1b207fdcbd5ebae2181bcee0c"
+    },
+    {
+      "filename": "ebosselg_badphot.26Aug2019.ply",
+      "bit": 11,
+      "bytes": 7762844,
+      "sha256": "80aacd51459be796ccc493bad0450c9f8c26b0de7005dd2e3e5bfaadd0095a8d"
+    }
+  ],
+  "scope": "Official polygon file bytes and upstream polygon bit code IDs only; bit8 HEALPix discrepancy rule, brickmask FITS images, LRG veto selection and joint physical window remain uncertified.",
+  "observed_galaxy_data_read": false,
+  "observed_odd_data_vector_read": false,
+  "mask_membership_computed": false,
+  "physical_joint_mask_certified": false
+}
