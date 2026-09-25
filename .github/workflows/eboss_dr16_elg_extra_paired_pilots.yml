@@ -1,0 +1,106 @@
+name: eBOSS DR16 ELG extra-polygons observed NGC and mock0001 SGC
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/eboss_dr16_elg_extra_paired_pilots.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  observed-ngc:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install offline polygon and FITS dependencies
+        run: python -m pip install 'numpy>=1.24' 'astropy>=5.3' 'scipy>=1.10' pymangle
+      - name: Revalidate fixed-source and stratified membership algebra
+        run: python scripts/audit_eboss_dr16_elg_extra_random_membership.py --self-test
+      - name: Reuse byte-verified official ELG extra polygons and nine-mock SHA cohort
+        run: |
+          gh run download 36105662089 --repo "$GITHUB_REPOSITORY" \
+            --name eboss-dr16-elg-three-extra-polygon-sha --dir mask-source
+          gh run download 36017670812 --repo "$GITHUB_REPOSITORY" \
+            --name eboss-dr16-nine-mock-window-ensemble --dir source
+          test -s mask-source/official_polygon_sha_manifest.json
+          test -s mask-source/official_polygons/ELG_centerpost.ply
+          test -s mask-source/official_polygons/ELG_TDSSFES_62arcsec.pix.snap.balk.ply
+          test -s mask-source/official_polygons/ebosselg_badphot.26Aug2019.ply
+          test -s source/ninemock_window_ensemble.json
+      - name: Audit published NGC ELG clustering RANDOMS without veto reapplication
+        run: |
+          python scripts/audit_eboss_dr16_elg_extra_random_membership.py \
+            --ensemble-json source/ninemock_window_ensemble.json \
+            --polygon-manifest mask-source/official_polygon_sha_manifest.json \
+            --polygon-dir mask-source/official_polygons \
+            --observed-cache-dir eboss_workspace/local_rr/fits \
+            --mock-ids none --caps NGC \
+            --out-dir eboss_workspace/official_mask_inventory/membership \
+            --timeout 125
+      - name: Preserve NGC fixed-stratum random-only audit
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: eboss-dr16-elg-extra-polygon-observed-ngc-pilot
+          path: eboss_workspace/official_mask_inventory/membership/*.json
+          if-no-files-found: warn
+          retention-days: 90
+
+  mock0001-sgc:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install offline polygon and FITS dependencies
+        run: python -m pip install 'numpy>=1.24' 'astropy>=5.3' 'scipy>=1.10' pymangle
+      - name: Revalidate fixed-source and stratified membership algebra
+        run: python scripts/audit_eboss_dr16_elg_extra_random_membership.py --self-test
+      - name: Reuse byte-verified polygons, pinned mock source and observed SGC checkpoint
+        run: |
+          gh run download 36105662089 --repo "$GITHUB_REPOSITORY" \
+            --name eboss-dr16-elg-three-extra-polygon-sha --dir mask-source
+          gh run download 36017670812 --repo "$GITHUB_REPOSITORY" \
+            --name eboss-dr16-nine-mock-window-ensemble --dir source
+          mkdir -p eboss_workspace/official_mask_inventory/membership
+          gh run download 36105838116 --repo "$GITHUB_REPOSITORY" \
+            --name eboss-dr16-elg-extra-polygon-observed-sgc-pilot \
+            --dir eboss_workspace/official_mask_inventory/membership
+          test -s mask-source/official_polygon_sha_manifest.json
+          test -s mask-source/official_polygons/ELG_centerpost.ply
+          test -s mask-source/official_polygons/ELG_TDSSFES_62arcsec.pix.snap.balk.ply
+          test -s mask-source/official_polygons/ebosselg_badphot.26Aug2019.ply
+          test -s eboss_workspace/official_mask_inventory/membership/observed_0000_SGC_elg_extra_membership.json
+      - name: Audit exactly mock 0001 SGC extra-polygon membership, no galaxies
+        run: |
+          python scripts/audit_eboss_dr16_elg_extra_random_membership.py \
+            --ensemble-json source/ninemock_window_ensemble.json \
+            --polygon-manifest mask-source/official_polygon_sha_manifest.json \
+            --polygon-dir mask-source/official_polygons \
+            --mock-cache-dir eboss_workspace/local_nz/mock_fits \
+            --mock-ids 1 --caps SGC \
+            --purge-new-mock-fits \
+            --out-dir eboss_workspace/official_mask_inventory/membership \
+            --timeout 125
+      - name: Preserve mock 0001 fixed-stratum random-only audit
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: eboss-dr16-elg-extra-polygon-mock0001-sgc-pilot
+          path: eboss_workspace/official_mask_inventory/membership/*.json
+          if-no-files-found: warn
+          retention-days: 90
