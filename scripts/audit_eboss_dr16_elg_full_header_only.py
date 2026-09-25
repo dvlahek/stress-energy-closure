@@ -194,9 +194,9 @@ def inspect(url, protocol, timeout, block_reader=None):
         "mock_random_positions_read": False,
         "observed_odd_data_vector_read": False,
         "note": (
-            "Official released full_ALLdata catalogue is post-veto; header names "
-            "alone and any surviving MSKBIT values cannot establish how the "
-            "official bit-8 selection was generated. No data-row byte was requested."
+            "The release header contains MSKBIT, but no table rows were read. "
+            "Bit8-positive-row retention and the official production mapping "
+            "are not inferable from header fields alone. No data-row byte was requested."
         ),
     }
 
