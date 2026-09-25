@@ -159,3 +159,41 @@ byte counts, rejects previously pinned byte changes, and records
 any continuous angular mask, ELG brickmask FITS selection, exact
 LRG×ELG pair footprint or odd statistic. The four ELG brickmask
 image families must still be processed separately.
+
+## Resumable scientific provenance when the official LRG server times out
+
+The original eleven-file GitHub job did **not** pass: the official
+host timed out before completion. Do not claim SHA certification for
+any LRG file whose JSON manifest was not written. The separate
+official three-ELG-polygon job passed with pinned SHA256 records.
+
+To isolate large LRG transfers, each of the eight exact published
+LRG/QSO polygon files now has an independent GitHub job in
+`eboss_dr16_lrg_polygon_shards.yml`, run `36102933048`. Failure of a
+large file does not invalidate independently completed SHA manifest
+artifacts for other filenames. Two transfers run concurrently to
+limit source load. This is source-byte provenance only and not mask
+application.
+
+To reproduce a single file locally using the already downloaded
+index, choose its exact published basename, for example:
+
+```bash
+cd ~/stress-energy-closure
+git pull --ff-only origin main
+source .venv/bin/activate
+
+python scripts/audit_eboss_dr16_official_polygon_sha.py \
+  --inventory-json eboss_workspace/official_mask_inventory/official_mask_index.json \
+  --only-filename collision_priority_mask_lrg_eboss_DR16_new.ply \
+  --out-dir eboss_workspace/official_mask_lrg/collision_priority_mask_lrg_eboss_DR16_new.ply \
+  --timeout 125
+```
+
+Successful per-file status is
+`official_single_polygon_sha_pinned_only`. Every downloaded polygon
+must agree with the same pinned official source-directory indexes.
+Transfer bytes are SHA256-hashed and checked against their advertised
+HTTP Content-Length when available. An incomplete file is never
+accepted as a certified mask input. Exact mask veto composition is a
+separate scientific gate.
