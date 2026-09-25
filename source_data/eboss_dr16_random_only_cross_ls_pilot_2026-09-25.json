@@ -1,0 +1,68 @@
+{
+  "snapshot_date": "2026-09-25",
+  "kind": "curated_compact_blinded_random_only_LRGxELG_cross_LS_algebra_pilot",
+  "source_workflow": "https://github.com/dvlahek/stress-energy-closure/actions/runs/36103429861",
+  "source_artifact": "https://github.com/dvlahek/stress-energy-closure/actions/runs/36103429861/artifacts/10850216426",
+  "source_commit": "0ceab707369f5eefcffc6b25a7917cbaf47342b2",
+  "source_code": "scripts/audit_eboss_dr16_random_only_cross_ls_pilot.py",
+  "predeclared_protocol": "source_data/eboss_dr16_random_only_cross_ls_protocol_2026-09-25.json",
+  "status": "split_random_cross_ls_random_only_pilot_complete",
+  "mock_id": 1,
+  "cap": "SGC",
+  "z_interval": [
+    0.9,
+    1
+  ],
+  "split_sample_rows_each_per_tracer": 600,
+  "pair_terms": [
+    "D1D2",
+    "D1R2",
+    "R1D2",
+    "R1R2"
+  ],
+  "line_of_sight": "midpoint",
+  "input_random_sha256": {
+    "observed_LRG": "4aabcaa99cc2855d38eddd5fac903d3281e9436e5ba5b8c230050db3da92d230",
+    "observed_ELG": "f3097c653c54b3b0e2033a0d586c77f9a8975aeb3397c441f92703797e7db9a1",
+    "mock0001_LRG": "94c8940734f3c647a2b883124392cd39855034a212ce9c6a05a6bd052bba8efe",
+    "mock0001_ELG": "1af8f7f95f6d477049c80302300e97ed2c0aa7f584a0595d61f78dea80057e38"
+  },
+  "independent_scalar_synthetic_closure_passed": true,
+  "cases": {
+    "observed_randoms": {
+      "supported_s_mu_cells": 144,
+      "full_s_mu_cells": 144,
+      "reverse_cross_LS_max_absolute_residual": 1.1657341758564144e-15,
+      "raw_rr_p1_reverse_sum_abs": 2.7755575615628914e-17,
+      "raw_rr_p3_reverse_sum_abs": 1.3877787807814457e-17,
+      "worst_pair_mirror_l1": 8.790215406127272e-17
+    },
+    "mock0001_randoms": {
+      "supported_s_mu_cells": 144,
+      "full_s_mu_cells": 144,
+      "reverse_cross_LS_max_absolute_residual": 1.7763568394002505e-15,
+      "raw_rr_p1_reverse_sum_abs": 3.469446951953614e-18,
+      "raw_rr_p3_reverse_sum_abs": 1.702197410802242e-17,
+      "worst_pair_mirror_l1": 8.012594869221626e-17
+    }
+  },
+  "checks": {
+    "all_raw_random_files_SHA_verified": true,
+    "all_four_normalized_pair_terms_formed": true,
+    "tracer_swap_pair_mirror_passed": true,
+    "tracer_swap_cross_LS_field_passed": true,
+    "raw_rr_odd_moments_reverse_sign_passed": true,
+    "observed_galaxy_data_read": false,
+    "mock_galaxy_data_read": false,
+    "observed_odd_data_vector_read": false
+  },
+  "limits": {
+    "pseudo_D_and_R_from_same_parent_randoms": true,
+    "random_only_not_mock_galaxy_estimator_closure": true,
+    "physical_joint_mask_certified": false,
+    "physical_window_convolution_validated": false,
+    "full_covariance_computed": false,
+    "inference_protocol_frozen": false,
+    "observational_significance_estimated": false
+  }
+}
