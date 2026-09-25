@@ -155,3 +155,51 @@ redshifts, galaxy weights or compute any odd/cross-correlation.
 Production bit 8 remains unresolved until positives, negatives and
 coordinate-contract tests agree. Main/PR retain the previous frozen
 selection and the observed odd vector stays unopened.
+
+## Independently frozen catalogue-byte SHA and isolated bit8 label audit
+
+The user's local byte-only run finished successfully on 2026-09-25:
+`188985600` official ELG full-catalogue bytes, whole-file SHA256
+`8806699e14422904ef91efb6f1632184171fb740c2e074456c0534b7d2dc28b3`,
+previously pinned first-header SHA256
+`138e9ef0ba23b0cc934c087e44564229822944579903223d41d3823cb737657f`.
+Its `OBSERVED_ODD_READ` status is `False`. This is a local byte
+fingerprint established **before** any FITS table column was decoded.
+The corresponding report remains in the user's local
+`eboss_workspace/official_mask_inventory/elg_full_bytes_provenance.json`.
+The byte-only runner has not inferred a catalogue label.
+
+Those values are now immutably specified for the next test in
+`source_data/eboss_dr16_elg_full_bit8_label_protocol_2026-09-25.json`.
+The test runner `scripts/audit_eboss_dr16_elg_full_bit8_labels.py`
+rechecks the entire local file's SHA256 and the exact prior header SHA
+*before reading any data row*. It decodes exactly three memory-mapped,
+FITS big-endian, strided observed columns: `RA`, `DEC`, `mskbit`.
+No other table field is decoded. The 37 upstream pixels, their script
+Git blob and the four source-only candidate mappings are verified against
+the earlier frozen protocol. Output comprises only aggregate labelled
+bit8-positive count and fixed all-row TP/FP/FN/TN counts for the four
+predeclared coordinate interpretations.
+
+```bash
+cd ~/stress-energy-closure
+git pull --ff-only
+source .venv/bin/activate
+python -u scripts/audit_eboss_dr16_elg_full_bit8_labels.py --self-test
+python -u scripts/audit_eboss_dr16_elg_full_bit8_labels.py
+```
+
+The synthetic three-column, byte-stride and source-geometry
+[CI test passed](https://github.com/dvlahek/stress-energy-closure/actions/runs/36159868366).
+The full observed catalogue label audit has **not** run in CI; it is
+for the user's existing WSL checkout and exact quarantined official
+file. The full catalogue might have zero or a different number of
+bit8-positive rows; do **not** assume the paper's 15 removed targets
+are present. That reported number is only a published comparison.
+
+Even exact per-row correspondence is limited to bit8 labels on the
+sampled released catalogue. It does not independently authenticate
+which production executable generated the labels, certify masks
+between observed positions, provide an ELG×LRG pair window, or authorize
+the odd-sector analysis. No alternative mask is applied; the PR
+remains draft and `main` unchanged.
