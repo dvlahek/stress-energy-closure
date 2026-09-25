@@ -1,0 +1,27 @@
+name: eBOSS DR16 random-only cross-LS algebra synthetic gate
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/audit_eboss_dr16_random_only_cross_ls_pilot.py"
+      - "source_data/eboss_dr16_random_only_cross_ls_protocol_2026-09-25.json"
+      - ".github/workflows/eboss_dr16_random_only_cross_ls_test.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  synthetic-cross-ls:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install synthetic pair-estimator dependencies
+        run: python -m pip install 'numpy>=1.24' 'scipy>=1.10' 'astropy>=5.3'
+      - name: Independent scalar-vs-vectorized four-term pair algebra and random-only gate
+        run: python scripts/audit_eboss_dr16_random_only_cross_ls_pilot.py --self-test
