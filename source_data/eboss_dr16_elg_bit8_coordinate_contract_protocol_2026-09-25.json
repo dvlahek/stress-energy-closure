@@ -1,0 +1,35 @@
+{
+  "study": "Blinded eBOSS DR16 published ELG extra HEALPix bit-8 coordinate contract diagnostic",
+  "registration_date": "2026-09-25",
+  "source_repo": "cheng-zhao/brickmask",
+  "source_commit": "b9eb684a579b56ec3dbdb46549224be7e3fa2830",
+  "source_file": "scripts/eBOSS_ELG_extra.py",
+  "source_git_blob_sha": "d66c5e6ed6a8260b5e8dcc840795485345392ced",
+  "documentation": "https://healpy.readthedocs.io/en/stable/generated/healpy.pixelfunc.ang2pix.html",
+  "nside": 1024,
+  "ordering": "RING",
+  "pixel_list": "Extract complete literal mask_pixel assignment from byte-identical upstream source with Python AST; no hand-selected pixel subset",
+  "deterministic_probe": "For every source mask pixel, use hp.pix2ang(1024,ipix,nest=False,lonlat=False) to generate theta_rad,phi_rad at its centre, then map to RA=(360-degrees(phi_rad))%360, DEC=90-degrees(theta_rad). No observed or mock galaxy/random catalogue coordinates enter.",
+  "candidate_conventions": {
+    "upstream_as_written": "hp.ang2pix(1024,radians(90-DEC),radians(360-RA),nest=False,lonlat=True)",
+    "radian_colatitude_longitude": "hp.ang2pix(1024,radians(90-DEC),radians(360-RA),nest=False,lonlat=False)",
+    "equivalent_degree_longitude_latitude": "hp.ang2pix(1024,(360-RA)%360,DEC,nest=False,lonlat=True)"
+  },
+  "fixed_diagnostics": [
+    "Complete source mask-pixel count and SHA256 of the ordered integer array",
+    "Number of source-mask pixel centres whose reconstructed pixel matches each convention",
+    "How often upstream-as-written and radian-correct calls disagree at those centres",
+    "Exact equality of radian and equivalent degree HEALPix conventions at all fixed centres",
+    "At most first ten source-ordered differing examples with RA,DEC and returned pixels"
+  ],
+  "gate": "Radian and equivalent-degree implementations must agree with source pixel IDs on all source-pixel centres. If upstream-as-written differs from those implementations, record the inconsistency. Source-pixel roundtrip is a mathematical consistency test, NOT a verified official pixel mask or scientific selection.",
+  "no_silent_fix": "Do not apply any candidate bit-8 selection to observed or mock galaxies, randoms or analysis window. Resolving which coordinate convention was used to generate official bitmaps/reference output is a separate source-based step.",
+  "observed_galaxy_positions_read": false,
+  "mock_galaxy_positions_read": false,
+  "observed_random_positions_read": false,
+  "mock_random_positions_read": false,
+  "observed_odd_data_vector_read": false,
+  "official_bit8_applied": false,
+  "physical_mask_certified": false,
+  "inference_protocol_frozen": false
+}
