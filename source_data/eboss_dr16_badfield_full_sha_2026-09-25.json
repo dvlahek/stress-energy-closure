@@ -1,0 +1,21 @@
+{
+  "snapshot_date": "2026-09-25",
+  "kind": "official_DR16_LRG_badfield_polygon_full_file_SHA256_from_validated_HTTP_Range_transfer",
+  "source_workflow": "https://github.com/dvlahek/stress-energy-closure/actions/runs/36104423777",
+  "source_artifact": "https://github.com/dvlahek/stress-energy-closure/actions/runs/36104423777/artifacts/10850861171",
+  "source_code": "scripts/download_eboss_dr16_badfield_ranged.py",
+  "source_probe_workflow": "https://github.com/dvlahek/stress-energy-closure/actions/runs/36104184666",
+  "status": "official_badfield_polygon_SHA256_pinned",
+  "source_url": "https://portal.nersc.gov/project/cosmo/data/sdss/dr17/eboss/lss/catalogs/DR16/LRGandQuasarmasks/badfield_mask_unphot_seeing_extinction_pixs8_dr12.ply",
+  "filename": "badfield_mask_unphot_seeing_extinction_pixs8_dr12.ply",
+  "sha256": "b3b3f675a06d79552e37b5b085d64a5e25d23204a78e850d06f939de91943641",
+  "bytes": 473778577,
+  "prefix_sha256": "f298653193538baa204c5f532384c419a408983b469d072be5874e876342a1c4",
+  "range_chunk_bytes": 4194304,
+  "verified_HTTP_206_Content_Range": true,
+  "observed_galaxy_data_read": false,
+  "observed_odd_data_vector_read": false,
+  "actual_LRG_veto_mask_certified": false,
+  "exact_cross_pair_window_validated": false,
+  "note": "The complete official published polygon byte identity is pinned after bounded HTTP 206 transfer. This does not establish which published veto masks apply to the released LRG clustering randoms, any ELG bitmask selection, a common-footprint cut, or the final LRG×ELG pair window."
+}
