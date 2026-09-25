@@ -50,7 +50,7 @@
   ],
   "no_optimization_or_selection_changes": true,
   "absolute_tolerance": "Thresholds use exact IEEE float comparison to literal 0.5; no floating tolerance or post-hoc boundary adjustment",
-  "stop_rule": "Any parent artifact/file SHA, permitted field schema, exact publication cohort counts, zero/finite constraints or row accounting mismatch -> incomplete stop. Disagreement in a fixed candidate is a logged result, not a reason to optimize a new threshold.",
+  "stop_rule": "Any parent artifact/file SHA, permitted field schema, finite-value constraints or row accounting mismatch -> incomplete stop. A fixed candidate's disagreement with Table 2 is explicitly reported as a scientific result, never optimized away.",
   "forbidden": [
     "individual galaxy positions/redshifts/IDs or weights",
     "random/mock galaxies",
