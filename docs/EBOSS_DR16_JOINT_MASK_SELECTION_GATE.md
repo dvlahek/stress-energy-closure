@@ -37,9 +37,11 @@ difference between the input masks: LRG/QSO vetoes are MANGLE polygons
 (applied with MAKE_SURVEY/MPLY_TRIM), but ELG vetoes are associated with
 DECaLS brick pixels and applied with BRICKMASK. The released BRICKMASK
 documentation also identifies extra eBOSS ELG mask operations beyond its
-main maskbits assignment. The actual LRG×ELG common footprint must
-combine the two *published* selection rules, including their vetoes,
-rather than intersecting two thresholded random maps.
+main maskbits assignment. The LRG×ELG *pair selection* is the product
+of the two tracer-specific selection functions, sampled by the
+published cross-random pair counts R_L R_E. Replacing it with a single
+coarse thresholded joint sky map or automatically applying a new
+intersection cut is not equivalent.
 
 References:
 - Zhao et al., MNRAS 503 (2021) 1149, DR16 matched multi-tracer EZmocks:
@@ -66,12 +68,31 @@ multinomial replicates of each pixel map provide a finite-input
 resampling reference. These are correlated through the same parent
 catalogue and must not be interpreted as independent mocks.
 
-The existing mock random shard reports retain only four broad unweighted
-redshift-bin counts for each tracer/cap. Thus the new radial check can
-compare coarse normalized redshift fractions but cannot yet certify
-weighted sub-bin n(z). The ELG radial random assignment is dependent
-on imaging depth in the DR16 LSS prescription. NGC/SGC and ELG chunk
-normalizations cannot be replaced by one pooled n(z).
+The preregistered local fine weighted n(z) audit has now completed all
+36 comparisons for nine fixed realistic mocks, both caps and both
+tracers on forty 0.01-wide z bins on [0.6,1.0). Exact shared ELG
+chunk labels were audited separately. This closes the fixed fine
+random n(z) *input check*, not the physical pair-window validation.
+The ELG radial random assignment depends on imaging depth in the
+DR16 LSS prescription. NGC/SGC and ELG chunk normalizations cannot
+be replaced by one pooled n(z).
+
+The three SHA-pinned published ELG extra MANGLE polygons have also been
+evaluated on prospectively stratified samples of the released ELG
+clustering RANDOMS. For observed NGC and SGC and mock 0001 NGC and
+SGC, each case has eight exact chunk-by-z strata of 2500 random rows:
+0 of 80000 sampled random rows falls inside any of the three extra
+polygons. This does not prove the full catalogues contain no membership.
+The additional upstream HEALPix bit 8 and the complete BRICKMASK
+image files are separate open checks. Published clustering random
+catalogues must not be newly vetoed solely because this diagnostic
+was run.
+
+Full official byte provenance for the 473778577-byte LRG badfield polygon
+is now recorded under
+`source_data/eboss_dr16_badfield_full_sha_2026-09-25.json`.
+Two smaller official LRG polygons are separately SHA-pinned, but the
+full LRG source cohort and published veto semantics are still open.
 
 ## Required production checks before opening observed odd data
 
@@ -101,9 +122,10 @@ normalizations cannot be replaced by one pooled n(z).
 5. Only then freeze and commit the full prospective eBOSS analysis
    protocol and unblind the actual observed odd-sector vector.
 
-This checklist does not assert that official mask files have been
-retrieved or that any final physical mask, weighted n(z), mock-galaxy
-covariance or observed galaxy odd statistic has been certified.
+This checklist records completed fine weighted random n(z) and
+published-polygon input checks. It does **not** assert an exact
+physical angular mask, validated pair-level convolution,
+mock-galaxy covariance or any observed galaxy odd statistic.
 
 ## Additional ELG pixel-bit coordinate-contract check (open)
 
