@@ -1,0 +1,57 @@
+{
+  "study": "Blinded eBOSS DR16 official LRG/ELG mask-product inventory and immutable byte-provenance gate",
+  "registered_on": "2026-09-25",
+  "stage": "official mask source discovery only; physical common-footprint not certified",
+  "source_data_roots": {
+    "nersc_mirror": "https://portal.nersc.gov/project/cosmo/data/sdss/dr17/eboss/lss/catalogs/DR16/",
+    "sdss_release": "https://data.sdss.org/sas/dr17/eboss/lss/catalogs/DR16/",
+    "elg_mask_directory": "ELGmasks/"
+  },
+  "published_brickmask": {
+    "repository": "cheng-zhao/brickmask",
+    "upstream_commit": "b9eb684a579b56ec3dbdb46549224be7e3fa2830",
+    "extra_mask_source": "scripts/eBOSS_ELG_extra.py",
+    "source_blob_sha": "d66c5e6ed6a8260b5e8dcc840795485345392ced",
+    "program_compilation_flag": "-DEBOSS"
+  },
+  "elg_maskbits_by_exact_chunk": {
+    "eboss21": "mask-eboss21-*.fits.gz",
+    "eboss22": "mask-eboss22-*.fits.gz",
+    "eboss23": "mask-eboss23-*.fits.gz",
+    "eboss25": "mask-eboss25-*.fits.gz"
+  },
+  "elg_extra_polygons": [
+    "ELG_centerpost.ply",
+    "ELG_TDSSFES_62arcsec.pix.snap.balk.ply",
+    "ebosselg_badphot.26Aug2019.ply"
+  ],
+  "elg_extra_pixel_correction": "Additional bit 2**8 from upstream eBOSS_ELG_extra.py; reproduce directly from pinned upstream code, not from gridded random support.",
+  "lrg_geometry": "Must identify and pin exact DR16 LRG sector/completeness and all relevant MANGLE veto polygon files from official release before computing joint footprint; filename candidates are discovery output, not accepted selection rules.",
+  "selection_definition": "No mask truth table, bit rejection rule, sector completeness or pair-level common footprint is accepted until sourced to official release products and validated with a separately frozen test.",
+  "mock_ids": [
+    1,
+    125,
+    250,
+    375,
+    500,
+    625,
+    750,
+    875,
+    1000
+  ],
+  "caps": [
+    "NGC",
+    "SGC"
+  ],
+  "elg_chunks": [
+    "eboss21",
+    "eboss22",
+    "eboss23",
+    "eboss25"
+  ],
+  "observed_galaxy_data_read": false,
+  "observed_odd_data_vector_read": false,
+  "exact_joint_mask_certified": false,
+  "inference_protocol_frozen": false,
+  "stop_rule": "If an official URL, required extra polygon, chunk family or file fingerprint is missing/invalid, report incomplete. Do not infer masks from occupancy, repin for convenience, omit fixed chunks or open odd data."
+}
