@@ -203,3 +203,53 @@ which production executable generated the labels, certify masks
 between observed positions, provide an ELG×LRG pair window, or authorize
 the odd-sector analysis. No alternative mask is applied; the PR
 remains draft and `main` unchanged.
+
+## Actual local bit-8 label audit: 15/15 exact native-RA correspondence
+
+The user has now run the separately frozen three-field local audit against
+the SHA-pinned official eBOSS DR16 ELG full FITS file. The reported script
+status was `OFFICIAL_ELG_FULL_BIT8_LABELS_PRESENT_GEOMETRY_AUDITED_ONLY`,
+with 269,178 catalogue rows, **15 bit-8-positive labels**, and no
+observed odd data read. The exact local JSON-report SHA256 is **not yet
+supplied**, so this is explicitly a user-reported WSL stdout result,
+recorded in
+`source_data/eboss_dr16_elg_full_bit8_label_reported_outcome_2026-09-25.json`,
+not a separately authenticated uploaded JSON artifact.
+
+All confusion counts are ordered as TP/FP/FN/TN, defining positive as
+`mskbit & 256 != 0` and predicted positive as membership in the complete
+37-pixel pinned upstream HEALPix list:
+
+| Predeclared mapping | TP | FP | FN | TN | Predicted-positive |
+|---|---:|---:|---:|---:|---:|
+| Literal upstream | 0 | 0 | 15 | 269163 | 0 |
+| Units-only reflected RA | 0 | 5 | 15 | 269158 | 5 |
+| Native RA, radians | 15 | 0 | 0 | 269163 | 15 |
+| Native RA, degrees | 15 | 0 | 0 | 269163 | 15 |
+
+This resolves the previously source-only RA ambiguity **for labels at the
+269,178 positions in the published full catalogue**: the native-RA
+candidate exactly reproduces the released bit-8 labels, and the two
+reflected/literal candidates fail on all 15 positive labels. The 15
+positive labels also agree numerically with the paper's 15 removed-target
+aggregate; that numerical agreement is a secondary cross-check, not
+proof that all historical source cuts or release-production stages were
+reproduced. No candidate pixels were tuned to these data.
+
+We have **not** authenticated the historical executable or official
+production chain that generated those labels, established the
+continuous mask outside catalogue coordinates, implemented the full ELG
+brickmask/veto rule or LRG sector completeness, certified the
+LRG×ELG pair window, or read any eBOSS observed odd-sector vector.
+Do not replace the original source script with a silent 'fix' or
+reprocess/reselect published science catalogues based on this result.
+A separately documented native-RA implementation may be used only after
+the physical-mask selection and provenance gates are completed.
+
+The immediately pending provenance item is the SHA256 of the exact
+local JSON output
+`eboss_workspace/official_mask_inventory/elg_full_bit8_label_geometry_audit.json`.
+The original frozen protocol must not be edited in response to observed
+counts. Preserve the full report and source-file fingerprints; continue
+next with LRG MANGLE sector/veto semantics and the exact ELG maskbit
+families before physical-pair/window and mock-galaxy estimator closure.
