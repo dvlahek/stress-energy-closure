@@ -77,10 +77,15 @@ was opened.
 ## Next local gate: single ELG full-catalogue FITS header only
 
 The SHA-matched official release index lists the candidate
-`eBOSS_ELG_full_ALLdata-vDR16.fits`. Published SDSS DR16 documentation
-describes `full_ALLdata` as **post-mask** targets. The header may reveal
-`MSKBIT` or cross-reference columns, but it cannot establish the
-production bit-8 coordinate convention or recover excluded targets.
+`eBOSS_ELG_full_ALLdata-vDR16.fits`. An earlier interpretation labelled `full_ALLdata` as **post-mask** without
+verifying its actual row-level retention. That inference is withdrawn.
+Raichoor et al. (2021, MNRAS 500, 3254, Table 5) explicitly state that
+all angular veto masks except the two bad eboss22 plates are bit-coded
+in the catalogues' `mskbit` column. This does NOT establish that this
+particular `full_ALLdata` file retains bit-8-positive rows. Its header may
+reveal `MSKBIT` or cross-reference columns but cannot identify the
+production bit-8 convention until provenance and separately frozen
+mask-only row inspection are completed.
 
 The frozen protocol is
 `source_data/eboss_dr16_elg_full_header_only_protocol_2026-09-25.json`.
@@ -109,3 +114,44 @@ to be checked locally. In every case the independent pre-veto
 production reference gate stays **unresolved** until an authenticated
 reference with discriminating positive and negative bit-8 locations
 is available. The observed eBOSS odd sector remains blinded.
+
+## Actual WSL header result and next byte-provenance-only gate
+
+The user's local official HTML index matched the frozen root SHA and
+the official FITS header-only runner completed. Its report
+`eboss_workspace/official_mask_inventory/elg_full_header_only.json`
+records HTTP header metadata: 188,985,600 remote bytes, 20,160 requested
+header bytes, BINTABLE declaration of 269,178 rows, 702 bytes/row,
+85 columns and an `mskbit` column (FITS TFORM `I`). No table rows were
+read. The `mskbit` field makes the full catalogue a **candidate** for
+an independent production mask-reference check, not yet a verified
+pre-veto reference.
+
+Before looking at any row, use the separately frozen byte-only protocol
+`source_data/eboss_dr16_elg_full_bytes_provenance_protocol_2026-09-25.json`.
+The runner
+`scripts/audit_eboss_dr16_elg_full_bytes_provenance.py`
+accepts only the same exact official source, HTTP ETag, Last-Modified,
+file length and first-20,160-byte header SHA. It streams the raw file
+into a quarantined local folder, computes whole-file SHA256 and records
+that first-seen checksum. It does **not** interpret a FITS column or row.
+An already-downloaded local file can instead be verified with
+`--existing-file /absolute/path/to/file.fits`, without copying it.
+
+```bash
+cd ~/stress-energy-closure
+git pull --ff-only
+source .venv/bin/activate
+python -u scripts/audit_eboss_dr16_elg_full_bytes_provenance.py --self-test
+python -u scripts/audit_eboss_dr16_elg_full_bytes_provenance.py
+```
+
+The public source file is approximately 189 MB. Preserve the local
+provenance JSON with its whole-file SHA256. It is a hash observed and
+recorded **before** any row audit, not an independently published SDSS
+checksum. Freeze the hash in a separate follow-up protocol, then define
+a strict isolated audit of only `RA`, `DEC`, `mskbit`; do not read
+redshifts, galaxy weights or compute any odd/cross-correlation.
+Production bit 8 remains unresolved until positives, negatives and
+coordinate-contract tests agree. Main/PR retain the previous frozen
+selection and the observed odd vector stays unopened.
