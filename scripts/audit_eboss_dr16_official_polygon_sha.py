@@ -66,6 +66,11 @@ def stream_pinned(url, path, root, filename, timeout):
         with urlopen(req, timeout=timeout) as response, tmp.open("wb") as f:
             redirected = response.geturl()
             validate_url(redirected, root, filename)
+            declared_length = response.headers.get("Content-Length")
+            expected_bytes = int(declared_length) if declared_length is not None else None
+            if expected_bytes is not None and (
+                    expected_bytes < 16 or expected_bytes > LIMIT_PER_POLYGON):
+                raise ValueError("Unexpected official HTTP Content-Length")
             while True:
                 data = response.read(1024 * 1024)
                 if not data:
@@ -75,8 +80,10 @@ def stream_pinned(url, path, root, filename, timeout):
                     raise ValueError("Official polygon exceeds fixed safety bound")
                 h.update(data)
                 f.write(data)
-        if total < 16:
-            raise ValueError("Official polygon is missing or truncated")
+        if total < 16 or (
+                expected_bytes is not None and total != expected_bytes):
+            raise ValueError("Official polygon is missing, truncated or differs "
+                             "from HTTP Content-Length")
         tmp.replace(path)
         return h.hexdigest(), total
     finally:
@@ -144,8 +151,15 @@ def expected_products(protocol, inventory):
     return products
 
 
-def audit(protocol, inventory, out_dir, timeout, only_elg_extra=False):
+def audit(protocol, inventory, out_dir, timeout, only_elg_extra=False,
+          only_filename=None):
     products = expected_products(protocol, inventory)
+    if only_elg_extra and only_filename is not None:
+        raise ValueError("Choose exactly one source-subset mode")
+    if only_filename is not None:
+        products = [p for p in products if p["filename"] == only_filename]
+        if len(products) != 1:
+            raise ValueError("Requested filename not in immutable eleven-polygon cohort")
     if only_elg_extra:
         products = [p for p in products if p["role"] == "elg_extra_polygon"]
         if len(products) != 3:
@@ -200,12 +214,13 @@ def audit(protocol, inventory, out_dir, timeout, only_elg_extra=False):
             "source_url": item["source_url"], "sha256": sha, "bytes": size,
         })
         atomic_json(output, report)
-    expected = 3 if only_elg_extra else EXPECTED_COUNT
+    expected = 1 if only_filename else (3 if only_elg_extra else EXPECTED_COUNT)
     if len(report["products"]) != expected:
         raise ValueError("Published fixed polygon SHA inventory incomplete")
     report["status"] = (
-        "official_elg_extra_polygon_bytes_pinned_only"
-        if only_elg_extra else "official_lrg_elg_polygon_bytes_pinned_only"
+        "official_single_polygon_sha_pinned_only" if only_filename
+        else ("official_elg_extra_polygon_bytes_pinned_only"
+              if only_elg_extra else "official_lrg_elg_polygon_bytes_pinned_only")
     )
     report["note"] = (
         "Byte provenance only. Three extra ELG polygons are pinned in the "
@@ -255,6 +270,16 @@ def main():
     ap.add_argument("--self-test", action="store_true")
     ap.add_argument("--only-elg-extra", action="store_true",
                     help="Pin only the three small required ELG extra-veto polygons; never claim all eleven")
+    ap.add_argument("--only-filename", choices=[
+        "allsky_bright_star_mask_pix.ply",
+        "badfield_mask_unphot_seeing_extinction_pixs8_dr12.ply",
+        "bright_object_mask_rykoff_pix.ply",
+        "brightstarmask_tiling_final.ply",
+        "centerpost_mask_eboss_DR16_new.ply",
+        "collision_priority_mask_QSO_eboss_DR16_v9_singletiles.ply",
+        "collision_priority_mask_lrg_eboss_DR16_new.ply",
+        "eBOSS_QSOandLRG_fullfootprintgeometry_noveto.ply",
+    ], help="SHA-pin one exact preregistered LRG/QSO polygon in a separate shard")
     args = ap.parse_args()
     if args.self_test:
         self_test()
@@ -267,7 +292,8 @@ def main():
     protocol = json.loads(PROTOCOL.read_text(encoding="utf-8"))
     try:
         audit(protocol, inv, args.out_dir, args.timeout,
-              only_elg_extra=args.only_elg_extra)
+              only_elg_extra=args.only_elg_extra,
+              only_filename=args.only_filename)
     except Exception as exc:
         print("EBOSS_OFFICIAL_POLYGON_SHA_INVENTORY_FAILED", type(exc).__name__,
               str(exc), flush=True)
