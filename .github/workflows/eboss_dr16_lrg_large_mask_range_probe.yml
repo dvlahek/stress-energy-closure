@@ -1,0 +1,51 @@
+name: eBOSS DR16 LRG large mask bounded Range probe
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/eboss_dr16_lrg_large_mask_range_probe.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  bounded-range-probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    strategy:
+      fail-fast: false
+      matrix:
+        filename:
+          - allsky_bright_star_mask_pix.ply
+          - badfield_mask_unphot_seeing_extinction_pixs8_dr12.ply
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Bounded 64KiB parser synthetic regression
+        run: python scripts/probe_eboss_dr16_lrg_large_mask_range.py --self-test
+      - name: Download immutable official source listing
+        run: |
+          gh run download 36099075387 --repo "$GITHUB_REPOSITORY" \
+            --name eboss-dr16-official-mask-source-index --dir source
+      - name: Probe exact official file size without full polygon transfer
+        run: |
+          mkdir -p probes
+          python scripts/probe_eboss_dr16_lrg_large_mask_range.py \
+            --inventory-json source/official_mask_index.json \
+            --filename "${{ matrix.filename }}" \
+            --out "probes/${{ matrix.filename }}.json" --timeout 90
+      - name: Preserve the bounded HTTP report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: eboss-lrg-range-probe-${{ matrix.filename }}
+          path: probes/${{ matrix.filename }}.json
+          if-no-files-found: warn
+          retention-days: 90
