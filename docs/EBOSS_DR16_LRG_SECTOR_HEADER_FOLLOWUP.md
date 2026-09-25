@@ -135,3 +135,64 @@ apply all seven LRG/QSO veto names, insert new completeness cuts into
 published clustering catalogues, or infer a single joint LRG/ELG mask.
 The resulting science-pair window must remain the published
 tracer-specific LRG×ELG random-pair selection.
+
+## Completed LRG raw-byte SHA gate and separately frozen four-field audit
+
+The user's actual local LRG raw-byte-only runner completed successfully.
+The official `eBOSS_LRG_full_ALLdata-vDR16.fits` has
+196,485,120 bytes and the first-seen complete-file SHA256
+`39b831801adec04fe6dc5d6ab76a4b303aa58bfd303548cb7fddfae7d7f9331d`.
+The local JSON status is
+`OFFICIAL_LRG_FULL_BYTES_SHA_PINNED_ONLY`, with no FITS row or sector
+field parsed and `OBSERVED_ODD_READ=False`. The user's exact uploaded
+1,382-byte JSON was independently byte-hashed (SHA256
+`a8d515ff27c9368f65f93ee1803ae30b94eca29d945820b91807d1063c7b1d0d`)
+and archived unchanged as
+`source_data/eboss_dr16_lrg_full_bytes_provenance_local_2026-09-25.json`;
+its Git blob SHA1
+`b6bd5db807db2f9bae892d1eb0e5356ab35eec42` was verified.
+
+The full-file SHA and exact user-uploaded report bytes were registered
+**before any LRG table-row sector data were read** in the separate
+`source_data/eboss_dr16_lrg_sector_metadata_protocol_2026-09-25.json`.
+The next audit code,
+`scripts/audit_eboss_dr16_lrg_sector_metadata.py`, checks the entire
+local FITS file's SHA256 and exact first-header SHA256 BEFORE
+memory-mapping its data. It decodes ONLY `SECTOR` (FITS J),
+`sector_TSR`, `sector_SSR`, `COMP_BOSS` (all FITS D) with
+precise FITS strides. It does not decode galaxy RA/DEC, redshifts,
+individual IDs, WEIGHT columns, randoms, mocks, any pair count or odd
+statistic. It never prints individual sector labels or galaxy values.
+
+All output is aggregate: total rows, number of distinct integer sector
+labels, row-count distribution across sectors, per-column health and
+distribution, within-sector numerical constancy under predeclared
+absolute tolerance `1e-10`, and three FIXED candidate numerical
+relations `COMP_BOSS-sector_TSR`,
+`COMP_BOSS-sector_TSR*sector_SSR`, and
+`sector_TSR-sector_SSR`. These are mathematical diagnostics ONLY,
+not a data-driven choice of the published `C_eBOSS` or `C_z`
+definition. In particular, no sector is excluded on the basis of
+`0.5`, no MANGLE veto is newly applied, and no science-selection
+rule changes.
+
+The runner uses the same quarantined official LRG FITS downloaded in
+the previous step; **no repeat download**:
+
+```bash
+cd ~/stress-energy-closure
+git pull --ff-only
+source .venv/bin/activate
+python -u scripts/audit_eboss_dr16_lrg_sector_metadata.py --self-test
+python -u scripts/audit_eboss_dr16_lrg_sector_metadata.py
+```
+
+The synthetic CI is
+https://github.com/dvlahek/stress-energy-closure/actions/runs/36169472480.
+Passage of the local four-field audit will close an official catalogue
+sector-*metadata* consistency check, not the independent source
+interpretation of sector completeness or the historical production
+MANGLE polygon-composition contract. The released LRG/ELG
+tracer-specific random pair window, complete ELG brickmask and
+mock-galaxy estimator/covariance gates stay open. Observed eBOSS odd
+data remain unopened.
