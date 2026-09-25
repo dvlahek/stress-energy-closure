@@ -1,0 +1,44 @@
+name: eBOSS DR16 LRG badfield segmented official SHA transfer
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/eboss_dr16_badfield_ranged_sha.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  pin-badfield-ranged:
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Synthetic bounded HTTP 206 and SHA regression
+        run: python scripts/download_eboss_dr16_badfield_ranged.py --self-test
+      - name: Retrieve exact SHA-pinned official mask directory index
+        run: |
+          gh run download 36099075387 --repo "$GITHUB_REPOSITORY" \
+            --name eboss-dr16-official-mask-source-index --dir source
+          test -s source/official_mask_index.json
+      - name: Download published 473778577 bytes in individually validated 4MiB Range chunks
+        run: |
+          python scripts/download_eboss_dr16_badfield_ranged.py \
+            --inventory-json source/official_mask_index.json \
+            --out-dir eboss_workspace/large_lrg_badfield --timeout 110
+      - name: Preserve full SHA manifest if the source transfer completed
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: eboss-dr16-lrg-badfield-ranged-sha
+          path: eboss_workspace/large_lrg_badfield/official_badfield_ranged_sha_manifest.json
+          if-no-files-found: warn
+          retention-days: 90
