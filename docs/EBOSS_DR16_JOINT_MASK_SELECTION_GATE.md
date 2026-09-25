@@ -4,6 +4,24 @@ Status: **not yet certified for unblinding**. This is an input-only gate,
 separate from the completed random-only RR counting and nine-realization
 window pilot. Do not open observed LRG×ELG odd multipoles to decide cuts.
 
+## Two tracer-specific selections define the cross window
+
+The released DR16 *clustering* LRG and ELG random catalogues are
+tracer-specific and are already constructed to sample their respective
+survey selection functions. The Landy–Szalay cross estimator uses
+`D_L D_E - D_L R_E - R_L D_E + R_L R_E` with the corresponding
+independently normalized cross-pair counts; the expected pair window
+is sampled by the LRG×ELG `R_L R_E`. A forced identical angular mask
+is **not** a prerequisite for the cross estimator. It would be a
+new analysis cut requiring prior registration and consistent
+application to both tracer data and randoms.
+
+Official MANGLE/BRICKMASK products are independently checked as
+selection provenance, not automatically reapplied to already masked
+DR16 clustering samples. A literal geometrical intersection may be
+useful for a separate systematic-control test only if its precise
+definition, sample loss and estimator treatment are predeclared.
+
 ## Why the angular joint mask is not a Jaccard threshold
 
 The DR16 clustering randoms sample the tracer-specific selection functions
@@ -62,19 +80,23 @@ normalizations cannot be replaced by one pooled n(z).
    source path, release version, SHA256, veto flags and completeness
    semantics. Obtain these files from the official release; do not
    synthesize their geometry from coarse occupancy.
-2. Construct the common *tracer-pair* selection under the published
-   LRG and ELG angular rules, testing NGC and SGC separately, including
-   the ELG chunk definitions. Validate membership and weighted
-   accepted-random fractions against the already pinned DR16 catalogues
-   without changing a cut based on any odd measurement.
+2. Audit the two *tracer-specific* selection functions and their
+   pair-level cross window, testing NGC and SGC separately, including
+   exact ELG chunk definitions. Validate official mask membership
+   and weighted accepted-random fractions against the already pinned
+   released DR16 clustering randoms. Do not reapply a veto blindly:
+   first determine if the published clustering sample already
+   excludes that region. Any additional intersection cut must be
+   prospectively frozen and applied consistently to both tracers'
+   data and random catalogues, without using odd measurements.
 3. Independently compare **weighted**, finer n(z), including ELG depth
    or chunk-conditioned distributions, for each observed/matched-mock
    random catalogue and both caps. Declare the fine z-grid, weights,
    tolerances and treatment of near-zero weights *before* this test.
-4. Validate pair-level LS normalization, analytic even-to-odd leakage,
-   mock-galaxy estimator closure and joint 18D covariance under the
-   exact common footprint. Nine mock randoms are a window/selection
-   pilot only. The inferential mock membership, finite-mock likelihood
+4. Validate pair-level cross-LS normalization, analytic even-to-odd
+   leakage, mock-galaxy estimator closure and joint 18D covariance
+   under the two published tracer-specific masks and their cross
+   window. Nine mock randoms are a window/selection pilot only. The inferential mock membership, finite-mock likelihood
    and stopping rule must be separately preregistered.
 5. Only then freeze and commit the full prospective eBOSS analysis
    protocol and unblind the actual observed odd-sector vector.
