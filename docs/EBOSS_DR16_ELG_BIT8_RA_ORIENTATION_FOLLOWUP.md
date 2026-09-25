@@ -39,3 +39,37 @@ The independent reference gate requires an exact-version official production bit
 The LRG MANGLE veto/sector rules and four ELG brickmask FITS families can be audited in parallel with this reference search. The published LRG and ELG clustering randoms retain their own selection functions, and the cross-LS pair window remains the corresponding LRG×ELG `R_L R_E`; do not invent a shared mask from coarse random occupancy.
 
 The observed eBOSS odd vector remains unopened. Random-only LS closure, 11/11 polygon SHA provenance and the 36/36 fine weighted n(z) check are already complete and do not need repetition.
+
+## Next local WSL gate: official *reference filename* discovery only
+
+The separately frozen protocol is
+`source_data/eboss_dr16_elg_bit8_reference_discovery_protocol_2026-09-25.json`.
+The runner `scripts/audit_eboss_dr16_elg_bit8_reference_discovery.py` reads
+only the official **DR16 root HTML index** using a 16-MiB bound. It checks
+the previously recorded exact SHA256 of that index before accepting any
+filenames. It does not repeat any polygon downloads or FITS parsing.
+
+Run in the user's existing WSL checkout of this audit branch:
+
+```bash
+cd ~/stress-energy-closure
+git pull --ff-only
+source .venv/bin/activate
+python scripts/audit_eboss_dr16_elg_bit8_reference_discovery.py --self-test
+python scripts/audit_eboss_dr16_elg_bit8_reference_discovery.py \
+  --out eboss_workspace/official_mask_inventory/bit8_reference_index.json
+```
+
+A successful index match means **filenames only**, not that any independent
+bit-8 reference was found. A changed official HTML listing fails closed and
+must be reviewed separately; do not silently substitute its SHA. Inspect the
+reported candidates for a genuinely bit-coded *pre-veto* official production
+output. Post-veto `eBOSS_ELG_clustering_*` files and the ordinary SDSS
+`EBOSS_TARGET1` ELG selection flags cannot certify the published ELG
+BRICKMASK extra bit 8.
+
+The networking-free synthetic self-test passed in
+[workflow 36152677996](https://github.com/dvlahek/stress-energy-closure/actions/runs/36152677996).
+The official root listing has **not** been retrieved by that CI test.
+No reference bitmap was authenticated, and no physical mask/odd-data gate
+was opened.
