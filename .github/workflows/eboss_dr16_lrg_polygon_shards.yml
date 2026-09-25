@@ -1,0 +1,60 @@
+name: eBOSS DR16 LRG polygon provenance per file
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/audit_eboss_dr16_official_polygon_sha.py"
+      - ".github/workflows/eboss_dr16_lrg_polygon_shards.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  lrg-polygon-shard:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    strategy:
+      fail-fast: false
+      max-parallel: 2
+      matrix:
+        filename:
+          - allsky_bright_star_mask_pix.ply
+          - badfield_mask_unphot_seeing_extinction_pixs8_dr12.ply
+          - bright_object_mask_rykoff_pix.ply
+          - brightstarmask_tiling_final.ply
+          - centerpost_mask_eboss_DR16_new.ply
+          - collision_priority_mask_QSO_eboss_DR16_v9_singletiles.ply
+          - collision_priority_mask_lrg_eboss_DR16_new.ply
+          - eBOSS_QSOandLRG_fullfootprintgeometry_noveto.ply
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Synthetic source and SHA regression
+        run: python scripts/audit_eboss_dr16_official_polygon_sha.py --self-test
+      - name: Obtain SHA-pinned source index without galaxy data
+        run: |
+          gh run download 36099075387 --repo "$GITHUB_REPOSITORY" \
+            --name eboss-dr16-official-mask-source-index --dir input
+          test -s input/official_mask_index.json
+      - name: Pin exactly one LRG official polygon with bounded transfer
+        run: |
+          python scripts/audit_eboss_dr16_official_polygon_sha.py \
+            --inventory-json input/official_mask_index.json \
+            --only-filename "${{ matrix.filename }}" \
+            --out-dir "eboss_workspace/official_mask_lrg/${{ matrix.filename }}" \
+            --timeout 95
+      - name: Save per-source SHA manifest even on incomplete run
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: eboss-lrg-polygon-sha-${{ matrix.filename }}
+          path: eboss_workspace/official_mask_lrg/${{ matrix.filename }}/official_polygon_sha_manifest.json
+          if-no-files-found: warn
+          retention-days: 90
