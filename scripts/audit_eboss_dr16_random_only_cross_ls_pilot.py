@@ -211,12 +211,35 @@ def run(args):
             fine_path = checkpoint / (
                 f"observed_{args.cap}_{tracer}.json" if kind=="observed"
                 else f"mock_{args.mock_id:04d}_{args.cap}_{tracer}.json")
-            fine = json.loads(fine_path.read_text(encoding="utf-8"))
-            if (fine.get("source_sha256") != sha
-                    or fine.get("status") != "fine_weighted_random_catalogue_checked"
-                    or fine.get("observed_odd_data_vector_read") is not False):
-                raise ValueError("Input not backed by prior fine weighted n(z) SHA checkpoint")
-            expected_high = sum(fine["full"]["count_per_fine_bin"][30:])
+            if fine_path.is_file():
+                fine = json.loads(fine_path.read_text(encoding="utf-8"))
+                if (fine.get("source_sha256") != sha
+                        or fine.get("status") != "fine_weighted_random_catalogue_checked"
+                        or fine.get("observed_odd_data_vector_read") is not False):
+                    raise ValueError("Input not backed by prior fine weighted n(z) SHA checkpoint")
+                expected_high = sum(fine["full"]["count_per_fine_bin"][30:])
+                high_reference = str(fine_path)
+            elif args.use_committed_first_mock_counts and args.mock_id == 1:
+                if kind == "observed":
+                    reference = json.loads((ROOT / "source_data/eboss_dr16_full_observed_rr_2026-09-24.json").read_text())
+                    matches = [x for x in reference["input_random_redshift_counts"]
+                        if (x["cap"],x["tracer"],x["zlo"],x["zhi"])
+                        == (args.cap,tracer,0.9,1)]
+                    if len(matches) != 1:
+                        raise ValueError("Committed observed high-z count is ambiguous")
+                    expected_high = int(matches[0]["retained_rows"])
+                    high_reference = "source_data/eboss_dr16_full_observed_rr_2026-09-24.json"
+                else:
+                    reference = json.loads((ROOT / "source_data/eboss_dr16_mock_0001_fine_rr_2026-09-24.json").read_text())
+                    if (reference["status"] != "mock_0001_fine_rr_comparison_complete"
+                            or reference["mock_id"] != 1):
+                        raise ValueError("Committed mock 0001 reference is not certified")
+                    expected_high = int(reference["caps"][args.cap]["mock_randoms"][tracer])
+                    high_reference = "source_data/eboss_dr16_mock_0001_fine_rr_2026-09-24.json"
+            else:
+                raise FileNotFoundError(
+                    "Missing prior local fine n(z) JSON; committed-count alternative "
+                    "allowed only for source-pinned mock 0001")
             acquired = None
             try:
                 acquired,verified_sha,size = acquire(
@@ -233,7 +256,7 @@ def run(args):
                 inputs[tracer] = {
                     **meta,"source_sha256":verified_sha,
                     "full_source_file_bytes":size,
-                    "fine_nz_checkpoint":str(fine_path)}
+                    "highz_count_reference":high_reference}
             finally:
                 if kind=="mock" and acquired is not None and not args.keep_mock_cache:
                     acquired.unlink(missing_ok=True)
@@ -294,6 +317,8 @@ def main():
     ap.add_argument("--timeout",type=float,default=120)
     ap.add_argument("--no-download",action="store_true")
     ap.add_argument("--keep-mock-cache",action="store_true")
+    ap.add_argument("--use-committed-first-mock-counts",action="store_true",
+                    help="For CI without local fine n(z) checkpoints, allow only the fixed committed high-z counts for observed and mock 0001")
     ap.add_argument("--self-test",action="store_true")
     args=ap.parse_args()
     if args.self_test:
