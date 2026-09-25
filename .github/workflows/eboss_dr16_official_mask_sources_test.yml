@@ -23,3 +23,26 @@ jobs:
           python-version: "3.11"
       - name: Test official-source URL allowlist, mask families and no-galaxy gate
         run: python scripts/audit_eboss_dr16_official_mask_sources.py --self-test
+
+  official-source-index:
+    needs: synthetic-official-source-gate
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Discover published DR16 ELG brick-mask families and LRG root products
+        run: |
+          python scripts/audit_eboss_dr16_official_mask_sources.py \
+            --out-dir eboss_workspace/official_mask_inventory \
+            --timeout 100
+      - name: Preserve official index digest and incomplete evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: eboss-dr16-official-mask-source-index
+          path: eboss_workspace/official_mask_inventory/official_mask_index.json
+          if-no-files-found: warn
+          retention-days: 90
