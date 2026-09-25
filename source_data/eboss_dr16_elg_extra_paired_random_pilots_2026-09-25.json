@@ -1,0 +1,99 @@
+{
+  "snapshot_date": "2026-09-25",
+  "study": "Pinned official three-extra-ELG-MANGLE-polygon membership diagnostic on published eBOSS DR16 clustering RANDOMS, fixed observed and mock0001 two-cap samples",
+  "status": "two_caps_observed_and_mock0001_three_extra_polygon_fixed_sample_complete",
+  "source_code": "scripts/audit_eboss_dr16_elg_extra_random_membership.py",
+  "prospective_protocol": "source_data/eboss_dr16_elg_extra_random_membership_protocol_2026-09-25.json",
+  "polygon_source_evidence": "source_data/eboss_dr16_elg_extra_polygons_sha_2026-09-25.json",
+  "reusable_sha_verified_polygon_artifact": "https://github.com/dvlahek/stress-energy-closure/actions/runs/36105662089/artifacts/10850788737",
+  "fixed_mock_id": 1,
+  "caps": [
+    "NGC",
+    "SGC"
+  ],
+  "four_fixed_z_bins": [
+    [
+      0.6,
+      0.7
+    ],
+    [
+      0.7,
+      0.8
+    ],
+    [
+      0.8,
+      0.9
+    ],
+    [
+      0.9,
+      1
+    ]
+  ],
+  "sample_per_exact_ELG_chunk_and_zbin": 2500,
+  "exact_chunks_by_cap": {
+    "NGC": [
+      "eboss23",
+      "eboss25"
+    ],
+    "SGC": [
+      "eboss21",
+      "eboss22"
+    ]
+  },
+  "published_extra_polygons_sha256": {
+    "ELG_centerpost.ply": "2a9494725c9265894b9b463d6ccc8616d4979ed2c7bbc213764bf81b94e0b4c9",
+    "ELG_TDSSFES_62arcsec.pix.snap.balk.ply": "ad1e4c135c351008eec316d8ff7e95f749ffd1b1b207fdcbd5ebae2181bcee0c",
+    "ebosselg_badphot.26Aug2019.ply": "80aacd51459be796ccc493bad0450c9f8c26b0de7005dd2e3e5bfaadd0095a8d"
+  },
+  "cases": [
+    {
+      "cap": "NGC",
+      "kind": "observed_random_only",
+      "source_sha256": "7b9a5ea54ea99fa1d56ec20206e920d171c807c626c29b6a4dcc766d0ee36698",
+      "strata": 8,
+      "sampled_rows": 20000,
+      "inside_extra_polygon_union": 0,
+      "source_artifact": "https://github.com/dvlahek/stress-energy-closure/actions/runs/36106081119/artifacts/10851261027"
+    },
+    {
+      "cap": "NGC",
+      "kind": "mock0001_random_only",
+      "source_sha256": "c36c4ad26ee62696c0df99c6106c895a6931bdc56e84164e0a52b55f0e88c1c9",
+      "strata": 8,
+      "sampled_rows": 20000,
+      "inside_extra_polygon_union": 0,
+      "source_artifact": "https://github.com/dvlahek/stress-energy-closure/actions/runs/36106392489/artifacts/10850924382"
+    },
+    {
+      "cap": "SGC",
+      "kind": "observed_random_only",
+      "source_sha256": "f3097c653c54b3b0e2033a0d586c77f9a8975aeb3397c441f92703797e7db9a1",
+      "strata": 8,
+      "sampled_rows": 20000,
+      "inside_extra_polygon_union": 0,
+      "source_artifact": "https://github.com/dvlahek/stress-energy-closure/actions/runs/36105838116/artifacts/10850898449"
+    },
+    {
+      "cap": "SGC",
+      "kind": "mock0001_random_only",
+      "source_sha256": "1af8f7f95f6d477049c80302300e97ed2c0aa7f584a0595d61f78dea80057e38",
+      "strata": 8,
+      "sampled_rows": 20000,
+      "inside_extra_polygon_union": 0,
+      "source_artifact": "https://github.com/dvlahek/stress-energy-closure/actions/runs/36106081119/artifacts/10850024977"
+    }
+  ],
+  "total_sampled_random_rows": 80000,
+  "total_union_memberships": 0,
+  "all_per_polygon_and_stratum_sample_counts_zero": true,
+  "observed_galaxy_data_read": false,
+  "mock_galaxy_data_read": false,
+  "observed_odd_data_vector_read": false,
+  "official_elg_HEALPix_bit8_checked": false,
+  "full_elg_brickmask_FITS_membership_checked": false,
+  "full_catalogue_polygon_membership_checked": false,
+  "full_nine_mock_membership_checked": false,
+  "LRG_official_veto_checked": false,
+  "joint_pair_window_certified": false,
+  "note": "Results cover fixed equal-stratum samples only; 0/80000 is not proof of exact full-catalogue rejection or an observational significance claim. No official veto reapplied to the already published clustering randoms. Physical LRGxELG cross window still requires tracer-specific selection and pair-estimator checks."
+}
