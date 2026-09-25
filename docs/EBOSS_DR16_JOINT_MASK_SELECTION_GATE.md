@@ -88,11 +88,16 @@ image files are separate open checks. Published clustering random
 catalogues must not be newly vetoed solely because this diagnostic
 was run.
 
-Full official byte provenance for the 473778577-byte LRG badfield polygon
-is now recorded under
-`source_data/eboss_dr16_badfield_full_sha_2026-09-25.json`.
-Two smaller official LRG polygons are separately SHA-pinned, but the
-full LRG source cohort and published veto semantics are still open.
+The complete official eleven-polygon source-byte cohort is now SHA256-
+pinned: seven published LRG/QSO veto polygons, the QSO+LRG noveto
+footprint polygon, and three additional ELG veto polygons. The exact
+source filenames, byte lengths and SHA256s are retained in
+`source_data/eboss_dr16_eleven_official_polygon_sha_2026-09-25.json`.
+The three input-index SHA256s and the local eleven-file manifest agree.
+This closes the polygon *byte-provenance* gate only. The published
+tracer-specific LRG veto composition, ELG brickmask image families,
+ELG extra pixel-bit coordinate convention, and continuous pair-window
+membership are separate open gates.
 
 ## Required production checks before opening observed odd data
 
