@@ -1,0 +1,21 @@
+{
+  "snapshot_date": "2026-09-25",
+  "kind": "bounded_official_HTTP_206_prefix_and_byte_length_probe",
+  "source_workflow": "https://github.com/dvlahek/stress-energy-closure/actions/runs/36104184666",
+  "source_artifact": "https://github.com/dvlahek/stress-energy-closure/actions/runs/36104184666/artifacts/10850985034",
+  "status": "official_LRG_range_prefix_only",
+  "filename": "badfield_mask_unphot_seeing_extinction_pixs8_dr12.ply",
+  "source_url": "https://portal.nersc.gov/project/cosmo/data/sdss/dr17/eboss/lss/catalogs/DR16/LRGandQuasarmasks/badfield_mask_unphot_seeing_extinction_pixs8_dr12.ply",
+  "http_status": 206,
+  "prefix_bytes": 65536,
+  "prefix_sha256": "f298653193538baa204c5f532384c419a408983b469d072be5874e876342a1c4",
+  "advertised_total_bytes": 473778577,
+  "range_chunk_bytes": 4194304,
+  "chunk_max_transient_retries": 3,
+  "full_SHA256_certified": false,
+  "full_file_downloaded": false,
+  "observed_galaxy_data_read": false,
+  "observed_odd_data_vector_read": false,
+  "official_LRG_mask_applied": false,
+  "rule": "Download exact advertised full byte length in verified Content-Range segments from pinned official URL. Revalidate first 65536 bytes against pinned prefix. Never synthesize a full SHA256 without complete byte transfer."
+}
