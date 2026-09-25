@@ -209,7 +209,7 @@ def pinned_mock_shard_highz_count(shard, tracer, cap, mid, expected_sha, protoco
     item=shard.get("inputs",{}).get(tracer,{})
     counts=item.get("redshift_bin_retained_rows")
     if (item.get("compressed_file_sha256")!=expected_sha
-            or not isinstance(counts,list) or len(counts)!=4
+            or not isinstance(counts,list) or len(counts)!=5
             or any(not isinstance(v,int) or v<0 for v in counts)
             or counts[3]!=item.get("high_z",{}).get("high_z_retained_rows")):
         raise ValueError("Mock shard SHA, high-z count and independent input audit disagree")
@@ -362,7 +362,7 @@ def self_test():
         "mock_galaxy_data_read":False,
         "inputs":{"LRG":{
             "compressed_file_sha256":"a"*64,
-            "redshift_bin_retained_rows":[1400,1400,1400,1300],
+            "redshift_bin_retained_rows":[1400,1400,1400,1300,0],
             "high_z":{"high_z_retained_rows":1300}}}}
     assert pinned_mock_shard_highz_count(
         mock_fixture,"LRG","NGC",125,"a"*64,protocol)==1300
