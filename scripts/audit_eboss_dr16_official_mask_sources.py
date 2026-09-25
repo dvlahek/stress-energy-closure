@@ -165,6 +165,8 @@ def scan(protocol, out_dir, *, timeout, download_extra):
         },
         "elg_extra_polygons": extras,
         "lrg_root_candidates": lrg_names,
+        "root_subdirectories": sorted(
+            n for n, (_, is_dir) in root_entries.items() if is_dir),
         "upstream_brickmask": protocol["published_brickmask"],
         "source_filenames_confirmed": False,
         "physical_joint_mask_certified": False,
@@ -182,6 +184,13 @@ def scan(protocol, out_dir, *, timeout, download_extra):
         if not extras[name]["listed"]:
             report["errors"].append("Not listed in ELGmasks: " + name)
     if download_extra and not report["errors"]:
+        existing_report = out_dir / "official_mask_index.json"
+        previous_extra = {}
+        if existing_report.is_file():
+            previous = json.loads(existing_report.read_text(encoding="utf-8"))
+            if previous.get("approved_source_root") not in (None, root):
+                raise ValueError("Previous official mask inventory used a different source root")
+            previous_extra = previous.get("elg_extra_polygons", {})
         for name in EXTRAS:
             destination = out_dir / "official_elg_extra" / name
             if destination.exists():
@@ -197,6 +206,11 @@ def scan(protocol, out_dir, *, timeout, download_extra):
                 temporary.replace(destination)
             if size < 16:
                 raise ValueError("Truncated official ELG veto polygon: " + name)
+            prior_sha = previous_extra.get(name, {}).get("sha256")
+            if prior_sha is not None and digest != prior_sha:
+                raise ValueError(
+                    "Official veto polygon differs from previously pinned SHA256: "
+                    + name + "; prior=" + prior_sha + "; current=" + digest)
             extras[name]["local_filename"] = str(destination)
             extras[name]["sha256"] = digest
             extras[name]["bytes"] = size
