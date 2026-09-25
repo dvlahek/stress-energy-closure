@@ -1,0 +1,46 @@
+name: eBOSS DR16 official polygon byte provenance
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/audit_eboss_dr16_official_polygon_sha.py"
+      - ".github/workflows/eboss_dr16_official_polygon_sha.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  sha-pin-official-polygons:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Offline URL-validation, provenance and SHA synthetic unit test
+        run: python scripts/audit_eboss_dr16_official_polygon_sha.py --self-test
+      - name: Retrieve immutable official directory index with no galaxy data
+        run: |
+          gh run download 36099075387 --repo "$GITHUB_REPOSITORY" \
+            --name eboss-dr16-official-mask-source-index --dir input
+          test -s input/official_mask_index.json
+      - name: SHA-pin seven LRG veto, LRG noveto geometry, and three ELG extra polygons
+        run: |
+          python scripts/audit_eboss_dr16_official_polygon_sha.py \
+            --inventory-json input/official_mask_index.json \
+            --out-dir eboss_workspace/official_mask_inventory \
+            --timeout 100
+      - name: Preserve SHA report even if any official source fails
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: eboss-dr16-official-polygon-sha-manifest
+          path: eboss_workspace/official_mask_inventory/official_polygon_sha_manifest.json
+          if-no-files-found: warn
+          retention-days: 90
