@@ -1,0 +1,39 @@
+name: eBOSS DR16 published ELG bit8 HEALPix coordinate contract
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/audit_eboss_dr16_elg_bit8_coordinate_contract.py'
+      - 'source_data/eboss_dr16_elg_bit8_coordinate_contract_protocol_2026-09-25.json'
+      - '.github/workflows/eboss_dr16_elg_bit8_coordinate_contract.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  frozen-source-coordinate-contract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install HEALPix and numerical geometry dependencies
+        run: python -m pip install 'numpy>=1.24' 'healpy>=1.17,<1.21'
+      - name: Independent synthetic HEALPix angular unit test
+        run: python scripts/audit_eboss_dr16_elg_bit8_coordinate_contract.py --self-test
+      - name: Reproduce all published source pixel centres and document upstream contract
+        run: |
+          python scripts/audit_eboss_dr16_elg_bit8_coordinate_contract.py \
+            --out reports/eboss_elg_bit8_coordinate_contract.json
+      - name: Preserve blinded source/API discrepancy report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: eboss-dr16-elg-bit8-coordinate-contract
+          path: reports/eboss_elg_bit8_coordinate_contract.json
+          if-no-files-found: warn
+          retention-days: 90
