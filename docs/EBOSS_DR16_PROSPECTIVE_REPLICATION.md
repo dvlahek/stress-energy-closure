@@ -2,6 +2,39 @@
 
 Status: pre-analysis catalogue, selection and RR-geometry input checks, 2026-09-24. We have parsed all eight public real-data and random FITS headers, inspected four full real data and four full real random catalogues, audited 1000 matched EZmock filename sets, checked 24 bounded realistic-mock FITS headers, and inspected 12 full realistic-mock data and 12 matching realistic-mock random FITS files from fixed realization IDs 0001, 0500 and 1000. A density-normalized, random-only comparison of the three sampled mock realizations against all four public observed random catalogues is complete. A fixed-subsample RR pair-reversal test, independent synthetic scalar pair-count and cross-Landy–Szalay checks, and a predeclared nested random-density diagnostic are complete. The density diagnostic shows that the tested small random subsamples do not provide a converged survey window. The observed and realization-0001 data/random weight normalizations and declared eBOSS distance mappings have also been audited. The full observed-random candidate-bin RR histograms are now computed and verified against two deterministic disjoint half-samples per cap and bin. The high-z 1-Mpc fine RR and its conditional finite-bin response now pass independent geometric and parity closure. Fine-RR and conditional-response comparisons against the three preselected matching realistic-mock random realizations `0001`, `0500` and `1000` have also completed. Both the exact-count matched observed-random thinning control and the mock-internal disjoint-half random-noise control now pass on all three preselected high-z realistic realizations. A wider mock-window ensemble, the full four-bin fine RR and the complete physical survey response remain outstanding. The exact common mask, selection of the complete 1000-realization mock ensemble, full physical survey window and cross-covariance remain unvalidated. No eBOSS odd-sector data vector has been calculated or inspected, and the analysis protocol is not yet frozen.
 
+## Update: 2026-09-25 (blinded input and estimator gates)
+
+The preregistered nine-realization **random-only**, fine weighted
+`n(z)` audit is complete for all 36 cap×tracer×mock comparisons; each
+ELG chunk was compared only under an exactly matched label. This
+does not certify the physical LRG×ELG window or any odd galaxy signal.
+
+Official DR16 source-directory indexes are SHA-pinned. The published
+ELG brickmask index lists 19,381 mask FITS files across four chunks.
+All three additional ELG polygon bytes and exactly two LRG polygon
+bytes (centerpost and LRG collision-priority) are separately SHA-pinned.
+Six further official LRG/QSO polygons are **not yet** byte-certified;
+the first monolithic job timed out, and eight independent LRG source
+jobs were launched to separate large transfers. Source-file presence
+does not establish veto semantics, ELG brick-pixel mask membership or
+the precise pair selection.
+
+A separate SGC, realization-0001 **random-only** cross-Landy–Szalay
+algebra pilot also completed on SHA-verified released observed and
+realistic mock random FITS: all four pair terms and their normalizations
+pass the orientation/reversal test on 144/144 tested `(s,mu)` cells.
+The largest xi mirror residual was below `2e-15`. Pseudo-D and pseudo-R
+are disjoint splits **of the same parent random catalogues**, so this
+is neither mock-galaxy estimator closure nor a physical significance
+test. Its curated result is
+`source_data/eboss_dr16_random_only_cross_ls_pilot_2026-09-25.json`;
+the executable is `scripts/audit_eboss_dr16_random_only_cross_ls_pilot.py`.
+
+Before actual observed odd-sector data can be opened, the separate
+tracer-specific published mask semantics, physical cross window,
+mock-galaxy estimator and inferential joint covariance still need
+independent validation and a frozen analysis protocol.
+
 ## Scientific question
 
 We use a second survey to test the prescribed odd-sector wake response without changing the DESI DR1 results. The eBOSS estimator, selection function, covariance and survey window must be validated independently before a real-data measurement. A similar measured amplitude alone would not establish an independent detection, particularly if the surveys share cosmological volume.
