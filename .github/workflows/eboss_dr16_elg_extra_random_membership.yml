@@ -44,16 +44,19 @@ jobs:
         run: |
           gh run download 36017670812 --repo "$GITHUB_REPOSITORY" \
             --name eboss-dr16-nine-mock-window-ensemble --dir source
-          gh run download 36100783598 --repo "$GITHUB_REPOSITORY" \
+          gh run download 36105662089 --repo "$GITHUB_REPOSITORY" \
             --name eboss-dr16-elg-three-extra-polygon-sha --dir mask-source
           test -s source/ninemock_window_ensemble.json
           test -s mask-source/official_polygon_sha_manifest.json
+          test -s mask-source/official_polygons/ELG_centerpost.ply
+          test -s mask-source/official_polygons/ELG_TDSSFES_62arcsec.pix.snap.balk.ply
+          test -s mask-source/official_polygons/ebosselg_badphot.26Aug2019.ply
       - name: Audit published SGC ELG clustering randoms only against three source polygons
         run: |
           python scripts/audit_eboss_dr16_elg_extra_random_membership.py \
             --ensemble-json source/ninemock_window_ensemble.json \
             --polygon-manifest mask-source/official_polygon_sha_manifest.json \
-            --polygon-dir eboss_workspace/official_mask_inventory/official_polygons \
+            --polygon-dir mask-source/official_polygons \
             --observed-cache-dir eboss_workspace/pub_randoms \
             --mock-ids none --caps SGC \
             --out-dir eboss_workspace/official_mask_inventory/membership \
