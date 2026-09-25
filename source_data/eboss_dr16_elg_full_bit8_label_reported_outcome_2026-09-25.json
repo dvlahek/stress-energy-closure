@@ -1,0 +1,54 @@
+{
+  "study": "eBOSS DR16 ELG full-catalogue bit8 label-to-geometry outcome",
+  "date": "2026-09-25",
+  "input_report_local_path": "eboss_workspace/official_mask_inventory/elg_full_bit8_label_geometry_audit.json",
+  "evidence_status": "USER_REPORTED_WSL_STDOUT; JSON report SHA256 not yet supplied or independently verified",
+  "pre_registered_protocol": "source_data/eboss_dr16_elg_full_bit8_label_protocol_2026-09-25.json",
+  "frozen_official_fits_sha256": "8806699e14422904ef91efb6f1632184171fb740c2e074456c0534b7d2dc28b3",
+  "observed_script_status": "OFFICIAL_ELG_FULL_BIT8_LABELS_PRESENT_GEOMETRY_AUDITED_ONLY",
+  "synthetic_self_test": "EBOSS_ELG_BIT8_THREE_COLUMN_LABEL_AUDIT_SYNTHETIC_SELF_TEST_OK",
+  "catalogue_rows": 269178,
+  "bit8_label_positive": 15,
+  "bit8_label_negative": 269163,
+  "published_removed_target_aggregate_for_diagnostic_only": 15,
+  "mappings": {
+    "literal_upstream": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 15,
+      "tn": 269163,
+      "candidate_positive_total": 0
+    },
+    "units_only_reflected_RA": {
+      "tp": 0,
+      "fp": 5,
+      "fn": 15,
+      "tn": 269158,
+      "candidate_positive_total": 5
+    },
+    "native_RA_radians": {
+      "tp": 15,
+      "fp": 0,
+      "fn": 0,
+      "tn": 269163,
+      "candidate_positive_total": 15
+    },
+    "native_RA_degrees": {
+      "tp": 15,
+      "fp": 0,
+      "fn": 0,
+      "tn": 269163,
+      "candidate_positive_total": 15
+    }
+  },
+  "interpretation": "For the 269178 published full-catalogue positions, catalogue bit8 labels exactly agree with native-RA published-37-pixel membership (both radian and degree calls), and disagree with both literal upstream and reflected-RA alternative mappings. This is independent released-catalogue LABEL-to-source-pixel agreement, not authentication of historical production executable, continuous sky mask or published clustering random selection.",
+  "official_production_executable_authenticated": false,
+  "physical_continuous_elg_mask_certified": false,
+  "physical_lrg_elg_pair_window_certified": false,
+  "observed_redshift_or_weight_values_decoded": false,
+  "observed_odd_data_vector_read": false,
+  "mask_applied_to_science_selection": false,
+  "protocol_changed_after_outcome": false,
+  "local_json_report_sha256": null,
+  "next_provenance_gate": "Pin exact local JSON report SHA256 and retain report artifact as before/after protocol-evidence pair; do not claim independent verification of user stdout until source report is uploaded or otherwise checked."
+}
