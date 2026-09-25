@@ -1,0 +1,79 @@
+{
+  "study": "Official eBOSS DR16 LRG/QSO and ELG polygon full-byte source provenance",
+  "workflow_run": 36100765905,
+  "workflow_artifact_name": "eboss-dr16-official-polygon-sha-manifest",
+  "status": "official_lrg_elg_polygon_bytes_pinned_only",
+  "source_root": "https://portal.nersc.gov/project/cosmo/data/sdss/dr17/eboss/lss/catalogs/DR16/",
+  "products": [
+    {
+      "role": "elg_extra_polygon",
+      "filename": "ELG_TDSSFES_62arcsec.pix.snap.balk.ply",
+      "bytes": 244078,
+      "sha256": "ad1e4c135c351008eec316d8ff7e95f749ffd1b1b207fdcbd5ebae2181bcee0c"
+    },
+    {
+      "role": "elg_extra_polygon",
+      "filename": "ELG_centerpost.ply",
+      "bytes": 48471,
+      "sha256": "2a9494725c9265894b9b463d6ccc8616d4979ed2c7bbc213764bf81b94e0b4c9"
+    },
+    {
+      "role": "elg_extra_polygon",
+      "filename": "ebosselg_badphot.26Aug2019.ply",
+      "bytes": 7762844,
+      "sha256": "80aacd51459be796ccc493bad0450c9f8c26b0de7005dd2e3e5bfaadd0095a8d"
+    },
+    {
+      "role": "lrg_noveto_footprint_polygon",
+      "filename": "eBOSS_QSOandLRG_fullfootprintgeometry_noveto.ply",
+      "bytes": 10459739,
+      "sha256": "b6193d6d342139b137e16a50c256fe6cea5fa1fa7eb65b38f29ccf8e1c33629d"
+    },
+    {
+      "role": "lrg_published_polygon",
+      "filename": "badfield_mask_unphot_seeing_extinction_pixs8_dr12.ply",
+      "bytes": 473778577,
+      "sha256": "b3b3f675a06d79552e37b5b085d64a5e25d23204a78e850d06f939de91943641"
+    },
+    {
+      "role": "lrg_published_polygon",
+      "filename": "bright_object_mask_rykoff_pix.ply",
+      "bytes": 112899,
+      "sha256": "f64a6f4b5f4cccd49d24d929f895def688574c154a202c7aa0e089f9bf68f9fb"
+    },
+    {
+      "role": "lrg_published_polygon",
+      "filename": "brightstarmask_tiling_final.ply",
+      "bytes": 11731963,
+      "sha256": "56bc660ecaddabffd0d96f673cb54e9b18102e7297752aae3a6f7bf4ec6dadfe"
+    },
+    {
+      "role": "lrg_published_polygon",
+      "filename": "centerpost_mask_eboss_DR16_new.ply",
+      "bytes": 48803,
+      "sha256": "b9e2fffaa72f7b900e6bfbab1cf72c64ac23e58498a6e8b4bdb3237c803ebd0b"
+    },
+    {
+      "role": "lrg_published_polygon",
+      "filename": "collision_priority_mask_QSO_eboss_DR16_v9_singletiles.ply",
+      "bytes": 11656959,
+      "sha256": "2ec9a73b49aa57f6b2a3f4dd5bdea0841a2e7ce0421f8dd2926f8822dbe0b2d4"
+    },
+    {
+      "role": "lrg_published_polygon",
+      "filename": "collision_priority_mask_lrg_eboss_DR16_new.ply",
+      "bytes": 127861043,
+      "sha256": "dd34d96300e7a8eefc9955d55541774a44ee5a0cb50240cdae302821a6f911f7"
+    },
+    {
+      "role": "lrg_published_polygon",
+      "filename": "allsky_bright_star_mask_pix.ply",
+      "bytes": 423410444,
+      "sha256": "b26da69903ec233817ca135b53d68b8e96d594a7119e34f3f528a34c431f7b2f"
+    }
+  ],
+  "scope_note": "Eleven official polygon files SHA256-pinned as byte sources. Does not establish LRG veto combination, ELG brickmask maskbits, extra HEALPix bit8 behavior, sector completeness, new common cut, physical window or observed odd signal.",
+  "observed_galaxy_data_read": false,
+  "observed_odd_data_vector_read": false,
+  "physical_joint_mask_certified": false
+}
