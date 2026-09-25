@@ -312,8 +312,39 @@ fields, each with the same paper threshold `>0.5`. Its target is
 only the aggregate conditional counts `53` and `253220`.
 Because the initial `COMP_BOSS` count was already seen, the
 follow-up must be described as **source-informed, not a wholly
-prospective blind validation**. The comparison runner has not yet
-been committed or executed; no conditional count is claimed.
+prospective blind validation**. The comparison runner is now committed and its synthetic CI passed. The actual
+local WSL comparison has not yet run; no conditional count is claimed.
 Even exact published counts cannot on their own authenticate
 official veto-polygon composition, continuous mask or LRG×ELG
 physical pair selection.
+
+## Runnable Ross Table 2 sequential tally gate (source-informed)
+
+The new runner
+`scripts/audit_eboss_dr16_lrg_ross_table2_sector_counts.py`
+is committed after the original exact JSON archive and separate
+source-informed protocol. It verifies the archived report SHA256 and
+its byte-identical local counterpart, and reuses only the four
+previously allowed FITS column decoders after rechecking the complete
+official FITS SHA256. It compares the two registered second-stage
+candidates only **after** `COMP_BOSS > 0.5`. The fixed, previously
+published Table 2 reference is
+`311848 - 58575 - 53 = 253220` LRG targets; no threshold,
+formula or candidate may be changed in response to observed counts.
+
+The [synthetic CI passed](https://github.com/dvlahek/stress-energy-closure/actions/runs/36187578985).
+It checks the exact 0.5 boundary, both fixed candidates, accounting,
+and non-finite-value rejection without opening any real-data file.
+The local run does not download the full LRG FITS again; it uses the
+existing SHA-pinned quarantined copy.
+
+Run as one plain WSL terminal line:
+
+`cd ~/stress-energy-closure && git pull --ff-only && source .venv/bin/activate && python -u scripts/audit_eboss_dr16_lrg_ross_table2_sector_counts.py --self-test && python -u scripts/audit_eboss_dr16_lrg_ross_table2_sector_counts.py`
+
+The result is
+`eboss_workspace/official_mask_inventory/lrg_ross_table2_sector_count_replay.json`.
+Upload the unchanged output JSON to archive its exact SHA256.
+Count agreement does not itself authenticate the historical LRG
+production program, the continuous mask or cross-tracer pair window,
+and no published science selection or odd-sector vector is changed.
