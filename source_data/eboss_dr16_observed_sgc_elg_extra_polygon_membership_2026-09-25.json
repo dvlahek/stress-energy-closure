@@ -1,0 +1,58 @@
+{
+  "snapshot_date": "2026-09-25",
+  "kind": "observed_SGC_ELG_clustering_randoms_three_official_extra_polygon_fixed_stratified_sample",
+  "source_workflow": "https://github.com/dvlahek/stress-energy-closure/actions/runs/36105838116",
+  "source_artifact": "https://github.com/dvlahek/stress-energy-closure/actions/runs/36105838116/artifacts/10850898449",
+  "source_code": "scripts/audit_eboss_dr16_elg_extra_random_membership.py",
+  "source_protocol": "source_data/eboss_dr16_elg_extra_random_membership_protocol_2026-09-25.json",
+  "upstream_additional_ELG_mask_code_commit": "b9eb684a579b56ec3dbdb46549224be7e3fa2830",
+  "status": "observed_SGC_ELG_three_extra_polygon_stratified_random_pilot_complete",
+  "observed_random_file": "eBOSS_ELG_clustering_random-SGC-vDR16.fits",
+  "observed_random_sha256": "f3097c653c54b3b0e2033a0d586c77f9a8975aeb3397c441f92703797e7db9a1",
+  "caps": [
+    "SGC"
+  ],
+  "chunks": [
+    "eboss21",
+    "eboss22"
+  ],
+  "candidate_z_bins": [
+    [
+      0.6,
+      0.7
+    ],
+    [
+      0.7,
+      0.8
+    ],
+    [
+      0.8,
+      0.9
+    ],
+    [
+      0.9,
+      1
+    ]
+  ],
+  "fixed_seed_sample_per_chunk_z_bin": 2500,
+  "strata": 8,
+  "total_sampled_random_rows": 20000,
+  "union_rows_inside_three_extra_polygons": 0,
+  "all_eight_strata_union_rows_inside": 0,
+  "all_three_named_extra_polygon_sample_inside_rows": 0,
+  "polygon_sources": [
+    "ELG_centerpost.ply",
+    "ELG_TDSSFES_62arcsec.pix.snap.balk.ply",
+    "ebosselg_badphot.26Aug2019.ply"
+  ],
+  "errors": [],
+  "observed_galaxy_data_read": false,
+  "mock_galaxy_data_read": false,
+  "observed_odd_data_vector_read": false,
+  "bit8_HEALPix_checked": false,
+  "full_ELG_brickmask_applied": false,
+  "full_catalogue_polygon_membership_tested": false,
+  "LRG_polygon_membership_tested": false,
+  "joint_pair_window_certified": false,
+  "note": "0/20000 in the three published additional MANGLE polygons in a prospectively fixed equal-stratum random-only sample. This is not a proof of exactly zero in the full clustering random catalogue or official ELG brickmask pixel selection; upstream bit8 coordinate contract and LRG mask semantics remain open."
+}
