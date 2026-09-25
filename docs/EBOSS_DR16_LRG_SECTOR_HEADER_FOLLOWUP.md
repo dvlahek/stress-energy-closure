@@ -196,3 +196,63 @@ MANGLE polygon-composition contract. The released LRG/ELG
 tracer-specific random pair window, complete ELG brickmask and
 mock-galaxy estimator/covariance gates stay open. Observed eBOSS odd
 data remain unopened.
+
+## Actual local four-column sector aggregate result — semantics still open
+
+The user ran the exact preregistered local metadata runner successfully on
+2026-09-25. The original full-file SHA256 was registered before this
+row-level inspection. The reported output status is
+`OFFICIAL_LRG_SECTOR_METADATA_AGGREGATES_ONLY_NOT_SEMANTICS_CERTIFIED`.
+This is currently **user-reported terminal stdout**, captured separately
+in `source_data/eboss_dr16_lrg_sector_metadata_reported_outcome_2026-09-25.json`.
+The full JSON report and its exact SHA256 are **not yet uploaded**.
+Do not claim to have independently regenerated the row-level result.
+
+The published full-LRG catalogue contains 311,848 inspected rows and
+5,813 distinct integer `SECTOR` labels. At the preregistered
+absolute tolerance `1e-10`, all three numerical fields
+(`sector_TSR`, `sector_SSR`, `COMP_BOSS`) are **exactly
+constant** within each sector (zero within-sector span everywhere).
+All their reported numerical values are finite and in [0,1].
+The following numbers count **catalogue rows**, not independent
+sectors or sky area:
+
+| Diagnostic field | Exact-zero rows | Rows with field <= 0.5 | Median |
+|---|---:|---:|---:|
+| `COMP_BOSS` | 9,413 | 58,575 | 0.9855072463768116 |
+| `sector_TSR` | 9,413 | 59,250 | 0.9421487603305785 |
+| `sector_SSR` | 9,424 | 9,528 | 0.9855072463768116 |
+
+The three **predeclared** formula comparisons also show that the
+published fields cannot simply be substituted for one another:
+`COMP_BOSS = sector_TSR` agrees to `1e-10` on only 107,090 rows,
+`COMP_BOSS = sector_TSR * sector_SSR` on 74,143 rows, and
+`sector_TSR = sector_SSR` on 25,676 rows. A failed algebraic
+identity is evidence against that identity on this catalogue, **not**
+evidence for an alternative formula chosen after seeing the data.
+Do not declare any of the logged fields to be paper `C_eBOSS` or
+`C_z` on numeric correlation alone.
+
+Ross et al. (2020), MNRAS 498, 2354, Sec. 5.4, Eqs. (10)–(11),
+give independent **source-defined** target-observation completeness
+`C_eBOSS` and redshift-success completeness `C_z` in terms of
+per-sector categories `N_z,eboss`, `N_cp`, `N_badclass`,
+`N_star`, `N_zfail`, and `N_missed`. Their documented
+clustering threshold is `C_eBOSS > 0.5` and `C_z > 0.5`;
+random positions are completeness-weighted instead of being
+subsampled by `C_eBOSS`. See
+https://academic.oup.com/mnras/article/498/2/2354/5900562 .
+The full-catalogue four-field audit does not contain the underlying
+per-sector category counts or an authenticated production-code mapping
+from these equations to the release's `COMP_BOSS`,
+`sector_TSR` or `sector_SSR` fields. An official data-model
+or source-code provenance check is still required, and must be
+distinguished from observing numerical coincidences.
+
+**Next provenance action:** the user should upload the exact local
+`eboss_workspace/official_mask_inventory/lrg_full_sector_metadata_audit.json`
+or supply its raw SHA256. Archive the JSON unchanged and freeze its
+content digest. Only then commit and run any further separate
+sector-only comparison. No new veto union, sky mask, catalogue cut,
+LRG×ELG random selection, or observed odd measurement was carried
+out in this metadata diagnostic.
