@@ -1,0 +1,114 @@
+{
+  "study": "Exact completed 18/18 archived A-03 empirical released-random conditional finite-bin operator unitless synthetic even/odd injection replay; not real galaxy null or physical survey window",
+  "record_date": "2026-09-26",
+  "user_decision": "NO AUTHOR CONTACT, empirical published random route only",
+  "source_predeclared_protocol": "source_data/eboss_dr16_a03_empirical_rr_window_injection_protocol_2026-09-26.json",
+  "protocol_SHA256": "385f4beaabffa8678960aac78a49733d63abc2b90528df8cd894744218ab11c9",
+  "source_original_prior_20260924_artifact_id": 10815013322,
+  "source_original_prior_20260924_artifact_run": 36017670812,
+  "source_original_JSON_sha256": "8702adaf1284068c26e79555feb76c7a709df9a265f9e2194409cc4161602e01",
+  "source_original_NPZ_sha256": "4f63e04ce4c5cfdb9404e5a56dee44907cb9a28cc015c6ed27ac718195feae6b",
+  "first_complete_CI": "https://github.com/dvlahek/stress-energy-closure/actions/runs/36263688909",
+  "exact_archive_commit_CI": "https://github.com/dvlahek/stress-energy-closure/actions/runs/36263835392",
+  "exact_archived_report_path": "source_data/eboss_dr16_a03_empirical_rr_window_injection_report_2026-09-26.json",
+  "exact_archived_bytes": 90307,
+  "exact_archived_sha256": "e6b8db10d31bc297426cb8fe6bf9a19c9a97ab6f938da2da9d4a9710cfa420e7",
+  "exact_archived_git_blob_sha1": "35cb92b3ce2b870ae6d984f0e9692266b3e025ac",
+  "archive_byte_identical_to_original_CI_artifact": true,
+  "n_original_independent_mock_ids": 9,
+  "reported_id_order": [
+    1,
+    125,
+    250,
+    375,
+    500,
+    625,
+    750,
+    875,
+    1000
+  ],
+  "caps": [
+    "NGC",
+    "SGC"
+  ],
+  "completed_case_count": 18,
+  "errors": [],
+  "per_cap_descriptive": {
+    "NGC": {
+      "observed_RANDOM_only_constant_even_max_abs": 3.6378265139559284e-17,
+      "observed_RANDOM_only_even_ramp_ell1_by_s": [
+        0.004506518874868389,
+        0.004843643937315968,
+        0.005035584459332776,
+        0.005705288186039122,
+        0.005300749030119621,
+        0.005164814757887818
+      ],
+      "observed_RANDOM_only_even_ramp_ell3_by_s": [
+        0.0008967664851492868,
+        0.0007609291812374287,
+        0.0007028649231726701,
+        0.0016356379571600846,
+        0.0006367044378755918,
+        0.0007772389319876555
+      ],
+      "nine_mock_vs_observed_RANDOM_even_ramp_max_abs_descriptive": {
+        "min": 0.0005857007744403354,
+        "median": 0.0014137466874544406,
+        "max": 0.002599490176761761
+      },
+      "nine_mock_vs_observed_RANDOM_odd_injection_max_abs_descriptive": {
+        "min": 0.00007028953211550559,
+        "median": 0.00014542422343293004,
+        "max": 0.00022298555106901874
+      },
+      "max_mock_constant_even_max_abs": 8.318202355216131e-17,
+      "max_mock_linear_superposition_abs": 2.7755575615628914e-17,
+      "max_replay_matrix_summary_error": 0,
+      "max_replay_ramp_summary_error": 1.1655173354219173e-18
+    },
+    "SGC": {
+      "observed_RANDOM_only_constant_even_max_abs": 9.61992258855654e-17,
+      "observed_RANDOM_only_even_ramp_ell1_by_s": [
+        0.0037264181100489144,
+        0.005066209379385322,
+        0.004470927938642492,
+        0.004258498583765784,
+        0.0053676592687572225,
+        0.004633498468337363
+      ],
+      "observed_RANDOM_only_even_ramp_ell3_by_s": [
+        -0.0005046337724653332,
+        0.0017090830572494549,
+        0.00025906495395969356,
+        0.0005152686297253447,
+        0.0020705323683795447,
+        -0.00020695135513644226
+      ],
+      "nine_mock_vs_observed_RANDOM_even_ramp_max_abs_descriptive": {
+        "min": 0.0006904139442630333,
+        "median": 0.001541677114967673,
+        "max": 0.0023678721604779226
+      },
+      "nine_mock_vs_observed_RANDOM_odd_injection_max_abs_descriptive": {
+        "min": 0.00008395171067536455,
+        "median": 0.0001439155126368441,
+        "max": 0.00020651857987910582
+      },
+      "max_mock_constant_even_max_abs": 7.186989854158013e-17,
+      "max_mock_linear_superposition_abs": 2.7755575615628914e-17,
+      "max_replay_matrix_summary_error": 0,
+      "max_replay_ramp_summary_error": 1.6263032587282567e-18
+    }
+  },
+  "observed_galaxy_rows_read": false,
+  "observed_odd_data_vector_read": false,
+  "new_catalogue_selection_or_veto_applied": false,
+  "full_historical_ELG_mask_certified": false,
+  "physical_LRG_ELG_pair_window_certified": false,
+  "mock_galaxy_selection_null_test_completed": false,
+  "inferential_18D_covariance_computed": false,
+  "not_a_detection_or_exclusion": true,
+  "interpretation": "Flat even input preserves odd parity up to numerical precision; within-coarse-bin even radial gradients produce conditional even-to-odd finite-bin mixing around 0.004–0.006 for THIS arbitrary unitless synthetic input at observed random-only operator, nine mock window responses differ. Nonphysical probe amplitude must not be treated as real wake or selection bias prior.",
+  "next_gate": "Separate preregistered same-72-source mock-galaxy selection-mismatch +/-5pct ELG RANDOM radial weight-only stress test with exact original A-02 sample/hist replay; requires user local WSL raw FITS only, no observed rows."
+}
