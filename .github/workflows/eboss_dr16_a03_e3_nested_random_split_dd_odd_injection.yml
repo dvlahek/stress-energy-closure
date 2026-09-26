@@ -1,0 +1,30 @@
+name: eBOSS DR16 A-03E3 nested mock RANDOM finite-density and signed DD synthetic injection SOURCE-ONLY
+
+on:
+  push:
+    branches:
+      - audit/eboss-elg-bit8-ra-orientation-20260925
+    paths:
+      - 'scripts/audit_eboss_dr16_a03_e3_nested_random_split_dd_odd_injection.py'
+      - 'source_data/eboss_dr16_a03_e3_nested_mock_random_split_synthetic_dd_injection_protocol_2026-09-26.json'
+      - '.github/workflows/eboss_dr16_a03_e3_nested_random_split_dd_odd_injection.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  preregistered-parent-and-pure-synthetic-controls-NO-FITS:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install original numerical dependencies
+        run: python -m pip install 'numpy>=1.24,<2.4' 'astropy>=6,<8' 'scipy>=1.11,<2'
+      - name: Compile preregistered E3 runner
+        run: python -m py_compile scripts/audit_eboss_dr16_a03_e3_nested_random_split_dd_odd_injection.py
+      - name: Check immutable E2 parent and nested random, pair-injection, sparse RR negative controls
+        run: python -u scripts/audit_eboss_dr16_a03_e3_nested_random_split_dd_odd_injection.py --self-test
