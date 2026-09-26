@@ -25,8 +25,8 @@ ROOT = Path(__file__).resolve().parents[1]
 PROTOCOL = ROOT / "source_data/eboss_dr16_ezmock0001_galaxy_raw_bytes_protocol_2026-09-26.json"
 PASS = "EZMOCK0001_FOUR_GALAXY_RAW_GZIP_SOURCES_FIRST_SEEN_SHA_ONLY"
 PARTIAL = "EZMOCK0001_GALAXY_RAW_SOURCE_INCOMPLETE_STOP"
-ORDER = ((cap, tracer) for cap in ("NGC", "SGC")
-         for tracer in ("eBOSS_LRG", "eBOSS_ELG"))
+ORDER = tuple((cap, tracer) for cap in ("NGC", "SGC")
+              for tracer in ("eBOSS_LRG", "eBOSS_ELG"))
 GZIP_PREFIX = bytes((31, 139, 8))
 
 
