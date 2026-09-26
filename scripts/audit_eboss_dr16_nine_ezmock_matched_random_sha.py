@@ -320,7 +320,7 @@ def self_test(p):
         path.write_bytes(raw)
         if exact_sha(path,expected,len(raw)) != len(raw):
             raise AssertionError("Valid synthetic compressed input SHA not verified")
-        for changed,limit in ((expected[:-1]+"0",len(raw)),(expected,len(raw)-1)):
+        for changed,limit in ((expected[:-1]+("0" if expected[-1]!="0" else "1"),len(raw)),(expected,len(raw)-1)):
             try:
                 exact_sha(path,changed,limit)
             except ValueError:
