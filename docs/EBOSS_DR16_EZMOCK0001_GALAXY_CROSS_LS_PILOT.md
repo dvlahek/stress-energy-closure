@@ -200,3 +200,54 @@ Upload the unchanged local
 even on a fail-closed run. At no point open real
 observed galaxies, odd `xi`, wake matched filters or
 derive detection significance from this single mock.
+
+## First local 0001 mock-only multipole run stopped on a metadata-key regression
+
+The first local follow-up run reported
+`EZMOCK0001_MOCK_GALAXY_ODD_PROJECTION_INCOMPLETE_STOP`
+with `KeyError('pair_normalization')`. All four complete
+mock-galaxy and four complete same-realization mock-random compressed
+source SHA256 checks had already passed. The failure occurred in
+`verify_pair_reproduction`: the `oriented_pair_terms` API returns
+`(histograms, norms, metadata)`. Metadata includes
+`independently_normalized_pair_weight`, while the actual
+`pair_normalization` is in the separate `norms` dict.
+The mock-only projection never completed; **no P1/P3 numerical
+results from the failed run exist**. It did not read observed galaxies
+or the observed odd-sector vector.
+
+The exact uploaded fail-closed 334-byte JSON report,
+SHA256
+`4423ab407f5f5da67db4736623e18d29c5d77177e07c1c21e6d5023743e962e7`,
+was archived byte-identically to
+`source_data/eboss_dr16_ezmock0001_galaxy_odd_projection_failure_2026-09-26.json`;
+its Git blob is
+`fedd41a9fac42de262b264375851917270699af9`.
+It is retained as a failed-attempt provenance artifact, **not**
+a substitute for a complete run.
+
+The implementation was corrected to pass the actual independently
+returned `fnorm[label]` / `rnorm[label]` into the
+SHA-gated archived pair-reproduction check. It also validates
+the separate metadata's independent weight normalization,
+archived accepted-pair count, weighted histogram SHA256,
+and recorded normalization residual. A synthetic regression
+constructs the same public return shape with **no**
+`pair_normalization` key in metadata; its positive control
+must succeed, while tampered norms and histogram bytes
+must fail. [Corrected source-only/synthetic CI passed](https://github.com/dvlahek/stress-energy-closure/actions/runs/36232522998).
+No source hash, catalogue row count, sample seed,
+fiducial, redshift/angle/separation/μ bin or science rule
+was changed.
+
+The real local rerun retains exact source and prior-pilot
+report gates. Re-run:
+
+`cd ~/stress-energy-closure && git pull --ff-only && source .venv/bin/activate && python -u scripts/audit_eboss_dr16_ezmock0001_galaxy_odd_projection.py --self-test && python -u scripts/audit_eboss_dr16_ezmock0001_galaxy_odd_projection.py`
+
+Upload the complete or fail-closed unchanged
+`eboss_workspace/official_mask_inventory/ezmock0001_galaxy_odd_projection.json`.
+Only a successfully SHA-reproduced **mock-only**
+report may be used for the already declared descriptive
+single-mock P1/P3 projection; no statistical significance
+or observed odd access follows.
