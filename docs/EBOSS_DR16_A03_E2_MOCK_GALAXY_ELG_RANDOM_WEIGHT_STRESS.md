@@ -5,16 +5,16 @@
 ## Što je već potvrđeno
 
 - A-01: 36 realističnih mock-galaxy i 36 same-realization/cap/tracer random punih gzip SHA256 otisaka.
-- A-02: svih devet fiksnih mock ID-jeva \`0001,0125,0250,0375,0500,0625,0750,0875,1000\` × NGC/SGC prošlo je stvarni cross-LS code-transport, originalni \`0001\` reprodukciju, sve \`144/144\` RR ćelije i tracer reversal. Izvještaj je zamrznut pod punim SHA256 \`15f7668fd483d8e1329fbb9684bbdf07cb49d1974d264f9ceebd85e0156daa27\`.
+- A-02: svih devet fiksnih mock ID-jeva `0001,0125,0250,0375,0500,0625,0750,0875,1000` × NGC/SGC prošlo je stvarni cross-LS code-transport, originalni `0001` reprodukciju, sve `144/144` RR ćelije i tracer reversal. Izvještaj je zamrznut pod punim SHA256 `15f7668fd483d8e1329fbb9684bbdf07cb49d1974d264f9ceebd85e0156daa27`.
 - A-03 E0/E1: devet-mock released-RANDOM-only uvjetni finite-bin operator i unaprijed zadana sintetička even/odd injekcija prošli su, ukupno 18/18, s arhiviranim izvještajem i odvojenim manifestom. Sintetički radijalni even ramp nije fizički izmjeren wake ili stvarna sistematika.
 
 ## Što točno radi E2
 
-**Preregistrirani protokol:** \`source_data/eboss_dr16_a03_e2_mock_galaxy_elg_random_radial_weight_stress_protocol_2026-09-26.json\`.  
-**Runner:** \`scripts/audit_eboss_dr16_a03_e2_mock_galaxy_elg_random_radial_weight_stress.py\`.  
+**Preregistrirani protokol:** `source_data/eboss_dr16_a03_e2_mock_galaxy_elg_random_radial_weight_stress_protocol_2026-09-26.json`.  
+**Runner:** `scripts/audit_eboss_dr16_a03_e2_mock_galaxy_elg_random_radial_weight_stress.py`.  
 **Source-only/synthetic CI:** https://github.com/dvlahek/stress-energy-closure/actions/runs/36266710895 — **success**. CI nije pristupio lokalnim pravim mock FITS datotekama i nije izračunao E2 stvarne mock slučajeve.
 
-Runner najprije provjerava originalni A-02 report, njegov izvorni protokol, nezamijenjeni kod i arhiviranu odluku o empirijskom putu. U WSL-u zatim ponovno hešira *svih 72* kompletnih izvornih gzip datoteka **prije ikojeg FITS headera ili retka**. Nijedan originalni otisak, ID ni uzorak ne smije se zamijeniti novim. Za svaki ID i kap ponovno deterministički odabire prethodnih \`600D/1200R\` po traceru, provjerava izvorne sample+chunk dijagnostike, ponovno računa sva četiri LS člana u obje orijentacije i uspoređuje svih osam originalnih weighted-pair histogram SHA i forward \`xi\` SHA iz A-02.
+Runner najprije provjerava originalni A-02 report, njegov izvorni protokol, nezamijenjeni kod i arhiviranu odluku o empirijskom putu. U WSL-u zatim ponovno hešira *svih 72* kompletnih izvornih gzip datoteka **prije ikojeg FITS headera ili retka**. Nijedan originalni otisak, ID ni uzorak ne smije se zamijeniti novim. Za svaki ID i kap ponovno deterministički odabire prethodnih `600D/1200R` po traceru, provjerava izvorne sample+chunk dijagnostike, ponovno računa sva četiri LS člana u obje orijentacije i uspoređuje svih osam originalnih weighted-pair histogram SHA i forward `xi` SHA iz A-02.
 
 Tek nakon točne reprodukcije izvorne realizacije izračunava dva **namjerno pogrešna mock-random modela**, bez novih maski i bez mijenjanja mock galaksija:
 
@@ -27,13 +27,13 @@ Fiksni interval ostaje \([0.9,1.0)\), faktor je ograničen na \([0.95,1.05]\), m
 
 Zatim projektira \(\ell=0,1,2,3\) na šest **istih** \(s\)-binova s fizički ograničenim \(\mu\in[-1,1]\) i bilježi opisne razlike \(\Delta\xi_\ell^{\pm}\) za svih 18 slučajeva. Ne postoji minimalni prag za „dobar” efekt i ne biramo povoljan znak, bin, kapu ili mock ID. Bilo koja ćelija bez RR potpore prekida projekciju tog slučaja uz poštenu evidenciju greške; bez zero-filla ili re-selekcije.
 
-**Izlazni lokalni JSON:** \`eboss_workspace/a03_empirical_window/a03_e2_mock_galaxy_elg_random_radial_weight_stress.json\`. Izvještaj se atomski ažurira po slučaju. Ako job stane, sačuvati izvorni \`INCOMPLETE_STOP\` JSON i završni ispis; ne pokretati novu varijantu s promijenjenim seedovima ili ID-jevima. Uspješni checkpointovi mogu se ponovno upotrijebiti tek nakon ponovne verifikacije svih 72 izvora.
+**Izlazni lokalni JSON:** `eboss_workspace/a03_empirical_window/a03_e2_mock_galaxy_elg_random_radial_weight_stress.json`. Izvještaj se atomski ažurira po slučaju. Ako job stane, sačuvati izvorni `INCOMPLETE_STOP` JSON i završni ispis; ne pokretati novu varijantu s promijenjenim seedovima ili ID-jevima. Uspješni checkpointovi mogu se ponovno upotrijebiti tek nakon ponovne verifikacije svih 72 izvora.
 
 ## Završni originalni rezultati, odvojeno od preregistracije
 
 **Neizmijenjeni korisnički izvještaj:** `source_data/eboss_dr16_a03_e2_mock_galaxy_elg_random_radial_weight_stress_report_2026-09-26.json`, **413 189 bajta**, SHA256 `6ef86f904bb0cdc407adabe2e125146ce4d0671ea1ac932e13d11fc481cd596a`, Git blob `8596d7322f2ec7ef164e89641958c3912f687722`. Binarno/bajtno identičan originalnom lokalnom prijenosu. **Manifest:** `source_data/eboss_dr16_a03_e2_mock_galaxy_elg_random_radial_weight_stress_uploaded_manifest_2026-09-26.json`, Git blob `7ec2536429604227b2428637ae227b53b7d42cb4`. Neovisni audit izvornog A-02 roditeljskog izvještaja i E2 sva 54 slučaja, uključujući negativne provjere mogućeg izmijenjenog SHA ili otvaranja observed odd, [prošao je u CI-u](https://github.com/dvlahek/stress-energy-closure/actions/runs/36269865486). Stvarni E2 lokalan je korisnikov rad; CI samo reaudita arhivirani izvještaj, ne ponovno računa FITS parove.
 
-**Svi fiksni ulazi i slučajevi:** 9 ID-jeva × NGC/SGC = 18/18, tri scenarija svaki, 0 prijavljenih grešaka, svih `144/144` RR-podržanih ćelija; maksimalni `|ξ_{m LRG→ELG}(s,μ)−ξ_{m ELG→LRG}(s,−μ)| = 1.7763568394002505×10⁻¹⁵`. Najveća stvarna primijenjena random-težinska promjena ostaje manje od `±0.05`, a originalni A-02 podaci i svi odabrani redci ostaju nepromijenjeni.
+**Svi fiksni ulazi i slučajevi:** 9 ID-jeva × NGC/SGC = 18/18, tri scenarija svaki, 0 prijavljenih grešaka, svih `144/144` RR-podržanih ćelija; maksimalni `|ξ_{\rm LRG→ELG}(s,μ)−ξ_{\rm ELG→LRG}(s,−μ)| = 1.7763568394002505×10⁻¹⁵`. Najveća stvarna primijenjena random-težinska promjena ostaje manje od `±0.05`, a originalni A-02 podaci i svi odabrani redci ostaju nepromijenjeni.
 
 **Deskriptivni odgovor na umjetnu +5 %-rampu** (po 9 mock ID-jeva zasebno u svakoj kapi, statistika je medijan `max_s |Δξ_ℓ(s)|`, a u zagradi najveća zabilježena vrijednost po tim ID-jevima):
 
