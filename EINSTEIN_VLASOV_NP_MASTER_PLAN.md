@@ -1,6 +1,6 @@
 # EinsteinVlasovNP — glavni istraživački plan
 
-**Verzija:** 1.0 · **Datum odluke:** 26. 9. 2026. · **Status:** aktivan plan, ne znanstveni rezultat  
+**Verzija:** 1.1 · **Datum odluke:** 26. 9. 2026. · **Status:** aktivan plan, ne znanstveni rezultat  
 **Kanonski dokument:** \`EINSTEIN_VLASOV_NP_MASTER_PLAN.md\` u repozitoriju \`dvlahek/stress-energy-closure\`.  
 **Radna grana:** \`audit/eboss-elg-bit8-ra-orientation-20260925\`, isključivo **draft PR #1**. Ne mijenjati \`main\` dok za to ne postoji zasebna odluka.
 
@@ -25,7 +25,7 @@ Einstein–Vlasov identifikabilnost razvijamo kroz **dvije neovisne istraživač
 - Devet unaprijed odabranih mock realizacija služi *code-transport* auditu. Centrirana uzoračka kovarijanca iz njih ima rang najviše \(8\), pa **ne može dati punorangovnu 18D inferencijsku kovarijancu**.
 - Cijeli rad odvija se u draft PR #1 dok se ne odluči drukčije; **nikad automatski ne mijenjati \`main\`**.
 
-## 2. Stanje zabilježeno pri donošenju plana (26. 9. 2026.)
+## 2. Stanje projekta i zabilježena odluka (26. 9. 2026.)
 
 **Završeno i arhivirano:**
 
@@ -36,7 +36,7 @@ Einstein–Vlasov identifikabilnost razvijamo kroz **dvije neovisne istraživač
 - Iz izvornog uspješnog GitHub Actions audita od 24. 9. izdvojene su prethodne reference punog SHA256 za svih **36 odgovarajućih mock-random gzip izvora**.
 - Povijesni \`brickmask\` \`v1.0\` izdanje iz rada i kasniji javni kod razlikovani su na razini izvora; početni ELG bit-8 katalog-level test reproducirao je 15 oznaka, ali povijesno izvršena puna proizvodna maska nije autentificirana.
 
-**Aktivni, još otvoreni zadatak:** lokalni audit svih 36 odgovarajućih random datoteka. Posljednji priloženi međukorak potvrdio je **17/36**; korisnik je nastavio \`--download-missing\` posao. To je *snimka*, ne tvrdnja o njegovom konačnom statusu. Najnoviji nepromijenjeni checkpoint i završni ispis imaju prednost pred ovom brojkom.
+**Zatvoren A-01 — v1.1 (26. 9. 2026.):** lokalni audit svih **36/36** odgovarajućih mock-random gzip datoteka uspješno je dovršen, svih 36 punih SHA256 otisaka odgovara ranijem izvornom auditu od 24. 9.; 4 izvora ponovno su korištena iz predmemorije, 32 su preuzeta s istih prethodno zamrznutih službenih URL-ova. Točan korisnički izvještaj od **45 653 bajta**, SHA256 \`229a107a44fa1e8665c39acc9050982f8a0fcc39d15cc35e5bbc9bc272116c47\`, bajtno je identično arhiviran u \`source_data/eboss_dr16_nine_ezmock_matched_random_sha_report_2026-09-26.json\`; njegov odvojeni manifest je \`source_data/eboss_dr16_nine_ezmock_matched_random_sha_uploaded_manifest_2026-09-26.json\`. Sada je autentificirano **72/72 izvorišnih komprimiranih datoteka** (36 mock galaksije + 36 njihovih originalnih randoma); to još nije validacija fizičkog LRG×ELG prozora, inferencijske kovarijance ili opaženog odd signala. **Aktivni zadatak: A-02**, zasebno preregistrirati i validirati 9-ID mock-galaxy code-transport prije pristupa novim redcima.
 
 **Arhive:** detalji, originalni JSON-ovi, protokoli i prethodne neuspjele provjere nalaze se u \`source_data/\`; operativni slijed je opisan u \`docs/EBOSS_DR16_NINE_EZMOCK_GALAXY_SOURCE_FOLLOWUP.md\`. Ne duplicirati u ovom dokumentu promjenjive hash-popise. Pri povratku na projekt najprije učitati navedene izvorne manifeste, ne pamtiti njihove otiske napamet.
 
@@ -44,7 +44,7 @@ Einstein–Vlasov identifikabilnost razvijamo kroz **dvije neovisne istraživač
 
 ### A1. Dovršiti ulaznu i algoritamsku provjeru
 
-**Sljedeći neposredni korak:** dovršiti upravo pokrenuti 36-random source-only job. Sačuvati završni ispis i neizmijenjeni \`eboss_workspace/official_mask_inventory/ezmock_nine_matched_random_source_sha.json\`; neovisno potvrditi svih 36 starih referentnih SHA256s, njegovu punu duljinu i status, potom arhivirati točne bajtove i zaključati zaseban manifest. Ako job stane, koristiti postojeći checkpoint, bez promjene ID-ja i bez re-pinninga. Nema FITS redaka u ovom koraku.
+**Ulazni SHA gate završen 26. 9. 2026.:** svih 36 mock-galaxy i svih 36 njima uparenih same-realization mock-random izvora sada imaju verzionirane, autentificirane pune gzip SHA256 identitete. Završni mock-random izvještaj i manifest pohranjeni su u \`source_data/eboss_dr16_nine_ezmock_matched_random_sha_report_2026-09-26.json\` i \`source_data/eboss_dr16_nine_ezmock_matched_random_sha_uploaded_manifest_2026-09-26.json\`. Novi mock-galaxy FITS redci još se ne otvaraju: prije njih je zaseban A-02 protokol i ponovno lokalno heširanje svih 72 binarnih izvora.
 
 **Zatim:** zasebno preregistrirati transport istoga cross-LS koda na ranije izabranih devet realistic mock-galaxy realizacija sa *svojim* odgovarajućim randomima. Zadržati \([0.9,1.0)\), točne prethodne geometrijske binove, LOS, kutni uvjet, produkt težina, \(600D/1200R\), sjemenke i orijentaciju. Izvještavati sva odstupanja i nepodržane RR ćelije; ne izbacivati nepovoljne realizacije. Prije prvog dekodiranja redaka potvrditi **svih 72 odgovarajuća puna mock-galaxy/random gzip identiteta** u zaključenim manifestima.
 
@@ -124,7 +124,7 @@ Liniju B ne vezati uz rezultat linije A post hoc. Ako pronađeni jači opservabi
 
 | Oznaka | Zadatak / artefakt | Dokaz potreban za zatvaranje |
 |---|---|---|
-| A-01 | 36 uparenih random SHA za fiksnih devet ID-jeva | Neizmijenjeni završni lokalni JSON, svih 36 ranije fiksiranih SHA podudarnosti, arhiva i manifest |
+| A-01 **ZAVRŠEN 26. 9. 2026.** | 36 uparenih random SHA za fiksnih devet ID-jeva | Točan neizmijenjeni 45 653-bajtni JSON, 36/36 potvrđenih starih SHA, bajtno identična arhiva i zaključani manifest |
 | A-02 | Devet-mock real-galaxy code transport | Preregistrirani protokol, svi 72 input SHA, deterministički estimator i nepobrisani fail slučajevi |
 | A-03 | Empirijski/proizvodni LRG×ELG prozor | Tracer-specifičan provenijencijski contract, testovi uvjetne random selekcije i poštena ograničenja fizičke maske |
 | A-04 | 18D mock inferencija | Dovoljno nezavisnih mockova, konvergencija/regularizacija/tail kalibracija, blind injection i false-positive kontrole |
@@ -135,7 +135,7 @@ Liniju B ne vezati uz rezultat linije A post hoc. Ako pronađeni jači opservabi
 | B-03 | Realni opservabil i noise | Fizikalna projekcija, instrument/survey, nuisance, validirana \(C_\mathcal O\), neovisni test |
 | B-04 | Integracija u znanstveni rad | Rezultat samo u dokazivom dosegu, obje linije pravilno odvojene |
 
-**Trenutačni prioritet:** A-01 do njegovog potpunog izvještaja. Linija B može se razvijati paralelno teorijski i sintetički, ali ne smije koristiti još zapečaćeni A-05 odd vektor za podešavanje modela.
+**Trenutačni prioritet (v1.1): A-02 — 9-ID mock-galaxy code-transport, nakon zatvorenog A-01 ulaznog SHA gatea.** Linija B može se razvijati paralelno teorijski i sintetički, ali ne smije koristiti još zapečaćeni A-05 odd vektor za podešavanje modela.
 
 ## 7. Kako ovaj plan ponovno koristiti i održavati
 
@@ -147,3 +147,4 @@ Liniju B ne vezati uz rezultat linije A post hoc. Ako pronađeni jači opservabi
 ### Dnevnik verzija
 
 - **v1.0 — 26. 9. 2026.** Zabilježena odluka o dvjema linijama, razdvojene detekcija/isključenje/closure/modelni response, zamrznut trenutačni eBOSS/eZmock gate i definirani prolazni uvjeti za budući observable i inferenciju.
+- **v1.1 — 26. 9. 2026.** Završni 36/36 original-random izvorni audit arhiviran i zaključen, svih 72 mock-galaxy/random datoteka autentificirano na razini komprimiranih bajtova, A-01 zatvoren i sljedeći prioritet prebačen na zasebno preregistrirani A-02 mock-galaxy code-transport. Bez promjene dviju znanstvenih linija i bez otvaranja opaženog odd vektora.
