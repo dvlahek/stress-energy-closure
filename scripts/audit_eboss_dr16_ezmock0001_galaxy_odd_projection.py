@@ -72,8 +72,10 @@ def check_protocol(p):
         or p["theta_min_deg"] != prior["geometry"]["theta_min_deg"]
         or p["fiducial"] != PRIMARY_GEOMETRY
         or p["legendre_orders"] != [0,1,2,3]
+        or p["observed_galaxy_rows_read"] is not False
         or p["observed_odd_data_vector_read"] is not False
-            if "observed_odd_data_vector_read" in p else False
+        or p["new_science_selection_applied"] is not False
+        or p["mock_covariance_computed"] is not False
     ):
         raise ValueError("Frozen parent result, fixed geometry or odd projection protocol changed")
     old = json.loads(raw)
