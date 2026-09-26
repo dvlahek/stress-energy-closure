@@ -27,3 +27,87 @@ The result is `eboss_workspace/official_mask_inventory/ezmock_nine_galaxy_source
 The existing nine-mock **random-only** audit previously validated its own data sources and estimator algebra. It does not automatically authenticate the companion 32 new mock-random compressed files on the user's local runtime. Before pairing any of the new mock galaxies, rehash and freeze **all same-realization, tracer- and cap-matched mock randoms** under the earlier random source protocol. Only then can a separately preregistered nine-ID galaxy *code-transport* run use the same `[0.9,1.0)`, `600D/1200R`, 6×24 `(s,mu)`, angular cut and midpoint LOS without after-the-fact tuning. Missing RR support must be reported, not fabricated by zero-fill or discarding an unfavorable mock.
 
 Nine independent mock realizations cannot yield an invertible, scientifically qualified **18-dimensional** sample covariance: the centered sample covariance has rank at most eight. This cohort is a preliminary source/implementation and fixed-response diagnostic only. A meaningful physical mock null and covariance require a separately designed, much larger source-pinned ensemble and a validated published LRG×ELG empirical random pair window. Neither this audit nor mock odd multipoles authorize reading the observed odd signal.
+
+## Completed actual 36 mock-galaxy source inventory
+
+The user completed the frozen local source-only nine-ID run.
+The exact uploaded `ezmock_nine_galaxy_source_raw_sha.json`
+is **37,105 bytes**, SHA256
+`2c6b55bf5611dc71449ecbbfc2dedf545f2d22250147ed08f6a072536b50f06c`.
+It was archived byte-identically as
+`source_data/eboss_dr16_nine_ezmock_galaxy_source_sha_report_2026-09-26.json`
+(Git blob SHA1 `43be7aae5b06580867bee4fff08292ebeee468bf`).
+Its separately frozen all-36-data-source input manifest is
+`source_data/eboss_dr16_nine_ezmock_galaxy_source_sha_uploaded_manifest_2026-09-26.json`.
+Four original `0001` full-gzip source SHAs were reverified;
+the 32 newly registered exact source filenames/HTTPS URLs,
+gzip magic, Content-Length and full SHA256s were verified.
+The extra 32 sources total **64,937,949 compressed bytes**
+and the 36-galaxy-source inventory totals **73,245,570 bytes**.
+No new mock-galaxy rows or random rows were read during
+this source stage. The 32 first-seen source checksums are
+local byte provenance, **not** independently released
+official SDSS checksums.
+
+## Exact original nine-ID random SHA reference recovered
+
+The original successful fixed nine-mock GitHub Actions
+[window ensemble, run 36017670812](https://github.com/dvlahek/stress-energy-closure/actions/runs/36017670812)
+contains artifact `eboss-dr16-nine-mock-window-ensemble`,
+artifact ID `10815013322`. Its archived ZIP SHA256 is
+`a3b23502073e2a2e46211582d13ee4c1e45cd4984fdedf1ef36df4e0c5a8cda0`.
+The exact `ninemock_window_ensemble.json` ZIP member
+is 337,280 bytes, SHA256
+`8702adaf1284068c26e79555feb76c7a709df9a265f9e2194409cc4161602e01`,
+with parent revision commit
+`054005edc6ca193176b129e1951e4bd3ce8751a7`.
+Its 18 cap-by-realization cases contain **36 pre-existing**
+full-compressed-file LRG/ELG mock-random SHA256s.
+All 12 values from the earlier independently committed
+`0001/0500/1000` mock-random inventory match.
+The extracted, per-file original SHA references are pinned
+in `source_data/eboss_dr16_nine_ezmock_random_reference_sha_from_20260924_artifact.json`.
+These are **earlier source identities**, not first-seen SHAs
+selected using the 2026-09-26 mock odd values.
+
+## New separate random-only full-source verification
+
+The new
+`source_data/eboss_dr16_nine_ezmock_matched_random_sha_protocol_2026-09-26.json`
+freezes the original 36 random-source keys, original
+artifact identity, exact successful local 36-galaxy-source
+uploaded report/manifest, approved local cache paths, official
+same-realization/cap/tracer `ran.fits.gz` URLs,
+128 MiB compressed cap **per random** and 4 GiB overall.
+`scripts/audit_eboss_dr16_nine_ezmock_matched_random_sha.py`
+checks all original source/manifests and the byte-identical
+user's local 36-galaxy source report **before** touching
+any new random binary. It then rehashes complete random
+gzip bytes against the immutable **2026-09-24 reference**,
+reusing known cache locations and checkpointing each success.
+It does **not** decompress FITS, open mock/observed rows
+or compute pairs/odd statistics. A prior-hash mismatch
+stops the audit; no repinning or substitute ID is allowed.
+
+By default, this runner **does not download missing
+random files**. It produces an incomplete checkpoint
+listing the first missing fixed source. Missing official
+inputs can only be acquired using the separate opt-in
+`--download-missing` flag; such downloads must match
+the already frozen 2026-09-24 SHA values. These files can
+be collectively several gigabytes, so the cached-only
+pass avoids unexpected bandwidth or storage.
+
+[Archive/manifest and synthetic CI passed](https://github.com/dvlahek/stress-energy-closure/actions/runs/36234497932);
+that CI opened no real random FITS. A single WSL cached-only
+check is:
+
+`cd ~/stress-energy-closure && git pull --ff-only && source .venv/bin/activate && python -u scripts/audit_eboss_dr16_nine_ezmock_matched_random_sha.py --self-test && python -u scripts/audit_eboss_dr16_nine_ezmock_matched_random_sha.py`
+
+Upload the unchanged result
+`eboss_workspace/official_mask_inventory/ezmock_nine_matched_random_source_sha.json`
+even on an incomplete run. A future completed nine-ID
+galaxy estimator pilot must first freeze the exact successful
+random-only upload. Do **not** infer a physical mask, observed
+odd detection or 18D covariance from this source provenance;
+nine mock realizations yield sample covariance rank at most 8.
