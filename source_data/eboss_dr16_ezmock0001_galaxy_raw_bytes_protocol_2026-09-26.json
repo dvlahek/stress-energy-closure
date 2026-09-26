@@ -1,0 +1,93 @@
+{
+  "study": "Blinded eBOSS DR16 fixed realistic EZmock 0001 galaxy-data raw source-byte pilot, before galaxy estimator",
+  "registered_on": "2026-09-26",
+  "predeclared_before_THIS_pilot_mock_galaxy_row_or_pair_read": true,
+  "scope": "Only four official realistic EZmock 0001 galaxy-data gzip FITS files (LRG/ELG, NGC/SGC); raw full source bytes SHA256 and gzip magic only. Do not decode FITS headers or rows at this stage.",
+  "parent_fixed_nine_mock_window_protocol": "source_data/eboss_dr16_predeclared_9mock_window_pilot_2026-09-24.json",
+  "parent_previous_mock_header_audit": "source_data/eboss_dr16_realistic_mock_header_audit_2026-09-24.json",
+  "parent_previous_3id_mock_data_selection_audit": "source_data/eboss_dr16_realistic_mock_selection_audit_2026-09-24.json",
+  "parent_pinned_0001_random_source_audit": "source_data/eboss_dr16_realistic_mock_random_selection_audit_2026-09-24.json",
+  "parent_completed_nine_mock_random_only_estimator_audit": "source_data/eboss_dr16_ninemock_random_only_cross_ls_2026-09-25.json",
+  "mock_realization_id": 1,
+  "prior_ensemble_ids": [
+    1,
+    125,
+    250,
+    375,
+    500,
+    625,
+    750,
+    875,
+    1000
+  ],
+  "caps": [
+    "NGC",
+    "SGC"
+  ],
+  "tracers": [
+    "eBOSS_LRG",
+    "eBOSS_ELG"
+  ],
+  "role": "dat",
+  "official_base_url": "https://data.sdss.org/sas/dr17/eboss/lss/EZmocks/v1_0_0/realistic/",
+  "filename_rule": "{tracer}/dat/EZmock_realistic_{tracer}_{cap}_v7_0001.dat.fits.gz",
+  "exact_expected_header_rows_by_cap_tracer": {
+    "NGC/eBOSS_LRG": 129262,
+    "NGC/eBOSS_ELG": 83747,
+    "SGC/eBOSS_LRG": 82921,
+    "SGC/eBOSS_ELG": 90650
+  },
+  "max_compressed_bytes_per_file": 16777216,
+  "max_total_compressed_bytes": 67108864,
+  "download_policy": "For each exact predeclared HTTPS URL, bounded complete HTTP response with Accept-Encoding identity and gzip magic; record full compressed file SHA256, size and official returned URL as first-seen source provenance. Previously SHA-pinned exact source file may be reused; do not replace or silently repin on mismatch. The original three-ID CI artifact may contain independently earlier raw SHAs but its compact committed summary does not enumerate these four mock galaxy SHA values.",
+  "local_quarantine_dir": "eboss_workspace/quarantine_realistic_ezmock0001_galaxies",
+  "local_report": "eboss_workspace/official_mask_inventory/ezmock0001_galaxy_data_raw_sha.json",
+  "next_preregistered_estimator_geometry": {
+    "orientation": "LRG_to_ELG",
+    "los": "midpoint",
+    "fiducial": "published_multitracer",
+    "theta_min_deg": 0.05,
+    "separation_edges_mpc_h": [
+      20,
+      40,
+      60,
+      80,
+      100,
+      120,
+      140
+    ],
+    "mu_edges": "np.linspace(-1-1e-7,1+1e-7,25)",
+    "candidate_redshift_bins": [
+      [
+        0.6,
+        0.7
+      ],
+      [
+        0.7,
+        0.8
+      ],
+      [
+        0.8,
+        0.9
+      ],
+      [
+        0.9,
+        1
+      ]
+    ],
+    "first_pair_count_pilot_bin": [
+      0.9,
+      1
+    ],
+    "per_tracer_weight": "WEIGHT_SYSTOT*WEIGHT_CP*WEIGHT_NOZ*WEIGHT_FKP",
+    "systot_numerical_zero_abs": 1e-12,
+    "matching_randoms": "exact released realistic EZmock 0001 tracer-and-cap-specific ran files, already separately SHA256-pinned in previous mock-random audit",
+    "sample_policy": "First pilot may use a separately fixed downsampling seed/count for computational feasibility, explicitly diagnostic only, not a physical covariance; no new analysis selection based on mock odd amplitudes."
+  },
+  "no_current_FITS_header_or_mock_galaxy_row_read": true,
+  "no_observed_galaxy_or_observed_odd_read": true,
+  "no_new_mask_or_cut": true,
+  "no_covariance_or_odd_significance": true,
+  "physical_pair_window_certified": false,
+  "expected_result_values": "NO mock galaxy data SHA256 are expected or inferred before the next source-only run; first seen hashes must be archived separately and then frozen before permitted row decoding."
+}
