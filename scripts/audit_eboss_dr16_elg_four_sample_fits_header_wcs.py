@@ -50,8 +50,16 @@ def verified_parent(p):
         or p["parent_index_report_sha256"] !=
            prior["parent_offline_index_report_sha256"]
         or p["expected_family_order"] != list(CHUNK_ORDER)
-        or p["four_predeclared_compressed_source_fingerprints"] !=
-           manifest["sample_sha256_first_seen_not_official_reference"]
+        or p["four_predeclared_compressed_source_fingerprints"] != {
+            chunk: {
+                "filename": item["filename"],
+                "bytes": item["compressed_bytes"],
+                "sha256": item["compressed_sha256"],
+            }
+            for chunk, item in manifest[
+                "sample_sha256_first_seen_not_official_reference"
+            ].items()
+        }
         or prior["selected_filename_by_chunk"] != {
             chunk: value["filename"] for chunk, value in
             p["four_predeclared_compressed_source_fingerprints"].items()
