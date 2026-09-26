@@ -1,0 +1,105 @@
+{
+  "study": "eBOSS DR16 LRG×ELG A-03 selection/window provenance decision and acceptance criteria after successfully archived A-02 18/18 galaxy cross-LS code transport",
+  "registered_on": "2026-09-26",
+  "registration_timing": "Before any new observed-galaxy or odd-vector read, any new science veto, any extrapolation of four image samples to the entire ELG mask, or any physical-mask/window certification.",
+  "canonical_master_plan": "EINSTEIN_VLASOV_NP_MASTER_PLAN.md",
+  "master_plan_version": "1.2",
+  "pr_number": 1,
+  "pr_is_draft": true,
+  "target_branch": "audit/eboss-elg-bit8-ra-orientation-20260925",
+  "must_not_update_main": true,
+  "completed_A02": {
+    "report": "source_data/eboss_dr16_nine_ezmock_galaxy_cross_ls_code_transport_report_2026-09-26.json",
+    "report_SHA256": "15f7668fd483d8e1329fbb9684bbdf07cb49d1974d264f9ceebd85e0156daa27",
+    "report_bytes": 151892,
+    "uploaded_manifest": "source_data/eboss_dr16_nine_ezmock_galaxy_cross_ls_code_transport_uploaded_manifest_2026-09-26.json",
+    "uploaded_manifest_git_blob_sha1": "b67865d353c7555a0db29fa99610f01e232fce6e",
+    "completed_fixed_mock_id_cap_cases": 18,
+    "full_72_gzip_SHA_before_any_new_mock_FITS_row": true,
+    "min_RR_supported_cells_per_case": 144,
+    "max_abs_reverse_xi_residual": 1.7763568394002505e-15,
+    "does_not_certify_production_mask_or_physical_window": true,
+    "does_not_provide_inferential_18D_covariance": true
+  },
+  "existing_selection_source_evidence": {
+    "primary_published_reference": {
+      "url": "https://academic.oup.com/mnras/article/500/3/3254/5942664",
+      "doi": "10.1093/mnras/staa3336",
+      "scope": "Raichoor et al. DR16 ELG LSS, Sec 3.1/3.2/Table 5/Data Availability: mask bits1–7 from brickmask tag v1.0; custom Python bits8–11 and two non-bitcoded bad eboss22 plates available on request."
+    },
+    "production_lineage_gate": "source_data/eboss_dr16_elg_production_lineage_gate_2026-09-26.json",
+    "production_lineage_gate_git_blob_sha1": "6228f994211f1fcf1f9912ee92d8c0a133435681",
+    "source_version_comparison": "source_data/eboss_dr16_elg_brickmask_v1_0_source_comparison_protocol_2026-09-26.json",
+    "source_version_comparison_git_blob_sha1": "91868c4ee3a2942a754e3ce02ca8fb37b991a98c",
+    "brickmask_paper_tag_v1_0_annotated_tag": "3a94b72f4ee39c215cab713cf464d54106899838",
+    "brickmask_paper_tag_v1_0_commit": "4c0f940934ff8c4e6b0f0c709b3093383abff8d0",
+    "later_public_checkout_commit": "b9eb684a579b56ec3dbdb46549224be7e3fa2830",
+    "later_public_extra_script_git_blob_sha1": "d66c5e6ed6a8260b5e8dcc840795485345392ced",
+    "later_public_README_git_blob_sha1": "98514607195e01f035e4898f3a647af402077e53",
+    "later_public_README_credit": "README acknowledges Arnaud de Mattia shared original extra maskbit eBOSS ELG script with public brickmask author. This is a lead for source request, not proof later helper is DR16 production original.",
+    "released_ELG_bit8_label_audit_manifest": "source_data/eboss_dr16_elg_full_bit8_label_uploaded_report_manifest_2026-09-25.json",
+    "released_ELG_bit8_label_manifest_git_blob_sha1": "7cc56170b361f3356c5fca353b54c988ea161246",
+    "released_full_catalogue_bit8_native_RA_TP_FP_FN_TN": [
+      15,
+      0,
+      0,
+      269163
+    ],
+    "released_full_catalogue_bit8_label_match_not_production_executable_proof": true,
+    "four_image_sample_FITS_not_full_ELG_19381_image_certification": true,
+    "published_bad_plate_identifier_reference": "source_data/eboss_dr16_elg_eboss22_badplate_published_ids_2026-09-26.json",
+    "published_bad_plate_identifier_reference_git_blob_sha1": "3b57a21580d24d92882026778d6222c95ea0322f",
+    "published_bad_plate_pairs": [
+      {
+        "PLATE": 9430,
+        "MJD": 58112
+      },
+      {
+        "PLATE": 9395,
+        "MJD": 58113
+      }
+    ],
+    "plate_footprint_geometry_and_release_acceptance_not_proven": true
+  },
+  "historical_source_request": {
+    "draft": "docs/EBOSS_DR16_ELG_PRODUCTION_SOURCE_REQUEST.md",
+    "suggested_recipients": [
+      "Anand Raichoor",
+      "Arnaud de Mattia"
+    ],
+    "prior_public_paper_explicitly_says_custom_Python_available_on_request": true,
+    "sent": false,
+    "transferred_reply_or_files_available": false,
+    "required_return": [
+      "Exact raw supplemental Python/configuration/source used for DR16 bits8–11 (not only a later helper), original release/version/commit/date and published catalogue versions",
+      "Exact 37-pixel bit8 coordinate convention/HEALPix settings actually run and direct released VETOMASK/bit8 mapping with stage/order",
+      "Exact three polygon inputs, overlap/boundary logic and priority/acceptance for bits9–11",
+      "Exact geometry, two PLATE-MJD source identifiers, any priority/overlap and input/output release application for non-bitcoded eboss22 bad plates",
+      "Independent original DATA and RANDOM invocations/outputs including chunk, imaging depth and shuffled-z assignment where relevant",
+      "Provenance/file version and source byte identities or attributable source reference"
+    ],
+    "intake_guard": "On receipt first archive untouched bytes, attribution, original URL/message ID and full SHA256 with a new prospectively registered source-only check; never immediately run on published data/randoms or tune against observed odd."
+  },
+  "two_nonconflated_paths": {
+    "historical_full_mask_reconstruction": {
+      "status": "NOT_CERTIFIED",
+      "can_certify_only_if": "Attributable exact historical production source/invocation, released DATA and RANDOM acceptance geometry/version, original raw source fingerprints, independent reproduction and documented exclusions/overlaps. Public 2023 helper plus 15/15 label match and four sample pixels are insufficient.",
+      "forbidden_fallback": "Do not fabricate full sky mask, plate circular radius, effective LRG∩ELG hard mask or vintage executable."
+    },
+    "published_random_empirical_pair_window": {
+      "status": "POTENTIAL_LIMITED_PATH_NOT_YET_VALIDATED",
+      "scope": "The released, independently SHA-pinned LRG and ELG tracer-specific randoms and cross R_L R_E pair counts can define an empirical, finite-catalogue pair window under the published selection, with explicit completeness/depth-conditioned radial and redshift-shuffle effects.",
+      "minimum_future_validation": "An independently preregistered blind random-galaxy injection/recovery and selection-systematics model with correct cap/chunk/depth conditionality, finite-random noise, null controls and quantified uncertainty; no claim of continuous exact physical hard-mask geometry if source unrecovered.",
+      "cannot_claim": "Historical mask execution reproduced, all ELG brick pixels certified, or empirical random window alone implies physical odd null/covariance."
+    }
+  },
+  "parallel_A04_planning": "docs/EBOSS_DR16_A04_COVARIANCE_FEASIBILITY_2026-09-26.md",
+  "new_observed_galaxy_rows_read": false,
+  "observed_odd_data_vector_read": false,
+  "new_science_selection_applied": false,
+  "physical_ELG_production_mask_certified": false,
+  "physical_LRG_ELG_pair_window_certified": false,
+  "valid_18D_inferential_covariance_certified": false,
+  "unblinding_authorized": false,
+  "next_bounded_action": "Source-only regression audit of this decision, update and hold author-source draft pending explicit user approval to send, and prepare A-04 finite resource/coverage plan WITHOUT new mock downloads or observed analysis."
+}
