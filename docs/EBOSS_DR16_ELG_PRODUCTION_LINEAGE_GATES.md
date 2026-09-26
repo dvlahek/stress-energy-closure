@@ -27,10 +27,83 @@ LRG randoms have a distinct MANGLE/completeness selection. The LRG×ELG random c
 | ELG BRICKMASK bits 1–7 | Pinned C `brickmask` code and four audited image samples; full four-family filename list of 19,381 entries | Authenticated version/configuration, source SHA inventory as needed and original published *data and random* acceptance invocation. Four images do not certify the remaining 19,377. |
 | Extra bit 8 | Pinned 37-pixel public script and 15/15 released catalogue label match for native RA at exact catalogue positions | Authenticated release production Python/version or independently verified pre-veto output containing positive **and negative** discriminating bit-8 positions and an explicit RA/DEC convention. Do not silently 'repair' public helper source. |
 | Extra polygon bits 9–11 | Exact public source mapping and three SHA-pinned polygon files; fixed random-only 80k pilot | Original release acceptance logic, boundary/overlap handling and exhaustive or separately registered released-random checks, without retroactive veto. |
-| `eboss22` low-quality plates | Published distinct **non-bitcoded** exclusion | Exact release plate identifiers and *original production geometry/application*, applied to data/randoms. Do not infer plate-footprint polygons from retained catalogue occupancy. |
+| `eboss22` low-quality plates | Published **non-bitcoded** exclusion with exact PLATE-MJD identifiers `9430-58112` and `9395-58113`; published 13.9 deg² / 3,123 targets | Original production *region geometry and overlap/priority rule*, with release-versioned application to data/randoms. Identifiers alone are not a plate-footprint polygon. |
 | ELG radial/selection randoms | Released tracer-specific catalogues and already passed random-only fine weighted `n(z)` checks | Historical angular/radial construction and imaging-depth-bin assignment provenance, or a clearly limited released-random empirical window validation with explicit scope. |
 | Joint cross-estimator | Published random-only and nine-mock window pilots already archived | Mock-galaxy cross-estimator closure and sufficient joint 18D covariance under the **released** tracer-specific randoms; no observed odd vector. |
 
 The exact known source/aggregate relationships and deliberately open statuses are machine-readable in `source_data/eboss_dr16_elg_production_lineage_gate_2026-09-26.json`. An offline AST/SHA gate, `scripts/audit_eboss_dr16_elg_public_source_lineage.py`, verifies the public helper and archived early evidence without opening FITS, pixels, galaxies, randoms or odd data. Synthetic tampering of bit/RA source fails closed. [Its CI check passed](https://github.com/dvlahek/stress-energy-closure/actions/runs/36223996369).
 
 **Immediate source request, not a new selection:** obtain the historical production script/configuration or a versioned official mask reference for bits 8–11 and both low-quality `eboss22` plates, including exact release, original byte fingerprints, RA/DEC convention and its application to data and randoms. If unavailable, document the missing provenance explicitly and keep any future released-random-defined cross-window validation conceptually distinct from a continuous physical-mask reconstruction. Preserve PR #1 as draft and the observed odd vector unopened.
+
+## Paper-cited 2020 code tag compared with later public source
+
+The paper's Data Availability explicitly points to
+`cheng-zhao/brickmask` tag **`v1.0`** for bits 1–7. Its annotated
+Git tag object `3a94b72f4ee39c215cab713cf464d54106899838`
+has message **“Version for eBOSS DR16”**, date 2020-05-09 and
+resolves to commit `4c0f940934ff8c4e6b0f0c709b3093383abff8d0`.
+This is a stronger *published source-version anchor* than our
+previously pinned, later public checkout
+`b9eb684a579b56ec3dbdb46549224be7e3fa2830`
+(2023-11-08). It is NOT independent proof that the historical
+release production job actually ran the tag with any particular
+configuration. The v1.0 Git tree does **not** contain the later
+`scripts/eBOSS_ELG_extra.py` helper; therefore the 2023 vendored
+copy cannot be treated as a byte-authenticated 2020 production
+script for supplemental bits8–11.
+
+Original MIT-licensed source files and each relevant version's
+license have been archived in
+`source_data/upstream/brickmask_v1_0/` and
+`source_data/upstream/brickmask_b9eb684/`, with each copied
+Git blob independently verified as byte-identical to its source.
+The frozen, machine-readable comparison is
+`source_data/eboss_dr16_elg_brickmask_v1_0_source_comparison_protocol_2026-09-26.json`.
+In both **reviewed 8-bit, same-rounded-pixel and same-truncated-pixel
+code paths**, validity is bit0 and the xybug correction uses
+bit2 = 4. The tag hardcodes exactly the four published
+`eboss21,22,23,25` source filenames. The v1.0 program writes
+`VETOMASK` and `MCHUNK` (the latter is a `1<<i` family
+bitset); the later public `-DEBOSS` branch has a configurable
+maskbit column and optional single `SUBID`, overwritten by the
+latest valid checked subsample. These are NOT interchangeable
+raw output fields in overlapping-family cases. The released
+full catalogue's `mskbit` field has not yet been linked
+byte-by-byte to the v1.0 `VETOMASK` production output.
+
+A source-only auditor,
+`scripts/audit_eboss_dr16_elg_brickmask_v1_0_source.py`,
+checks all **eight** exact upstream source Git blobs, selected
+unmodified C assignment/WCS anchors and a fully synthetic
+exhaustive `256×256 = 65,536` rounded/truncated byte-pair
+bit-code algebra test. It also exercises a two-valid-family
+counterexample for `MCHUNK` versus `SUBID`, and a tampered
+historical bit2 macro must fail. [Source-only CI passed](https://github.com/dvlahek/stress-energy-closure/actions/runs/36224705917).
+It does not test equivalence of the two actual WCS
+world-to-pixel functions or a production FITS run; it opens
+no observed or random rows and does not touch the odd vector.
+
+## Newly recovered paper-specified bad-plate identifiers
+
+Raichoor et al. §3.2 item (xii) specify the exact two
+**`eboss22` PLATE-MJD pairs `9430-58112` and
+`9395-58113`**. Table 5 attributes 13.9 deg² and 3,123
+removed targets to the pair's non-bitcoded plate exclusion.
+Primary paper: https://academic.oup.com/mnras/article/500/3/3254/5942664 .
+The discovery is separately recorded in
+`source_data/eboss_dr16_elg_eboss22_badplate_published_ids_2026-09-26.json`.
+Knowing the two IDs closes the **identifier** provenance
+item only. It does not determine an exact continuous veto
+polygon or the original handling of plate overlap and
+the published data/random selections. In particular,
+do not impose a guessed full circular plate radius, reapply
+these plate vetoes to released clustering products, or
+compare odd data to adjudicate geometry.
+
+The remaining external source request can now be narrow:
+the actual 2020 DR16 supplemental Python/configuration
+for bits8–11, and the exact mask geometry/application
+to **PLATE-MJD 9430-58112 and 9395-58113** for both
+released ELG data and randoms. Accept only an attributable
+versioned source/reference and record its original byte
+fingerprints before any new selection-level check.
