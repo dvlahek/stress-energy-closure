@@ -263,3 +263,32 @@ pair estimator or observed odd-sector vector are permitted from
 these four histograms. The next substantive work should close
 historical production/reference provenance, not continue
 post-hoc image sampling.
+
+## Published, post-result xybug qualitative cross-check
+
+Raichoor et al., *MNRAS* **500** (2021) 3254–3274, Sec. 3.2,
+Table 5, independently describe **bit 2 (xybug)** as affecting
+`eboss23` most strongly, `eboss21` and `eboss22` to a lesser
+extent, with `eboss25` unaffected. Table 5 gives 49.7 deg²
+removed area and **0** removed targets for bit2; the text explains
+that bits 1–5 were used at the target-selection stage.
+Source: https://repositorio.uam.es/bitstreams/9c5e261f-a786-4897-95a5-e84b3fc3d5ed/download
+(pdf page 6, Sec. 3.2 and Table 5). The pattern is consistent with
+our four fixed sample-image histograms: 2,080,939 bit2 pixels in
+`eboss23`, 1,345 in `eboss21`, 3,542 in `eboss22`, and zero
+in `eboss25`. This literature comparison was made **after**
+the sample histograms were observed and is explicitly a
+*post-result qualitative corroboration*, not a preregistered
+independent test. Sample pixel counts are neither survey-area
+totals nor paper target-veto counts. Source-code bit2 handling
+depends on WCS rounded and truncated sky-coordinate locations;
+histograms alone do not implement that handling. No change
+to a catalog's acceptance cuts follows from this comparison.
+
+The paper also says in Sec. 3.2 that published veto bits 1–7
+are reproducible with `brickmask`, while bits 8–11 and the
+two eboss22 low-quality plates require custom Python handling.
+Our independently documented unresolved *bit8 RA
+interpretation* still needs a release-authenticated production
+reference containing both positive and negative bit8
+positions before any observed pair-window work.
