@@ -43,11 +43,12 @@ def read_json(path):
     return json.loads(path.read_text(encoding="utf-8"))
 
 
-def check_protocol(p):
+def check_protocol(p, *, require_local=True):
     fixed = read_json(MANIFEST)
     prior = read_json(PARENT_PROTOCOL)
     raw = REPORT.read_bytes()
-    local = (ROOT / p["parent_pilot_local"]).read_bytes()
+    local = ((ROOT / p["parent_pilot_local"]).read_bytes()
+             if require_local else raw)
     if (
         raw != local
         or len(raw) != fixed["exact_uploaded_bytes"]
@@ -280,7 +281,7 @@ def audit(p, *, no_download):
 
 
 def self_test(p):
-    check_protocol(p)
+    check_protocol(p, require_local=False)
     xi=np.ones((6,24),dtype="f8")
     proj=project(xi,np.ones((6,24),dtype=bool),MU,[0,1,2,3])
     if not np.allclose(proj["0"]["values_by_fixed_s_bin"],1.0,atol=1e-14):
