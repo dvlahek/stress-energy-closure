@@ -12,7 +12,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   actions: read
 
 jobs:
@@ -39,6 +39,31 @@ jobs:
           path: eboss_workspace/local_a03_rr_source_artifact
       - name: Reverify both original archive member SHA256s and run 18 fixed random-only operator injection cases
         run: python -u scripts/audit_eboss_dr16_a03_empirical_rr_window_injection.py --artifact-dir eboss_workspace/local_a03_rr_source_artifact
+      - name: Archive exact successfully SHA-pinned CI report on draft audit branch only
+        if: success()
+        run: |
+          python - <<'PY'
+          import hashlib
+          from pathlib import Path
+          p=Path('eboss_workspace/local_a03_empirical_rr/a03_empirical_rr_window_injection.json')
+          raw=p.read_bytes()
+          assert len(raw)==90307, f'Unexpected A-03 source report byte count {len(raw)}'
+          assert hashlib.sha256(raw).hexdigest()=='e6b8db10d31bc297426cb8fe6bf9a19c9a97ab6f938da2da9d4a9710cfa420e7', 'Unexpected A-03 CI report SHA256'
+          out=Path('source_data/eboss_dr16_a03_empirical_rr_window_injection_report_2026-09-26.json')
+          if out.exists() and out.read_bytes()!=raw:
+              raise ValueError('Archived A-03 result differs; do not overwrite it')
+          out.write_bytes(raw)
+          print('A03_SOURCE_REPORT_EXACT_SHA_ARCHIVE_READY',len(raw),hashlib.sha256(raw).hexdigest())
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add source_data/eboss_dr16_a03_empirical_rr_window_injection_report_2026-09-26.json
+          if git diff --cached --quiet; then
+            echo 'A03_EXACT_SOURCE_REPORT_ALREADY_ARCHIVED'
+          else
+            git commit -m 'Archive immutable completed A-03 18-case empirical RR operator synthetic injection report'
+            git push origin HEAD:refs/heads/audit/eboss-elg-bit8-ra-orientation-20260925
+          fi
       - name: Preserve original A-03 completed or incomplete unmodified report as workflow artifact
         if: always()
         uses: actions/upload-artifact@v4
