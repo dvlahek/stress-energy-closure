@@ -1,6 +1,6 @@
 # EinsteinVlasovNP — glavni istraživački plan
 
-**Verzija:** 1.2 · **Datum odluke:** 26. 9. 2026. · **Status:** aktivan plan, ne znanstveni rezultat  
+**Verzija:** 1.3 · **Datum odluke:** 26. 9. 2026. · **Status:** aktivan plan, ne znanstveni rezultat  
 **Kanonski dokument:** `EINSTEIN_VLASOV_NP_MASTER_PLAN.md` u repozitoriju `dvlahek/stress-energy-closure`.  
 **Radna grana:** `audit/eboss-elg-bit8-ra-orientation-20260925`, isključivo **draft PR #1**. Ne mijenjati `main` dok za to ne postoji zasebna odluka.
 
@@ -59,6 +59,8 @@ Einstein–Vlasov identifikabilnost razvijamo kroz **dvije neovisne istraživač
 
 **Uvjet prolaza:** dokazivo ograničen estimator/window model i dokumentiran raspon nesigurnosti. Ako puni produkcijski dokaz ostane nedostupan, ograničiti opservacijsku tvrdnju ili zadržati opaženi vektor zatvorenim.
 
+**A-03 evidencija 26. 9. 2026. (v1.3):** formalno je zaključena [A-03 odluka](source_data/eboss_dr16_a03_selection_window_provenance_decision_2026-09-26.json) s dvije **neekvivalentne** moguće razine rezultata: (i) puna mask-provenijencija samo uz autentificirani povijesni produkcijski kod i primjenu na data/random ili (ii) jasno ograničeni empirijski prozor već objavljenih tracer-specifičnih randoma, nakon zasebnih blind kontrola. Javni `brickmask` README eksplicitno zahvaljuje Arnaudu de Mattiji za izvorni dodatni ELG maskbit skript, ali kasniji javni helper nije dokazan kao točan 2020. produkcijski izvršeni kod. [Precizan zahtjev izvornim autorima](docs/EBOSS_DR16_ELG_PRODUCTION_SOURCE_REQUEST.md) je pripremljen i **NIJE poslan**. Source-only regresijski [A-03 CI](https://github.com/dvlahek/stress-energy-closure/actions/runs/36260824146) prošao je i odbija prerano proglašavanje fizičke maske/prozora. A-03 je i dalje otvoren, a opaženi odd vektor zatvoren.
+
 ### A3. Dizajnirati stvarnu inferencijsku kovarijancu
 
 - Unaprijed definirati **opservacijski podatkovni vektor** (trenutačni cilj 18 dimenzija), redoslijed njegovih elemenata, prijelaz mock→observable, fiducijal i odgovarajuće nuisance parametre.
@@ -83,6 +85,8 @@ ali to je smislena sigma **samo** uz valjanu kovarijancu, test, template uncerta
 ### A5. eBOSS i DESI ostaju zasebne podatkovne etape
 
 Prvo kvalificirati eBOSS DR16 u navedenom opsegu. Puni DESI katalog zahtijeva vlastiti public-release/version SHA, tracer-specifične angular/radial/random contracts, veto/prozor, mock ansambl, kovarijancu i nezavisni blind gate. Nikakva eBOSS kalibracija automatski ne vrijedi za DESI.
+
+**A-04 izvedivost 26. 9. 2026. (v1.3):** početni [plan resursa i validacije 18D kovarijance](docs/EBOSS_DR16_A04_COVARIANCE_FEASIBILITY_2026-09-26.md) koristi stvarno potvrđenih `1,860,198,719` komprimiranih bajtova za devet A-02 realizacija. Uvjetna ekstrapolacija na `1000` sličnih realizacija je približno `207 GB` izvorišnih gzip datoteka, bez scratcha. To nije provjera svih službenih binarnih izvora ni odobrenje preuzimanja. Čak `1000` mockova ne dopušta izravno empirijski kalibrirati rijedak `5σ` rep; prvo zaključati točan 18D opservabilni vektor, nezavisnost realizacija, fizički prozor, pokrivenost i valjan model repa. Veliki prijenos i observed unblinding nisu odobreni.
 
 **Isporuka linije A:** auditabilan opservacijski rukopis s reproducibilnim podacima, estimatorom i jasno imenovanim jednim od tri ishoda: detekcija, ograničenje ili neodlučan rezultat.
 
@@ -135,7 +139,7 @@ Liniju B ne vezati uz rezultat linije A post hoc. Ako pronađeni jači opservabi
 | B-03 | Realni opservabil i noise | Fizikalna projekcija, instrument/survey, nuisance, validirana \(C_\mathcal O\), neovisni test |
 | B-04 | Integracija u znanstveni rad | Rezultat samo u dokazivom dosegu, obje linije pravilno odvojene |
 
-**Trenutačni prioritet (v1.2): A-03 — dokazati tracer-specifični proizvodni/empirijski selekcijski prozor u dosegu stvarno poznate provenijencije; paralelno pripremiti A-04 dovoljno velik, neovisan many-mock inferencijski ansambl.** Devet mockova A-02 je validacija implementacije i može služiti samo zasebno preregistriranom opisnom QA, nikad 18D statističkoj značajnosti. Linija B može se razvijati paralelno teorijski i sintetički, ali ne smije koristiti još zapečaćeni A-05 odd vektor za podešavanje modela.
+**Trenutačni prioritet (v1.3): A-03 — zatražiti izvornu DR16 dodatnu maskirnu Python implementaciju i uvjete primjene na data/random te zasebno preregistrirati validaciju ograničenog empirijskog LRG×ELG prozora; paralelno pripremiti A-04 realnu 18D kovarijancu.** Devet mockova A-02 je validacija implementacije i može služiti samo zasebno preregistriranom opisnom QA, nikad 18D statističkoj značajnosti. Linija B može se razvijati paralelno teorijski i sintetički, ali ne smije koristiti još zapečaćeni A-05 odd vektor za podešavanje modela.
 
 ## 7. Kako ovaj plan ponovno koristiti i održavati
 
@@ -149,3 +153,4 @@ Liniju B ne vezati uz rezultat linije A post hoc. Ako pronađeni jači opservabi
 - **v1.0 — 26. 9. 2026.** Zabilježena odluka o dvjema linijama, razdvojene detekcija/isključenje/closure/modelni response, zamrznut trenutačni eBOSS/eZmock gate i definirani prolazni uvjeti za budući observable i inferenciju.
 - **v1.1 — 26. 9. 2026.** Završni 36/36 original-random izvorni audit arhiviran i zaključen, svih 72 mock-galaxy/random datoteka autentificirano na razini komprimiranih bajtova, A-01 zatvoren i sljedeći prioritet prebačen na zasebno preregistrirani A-02 mock-galaxy code-transport. Bez promjene dviju znanstvenih linija i bez otvaranja opaženog odd vektora.
 - **v1.2 — 26. 9. 2026.** Korisnikov A-02 18/18 stvarni mock-galaxy code-transport i neovisni JSON audit prošli; bajtno identičan izvještaj i fiksni per-case manifest arhivirani. A-02 zatvoren, sljedeći znanstveni prioritet A-03 uz pripremu A-04. Nema nove selekcije, fizičke mask certifikacije, 18D kovarijance ni pristupa opaženom odd signalu.
+- **v1.3 — 26. 9. 2026.** Nakon završenog A-02 fiksiran je A-03 dvostruki provenijencijski kriterij, izvorni zahtjev Raichooru/de Mattiji pripremljen (nije poslan), source-only CI potvrdio da povijesna maska/prozor nisu certificirani. A-04 dokumentirana kao procjena diskovnog/network troška i zahtjev za zasebnim 18D/tail inference protokolom; bez novih mockova i bez opaženog odd signala.
