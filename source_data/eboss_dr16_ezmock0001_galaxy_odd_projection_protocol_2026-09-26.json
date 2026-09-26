@@ -1,0 +1,56 @@
+{
+  "study": "Fixed post-0001 mock galaxy source/LS pilot descriptive odd multipole projection, no observed odd signal",
+  "registration_date": "2026-09-26",
+  "registration_timing": "After first mock0001 pair orientation report but before computing any mock xi multipole from galaxy rows. This is a SOURCE-informed, post-pilot descriptive QA stage, not an independent preregistered hypothesis test.",
+  "parent_pilot_report_archive": "source_data/eboss_dr16_ezmock0001_galaxy_cross_ls_pilot_report_2026-09-26.json",
+  "parent_pilot_report_exact_sha256": "b8ea4545d433900c1364d1c12e2638a2d2288e35f0a327c22b8ad1ec9ae8510c",
+  "parent_pilot_report_git_blob_sha1": "4f35e17a44a226235d9f45ff3afb5adc5f0c3579",
+  "parent_pilot_local": "eboss_workspace/official_mask_inventory/ezmock0001_galaxy_cross_ls_pilot.json",
+  "parent_pilot_manifest": "source_data/eboss_dr16_ezmock0001_galaxy_cross_ls_pilot_uploaded_manifest_2026-09-26.json",
+  "parent_source_report_manifest": "source_data/eboss_dr16_ezmock0001_galaxy_raw_sha_uploaded_manifest_2026-09-26.json",
+  "mock_id": 1,
+  "sample_count_per_tracer_cap": {
+    "galaxy_D": 600,
+    "matched_random_R": 1200
+  },
+  "caps": [
+    "NGC",
+    "SGC"
+  ],
+  "tracers": [
+    "eBOSS_LRG",
+    "eBOSS_ELG"
+  ],
+  "redshift": [
+    0.9,
+    1
+  ],
+  "s_edges_mpc_h": [
+    20,
+    40,
+    60,
+    80,
+    100,
+    120,
+    140
+  ],
+  "mu_edges": "np.linspace(-1 - 1e-7, 1 + 1e-7, 25)",
+  "theta_min_deg": 0.05,
+  "line_of_sight": "midpoint",
+  "fiducial": "published_multitracer",
+  "fixed_weight_product": "WEIGHT_SYSTOT*WEIGHT_CP*WEIGHT_NOZ*WEIGHT_FKP",
+  "required_RR_support": "all 6x24 cells in both caps, as seen in already archived first fixed pilot; stop if unavailable on replication, no zero filling",
+  "legendre_orders": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "fixed_projection": "For each separation bin, approximate xi constant within each positive-RR-supported mu bin; xi_ell(s) = (2ell+1)/2 sum_j xi(s,j) integral_{max(-1,mu_j)}^{min(1,mu_{j+1})} P_ell(mu) dmu. Use exact antiderivatives for ell=0,1,2,3. Clip integration domain to physical [-1,1] to exclude 1e-7 buffer beyond poles. Report all six s bins for each cap independently; do NOT coadd caps with ad-hoc weights.",
+  "exact_odd_reverse_parity": "For ell=1 and ell=3, independently reversed tracer orientation projection must sum with forward to abs <1e-10 per separation bin; even ell reversed projection must match forward to abs <1e-10. These are implementation algebra checks, not physical odd null conditions.",
+  "archive_pair_reproduction_gate": "Before projection, re-read the 8 full original gzip files under exact original source SHAs, reproduce 8 selected sample array SHA256s and exact archived weighted pair histogram SHA256s for each cap and orientation. Refuse silent recomputation on mismatch, report failure without updated bins/seed.",
+  "prohibited": "No new tracer selection, no angular re-veto, no common hard mask, no observed galaxy or odd data, no statistical significance, no template tuning, no physical-null claim, no covariance from one sample, no source-dependent change to s/mu/z bins.",
+  "interpretation_note": "The mock odd ell1/ell3 can be nonzero because finite shot noise, tracer asymmetry and realistic selection/window effects exist. Their numerical values from ONE mock and finite 600D/1200R are not compared to a hypothesis or treated as a detection; also the reverse parity check is an algebraic identity and does not imply xi_odd=0.",
+  "local_report": "eboss_workspace/official_mask_inventory/ezmock0001_galaxy_odd_projection.json",
+  "next_if_pass": "For a quantitative physical null and an 18D covariance, freeze and SHA-audit an adequate many-realization realistic mock-galaxy cohort with matched tracer-specific published randoms. Previously chosen nine IDs remain a preliminary code-transport cohort only."
+}
