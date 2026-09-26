@@ -601,7 +601,7 @@ def main():
                     print("A03E3_PRESERVED_EXISTING_FAILED_REPORT",dest,flush=True)
                     print("A03E3_NESTED_MOCK_RANDOM_SPLIT_AND_DD_ODD_INJECTION",STOP,flush=True)
                     print("REPORT",dest,flush=True)
-                    print("ERRORS",*out["errors"],sep="\\n",flush=True)
+                    print("ERRORS",*out["errors"],sep=chr(10),flush=True)
                     print("CURRENT_EXCEPTION",str(exc),flush=True)
                     return 2
                 out["status"]=STOP
