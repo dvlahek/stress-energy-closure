@@ -209,3 +209,57 @@ The prerequisite for physical ELG×LRG pair analysis remains
 source-authenticated tracer-specific catalogue/random mask
 production; neither these four histograms nor a hard
 common sky-mask intersection is sufficient.
+
+## Completed four-image pixel-bitcode source QA and interpretation boundary
+
+The user's **actual local** source-input pixel aggregate audit completed
+with `OFFICIAL_ELG_FOUR_SAMPLE_PIXEL_AGGREGATES_SOURCE_QA_ONLY`,
+after it reverified all four exact previously SHA-pinned compressed
+source files and all four FITS header SHAs. The exact uploaded
+16,601-byte `elg_four_sample_pixel_bitcode_aggregates.json` was
+independently SHA256-verified
+(`ed83fcaad2b299a987e1bc759f0156dbbcfb974242ecdedbc0fdb894534f0e7c`)
+and archived byte-identically as
+`source_data/eboss_dr16_elg_four_sample_pixel_bitcode_aggregates_2026-09-26.json`.
+Its Git blob SHA1
+`26a0851516543da1449694ecde022185c112296e`
+was independently verified against the uploaded bytes; the separate
+file-fingerprint and first-seen results manifest is
+`source_data/eboss_dr16_elg_four_sample_pixel_bitcode_uploaded_manifest_2026-09-26.json`.
+
+All 256 histogram bins in each of the four images add up to exactly
+12,960,000 pixels. The sample's bit0/bit2 totals can be independently
+reconstructed from the uploaded histograms:
+
+| Exact fixed sample chunk | bit0 set | bit2 set | both bits set | Nonzero byte codes |
+|---|---:|---:|---:|---:|
+| eboss21 | 12,960,000 | 1,345 | 1,345 | 12 |
+| eboss22 | 12,960,000 | 3,542 | 3,542 | 28 |
+| eboss23 | 12,960,000 | 2,080,939 | 2,080,939 | 22 |
+| eboss25 | 12,960,000 | 0 | 0 | 9 |
+
+The complete gzip CRC/ISIZE and EOF check passed for each sample.
+Every image pixel in the four chosen images has bit0 set. This is a
+**source-image histogram diagnostic only**. In upstream
+`src/bit_code.c` under `-DEBOSS`, a galaxy/random coordinate first
+maps to a **rounded** WCS image pixel, the bit0 test controls whether
+that pixel contributes, and bit2 (mask value 4) is adjusted using
+the **truncated** pixel index. Because this audit deliberately does
+not output pixel positions, read target/random coordinates, or test
+coordinate-to-pixel mappings, even the comparatively large
+2,080,939 bit2-pixel count in the selected eboss23 image is
+**not itself evidence of an anomalous released mask or galaxy
+selection**. Do not invent an adaptive new brick sample or infer the
+historical selection rule from this count.
+
+These four files are four **predeclared samples**, not source-byte or
+semantic certification of the remaining 19,377 images. A full
+published ELG mask requires the actual historical
+code/configuration of target and random acceptance, the extra
+bit8 RA mapping (still unresolved by the existing independent
+reference gate), all 3 extra polygon rules (bits 9–11), and the
+tracer-specific released random window. No new cuts, full mask,
+pair estimator or observed odd-sector vector are permitted from
+these four histograms. The next substantive work should close
+historical production/reference provenance, not continue
+post-hoc image sampling.
