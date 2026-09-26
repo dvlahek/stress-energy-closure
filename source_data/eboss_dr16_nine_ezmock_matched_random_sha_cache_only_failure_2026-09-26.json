@@ -1,0 +1,91 @@
+{
+  "status": "EZMOCK_PREDECLARED_NINE_MATCHED_RANDOM_FULL_SHA_INCOMPLETE_STOP",
+  "protocol_sha256": "9635fd26a5fd07d692f8fe612b3f93885b33c2bd68f5c09db799b2ef7626cb9b",
+  "prior_20260924_source_json_sha256": "8702adaf1284068c26e79555feb76c7a709df9a265f9e2194409cc4161602e01",
+  "galaxy_uploaded_report_sha256": "2c6b55bf5611dc71449ecbbfc2dedf545f2d22250147ed08f6a072536b50f06c",
+  "fixed_mock_ids": [
+    1,
+    125,
+    250,
+    375,
+    500,
+    625,
+    750,
+    875,
+    1000
+  ],
+  "caps": [
+    "NGC",
+    "SGC"
+  ],
+  "tracers": [
+    "eBOSS_LRG",
+    "eBOSS_ELG"
+  ],
+  "verified_random_sources": {
+    "0001/NGC/eBOSS_LRG": {
+      "source_key": "0001/NGC/eBOSS_LRG",
+      "official_source_url": "https://data.sdss.org/sas/dr17/eboss/lss/EZmocks/v1_0_0/realistic/eBOSS_LRG/ran/EZmock_realistic_eBOSS_LRG_NGC_v7_0001.ran.fits.gz",
+      "local_verified_source_path": "/home/dino/stress-energy-closure/eboss_workspace/quarantine_realistic_ezmock0001_randoms/EZmock_realistic_eBOSS_LRG_NGC_v7_0001.ran.fits.gz",
+      "relative_released_filename": "eBOSS_LRG/ran/EZmock_realistic_eBOSS_LRG_NGC_v7_0001.ran.fits.gz",
+      "source_mode": "verified_existing_cache",
+      "compressed_bytes": 58463577,
+      "prior_20260924_artifact_expected_sha256": "2f7966ab7de195353cf4d0b14f0fe4d14e4633cef5d156722e8a822518893dca",
+      "fully_reverified_compressed_sha256": "2f7966ab7de195353cf4d0b14f0fe4d14e4633cef5d156722e8a822518893dca",
+      "sha_matches_original_artifact_reference": true,
+      "gzip_magic_checked": true,
+      "gzip_decompressed_or_FITS_rows_read": false,
+      "newly_downloaded_HTTP_details_if_any": null
+    },
+    "0001/NGC/eBOSS_ELG": {
+      "source_key": "0001/NGC/eBOSS_ELG",
+      "official_source_url": "https://data.sdss.org/sas/dr17/eboss/lss/EZmocks/v1_0_0/realistic/eBOSS_ELG/ran/EZmock_realistic_eBOSS_ELG_NGC_v7_0001.ran.fits.gz",
+      "local_verified_source_path": "/home/dino/stress-energy-closure/eboss_workspace/quarantine_realistic_ezmock0001_randoms/EZmock_realistic_eBOSS_ELG_NGC_v7_0001.ran.fits.gz",
+      "relative_released_filename": "eBOSS_ELG/ran/EZmock_realistic_eBOSS_ELG_NGC_v7_0001.ran.fits.gz",
+      "source_mode": "verified_existing_cache",
+      "compressed_bytes": 48498305,
+      "prior_20260924_artifact_expected_sha256": "c36c4ad26ee62696c0df99c6106c895a6931bdc56e84164e0a52b55f0e88c1c9",
+      "fully_reverified_compressed_sha256": "c36c4ad26ee62696c0df99c6106c895a6931bdc56e84164e0a52b55f0e88c1c9",
+      "sha_matches_original_artifact_reference": true,
+      "gzip_magic_checked": true,
+      "gzip_decompressed_or_FITS_rows_read": false,
+      "newly_downloaded_HTTP_details_if_any": null
+    },
+    "0001/SGC/eBOSS_LRG": {
+      "source_key": "0001/SGC/eBOSS_LRG",
+      "official_source_url": "https://data.sdss.org/sas/dr17/eboss/lss/EZmocks/v1_0_0/realistic/eBOSS_LRG/ran/EZmock_realistic_eBOSS_LRG_SGC_v7_0001.ran.fits.gz",
+      "local_verified_source_path": "/home/dino/stress-energy-closure/eboss_workspace/quarantine_realistic_ezmock0001_randoms/EZmock_realistic_eBOSS_LRG_SGC_v7_0001.ran.fits.gz",
+      "relative_released_filename": "eBOSS_LRG/ran/EZmock_realistic_eBOSS_LRG_SGC_v7_0001.ran.fits.gz",
+      "source_mode": "verified_existing_cache",
+      "compressed_bytes": 39067667,
+      "prior_20260924_artifact_expected_sha256": "94c8940734f3c647a2b883124392cd39855034a212ce9c6a05a6bd052bba8efe",
+      "fully_reverified_compressed_sha256": "94c8940734f3c647a2b883124392cd39855034a212ce9c6a05a6bd052bba8efe",
+      "sha_matches_original_artifact_reference": true,
+      "gzip_magic_checked": true,
+      "gzip_decompressed_or_FITS_rows_read": false,
+      "newly_downloaded_HTTP_details_if_any": null
+    },
+    "0001/SGC/eBOSS_ELG": {
+      "source_key": "0001/SGC/eBOSS_ELG",
+      "official_source_url": "https://data.sdss.org/sas/dr17/eboss/lss/EZmocks/v1_0_0/realistic/eBOSS_ELG/ran/EZmock_realistic_eBOSS_ELG_SGC_v7_0001.ran.fits.gz",
+      "local_verified_source_path": "/home/dino/stress-energy-closure/eboss_workspace/quarantine_realistic_ezmock0001_randoms/EZmock_realistic_eBOSS_ELG_SGC_v7_0001.ran.fits.gz",
+      "relative_released_filename": "eBOSS_ELG/ran/EZmock_realistic_eBOSS_ELG_SGC_v7_0001.ran.fits.gz",
+      "source_mode": "verified_existing_cache",
+      "compressed_bytes": 52878654,
+      "prior_20260924_artifact_expected_sha256": "1af8f7f95f6d477049c80302300e97ed2c0aa7f584a0595d61f78dea80057e38",
+      "fully_reverified_compressed_sha256": "1af8f7f95f6d477049c80302300e97ed2c0aa7f584a0595d61f78dea80057e38",
+      "sha_matches_original_artifact_reference": true,
+      "gzip_magic_checked": true,
+      "gzip_decompressed_or_FITS_rows_read": false,
+      "newly_downloaded_HTTP_details_if_any": null
+    }
+  },
+  "no_mock_galaxy_random_or_observed_rows_read": true,
+  "mock_pairs_computed": false,
+  "observed_odd_data_vector_read": false,
+  "new_science_selection_applied": false,
+  "joint_mock_covariance_computed": false,
+  "errors": [
+    "Approved matched mock random not cached: 0125/NGC/eBOSS_LRG. Re-run with --download-missing to fetch ONLY its unchanged pinned official URL."
+  ]
+}
