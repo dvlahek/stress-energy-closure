@@ -142,3 +142,70 @@ Upload it unchanged to freeze its exact SHA before any pixel-level
 checks. This small per-family sample is a source/WCS structural check,
 not an all-image mask validation or a LRG×ELG physical-window
 certificate.
+
+## Complete local WCS-header result and frozen four-image pixel-byte QA
+
+The user completed the strictly bounded WCS audit on all four
+preselected SHA-pinned FITS.gz samples. Each is a primary 8-bit
+`3600 x 3600` image with `RA---TAN`/`DEC--TAN`
+WCS, `CRPIX=(1800.5,1800.5)`, a nonsingular CD matrix,
+and **5760** FITS header bytes. The compressed SHA256s
+were reverified before any gzip opening. The user's exact
+5,705-byte `elg_four_sample_fits_header_wcs.json` has
+SHA256 `233339946dda20dc7b81f83c70645761dfc728f562396fecd261750e3eec6e04`,
+archived byte-identically as
+`source_data/eboss_dr16_elg_four_sample_fits_header_wcs_report_2026-09-26.json`
+and independently verified against Git blob
+`b0f515d9bdb5bb0c7ccde7b64d982d33c9e10361`.
+The upload fingerprint and four header-block SHA256s are
+independently recorded in
+`source_data/eboss_dr16_elg_four_sample_fits_header_wcs_uploaded_manifest_2026-09-26.json`.
+No image pixel values, galaxy/random rows, new selection or
+observed odd statistic were read in this completed header check.
+
+The pinned upstream `cheng-zhao/brickmask` source at commit
+`b9eb684a579b56ec3dbdb46549224be7e3fa2830`
+defines `EBOSS_MASK_VALID(bit)` as `bit & 1`,
+`EBOSS_XYBUG_BIT=4` and `EBOSS_XYBUG_VALID(bit)` as
+`bit & 4` in `src/define.h` (blob
+`a6b85bfbc7745388a076fba822a0dc27d52d9809`).
+The eBOSS path of `src/bit_code.c` (blob
+`0ab07730c491324fac3222ebac1ae1c763efe980`)
+checks the rounded pixel for bit0 and handles bit2 by comparing
+rounded and truncated pixel locations. This is a documented
+production *source-code rule*; its historical invocation with the
+specific released catalogue and any coordinate boundary
+conventions are not yet independently authenticated.
+
+A distinct four-image **pixel aggregate** protocol was frozen
+*after source checks but before any image pixel value was decoded*:
+`source_data/eboss_dr16_elg_four_sample_pixel_bitcode_protocol_2026-09-26.json`.
+The runner
+`scripts/audit_eboss_dr16_elg_four_sample_pixel_bitcode.py`
+checks exact archived+local WCS report bytes and all four
+full compressed SHA256s before opening gzip. It checks each
+already SHA-pinned 5760-byte FITS header again, then streams
+the full 12,960,000 uint8 primary-image pixel values per sample,
+reporting ONLY aggregate 256-bin byte histograms, bit0/bit2
+counts, decompressed-image SHA256, and verified gzip EOF/CRC.
+No pixel coordinates, reconstructed sky maps, galaxy/random
+locations, science cuts, or odd statistics are produced.
+Reading the full sample image is a NEW, narrowly permitted
+source-input QA stage and must never be confused with the
+earlier header-only stage. These FOUR samples do not establish
+full 19,381-image source coverage or a physical ELG mask.
+
+The synthetic-only CI is
+https://github.com/dvlahek/stress-energy-closure/actions/runs/36223326539 .
+After it passes, run in the same WSL audit branch without
+any new FITS download:
+
+`cd ~/stress-energy-closure && git pull --ff-only && source .venv/bin/activate && python -u scripts/audit_eboss_dr16_elg_four_sample_pixel_bitcode.py --self-test && python -u scripts/audit_eboss_dr16_elg_four_sample_pixel_bitcode.py`
+
+Expected report:
+`eboss_workspace/official_mask_inventory/elg_four_sample_pixel_bitcode_aggregates.json`.
+The exact output must be SHA-pinned separately after upload.
+The prerequisite for physical ELG×LRG pair analysis remains
+source-authenticated tracer-specific catalogue/random mask
+production; neither these four histograms nor a hard
+common sky-mask intersection is sufficient.
