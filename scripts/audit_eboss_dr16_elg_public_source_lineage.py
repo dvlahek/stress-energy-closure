@@ -79,7 +79,14 @@ def inspect_source(raw, p):
         if isinstance(n, ast.AugAssign) and isinstance(n.target, ast.Name)
         and n.target.id == "mask"
     ]
-    polygon_assign = ast.unparse(extract_assign(fun, "bit"))
+    polygon_bit_assignments = [ast.unparse(n.value) for n in ast.walk(fun)
+                               if isinstance(n, ast.Assign) and len(n.targets) == 1
+                               and isinstance(n.targets[0], ast.Name)
+                               and n.targets[0].id == "bit"
+                               and isinstance(n.value, ast.Compare)]
+    if len(polygon_bit_assignments) != 1:
+        raise ValueError("Published helper polygon membership bit assignment changed")
+    polygon_assign = polygon_bit_assignments[0]
     loops = [
         ast.unparse(n.iter) for n in ast.walk(fun)
         if isinstance(n, ast.For)
