@@ -152,16 +152,26 @@ def project(xi,support,muedges,ells):
     }
 
 
-def verify_pair_reproduction(old, cap, label, h, info, orient):
+def verify_pair_reproduction(old, cap, label, h, info, normalization, orient):
+    """Check an actual pair histogram, its separate norm and summary metadata.
+
+    oriented_pair_terms returns (histograms, norms, metadata). Its metadata
+    deliberately has no "pair_normalization" key: that value is in norms.
+    """
     item=next(v for v in old["cases"] if v["cap"] == cap)
     expected = item["cross_ls"][orient+"_pair_terms"][label]
     got=hashlib.sha256(np.ascontiguousarray(h).tobytes()).hexdigest()
+    independent=expected["independently_normalized_pair_weight"]
     if (
         got != expected["weighted_histogram_SHA256"]
         or info["accepted_pairs"] != expected["accepted_pairs"]
-        or not np.isclose(info["pair_normalization"],
-                          expected["independently_normalized_pair_weight"],
-                          rtol=1e-13,atol=0)
+        or not np.isfinite(normalization)
+        or not np.isclose(normalization, independent, rtol=1e-13, atol=0)
+        or not np.isclose(info["independently_normalized_pair_weight"],
+                          independent, rtol=1e-13, atol=0)
+        or not np.isclose(info["normalization_relative_residual"],
+                          expected["normalization_relative_residual"],
+                          rtol=1e-13, atol=1e-15)
     ):
         raise ValueError("Archived mock0001 weighted histogram is NOT reproduced exactly: "
                          + cap + "/" + orient + "/" + label)
@@ -236,8 +246,10 @@ def audit(p, *, no_download):
         rev,rnorm,rmeta=oriented_pair_terms(elg_d,lrg_d,elg_r,lrg_r,
                                              distance=distance)
         for label in LABELS:
-            verify_pair_reproduction(old,cap,label,fwd[label],fmeta[label],"forward")
-            verify_pair_reproduction(old,cap,label,rev[label],rmeta[label],"reverse")
+            verify_pair_reproduction(old,cap,label,fwd[label],fmeta[label],
+                                     fnorm[label],"forward")
+            verify_pair_reproduction(old,cap,label,rev[label],rmeta[label],
+                                     rnorm[label],"reverse")
             mirror=mirrored_closure(fwd[label],rev[mapping[label]],
                          {"pair_normalization":fnorm[label],
                           "accepted_pairs":fmeta[label]["accepted_pairs"]},
@@ -281,7 +293,46 @@ def audit(p, *, no_download):
 
 
 def self_test(p):
-    check_protocol(p, require_local=False)
+    old, _ = check_protocol(p, require_local=False)
+    # Regression for the precise prior KeyError: pair metadata contains
+    # independently_normalized_pair_weight, not pair_normalization.
+    fake_h = np.zeros((6,24),dtype="f8")
+    fake_h[0,0] = 7.
+    fake_hash = hashlib.sha256(np.ascontiguousarray(fake_h).tobytes()).hexdigest()
+    synthetic = {
+        "cases":[{
+            "cap":"NGC",
+            "cross_ls":{"forward_pair_terms":{
+                "D1D2":{
+                    "accepted_pairs":1,
+                    "weighted_histogram_SHA256":fake_hash,
+                    "independently_normalized_pair_weight":15.,
+                    "normalization_relative_residual":0.,
+                }
+            }}
+        }]
+    }
+    summary = {
+        "accepted_pairs":1, "independently_normalized_pair_weight":15.,
+        "normalization_relative_residual":0.,
+    }
+    verify_pair_reproduction(synthetic, "NGC", "D1D2",
+                             fake_h, summary, 15., "forward")
+    for wrong_norm in (14., 16.):
+        try:
+            verify_pair_reproduction(synthetic, "NGC", "D1D2",
+                                     fake_h, summary, wrong_norm, "forward")
+        except ValueError:
+            pass
+        else:
+            raise AssertionError("Synthetic mismatched separate pair norm accepted")
+    try:
+        verify_pair_reproduction(synthetic, "NGC", "D1D2",
+                                 fake_h + 1., summary, 15., "forward")
+    except ValueError:
+        pass
+    else:
+        raise AssertionError("Synthetic changed pair histogram SHA accepted")
     xi=np.ones((6,24),dtype="f8")
     proj=project(xi,np.ones((6,24),dtype=bool),MU,[0,1,2,3])
     if not np.allclose(proj["0"]["values_by_fixed_s_bin"],1.0,atol=1e-14):
