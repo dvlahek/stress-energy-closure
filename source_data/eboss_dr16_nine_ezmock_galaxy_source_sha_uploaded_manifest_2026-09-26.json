@@ -1,0 +1,238 @@
+{
+  "study": "eBOSS DR16 fixed nine-ID realistic EZmock mock galaxy DATA source-only SHA archive, post-upload pre-new-rows",
+  "registered_on": "2026-09-26",
+  "uploaded_report_filename": "ezmock_nine_galaxy_source_raw_sha.json",
+  "uploaded_exact_bytes": 37105,
+  "uploaded_exact_sha256": "2c6b55bf5611dc71449ecbbfc2dedf545f2d22250147ed08f6a072536b50f06c",
+  "uploaded_git_blob_sha1": "43be7aae5b06580867bee4fff08292ebeee468bf",
+  "archived_report": "source_data/eboss_dr16_nine_ezmock_galaxy_source_sha_report_2026-09-26.json",
+  "archive_git_blob_sha1": "43be7aae5b06580867bee4fff08292ebeee468bf",
+  "byte_identical_archive_verified": true,
+  "source_protocol": "source_data/eboss_dr16_nine_ezmock_galaxy_source_sha_protocol_2026-09-26.json",
+  "source_protocol_sha256": "ed7274a5c70f29969b2e7746ccc91e7e765939ff71a6b032a6b191edfef537ba",
+  "predeclared_ids": [
+    1,
+    125,
+    250,
+    375,
+    500,
+    625,
+    750,
+    875,
+    1000
+  ],
+  "caps": [
+    "NGC",
+    "SGC"
+  ],
+  "tracers": [
+    "eBOSS_LRG",
+    "eBOSS_ELG"
+  ],
+  "previously_frozen_0001_sha": {
+    "0001/NGC/eBOSS_LRG": {
+      "release_source_url": "https://data.sdss.org/sas/dr17/eboss/lss/EZmocks/v1_0_0/realistic/eBOSS_LRG/dat/EZmock_realistic_eBOSS_LRG_NGC_v7_0001.dat.fits.gz",
+      "full_compressed_sha256_reverified": "67862ecb7860eef939f03c459ba424709cd37e8bbf00aa916f2bb2d351896536",
+      "compressed_bytes": 2576333,
+      "from_preexisting_frozen_0001_manifest": true,
+      "FITS_headers_or_mock_rows_read": false
+    },
+    "0001/NGC/eBOSS_ELG": {
+      "release_source_url": "https://data.sdss.org/sas/dr17/eboss/lss/EZmocks/v1_0_0/realistic/eBOSS_ELG/dat/EZmock_realistic_eBOSS_ELG_NGC_v7_0001.dat.fits.gz",
+      "full_compressed_sha256_reverified": "aa399797762153b0ccff4960928c55336b35dc1131a44fbc735a7e668fbeb31e",
+      "compressed_bytes": 1933801,
+      "from_preexisting_frozen_0001_manifest": true,
+      "FITS_headers_or_mock_rows_read": false
+    },
+    "0001/SGC/eBOSS_LRG": {
+      "release_source_url": "https://data.sdss.org/sas/dr17/eboss/lss/EZmocks/v1_0_0/realistic/eBOSS_LRG/dat/EZmock_realistic_eBOSS_LRG_SGC_v7_0001.dat.fits.gz",
+      "full_compressed_sha256_reverified": "ba271958cf01a10c293b7c2876a5cad688c4618228c82378273cdb5451ae8a46",
+      "compressed_bytes": 1675016,
+      "from_preexisting_frozen_0001_manifest": true,
+      "FITS_headers_or_mock_rows_read": false
+    },
+    "0001/SGC/eBOSS_ELG": {
+      "release_source_url": "https://data.sdss.org/sas/dr17/eboss/lss/EZmocks/v1_0_0/realistic/eBOSS_ELG/dat/EZmock_realistic_eBOSS_ELG_SGC_v7_0001.dat.fits.gz",
+      "full_compressed_sha256_reverified": "a7df8700eed4e4dbcc97cd184007efff2fcbe7e354001ed1334b1bf572d9595a",
+      "compressed_bytes": 2122471,
+      "from_preexisting_frozen_0001_manifest": true,
+      "FITS_headers_or_mock_rows_read": false
+    }
+  },
+  "additional_eight_ids_full_compressed_sha": {
+    "0125/NGC/eBOSS_LRG": {
+      "released_filename": "EZmock_realistic_eBOSS_LRG_NGC_v7_0125.dat.fits.gz",
+      "compressed_bytes": 2478635,
+      "full_compressed_sha256": "cb2cb898798da25f0100920d70f29e0c5f5a496a848c551104398fa473a57866"
+    },
+    "0125/NGC/eBOSS_ELG": {
+      "released_filename": "EZmock_realistic_eBOSS_ELG_NGC_v7_0125.dat.fits.gz",
+      "compressed_bytes": 1929145,
+      "full_compressed_sha256": "7eefb43720c0d13d05a791ca4383272945d45c21ce9b608f41264b162f3df292"
+    },
+    "0125/SGC/eBOSS_LRG": {
+      "released_filename": "EZmock_realistic_eBOSS_LRG_SGC_v7_0125.dat.fits.gz",
+      "compressed_bytes": 1589701,
+      "full_compressed_sha256": "b68802d1255faff7e1b3b8d026d90887616b33523e9096a64e10ae73322c60b2"
+    },
+    "0125/SGC/eBOSS_ELG": {
+      "released_filename": "EZmock_realistic_eBOSS_ELG_SGC_v7_0125.dat.fits.gz",
+      "compressed_bytes": 2092852,
+      "full_compressed_sha256": "f56f0392072f1e77930c033b5357ce09774d7886abd0554de829a206c16d5684"
+    },
+    "0250/NGC/eBOSS_LRG": {
+      "released_filename": "EZmock_realistic_eBOSS_LRG_NGC_v7_0250.dat.fits.gz",
+      "compressed_bytes": 2455980,
+      "full_compressed_sha256": "2734d2197aedcf86bc7e4acc85e54efac71d4849d8b5086cac87dc319899e04e"
+    },
+    "0250/NGC/eBOSS_ELG": {
+      "released_filename": "EZmock_realistic_eBOSS_ELG_NGC_v7_0250.dat.fits.gz",
+      "compressed_bytes": 1928274,
+      "full_compressed_sha256": "6863af0ac3fb983b0aa055e81b381bd5a16acdbe9c7c47d27cf41a45f82e412d"
+    },
+    "0250/SGC/eBOSS_LRG": {
+      "released_filename": "EZmock_realistic_eBOSS_LRG_SGC_v7_0250.dat.fits.gz",
+      "compressed_bytes": 1597362,
+      "full_compressed_sha256": "039cad99196e7c34da0149b9a871e01ac42ca5278176dd5542cdfdb623f4de6e"
+    },
+    "0250/SGC/eBOSS_ELG": {
+      "released_filename": "EZmock_realistic_eBOSS_ELG_SGC_v7_0250.dat.fits.gz",
+      "compressed_bytes": 2106712,
+      "full_compressed_sha256": "c6da57c621ce0dfa57412f62d5e5bb4d766972a963f9adebfbd4b2b454fcd1f3"
+    },
+    "0375/NGC/eBOSS_LRG": {
+      "released_filename": "EZmock_realistic_eBOSS_LRG_NGC_v7_0375.dat.fits.gz",
+      "compressed_bytes": 2467198,
+      "full_compressed_sha256": "0db77060efd8e6b8a645cb06414ef0d53e14820433bc68d4348a0bbf304589a6"
+    },
+    "0375/NGC/eBOSS_ELG": {
+      "released_filename": "EZmock_realistic_eBOSS_ELG_NGC_v7_0375.dat.fits.gz",
+      "compressed_bytes": 1961547,
+      "full_compressed_sha256": "5142305761714bb378fbb1ff78ee09b674ce8d3de76e4813435a9512d9ca1a77"
+    },
+    "0375/SGC/eBOSS_LRG": {
+      "released_filename": "EZmock_realistic_eBOSS_LRG_SGC_v7_0375.dat.fits.gz",
+      "compressed_bytes": 1601551,
+      "full_compressed_sha256": "c23a620ce41569a86a580865992a92b5cd160b139ffacd11faadc4a99856b18a"
+    },
+    "0375/SGC/eBOSS_ELG": {
+      "released_filename": "EZmock_realistic_eBOSS_ELG_SGC_v7_0375.dat.fits.gz",
+      "compressed_bytes": 2114102,
+      "full_compressed_sha256": "095e7e54e893ca0f4cf8491699736dff937863681752446cdb23cacd40bf002b"
+    },
+    "0500/NGC/eBOSS_LRG": {
+      "released_filename": "EZmock_realistic_eBOSS_LRG_NGC_v7_0500.dat.fits.gz",
+      "compressed_bytes": 2444584,
+      "full_compressed_sha256": "b232469a262a40e1c366ff301822c23ba2f30105551f2f8b6983fc53449d6a75"
+    },
+    "0500/NGC/eBOSS_ELG": {
+      "released_filename": "EZmock_realistic_eBOSS_ELG_NGC_v7_0500.dat.fits.gz",
+      "compressed_bytes": 1944250,
+      "full_compressed_sha256": "8a56414f8eaa1a5d1718de6bf7ad3e2d22f08c16051be5cf726b6c337087f03f"
+    },
+    "0500/SGC/eBOSS_LRG": {
+      "released_filename": "EZmock_realistic_eBOSS_LRG_SGC_v7_0500.dat.fits.gz",
+      "compressed_bytes": 1591449,
+      "full_compressed_sha256": "df5865deb78cb3bb87f122fbecd274a19d37960952a70ce056e8649c3648595e"
+    },
+    "0500/SGC/eBOSS_ELG": {
+      "released_filename": "EZmock_realistic_eBOSS_ELG_SGC_v7_0500.dat.fits.gz",
+      "compressed_bytes": 2143970,
+      "full_compressed_sha256": "d356b3ea8e9b9e55fc4cdf3482722e2f61cb51055c468153f0cbff7d198ebaf8"
+    },
+    "0625/NGC/eBOSS_LRG": {
+      "released_filename": "EZmock_realistic_eBOSS_LRG_NGC_v7_0625.dat.fits.gz",
+      "compressed_bytes": 2459703,
+      "full_compressed_sha256": "f875d2a6ce736fb5f5cc9e66c39300dcf3ad6f418f4ff23d9f3cca854c9e9eb5"
+    },
+    "0625/NGC/eBOSS_ELG": {
+      "released_filename": "EZmock_realistic_eBOSS_ELG_NGC_v7_0625.dat.fits.gz",
+      "compressed_bytes": 1926597,
+      "full_compressed_sha256": "a314691d6057dc81b95e58bdc423bd21990ee45cb5c555a843bee6e836112adf"
+    },
+    "0625/SGC/eBOSS_LRG": {
+      "released_filename": "EZmock_realistic_eBOSS_LRG_SGC_v7_0625.dat.fits.gz",
+      "compressed_bytes": 1576999,
+      "full_compressed_sha256": "49a2c73d55109faa9258a6fc473347c7ca181f7dd94d0181fc69d8f9b7d5b837"
+    },
+    "0625/SGC/eBOSS_ELG": {
+      "released_filename": "EZmock_realistic_eBOSS_ELG_SGC_v7_0625.dat.fits.gz",
+      "compressed_bytes": 2095836,
+      "full_compressed_sha256": "115ddf01e51e2eddbb0ff8d5d80007129c411af390961ff37ca93c455cb9981a"
+    },
+    "0750/NGC/eBOSS_LRG": {
+      "released_filename": "EZmock_realistic_eBOSS_LRG_NGC_v7_0750.dat.fits.gz",
+      "compressed_bytes": 2481586,
+      "full_compressed_sha256": "b9dc48018fbc3566b1b671d7db30e8df673b94a234043eec41e9e7dbe40bdf8b"
+    },
+    "0750/NGC/eBOSS_ELG": {
+      "released_filename": "EZmock_realistic_eBOSS_ELG_NGC_v7_0750.dat.fits.gz",
+      "compressed_bytes": 1928866,
+      "full_compressed_sha256": "bf231d97f37abb4c3b16a56accccb6ca510019eb7157f0e3d608aff445f80967"
+    },
+    "0750/SGC/eBOSS_LRG": {
+      "released_filename": "EZmock_realistic_eBOSS_LRG_SGC_v7_0750.dat.fits.gz",
+      "compressed_bytes": 1604525,
+      "full_compressed_sha256": "028d51fe60e86a275faa61b10293f8851bb7903a51c7f29ef0940968c37304e2"
+    },
+    "0750/SGC/eBOSS_ELG": {
+      "released_filename": "EZmock_realistic_eBOSS_ELG_SGC_v7_0750.dat.fits.gz",
+      "compressed_bytes": 2101904,
+      "full_compressed_sha256": "66eca0ce9744333a81a4879946342a71190895871d3dc02b411db640b8d30d28"
+    },
+    "0875/NGC/eBOSS_LRG": {
+      "released_filename": "EZmock_realistic_eBOSS_LRG_NGC_v7_0875.dat.fits.gz",
+      "compressed_bytes": 2468990,
+      "full_compressed_sha256": "815c391080083d12485e2e01da7cb4f64be917b55e13d0b57e3a3d03cb1f4dce"
+    },
+    "0875/NGC/eBOSS_ELG": {
+      "released_filename": "EZmock_realistic_eBOSS_ELG_NGC_v7_0875.dat.fits.gz",
+      "compressed_bytes": 1940195,
+      "full_compressed_sha256": "4cd6117521d4fde0593e9f0956fdf8ec8832dcc233204118074bc8f67047cdf1"
+    },
+    "0875/SGC/eBOSS_LRG": {
+      "released_filename": "EZmock_realistic_eBOSS_LRG_SGC_v7_0875.dat.fits.gz",
+      "compressed_bytes": 1596309,
+      "full_compressed_sha256": "5d1c8cbf5b26de4b07e266ff867cdfb65b2efb696f4dbf308860f434bd08a978"
+    },
+    "0875/SGC/eBOSS_ELG": {
+      "released_filename": "EZmock_realistic_eBOSS_ELG_SGC_v7_0875.dat.fits.gz",
+      "compressed_bytes": 2113639,
+      "full_compressed_sha256": "647ba05c65cfd52cbfdaa7c01661b2f959c99109f51709cf6837ecbdfd745591"
+    },
+    "1000/NGC/eBOSS_LRG": {
+      "released_filename": "EZmock_realistic_eBOSS_LRG_NGC_v7_1000.dat.fits.gz",
+      "compressed_bytes": 2547373,
+      "full_compressed_sha256": "0c66bb0d3965580e44b4354f46e7065431ea07131a85daea70036b4a50b89be1"
+    },
+    "1000/NGC/eBOSS_ELG": {
+      "released_filename": "EZmock_realistic_eBOSS_ELG_NGC_v7_1000.dat.fits.gz",
+      "compressed_bytes": 1956149,
+      "full_compressed_sha256": "84e3ac38134fd9cb581a238008125ec1c60acb407ef7c084c63d8b1549a8c7f3"
+    },
+    "1000/SGC/eBOSS_LRG": {
+      "released_filename": "EZmock_realistic_eBOSS_LRG_SGC_v7_1000.dat.fits.gz",
+      "compressed_bytes": 1582459,
+      "full_compressed_sha256": "7f96a2bfb3bba15b5a111dda6a79035c2168e3cb7b72694b48a7b12b4cf46d22"
+    },
+    "1000/SGC/eBOSS_ELG": {
+      "released_filename": "EZmock_realistic_eBOSS_ELG_SGC_v7_1000.dat.fits.gz",
+      "compressed_bytes": 2109507,
+      "full_compressed_sha256": "2a53312ff598fe3d829f83dcd41732ccb16e7d2615014ff7a41efc2dbe2037cc"
+    }
+  },
+  "count_previously_frozen_id0001": 4,
+  "count_new": 32,
+  "count_total": 36,
+  "previous_0001_compressed_bytes": 8307621,
+  "new_compressed_bytes": 64937949,
+  "total_compressed_bytes": 73245570,
+  "source_SHA_values_first_seen_not_official_SDSS_published_checksums": true,
+  "source_scope": "Full released mock galaxy compressed-byte SHA only; no FITS headers, mock galaxy/random rows, pairs, observed galaxy or observed odd vector read in nine-ID source gate",
+  "corresponding_nine_ID_matched_mock_randoms_sha_still_must_be_independently_reverified": true,
+  "observed_galaxy_rows_read": false,
+  "observed_odd_data_vector_read": false,
+  "new_science_selection_applied": false,
+  "physical_LRG_ELG_window_certified": false,
+  "statistical_mock_covariance_certified": false
+}

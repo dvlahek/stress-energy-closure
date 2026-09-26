@@ -1,0 +1,699 @@
+{
+  "status": "EZMOCK_PREDECLARED_NINE_MATCHED_RANDOM_FULL_SHA_REVERIFIED_ONLY",
+  "protocol_sha256": "9635fd26a5fd07d692f8fe612b3f93885b33c2bd68f5c09db799b2ef7626cb9b",
+  "prior_20260924_source_json_sha256": "8702adaf1284068c26e79555feb76c7a709df9a265f9e2194409cc4161602e01",
+  "galaxy_uploaded_report_sha256": "2c6b55bf5611dc71449ecbbfc2dedf545f2d22250147ed08f6a072536b50f06c",
+  "fixed_mock_ids": [
+    1,
+    125,
+    250,
+    375,
+    500,
+    625,
+    750,
+    875,
+    1000
+  ],
+  "caps": [
+    "NGC",
+    "SGC"
+  ],
+  "tracers": [
+    "eBOSS_LRG",
+    "eBOSS_ELG"
+  ],
+  "verified_random_sources": {
+    "0001/NGC/eBOSS_LRG": {
+      "source_key": "0001/NGC/eBOSS_LRG",
+      "official_source_url": "https://data.sdss.org/sas/dr17/eboss/lss/EZmocks/v1_0_0/realistic/eBOSS_LRG/ran/EZmock_realistic_eBOSS_LRG_NGC_v7_0001.ran.fits.gz",
+      "local_verified_source_path": "/home/dino/stress-energy-closure/eboss_workspace/quarantine_realistic_ezmock0001_randoms/EZmock_realistic_eBOSS_LRG_NGC_v7_0001.ran.fits.gz",
+      "relative_released_filename": "eBOSS_LRG/ran/EZmock_realistic_eBOSS_LRG_NGC_v7_0001.ran.fits.gz",
+      "source_mode": "verified_existing_cache",
+      "compressed_bytes": 58463577,
+      "prior_20260924_artifact_expected_sha256": "2f7966ab7de195353cf4d0b14f0fe4d14e4633cef5d156722e8a822518893dca",
+      "fully_reverified_compressed_sha256": "2f7966ab7de195353cf4d0b14f0fe4d14e4633cef5d156722e8a822518893dca",
+      "sha_matches_original_artifact_reference": true,
+      "gzip_magic_checked": true,
+      "gzip_decompressed_or_FITS_rows_read": false,
+      "newly_downloaded_HTTP_details_if_any": null
+    },
+    "0001/NGC/eBOSS_ELG": {
+      "source_key": "0001/NGC/eBOSS_ELG",
+      "official_source_url": "https://data.sdss.org/sas/dr17/eboss/lss/EZmocks/v1_0_0/realistic/eBOSS_ELG/ran/EZmock_realistic_eBOSS_ELG_NGC_v7_0001.ran.fits.gz",
+      "local_verified_source_path": "/home/dino/stress-energy-closure/eboss_workspace/quarantine_realistic_ezmock0001_randoms/EZmock_realistic_eBOSS_ELG_NGC_v7_0001.ran.fits.gz",
+      "relative_released_filename": "eBOSS_ELG/ran/EZmock_realistic_eBOSS_ELG_NGC_v7_0001.ran.fits.gz",
+      "source_mode": "verified_existing_cache",
+      "compressed_bytes": 48498305,
+      "prior_20260924_artifact_expected_sha256": "c36c4ad26ee62696c0df99c6106c895a6931bdc56e84164e0a52b55f0e88c1c9",
+      "fully_reverified_compressed_sha256": "c36c4ad26ee62696c0df99c6106c895a6931bdc56e84164e0a52b55f0e88c1c9",
+      "sha_matches_original_artifact_reference": true,
+      "gzip_magic_checked": true,
+      "gzip_decompressed_or_FITS_rows_read": false,
+      "newly_downloaded_HTTP_details_if_any": null
+    },
+    "0001/SGC/eBOSS_LRG": {
+      "source_key": "0001/SGC/eBOSS_LRG",
+      "official_source_url": "https://data.sdss.org/sas/dr17/eboss/lss/EZmocks/v1_0_0/realistic/eBOSS_LRG/ran/EZmock_realistic_eBOSS_LRG_SGC_v7_0001.ran.fits.gz",
+      "local_verified_source_path": "/home/dino/stress-energy-closure/eboss_workspace/quarantine_realistic_ezmock0001_randoms/EZmock_realistic_eBOSS_LRG_SGC_v7_0001.ran.fits.gz",
+      "relative_released_filename": "eBOSS_LRG/ran/EZmock_realistic_eBOSS_LRG_SGC_v7_0001.ran.fits.gz",
+      "source_mode": "verified_existing_cache",
+      "compressed_bytes": 39067667,
+      "prior_20260924_artifact_expected_sha256": "94c8940734f3c647a2b883124392cd39855034a212ce9c6a05a6bd052bba8efe",
+      "fully_reverified_compressed_sha256": "94c8940734f3c647a2b883124392cd39855034a212ce9c6a05a6bd052bba8efe",
+      "sha_matches_original_artifact_reference": true,
+      "gzip_magic_checked": true,
+      "gzip_decompressed_or_FITS_rows_read": false,
+      "newly_downloaded_HTTP_details_if_any": null
+    },
+    "0001/SGC/eBOSS_ELG": {
+      "source_key": "0001/SGC/eBOSS_ELG",
+      "official_source_url": "https://data.sdss.org/sas/dr17/eboss/lss/EZmocks/v1_0_0/realistic/eBOSS_ELG/ran/EZmock_realistic_eBOSS_ELG_SGC_v7_0001.ran.fits.gz",
+      "local_verified_source_path": "/home/dino/stress-energy-closure/eboss_workspace/quarantine_realistic_ezmock0001_randoms/EZmock_realistic_eBOSS_ELG_SGC_v7_0001.ran.fits.gz",
+      "relative_released_filename": "eBOSS_ELG/ran/EZmock_realistic_eBOSS_ELG_SGC_v7_0001.ran.fits.gz",
+      "source_mode": "verified_existing_cache",
+      "compressed_bytes": 52878654,
+      "prior_20260924_artifact_expected_sha256": "1af8f7f95f6d477049c80302300e97ed2c0aa7f584a0595d61f78dea80057e38",
+      "fully_reverified_compressed_sha256": "1af8f7f95f6d477049c80302300e97ed2c0aa7f584a0595d61f78dea80057e38",
+      "sha_matches_original_artifact_reference": true,
+      "gzip_magic_checked": true,
+      "gzip_decompressed_or_FITS_rows_read": false,
+      "newly_downloaded_HTTP_details_if_any": null
+    },
+    "0125/NGC/eBOSS_LRG": {
+      "source_key": "0125/NGC/eBOSS_LRG",
+      "official_source_url": "https://data.sdss.org/sas/dr17/eboss/lss/EZmocks/v1_0_0/realistic/eBOSS_LRG/ran/EZmock_realistic_eBOSS_LRG_NGC_v7_0125.ran.fits.gz",
+      "local_verified_source_path": "/home/dino/stress-energy-closure/eboss_workspace/quarantine_realistic_ninemock_randoms/eBOSS_LRG/ran/EZmock_realistic_eBOSS_LRG_NGC_v7_0125.ran.fits.gz",
+      "relative_released_filename": "eBOSS_LRG/ran/EZmock_realistic_eBOSS_LRG_NGC_v7_0125.ran.fits.gz",
+      "source_mode": "downloaded_same_prior_pinned_URL",
+      "compressed_bytes": 58671425,
+      "prior_20260924_artifact_expected_sha256": "46f3bb0777838c202ed17b70dd86ab29ce15dcacc0fab9c2512a56e382e3e4e2",
+      "fully_reverified_compressed_sha256": "46f3bb0777838c202ed17b70dd86ab29ce15dcacc0fab9c2512a56e382e3e4e2",
+      "sha_matches_original_artifact_reference": true,
+      "gzip_magic_checked": true,
+      "gzip_decompressed_or_FITS_rows_read": false,
+      "newly_downloaded_HTTP_details_if_any": {
+        "HTTP_status": 200,
+        "HTTP_content_length_if_available": 58671425,
+        "HTTP_etag_if_available": "\"5f1d4d4e-37f4141\"",
+        "HTTP_last_modified_if_available": "Sun, 26 Jul 2020 09:30:54 GMT"
+      }
+    },
+    "0125/NGC/eBOSS_ELG": {
+      "source_key": "0125/NGC/eBOSS_ELG",
+      "official_source_url": "https://data.sdss.org/sas/dr17/eboss/lss/EZmocks/v1_0_0/realistic/eBOSS_ELG/ran/EZmock_realistic_eBOSS_ELG_NGC_v7_0125.ran.fits.gz",
+      "local_verified_source_path": "/home/dino/stress-energy-closure/eboss_workspace/quarantine_realistic_ninemock_randoms/eBOSS_ELG/ran/EZmock_realistic_eBOSS_ELG_NGC_v7_0125.ran.fits.gz",
+      "relative_released_filename": "eBOSS_ELG/ran/EZmock_realistic_eBOSS_ELG_NGC_v7_0125.ran.fits.gz",
+      "source_mode": "downloaded_same_prior_pinned_URL",
+      "compressed_bytes": 48224042,
+      "prior_20260924_artifact_expected_sha256": "4fb7258b3698c5d68b184a15e6574c9352f2d097df99c969c39b7607d0f69540",
+      "fully_reverified_compressed_sha256": "4fb7258b3698c5d68b184a15e6574c9352f2d097df99c969c39b7607d0f69540",
+      "sha_matches_original_artifact_reference": true,
+      "gzip_magic_checked": true,
+      "gzip_decompressed_or_FITS_rows_read": false,
+      "newly_downloaded_HTTP_details_if_any": {
+        "HTTP_status": 200,
+        "HTTP_content_length_if_available": 48224042,
+        "HTTP_etag_if_available": "\"5f818172-2dfd72a\"",
+        "HTTP_last_modified_if_available": "Sat, 10 Oct 2020 09:40:02 GMT"
+      }
+    },
+    "0125/SGC/eBOSS_LRG": {
+      "source_key": "0125/SGC/eBOSS_LRG",
+      "official_source_url": "https://data.sdss.org/sas/dr17/eboss/lss/EZmocks/v1_0_0/realistic/eBOSS_LRG/ran/EZmock_realistic_eBOSS_LRG_SGC_v7_0125.ran.fits.gz",
+      "local_verified_source_path": "/home/dino/stress-energy-closure/eboss_workspace/quarantine_realistic_ninemock_randoms/eBOSS_LRG/ran/EZmock_realistic_eBOSS_LRG_SGC_v7_0125.ran.fits.gz",
+      "relative_released_filename": "eBOSS_LRG/ran/EZmock_realistic_eBOSS_LRG_SGC_v7_0125.ran.fits.gz",
+      "source_mode": "downloaded_same_prior_pinned_URL",
+      "compressed_bytes": 38782817,
+      "prior_20260924_artifact_expected_sha256": "382eba6695c68ecba683fea55cf8d6c4ace81c252ff8359ada763bcd27259acf",
+      "fully_reverified_compressed_sha256": "382eba6695c68ecba683fea55cf8d6c4ace81c252ff8359ada763bcd27259acf",
+      "sha_matches_original_artifact_reference": true,
+      "gzip_magic_checked": true,
+      "gzip_decompressed_or_FITS_rows_read": false,
+      "newly_downloaded_HTTP_details_if_any": {
+        "HTTP_status": 200,
+        "HTTP_content_length_if_available": 38782817,
+        "HTTP_etag_if_available": "\"5f1d55c9-24fc761\"",
+        "HTTP_last_modified_if_available": "Sun, 26 Jul 2020 10:07:05 GMT"
+      }
+    },
+    "0125/SGC/eBOSS_ELG": {
+      "source_key": "0125/SGC/eBOSS_ELG",
+      "official_source_url": "https://data.sdss.org/sas/dr17/eboss/lss/EZmocks/v1_0_0/realistic/eBOSS_ELG/ran/EZmock_realistic_eBOSS_ELG_SGC_v7_0125.ran.fits.gz",
+      "local_verified_source_path": "/home/dino/stress-energy-closure/eboss_workspace/quarantine_realistic_ninemock_randoms/eBOSS_ELG/ran/EZmock_realistic_eBOSS_ELG_SGC_v7_0125.ran.fits.gz",
+      "relative_released_filename": "eBOSS_ELG/ran/EZmock_realistic_eBOSS_ELG_SGC_v7_0125.ran.fits.gz",
+      "source_mode": "downloaded_same_prior_pinned_URL",
+      "compressed_bytes": 52412515,
+      "prior_20260924_artifact_expected_sha256": "5ea9b4af30fd9defea1ea0b827d7faa319f63280d9b93f99513e1b89ed32282b",
+      "fully_reverified_compressed_sha256": "5ea9b4af30fd9defea1ea0b827d7faa319f63280d9b93f99513e1b89ed32282b",
+      "sha_matches_original_artifact_reference": true,
+      "gzip_magic_checked": true,
+      "gzip_decompressed_or_FITS_rows_read": false,
+      "newly_downloaded_HTTP_details_if_any": {
+        "HTTP_status": 200,
+        "HTTP_content_length_if_available": 52412515,
+        "HTTP_etag_if_available": "\"5f81917d-31fc063\"",
+        "HTTP_last_modified_if_available": "Sat, 10 Oct 2020 10:48:29 GMT"
+      }
+    },
+    "0250/NGC/eBOSS_LRG": {
+      "source_key": "0250/NGC/eBOSS_LRG",
+      "official_source_url": "https://data.sdss.org/sas/dr17/eboss/lss/EZmocks/v1_0_0/realistic/eBOSS_LRG/ran/EZmock_realistic_eBOSS_LRG_NGC_v7_0250.ran.fits.gz",
+      "local_verified_source_path": "/home/dino/stress-energy-closure/eboss_workspace/quarantine_realistic_ninemock_randoms/eBOSS_LRG/ran/EZmock_realistic_eBOSS_LRG_NGC_v7_0250.ran.fits.gz",
+      "relative_released_filename": "eBOSS_LRG/ran/EZmock_realistic_eBOSS_LRG_NGC_v7_0250.ran.fits.gz",
+      "source_mode": "downloaded_same_prior_pinned_URL",
+      "compressed_bytes": 57958715,
+      "prior_20260924_artifact_expected_sha256": "faa9ac202b97bff52b4208155d26e6d5defb6fd5168d18594a557d7d7124c566",
+      "fully_reverified_compressed_sha256": "faa9ac202b97bff52b4208155d26e6d5defb6fd5168d18594a557d7d7124c566",
+      "sha_matches_original_artifact_reference": true,
+      "gzip_magic_checked": true,
+      "gzip_decompressed_or_FITS_rows_read": false,
+      "newly_downloaded_HTTP_details_if_any": {
+        "HTTP_status": 200,
+        "HTTP_content_length_if_available": 57958715,
+        "HTTP_etag_if_available": "\"5f1d4e5d-374613b\"",
+        "HTTP_last_modified_if_available": "Sun, 26 Jul 2020 09:35:25 GMT"
+      }
+    },
+    "0250/NGC/eBOSS_ELG": {
+      "source_key": "0250/NGC/eBOSS_ELG",
+      "official_source_url": "https://data.sdss.org/sas/dr17/eboss/lss/EZmocks/v1_0_0/realistic/eBOSS_ELG/ran/EZmock_realistic_eBOSS_ELG_NGC_v7_0250.ran.fits.gz",
+      "local_verified_source_path": "/home/dino/stress-energy-closure/eboss_workspace/quarantine_realistic_ninemock_randoms/eBOSS_ELG/ran/EZmock_realistic_eBOSS_ELG_NGC_v7_0250.ran.fits.gz",
+      "relative_released_filename": "eBOSS_ELG/ran/EZmock_realistic_eBOSS_ELG_NGC_v7_0250.ran.fits.gz",
+      "source_mode": "downloaded_same_prior_pinned_URL",
+      "compressed_bytes": 48442775,
+      "prior_20260924_artifact_expected_sha256": "d591e19127a2e516c58532b36330dbaee636f32e2ceea9d3fda831bc30d898fd",
+      "fully_reverified_compressed_sha256": "d591e19127a2e516c58532b36330dbaee636f32e2ceea9d3fda831bc30d898fd",
+      "sha_matches_original_artifact_reference": true,
+      "gzip_magic_checked": true,
+      "gzip_decompressed_or_FITS_rows_read": false,
+      "newly_downloaded_HTTP_details_if_any": {
+        "HTTP_status": 200,
+        "HTTP_content_length_if_available": 48442775,
+        "HTTP_etag_if_available": "\"5f818363-2e32d97\"",
+        "HTTP_last_modified_if_available": "Sat, 10 Oct 2020 09:48:19 GMT"
+      }
+    },
+    "0250/SGC/eBOSS_LRG": {
+      "source_key": "0250/SGC/eBOSS_LRG",
+      "official_source_url": "https://data.sdss.org/sas/dr17/eboss/lss/EZmocks/v1_0_0/realistic/eBOSS_LRG/ran/EZmock_realistic_eBOSS_LRG_SGC_v7_0250.ran.fits.gz",
+      "local_verified_source_path": "/home/dino/stress-energy-closure/eboss_workspace/quarantine_realistic_ninemock_randoms/eBOSS_LRG/ran/EZmock_realistic_eBOSS_LRG_SGC_v7_0250.ran.fits.gz",
+      "relative_released_filename": "eBOSS_LRG/ran/EZmock_realistic_eBOSS_LRG_SGC_v7_0250.ran.fits.gz",
+      "source_mode": "downloaded_same_prior_pinned_URL",
+      "compressed_bytes": 39359569,
+      "prior_20260924_artifact_expected_sha256": "290969f625985b89b5fde74db64eb8033235c4f15f9ce561a91568514e4df457",
+      "fully_reverified_compressed_sha256": "290969f625985b89b5fde74db64eb8033235c4f15f9ce561a91568514e4df457",
+      "sha_matches_original_artifact_reference": true,
+      "gzip_magic_checked": true,
+      "gzip_decompressed_or_FITS_rows_read": false,
+      "newly_downloaded_HTTP_details_if_any": {
+        "HTTP_status": 200,
+        "HTTP_content_length_if_available": 39359569,
+        "HTTP_etag_if_available": "\"5f1d56ce-2589451\"",
+        "HTTP_last_modified_if_available": "Sun, 26 Jul 2020 10:11:26 GMT"
+      }
+    },
+    "0250/SGC/eBOSS_ELG": {
+      "source_key": "0250/SGC/eBOSS_ELG",
+      "official_source_url": "https://data.sdss.org/sas/dr17/eboss/lss/EZmocks/v1_0_0/realistic/eBOSS_ELG/ran/EZmock_realistic_eBOSS_ELG_SGC_v7_0250.ran.fits.gz",
+      "local_verified_source_path": "/home/dino/stress-energy-closure/eboss_workspace/quarantine_realistic_ninemock_randoms/eBOSS_ELG/ran/EZmock_realistic_eBOSS_ELG_SGC_v7_0250.ran.fits.gz",
+      "relative_released_filename": "eBOSS_ELG/ran/EZmock_realistic_eBOSS_ELG_SGC_v7_0250.ran.fits.gz",
+      "source_mode": "downloaded_same_prior_pinned_URL",
+      "compressed_bytes": 52790542,
+      "prior_20260924_artifact_expected_sha256": "1c62a0a59243fc38055dfefbc47acc0ac39303b4652ec4005db02fa20a0dd883",
+      "fully_reverified_compressed_sha256": "1c62a0a59243fc38055dfefbc47acc0ac39303b4652ec4005db02fa20a0dd883",
+      "sha_matches_original_artifact_reference": true,
+      "gzip_magic_checked": true,
+      "gzip_decompressed_or_FITS_rows_read": false,
+      "newly_downloaded_HTTP_details_if_any": {
+        "HTTP_status": 200,
+        "HTTP_content_length_if_available": 52790542,
+        "HTTP_etag_if_available": "\"5f81935a-325850e\"",
+        "HTTP_last_modified_if_available": "Sat, 10 Oct 2020 10:56:26 GMT"
+      }
+    },
+    "0375/NGC/eBOSS_LRG": {
+      "source_key": "0375/NGC/eBOSS_LRG",
+      "official_source_url": "https://data.sdss.org/sas/dr17/eboss/lss/EZmocks/v1_0_0/realistic/eBOSS_LRG/ran/EZmock_realistic_eBOSS_LRG_NGC_v7_0375.ran.fits.gz",
+      "local_verified_source_path": "/home/dino/stress-energy-closure/eboss_workspace/quarantine_realistic_ninemock_randoms/eBOSS_LRG/ran/EZmock_realistic_eBOSS_LRG_NGC_v7_0375.ran.fits.gz",
+      "relative_released_filename": "eBOSS_LRG/ran/EZmock_realistic_eBOSS_LRG_NGC_v7_0375.ran.fits.gz",
+      "source_mode": "downloaded_same_prior_pinned_URL",
+      "compressed_bytes": 58122434,
+      "prior_20260924_artifact_expected_sha256": "decacf296c3da987b7a0a7b3e23f1539d3d22d616dc1a718b48f1d4a84e5bf8f",
+      "fully_reverified_compressed_sha256": "decacf296c3da987b7a0a7b3e23f1539d3d22d616dc1a718b48f1d4a84e5bf8f",
+      "sha_matches_original_artifact_reference": true,
+      "gzip_magic_checked": true,
+      "gzip_decompressed_or_FITS_rows_read": false,
+      "newly_downloaded_HTTP_details_if_any": {
+        "HTTP_status": 200,
+        "HTTP_content_length_if_available": 58122434,
+        "HTTP_etag_if_available": "\"5f1d4f77-376e0c2\"",
+        "HTTP_last_modified_if_available": "Sun, 26 Jul 2020 09:40:07 GMT"
+      }
+    },
+    "0375/NGC/eBOSS_ELG": {
+      "source_key": "0375/NGC/eBOSS_ELG",
+      "official_source_url": "https://data.sdss.org/sas/dr17/eboss/lss/EZmocks/v1_0_0/realistic/eBOSS_ELG/ran/EZmock_realistic_eBOSS_ELG_NGC_v7_0375.ran.fits.gz",
+      "local_verified_source_path": "/home/dino/stress-energy-closure/eboss_workspace/quarantine_realistic_ninemock_randoms/eBOSS_ELG/ran/EZmock_realistic_eBOSS_ELG_NGC_v7_0375.ran.fits.gz",
+      "relative_released_filename": "eBOSS_ELG/ran/EZmock_realistic_eBOSS_ELG_NGC_v7_0375.ran.fits.gz",
+      "source_mode": "downloaded_same_prior_pinned_URL",
+      "compressed_bytes": 48551902,
+      "prior_20260924_artifact_expected_sha256": "8ad4a88b245913cb282f2e9564e61dea3ceec941d2539fda285861b7248a19f6",
+      "fully_reverified_compressed_sha256": "8ad4a88b245913cb282f2e9564e61dea3ceec941d2539fda285861b7248a19f6",
+      "sha_matches_original_artifact_reference": true,
+      "gzip_magic_checked": true,
+      "gzip_decompressed_or_FITS_rows_read": false,
+      "newly_downloaded_HTTP_details_if_any": {
+        "HTTP_status": 200,
+        "HTTP_content_length_if_available": 48551902,
+        "HTTP_etag_if_available": "\"5f818564-2e4d7de\"",
+        "HTTP_last_modified_if_available": "Sat, 10 Oct 2020 09:56:52 GMT"
+      }
+    },
+    "0375/SGC/eBOSS_LRG": {
+      "source_key": "0375/SGC/eBOSS_LRG",
+      "official_source_url": "https://data.sdss.org/sas/dr17/eboss/lss/EZmocks/v1_0_0/realistic/eBOSS_LRG/ran/EZmock_realistic_eBOSS_LRG_SGC_v7_0375.ran.fits.gz",
+      "local_verified_source_path": "/home/dino/stress-energy-closure/eboss_workspace/quarantine_realistic_ninemock_randoms/eBOSS_LRG/ran/EZmock_realistic_eBOSS_LRG_SGC_v7_0375.ran.fits.gz",
+      "relative_released_filename": "eBOSS_LRG/ran/EZmock_realistic_eBOSS_LRG_SGC_v7_0375.ran.fits.gz",
+      "source_mode": "downloaded_same_prior_pinned_URL",
+      "compressed_bytes": 39079761,
+      "prior_20260924_artifact_expected_sha256": "effa9afce9a9bd9c5a1fa7255eb51a9e517329fedc547a862e0f173c0224e7de",
+      "fully_reverified_compressed_sha256": "effa9afce9a9bd9c5a1fa7255eb51a9e517329fedc547a862e0f173c0224e7de",
+      "sha_matches_original_artifact_reference": true,
+      "gzip_magic_checked": true,
+      "gzip_decompressed_or_FITS_rows_read": false,
+      "newly_downloaded_HTTP_details_if_any": {
+        "HTTP_status": 200,
+        "HTTP_content_length_if_available": 39079761,
+        "HTTP_etag_if_available": "\"5f1d57e2-2544f51\"",
+        "HTTP_last_modified_if_available": "Sun, 26 Jul 2020 10:16:02 GMT"
+      }
+    },
+    "0375/SGC/eBOSS_ELG": {
+      "source_key": "0375/SGC/eBOSS_ELG",
+      "official_source_url": "https://data.sdss.org/sas/dr17/eboss/lss/EZmocks/v1_0_0/realistic/eBOSS_ELG/ran/EZmock_realistic_eBOSS_ELG_SGC_v7_0375.ran.fits.gz",
+      "local_verified_source_path": "/home/dino/stress-energy-closure/eboss_workspace/quarantine_realistic_ninemock_randoms/eBOSS_ELG/ran/EZmock_realistic_eBOSS_ELG_SGC_v7_0375.ran.fits.gz",
+      "relative_released_filename": "eBOSS_ELG/ran/EZmock_realistic_eBOSS_ELG_SGC_v7_0375.ran.fits.gz",
+      "source_mode": "downloaded_same_prior_pinned_URL",
+      "compressed_bytes": 52962973,
+      "prior_20260924_artifact_expected_sha256": "c0206e25e97ca2dadaa76d265e400673f117cf737aa5b2ba0c0b4b7d7c8801ad",
+      "fully_reverified_compressed_sha256": "c0206e25e97ca2dadaa76d265e400673f117cf737aa5b2ba0c0b4b7d7c8801ad",
+      "sha_matches_original_artifact_reference": true,
+      "gzip_magic_checked": true,
+      "gzip_decompressed_or_FITS_rows_read": false,
+      "newly_downloaded_HTTP_details_if_any": {
+        "HTTP_status": 200,
+        "HTTP_content_length_if_available": 52962973,
+        "HTTP_etag_if_available": "\"5f81956b-328269d\"",
+        "HTTP_last_modified_if_available": "Sat, 10 Oct 2020 11:05:15 GMT"
+      }
+    },
+    "0500/NGC/eBOSS_LRG": {
+      "source_key": "0500/NGC/eBOSS_LRG",
+      "official_source_url": "https://data.sdss.org/sas/dr17/eboss/lss/EZmocks/v1_0_0/realistic/eBOSS_LRG/ran/EZmock_realistic_eBOSS_LRG_NGC_v7_0500.ran.fits.gz",
+      "local_verified_source_path": "/home/dino/stress-energy-closure/eboss_workspace/quarantine_realistic_ninemock_randoms/eBOSS_LRG/ran/EZmock_realistic_eBOSS_LRG_NGC_v7_0500.ran.fits.gz",
+      "relative_released_filename": "eBOSS_LRG/ran/EZmock_realistic_eBOSS_LRG_NGC_v7_0500.ran.fits.gz",
+      "source_mode": "downloaded_same_prior_pinned_URL",
+      "compressed_bytes": 58101243,
+      "prior_20260924_artifact_expected_sha256": "61b0be17647b2f120013a0ada648b6fb73267a2c66fc9337970c8ed837fa4338",
+      "fully_reverified_compressed_sha256": "61b0be17647b2f120013a0ada648b6fb73267a2c66fc9337970c8ed837fa4338",
+      "sha_matches_original_artifact_reference": true,
+      "gzip_magic_checked": true,
+      "gzip_decompressed_or_FITS_rows_read": false,
+      "newly_downloaded_HTTP_details_if_any": {
+        "HTTP_status": 200,
+        "HTTP_content_length_if_available": 58101243,
+        "HTTP_etag_if_available": "\"5f1d5081-3768dfb\"",
+        "HTTP_last_modified_if_available": "Sun, 26 Jul 2020 09:44:33 GMT"
+      }
+    },
+    "0500/NGC/eBOSS_ELG": {
+      "source_key": "0500/NGC/eBOSS_ELG",
+      "official_source_url": "https://data.sdss.org/sas/dr17/eboss/lss/EZmocks/v1_0_0/realistic/eBOSS_ELG/ran/EZmock_realistic_eBOSS_ELG_NGC_v7_0500.ran.fits.gz",
+      "local_verified_source_path": "/home/dino/stress-energy-closure/eboss_workspace/quarantine_realistic_ninemock_randoms/eBOSS_ELG/ran/EZmock_realistic_eBOSS_ELG_NGC_v7_0500.ran.fits.gz",
+      "relative_released_filename": "eBOSS_ELG/ran/EZmock_realistic_eBOSS_ELG_NGC_v7_0500.ran.fits.gz",
+      "source_mode": "downloaded_same_prior_pinned_URL",
+      "compressed_bytes": 48865986,
+      "prior_20260924_artifact_expected_sha256": "3eefa2d8ebb2c06db105aee8638c44db9506af83b847e397c4d9361d26503af1",
+      "fully_reverified_compressed_sha256": "3eefa2d8ebb2c06db105aee8638c44db9506af83b847e397c4d9361d26503af1",
+      "sha_matches_original_artifact_reference": true,
+      "gzip_magic_checked": true,
+      "gzip_decompressed_or_FITS_rows_read": false,
+      "newly_downloaded_HTTP_details_if_any": {
+        "HTTP_status": 200,
+        "HTTP_content_length_if_available": 48865986,
+        "HTTP_etag_if_available": "\"5f818817-2e9a2c2\"",
+        "HTTP_last_modified_if_available": "Sat, 10 Oct 2020 10:08:23 GMT"
+      }
+    },
+    "0500/SGC/eBOSS_LRG": {
+      "source_key": "0500/SGC/eBOSS_LRG",
+      "official_source_url": "https://data.sdss.org/sas/dr17/eboss/lss/EZmocks/v1_0_0/realistic/eBOSS_LRG/ran/EZmock_realistic_eBOSS_LRG_SGC_v7_0500.ran.fits.gz",
+      "local_verified_source_path": "/home/dino/stress-energy-closure/eboss_workspace/quarantine_realistic_ninemock_randoms/eBOSS_LRG/ran/EZmock_realistic_eBOSS_LRG_SGC_v7_0500.ran.fits.gz",
+      "relative_released_filename": "eBOSS_LRG/ran/EZmock_realistic_eBOSS_LRG_SGC_v7_0500.ran.fits.gz",
+      "source_mode": "downloaded_same_prior_pinned_URL",
+      "compressed_bytes": 39023583,
+      "prior_20260924_artifact_expected_sha256": "a61d04e7e3e3d8bbb4c5d881a7b868db2457a1d4a45dbbe0fb61ecd5bf817130",
+      "fully_reverified_compressed_sha256": "a61d04e7e3e3d8bbb4c5d881a7b868db2457a1d4a45dbbe0fb61ecd5bf817130",
+      "sha_matches_original_artifact_reference": true,
+      "gzip_magic_checked": true,
+      "gzip_decompressed_or_FITS_rows_read": false,
+      "newly_downloaded_HTTP_details_if_any": {
+        "HTTP_status": 200,
+        "HTTP_content_length_if_available": 39023583,
+        "HTTP_etag_if_available": "\"5f1d58ec-25373df\"",
+        "HTTP_last_modified_if_available": "Sun, 26 Jul 2020 10:20:28 GMT"
+      }
+    },
+    "0500/SGC/eBOSS_ELG": {
+      "source_key": "0500/SGC/eBOSS_ELG",
+      "official_source_url": "https://data.sdss.org/sas/dr17/eboss/lss/EZmocks/v1_0_0/realistic/eBOSS_ELG/ran/EZmock_realistic_eBOSS_ELG_SGC_v7_0500.ran.fits.gz",
+      "local_verified_source_path": "/home/dino/stress-energy-closure/eboss_workspace/quarantine_realistic_ninemock_randoms/eBOSS_ELG/ran/EZmock_realistic_eBOSS_ELG_SGC_v7_0500.ran.fits.gz",
+      "relative_released_filename": "eBOSS_ELG/ran/EZmock_realistic_eBOSS_ELG_SGC_v7_0500.ran.fits.gz",
+      "source_mode": "downloaded_same_prior_pinned_URL",
+      "compressed_bytes": 53148300,
+      "prior_20260924_artifact_expected_sha256": "7796d2dcffa4323178f15099a8f787f954de1383b603c853891d3c3198722bce",
+      "fully_reverified_compressed_sha256": "7796d2dcffa4323178f15099a8f787f954de1383b603c853891d3c3198722bce",
+      "sha_matches_original_artifact_reference": true,
+      "gzip_magic_checked": true,
+      "gzip_decompressed_or_FITS_rows_read": false,
+      "newly_downloaded_HTTP_details_if_any": {
+        "HTTP_status": 200,
+        "HTTP_content_length_if_available": 53148300,
+        "HTTP_etag_if_available": "\"5f81973d-32afa8c\"",
+        "HTTP_last_modified_if_available": "Sat, 10 Oct 2020 11:13:01 GMT"
+      }
+    },
+    "0625/NGC/eBOSS_LRG": {
+      "source_key": "0625/NGC/eBOSS_LRG",
+      "official_source_url": "https://data.sdss.org/sas/dr17/eboss/lss/EZmocks/v1_0_0/realistic/eBOSS_LRG/ran/EZmock_realistic_eBOSS_LRG_NGC_v7_0625.ran.fits.gz",
+      "local_verified_source_path": "/home/dino/stress-energy-closure/eboss_workspace/quarantine_realistic_ninemock_randoms/eBOSS_LRG/ran/EZmock_realistic_eBOSS_LRG_NGC_v7_0625.ran.fits.gz",
+      "relative_released_filename": "eBOSS_LRG/ran/EZmock_realistic_eBOSS_LRG_NGC_v7_0625.ran.fits.gz",
+      "source_mode": "downloaded_same_prior_pinned_URL",
+      "compressed_bytes": 57918421,
+      "prior_20260924_artifact_expected_sha256": "5aff234a0d2b761d8845d8f198ead88e7802feee62f1b0027b39342ae63a03d7",
+      "fully_reverified_compressed_sha256": "5aff234a0d2b761d8845d8f198ead88e7802feee62f1b0027b39342ae63a03d7",
+      "sha_matches_original_artifact_reference": true,
+      "gzip_magic_checked": true,
+      "gzip_decompressed_or_FITS_rows_read": false,
+      "newly_downloaded_HTTP_details_if_any": {
+        "HTTP_status": 200,
+        "HTTP_content_length_if_available": 57918421,
+        "HTTP_etag_if_available": "\"5f1d518b-373c3d5\"",
+        "HTTP_last_modified_if_available": "Sun, 26 Jul 2020 09:48:59 GMT"
+      }
+    },
+    "0625/NGC/eBOSS_ELG": {
+      "source_key": "0625/NGC/eBOSS_ELG",
+      "official_source_url": "https://data.sdss.org/sas/dr17/eboss/lss/EZmocks/v1_0_0/realistic/eBOSS_ELG/ran/EZmock_realistic_eBOSS_ELG_NGC_v7_0625.ran.fits.gz",
+      "local_verified_source_path": "/home/dino/stress-energy-closure/eboss_workspace/quarantine_realistic_ninemock_randoms/eBOSS_ELG/ran/EZmock_realistic_eBOSS_ELG_NGC_v7_0625.ran.fits.gz",
+      "relative_released_filename": "eBOSS_ELG/ran/EZmock_realistic_eBOSS_ELG_NGC_v7_0625.ran.fits.gz",
+      "source_mode": "downloaded_same_prior_pinned_URL",
+      "compressed_bytes": 48332073,
+      "prior_20260924_artifact_expected_sha256": "f0ca2b2c1f2bac030fe519008efd989e57ed5bba241e7c2b5dee5a6b2d11ec51",
+      "fully_reverified_compressed_sha256": "f0ca2b2c1f2bac030fe519008efd989e57ed5bba241e7c2b5dee5a6b2d11ec51",
+      "sha_matches_original_artifact_reference": true,
+      "gzip_magic_checked": true,
+      "gzip_decompressed_or_FITS_rows_read": false,
+      "newly_downloaded_HTTP_details_if_any": {
+        "HTTP_status": 200,
+        "HTTP_content_length_if_available": 48332073,
+        "HTTP_etag_if_available": "\"5f8189e9-2e17d29\"",
+        "HTTP_last_modified_if_available": "Sat, 10 Oct 2020 10:16:09 GMT"
+      }
+    },
+    "0625/SGC/eBOSS_LRG": {
+      "source_key": "0625/SGC/eBOSS_LRG",
+      "official_source_url": "https://data.sdss.org/sas/dr17/eboss/lss/EZmocks/v1_0_0/realistic/eBOSS_LRG/ran/EZmock_realistic_eBOSS_LRG_SGC_v7_0625.ran.fits.gz",
+      "local_verified_source_path": "/home/dino/stress-energy-closure/eboss_workspace/quarantine_realistic_ninemock_randoms/eBOSS_LRG/ran/EZmock_realistic_eBOSS_LRG_SGC_v7_0625.ran.fits.gz",
+      "relative_released_filename": "eBOSS_LRG/ran/EZmock_realistic_eBOSS_LRG_SGC_v7_0625.ran.fits.gz",
+      "source_mode": "downloaded_same_prior_pinned_URL",
+      "compressed_bytes": 39120936,
+      "prior_20260924_artifact_expected_sha256": "9d9d6715530c3d36c6940b7717d5974fedafd2c457c7936c99154f7d38b6d01c",
+      "fully_reverified_compressed_sha256": "9d9d6715530c3d36c6940b7717d5974fedafd2c457c7936c99154f7d38b6d01c",
+      "sha_matches_original_artifact_reference": true,
+      "gzip_magic_checked": true,
+      "gzip_decompressed_or_FITS_rows_read": false,
+      "newly_downloaded_HTTP_details_if_any": {
+        "HTTP_status": 200,
+        "HTTP_content_length_if_available": 39120936,
+        "HTTP_etag_if_available": "\"5f1d5a06-254f028\"",
+        "HTTP_last_modified_if_available": "Sun, 26 Jul 2020 10:25:10 GMT"
+      }
+    },
+    "0625/SGC/eBOSS_ELG": {
+      "source_key": "0625/SGC/eBOSS_ELG",
+      "official_source_url": "https://data.sdss.org/sas/dr17/eboss/lss/EZmocks/v1_0_0/realistic/eBOSS_ELG/ran/EZmock_realistic_eBOSS_ELG_SGC_v7_0625.ran.fits.gz",
+      "local_verified_source_path": "/home/dino/stress-energy-closure/eboss_workspace/quarantine_realistic_ninemock_randoms/eBOSS_ELG/ran/EZmock_realistic_eBOSS_ELG_SGC_v7_0625.ran.fits.gz",
+      "relative_released_filename": "eBOSS_ELG/ran/EZmock_realistic_eBOSS_ELG_SGC_v7_0625.ran.fits.gz",
+      "source_mode": "downloaded_same_prior_pinned_URL",
+      "compressed_bytes": 52544763,
+      "prior_20260924_artifact_expected_sha256": "e1fb6cdb6d905b99fce37b3f24a8223e60ede03e214c23342fd46db3dd53c8c0",
+      "fully_reverified_compressed_sha256": "e1fb6cdb6d905b99fce37b3f24a8223e60ede03e214c23342fd46db3dd53c8c0",
+      "sha_matches_original_artifact_reference": true,
+      "gzip_magic_checked": true,
+      "gzip_decompressed_or_FITS_rows_read": false,
+      "newly_downloaded_HTTP_details_if_any": {
+        "HTTP_status": 200,
+        "HTTP_content_length_if_available": 52544763,
+        "HTTP_etag_if_available": "\"5f81992d-321c4fb\"",
+        "HTTP_last_modified_if_available": "Sat, 10 Oct 2020 11:21:17 GMT"
+      }
+    },
+    "0750/NGC/eBOSS_LRG": {
+      "source_key": "0750/NGC/eBOSS_LRG",
+      "official_source_url": "https://data.sdss.org/sas/dr17/eboss/lss/EZmocks/v1_0_0/realistic/eBOSS_LRG/ran/EZmock_realistic_eBOSS_LRG_NGC_v7_0750.ran.fits.gz",
+      "local_verified_source_path": "/home/dino/stress-energy-closure/eboss_workspace/quarantine_realistic_ninemock_randoms/eBOSS_LRG/ran/EZmock_realistic_eBOSS_LRG_NGC_v7_0750.ran.fits.gz",
+      "relative_released_filename": "eBOSS_LRG/ran/EZmock_realistic_eBOSS_LRG_NGC_v7_0750.ran.fits.gz",
+      "source_mode": "downloaded_same_prior_pinned_URL",
+      "compressed_bytes": 58329713,
+      "prior_20260924_artifact_expected_sha256": "2257336187151b34233e9610878f6aedf258fa9da1845c7dd4d1c03ae61779a0",
+      "fully_reverified_compressed_sha256": "2257336187151b34233e9610878f6aedf258fa9da1845c7dd4d1c03ae61779a0",
+      "sha_matches_original_artifact_reference": true,
+      "gzip_magic_checked": true,
+      "gzip_decompressed_or_FITS_rows_read": false,
+      "newly_downloaded_HTTP_details_if_any": {
+        "HTTP_status": 200,
+        "HTTP_content_length_if_available": 58329713,
+        "HTTP_etag_if_available": "\"5f1d5295-37a0a71\"",
+        "HTTP_last_modified_if_available": "Sun, 26 Jul 2020 09:53:25 GMT"
+      }
+    },
+    "0750/NGC/eBOSS_ELG": {
+      "source_key": "0750/NGC/eBOSS_ELG",
+      "official_source_url": "https://data.sdss.org/sas/dr17/eboss/lss/EZmocks/v1_0_0/realistic/eBOSS_ELG/ran/EZmock_realistic_eBOSS_ELG_NGC_v7_0750.ran.fits.gz",
+      "local_verified_source_path": "/home/dino/stress-energy-closure/eboss_workspace/quarantine_realistic_ninemock_randoms/eBOSS_ELG/ran/EZmock_realistic_eBOSS_ELG_NGC_v7_0750.ran.fits.gz",
+      "relative_released_filename": "eBOSS_ELG/ran/EZmock_realistic_eBOSS_ELG_NGC_v7_0750.ran.fits.gz",
+      "source_mode": "downloaded_same_prior_pinned_URL",
+      "compressed_bytes": 48160357,
+      "prior_20260924_artifact_expected_sha256": "05705658d7b72053c28e68d7b1296136185fee05f40d73205a5c3f47567a83a1",
+      "fully_reverified_compressed_sha256": "05705658d7b72053c28e68d7b1296136185fee05f40d73205a5c3f47567a83a1",
+      "sha_matches_original_artifact_reference": true,
+      "gzip_magic_checked": true,
+      "gzip_decompressed_or_FITS_rows_read": false,
+      "newly_downloaded_HTTP_details_if_any": {
+        "HTTP_status": 200,
+        "HTTP_content_length_if_available": 48160357,
+        "HTTP_etag_if_available": "\"5f818bd4-2dede65\"",
+        "HTTP_last_modified_if_available": "Sat, 10 Oct 2020 10:24:20 GMT"
+      }
+    },
+    "0750/SGC/eBOSS_LRG": {
+      "source_key": "0750/SGC/eBOSS_LRG",
+      "official_source_url": "https://data.sdss.org/sas/dr17/eboss/lss/EZmocks/v1_0_0/realistic/eBOSS_LRG/ran/EZmock_realistic_eBOSS_LRG_SGC_v7_0750.ran.fits.gz",
+      "local_verified_source_path": "/home/dino/stress-energy-closure/eboss_workspace/quarantine_realistic_ninemock_randoms/eBOSS_LRG/ran/EZmock_realistic_eBOSS_LRG_SGC_v7_0750.ran.fits.gz",
+      "relative_released_filename": "eBOSS_LRG/ran/EZmock_realistic_eBOSS_LRG_SGC_v7_0750.ran.fits.gz",
+      "source_mode": "downloaded_same_prior_pinned_URL",
+      "compressed_bytes": 39201500,
+      "prior_20260924_artifact_expected_sha256": "d7e3f739f20367944c4713aebc0e58f5c19a251e2be5461b6f247eed76f7c5ef",
+      "fully_reverified_compressed_sha256": "d7e3f739f20367944c4713aebc0e58f5c19a251e2be5461b6f247eed76f7c5ef",
+      "sha_matches_original_artifact_reference": true,
+      "gzip_magic_checked": true,
+      "gzip_decompressed_or_FITS_rows_read": false,
+      "newly_downloaded_HTTP_details_if_any": {
+        "HTTP_status": 200,
+        "HTTP_content_length_if_available": 39201500,
+        "HTTP_etag_if_available": "\"5f1d5b10-2562adc\"",
+        "HTTP_last_modified_if_available": "Sun, 26 Jul 2020 10:29:36 GMT"
+      }
+    },
+    "0750/SGC/eBOSS_ELG": {
+      "source_key": "0750/SGC/eBOSS_ELG",
+      "official_source_url": "https://data.sdss.org/sas/dr17/eboss/lss/EZmocks/v1_0_0/realistic/eBOSS_ELG/ran/EZmock_realistic_eBOSS_ELG_SGC_v7_0750.ran.fits.gz",
+      "local_verified_source_path": "/home/dino/stress-energy-closure/eboss_workspace/quarantine_realistic_ninemock_randoms/eBOSS_ELG/ran/EZmock_realistic_eBOSS_ELG_SGC_v7_0750.ran.fits.gz",
+      "relative_released_filename": "eBOSS_ELG/ran/EZmock_realistic_eBOSS_ELG_SGC_v7_0750.ran.fits.gz",
+      "source_mode": "downloaded_same_prior_pinned_URL",
+      "compressed_bytes": 52585652,
+      "prior_20260924_artifact_expected_sha256": "0d54d1a32a4230c7377c56bc84923ee8e604ae61b9ca619d947ca7809c847751",
+      "fully_reverified_compressed_sha256": "0d54d1a32a4230c7377c56bc84923ee8e604ae61b9ca619d947ca7809c847751",
+      "sha_matches_original_artifact_reference": true,
+      "gzip_magic_checked": true,
+      "gzip_decompressed_or_FITS_rows_read": false,
+      "newly_downloaded_HTTP_details_if_any": {
+        "HTTP_status": 200,
+        "HTTP_content_length_if_available": 52585652,
+        "HTTP_etag_if_available": "\"5f819b32-32264b4\"",
+        "HTTP_last_modified_if_available": "Sat, 10 Oct 2020 11:29:54 GMT"
+      }
+    },
+    "0875/NGC/eBOSS_LRG": {
+      "source_key": "0875/NGC/eBOSS_LRG",
+      "official_source_url": "https://data.sdss.org/sas/dr17/eboss/lss/EZmocks/v1_0_0/realistic/eBOSS_LRG/ran/EZmock_realistic_eBOSS_LRG_NGC_v7_0875.ran.fits.gz",
+      "local_verified_source_path": "/home/dino/stress-energy-closure/eboss_workspace/quarantine_realistic_ninemock_randoms/eBOSS_LRG/ran/EZmock_realistic_eBOSS_LRG_NGC_v7_0875.ran.fits.gz",
+      "relative_released_filename": "eBOSS_LRG/ran/EZmock_realistic_eBOSS_LRG_NGC_v7_0875.ran.fits.gz",
+      "source_mode": "downloaded_same_prior_pinned_URL",
+      "compressed_bytes": 58510161,
+      "prior_20260924_artifact_expected_sha256": "1556a3146944728ed19e06b16bd95f99690b9c1c1bd18ae9667bc7c8122461b4",
+      "fully_reverified_compressed_sha256": "1556a3146944728ed19e06b16bd95f99690b9c1c1bd18ae9667bc7c8122461b4",
+      "sha_matches_original_artifact_reference": true,
+      "gzip_magic_checked": true,
+      "gzip_decompressed_or_FITS_rows_read": false,
+      "newly_downloaded_HTTP_details_if_any": {
+        "HTTP_status": 200,
+        "HTTP_content_length_if_available": 58510161,
+        "HTTP_etag_if_available": "\"5f1d53a5-37ccb51\"",
+        "HTTP_last_modified_if_available": "Sun, 26 Jul 2020 09:57:57 GMT"
+      }
+    },
+    "0875/NGC/eBOSS_ELG": {
+      "source_key": "0875/NGC/eBOSS_ELG",
+      "official_source_url": "https://data.sdss.org/sas/dr17/eboss/lss/EZmocks/v1_0_0/realistic/eBOSS_ELG/ran/EZmock_realistic_eBOSS_ELG_NGC_v7_0875.ran.fits.gz",
+      "local_verified_source_path": "/home/dino/stress-energy-closure/eboss_workspace/quarantine_realistic_ninemock_randoms/eBOSS_ELG/ran/EZmock_realistic_eBOSS_ELG_NGC_v7_0875.ran.fits.gz",
+      "relative_released_filename": "eBOSS_ELG/ran/EZmock_realistic_eBOSS_ELG_NGC_v7_0875.ran.fits.gz",
+      "source_mode": "downloaded_same_prior_pinned_URL",
+      "compressed_bytes": 48578735,
+      "prior_20260924_artifact_expected_sha256": "988d11cb0603070ea34bdf9b71477cfc8e608c536b3fc2ca4074a41b13b08c5f",
+      "fully_reverified_compressed_sha256": "988d11cb0603070ea34bdf9b71477cfc8e608c536b3fc2ca4074a41b13b08c5f",
+      "sha_matches_original_artifact_reference": true,
+      "gzip_magic_checked": true,
+      "gzip_decompressed_or_FITS_rows_read": false,
+      "newly_downloaded_HTTP_details_if_any": {
+        "HTTP_status": 200,
+        "HTTP_content_length_if_available": 48578735,
+        "HTTP_etag_if_available": "\"5f818da1-2e540af\"",
+        "HTTP_last_modified_if_available": "Sat, 10 Oct 2020 10:32:01 GMT"
+      }
+    },
+    "0875/SGC/eBOSS_LRG": {
+      "source_key": "0875/SGC/eBOSS_LRG",
+      "official_source_url": "https://data.sdss.org/sas/dr17/eboss/lss/EZmocks/v1_0_0/realistic/eBOSS_LRG/ran/EZmock_realistic_eBOSS_LRG_SGC_v7_0875.ran.fits.gz",
+      "local_verified_source_path": "/home/dino/stress-energy-closure/eboss_workspace/quarantine_realistic_ninemock_randoms/eBOSS_LRG/ran/EZmock_realistic_eBOSS_LRG_SGC_v7_0875.ran.fits.gz",
+      "relative_released_filename": "eBOSS_LRG/ran/EZmock_realistic_eBOSS_LRG_SGC_v7_0875.ran.fits.gz",
+      "source_mode": "downloaded_same_prior_pinned_URL",
+      "compressed_bytes": 39038031,
+      "prior_20260924_artifact_expected_sha256": "df9a3e985c8b710ca02d0e00808b2a21a7933ede116bb40dba3da8bede94c431",
+      "fully_reverified_compressed_sha256": "df9a3e985c8b710ca02d0e00808b2a21a7933ede116bb40dba3da8bede94c431",
+      "sha_matches_original_artifact_reference": true,
+      "gzip_magic_checked": true,
+      "gzip_decompressed_or_FITS_rows_read": false,
+      "newly_downloaded_HTTP_details_if_any": {
+        "HTTP_status": 200,
+        "HTTP_content_length_if_available": 39038031,
+        "HTTP_etag_if_available": "\"5f1d5c25-253ac4f\"",
+        "HTTP_last_modified_if_available": "Sun, 26 Jul 2020 10:34:13 GMT"
+      }
+    },
+    "0875/SGC/eBOSS_ELG": {
+      "source_key": "0875/SGC/eBOSS_ELG",
+      "official_source_url": "https://data.sdss.org/sas/dr17/eboss/lss/EZmocks/v1_0_0/realistic/eBOSS_ELG/ran/EZmock_realistic_eBOSS_ELG_SGC_v7_0875.ran.fits.gz",
+      "local_verified_source_path": "/home/dino/stress-energy-closure/eboss_workspace/quarantine_realistic_ninemock_randoms/eBOSS_ELG/ran/EZmock_realistic_eBOSS_ELG_SGC_v7_0875.ran.fits.gz",
+      "relative_released_filename": "eBOSS_ELG/ran/EZmock_realistic_eBOSS_ELG_SGC_v7_0875.ran.fits.gz",
+      "source_mode": "downloaded_same_prior_pinned_URL",
+      "compressed_bytes": 52936484,
+      "prior_20260924_artifact_expected_sha256": "07d7adb17dd7f6099a1670e4efc38179d632b7ef96b736c7db4fa01fff28db99",
+      "fully_reverified_compressed_sha256": "07d7adb17dd7f6099a1670e4efc38179d632b7ef96b736c7db4fa01fff28db99",
+      "sha_matches_original_artifact_reference": true,
+      "gzip_magic_checked": true,
+      "gzip_decompressed_or_FITS_rows_read": false,
+      "newly_downloaded_HTTP_details_if_any": {
+        "HTTP_status": 200,
+        "HTTP_content_length_if_available": 52936484,
+        "HTTP_etag_if_available": "\"5f819d66-327bf24\"",
+        "HTTP_last_modified_if_available": "Sat, 10 Oct 2020 11:39:18 GMT"
+      }
+    },
+    "1000/NGC/eBOSS_LRG": {
+      "source_key": "1000/NGC/eBOSS_LRG",
+      "official_source_url": "https://data.sdss.org/sas/dr17/eboss/lss/EZmocks/v1_0_0/realistic/eBOSS_LRG/ran/EZmock_realistic_eBOSS_LRG_NGC_v7_1000.ran.fits.gz",
+      "local_verified_source_path": "/home/dino/stress-energy-closure/eboss_workspace/quarantine_realistic_ninemock_randoms/eBOSS_LRG/ran/EZmock_realistic_eBOSS_LRG_NGC_v7_1000.ran.fits.gz",
+      "relative_released_filename": "eBOSS_LRG/ran/EZmock_realistic_eBOSS_LRG_NGC_v7_1000.ran.fits.gz",
+      "source_mode": "downloaded_same_prior_pinned_URL",
+      "compressed_bytes": 57773021,
+      "prior_20260924_artifact_expected_sha256": "b2e8e4a21728cf80152a2e2062eb1d3f8e7bef67478ef4c294d2c064949b8862",
+      "fully_reverified_compressed_sha256": "b2e8e4a21728cf80152a2e2062eb1d3f8e7bef67478ef4c294d2c064949b8862",
+      "sha_matches_original_artifact_reference": true,
+      "gzip_magic_checked": true,
+      "gzip_decompressed_or_FITS_rows_read": false,
+      "newly_downloaded_HTTP_details_if_any": {
+        "HTTP_status": 200,
+        "HTTP_content_length_if_available": 57773021,
+        "HTTP_etag_if_available": "\"5f1d54af-3718bdd\"",
+        "HTTP_last_modified_if_available": "Sun, 26 Jul 2020 10:02:23 GMT"
+      }
+    },
+    "1000/NGC/eBOSS_ELG": {
+      "source_key": "1000/NGC/eBOSS_ELG",
+      "official_source_url": "https://data.sdss.org/sas/dr17/eboss/lss/EZmocks/v1_0_0/realistic/eBOSS_ELG/ran/EZmock_realistic_eBOSS_ELG_NGC_v7_1000.ran.fits.gz",
+      "local_verified_source_path": "/home/dino/stress-energy-closure/eboss_workspace/quarantine_realistic_ninemock_randoms/eBOSS_ELG/ran/EZmock_realistic_eBOSS_ELG_NGC_v7_1000.ran.fits.gz",
+      "relative_released_filename": "eBOSS_ELG/ran/EZmock_realistic_eBOSS_ELG_NGC_v7_1000.ran.fits.gz",
+      "source_mode": "downloaded_same_prior_pinned_URL",
+      "compressed_bytes": 48586239,
+      "prior_20260924_artifact_expected_sha256": "5697b34ea1a86b695d1064cb25a26b054760add8df79eb19006ec09068a99b78",
+      "fully_reverified_compressed_sha256": "5697b34ea1a86b695d1064cb25a26b054760add8df79eb19006ec09068a99b78",
+      "sha_matches_original_artifact_reference": true,
+      "gzip_magic_checked": true,
+      "gzip_decompressed_or_FITS_rows_read": false,
+      "newly_downloaded_HTTP_details_if_any": {
+        "HTTP_status": 200,
+        "HTTP_content_length_if_available": 48586239,
+        "HTTP_etag_if_available": "\"5f818f8d-2e55dff\"",
+        "HTTP_last_modified_if_available": "Sat, 10 Oct 2020 10:40:13 GMT"
+      }
+    },
+    "1000/SGC/eBOSS_LRG": {
+      "source_key": "1000/SGC/eBOSS_LRG",
+      "official_source_url": "https://data.sdss.org/sas/dr17/eboss/lss/EZmocks/v1_0_0/realistic/eBOSS_LRG/ran/EZmock_realistic_eBOSS_LRG_SGC_v7_1000.ran.fits.gz",
+      "local_verified_source_path": "/home/dino/stress-energy-closure/eboss_workspace/quarantine_realistic_ninemock_randoms/eBOSS_LRG/ran/EZmock_realistic_eBOSS_LRG_SGC_v7_1000.ran.fits.gz",
+      "relative_released_filename": "eBOSS_LRG/ran/EZmock_realistic_eBOSS_LRG_SGC_v7_1000.ran.fits.gz",
+      "source_mode": "downloaded_same_prior_pinned_URL",
+      "compressed_bytes": 38830024,
+      "prior_20260924_artifact_expected_sha256": "cf7e2349babe984803b317ef88479ecf055a3ac3df3591cf23324b986041f465",
+      "fully_reverified_compressed_sha256": "cf7e2349babe984803b317ef88479ecf055a3ac3df3591cf23324b986041f465",
+      "sha_matches_original_artifact_reference": true,
+      "gzip_magic_checked": true,
+      "gzip_decompressed_or_FITS_rows_read": false,
+      "newly_downloaded_HTTP_details_if_any": {
+        "HTTP_status": 200,
+        "HTTP_content_length_if_available": 38830024,
+        "HTTP_etag_if_available": "\"5f1d5d34-2507fc8\"",
+        "HTTP_last_modified_if_available": "Sun, 26 Jul 2020 10:38:44 GMT"
+      }
+    },
+    "1000/SGC/eBOSS_ELG": {
+      "source_key": "1000/SGC/eBOSS_ELG",
+      "official_source_url": "https://data.sdss.org/sas/dr17/eboss/lss/EZmocks/v1_0_0/realistic/eBOSS_ELG/ran/EZmock_realistic_eBOSS_ELG_SGC_v7_1000.ran.fits.gz",
+      "local_verified_source_path": "/home/dino/stress-energy-closure/eboss_workspace/quarantine_realistic_ninemock_randoms/eBOSS_ELG/ran/EZmock_realistic_eBOSS_ELG_SGC_v7_1000.ran.fits.gz",
+      "relative_released_filename": "eBOSS_ELG/ran/EZmock_realistic_eBOSS_ELG_SGC_v7_1000.ran.fits.gz",
+      "source_mode": "downloaded_same_prior_pinned_URL",
+      "compressed_bytes": 53100254,
+      "prior_20260924_artifact_expected_sha256": "5e49c5b8f53f7c6b5c61383ea9124cd0546556edfca6a8b7510ae1ed220708ae",
+      "fully_reverified_compressed_sha256": "5e49c5b8f53f7c6b5c61383ea9124cd0546556edfca6a8b7510ae1ed220708ae",
+      "sha_matches_original_artifact_reference": true,
+      "gzip_magic_checked": true,
+      "gzip_decompressed_or_FITS_rows_read": false,
+      "newly_downloaded_HTTP_details_if_any": {
+        "HTTP_status": 200,
+        "HTTP_content_length_if_available": 53100254,
+        "HTTP_etag_if_available": "\"5f819f94-32a3ede\"",
+        "HTTP_last_modified_if_available": "Sat, 10 Oct 2020 11:48:36 GMT"
+      }
+    }
+  },
+  "no_mock_galaxy_random_or_observed_rows_read": true,
+  "mock_pairs_computed": false,
+  "observed_odd_data_vector_read": false,
+  "new_science_selection_applied": false,
+  "joint_mock_covariance_computed": false,
+  "errors": [],
+  "total_full_compressed_random_bytes": 1786953149,
+  "complete_random_source_count": 36
+}

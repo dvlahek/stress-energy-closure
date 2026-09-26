@@ -1,0 +1,32 @@
+{
+  "study": "Published DR16 ELG eboss22 two low-quality spectroscopic plates: exact identifier provenance only",
+  "record_date": "2026-09-26",
+  "post_source_search_discovery": true,
+  "reference": "Raichoor et al., MNRAS 500 (2021), Sec. 3.2 item (xii), Table 5",
+  "reference_url": "https://academic.oup.com/mnras/article/500/3/3254/5942664",
+  "published_plate_mjd_pairs": [
+    {
+      "PLATE": 9430,
+      "MJD": 58112
+    },
+    {
+      "PLATE": 9395,
+      "MJD": 58113
+    }
+  ],
+  "published_chunk": "eboss22",
+  "published_excluded_angular_area_deg2": 13.9,
+  "published_removed_target_count": 3123,
+  "excluded_by_bit_field": false,
+  "mask_definition": "regions covered by the two identified spectroscopic plates; exact plate overlap/priority and angular geometry NOT specified by identifiers alone",
+  "do_not_assume_full_1p5_degree_plate_circle": true,
+  "source_scope": "Identifiers and published aggregate only; no plate geometry or released data/random row membership inspected",
+  "additional_source_needed": "historical custom Python mask/veto rule for these two exact PLATE-MJD pairs, official plate/tile geometry and overlap handling, and original data/random acceptance invocation with release/version and file/source SHA",
+  "no_new_cut_or_veto": true,
+  "no_new_common_mask": true,
+  "observed_catalogue_rows_read": false,
+  "random_rows_read": false,
+  "observed_odd_data_vector_read": false,
+  "physical_elg_mask_certified": false,
+  "physical_lrg_elg_pair_window_certified": false
+}

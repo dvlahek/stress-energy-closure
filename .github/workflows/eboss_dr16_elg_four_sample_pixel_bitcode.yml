@@ -1,0 +1,30 @@
+name: eBOSS DR16 ELG four-sample pixel-bitcode aggregate synthetic gate
+
+on:
+  push:
+    branches:
+      - audit/eboss-elg-bit8-ra-orientation-20260925
+    paths:
+      - 'scripts/audit_eboss_dr16_elg_four_sample_pixel_bitcode.py'
+      - 'source_data/eboss_dr16_elg_four_sample_pixel_bitcode_protocol_2026-09-26.json'
+      - '.github/workflows/eboss_dr16_elg_four_sample_pixel_bitcode.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  synthetic-not-observed-data:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install NumPy for histogram aggregation
+        run: python -m pip install 'numpy>=1.24,<2.4'
+      - name: Compile fixed SHA-first aggregate-only ELG image runner
+        run: python -m py_compile scripts/audit_eboss_dr16_elg_four_sample_pixel_bitcode.py
+      - name: Test synthetic byte histograms, bit0/bit2 counts and gzip CRC rejection
+        run: python -u scripts/audit_eboss_dr16_elg_four_sample_pixel_bitcode.py --self-test

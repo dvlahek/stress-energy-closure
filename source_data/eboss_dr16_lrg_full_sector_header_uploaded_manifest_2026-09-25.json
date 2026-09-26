@@ -1,0 +1,33 @@
+{
+  "study": "Blinded eBOSS DR16 official LRG full-catalogue sector-header local uploaded result",
+  "registered_on": "2026-09-25",
+  "uploaded_filename": "lrg_full_sector_header_only.json",
+  "uploaded_report_sha256": "901c5486e817da57a162d9bec74171a0fbc09f4e0901d72b87d7f4495ff51308",
+  "uploaded_report_bytes": 4565,
+  "uploaded_report_git_blob_sha1": "e536795d59897338bb0fc730354f68038d762675",
+  "frozen_parent_protocol": "source_data/eboss_dr16_lrg_sector_header_protocol_2026-09-25.json",
+  "read_status": "OFFICIAL_LRG_FULL_HEADER_PARSED_SECTOR_SEMANTICS_NOT_YET_CERTIFIED",
+  "official_source_url": "https://portal.nersc.gov/project/cosmo/data/sdss/dr17/eboss/lss/catalogs/DR16/eBOSS_LRG_full_ALLdata-vDR16.fits",
+  "remote_source_size_bytes": 196485120,
+  "remote_etag": "\"bb62000-5a4d65932a080\"",
+  "remote_last_modified": "Mon, 04 May 2020 18:03:30 GMT",
+  "header_read_bytes": 20160,
+  "header_sha256": "a48b0d1055b5f7638dc77a86eb5ff5c861b629d19ff75cd8ae8122caa7e9014b",
+  "bintable_header_declared_rows": 311848,
+  "bintable_header_declared_row_bytes": 630,
+  "columns": 72,
+  "sector_completeness_columns": {
+    "SECTOR": "J",
+    "sector_SSR": "D",
+    "sector_TSR": "D",
+    "COMP_BOSS": "D"
+  },
+  "lrg_published_polygon_sha_entries": 8,
+  "verified_independently": "User-uploaded JSON bytes SHA256 and parsed fields checked in assistant's local container; actual source FITS bytes only the user's header-only script read remotely, not downloaded by assistant.",
+  "full_fits_sha256_known": false,
+  "observed_galaxy_data_rows_read": false,
+  "observed_random_rows_read": false,
+  "observed_odd_data_vector_read": false,
+  "physical_mask_certified": false,
+  "next_gate": "First full-byte SHA256 pin on exact official LRG FITS with previous header/index/polygon fingerprints verified; then separately freeze permitted sector-only row audit and map published completeness without science cuts."
+}

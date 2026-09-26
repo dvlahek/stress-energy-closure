@@ -1,0 +1,82 @@
+{
+  "study": "Blinded eBOSS DR16 LRG full-catalogue source/header and published veto/sector-semantics gate",
+  "registered_on": "2026-09-25",
+  "stage": "official literature and immutable source/header metadata only; no catalogue rows or MANGLE evaluation",
+  "parent_official_mask_protocol": "source_data/eboss_dr16_official_mask_source_protocol_2026-09-25.json",
+  "parent_pinned_polygon_manifest": "source_data/eboss_dr16_eleven_official_polygon_sha_2026-09-25.json",
+  "parent_official_release_index": "source_data/eboss_dr16_elg_bit8_reference_discovery_protocol_2026-09-25.json",
+  "local_verified_release_index_report": "eboss_workspace/official_mask_inventory/bit8_reference_index.json",
+  "official_url": "https://portal.nersc.gov/project/cosmo/data/sdss/dr17/eboss/lss/catalogs/DR16/eBOSS_LRG_full_ALLdata-vDR16.fits",
+  "file_name": "eBOSS_LRG_full_ALLdata-vDR16.fits",
+  "source_index_sha256": "7e09e85c629b84de4879a99ca2db3f6cc84a317cde87d999a11dd8fead94dee7",
+  "source_headers_only": "Exactly 2880-byte HTTP 206 Content-Range requests from file beginning through primary and first BINTABLE END cards. Refuse HTTP 200 full-body fallback. No FITS table-row request; record bounded header SHA256 and candidate sector/completeness column names.",
+  "max_total_header_blocks": 90,
+  "max_requests": 90,
+  "required_header_columns": [
+    "RA",
+    "DEC"
+  ],
+  "interesting_header_tokens": [
+    "SECTOR",
+    "COMP",
+    "TSR",
+    "SSR",
+    "VETO",
+    "MASK",
+    "IMATCH",
+    "CHUNK",
+    "TILE",
+    "PLATE"
+  ],
+  "published_references": [
+    {
+      "title": "Ross et al. (2020), MNRAS 498, 2354, Sections 5.2 and 5.4, Table 2",
+      "url": "https://academic.oup.com/mnras/article/498/2/2354/5900562",
+      "facts": [
+        "LRG candidate post-veto sector quality C_eBOSS > 0.5 and C_z > 0.5; exact boundary is strict in the paper",
+        "LRG collision-priority veto is distinct from QSO collision-priority veto (QSO collision only QSO in Table 2)",
+        "LRG veto categories include collision priority, bad field, bright star, infrared bright star, bright object, centrepost; numeric area columns overlap",
+        "C_eBOSS used to weight rather than independently subsample released random catalogue"
+      ]
+    },
+    {
+      "title": "Zhao et al. (2021), MNRAS 503, 1149, Section 2.3.2",
+      "url": "https://academic.oup.com/mnras/article/503/1/1149/6149160",
+      "facts": [
+        "Matched mock sector trim described with C_eBOSS > 0.5, C_z > 0.5 for LRG/QSO; ELG different thresholds",
+        "LRG MANGLE and ELG brickmask represent different tracer-specific input windows"
+      ]
+    }
+  ],
+  "published_lrg_sector_thresholds_DESCRIPTIVE_NOT_NEW_CUT": {
+    "C_eBOSS": "> 0.5",
+    "C_z": "> 0.5"
+  },
+  "published_lrg_veto_classes_NOT_YET_MAPPED_TO_EXACT_FILES": [
+    "LRG collision priority",
+    "bad field",
+    "bright star",
+    "infrared bright star",
+    "bright object",
+    "centrepost"
+  ],
+  "qso_only_veto_DO_NOT_APPLY_TO_LRG": "collision_priority_mask_QSO_eboss_DR16_v9_singletiles.ply",
+  "exact_lrg_candidate_polygon_files_UNMAPPED": [
+    "allsky_bright_star_mask_pix.ply",
+    "badfield_mask_unphot_seeing_extinction_pixs8_dr12.ply",
+    "bright_object_mask_rykoff_pix.ply",
+    "brightstarmask_tiling_final.ply",
+    "centerpost_mask_eboss_DR16_new.ply",
+    "collision_priority_mask_lrg_eboss_DR16_new.ply"
+  ],
+  "official_footprint_file": "eBOSS_QSOandLRG_fullfootprintgeometry_noveto.ply",
+  "caution": "Exact mapping of IR/optical bright-star filenames to LRG veto categories and official sector polygon weight/completeness rules requires production provenance. Listed files do not imply union or hard-cut. COMP_BOSS, sector_TSR and sector_SSR are only candidate column names until verified from the official LRG header and official release definitions.",
+  "observed_galaxy_rows_read": false,
+  "mock_galaxy_rows_read": false,
+  "observed_random_rows_read": false,
+  "observed_odd_data_vector_read": false,
+  "physical_lrg_mask_certified": false,
+  "physical_lrg_elg_pair_window_certified": false,
+  "new_selection_rule_applied": false,
+  "output": "eboss_workspace/official_mask_inventory/lrg_full_sector_header_only.json"
+}

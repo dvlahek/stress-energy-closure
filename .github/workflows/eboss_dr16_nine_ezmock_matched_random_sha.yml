@@ -1,0 +1,30 @@
+name: eBOSS DR16 full nine-ID matched EZmock random gzip SHA gate
+
+on:
+  push:
+    branches:
+      - audit/eboss-elg-bit8-ra-orientation-20260925
+    paths:
+      - 'scripts/audit_eboss_dr16_nine_ezmock_matched_random_sha.py'
+      - 'source_data/eboss_dr16_nine_ezmock_matched_random_sha_protocol_2026-09-26.json'
+      - 'source_data/eboss_dr16_nine_ezmock_random_reference_sha_from_20260924_artifact.json'
+      - 'source_data/eboss_dr16_nine_ezmock_galaxy_source_sha_uploaded_manifest_2026-09-26.json'
+      - '.github/workflows/eboss_dr16_nine_ezmock_matched_random_sha.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  only-source-manifests-and-synthetic-bytes:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Compile strict existing-source-SHA-only mock random checker
+        run: python -m py_compile scripts/audit_eboss_dr16_nine_ezmock_matched_random_sha.py
+      - name: Validate 36 original artifact SHA references, 12 earlier independent matches, and synthetic bad-source rejection
+        run: python -u scripts/audit_eboss_dr16_nine_ezmock_matched_random_sha.py --self-test
