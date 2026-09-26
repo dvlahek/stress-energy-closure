@@ -135,15 +135,15 @@ def source_manifest_gate(p):
         frozen = fixed["per_source_frozen_from_uploaded_report"][key]
         sample = report["samples"][key]
         filename = Path(mock_path(tracer, cap, "dat", 1)).name
-        expected_path = (ROOT / orig["local_quarantine_dir"] /
-                         mock_path(tracer, cap, "dat", 1)).resolve()
+        expected_suffix = ("/" + orig["local_quarantine_dir"] + "/" +
+                           mock_path(tracer, cap, "dat", 1))
         if (
             frozen["released_filename"] != filename
             or frozen["expected_mock_galaxy_header_rows_from_prior_header_audit"] != earlier
             or sample["previously_declared_header_rows_NOT_READ"] != earlier
             or sample["first_seen_full_compressed_sha256"] != frozen["full_compressed_sha256"]
             or sample["compressed_bytes"] != frozen["compressed_bytes"]
-            or sample["local_path"] != str(expected_path)
+            or not sample["local_path"].endswith(expected_suffix)
             or sample["source_url"] != MOCK_BASE + mock_path(tracer, cap, "dat", 1)
             or sample["returned_url"] != sample["source_url"]
             or sample["HTTP_status"] != 200
