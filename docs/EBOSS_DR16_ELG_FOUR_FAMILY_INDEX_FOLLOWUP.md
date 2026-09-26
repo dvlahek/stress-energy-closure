@@ -81,3 +81,64 @@ The local report will be
 Upload the JSON unchanged after the run. Keep the PR draft and
 observed eBOSS odd-vector sealed. Do not treat these four
 sampling checks as independent validation of all 19,381 images.
+
+## Completed actual four-gzip byte gate and separately frozen FITS/WCS-only gate
+
+The local source-byte runner completed for all **four preregistered
+middle-of-list images**. The user's exact 4,338-byte report has SHA256
+`f324da9232a121e72e9d6d35b7d4e7c2e0f7133007a01db8d065d4ba84356665`;
+it is archived byte-identically as
+`source_data/eboss_dr16_elg_four_sample_raw_sha_report_2026-09-26.json`
+(verified Git blob
+`9c543517be72e1622390a7164b6ab003a1ae7045`).
+The uploaded-report identity is independently pinned in
+`source_data/eboss_dr16_elg_four_sample_raw_sha_uploaded_manifest_2026-09-26.json`.
+The archived report documents raw full-gzip SHA256, exact official
+URL, HTTP 200, content length and source validators for each sample:
+
+| Chunk | Exact selected gzip source | Compressed bytes | First-seen compressed SHA256 |
+|---|---|---:|---|
+| eboss21 | mask-eboss21-3386m005.fits.gz | 172308 | 064e535aba4caa7351f5ec64802421968724c1ea664b7eafc142a018a13049a9 |
+| eboss22 | mask-eboss22-0226m005.fits.gz | 188582 | bec27e6ce17fba5336a48f87682ce491abcd603d1599d914d333dfacc8c2d0d8 |
+| eboss23 | mask-eboss23-1415p232.fits.gz | 139821 | faf180362b182aa9fb56221af4848462ff3ba801a437a4e1ceb2a43cdb2f569e |
+| eboss25 | mask-eboss25-1538p312.fits.gz | 175454 | ce2b3dc302a3998b1ac4e061989af7916ded6221a80a3643724063e6ed19fc27 |
+
+Combined raw compressed size: **676165 bytes**. This source-byte
+check did **not** decompress any sample, read a FITS header/pixel, inspect
+galaxies/randoms or open the observed odd signal. The four file SHA256s
+are first-seen independent local checksums, **not published SDSS
+checksums** and do not certify the remaining 19377 files.
+
+The exact four checksums were committed **before any FITS
+decompression/header inspection** in a separate
+`source_data/eboss_dr16_elg_four_sample_fits_header_wcs_protocol_2026-09-26.json`.
+The new strictly header-level
+`scripts/audit_eboss_dr16_elg_four_sample_fits_header_wcs.py`
+first independently hashes all four existing compressed files and
+checks the exact unchanged earlier local and archived JSON reports.
+It opens each local gzip stream only after all four raw SHA checks
+pass, requests at most 57600 FITS header bytes per image as
+2880-byte blocks and validates first image-HDU metadata:
+two-dimensional integer image with `RA---TAN`/`DEC--TAN` WCS,
+CRVAL/CRPIX/CD matrix entries present and finite, and nonsingular
+CD. An empty primary followed immediately by an IMAGE extension is
+also allowed. It never requests image pixel values, applies mask
+bit codes, reads any catalogue rows or uses odd data.
+The gzip implementation may buffer/decompress some subsequent
+bytes internally, so this is not a claim that absolutely no pixels
+are decompressed inside a library or that the entire gzip CRC
+was verified. Only the FITS header bytes are returned to the
+analysis code.
+
+The synthetic CI is
+https://github.com/dvlahek/stress-energy-closure/actions/runs/36222762663 .
+After it passes, the local command (no download) is:
+
+`cd ~/stress-energy-closure && git pull --ff-only && source .venv/bin/activate && python -u scripts/audit_eboss_dr16_elg_four_sample_fits_header_wcs.py --self-test && python -u scripts/audit_eboss_dr16_elg_four_sample_fits_header_wcs.py`
+
+The resulting JSON is
+`eboss_workspace/official_mask_inventory/elg_four_sample_fits_header_wcs.json`.
+Upload it unchanged to freeze its exact SHA before any pixel-level
+checks. This small per-family sample is a source/WCS structural check,
+not an all-image mask validation or a LRG×ELG physical-window
+certificate.
