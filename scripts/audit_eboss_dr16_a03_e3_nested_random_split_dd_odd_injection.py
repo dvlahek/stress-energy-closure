@@ -244,8 +244,11 @@ def synthetic_dd_odd_pair_injection(internal,amplitude):
     inc=ix[sp]-xi[sp]
     residual=float(np.max(np.abs(inc-target[sp])))
     rev_resid=float(np.max(np.abs(ix[sp]-rix[:,::-1][sp])))
-    anti_delta=float(np.max(np.abs((ix[sp]-xi[sp])+(rix[:,::-1][sp]-internal["reverse_xi"][:,::-1][sp]))))
-    if (residual>=1e-11 or rev_resid>=1e-8 or anti_delta<0):
+    rev_inc=rix[:,::-1][sp]-internal["reverse_xi"][:,::-1][sp]
+    rev_analytic_residual=float(np.max(np.abs(rev_inc-target[sp])))
+    increment_mirror_residual=float(np.max(np.abs(inc-rev_inc)))
+    if (residual>=1e-11 or rev_analytic_residual>=1e-11
+        or rev_resid>=1e-8 or increment_mirror_residual>=1e-8):
         raise ValueError("Signed DD synthetic bin-center exact estimator increment/reverse closure failed")
     full=bool(np.all(sp))
     projections=None
@@ -276,6 +279,8 @@ def synthetic_dd_odd_pair_injection(internal,amplitude):
         "reverse_opposite_sign_injected_DD_hist_sha256":arr_sha(rev_inj["D1D2"]),
         "positive_RR_supported_cell_count":int(sp.sum()),
         "max_abs_analytic_xi_increment_residual_on_supported_cells":residual,
+        "max_abs_reverse_analytic_xi_increment_residual_on_supported_cells":rev_analytic_residual,
+        "max_abs_forward_reverse_injected_increment_mirror_residual_on_supported_cells":increment_mirror_residual,
         "max_abs_forward_reverse_injected_xi_residual_on_supported_cells":rev_resid,
         "max_abs_injected_xi_increment_on_supported_cells":float(np.max(np.abs(inc))),
         "max_abs_expected_increment_on_supported_cells":float(np.max(np.abs(target[sp]))),
@@ -336,6 +341,8 @@ def synthetic_self_test(p):
               "xi":x,"support":support,"reverse_xi":rx}
     result=synthetic_dd_odd_pair_injection(internal,.02)
     if (result["max_abs_analytic_xi_increment_residual_on_supported_cells"]>=1e-11
+        or result["max_abs_reverse_analytic_xi_increment_residual_on_supported_cells"]>=1e-11
+        or result["max_abs_forward_reverse_injected_increment_mirror_residual_on_supported_cells"]>=1e-8
         or result["full_ell0to3_injected_increment_only_if_144_supported"] is None):
         raise AssertionError("Fixed +/-0.02 synthetic DD odd pair injection failed")
     # WRONG reverse sign must break physical signed-tracer mirror.
