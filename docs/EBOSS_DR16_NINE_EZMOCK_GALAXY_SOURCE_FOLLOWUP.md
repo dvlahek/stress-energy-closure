@@ -111,3 +111,40 @@ galaxy estimator pilot must first freeze the exact successful
 random-only upload. Do **not** infer a physical mask, observed
 odd detection or 18D covariance from this source provenance;
 nine mock realizations yield sample covariance rank at most 8.
+
+## Cached-only 36 random source attempt: expected incomplete stop
+
+The first local cached-only random SHA rerun completed
+`EBOSS_NINE_MATCHED_EZMOCK_RANDOM_SHA_SYNTHETIC_SELF_TEST_OK`.
+It reverified the four previously SHA-pinned
+`0001` NGC/SGC × LRG/ELG gzip random files, totaling
+**198,908,203 compressed bytes**, against the immutable
+2026-09-24 artifact references. The fifth required input,
+`0125/NGC/eBOSS_LRG`, was not present in the approved local
+cache directories. In accordance with the predeclared
+cache-only protocol, the runner produced
+`EZMOCK_PREDECLARED_NINE_MATCHED_RANDOM_FULL_SHA_INCOMPLETE_STOP`,
+without new downloads, FITS decompression, pair counting,
+new science selection, or any observed odd-data read.
+This is a missing local input, **not** a SHA mismatch,
+estimator failure, or inference about the physical hypothesis.
+
+The exact uploaded incomplete-checkpoint JSON is **5,105 bytes**,
+SHA256 `1699b97a538a362566df9758113119e6bae0800a374e8246bd34a66c0ce248d0`.
+It was archived byte-identically in
+`source_data/eboss_dr16_nine_ezmock_matched_random_sha_cache_only_failure_2026-09-26.json`,
+Git blob `4ad4c3f4d082473d5b3a61736efbdffb06cc5274`.
+It preserves the four verified source identities and first
+missing source. The active local checkpoint stays in
+`eboss_workspace/official_mask_inventory/ezmock_nine_matched_random_source_sha.json`;
+the archive is a frozen audit record, not a new selection.
+
+Only if the user opts in to the potentially large official
+random source transfer, run the **same** unchanged protocol
+with `--download-missing`. It resumes with complete SHA
+rechecks of the four original files and fetches missing
+files **only** at their original pinned official source URLs,
+accepting only their already archived 2026-09-24 full
+compressed SHA256s. Each approved source is checkpointed.
+No mock galaxy or random rows are read until a future
+separately frozen full 36-random success artifact.
