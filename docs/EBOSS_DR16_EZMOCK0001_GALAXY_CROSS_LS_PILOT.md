@@ -106,3 +106,97 @@ IDs/caps/bin edges/sampling seeds and the sealed observed
 odd data vector.
 
 The first CI attempt failed because its source-only manifest check incorrectly compared the **user's absolute WSL file path** to GitHub runner's different absolute checkout location. The archive, raw source SHA256 pins, and actual local binary gate were unaffected. The fixed CI instead validates the SHA-pinned report's **relative source suffix**, then the actual user-run stage must rehash the entire local binary file at its own checkout path. The updated synthetic/source-only CI [passed](https://github.com/dvlahek/stress-energy-closure/actions/runs/36226935218); no real FITS galaxy/random rows are accessed in CI.
+
+## Completed fixed realistic mock0001 galaxy-pair algebra and exact report archive
+
+The actual source-verified local four-`dat` plus four matched-`ran`
+mock0001 run finished for both Galactic caps. The user's exact
+`ezmock0001_galaxy_cross_ls_pilot.json` is **17,995 bytes**,
+SHA256 `b8ea4545d433900c1364d1c12e2638a2d2288e35f0a327c22b8ad1ec9ae8510c`.
+It is archived byte-identically in
+`source_data/eboss_dr16_ezmock0001_galaxy_cross_ls_pilot_report_2026-09-26.json`,
+with independently verified Git blob
+`4f35e17a44a226235d9f45ff3afb5adc5f0c3579`.
+The independently registered report fingerprint, exact eight input
+source SHA256s, accepted pair totals and no-unblinding assertions are
+`source_data/eboss_dr16_ezmock0001_galaxy_cross_ls_pilot_uploaded_manifest_2026-09-26.json`.
+
+All eight full source gzip SHAs matched their existing prior pins
+*before* any FITS row reads. The previously locked high-z bin
+`0.9 <= z < 1.0` contained eligible galaxy rows:
+NGC LRG `7537`, NGC ELG `17149`; SGC LRG `4159`, SGC ELG
+`15860`. The fixed sample uses `600D` and `1200R`
+per tracer per cap, without numerical-zero exclusions or
+chunk-conditioned sampling. In NGC, the four weighted cross
+pair terms have accepted raw pair counts
+`DD=1486, DR=2825, RD=3946, RR=7151`.
+In SGC, those counts are
+`DD=5637, DR=11159, RD=10414, RR=20102`.
+All four independently normalized pair terms reproduce their
+reverse-orientation signed-`mu` mirrors in **both** caps,
+with forward/reverse `xi(s,mu)` residuals
+`8.881784197001252e-16` (NGC) and
+`1.3322676295501878e-15` (SGC), at 144/144
+RR-supported cells in each cap. This is a true
+**realistic-mock-galaxy estimator algebra closure**, unlike the
+earlier nine-mock random-only pseudo-D/R test.
+It is **not** a measurement that the mock odd
+`xi_1`/`xi_3` vanish, not an observed odd-sector constraint
+and not a mock covariance.
+
+## Follow-up: fixed descriptive mock `xi_ell`, no observed odd analysis
+
+Before any mock galaxy odd multipole was derived, a separate,
+**post-first-pilot descriptive** protocol was recorded:
+`source_data/eboss_dr16_ezmock0001_galaxy_odd_projection_protocol_2026-09-26.json`.
+The new runner
+`scripts/audit_eboss_dr16_ezmock0001_galaxy_odd_projection.py`
+uses the existing `0001` mock files, same original
+`600D/1200R` sample indices/weights, both caps, same
+fiducial, LOS, angular cut and 6x24 signed grid.
+It first SHA-compares the local pilot report with its exact
+Git archive, then rehashes **all eight complete gzip
+files**, independently reproduces eight original selected
+sample-array hashes and every original forward/reverse
+weighted-pair histogram SHA256. It fails closed if any
+source/sample/pair differs. Only then does it project the
+reconstructed **mock-only** `xi(s,mu)` onto fixed
+`ell=0,1,2,3` using exact bin-integrated Legendre
+weights clipped to physical `-1<=mu<=1`.
+All 144 random-supported cells must remain present in
+both caps, with no NaN-to-zero substitution, and the
+independently reversed mock projection must obey
+even/odd parity.
+
+The projection protocol was registered **after**
+the successful 0001 estimator pilot and its support
+counts were observed. It is a post-pilot implementation
+diagnostic, **not** an independent preregistered
+scientific null or hypothesis test. A mock's `ell=1`
+and `ell=3` can be nonzero because of finite
+sampling and tracer/window effects. Their measured
+values must not be used to tune a science cut or
+select mock IDs. For actual inference the next
+stage requires an adequate many-realization
+source-pinned mock galaxy + matched-random ensemble
+and a separately qualified joint covariance;
+the previous nine IDs are preliminary source/window
+coverage, not a credible full 18D covariance.
+
+The exact-archive + synthetic projection CI
+[passed](https://github.com/dvlahek/stress-energy-closure/actions/runs/36232109867).
+The first CI attempt failed because GitHub's
+runner lacks the user's local JSON; CI now checks the
+committed exact archive, while **the real WSL
+runner still requires the local JSON to match the
+archive byte-for-byte**, with all eight binary SHAs
+checked before any rows. Run locally (no additional
+files if prior mock random quarantine remains present):
+
+`cd ~/stress-energy-closure && git pull --ff-only && source .venv/bin/activate && python -u scripts/audit_eboss_dr16_ezmock0001_galaxy_odd_projection.py --self-test && python -u scripts/audit_eboss_dr16_ezmock0001_galaxy_odd_projection.py`
+
+Upload the unchanged local
+`eboss_workspace/official_mask_inventory/ezmock0001_galaxy_odd_projection.json`
+even on a fail-closed run. At no point open real
+observed galaxies, odd `xi`, wake matched filters or
+derive detection significance from this single mock.
