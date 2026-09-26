@@ -52,5 +52,9 @@
   "prohibited": "No new tracer selection, no angular re-veto, no common hard mask, no observed galaxy or odd data, no statistical significance, no template tuning, no physical-null claim, no covariance from one sample, no source-dependent change to s/mu/z bins.",
   "interpretation_note": "The mock odd ell1/ell3 can be nonzero because finite shot noise, tracer asymmetry and realistic selection/window effects exist. Their numerical values from ONE mock and finite 600D/1200R are not compared to a hypothesis or treated as a detection; also the reverse parity check is an algebraic identity and does not imply xi_odd=0.",
   "local_report": "eboss_workspace/official_mask_inventory/ezmock0001_galaxy_odd_projection.json",
-  "next_if_pass": "For a quantitative physical null and an 18D covariance, freeze and SHA-audit an adequate many-realization realistic mock-galaxy cohort with matched tracer-specific published randoms. Previously chosen nine IDs remain a preliminary code-transport cohort only."
+  "next_if_pass": "For a quantitative physical null and an 18D covariance, freeze and SHA-audit an adequate many-realization realistic mock-galaxy cohort with matched tracer-specific published randoms. Previously chosen nine IDs remain a preliminary code-transport cohort only.",
+  "observed_galaxy_rows_read": false,
+  "observed_odd_data_vector_read": false,
+  "new_science_selection_applied": false,
+  "mock_covariance_computed": false
 }
