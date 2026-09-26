@@ -92,7 +92,7 @@ is NOT a galaxy covariance or physical null detection.
 Synthetic-only CI, which audits the archived SHA manifest
 and independent scalar pair-count closure but opens NO
 real FITS sources:
-https://github.com/dvlahek/stress-energy-closure/actions/runs/36226848080 .
+https://github.com/dvlahek/stress-energy-closure/actions/runs/36226935218 .
 Run locally on the existing draft audit branch:
 
 `cd ~/stress-energy-closure && git pull --ff-only && source .venv/bin/activate && python -u scripts/audit_eboss_dr16_ezmock0001_galaxy_cross_ls_pilot.py --self-test && python -u scripts/audit_eboss_dr16_ezmock0001_galaxy_cross_ls_pilot.py`
@@ -104,3 +104,5 @@ status, for a separate exact-byte archive before
 further mock expansion. Preserve all fixed source
 IDs/caps/bin edges/sampling seeds and the sealed observed
 odd data vector.
+
+The first CI attempt failed because its source-only manifest check incorrectly compared the **user's absolute WSL file path** to GitHub runner's different absolute checkout location. The archive, raw source SHA256 pins, and actual local binary gate were unaffected. The fixed CI instead validates the SHA-pinned report's **relative source suffix**, then the actual user-run stage must rehash the entire local binary file at its own checkout path. The updated synthetic/source-only CI [passed](https://github.com/dvlahek/stress-energy-closure/actions/runs/36226935218); no real FITS galaxy/random rows are accessed in CI.
