@@ -1,0 +1,85 @@
+{
+  "study": "eBOSS DR16 ELG four preregistered official FITS.gz pixel-bitcode aggregate validation",
+  "registered_on": "2026-09-26",
+  "preregistered_before_ANY_maskbit_image_pixel_values_returned_to_audit": true,
+  "scope": "Four already fixed middle filenames only; complete 8-bit primary FITS image for each sample, no arbitrary sky/galaxy positions or other mask files.",
+  "inference_class": "Source-informed upstream-code structural QA, not a blinded science measurement, full-mask reconstruction or independent representative estimate of all 19,381 image files.",
+  "parent_exact_header_report_archive": "source_data/eboss_dr16_elg_four_sample_fits_header_wcs_report_2026-09-26.json",
+  "parent_exact_header_report_local": "eboss_workspace/official_mask_inventory/elg_four_sample_fits_header_wcs.json",
+  "parent_exact_header_report_sha256": "233339946dda20dc7b81f83c70645761dfc728f562396fecd261750e3eec6e04",
+  "parent_exact_header_report_git_blob_sha1": "b0f515d9bdb5bb0c7ccde7b64d982d33c9e10361",
+  "parent_header_protocol": "source_data/eboss_dr16_elg_four_sample_fits_header_wcs_protocol_2026-09-26.json",
+  "frozen_sample_order": [
+    "eboss21",
+    "eboss22",
+    "eboss23",
+    "eboss25"
+  ],
+  "frozen_image_header_blocks_sha256": {
+    "eboss21": "66a7e70d47cb86558c83301975e0aedd1791d5641f771a4f01acb3515c6b76da",
+    "eboss22": "a695a1ae5034a9b0cf6f82ca831db94c3b7be87b9e8789deb19416f02dad4db9",
+    "eboss23": "0554a51d5cc3b9d388bb13b68cb062ab8df2e61c3cfe962779f4215d3fb57fc6",
+    "eboss25": "076402d6b3dfe873bda300c859d7276fdf266e1255aa8551da99ac32f19eb1d1"
+  },
+  "frozen_source_file_sha256_from_parent_header_protocol": true,
+  "frozen_image_metadata": {
+    "BITPIX": 8,
+    "NAXIS": 2,
+    "NAXIS1": 3600,
+    "NAXIS2": 3600,
+    "CTYPE1": "RA---TAN",
+    "CTYPE2": "DEC--TAN",
+    "image_hdu": "PRIMARY_IMAGE",
+    "complete_header_bytes": 5760
+  },
+  "expected_pixels_per_image": 12960000,
+  "max_uncompressed_fits_file_bytes_per_image": 20000000,
+  "source_code_contract": {
+    "repo": "cheng-zhao/brickmask",
+    "commit": "b9eb684a579b56ec3dbdb46549224be7e3fa2830",
+    "compile_flag": "-DEBOSS",
+    "define_header_path": "src/define.h",
+    "define_header_git_blob_sha1": "a6b85bfbc7745388a076fba822a0dc27d52d9809",
+    "bitcode_path": "src/bit_code.c",
+    "bitcode_git_blob_sha1": "0ab07730c491324fac3222ebac1ae1c763efe980",
+    "fits_reader_path": "io/read_fits.c",
+    "fits_reader_git_blob_sha1": "f5262cd33e9b011131915e5a6957a3fc86d37d5a",
+    "published_code_logic": "EBOSS_MASK_VALID(bit)=bit&1; EBOSS_XYBUG_BIT=4. For valid rounded pixel, assigned code subtracts 4 if rounded pixel has bit2, then restores bit2 if the floor pixel has bit2. Actual sky-coordinate mapping is NOT tested by histogram."
+  },
+  "bit_values_whitelist": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "histogram_bins": 256,
+  "fixed_aggregate_metrics": [
+    "full histogram of 256 byte codes per image",
+    "total pixels per image",
+    "bit0_set",
+    "bit2_set",
+    "bit0_and_bit2_set",
+    "bit0_set_bit2_unset",
+    "bit2_set_bit0_unset",
+    "pixel_data_sha256",
+    "total_decoded_fits_bytes_after_gzip_CRC",
+    "gzip_integrity_EOF_confirmed"
+  ],
+  "pixel_histogram_mode": "Stream exact original FITS image payload in ≤1MiB chunks as uint8, accumulate np.bincount minlength=256. No pixel coordinate index, reconstructed pixel map, WCS position matching or galaxy/random location is output.",
+  "gzip_contract": "Full compressed SHA256 of all four local original files checked before any gzip open. Read primary FITS header again, assert frozen complete header SHA256 and full approved WCS metadata from archived report, read exactly 12,960,000 8-bit pixels, then require gzip EOF immediately (no additional extensions or trailing data under this restricted sample protocol), triggering gzip CRC/ISIZE validation. If unexpected trailing content occurs fail closed and document before changing protocol.",
+  "data_scope_guards": {
+    "read_only_four_selected_maskbit_images": true,
+    "observed_catalogue_galaxy_rows_read": false,
+    "observed_random_or_mock_rows_read": false,
+    "observed_odd_data_vector_read": false,
+    "new_science_selection_applied": false,
+    "physical_elg_mask_certified": false,
+    "physical_lrg_elg_pair_window_certified": false
+  },
+  "report_output": "eboss_workspace/official_mask_inventory/elg_four_sample_pixel_bitcode_aggregates.json",
+  "next_after_pass": "Freeze exact local aggregate report SHA and independently trace the historical published ELG production bit-code composition and tracer-specific clustering random assignment; four sampled histograms do not prove the other 19,377 masks or causal eBOSS odd response."
+}
