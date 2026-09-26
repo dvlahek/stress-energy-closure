@@ -595,6 +595,15 @@ def main():
         if dest.exists():
             try:
                 out=A02.load(dest)
+                if out.get("status")==STOP and out.get("errors"):
+                    # A failed report may already have been written in run(), or
+                    # belong to an earlier attempt. Do not mutate either one's bytes.
+                    print("A03E3_PRESERVED_EXISTING_FAILED_REPORT",dest,flush=True)
+                    print("A03E3_NESTED_MOCK_RANDOM_SPLIT_AND_DD_ODD_INJECTION",STOP,flush=True)
+                    print("REPORT",dest,flush=True)
+                    print("ERRORS",*out["errors"],sep="\\n",flush=True)
+                    print("CURRENT_EXCEPTION",str(exc),flush=True)
+                    return 2
                 out["status"]=STOP
                 out["errors"]=list(dict.fromkeys(out.get("errors",[])+[str(exc)]))
             except (OSError,ValueError,KeyError,TypeError):
