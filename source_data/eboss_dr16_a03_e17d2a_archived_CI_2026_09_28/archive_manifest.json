@@ -1,0 +1,55 @@
+{
+  "date": "2026-09-28",
+  "CI_run_id": "36354103086",
+  "E17D2a_prospective_protocol_git_blob": "e7e0281f0b6b205214db5faf03a7c364521b3f2c",
+  "original_E17D1_joint_sha256": "1e52880db6c60cff1fe3cc1ca0a00e553c63ca08601399334d049e8403e18781",
+  "numeric_c_alpha_are_dimensionless_QA_only_NOT_real_halo_selection": true,
+  "physical_halo_mass_time_HOD_NOT_calibrated": true,
+  "full_physical_halo_tracer_bispectrum": "BLOCKED",
+  "observed_odd_SEALED": true,
+  "no_new_CLASS_FITS_mock": true,
+  "main_untouched": true,
+  "PR_remains_draft": true,
+  "files": [
+    {
+      "file": "e17d2a_independent_stdlib_direct_radial_fourier_replay.json",
+      "size_bytes": 2986,
+      "sha256": "436d689762582e74fda83e3df0f1752fe2bbdf595b2c189f13aabce018ef2287"
+    },
+    {
+      "file": "e17d2a_original_joint_nfw_static_spatial_poisson_family.json",
+      "size_bytes": 8243,
+      "sha256": "040c9711bfdfee6682acda4b48bc578b64e88c11d143d35a9a9ae46ff4c74a31"
+    },
+    {
+      "file": "e17d2a_original_nfw_c2_alpha0p1.json",
+      "size_bytes": 563226,
+      "sha256": "90db1f5e07d73c475195b201691271b98ff2721708bd0eb1f291bb75cf6121aa"
+    },
+    {
+      "file": "e17d2a_original_nfw_c2_alpha1p0.json",
+      "size_bytes": 565311,
+      "sha256": "f81a3d13ac6b0b70a5fc0f1bf4a0ed0aec8164f0a7861d4688e6256466d002c2"
+    },
+    {
+      "file": "e17d2a_original_nfw_c4_alpha0p1.json",
+      "size_bytes": 562859,
+      "sha256": "5ccc9dea6269d09ffb72cc9c51bcd9630dd11f0baaceb2c2d50cb28149b6598e"
+    },
+    {
+      "file": "e17d2a_original_nfw_c4_alpha1p0.json",
+      "size_bytes": 566890,
+      "sha256": "d0412994aa2572957aa1ee8ceb0409ddefdbd956a5de75d0be5d01a655cbc28a"
+    },
+    {
+      "file": "e17d2a_original_nfw_c8_alpha0p1.json",
+      "size_bytes": 563158,
+      "sha256": "728cd5cc55a2da04177304bee6224e58c0d2ed27417609fdebc2c9bd8d6248d6"
+    },
+    {
+      "file": "e17d2a_original_nfw_c8_alpha1p0.json",
+      "size_bytes": 566621,
+      "sha256": "3c20d2481980d15619a58dac88ead5eb6355e727bc32d3102b71f6f0f16ddb49"
+    }
+  ]
+}
