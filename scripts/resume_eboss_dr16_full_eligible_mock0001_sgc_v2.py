@@ -165,7 +165,13 @@ def source_signature(info):
     }
 
 
-def validate_progress(progress):
+def validate_progress(progress,*,synthetic_slice_rows=None):
+    # Production accepts only frozen 4159/48000 first- and 15860/48000
+    # second-catalogue populations. Source-only synthetic exercises 37x43.
+    slice_rows=(FIRST_SLICE_ROWS if synthetic_slice_rows is None
+                else synthetic_slice_rows)
+    allowed_first=((4159,48000) if synthetic_slice_rows is None else (37,))
+    allowed_second=((15860,48000) if synthetic_slice_rows is None else (43,))
     sources=progress.get("sources")
     empty_uninitialized=(sources is None and not progress.get("levels")
                          and not progress.get("assembled_levels"))
@@ -189,14 +195,14 @@ def validate_progress(progress):
         need(isinstance(parts,dict),"48000R source-pinned first-row partials malformed")
         for startkey,rec in parts.items():
             need(startkey.isdecimal() and str(int(startkey))==startkey and
-                 int(startkey)%FIRST_SLICE_ROWS==0 and
+                 int(startkey)%slice_rows==0 and
                  int(startkey)>=0 and int(startkey)<48000 and
                  rec["first_row_start"]==int(startkey) and
                  int(startkey)<rec["first_row_stop"]<=48000 and
-                 rec["first_row_stop"]-int(startkey)<=FIRST_SLICE_ROWS and
-                 rec["first_total_size"] in (4159,48000) and
+                 rec["first_row_stop"]-int(startkey)<=slice_rows and
+                 rec["first_total_size"] in allowed_first and
                  rec["first_row_stop"]<=rec["first_total_size"] and
-                 rec["second_total_size"] in (15860,48000) and
+                 rec["second_total_size"] in allowed_second and
                  rec.get("forward_counted_not_mirrored") is True and
                  rec["candidate_neighbour_pairs"]>=rec["accepted_pairs"],
                  "Untrusted 48000R per-slice row bounds/counts detected")
@@ -490,7 +496,7 @@ def synthetic_test():
              np.allclose(h,direct,rtol=1e-12,atol=1e-10),
              "Synthetic 4-slice SGC weighted sparse full-vs-sliced exact pair closure failed")
         stored=json.loads(out.read_bytes())
-        validate_progress(stored["sgc_progress"])
+        validate_progress(stored["sgc_progress"],synthetic_slice_rows=11)
         # Replay from persistent storage, not in-memory mutated state.
         h2,m2=chunked_48000_forward_pair(
             stored,out,"R1R2",tiny1,tiny2,dist,first_slice_rows=11)
@@ -498,7 +504,7 @@ def synthetic_test():
              m2["accepted_weighted_pair_count"]==meta["accepted_weighted_pair_count"],
              "Stored SGC 48k per-slice resume changes completed histograms")
         stored["sgc_progress"]["partial_48000"]["R1R2"]["0"]["histogram_SHA256"]="0"*64
-        try:validate_progress(stored["sgc_progress"])
+        try:validate_progress(stored["sgc_progress"],synthetic_slice_rows=11)
         except ValueError:pass
         else:raise AssertionError("Tampered 48k partial slice was accepted")
     print("EBOSS_SGC_V21_FOUR_SYNTHETIC_DISJOINT_PAIR_SLICES_AND_RESUME_OK",
