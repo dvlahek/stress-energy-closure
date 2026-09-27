@@ -1,0 +1,114 @@
+{
+  "date": "2026-09-27",
+  "status": "E17_PROSPECTIVELY_REGISTERED_BEFORE_ANY_NEW_E17_CLASS_EXECUTION",
+  "stage": "E17A_LINEAR_CLASS_TWO_LEG_AND_DIRECT_VTK_TRANSFER_ONLY",
+  "parent_head_at_registration": "8d37d6f1de0a1035b5d177369c22e7f0acbee1a8",
+  "immutable_parents": {
+    "E8_original_4000q_CSV_sha256": "bf8f48deb9514c5101d5ce314bfbd397485102a5487da1039f141e3cad6143d0",
+    "E13_original_full_sha256": "537365b2e758ec215810bb687557771440851cf2869d02578569b1d47d4ec98d",
+    "E14_original_full_sha256": "0f1efb45593cd51d9ffa1818157bdd52baba525a8fc4bb9cc30c12d98ba91fd8",
+    "E15_original_full_sha256": "6062aed4b581f2db89192bd1c1cf2639a74b6a313db9e10dca9e53041a95d983",
+    "E16_original_full_sha256": "5d81f95a5571175f06eb032b865285ba34804701693f76af392be7fc31fb06db",
+    "E16_independent_sha256": "8a6ee7610a0412de7bcaf5333950f41add0973a000bd245d49b41b77efc8e10d",
+    "E14_original_per_state_sha256": {
+      "FD": "639eb2346f074bdcdf87aecaeee1f0e3f497ee065272b1373c8a804cb32582f4",
+      "plus": "01dd19c93551ad846505980d673c454ad6dc36d9d0f03c7dda79f9c9388c9a30",
+      "minus": "6d7c5b657aef2c9d7d05d7e028dd83b053649123192866312c0835aa81e67d32"
+    },
+    "original_CLASS_git_commit": "e85808324f51fc694d12e3ed7439552a3c3f9540",
+    "E14_runner_git_blob": "d2c6f568ddd8f5650e9817072ae3dfd4166a4697",
+    "E16_protocol_git_blob": "28127fbedddc320660b6ac3f9d6262272905c7ca"
+  },
+  "fixed_physics_and_grid": {
+    "states": [
+      "FD",
+      "plus",
+      "minus"
+    ],
+    "original_tracer_order": [
+      "LRG",
+      "ELG"
+    ],
+    "original_short_k_comoving_h_per_Mpc": [
+      0.05,
+      0.075,
+      0.1
+    ],
+    "original_long_K_comoving_h_per_Mpc": [
+      0.001,
+      0.002,
+      0.003,
+      0.005
+    ],
+    "orientation_mu_short": [
+      -1,
+      0,
+      0.6,
+      1
+    ],
+    "orientation_mu_long": [
+      -1,
+      0,
+      0.5,
+      1
+    ],
+    "orientation_azimuth_rad": [
+      "0",
+      "pi/2",
+      "pi"
+    ],
+    "angles_and_vectors": "Use unchanged E16 right-handed n=z, k1=k-K/2, k2=-k-K/2. No geometrical remeshing.",
+    "orientations_per_kK": 48,
+    "total_closed_geometries": 576,
+    "original_state_source_cases": 72,
+    "original_plus_minus_contrasts": 24,
+    "z_math_nodes_not_eBOSS_z_eff": [
+      0.945,
+      0.95,
+      0.955
+    ],
+    "neutrino_mass_eV": 0.06,
+    "z_match": 1100,
+    "source_deformation_cap": 0.3,
+    "CLASS_gauge": "newtonian",
+    "CLASS_output": "mPk,dTk,vTk",
+    "CLASS_Pcb_argument": "pk_cb_lin(k_hMpc * h, z), output Mpc^3, NEVER interpolate three E14 short-mode Pcb samples",
+    "direct_vTk_transfer": "Get CLASS get_transfer(z,output_format=class) t_ncdm[0]-t_cdm, d_cdm,d_b on original finite CLASS k grid; linear interpolation strictly within verified grid, record brackets and no extrapolation.",
+    "original_direct_rank_R16": "Re-use archived E13 state-specific direct-vTk R16 LOS sigma and R16-filtered long P_delta_cb,r; do not replace rank by short-leg theta transfer.",
+    "static_Eq20_scope": "Original exact FD occupation and frozen F+/-; per-short-leg k^-2 scaling of E9/E13 restricted instantaneous source MAY be given as explicitly MODEL_ONLY, never full B or retarded halo propagation."
+  },
+  "numerical_QA_registered_before_CLASS": {
+    "archived_E14_three_short_k_Pcb_relative_anchor_max": 1e-8,
+    "original_E13_center_short_k0_Pcb_relative_anchor_max": 1e-8,
+    "triangle_closure_abs_h_Mpc": 1e-13,
+    "short_leg_swap_scaled_gap": 1e-12,
+    "short_leg_reality_scaled_gap": 1e-12,
+    "CLASS_Pcb_positive_finite_all_nodes": true,
+    "CLASS_transfer_grid_strict_bracketing_all_short_legs": true,
+    "CLASS_transfer_grid_identical_three_redshifts": true,
+    "continuous_squeezed_Pcb_limit_relative_diagnostic_at_epsilon_1e_minus_5": 0.0001,
+    "independent_replay_Pcb_relative_tolerance": 1e-8,
+    "independent_replay_transfer_interpolation_relative_tolerance": 1e-8,
+    "no_posthoc_tolerance_adjustments": true
+  },
+  "outputs": [
+    "Original per-state E17 CLASS BOTH-LEG Pcb and direct-vTk theta/cb transfer at three preregistered z nodes, all 576 exact E16 geometries.",
+    "Separate QA against immutable E14 and original E13 anchors, both short-leg exchange, full k1+k2+K closure and real transfer under Fourier-vector reversal.",
+    "Independent CLASS re-run and independent scalar closed-triangle replay, with SHA256 full original reports, independent certificate and manifest committed permanently under source_data/ on same audit branch.",
+    "Separate calculation provenance: CLASS linear Pcb/transfer versus restricted quasi-static Eq20 versus BLOCKED retarded halo/tracer three-point."
+  ],
+  "physics_STOP": {
+    "no_finite_K_physical_halo_tracer_coupling_calibrated": true,
+    "no_retarded_Vlasov_halo_response": true,
+    "no_arbitrary_two_leg_symmetrization_factor": true,
+    "no_physical_B_or_eBOSS_xi_or_significance": true,
+    "no_24D_two_point_to_three_point_reinterpretation": true,
+    "A03_pair_redshift_RR_not_certified": true,
+    "A04_independent_eBOSS_covariance_absent": true,
+    "observed_odd_SEALED": true,
+    "no_new_FITS_catalogues_or_mock_download": true,
+    "no_new_seeds_or_science_cuts": true,
+    "no_main_change_or_PR_merge": true,
+    "PR_remains_draft": true
+  }
+}
