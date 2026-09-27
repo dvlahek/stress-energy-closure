@@ -125,6 +125,11 @@ def run(out):
         ck(81<counts["tier_high"]<counts["tier_ultra"],
            "predeclared native k-resolution hierarchy did not materialize")
         qa["native_node_counts_by_state"][st]=counts
+        anchors=json.loads((ROOT/"source_data/eboss_dr16_a03_e14_archived_CI_2026_09_27"/("e14_short_Pcb_"+st+".json")).read_bytes())["CLASS_Pcb_short_per_state_Mpc3"]
+        anchor=max(abs(data[tier]["E14_three_short_k_Pcb_Mpc3"][k]-anchors[k])/anchors[k]
+                   for tier in ("tier_high","tier_ultra") for k in ("0.05","0.075","0.1"))
+        ck(abs(anchor-a["QA"]["max_original_anchor_Pcb_relative_gap"])<1e-13,
+           "refined E14 original anchor QA not independently reproduced")
         for fld in FIELDS:
             entry=a["convergence_diagnostics"][fld]
             floor=entry["scale_floor_for_near_zero"]
@@ -143,7 +148,7 @@ def run(out):
                 ck(err<=1e-12*max(1.,abs(got),abs(expected)),
                    "original/native quantitative resolution summary mismatch")
         qa["states"]+=1
-    ck(qa["states"]==3 and qa["independent_native_scalar_interpolation_evaluations"]==20736
+    ck(qa["states"]==3 and qa["independent_native_scalar_interpolation_evaluations"]==41472
        and qa["original_baseline_leg_z_field_comparisons"]==31104,
        "missing independently audited original full two-leg sample coverage")
     result={"date":"2026-09-27",
