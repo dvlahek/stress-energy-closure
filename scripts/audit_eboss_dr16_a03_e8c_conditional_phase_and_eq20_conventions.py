@@ -52,7 +52,7 @@ def source():
             "bf8f48deb9514c5101d5ce314bfbd397485102a5487da1039f141e3cad6143d0",
             "Original source archive / observed seal changed")
     require(p["inviolable_guards"]["observed_odd_read"] is False and
-            p["paper_source"].get("doi")=="10.1093/mnras/stx539" and
+            p["physical_reference"].get("doi")=="10.1093/mnras/stx539" and
             e["source_paper"]["verified_DOI"]=="10.1093/mnras/stx560" and
             e["source_paper"]["originals_modified"] is False and
             e["scientific_gate"]["absolute_halo_SI_normalization_vs_published_mu_1_forecast_UNRESOLVED"] is True and
@@ -88,7 +88,7 @@ def mode(a,pb,*,z,v_parallel_kms,k_h_per_Mpc,k_kind):
     # occupancy. Do not invent interpolated new F± source responses here.
     orig=a["example_conditional"]
     require(close(z,orig["z_midpoint_not_measured_effective_z"],rtol=0.) and
-            close(v_parallel_kms,orig["v_parallel_abs_illustrative_kms"],rtol=0.),
+            close(abs(v_parallel_kms),orig["v_parallel_abs_illustrative_kms"],rtol=0.),
             "Only original frozen illustrative z and velocity are source-pinned")
     ratio_plus=orig["Fplus_over_FD"]
     ratio_minus=orig["Fminus_over_FD"]
