@@ -201,7 +201,7 @@ def synthetic_self_test():
     for ell in (1,3):
         require(abs(float(np.ones((1,24))@WEIGHT[ell]))<1e-12,
                 "Pure constant even field falsely produces odd output")
-        require(np.max(np.abs(sum(projected(v,ell) for v in parts)
+        require(np.max(np.abs(sum(projected(v,ell) for v in parts.values())
                     -projected(d,ell)))<2e-13,
                 "Synthetic projected term decomposition failed")
     altered=dict(b)
