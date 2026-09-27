@@ -1,0 +1,60 @@
+{
+  "date": "2026-09-27",
+  "study": "A03E8b source-only SI conditional static-halo neutrino gravitational wake Green coefficient from published collisionless Eq.(19)-(20) and frozen F±; NOT eBOSS galaxy xi or evolving CLASS forecast",
+  "registration_boundary": "Written after E8a frozen source and illustrative FD-relative ratios; new post-hoc theoretical SI unit derivation and deterministic tests only; no retroactive A03 acceptance threshold",
+  "parent_frozen_E8_protocol": {
+    "path": "source_data/eboss_dr16_a03_e8_frozen_resonant_occupancy_protocol_2026-09-27.json",
+    "git_blob_sha1": "2856c190b58fde9b39e2cb3f0d0006a77fe9b70c"
+  },
+  "parent_frozen_E8_source_code": {
+    "path": "scripts/build_eboss_dr16_a03_e8_frozen_resonant_occupation.py",
+    "git_blob_sha1": "57425463f82fda3273eaa7f4510e56ceff99e247"
+  },
+  "original_E8_CI_run": 36307484339,
+  "original_frozen_source_csv_sha256": "bf8f48deb9514c5101d5ce314bfbd397485102a5487da1039f141e3cad6143d0",
+  "paper": {
+    "authors": "Okoli, Scrimgeour, Afshordi and Hudson",
+    "journal": "MNRAS 468 (2017) 2164-2175",
+    "link": "https://academic.oup.com/mnras/article/468/2/2164/3063204",
+    "eq_source": "Section 3.2 Eq.(14)-(20) linear isotropic collisionless distribution and resonant occupation; use exact non-approximated denominator of Eq.(20) rather than empirically fitted mu(v)",
+    "source_generalization": "At fixed identical halo potential, physical k, redshift, v_parallel and species degeneracy, F±/F0 replaces FD resonant occupation while published mass-dependent SI prefactor remains. No astrophysical halo model or independent evolved +,- potentials."
+  },
+  "physical_reference": {
+    "one_ncdm_species": 1,
+    "mass_eV": 0.06,
+    "rest_mass_conversion_eVc2_to_kg": 1.7826619216279e-36,
+    "c_m_per_s": 299792458,
+    "Newton_G_m3_kg_s2": 6.6743e-11,
+    "hbar_Js": 1.054571817e-34,
+    "Mpc_m": 3.085677581491367e+22,
+    "h": 0.6736,
+    "reference_physical_wavenumber_h_per_Mpc": 0.05,
+    "reference_z": 0.95,
+    "reference_abs_v_parallel_kms": 200,
+    "physical_not_comoving_k": true,
+    "conversion_rule_for_future_eBOSS_comoving_k": "k_phys=(1+z)k_comoving; never silently substitute comoving k in static physical Eq20",
+    "z_label": "Mathematical midpoint only, not measured eBOSS z_eff",
+    "v_label": "Existing 200 km/s diagnostic reference, not measured eBOSS relative velocity",
+    "k_label": "Illustrative physical wavenumber in existing linear test band, not an eBOSS fitted selection"
+  },
+  "formula": "K_FD=|g_nu,k/Phi_k| = (2 N_nu G m_nu^4 |v_parallel|)/(hbar^3 k_phys)*1/(exp(q_res)+1) in units m^-1 under published static-halo Eq20. K_plus=K_FD*Fplus(q_res)/FFD(q_res), K_minus likewise. For signed v, assign sign to K. q_res=m_nu[eV]*|v_parallel|[m/s]/(c[m/s]*T_nu(z)[eV]).",
+  "output_scope": "Conditional per-unit-potential gravitational susceptibility at fixed halo potential, physical k, v_parallel, species; NO physical galactic ξ1 ξ3, no survey P(k), no z-conditioned window/covariance",
+  "assertions": [
+    "SI dimensional check m^-1",
+    "correct fd source normalization independent of CLASS PSD 2/(2pi)^3 because ratio cancels",
+    "F+-F- equals source ratio times FD Green coefficient",
+    "source pair mean=FD conditional Green coefficient",
+    "signed v and zero v negative controls",
+    "physical/comoving k distinguished"
+  ],
+  "guards": {
+    "new_FITS_read": false,
+    "new_CLASS_transfer": false,
+    "observed_odd_read": false,
+    "new_download": false,
+    "reinterpret_as_eBOSS_galaxy_xi": false,
+    "fit_parameters_to_mock": false,
+    "unseal": false,
+    "main_change": false
+  }
+}
