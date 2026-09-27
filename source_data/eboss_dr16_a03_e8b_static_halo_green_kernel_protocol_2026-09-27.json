@@ -8,7 +8,7 @@
   },
   "parent_frozen_E8_source_code": {
     "path": "scripts/build_eboss_dr16_a03_e8_frozen_resonant_occupation.py",
-    "git_blob_sha1": "57425463f82fda3273eaa7f4510e56ceff99e247"
+    "git_blob_sha1": "3db381a2942832b6500a60291ac864eff929b200"
   },
   "original_E8_CI_run": 36307484339,
   "original_frozen_source_csv_sha256": "bf8f48deb9514c5101d5ce314bfbd397485102a5487da1039f141e3cad6143d0",
