@@ -1,0 +1,39 @@
+{
+  "date": "2026-09-27",
+  "CI_run_id": "36346079827",
+  "prospective_E17C_protocol_git_blob": "33defef2020f2931756e3ef7a3959d905d539165",
+  "original_E17B_joint_sha256": "156763dfb81e2a8c5c9e3615f5022749fa681f458a2753fbfa5f46b462e20658",
+  "original_Fplus_Fminus_unmodified": true,
+  "no_new_CLASS_FITS_or_mock": true,
+  "observed_odd_SEALED": true,
+  "full_physical_halo_tracer_bispectrum": "BLOCKED",
+  "main_untouched": true,
+  "PR_remains_draft": true,
+  "files": [
+    {
+      "file": "e17c_independent_scalar_source_only_replay.json",
+      "size_bytes": 1451,
+      "sha256": "3dacec420697c5989db7e043fccf09b59bf6017951c9a24dfe20f87aa5dcd841"
+    },
+    {
+      "file": "e17c_original_joint_restricted_retarded_streaming.json",
+      "size_bytes": 2623,
+      "sha256": "ad655ada4f64e5033fe900d5821f58847e3c96e72e081cd1a92eadcf9a7236f4"
+    },
+    {
+      "file": "e17c_restricted_streaming_FD.json",
+      "size_bytes": 884679,
+      "sha256": "91c767a242d1cd6739cd16e4227ce32a72d0a4bb66447648d5e4abb3ec6b219f"
+    },
+    {
+      "file": "e17c_restricted_streaming_minus.json",
+      "size_bytes": 884739,
+      "sha256": "edb90e9e4372e26d13af8a13a59f2b633d7c8711184f8c9ee875ddd3732f1d28"
+    },
+    {
+      "file": "e17c_restricted_streaming_plus.json",
+      "size_bytes": 884907,
+      "sha256": "5b61d48640ad00dc501f72aeafc24786d592b3121ace70d35d15642dd5203814"
+    }
+  ]
+}
