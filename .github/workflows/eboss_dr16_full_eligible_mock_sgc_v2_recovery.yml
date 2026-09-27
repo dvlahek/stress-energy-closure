@@ -1,4 +1,4 @@
-name: eBOSS DR16 mock0001 SGC V2 checkpointed repair synthetic source-only QA
+name: eBOSS DR16 mock0001 SGC V2/V2.1 bounded checkpointed repair synthetic QA
 on:
   push:
     branches:
@@ -6,6 +6,7 @@ on:
     paths:
       - 'scripts/resume_eboss_dr16_full_eligible_mock0001_sgc_v2.py'
       - 'source_data/eboss_dr16_full_eligible_mock0001_sgc_resume_v2_after_failure_protocol_2026-09-27.json'
+      - 'source_data/eboss_dr16_mock0001_sgc_48000_chunked_v21_engineering_protocol_2026-09-27.json'
       - '.github/workflows/eboss_dr16_full_eligible_mock_sgc_v2_recovery.yml'
   workflow_dispatch:
 permissions:
