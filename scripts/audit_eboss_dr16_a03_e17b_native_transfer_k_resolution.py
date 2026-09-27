@@ -203,7 +203,7 @@ def run_state(st,out):
                         "high_vs_ultra":metrics(high,ultra,field,scale_floor),
                         "scale_floor_for_near_zero":scale_floor}
     candidate=p["prereg_engineering_diagnostics_NOT_physical_error_budget"]
-    archived_anchors=json.loads((e14.E14DIR/("e14_short_Pcb_"+st+".json")).read_bytes())["CLASS_Pcb_short_per_state_Mpc3"]
+    archived_anchors=json.loads((e17.E14DIR/("e14_short_Pcb_"+st+".json")).read_bytes())["CLASS_Pcb_short_per_state_Mpc3"]
     qa={"grid_refinement":sizes,"max_original_anchor_Pcb_relative_gap":
         max(abs(computed[tier]["E14_three_short_k_Pcb_Mpc3"][str(k)]-
                 archived_anchors[str(k)])/archived_anchors[str(k)]
