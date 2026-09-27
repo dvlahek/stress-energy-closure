@@ -209,7 +209,7 @@ def solve(p,q,f,cases,e10):
             for h in (.002,.001):
                 gap=abs(gamma-dlist[str(h)])/max(abs(gamma),abs(dlist[str(h)]),EPS)
                 qa[f"Stein_rank_{s}_ell{ell}_step{h}_relative_gap"]=gap
-                check(gap<qalevels["engineering_QA_warning_not_physical_threshold"]
+                check(gap<p["frozen_e11_calculation"]["engineering_QA_warning_not_physical_threshold"]
                       ["Stein_derivative_0p002_vs_0p001_relative_warn"],
                       "Gaussian Stein rank derivative warning exceeded, stop")
             stein[s+"_"+str(ell)]={"Gamma_weighted_rank":gamma,
