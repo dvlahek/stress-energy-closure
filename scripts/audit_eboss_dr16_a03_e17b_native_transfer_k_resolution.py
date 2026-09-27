@@ -185,6 +185,7 @@ def run_state(st,out):
             require(abs(h-original["h"])<1e-12,"refined CLASS h changed")
             print("E17B_FRESH_CLASS_TIER",st,tier,flush=True)
             computed[tier]=evaluated_tier(cosm,h,legs,p["precision"][tier])
+            computed[tier]["E14_three_short_k_Pcb_Mpc3"]={str(k):float(cosm.pk_cb_lin(k*h,.95)) for k in e17.KS}
         finally:cosm.struct_cleanup();cosm.empty()
     nh=computed["tier_high"]["native_grid"]["N"]
     nu=computed["tier_ultra"]["native_grid"]["N"]
@@ -202,10 +203,11 @@ def run_state(st,out):
                         "high_vs_ultra":metrics(high,ultra,field,scale_floor),
                         "scale_floor_for_near_zero":scale_floor}
     candidate=p["prereg_engineering_diagnostics_NOT_physical_error_budget"]
+    archived_anchors=json.loads((e14.E14DIR/("e14_short_Pcb_"+st+".json")).read_bytes())["CLASS_Pcb_short_per_state_Mpc3"]
     qa={"grid_refinement":sizes,"max_original_anchor_Pcb_relative_gap":
-        max(abs(computed[tier]["z_nodes"]["0.95"]["actual_leg_samples"]["Pcb"][0]-
-                baseline["0.95"]["Pcb"][0])/baseline["0.95"]["Pcb"][0]
-            for tier in ("tier_high","tier_ultra")),
+        max(abs(computed[tier]["E14_three_short_k_Pcb_Mpc3"][str(k)]-
+                archived_anchors[str(k)])/archived_anchors[str(k)]
+            for tier in ("tier_high","tier_ultra") for k in e17.KS),
         "baseline_ultra_transfer_candidate":
         max(summary[x]["baseline_vs_ultra"]["max_scaled_gap"] for x in ("theta","dcb"))<=
             candidate["max_baseline_ultra_scaled_transfer_gap_CANDIDATE"],
