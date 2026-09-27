@@ -40,12 +40,12 @@ PROTOCOL = ROOT / "source_data/eboss_dr16_full_eligible_mock_galaxy_4800_48000_r
 OLD_A02 = ROOT / "source_data/eboss_dr16_nine_ezmock_galaxy_cross_ls_code_transport_report_2026-09-26.json"
 OLD_E4 = ROOT / "source_data/eboss_dr16_a03_e4_mock_galaxy_nested_random_density_1200_2400_4800_report_2026-09-27.json"
 OLD_MANIFEST = ROOT / "source_data/eboss_dr16_a03_e4_mock_galaxy_nested_random_density_1200_2400_4800_uploaded_manifest_2026-09-27.json"
-PROTOCOL_BLOB = "e53986db985f8bfcbe8e692eb9c3aed2d76ed5ed"
+PROTOCOL_BLOB = "447da3abef8953d5ad60da55c6a2735a277bc223"
 OLD_A02_SHA = "15f7668fd483d8e1329fbb9684bbdf07cb49d1974d264f9ceebd85e0156daa27"
 OLD_E4_SHA = "ec45931f815dad8845bae41111f11b3e11cc0a5912f14c3e2b22c2f090e1045f"
 OLD_MANIFEST_BLOB = "8e73c473319963c2c1d8a1c9887226da889d2126"
 OLD_E4_RUNNER_BLOB = "fda4a5eda420a9f69bd4d393bae02419155958f8"
-SPARSE_RUNNER_BLOB = "eBOSS existing sparse source script source-pin from audit_eboss_dr16_rr_kdtree_pilot.py"
+SPARSE_RUNNER_BLOB = "25f5643887f7b05db373bbbabe95fd6537a8c2b0"
 PASS = "EBOSS_FULL_ELIGIBLE_MOCK0001_BOTH_CAPS_4800_48000_SPARSE_DESCRIPTIVE_ONLY"
 STOP = "EBOSS_FULL_ELIGIBLE_MOCK0001_INCOMPLETE_STOP"
 SIZES = (4800, 48000)
@@ -88,7 +88,9 @@ def source_only_gate():
     guard(sha(a02raw) == OLD_A02_SHA and sha(e4raw) == OLD_E4_SHA,
           "Original parent 18-case source SHA changed")
     guard(blob(OLD_MANIFEST.read_bytes()) == OLD_MANIFEST_BLOB and
-          blob(E4.__file__ and Path(E4.__file__).read_bytes()) == OLD_E4_RUNNER_BLOB,
+          blob(Path(E4.__file__).read_bytes()) == OLD_E4_RUNNER_BLOB and
+          blob(Path(kdtree_rr.__code__.co_filename).read_bytes()) == SPARSE_RUNNER_BLOB and
+          p["source_hash_requirements"]["original_sparse_kdtree_code_blob_sha1"] == SPARSE_RUNNER_BLOB,
           "Original E4 runner/manifest bytes changed")
     guard(p["branch"] == "audit/eboss-elg-bit8-ra-orientation-20260925" and
           p["fixed_id"] == [1] and p["caps"] == list(CAPS) and
@@ -115,7 +117,7 @@ def source_only_gate():
     guard(a02["completed_cases"] == e4["completed_cases"] == 18 and
           a02["observed_odd_data_vector_read"] is False and
           e4["observed_odd_data_vector_read"] is False and
-          a02["cases"]["0001/NGC"]["status"].startswith("oriented_pair") and
+          a02["cases"]["0001/NGC"]["status"] == "complete" and
           e4["cases"]["0001/SGC"]["status"] == "complete",
           "Original source-only paired mock cohort incomplete")
     return p, a02, e4
