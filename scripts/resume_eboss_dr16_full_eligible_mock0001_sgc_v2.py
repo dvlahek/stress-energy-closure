@@ -22,6 +22,7 @@ import gc
 import hashlib
 import json
 import math
+import tempfile
 from pathlib import Path
 
 import numpy as np
@@ -31,6 +32,9 @@ import run_eboss_dr16_full_eligible_mock0001_sparse as V1
 ROOT=V1.ROOT
 PROTOCOL=ROOT/"source_data/eboss_dr16_full_eligible_mock0001_sgc_resume_v2_after_failure_protocol_2026-09-27.json"
 PROTOCOL_BLOB="c2ff44c037979c4695523dcc4027072928bf57d4"
+V21_CONTRACT=ROOT/"source_data/eboss_dr16_mock0001_sgc_48000_chunked_v21_engineering_protocol_2026-09-27.json"
+V21_BLOB="20481d7daffcb49fad0f2b554c67925b29846981"
+FIRST_SLICE_ROWS=4000
 V1_BLOB="793a69301afc41c5254a78b2d56fe40c0cba4876"
 CAP="SGC"
 KEY="0001/SGC"
@@ -69,6 +73,21 @@ def guards():
     raw=PROTOCOL.read_bytes()
     need(V1.blob(raw)==PROTOCOL_BLOB, "V2 postmortem protocol Git blob changed")
     p=json.loads(raw)
+    v21raw=V21_CONTRACT.read_bytes()
+    c=json.loads(v21raw)
+    need(V1.blob(v21raw)==V21_BLOB and
+         c["source_branch"]==p["source_branch"] and
+         c["original_v2_runner_git_blob_sha1"]=="808b253c4998335b67a4117bac28facc170892e1" and
+         c["original_v2_4800_stage_uploaded_sha256"]=="d3f298a9550981c0ece7d6c9e7aee0d3fb5cebaf0d80cdd39805cda3bb08e238" and
+         c["scope"]["cap"]==CAP and c["scope"]["level"]=="nested_48000" and
+         c["scope"]["first_catalogue_chunk_rows"]==FIRST_SLICE_ROWS and
+         c["scope"]["terms"]==["D1R2","R1D2","R1R2"] and
+         c["scope"]["unchanged_4800_checkpoint"] is True and
+         c["scope"]["observed_odd_data_read"] is False and
+         c["scope"]["new_download"] is False and
+         c["scope"]["new_science_selection"] is False and
+         c["scope"]["main_change"] is False,
+         "Pre-48000 post-SGC4800 source-pinned engineering slice protocol changed")
     need(V1.blob(Path(V1.__file__).read_bytes())==V1_BLOB and
          p["original_v1_runner_blob_sha1"]==V1_BLOB and
          p["source_branch"]=="audit/eboss-elg-bit8-ra-orientation-20260925" and
@@ -163,6 +182,25 @@ def validate_progress(progress):
             need(rec.get("forward_counted_not_mirrored") is True and
                  rec["candidate_neighbour_pairs"] >= rec["accepted_pairs"],
                  "Stored checkpoint is not genuinely forward-counted")
+    partial=progress.get("partial_48000",{})
+    need(isinstance(partial,dict) and set(partial).issubset({"D1R2","R1D2","R1R2"}),
+         "Forbidden in-progress 48000R first-catalogue term")
+    for term,parts in partial.items():
+        need(isinstance(parts,dict),"48000R source-pinned first-row partials malformed")
+        for startkey,rec in parts.items():
+            need(startkey.isdecimal() and str(int(startkey))==startkey and
+                 int(startkey)%FIRST_SLICE_ROWS==0 and
+                 int(startkey)>=0 and int(startkey)<48000 and
+                 rec["first_row_start"]==int(startkey) and
+                 int(startkey)<rec["first_row_stop"]<=48000 and
+                 rec["first_row_stop"]-int(startkey)<=FIRST_SLICE_ROWS and
+                 rec["first_total_size"] in (4159,48000) and
+                 rec["first_row_stop"]<=rec["first_total_size"] and
+                 rec["second_total_size"] in (15860,48000) and
+                 rec.get("forward_counted_not_mirrored") is True and
+                 rec["candidate_neighbour_pairs"]>=rec["accepted_pairs"],
+                 "Untrusted 48000R per-slice row bounds/counts detected")
+            verify_array(rec)
     assembled=progress.get("assembled_levels",{})
     need(set(assembled).issubset(progress["levels"]),
          "Assembled SGC level not backed by stored forward pair checkpoints")
@@ -218,6 +256,87 @@ def init_state(dest,p,old):
     return s
 
 
+
+def chunked_48000_forward_pair(s,dest,term,first,second,distance,
+                               *,first_slice_rows=FIRST_SLICE_ROWS):
+    """Pair-preserving bounded SGC 48k counting with per-slice SHA checkpoints.
+
+    Disjoint consecutive first-catalogue slices each see the COMPLETE second
+    catalogue. Sum in frozen increasing first-index order, and normalize once
+    by the original full input-catalogue weight sums. This changes only the
+    floating addition tree, not the pair set, selection, or physics.
+    """
+    need(term in ("D1R2","R1D2","R1R2") and
+         first_slice_rows>=1 and first_slice_rows<=FIRST_SLICE_ROWS and
+         len(first[0])>0 and len(second[0])>0,
+         "Illegal 48000R stage, first-slice size or empty source")
+    partial=s["sgc_progress"].setdefault("partial_48000",{})
+    saved=partial.setdefault(term,{})
+    accumulated=np.zeros((6,24),dtype="f8")
+    accepted=candidates=0
+    n1,n2=len(first[0]),len(second[0])
+    sum1=float(np.sum(first[3],dtype="f8"))
+    sum2=float(np.sum(second[3],dtype="f8"))
+    full_norm=sum1*sum2
+    need(math.isfinite(full_norm) and full_norm>0,
+         "SGC 48k original whole-catalogue weighted pair normalization invalid")
+    for start in range(0,n1,first_slice_rows):
+        stop=min(start+first_slice_rows,n1)
+        key=str(start)
+        if key in saved:
+            rec=saved[key]
+            verify_array(rec)
+            need(rec["first_row_start"]==start and
+                 rec["first_row_stop"]==stop and
+                 rec["first_total_size"]==n1 and rec["second_total_size"]==n2 and
+                 np.isclose(rec["pair_normalization"],
+                            float(np.sum(first[3][start:stop],dtype="f8"))*sum2,
+                            rtol=1e-13,atol=0),
+                 "Saved 48000R first-row slice no longer matches original source weights")
+            h=np.asarray(rec["histogram_6x24"],dtype="f8")
+            print("V21_REUSE_SHA_VERIFIED_FIRST_SLICE",term,start,stop,flush=True)
+        else:
+            cat1=tuple(np.asarray(col[start:stop],dtype="f8") for col in first)
+            h,meta=V1.kdtree_rr(
+                cat1,second,V1.S_EDGES,V1.MU_EDGES,distance,.05,
+                chunk=32,max_neighbour_pairs=BUDGET)
+            rec={"accepted_pairs":int(meta["accepted_weighted_pair_count"]),
+                 "candidate_neighbour_pairs":int(meta["candidate_neighbour_pairs"]),
+                 "pair_normalization":float(meta["pair_normalization"]),
+                 "histogram_6x24":h.tolist(),
+                 "histogram_SHA256":V1.sha(np.ascontiguousarray(h).tobytes()),
+                 "forward_counted_not_mirrored":True,
+                 "first_row_start":start,"first_row_stop":stop,
+                 "first_total_size":n1,"second_total_size":n2}
+            verify_array(rec)
+            need(rec["pair_normalization"]>0 and
+                 np.isclose(rec["pair_normalization"],
+                            float(np.sum(first[3][start:stop],dtype="f8"))*sum2,
+                            rtol=1e-13,atol=0),
+                 "Saved first-row slice weighted normalization invalid")
+            saved[key]=rec
+            V1.A02.atomic(dest,s)
+            print("V21_ATOMIC_FIRST_SLICE_SAVED",term,start,stop,
+                  "accepted",rec["accepted_pairs"],
+                  "candidates",rec["candidate_neighbour_pairs"],flush=True)
+        accumulated+=h
+        accepted+=rec["accepted_pairs"]
+        candidates+=rec["candidate_neighbour_pairs"]
+        need(candidates<=BUDGET and np.isfinite(accumulated).all() and
+             np.all(accumulated>=0),"Cumulative SGC 48k candidate budget or histogram invalid")
+        del h
+        gc.collect()
+    return accumulated,{
+        "accepted_weighted_pair_count":accepted,
+        "candidate_neighbour_pairs":candidates,
+        "pair_normalization":full_norm,
+        "source_first_slices":len(saved),
+        "first_slice_rows":first_slice_rows,
+        "sum_first_weights":sum1,
+        "sum_second_weights":sum2
+    }
+
+
 def checkpointed_forward(s,dest,cats,level,distance,old_e4):
     progress=s["sgc_progress"]
     stages=progress["levels"]
@@ -236,9 +355,13 @@ def checkpointed_forward(s,dest,cats,level,distance,old_e4):
             print("V2_REUSE_UNCHANGED_FULL_GALAXY_DD",level,flush=True)
             continue
         first,second=pairs[term]
-        h,meta=V1.kdtree_rr(first,second,V1.S_EDGES,V1.MU_EDGES,
-                            distance,.05,chunk=32,
-                            max_neighbour_pairs=BUDGET)
+        if level=="nested_48000":
+            h,meta=chunked_48000_forward_pair(
+                s,dest,term,first,second,distance)
+        else:
+            h,meta=V1.kdtree_rr(first,second,V1.S_EDGES,V1.MU_EDGES,
+                                distance,.05,chunk=32,
+                                max_neighbour_pairs=BUDGET)
         need(h.shape==(6,24) and np.isfinite(h).all() and np.all(h>=0) and
              meta["pair_normalization"]>0,
              "SGC sparse forward weighted pair histogram invalid")
@@ -251,6 +374,9 @@ def checkpointed_forward(s,dest,cats,level,distance,old_e4):
             "forward_counted_not_mirrored":True,
             "source_pairs":[len(first[0]),len(second[0])],
         }
+        if level=="nested_48000":
+            rec["first_catalogue_slice_rows"]=FIRST_SLICE_ROWS
+            rec["slice_count"]=meta["source_first_slices"]
         verify_array(rec)
         if level=="original_4800" and term=="R1R2":
             old=old_e4["levels"]["nested_4800"]["baseline_original"]["forward_pair_terms"]["R1R2"]
@@ -339,6 +465,44 @@ def synthetic_test():
              "levels":{"original_4800":positive},
              "assembled_levels":{"original_4800":assembled}}
     validate_progress(progress)
+    # This is an actual run of the 48k streaming algorithm on SYNTHETIC
+    # catalogues only, with 11-row first-catalogue slices and atomic JSON.
+    tiny1=(rng.uniform(180,182,37),rng.uniform(5,6,37),
+           rng.uniform(.91,.99,37),rng.uniform(.6,1.7,37))
+    tiny2=(rng.uniform(180,182,43),rng.uniform(5,6,43),
+           rng.uniform(.91,.99,43),rng.uniform(.7,1.4,43))
+    dist=lambda z: np.asarray(z,dtype="f8")*2800.
+    direct,dmeta=V1.kdtree_rr(
+        tiny1,tiny2,V1.S_EDGES,V1.MU_EDGES,dist,.05,
+        chunk=11,max_neighbour_pairs=BUDGET)
+    with tempfile.TemporaryDirectory() as folder:
+        saved_state={"sgc_progress":{"cap":CAP,
+                     "sources":progress["sources"],"levels":{},
+                     "partial_48000":{}}}
+        out=Path(folder)/"synthetic_atomic_48k_slices.json"
+        h,meta=chunked_48000_forward_pair(
+            saved_state,out,"R1R2",tiny1,tiny2,dist,first_slice_rows=11)
+        need(meta["source_first_slices"]==4 and
+             meta["accepted_weighted_pair_count"]==dmeta["accepted_weighted_pair_count"] and
+             meta["candidate_neighbour_pairs"]==dmeta["candidate_neighbour_pairs"] and
+             np.isclose(meta["pair_normalization"],dmeta["pair_normalization"],
+                        rtol=1e-14,atol=0) and
+             np.allclose(h,direct,rtol=1e-12,atol=1e-10),
+             "Synthetic 4-slice SGC weighted sparse full-vs-sliced exact pair closure failed")
+        stored=json.loads(out.read_bytes())
+        validate_progress(stored["sgc_progress"])
+        # Replay from persistent storage, not in-memory mutated state.
+        h2,m2=chunked_48000_forward_pair(
+            stored,out,"R1R2",tiny1,tiny2,dist,first_slice_rows=11)
+        need(np.array_equal(h,h2) and
+             m2["accepted_weighted_pair_count"]==meta["accepted_weighted_pair_count"],
+             "Stored SGC 48k per-slice resume changes completed histograms")
+        stored["sgc_progress"]["partial_48000"]["R1R2"]["0"]["histogram_SHA256"]="0"*64
+        try:validate_progress(stored["sgc_progress"])
+        except ValueError:pass
+        else:raise AssertionError("Tampered 48k partial slice was accepted")
+    print("EBOSS_SGC_V21_FOUR_SYNTHETIC_DISJOINT_PAIR_SLICES_AND_RESUME_OK",
+          "NO_FITS NO_OBSERVED",flush=True)
     bad={"histogram_6x24":np.ones((6,24)).tolist(),
          "histogram_SHA256":"0"*64,"accepted_pairs":7,
          "pair_normalization":1.}
