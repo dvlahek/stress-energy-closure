@@ -1,0 +1,76 @@
+name: Archive frozen eBOSS E8-E11 original source-only CI reports on audit branch
+on:
+  push:
+    branches:
+      - audit/eboss-elg-bit8-ra-orientation-20260925
+    paths:
+      - '.github/workflows/eboss_dr16_e8_e11_permanent_source_archive.yml'
+permissions:
+  actions: read
+  contents: write
+jobs:
+  archive-original-frozen-reports:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    env:
+      GH_TOKEN: ${{ github.token }}
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          persist-credentials: true
+      - name: Fetch ORIGINAL PASS E8 E8b E9 E10 E11 GitHub Actions artifacts, no fresh CLASS/FITS
+        run: |
+          set -eu
+          dest="source_data/eboss_dr16_a03_e8_e11_archived_CI_2026_09_27"
+          mkdir -p "$dest"/{E8,E8b,E9,E10,E11}
+          gh run download 36307484339 --repo dvlahek/stress-energy-closure --name eboss-a03-e8-frozen-source-only-kinetic-and-conditional-resonance --dir "$dest/E8"
+          gh run download 36307751800 --repo dvlahek/stress-energy-closure --name eboss-a03-e8b-frozen-conditional-static-halo-SI-kernel --dir "$dest/E8b"
+          gh run download 36325438404 --repo dvlahek/stress-energy-closure --name eboss-a03-e9-frozen-three-state-class-conditional-phase --dir "$dest/E9"
+          gh run download 36328824782 --repo dvlahek/stress-energy-closure --name eboss-a03-e10-original-E8-E9-conditional-odd-wind-parity --dir "$dest/E10"
+          gh run download 36331206915 --repo dvlahek/stress-energy-closure --name eboss-a03-e11-frozen-three-state-Gaussian-squeezed-response-source-only --dir "$dest/E11"
+      - name: Fail-closed SHA256 checks of ORIGINAL saved bytes, not NumPy regeneration
+        run: |
+          set -eu
+          dest="source_data/eboss_dr16_a03_e8_e11_archived_CI_2026_09_27"
+          echo "bf8f48deb9514c5101d5ce314bfbd397485102a5487da1039f141e3cad6143d0  $dest/E8/frozen_matched_distributions_4000q.csv" | sha256sum --check
+          echo "6b8f2b7688a746331ba2ae2776f5ac70ebdbc2b1a4e3dcc6472593a7ef745020  $dest/E8b/conditional_static_halo_green_kernel.json" | sha256sum --check
+          echo "450b35f68a329f545f21bbe7ec02e36941e4c303037ccb7c011830c315d15890  $dest/E9/quasistatic_alpha_dln_a_source_only_plus_CLASS.json" | sha256sum --check
+          echo "cc55a914a8be0174eb7c1e49e0e1968537cedfcf4a429d52ad66ab86cb44a488  $dest/E10/a03_e10_angular_parity_report.json" | sha256sum --check
+          echo "cade0959c112ca57e9cd5fd4433a49cbec3be0b74eb1f0a1d6eab9350a756ebd  $dest/E11/a03_e11_gaussian_squeezed_source_only_report.json" | sha256sum --check
+      - name: Create byte-level archive manifest and scientific scope guard
+        run: |
+          python - <<'PY'
+          import hashlib,json,pathlib
+          root=pathlib.Path("source_data/eboss_dr16_a03_e8_e11_archived_CI_2026_09_27")
+          records=[]
+          for p in sorted(root.rglob("*")):
+              if p.is_file() and p.name!="archive_manifest.json":
+                  raw=p.read_bytes()
+                  records.append({"relative_path":str(p.relative_to(root)),"sha256":hashlib.sha256(raw).hexdigest(),"size_bytes":len(raw)})
+          assert any(x["relative_path"]=="E8/frozen_matched_distributions_4000q.csv" for x in records)
+          assert all(any(x["relative_path"].startswith(k+"/") for x in records) for k in ("E8","E8b","E9","E10","E11"))
+          summary={"date":"2026-09-27","archive_type":"EXACT_ORIGINAL_GITHUB_ACTIONS_CI_BYTES_NOT_REGENERATED",
+            "original_success_run_ids":{"E8":36307484339,"E8b":36307751800,"E9":36325438404,"E10":36328824782,"E11":36331206915},
+            "scope":"Frozen source-only numerical results, NOT observed eBOSS galaxies/randoms/odd, NOT physical A03 survey xi or bispectrum, NOT validated A04 covariance",
+            "originals_unchanged":True,"main_untouched":True,"files":records}
+          (root/"archive_manifest.json").write_text(json.dumps(summary,indent=2)+"\n")
+          for x in records:print("ARCHIVED_ORIGINAL_FILE",x["relative_path"],x["sha256"],x["size_bytes"],flush=True)
+          print("ORIGINAL_ARCHIVE_MANIFEST_READY",len(records),flush=True)
+          PY
+      - name: Commit only original archived source-only outputs to audit branch
+        run: |
+          set -eu
+          dest="source_data/eboss_dr16_a03_e8_e11_archived_CI_2026_09_27"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- "$dest"
+          if git diff --cached --quiet; then
+            echo "ORIGINAL_E8_E11_REPORT_ARCHIVE_ALREADY_COMMITTED"
+          else
+            git commit -m "archive(eBOSS E8-E11): permanently preserve byte-exact CI source-only outputs and provenance manifest"
+            git push origin HEAD:refs/heads/audit/eboss-elg-bit8-ra-orientation-20260925
+          fi
+          git status --porcelain
+          echo "ORIGINAL_E8_E11_REPORTS_COMMITTED_TO_AUDIT_BRANCH"
