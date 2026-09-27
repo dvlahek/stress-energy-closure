@@ -1,0 +1,61 @@
+{
+  "date": "2026-09-27",
+  "archive_type": "EXACT_ORIGINAL_GITHUB_ACTIONS_CI_BYTES_NOT_REGENERATED",
+  "original_success_run_ids": {
+    "E8": 36307484339,
+    "E8b": 36307751800,
+    "E9": 36325438404,
+    "E10": 36328824782,
+    "E11": 36331206915
+  },
+  "scope": "Frozen source-only numerical results, NOT observed eBOSS galaxies/randoms/odd, NOT physical A03 survey xi or bispectrum, NOT validated A04 covariance",
+  "originals_unchanged": true,
+  "main_untouched": true,
+  "files": [
+    {
+      "relative_path": "E10/a03_e10_angular_parity_report.json",
+      "sha256": "cc55a914a8be0174eb7c1e49e0e1968537cedfcf4a429d52ad66ab86cb44a488",
+      "size_bytes": 4905
+    },
+    {
+      "relative_path": "E11/a03_e11_gaussian_squeezed_source_only_report.json",
+      "sha256": "cade0959c112ca57e9cd5fd4433a49cbec3be0b74eb1f0a1d6eab9350a756ebd",
+      "size_bytes": 14823
+    },
+    {
+      "relative_path": "E8/conditional_resonant_source_response.json",
+      "sha256": "47b02b23eab50f792e2dd38eaaafcb700213586d30c99e976d8e04b9af41ae83",
+      "size_bytes": 5801
+    },
+    {
+      "relative_path": "E8/frozen_matched_distributions_4000q.csv",
+      "sha256": "bf8f48deb9514c5101d5ce314bfbd397485102a5487da1039f141e3cad6143d0",
+      "size_bytes": 384083
+    },
+    {
+      "relative_path": "E8b/conditional_static_halo_green_kernel.json",
+      "sha256": "6b8f2b7688a746331ba2ae2776f5ac70ebdbc2b1a4e3dcc6472593a7ef745020",
+      "size_bytes": 7974
+    },
+    {
+      "relative_path": "E9/class_R16_wind_FD.json",
+      "sha256": "6cd39d3d84fad3fa337fa54528ee0a254708388a6db97e4973d8801681956b5d",
+      "size_bytes": 10691
+    },
+    {
+      "relative_path": "E9/class_R16_wind_minus.json",
+      "sha256": "710e85f00ca0483f99299fbc01a82c2c17d783071f38726d02f51d8c75a14bdc",
+      "size_bytes": 10698
+    },
+    {
+      "relative_path": "E9/class_R16_wind_plus.json",
+      "sha256": "a729af2093a8d7408cd0084caa0ec60e6cbc983223b4f3ad8958ce9349c1bb2c",
+      "size_bytes": 10689
+    },
+    {
+      "relative_path": "E9/quasistatic_alpha_dln_a_source_only_plus_CLASS.json",
+      "sha256": "450b35f68a329f545f21bbe7ec02e36941e4c303037ccb7c011830c315d15890",
+      "size_bytes": 26062
+    }
+  ]
+}
