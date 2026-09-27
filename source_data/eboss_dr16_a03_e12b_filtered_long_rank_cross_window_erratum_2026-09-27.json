@@ -1,0 +1,45 @@
+{
+  "date": "2026-09-27",
+  "status": "RETROSPECTIVE_POST_E12_ANALYTIC_FILTER_CORRECTION_NO_ORIGINAL_E12_RESULTS_CHANGED",
+  "parent_E12": {
+    "run_id": 36332156763,
+    "manifest_git_blob_sha1": "6022a4df6b7f54a4f01bf007d200897769cef680",
+    "script_git_blob_sha1": "0f516a1525fc5df44e71c400ea0cfb30664a1ce5",
+    "original_3state_output_sha256": {
+      "FD": "b1c679e8ccdf2e901abbb2ffc200cfcce765bf8ee9492364a280625835d42414",
+      "plus": "aedaf4381065ba807adced01b7740ade91db5a83d49113315e7a596ac2652655",
+      "minus": "4a12370b578a5482b67cd3d484504bf672396df35d8c252ff5d1150875b04777"
+    },
+    "original_parent_unchanged": true
+  },
+  "issue": "Original E12 source report P_delta_cb_rdirect_LOS_over_i_mu_Mpc3 used unfiltered direct theta(K)/sigma_LOS,R16. But E11/E12 model rank r is the R16-top-hat FILTERED local LOS relative wind. The correct physical cross with that r must multiply the long-mode numerator by the same W_R16(K). E12 sigma_R16 already included W_R16(K)^2 and remains correct. This is a field-definition consistency correction, not a new fitted amplitude.",
+  "original_E9_E11_filter": {
+    "R_comoving_Mpc_over_h": 16,
+    "k_long_comoving_h_per_Mpc": [
+      0.001,
+      0.002,
+      0.003,
+      0.005
+    ],
+    "k_vel_original_geomspace_h_Mpc": [
+      0.0001,
+      0.15,
+      180
+    ],
+    "K_upper_integrated_h_Mpc": 0.1,
+    "W_top_hat": "W(x)=3[sin(x)-x cos(x)]/x^3, W(0)=1"
+  },
+  "exact_correction": "P_delta_cb_rDIRECT_R16_filtered_over_i_mu(K) = W(K * 16 Mpc/h) * E12.original_P_delta_cb_rdirect_LOS_over_i_mu_Mpc3(K). The E12 original table is explicitly the RAW unfiltered-theta cross divided by filtered RMS and must NOT be represented as a filtered-rank cross.",
+  "reason_not_optional": "Since Gamma in E11 is response to filtered one-sigma rank, Wick/Gaussian P_(D,r) needs the same filtered field. Leaving out W is conceptually inconsistent even where W~1 on the four fixed long modes.",
+  "methodology": "Derived algebraically after inspecting already completed E12 source-only outputs, never called a prospectively accepted E12 test. Subsequent E13 fully regenerates its normalized Gamma with direct vTk-filtered sigma and multiplies ONLY with corrected P_delta_cb_rDIRECT_R16_filtered. No new experimental cut, sign, mock, seeds or data.",
+  "no_retroactive_E12_threshold_or_SHA_rewrite": true,
+  "observational_stop": {
+    "E12_metric_phi_prime_unavailable": true,
+    "E12_Newtonian_cb_density_gauge_convention_fixed": true,
+    "E12_not_physical_eBOSS_bispectrum": true,
+    "retarded_halo_response_and_tracer_bias_unknown": true,
+    "observed_odd_sealed": true,
+    "new_catalogue_or_mock_download": false,
+    "main_unchanged": true
+  }
+}
