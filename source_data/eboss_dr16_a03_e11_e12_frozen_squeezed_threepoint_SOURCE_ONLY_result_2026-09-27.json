@@ -1,0 +1,105 @@
+{
+  "date": "2026-09-27",
+  "status": "FROZEN_E8_E9_E10_SOURCE_PLUS_E11_GAUSSIAN_WICK_AND_E12_ORIGINAL_CLASS_LONG_WAVE_SQUEEZED_THREEPOINT_SOURCE_KERNEL_COMPLETE_EBOSS_SURVEY_THREEPOINT_INFERENCE_STOP",
+  "source_parent_SHA256": {
+    "E8_original_4000q_CSV": "bf8f48deb9514c5101d5ce314bfbd397485102a5487da1039f141e3cad6143d0",
+    "E9_original_3_CLASS_JSON": "450b35f68a329f545f21bbe7ec02e36941e4c303037ccb7c011830c315d15890",
+    "E10_original_angular_JSON": "cc55a914a8be0174eb7c1e49e0e1968537cedfcf4a429d52ad66ab86cb44a488"
+  },
+  "E11": {
+    "pre_run_protocol_git_blob": "c959d0a1c133c158131561acc7a36bdce4cfd0ab",
+    "source_script_git_blob": "7cc44bfe3b719b3b07f3d93eedcd2484b4d7207d",
+    "successful_GitHub_CI_run": 36329666591,
+    "CI_artifact_id": 10935455742,
+    "CI_artifact_zip_sha256": "bb25d8c78454584a0d9e265a50f29479b7a5e9adb20146d01213c868dbe61bce",
+    "full_JSON_SHA256": "fffdd6fac67256631e5981182e1b8ba6f48eb05ad14ddbec48e6d8eaa98b45eb",
+    "fixed_z": 0.95,
+    "short_k_COM_h_per_Mpc": 0.05,
+    "Gaussian_rank": "r~N(0,1) common across F states and z nodes; no velocity selected by galaxy data",
+    "Gamma_ell_E_rT_per_original_unit_Delta_b_Pcb": {
+      "FD": {
+        "ell1": 0.00026002789650586534,
+        "ell3": 0.00016841073488340307
+      },
+      "plus": {
+        "ell1": 0.0002037604735313871,
+        "ell3": 0.00012544186994843112
+      },
+      "minus": {
+        "ell1": 0.0003160261251109048,
+        "ell3": 0.00021117602154044075
+      },
+      "plus_minus": {
+        "ell1": -0.00011226565157951767,
+        "ell3": -0.00008573415159200963
+      }
+    },
+    "strict_symmetric_wind_mean_two_point_zero": true,
+    "Gaussian_Stein_identity_verified_relative_max_gap": 0.0013701658630123623,
+    "Gaussian_48vs96_max_relative_gap": 0.000041787574077500006,
+    "QA_warnings": 0
+  },
+  "E12": {
+    "pre_run_protocol_git_blob": "57e979b72baaded262e24a653a619ff6a4026286",
+    "source_script_git_blob": "7ff5a5d095ed46217cd1883e6b71349f62d995e1",
+    "successful_GitHub_CI_run": 36330089605,
+    "CI_artifact_id": 10935611751,
+    "CI_artifact_zip_sha256": "2fed0167a100d1fc8b72c17033a1e2658c974019dc2e56e77d5c84adb95f5a06",
+    "full_JSON_SHA256": "ce6832982ca1be86f033314fd4ab57d518db8dd3744972c74160a149d24457e7",
+    "per_state_original_CLASS_JSON_SHA256": {
+      "FD": "020e9d067186fd20e5805fd21403e90139aa7a22afa389825e5a70b938362f89",
+      "plus": "5a6150ce761dcf755e2efb45742f6eebc4dd06d50d50abc7b14a73b553f754f8",
+      "minus": "8009f32b803b62090b815d8a8772d09509da8200d2cecdc2dbbb284b015dfb8b"
+    },
+    "original_CLASS_git_commit": "e85808324f51fc694d12e3ed7439552a3c3f9540",
+    "long_K_COM_h_per_Mpc": [
+      0.003,
+      0.005,
+      0.01
+    ],
+    "short_k_COM_h_per_Mpc": 0.05,
+    "long_to_short_k_ratios": [
+      0.06,
+      0.1,
+      0.2
+    ],
+    "Fourier_convention": "delta(x)=integral e^(iKx)delta(K), Delta²_(delta_c,r)(K) = +i mu_LONG C(K) with original signed V=-cH/k * partial_z(delta_ncdm-delta_c) and W(KR16)",
+    "definition": "Bhat_ell,s(K)=Gamma_ell,s*C_s(K), before i mu_LONG and physical 2pi²/K³, source unit DeltaBias*Pcb_short and long CDM mode. Not actual eBOSS galaxy bispectrum.",
+    "plus_minus_Bhat_normalized": {
+      "K0p003_hMpc": {
+        "ell1": 6.890281903737832e-9,
+        "ell3": 5.260180733676063e-9
+      },
+      "K0p005_hMpc": {
+        "ell1": 5.3497069393449614e-8,
+        "ell3": 4.0840656325396625e-8
+      },
+      "K0p010_hMpc": {
+        "ell1": 6.262323654065917e-7,
+        "ell3": 4.793967157139711e-7
+      }
+    },
+    "max_state_sigma_replay_relative_gap": 9.556144914264913e-8,
+    "max_relative_long_density_velocity_derivative_step_gap": 0.000002967639167107291,
+    "three_state_QA_warnings": 0,
+    "independent_local_recount": "All 3 downloaded CLASS JSON SHA exact and each C=V_signed*D_c*W/sigma and Bhat=Gamma*C for all three long-K and both ell independently verified from archived E11 JSON."
+  },
+  "scientific_decision": {
+    "unconditional_original_eBOSS_24D_odd_mean_nonzero_demonstrated": false,
+    "Gaussian_symmetric_ensemble_odd_mean_zero_under_fixed_assumptions": true,
+    "nonzero_separate_background_squeezed_source_kernel_under_joint_Gaussian_model": true,
+    "threepoint_odd_angular_geometry_must_be_preserved": true,
+    "actual_eBOSS_galaxy_bias_HOD_evolution_magnification_not_calibrated": true,
+    "full_k_short_longK_z_evolution_and_nonlocal_retarded_halo_response_absent": true,
+    "actual_eBOSS_triple_window_and_selection_uncertainty_absent": true,
+    "independent_dimensionality_appropriate_eBOSS_3point_covariance_absent": true,
+    "original_E8_published_exactFD_vs_mu1_approx_normalization_issue_unresolved": true,
+    "original_v1_SGC_reverse_and_48000_random_numerical_convergence_open": true,
+    "observed_galaxies_or_randoms_or_odd_read": false,
+    "new_catalogue_or_mock_download": false,
+    "new_science_cut_or_seed": false,
+    "main_unchanged": true,
+    "draft_PR_not_merged": true
+  },
+  "next_physics_gate": "Derive observable from true eBOSS LRG/ELG short tracer and independently calibrated long density/velocity mapping (including gauge-invariant relativistic contaminants), full all-short-k redshift & original chunk/depth 3-point selection, validate injection/nulls on independent matched eBOSS mock ensemble and fixed covariance BEFORE observed odd/bispectrum or inference. Do not claim S/N."
+}
