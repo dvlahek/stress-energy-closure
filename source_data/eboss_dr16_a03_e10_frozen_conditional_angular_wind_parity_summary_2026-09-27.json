@@ -1,0 +1,79 @@
+{
+  "date": "2026-09-27",
+  "status": "E10_ORIGINAL_SOURCE_ONLY_CONDITIONAL_FOURIER_ANGULAR_PARITY_PASS_UNCONDITIONAL_EBOSS_INTRINSIC_ODD_NOT_IDENTIFIED",
+  "registered_protocol": {
+    "path": "source_data/eboss_dr16_a03_e10_wind_parity_angular_odd_bridge_protocol_2026-09-27.json",
+    "git_blob_sha1": "d9de48012103eaa07d531e11bca9cef285e62545",
+    "created_before_angular_calculation": true,
+    "created_after_E9_original_results": true
+  },
+  "original_sources": {
+    "E8_4000q_CSV_sha256": "bf8f48deb9514c5101d5ce314bfbd397485102a5487da1039f141e3cad6143d0",
+    "E8_original_GitHub_CI_run": 36307484339,
+    "E8_original_artifact_id": 10927946952,
+    "E9_three_CLASS_report_sha256": "450b35f68a329f545f21bbe7ec02e36941e4c303037ccb7c011830c315d15890",
+    "E9_original_GitHub_CI_run": 36325438404,
+    "E9_original_artifact_id": 10933798674
+  },
+  "actual_A03E10": {
+    "workflow_success_run": 36328824782,
+    "workflow_success_head_commit": "edf1873ca8e69ae52800c523d09e0bb8167731b3",
+    "workflow_artifact_id": 10934916763,
+    "workflow_archive_zip_sha256": "9e416df0a5e418485f8c9ac0a234434d946a1ccdaa70f67c38e279c6aaeefa00",
+    "full_result_json_sha256": "cc55a914a8be0174eb7c1e49e0e1968537cedfcf4a429d52ad66ab86cb44a488",
+    "original_before_fix_CI_run": 36328749137,
+    "original_before_fix_failure": "Regenerating original E8 CSV in a different NumPy environment changed machine-roundoff-level bytes, SHA256 935e4ab176d5dcbac63f81e744dec7aa183ecdd182a40e8029800f0dc8089d11 instead of original bf8f48...; fail-closed correctly. Fixed workflow uses original E8 archive exact SHA, does NOT retune physical model."
+  },
+  "fixed_conditional": {
+    "center_z_not_measured_effective_z": 0.95,
+    "k_COMOVING_h_per_Mpc": 0.05,
+    "filter_R_comoving_Mpc_per_h": 16,
+    "wind": "Previously frozen E9 coherent plus-one-sigma longitudinal LOS wind; not observed per-halo velocity",
+    "q_angular": "q_res(z,mu)∝abs(v_LOS(z)*mu)/(1+z); original 4000q interpolation",
+    "angular_quadrature": [
+      256,
+      512
+    ],
+    "phase_z_step": 0.005,
+    "velocity_transfer_z_step_relative": 0.004,
+    "Eq_A8_cross_power_convention": "C_LE=<delta_LRG^s delta_ELG^{s*}>, ImP_LE=(b_LRG-b_ELG)*P_cb(k,z)*mu²*dphi(k,z,mu)/dln(a) at original locally uniform wind approximation",
+    "not_absolute_eBOSS_bias_or_P": true
+  },
+  "results_512_gauss_nodes": {
+    "conditional_positive_LOS_per_unit_delta_bias_P_cb": {
+      "FD": {
+        "ell1": 0.00026888572322902307,
+        "ell3": 0.00017614445289763344
+      },
+      "plus": {
+        "ell1": 0.00022278876746842203,
+        "ell3": 0.00014150296987877026
+      },
+      "minus": {
+        "ell1": 0.0003147616400323981,
+        "ell3": 0.00021061456076441418
+      }
+    },
+    "plus_minus_conditional_difference": {
+      "ell1": -0.00009197287256397608,
+      "ell3": -0.00006911159088564392
+    },
+    "equal_probability_plus_and_minus_wind_intrinsic_odd_mean_all_3_states_both_ells": 0,
+    "max_relative_quadrature_256_vs_512_gap": 0.0000016155759955262566,
+    "QA_warnings": 0
+  },
+  "scientific_interpretation": {
+    "conditional_fourier_multipoles_not_correlation_xi": true,
+    "actual_velocity_distribution_or_velocity_density_selection_correlation_not_computed": true,
+    "symmetric_wind_sign_ensemble_with_selection_independence_implies_zero_intrinsic_odd_mean": true,
+    "eBOSS_real_world_unconditional_odd_may_include_unequal_wind_selection_nonGaussian_coupling_or_standard_GR_and_window": true,
+    "physical_RR_window_even_to_odd_leakage_unmeasured": true,
+    "actual_eBOSS_24D_EV_prediction_not_computed": true,
+    "independent_eBOSS_A04_covariance_absent": true,
+    "prohibited_to_claim_nonzero_eBOSS_mean_or_detection": true
+  },
+  "next_science_gate": "Physically define conditional velocity-weighted observable requiring independent velocity reconstruction/halo+tracer response and its RR-window/covariance, OR derive and validate a genuinely nonzero ensemble-mean velocity-density/selection coupling for existing released eBOSS ξ1/ξ3. Without that, source-only E9 conditional sign must not be fed to 24D mean.",
+  "observed_odd_sealed": true,
+  "no_new_FITS_or_mock_download": true,
+  "main_untouched": true
+}
