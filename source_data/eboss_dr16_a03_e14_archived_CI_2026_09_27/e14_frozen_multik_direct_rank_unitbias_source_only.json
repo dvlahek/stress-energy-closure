@@ -1,0 +1,824 @@
+{
+  "date": "2026-09-27",
+  "status": "E14_THREE_FROZEN_CLASS_SHORT_K_EXACT_STATIC_E13_SOURCE_SHAPE_PASS_NOT_EBOSS_BISPECTRUM",
+  "preregistered_protocol_git_blob": "688c56b5486395911ff39ff6f862b405c1f446d7",
+  "original_E8_CSV_sha256": "bf8f48deb9514c5101d5ce314bfbd397485102a5487da1039f141e3cad6143d0",
+  "original_E13_full_JSON_sha256": "537365b2e758ec215810bb687557771440851cf2869d02578569b1d47d4ec98d",
+  "original_E13_independent_source_certificate_git_blob": "18b5cc834db70fb2619b619ea2026e84eefd5cb2",
+  "CLASS_commit": "e85808324f51fc694d12e3ed7439552a3c3f9540",
+  "original_three_E14_state_JSON_sha256": {
+    "FD": "639eb2346f074bdcdf87aecaeee1f0e3f497ee065272b1373c8a804cb32582f4",
+    "plus": "01dd19c93551ad846505980d673c454ad6dc36d9d0f03c7dda79f9c9388c9a30",
+    "minus": "6d7c5b657aef2c9d7d05d7e028dd83b053649123192866312c0835aa81e67d32"
+  },
+  "fixed_z_math_midpoint": 0.95,
+  "short_k_comoving_h_Mpc": [
+    0.05,
+    0.075,
+    0.1
+  ],
+  "four_original_long_K_comoving_h_Mpc": [
+    0.001,
+    0.002,
+    0.003,
+    0.005
+  ],
+  "source_model": "Exact original E13 restricted Eq20 direct-vTk R16 Gaussian-rank Gamma scales as kshort^-2 at same z and original fixed source; original E13 state-specific R16-smoothed long cross P_Dr reused EXACTLY; new CLASS Pcb_short(k) separately for three original sources. Coefficient Bsource/(i mu_long DeltaBias), Mpc^6.",
+  "all_original_state_k_short_and_long_results": {
+    "FD": {
+      "0.05": {
+        "Pcb_short_CLASS_Mpc3": 15522.753135897803,
+        "relative_quasistatic_Gamma_k_scaling_from_k0": 1.0,
+        "conditional_ell_Gamma": {
+          "1": {
+            "Gamma_direct_ell_conditional_at_k": 0.00026009456656565094,
+            "original_E13_exact_k0_Gamma": 0.00026009456656565094
+          },
+          "3": {
+            "Gamma_direct_ell_conditional_at_k": 0.0001684535902350796,
+            "original_E13_exact_k0_Gamma": 0.0001684535902350796
+          }
+        },
+        "four_original_filtered_long_modes": {
+          "0.001": {
+            "original_E13_filtered_long_P_delta_cb_r_over_i_mu_Mpc3": 31826.055140450495,
+            "K_over_k_short": 0.02,
+            "ells": {
+              "1": {
+                "Bsource_reduced_over_i_mu_long_unit_DeltaBias_Mpc6": 128493.99781205184,
+                "Gamma_direct_rank": 0.00026009456656565094
+              },
+              "3": {
+                "Bsource_reduced_over_i_mu_long_unit_DeltaBias_Mpc6": 83220.78981082854,
+                "Gamma_direct_rank": 0.0001684535902350796
+              }
+            }
+          },
+          "0.002": {
+            "original_E13_filtered_long_P_delta_cb_r_over_i_mu_Mpc3": 85366.39114064851,
+            "K_over_k_short": 0.04,
+            "ells": {
+              "1": {
+                "Bsource_reduced_over_i_mu_long_unit_DeltaBias_Mpc6": 344656.88028384355,
+                "Gamma_direct_rank": 0.00026009456656565094
+              },
+              "3": {
+                "Bsource_reduced_over_i_mu_long_unit_DeltaBias_Mpc6": 223221.45998532718,
+                "Gamma_direct_rank": 0.0001684535902350796
+              }
+            }
+          },
+          "0.003": {
+            "original_E13_filtered_long_P_delta_cb_r_over_i_mu_Mpc3": 146282.26468977306,
+            "K_over_k_short": 0.06,
+            "ells": {
+              "1": {
+                "Bsource_reduced_over_i_mu_long_unit_DeltaBias_Mpc6": 590597.6381942391,
+                "Gamma_direct_rank": 0.00026009456656565094
+              },
+              "3": {
+                "Bsource_reduced_over_i_mu_long_unit_DeltaBias_Mpc6": 382508.154060443,
+                "Gamma_direct_rank": 0.0001684535902350796
+              }
+            }
+          },
+          "0.005": {
+            "original_E13_filtered_long_P_delta_cb_r_over_i_mu_Mpc3": 245443.5974086523,
+            "K_over_k_short": 0.09999999999999999,
+            "ells": {
+              "1": {
+                "Bsource_reduced_over_i_mu_long_unit_DeltaBias_Mpc6": 990949.9914214967,
+                "Gamma_direct_rank": 0.00026009456656565094
+              },
+              "3": {
+                "Bsource_reduced_over_i_mu_long_unit_DeltaBias_Mpc6": 641801.5032091705,
+                "Gamma_direct_rank": 0.0001684535902350796
+              }
+            }
+          }
+        }
+      },
+      "0.075": {
+        "Pcb_short_CLASS_Mpc3": 11264.848132940266,
+        "relative_quasistatic_Gamma_k_scaling_from_k0": 0.44444444444444453,
+        "conditional_ell_Gamma": {
+          "1": {
+            "Gamma_direct_ell_conditional_at_k": 0.00011559758514028933,
+            "original_E13_exact_k0_Gamma": 0.00026009456656565094
+          },
+          "3": {
+            "Gamma_direct_ell_conditional_at_k": 7.486826232670207e-05,
+            "original_E13_exact_k0_Gamma": 0.0001684535902350796
+          }
+        },
+        "four_original_filtered_long_modes": {
+          "0.001": {
+            "original_E13_filtered_long_P_delta_cb_r_over_i_mu_Mpc3": 31826.055140450495,
+            "K_over_k_short": 0.013333333333333334,
+            "ells": {
+              "1": {
+                "Bsource_reduced_over_i_mu_long_unit_DeltaBias_Mpc6": 41443.54659182276,
+                "Gamma_direct_rank": 0.00011559758514028933
+              },
+              "3": {
+                "Bsource_reduced_over_i_mu_long_unit_DeltaBias_Mpc6": 26841.445815843967,
+                "Gamma_direct_rank": 7.486826232670207e-05
+              }
+            }
+          },
+          "0.002": {
+            "original_E13_filtered_long_P_delta_cb_r_over_i_mu_Mpc3": 85366.39114064851,
+            "K_over_k_short": 0.02666666666666667,
+            "ells": {
+              "1": {
+                "Bsource_reduced_over_i_mu_long_unit_DeltaBias_Mpc6": 111163.19609830079,
+                "Gamma_direct_rank": 0.00011559758514028933
+              },
+              "3": {
+                "Bsource_reduced_over_i_mu_long_unit_DeltaBias_Mpc6": 71996.27324793937,
+                "Gamma_direct_rank": 7.486826232670207e-05
+              }
+            }
+          },
+          "0.003": {
+            "original_E13_filtered_long_P_delta_cb_r_over_i_mu_Mpc3": 146282.26468977306,
+            "K_over_k_short": 0.04,
+            "ells": {
+              "1": {
+                "Bsource_reduced_over_i_mu_long_unit_DeltaBias_Mpc6": 190487.19124861495,
+                "Gamma_direct_rank": 0.00011559758514028933
+              },
+              "3": {
+                "Bsource_reduced_over_i_mu_long_unit_DeltaBias_Mpc6": 123371.47862535597,
+                "Gamma_direct_rank": 7.486826232670207e-05
+              }
+            }
+          },
+          "0.005": {
+            "original_E13_filtered_long_P_delta_cb_r_over_i_mu_Mpc3": 245443.5974086523,
+            "K_over_k_short": 0.06666666666666667,
+            "ells": {
+              "1": {
+                "Bsource_reduced_over_i_mu_long_unit_DeltaBias_Mpc6": 319614.0118522426,
+                "Gamma_direct_rank": 0.00011559758514028933
+              },
+              "3": {
+                "Bsource_reduced_over_i_mu_long_unit_DeltaBias_Mpc6": 207002.12425374778,
+                "Gamma_direct_rank": 7.486826232670207e-05
+              }
+            }
+          }
+        }
+      },
+      "0.1": {
+        "Pcb_short_CLASS_Mpc3": 6925.526333141094,
+        "relative_quasistatic_Gamma_k_scaling_from_k0": 0.25,
+        "conditional_ell_Gamma": {
+          "1": {
+            "Gamma_direct_ell_conditional_at_k": 6.502364164141274e-05,
+            "original_E13_exact_k0_Gamma": 0.00026009456656565094
+          },
+          "3": {
+            "Gamma_direct_ell_conditional_at_k": 4.21133975587699e-05,
+            "original_E13_exact_k0_Gamma": 0.0001684535902350796
+          }
+        },
+        "four_original_filtered_long_modes": {
+          "0.001": {
+            "original_E13_filtered_long_P_delta_cb_r_over_i_mu_Mpc3": 31826.055140450495,
+            "K_over_k_short": 0.01,
+            "ells": {
+              "1": {
+                "Bsource_reduced_over_i_mu_long_unit_DeltaBias_Mpc6": 14332.002797879799,
+                "Gamma_direct_rank": 6.502364164141274e-05
+              },
+              "3": {
+                "Bsource_reduced_over_i_mu_long_unit_DeltaBias_Mpc6": 9282.30588758826,
+                "Gamma_direct_rank": 4.21133975587699e-05
+              }
+            }
+          },
+          "0.002": {
+            "original_E13_filtered_long_P_delta_cb_r_over_i_mu_Mpc3": 85366.39114064851,
+            "K_over_k_short": 0.02,
+            "ells": {
+              "1": {
+                "Bsource_reduced_over_i_mu_long_unit_DeltaBias_Mpc6": 38442.44444601807,
+                "Gamma_direct_rank": 6.502364164141274e-05
+              },
+              "3": {
+                "Bsource_reduced_over_i_mu_long_unit_DeltaBias_Mpc6": 24897.743424062566,
+                "Gamma_direct_rank": 4.21133975587699e-05
+              }
+            }
+          },
+          "0.003": {
+            "original_E13_filtered_long_P_delta_cb_r_over_i_mu_Mpc3": 146282.26468977306,
+            "K_over_k_short": 0.03,
+            "ells": {
+              "1": {
+                "Bsource_reduced_over_i_mu_long_unit_DeltaBias_Mpc6": 65874.2598654451,
+                "Gamma_direct_rank": 6.502364164141274e-05
+              },
+              "3": {
+                "Bsource_reduced_over_i_mu_long_unit_DeltaBias_Mpc6": 42664.311388496026,
+                "Gamma_direct_rank": 4.21133975587699e-05
+              }
+            }
+          },
+          "0.005": {
+            "original_E13_filtered_long_P_delta_cb_r_over_i_mu_Mpc3": 245443.5974086523,
+            "K_over_k_short": 0.049999999999999996,
+            "ells": {
+              "1": {
+                "Bsource_reduced_over_i_mu_long_unit_DeltaBias_Mpc6": 110528.8829940956,
+                "Gamma_direct_rank": 6.502364164141274e-05
+              },
+              "3": {
+                "Bsource_reduced_over_i_mu_long_unit_DeltaBias_Mpc6": 71585.4522102398,
+                "Gamma_direct_rank": 4.21133975587699e-05
+              }
+            }
+          }
+        }
+      }
+    },
+    "plus": {
+      "0.05": {
+        "Pcb_short_CLASS_Mpc3": 15518.062199769942,
+        "relative_quasistatic_Gamma_k_scaling_from_k0": 1.0,
+        "conditional_ell_Gamma": {
+          "1": {
+            "Gamma_direct_ell_conditional_at_k": 0.00020381060038082482,
+            "original_E13_exact_k0_Gamma": 0.00020381060038082482
+          },
+          "3": {
+            "Gamma_direct_ell_conditional_at_k": 0.00012547192157002086,
+            "original_E13_exact_k0_Gamma": 0.00012547192157002086
+          }
+        },
+        "four_original_filtered_long_modes": {
+          "0.001": {
+            "original_E13_filtered_long_P_delta_cb_r_over_i_mu_Mpc3": 31858.94595520691,
+            "K_over_k_short": 0.02,
+            "ells": {
+              "1": {
+                "Bsource_reduced_over_i_mu_long_unit_DeltaBias_Mpc6": 100761.74030200773,
+                "Gamma_direct_rank": 0.00020381060038082482
+              },
+              "3": {
+                "Bsource_reduced_over_i_mu_long_unit_DeltaBias_Mpc6": 62031.951001611385,
+                "Gamma_direct_rank": 0.00012547192157002086
+              }
+            }
+          },
+          "0.002": {
+            "original_E13_filtered_long_P_delta_cb_r_over_i_mu_Mpc3": 85425.15250689712,
+            "K_over_k_short": 0.04,
+            "ells": {
+              "1": {
+                "Bsource_reduced_over_i_mu_long_unit_DeltaBias_Mpc6": 270178.02297230676,
+                "Gamma_direct_rank": 0.00020381060038082482
+              },
+              "3": {
+                "Bsource_reduced_over_i_mu_long_unit_DeltaBias_Mpc6": 166329.6984797753,
+                "Gamma_direct_rank": 0.00012547192157002086
+              }
+            }
+          },
+          "0.003": {
+            "original_E13_filtered_long_P_delta_cb_r_over_i_mu_Mpc3": 146192.50120027707,
+            "K_over_k_short": 0.06,
+            "ells": {
+              "1": {
+                "Bsource_reduced_over_i_mu_long_unit_DeltaBias_Mpc6": 462369.6860766906,
+                "Gamma_direct_rank": 0.00020381060038082482
+              },
+              "3": {
+                "Bsource_reduced_over_i_mu_long_unit_DeltaBias_Mpc6": 284648.653599805,
+                "Gamma_direct_rank": 0.00012547192157002086
+              }
+            }
+          },
+          "0.005": {
+            "original_E13_filtered_long_P_delta_cb_r_over_i_mu_Mpc3": 245318.20914711562,
+            "K_over_k_short": 0.09999999999999999,
+            "ells": {
+              "1": {
+                "Bsource_reduced_over_i_mu_long_unit_DeltaBias_Mpc6": 775879.0801236583,
+                "Gamma_direct_rank": 0.00020381060038082482
+              },
+              "3": {
+                "Bsource_reduced_over_i_mu_long_unit_DeltaBias_Mpc6": 477654.444406684,
+                "Gamma_direct_rank": 0.00012547192157002086
+              }
+            }
+          }
+        }
+      },
+      "0.075": {
+        "Pcb_short_CLASS_Mpc3": 11260.668411227281,
+        "relative_quasistatic_Gamma_k_scaling_from_k0": 0.44444444444444453,
+        "conditional_ell_Gamma": {
+          "1": {
+            "Gamma_direct_ell_conditional_at_k": 9.058248905814439e-05,
+            "original_E13_exact_k0_Gamma": 0.00020381060038082482
+          },
+          "3": {
+            "Gamma_direct_ell_conditional_at_k": 5.576529847556484e-05,
+            "original_E13_exact_k0_Gamma": 0.00012547192157002086
+          }
+        },
+        "four_original_filtered_long_modes": {
+          "0.001": {
+            "original_E13_filtered_long_P_delta_cb_r_over_i_mu_Mpc3": 31858.94595520691,
+            "K_over_k_short": 0.013333333333333334,
+            "ells": {
+              "1": {
+                "Bsource_reduced_over_i_mu_long_unit_DeltaBias_Mpc6": 32496.742082366647,
+                "Gamma_direct_rank": 9.058248905814439e-05
+              },
+              "3": {
+                "Bsource_reduced_over_i_mu_long_unit_DeltaBias_Mpc6": 20005.96959246052,
+                "Gamma_direct_rank": 5.576529847556484e-05
+              }
+            }
+          },
+          "0.002": {
+            "original_E13_filtered_long_P_delta_cb_r_over_i_mu_Mpc3": 85425.15250689712,
+            "K_over_k_short": 0.02666666666666667,
+            "ells": {
+              "1": {
+                "Bsource_reduced_over_i_mu_long_unit_DeltaBias_Mpc6": 87135.31051110518,
+                "Gamma_direct_rank": 9.058248905814439e-05
+              },
+              "3": {
+                "Bsource_reduced_over_i_mu_long_unit_DeltaBias_Mpc6": 53643.11191861548,
+                "Gamma_direct_rank": 5.576529847556484e-05
+              }
+            }
+          },
+          "0.003": {
+            "original_E13_filtered_long_P_delta_cb_r_over_i_mu_Mpc3": 146192.50120027707,
+            "K_over_k_short": 0.04,
+            "ells": {
+              "1": {
+                "Bsource_reduced_over_i_mu_long_unit_DeltaBias_Mpc6": 149119.1834331553,
+                "Gamma_direct_rank": 9.058248905814439e-05
+              },
+              "3": {
+                "Bsource_reduced_over_i_mu_long_unit_DeltaBias_Mpc6": 91802.24410972658,
+                "Gamma_direct_rank": 5.576529847556484e-05
+              }
+            }
+          },
+          "0.005": {
+            "original_E13_filtered_long_P_delta_cb_r_over_i_mu_Mpc3": 245318.20914711562,
+            "K_over_k_short": 0.06666666666666667,
+            "ells": {
+              "1": {
+                "Bsource_reduced_over_i_mu_long_unit_DeltaBias_Mpc6": 250229.32591588056,
+                "Gamma_direct_rank": 9.058248905814439e-05
+              },
+              "3": {
+                "Bsource_reduced_over_i_mu_long_unit_DeltaBias_Mpc6": 154048.6819486866,
+                "Gamma_direct_rank": 5.576529847556484e-05
+              }
+            }
+          }
+        }
+      },
+      "0.1": {
+        "Pcb_short_CLASS_Mpc3": 6922.253770002272,
+        "relative_quasistatic_Gamma_k_scaling_from_k0": 0.25,
+        "conditional_ell_Gamma": {
+          "1": {
+            "Gamma_direct_ell_conditional_at_k": 5.0952650095206206e-05,
+            "original_E13_exact_k0_Gamma": 0.00020381060038082482
+          },
+          "3": {
+            "Gamma_direct_ell_conditional_at_k": 3.1367980392505216e-05,
+            "original_E13_exact_k0_Gamma": 0.00012547192157002086
+          }
+        },
+        "four_original_filtered_long_modes": {
+          "0.001": {
+            "original_E13_filtered_long_P_delta_cb_r_over_i_mu_Mpc3": 31858.94595520691,
+            "K_over_k_short": 0.01,
+            "ells": {
+              "1": {
+                "Bsource_reduced_over_i_mu_long_unit_DeltaBias_Mpc6": 11236.878801270423,
+                "Gamma_direct_rank": 5.0952650095206206e-05
+              },
+              "3": {
+                "Bsource_reduced_over_i_mu_long_unit_DeltaBias_Mpc6": 6917.759787814657,
+                "Gamma_direct_rank": 3.1367980392505216e-05
+              }
+            }
+          },
+          "0.002": {
+            "original_E13_filtered_long_P_delta_cb_r_over_i_mu_Mpc3": 85425.15250689712,
+            "K_over_k_short": 0.02,
+            "ells": {
+              "1": {
+                "Bsource_reduced_over_i_mu_long_unit_DeltaBias_Mpc6": 30130.06414743488,
+                "Gamma_direct_rank": 5.0952650095206206e-05
+              },
+              "3": {
+                "Bsource_reduced_over_i_mu_long_unit_DeltaBias_Mpc6": 18548.971636130496,
+                "Gamma_direct_rank": 3.1367980392505216e-05
+              }
+            }
+          },
+          "0.003": {
+            "original_E13_filtered_long_P_delta_cb_r_over_i_mu_Mpc3": 146192.50120027707,
+            "K_over_k_short": 0.03,
+            "ells": {
+              "1": {
+                "Bsource_reduced_over_i_mu_long_unit_DeltaBias_Mpc6": 51563.14398950194,
+                "Gamma_direct_rank": 5.0952650095206206e-05
+              },
+              "3": {
+                "Bsource_reduced_over_i_mu_long_unit_DeltaBias_Mpc6": 31743.818753615593,
+                "Gamma_direct_rank": 3.1367980392505216e-05
+              }
+            }
+          },
+          "0.005": {
+            "original_E13_filtered_long_P_delta_cb_r_over_i_mu_Mpc3": 245318.20914711562,
+            "K_over_k_short": 0.049999999999999996,
+            "ells": {
+              "1": {
+                "Bsource_reduced_over_i_mu_long_unit_DeltaBias_Mpc6": 86525.49233130913,
+                "Gamma_direct_rank": 5.0952650095206206e-05
+              },
+              "3": {
+                "Bsource_reduced_over_i_mu_long_unit_DeltaBias_Mpc6": 53267.689547628055,
+                "Gamma_direct_rank": 3.1367980392505216e-05
+              }
+            }
+          }
+        }
+      }
+    },
+    "minus": {
+      "0.05": {
+        "Pcb_short_CLASS_Mpc3": 15525.999592040673,
+        "relative_quasistatic_Gamma_k_scaling_from_k0": 1.0,
+        "conditional_ell_Gamma": {
+          "1": {
+            "Gamma_direct_ell_conditional_at_k": 0.00031610927644218085,
+            "original_E13_exact_k0_Gamma": 0.00031610927644218085
+          },
+          "3": {
+            "Gamma_direct_ell_conditional_at_k": 0.00021123163567242896,
+            "original_E13_exact_k0_Gamma": 0.00021123163567242896
+          }
+        },
+        "four_original_filtered_long_modes": {
+          "0.001": {
+            "original_E13_filtered_long_P_delta_cb_r_over_i_mu_Mpc3": 31720.814637833886,
+            "K_over_k_short": 0.02,
+            "ells": {
+              "1": {
+                "Bsource_reduced_over_i_mu_long_unit_DeltaBias_Mpc6": 155682.98257863297,
+                "Gamma_direct_rank": 0.00031610927644218085
+              },
+              "3": {
+                "Bsource_reduced_over_i_mu_long_unit_DeltaBias_Mpc6": 104031.02188765375,
+                "Gamma_direct_rank": 0.00021123163567242896
+              }
+            }
+          },
+          "0.002": {
+            "original_E13_filtered_long_P_delta_cb_r_over_i_mu_Mpc3": 85251.72773785368,
+            "K_over_k_short": 0.04,
+            "ells": {
+              "1": {
+                "Bsource_reduced_over_i_mu_long_unit_DeltaBias_Mpc6": 418408.01996240776,
+                "Gamma_direct_rank": 0.00031610927644218085
+              },
+              "3": {
+                "Bsource_reduced_over_i_mu_long_unit_DeltaBias_Mpc6": 279590.05641926284,
+                "Gamma_direct_rank": 0.00021123163567242896
+              }
+            }
+          },
+          "0.003": {
+            "original_E13_filtered_long_P_delta_cb_r_over_i_mu_Mpc3": 146323.1415261438,
+            "K_over_k_short": 0.06,
+            "ells": {
+              "1": {
+                "Bsource_reduced_over_i_mu_long_unit_DeltaBias_Mpc6": 718141.1749083967,
+                "Gamma_direct_rank": 0.00031610927644218085
+              },
+              "3": {
+                "Bsource_reduced_over_i_mu_long_unit_DeltaBias_Mpc6": 479878.7834603984,
+                "Gamma_direct_rank": 0.00021123163567242896
+              }
+            }
+          },
+          "0.005": {
+            "original_E13_filtered_long_P_delta_cb_r_over_i_mu_Mpc3": 245551.89077210266,
+            "K_over_k_short": 0.09999999999999999,
+            "ells": {
+              "1": {
+                "Bsource_reduced_over_i_mu_long_unit_DeltaBias_Mpc6": 1205147.1934024119,
+                "Gamma_direct_rank": 0.00031610927644218085
+              },
+              "3": {
+                "Bsource_reduced_over_i_mu_long_unit_DeltaBias_Mpc6": 805307.6320744758,
+                "Gamma_direct_rank": 0.00021123163567242896
+              }
+            }
+          }
+        }
+      },
+      "0.075": {
+        "Pcb_short_CLASS_Mpc3": 11267.720724235694,
+        "relative_quasistatic_Gamma_k_scaling_from_k0": 0.44444444444444453,
+        "conditional_ell_Gamma": {
+          "1": {
+            "Gamma_direct_ell_conditional_at_k": 0.0001404930117520804,
+            "original_E13_exact_k0_Gamma": 0.00031610927644218085
+          },
+          "3": {
+            "Gamma_direct_ell_conditional_at_k": 9.3880726965524e-05,
+            "original_E13_exact_k0_Gamma": 0.00021123163567242896
+          }
+        },
+        "four_original_filtered_long_modes": {
+          "0.001": {
+            "original_E13_filtered_long_P_delta_cb_r_over_i_mu_Mpc3": 31720.814637833886,
+            "K_over_k_short": 0.013333333333333334,
+            "ells": {
+              "1": {
+                "Bsource_reduced_over_i_mu_long_unit_DeltaBias_Mpc6": 50215.192159532795,
+                "Gamma_direct_rank": 0.0001404930117520804
+              },
+              "3": {
+                "Bsource_reduced_over_i_mu_long_unit_DeltaBias_Mpc6": 33554.96964482016,
+                "Gamma_direct_rank": 9.3880726965524e-05
+              }
+            }
+          },
+          "0.002": {
+            "original_E13_filtered_long_P_delta_cb_r_over_i_mu_Mpc3": 85251.72773785368,
+            "K_over_k_short": 0.02666666666666667,
+            "ells": {
+              "1": {
+                "Bsource_reduced_over_i_mu_long_unit_DeltaBias_Mpc6": 134956.55578727048,
+                "Gamma_direct_rank": 0.0001404930117520804
+              },
+              "3": {
+                "Bsource_reduced_over_i_mu_long_unit_DeltaBias_Mpc6": 90181.13718303596,
+                "Gamma_direct_rank": 9.3880726965524e-05
+              }
+            }
+          },
+          "0.003": {
+            "original_E13_filtered_long_P_delta_cb_r_over_i_mu_Mpc3": 146323.1415261438,
+            "K_over_k_short": 0.04,
+            "ells": {
+              "1": {
+                "Bsource_reduced_over_i_mu_long_unit_DeltaBias_Mpc6": 231634.80361434913,
+                "Gamma_direct_rank": 0.0001404930117520804
+              },
+              "3": {
+                "Bsource_reduced_over_i_mu_long_unit_DeltaBias_Mpc6": 154783.81082900707,
+                "Gamma_direct_rank": 9.3880726965524e-05
+              }
+            }
+          },
+          "0.005": {
+            "original_E13_filtered_long_P_delta_cb_r_over_i_mu_Mpc3": 245551.89077210266,
+            "K_over_k_short": 0.06666666666666667,
+            "ells": {
+              "1": {
+                "Bsource_reduced_over_i_mu_long_unit_DeltaBias_Mpc6": 388717.48790307075,
+                "Gamma_direct_rank": 0.0001404930117520804
+              },
+              "3": {
+                "Bsource_reduced_over_i_mu_long_unit_DeltaBias_Mpc6": 259750.1462417911,
+                "Gamma_direct_rank": 9.3880726965524e-05
+              }
+            }
+          }
+        }
+      },
+      "0.1": {
+        "Pcb_short_CLASS_Mpc3": 6927.770627075589,
+        "relative_quasistatic_Gamma_k_scaling_from_k0": 0.25,
+        "conditional_ell_Gamma": {
+          "1": {
+            "Gamma_direct_ell_conditional_at_k": 7.902731911054521e-05,
+            "original_E13_exact_k0_Gamma": 0.00031610927644218085
+          },
+          "3": {
+            "Gamma_direct_ell_conditional_at_k": 5.280790891810724e-05,
+            "original_E13_exact_k0_Gamma": 0.00021123163567242896
+          }
+        },
+        "four_original_filtered_long_modes": {
+          "0.001": {
+            "original_E13_filtered_long_P_delta_cb_r_over_i_mu_Mpc3": 31720.814637833886,
+            "K_over_k_short": 0.01,
+            "ells": {
+              "1": {
+                "Bsource_reduced_over_i_mu_long_unit_DeltaBias_Mpc6": 17366.611203517623,
+                "Gamma_direct_rank": 7.902731911054521e-05
+              },
+              "3": {
+                "Bsource_reduced_over_i_mu_long_unit_DeltaBias_Mpc6": 11604.77709447143,
+                "Gamma_direct_rank": 5.280790891810724e-05
+              }
+            }
+          },
+          "0.002": {
+            "original_E13_filtered_long_P_delta_cb_r_over_i_mu_Mpc3": 85251.72773785368,
+            "K_over_k_short": 0.02,
+            "ells": {
+              "1": {
+                "Bsource_reduced_over_i_mu_long_unit_DeltaBias_Mpc6": 46673.88359836098,
+                "Gamma_direct_rank": 7.902731911054521e-05
+              },
+              "3": {
+                "Bsource_reduced_over_i_mu_long_unit_DeltaBias_Mpc6": 31188.584171365314,
+                "Gamma_direct_rank": 5.280790891810724e-05
+              }
+            }
+          },
+          "0.003": {
+            "original_E13_filtered_long_P_delta_cb_r_over_i_mu_Mpc3": 146323.1415261438,
+            "K_over_k_short": 0.03,
+            "ells": {
+              "1": {
+                "Bsource_reduced_over_i_mu_long_unit_DeltaBias_Mpc6": 80109.45298772282,
+                "Gamma_direct_rank": 7.902731911054521e-05
+              },
+              "3": {
+                "Bsource_reduced_over_i_mu_long_unit_DeltaBias_Mpc6": 53531.0161659092,
+                "Gamma_direct_rank": 5.280790891810724e-05
+              }
+            }
+          },
+          "0.005": {
+            "original_E13_filtered_long_P_delta_cb_r_over_i_mu_Mpc3": 245551.89077210266,
+            "K_over_k_short": 0.049999999999999996,
+            "ells": {
+              "1": {
+                "Bsource_reduced_over_i_mu_long_unit_DeltaBias_Mpc6": 134435.52021017505,
+                "Gamma_direct_rank": 7.902731911054521e-05
+              },
+              "3": {
+                "Bsource_reduced_over_i_mu_long_unit_DeltaBias_Mpc6": 89832.96898489854,
+                "Gamma_direct_rank": 5.280790891810724e-05
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "Fplus_minus_Fminus_reduced_source_difference": {
+    "0.05": {
+      "0.001": {
+        "1": {
+          "Fplus_minus_Fminus_reduced_Bsource_Mpc6": -54921.24227662524,
+          "separate_frozen_Pcb_and_direct_wind_and_long_cross_for_each_state": true
+        },
+        "3": {
+          "Fplus_minus_Fminus_reduced_Bsource_Mpc6": -41999.07088604237,
+          "separate_frozen_Pcb_and_direct_wind_and_long_cross_for_each_state": true
+        }
+      },
+      "0.002": {
+        "1": {
+          "Fplus_minus_Fminus_reduced_Bsource_Mpc6": -148229.996990101,
+          "separate_frozen_Pcb_and_direct_wind_and_long_cross_for_each_state": true
+        },
+        "3": {
+          "Fplus_minus_Fminus_reduced_Bsource_Mpc6": -113260.35793948753,
+          "separate_frozen_Pcb_and_direct_wind_and_long_cross_for_each_state": true
+        }
+      },
+      "0.003": {
+        "1": {
+          "Fplus_minus_Fminus_reduced_Bsource_Mpc6": -255771.48883170605,
+          "separate_frozen_Pcb_and_direct_wind_and_long_cross_for_each_state": true
+        },
+        "3": {
+          "Fplus_minus_Fminus_reduced_Bsource_Mpc6": -195230.12986059336,
+          "separate_frozen_Pcb_and_direct_wind_and_long_cross_for_each_state": true
+        }
+      },
+      "0.005": {
+        "1": {
+          "Fplus_minus_Fminus_reduced_Bsource_Mpc6": -429268.1132787536,
+          "separate_frozen_Pcb_and_direct_wind_and_long_cross_for_each_state": true
+        },
+        "3": {
+          "Fplus_minus_Fminus_reduced_Bsource_Mpc6": -327653.18766779173,
+          "separate_frozen_Pcb_and_direct_wind_and_long_cross_for_each_state": true
+        }
+      }
+    },
+    "0.075": {
+      "0.001": {
+        "1": {
+          "Fplus_minus_Fminus_reduced_Bsource_Mpc6": -17718.450077166148,
+          "separate_frozen_Pcb_and_direct_wind_and_long_cross_for_each_state": true
+        },
+        "3": {
+          "Fplus_minus_Fminus_reduced_Bsource_Mpc6": -13549.000052359639,
+          "separate_frozen_Pcb_and_direct_wind_and_long_cross_for_each_state": true
+        }
+      },
+      "0.002": {
+        "1": {
+          "Fplus_minus_Fminus_reduced_Bsource_Mpc6": -47821.2452761653,
+          "separate_frozen_Pcb_and_direct_wind_and_long_cross_for_each_state": true
+        },
+        "3": {
+          "Fplus_minus_Fminus_reduced_Bsource_Mpc6": -36538.025264420474,
+          "separate_frozen_Pcb_and_direct_wind_and_long_cross_for_each_state": true
+        }
+      },
+      "0.003": {
+        "1": {
+          "Fplus_minus_Fminus_reduced_Bsource_Mpc6": -82515.62018119384,
+          "separate_frozen_Pcb_and_direct_wind_and_long_cross_for_each_state": true
+        },
+        "3": {
+          "Fplus_minus_Fminus_reduced_Bsource_Mpc6": -62981.56671928048,
+          "separate_frozen_Pcb_and_direct_wind_and_long_cross_for_each_state": true
+        }
+      },
+      "0.005": {
+        "1": {
+          "Fplus_minus_Fminus_reduced_Bsource_Mpc6": -138488.1619871902,
+          "separate_frozen_Pcb_and_direct_wind_and_long_cross_for_each_state": true
+        },
+        "3": {
+          "Fplus_minus_Fminus_reduced_Bsource_Mpc6": -105701.46429310451,
+          "separate_frozen_Pcb_and_direct_wind_and_long_cross_for_each_state": true
+        }
+      }
+    },
+    "0.1": {
+      "0.001": {
+        "1": {
+          "Fplus_minus_Fminus_reduced_Bsource_Mpc6": -6129.7324022472,
+          "separate_frozen_Pcb_and_direct_wind_and_long_cross_for_each_state": true
+        },
+        "3": {
+          "Fplus_minus_Fminus_reduced_Bsource_Mpc6": -4687.017306656773,
+          "separate_frozen_Pcb_and_direct_wind_and_long_cross_for_each_state": true
+        }
+      },
+      "0.002": {
+        "1": {
+          "Fplus_minus_Fminus_reduced_Bsource_Mpc6": -16543.8194509261,
+          "separate_frozen_Pcb_and_direct_wind_and_long_cross_for_each_state": true
+        },
+        "3": {
+          "Fplus_minus_Fminus_reduced_Bsource_Mpc6": -12639.612535234817,
+          "separate_frozen_Pcb_and_direct_wind_and_long_cross_for_each_state": true
+        }
+      },
+      "0.003": {
+        "1": {
+          "Fplus_minus_Fminus_reduced_Bsource_Mpc6": -28546.308998220877,
+          "separate_frozen_Pcb_and_direct_wind_and_long_cross_for_each_state": true
+        },
+        "3": {
+          "Fplus_minus_Fminus_reduced_Bsource_Mpc6": -21787.197412293604,
+          "separate_frozen_Pcb_and_direct_wind_and_long_cross_for_each_state": true
+        }
+      },
+      "0.005": {
+        "1": {
+          "Fplus_minus_Fminus_reduced_Bsource_Mpc6": -47910.02787886592,
+          "separate_frozen_Pcb_and_direct_wind_and_long_cross_for_each_state": true
+        },
+        "3": {
+          "Fplus_minus_Fminus_reduced_Bsource_Mpc6": -36565.27943727049,
+          "separate_frozen_Pcb_and_direct_wind_and_long_cross_for_each_state": true
+        }
+      }
+    }
+  },
+  "original_E13_fixed_k0_max_relative_anchor_gap": 2.711948971419135e-16,
+  "technical_QA_warnings": [],
+  "scientific_scope": {
+    "only_three_short_modes_K_over_k_le_0p1_not_continuous_triangles": true,
+    "quasistatic_kminus2_assumption_not_full_Vlasov": true,
+    "full_halo_bias_HOD_and_GR_selection_uncalibrated": true,
+    "physical_eBOSS_triple_window_and_independent_covariance_absent": true,
+    "existing_unconditional_24D_odd_unchanged": true,
+    "observed_galaxies_randoms_odd_sealed": true,
+    "no_new_catalogues_mocks_or_survey_cuts": true,
+    "main_untouched": true,
+    "PR_draft": true
+  }
+}
