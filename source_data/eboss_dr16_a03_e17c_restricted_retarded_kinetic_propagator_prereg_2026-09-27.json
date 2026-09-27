@@ -1,0 +1,114 @@
+{
+  "date": "2026-09-27",
+  "status": "E17C_PROSPECTIVELY_LOCKED_BEFORE_NEW_CAUSAL_PROPAGATOR_NUMERICS",
+  "stage": "E17C_RESTRICTED_RETARDED_FREE_STREAMING_PROPAGATOR_AND_PHYSICAL_HALO_COUPLING_STOP",
+  "parent_head_at_registration": "a6548dfdccfddc702034d1c07133c5fec33018f5",
+  "science_question": "Certify exactly what the original frozen matched neutrino distributions determine about a causal, force-free kinetic transport factor on the E16 two-leg triangles; explicitly decide whether original CLASS linear transfer and this factor identify any retarded halo/tracer long-short response. They do not without a specified physical forcing/background halo and tracer model.",
+  "immutable_parents": {
+    "E8_original_4000q_CSV_sha256": "bf8f48deb9514c5101d5ce314bfbd397485102a5487da1039f141e3cad6143d0",
+    "E14_original_full_sha256": "0f1efb45593cd51d9ffa1818157bdd52baba525a8fc4bb9cc30c12d98ba91fd8",
+    "E15_original_full_sha256": "6062aed4b581f2db89192bd1c1cf2639a74b6a313db9e10dca9e53041a95d983",
+    "E16_original_full_sha256": "5d81f95a5571175f06eb032b865285ba34804701693f76af392be7fc31fb06db",
+    "E16_independent_sha256": "8a6ee7610a0412de7bcaf5333950f41add0973a000bd245d49b41b77efc8e10d",
+    "E17A_original_joint_sha256": "094c49cb89d6dd231a5cbc16ecdfe455bcb3938ddec375fd28c81c8098ab2ad9",
+    "E17B_original_joint_sha256": "156763dfb81e2a8c5c9e3615f5022749fa681f458a2753fbfa5f46b462e20658",
+    "E17A_manifest_git_blob": "a8f4e2d0e19c2deacae375449951d1b85766b3d2",
+    "E17B_manifest_git_blob": "88920dd194febb002f280d676b9df42687b2f949",
+    "CLASS_original_commit": "e85808324f51fc694d12e3ed7439552a3c3f9540"
+  },
+  "frozen_geometry": {
+    "states": [
+      "FD",
+      "plus",
+      "minus"
+    ],
+    "tracer_order": [
+      "LRG",
+      "ELG"
+    ],
+    "short_k_comoving_h_Mpc": [
+      0.05,
+      0.075,
+      0.1
+    ],
+    "long_K_comoving_h_Mpc": [
+      0.001,
+      0.002,
+      0.003,
+      0.005
+    ],
+    "mu_short": [
+      -1,
+      0,
+      0.6,
+      1
+    ],
+    "mu_long": [
+      -1,
+      0,
+      0.5,
+      1
+    ],
+    "phi_rad": [
+      "0",
+      "pi/2",
+      "pi"
+    ],
+    "geometries": 576,
+    "short_legs_per_geometry": 2,
+    "z_CLASS_nodes": [
+      0.945,
+      0.95,
+      0.955
+    ],
+    "original_source_cases": 72,
+    "original_contrasts": 24
+  },
+  "derived_restricted_kinetic_problem": {
+    "background": "Homogeneous isotropic frozen E8 f_FD,f_plus,f_minus as functions of ORIGINAL q_dimensionless at z_math_midpoint=0.95; free collisionless propagation BETWEEN external perturbations with no evolving halo potential in propagator; leading non-relativistic q-dependent streaming velocity only. No source re-fitting.",
+    "mode_equation": "For a fixed external epoch with v(q)=v_0*q: [partial_eta + i(k dot v)] delta_f=0 between impulses, solution exp[-i k dot v (eta-eta_prime)] delta_f(eta_prime). This is the retarded homogeneous propagator with theta(eta-eta_prime); it is not the force/source term and not the self-consistent Einstein-Vlasov solution.",
+    "angular_characteristic": "C_F(s)= integral_qmin^qmax dq q^2 f_F(q) sinc(s q) / integral_qmin^qmax dq q^2 f_F(q); sinc(x)=sin(x)/x; s=k*v_0*(eta-eta_prime), with signed free-flight displacement along Fourier mode in ORIGINAL comoving units. For E16 actual short legs, s_i=s0*|k_i|/0.05 h/Mpc. This is an intentionally dimensionless propagator diagnostic, NOT a chosen physical lookback time, halo potential, forcing spectrum or z evolution.",
+    "prospectively_fixed_dimensionless_center_phases": [
+      0,
+      0.25,
+      1
+    ],
+    "q_integration": "Original complete 4000q CSV sampled support only, composite trapezoidal integration, no q extrapolation, no arbitrary F renormalization outside normalized C ratio. Record truncated q range and unnormalized I_F(s).",
+    "nonrel_limit": "Restricted non-relativistic fixed-epoch homogeneous streaming check; relativistic epsilon(q,a), actual conformal-time background, gravitational source, self-gravity, finite-K mode coupling, halo potential history and LRG/ELG response NOT calculated.",
+    "squeezed_limit": "At fixed s0, |k1| and |k2| -> k as K/k ->0, so C_F(s1),C_F(s2) -> C_F(s0*k/0.05). This does not imply the galaxy bispectrum squeezed limit.",
+    "moment_scope": "Original stress-energy matching at z_match=1100 does not imply equality of every number-weighted free-flight characteristic at later times. Report differences as source-only propagation diagnostics, not a measured wake."
+  },
+  "QA_before_numerics": {
+    "csv_frozen_sha_mandatory": true,
+    "all_archive_SHA_parents_mandatory": true,
+    "q_points": 4000,
+    "q_strict_increasing_f_positive": true,
+    "pointwise_Fplus_Fminus_average_FD_scaled_tolerance": 1e-10,
+    "triangle_closure_abs_h_Mpc": 1e-13,
+    "all_C_zero_equals_one_abs": 1e-13,
+    "positive_weight_bound_C_abs": 1.000000000005,
+    "simultaneous_fourier_reversal_even_C_relative_gap": 1e-13,
+    "leg_exchange_at_fixed_K_and_reversed_center_relative_gap": 1e-12,
+    "direct_numpy_vs_independent_stdlib_trapezoid_scaled_gap": 1e-10,
+    "no_posthoc_parameter_or_tolerance_retuning": true
+  },
+  "outputs": {
+    "original": "Full source-only C_F(s_i) and I_F(s_i) for three states and every original 576×2 leg at three prospectively fixed dimensionless phases, plus source positivity, pair average, exchanged-leg and small-K mathematical QA.",
+    "independent": "Pure stdlib, no imports of original runner/NumPy/CLASS, independently reconstruct E16 geometry and 4000q trapezoids for every stored original sample; exact original-report SHA and parent gates; independent certificate and SHA manifest permanent audit branch.",
+    "interpretation": "Restricted causal free-streaming propagator component only. No physically calibrated external halo force, retarded Vlasov halo-tracer coupling, galaxy bispectrum, eBOSS observable or detection."
+  },
+  "stop": {
+    "observed_odd_SEALED": true,
+    "no_new_catalogue_mock_FITS_download": true,
+    "no_new_science_cuts_seeds": true,
+    "no_original_E8_E17B_rewrite": true,
+    "no_neutrino_state_reoptimization": true,
+    "no_static_Eq20_as_retarded_kernel": true,
+    "no_arbitrary_two_leg_symmetrization_as_physics": true,
+    "no_full_physical_galaxy_B": true,
+    "no_eBOSS_xi_SNR_significance": true,
+    "A03_pairz_RR_A04_independent_3pt_covariance_absent": true,
+    "main_untouched": true,
+    "PR_remains_draft": true
+  }
+}
