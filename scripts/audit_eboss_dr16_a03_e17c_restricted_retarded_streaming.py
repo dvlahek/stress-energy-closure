@@ -180,7 +180,22 @@ def state_calc(state, out):
     table = {(g["k"],g["K"],g["mu_s"],g["mu_L"],g["phi_index"]):g for g in records}
     max_swap=0.
     for g in records:
-        other = table[(g["k"],g["K"],-g["mu_s"],g["mu_L"],2-g["phi_index"])]
+        # Original E16 samples +0.6 but NOT -0.6. Never invent a new
+        # science orientation to make the sampled swap lookup succeed.
+        # At unsampled reflected centers verify the exact analytic
+        # c -> -c identity; for sampled reflected centers compare full C.
+        other = table.get((g["k"],g["K"],-g["mu_s"],g["mu_L"],2-g["phi_index"]))
+        if other is None:
+            ms,ml,phi=g["mu_s"],g["mu_L"],g["phi_rad"]
+            c=ms*ml+math.sqrt(max(0.,1.-ms*ms))*math.sqrt(
+                max(0.,1.-ml*ml))*math.cos(phi)
+            r=g["K"]/g["k"]
+            reflected=(g["k"]*math.sqrt(1.+r*r/4.+r*c),
+                       g["k"]*math.sqrt(1.+r*r/4.-r*c))
+            for j in range(2):
+                max_swap=max(max_swap,abs(g["leg_moduli_h_Mpc"][j]-
+                                           reflected[1-j]))
+            continue
         for j in range(2):
             max_swap=max(max_swap,abs(g["leg_moduli_h_Mpc"][j]-
                                        other["leg_moduli_h_Mpc"][1-j]))
