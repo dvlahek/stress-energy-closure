@@ -1,0 +1,29 @@
+name: eBOSS DR16 mock0001 SGC V2 checkpointed repair synthetic source-only QA
+on:
+  push:
+    branches:
+      - audit/eboss-elg-bit8-ra-orientation-20260925
+    paths:
+      - 'scripts/resume_eboss_dr16_full_eligible_mock0001_sgc_v2.py'
+      - 'source_data/eboss_dr16_full_eligible_mock0001_sgc_resume_v2_after_failure_protocol_2026-09-27.json'
+      - '.github/workflows/eboss_dr16_full_eligible_mock_sgc_v2_recovery.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-only-synthetic-checkpoint-mirror:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install original estimator numerical dependencies
+        run: python -m pip install 'numpy>=1.24,<2.4' 'scipy>=1.10' 'astropy>=5.3'
+      - name: Compile original untouched V1 and separate V2 rescue script
+        run: |
+          python -m py_compile scripts/run_eboss_dr16_full_eligible_mock0001_sparse.py
+          python -m py_compile scripts/resume_eboss_dr16_full_eligible_mock0001_sgc_v2.py
+      - name: Pinned original sources, synthetic sparse-dense and signed-mu mirror plus checkpoint negative control
+        run: python -u scripts/resume_eboss_dr16_full_eligible_mock0001_sgc_v2.py --self-test
