@@ -1,0 +1,108 @@
+name: eBOSS DR16 A03E17D0 frozen Vlasov unit external-potential source and independent finite-q audit
+on:
+  push:
+    branches:
+      - audit/eboss-elg-bit8-ra-orientation-20260925
+    paths:
+      - 'scripts/audit_eboss_dr16_a03_e17d0_external_potential_vlasov_source.py'
+      - 'scripts/audit_eboss_dr16_a03_e17d0_independent_finite_boundary_replay.py'
+      - '.github/workflows/eboss_dr16_a03_e17d0_external_gravity_source.yml'
+permissions:
+  contents: write
+jobs:
+  original-frozen-vlasov-external-potential-source-only:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    env:
+      PYTHONUNBUFFERED: '1'
+      OMP_NUM_THREADS: '1'
+      OPENBLAS_NUM_THREADS: '1'
+      MKL_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install source-only fixed numerical dependency
+        run: python -m pip install 'numpy==1.26.4'
+      - name: SHA-preflight immutable original E8 E16 E17A E17B E17C and prospective physics STOP
+        run: |
+          python -m py_compile scripts/audit_eboss_dr16_a03_e17d0_external_potential_vlasov_source.py scripts/audit_eboss_dr16_a03_e17d0_independent_finite_boundary_replay.py
+          python -u scripts/audit_eboss_dr16_a03_e17d0_external_potential_vlasov_source.py --self-test
+          python -u scripts/audit_eboss_dr16_a03_e17d0_independent_finite_boundary_replay.py --self-test
+      - name: Compute original three-state bounded-q external-gravity linear source impulse on 576 frozen triangles
+        run: |
+          for state in FD plus minus; do
+            python -u scripts/audit_eboss_dr16_a03_e17d0_external_potential_vlasov_source.py \
+              --state "$state" --output-dir eboss_workspace/a03_physics_source/e17d0_external_gravity_source
+          done
+          python -u scripts/audit_eboss_dr16_a03_e17d0_external_potential_vlasov_source.py \
+            --aggregate --output-dir eboss_workspace/a03_physics_source/e17d0_external_gravity_source
+      - name: Independent full scalar derivative-free finite-q integration-by-parts replay and tamper control
+        run: |
+          python -u scripts/audit_eboss_dr16_a03_e17d0_independent_finite_boundary_replay.py \
+            --negative-control --output-dir eboss_workspace/a03_physics_source/e17d0_external_gravity_source
+          python -u scripts/audit_eboss_dr16_a03_e17d0_independent_finite_boundary_replay.py \
+            --output-dir eboss_workspace/a03_physics_source/e17d0_external_gravity_source
+      - name: Permanently archive original independent reports and exact SHA manifest only on audit branch
+        run: |
+          set -eu
+          orig=eboss_workspace/a03_physics_source/e17d0_external_gravity_source
+          dest=source_data/eboss_dr16_a03_e17d0_archived_CI_2026_09_27
+          test -s "$orig/e17d0_original_joint_external_potential_source_only.json"
+          test -s "$orig/e17d0_independent_finite_boundary_scalar_replay.json"
+          mkdir -p "$dest"
+          cp "$orig"/*.json "$dest/"
+          python - <<'PY'
+          import hashlib,json,os,pathlib
+          d=pathlib.Path("source_data/eboss_dr16_a03_e17d0_archived_CI_2026_09_27")
+          names=["e17d0_external_potential_source_FD.json",
+                 "e17d0_external_potential_source_plus.json",
+                 "e17d0_external_potential_source_minus.json",
+                 "e17d0_original_joint_external_potential_source_only.json",
+                 "e17d0_independent_finite_boundary_scalar_replay.json"]
+          assert sorted(p.name for p in d.glob("*.json"))==sorted(names)
+          records=[]
+          for name in sorted(names):
+              raw=(d/name).read_bytes()
+              item=json.loads(raw)
+              assert len(raw)>400
+              assert item["observed_odd_SEALED"] is True
+              records.append({"file":name,"size_bytes":len(raw),
+                              "sha256":hashlib.sha256(raw).hexdigest()})
+          joint=json.loads((d/"e17d0_original_joint_external_potential_source_only.json").read_bytes())
+          independent=json.loads((d/"e17d0_independent_finite_boundary_scalar_replay.json").read_bytes())
+          assert joint["full_physical_finiteK_bispectrum"]=="BLOCKED"
+          assert independent["full_physical_finiteK_bispectrum"]=="BLOCKED"
+          assert independent["total_state_leg_phase_samples"]==10368
+          manifest={"date":"2026-09-27","CI_run_id":os.environ.get("GITHUB_RUN_ID"),
+                    "prospective_E17D0_protocol_git_blob":"66df071f0750201e792ed2b3ffc81e28b13dfce6",
+                    "original_E17C_joint_sha256":"ad655ada4f64e5033fe900d5821f58847e3c96e72e081cd1a92eadcf9a7236f4",
+                    "original_Fplus_Fminus_unchanged":True,
+                    "external_halo_potential_or_cosmological_time_NOT_inferred":True,
+                    "full_physical_halo_tracer_bispectrum":"BLOCKED",
+                    "observed_odd_SEALED":True,"no_new_CLASS_FITS_mocks":True,
+                    "main_untouched":True,"PR_remains_draft":True,"files":records}
+          (d/"archive_manifest.json").write_text(json.dumps(manifest,indent=2)+"\n")
+          for row in records:print("E17D0_PERMANENT_ORIGINAL_AND_INDEPENDENT",row["file"],row["sha256"],flush=True)
+          PY
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "$dest"
+          if git diff --cached --quiet; then
+            echo E17D0_ALREADY_ARCHIVED
+          else
+            git commit -m "archive(E17D0): exact frozen Vlasov unit-potential source and independent finite-q replay, physical B STOP"
+            git push origin HEAD:refs/heads/audit/eboss-elg-bit8-ra-orientation-20260925
+          fi
+          echo E17D0_ORIGINAL_AND_INDEPENDENT_SHA_PERMANENT_AUDIT_BRANCH_PHYSICAL_B_BLOCKED
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: eboss-a03-e17d0-frozen-vlasov-external-potential-source-only
+          path: eboss_workspace/a03_physics_source/e17d0_external_gravity_source/*.json
+          if-no-files-found: warn
+          retention-days: 30
