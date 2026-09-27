@@ -1,0 +1,98 @@
+name: eBOSS DR16 A03E13 pinned direct-vTk Gaussian rank-matched fixed-k squeezed source archive
+on:
+  push:
+    branches:
+      - audit/eboss-elg-bit8-ra-orientation-20260925
+    paths:
+      - 'scripts/audit_eboss_dr16_a03_e13_rank_matched_direct_vTk_squeezed_source.py'
+      - 'source_data/eboss_dr16_a03_e13_direct_vTk_rank_matched_squeezed_source_prereg_2026-09-27.json'
+      - '.github/workflows/eboss_dr16_a03_e13_direct_rank_matched_squeezed_source.yml'
+permissions:
+  contents: write
+  actions: read
+jobs:
+  frozen-direct-rank-matched:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    env:
+      PYTHONUNBUFFERED: '1'
+      OMP_NUM_THREADS: '1'
+      OPENBLAS_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install pinned numerical CLASS dependencies
+        run: python -m pip install --upgrade pip setuptools wheel 'numpy==1.26.4' scipy cython
+      - name: Validate original frozen E8/E9/E12 and E12b R16 erratum plus E13 prereg before CLASS
+        run: |
+          python -m py_compile scripts/audit_eboss_dr16_a03_e13_rank_matched_direct_vTk_squeezed_source.py
+          python -u scripts/audit_eboss_dr16_a03_e13_rank_matched_direct_vTk_squeezed_source.py --self-test
+      - name: Fetch exactly pinned original CLASS
+        run: |
+          git init class_public
+          git -C class_public remote add origin https://github.com/lesgourg/class_public.git
+          git -C class_public fetch --depth 1 origin e85808324f51fc694d12e3ed7439552a3c3f9540
+          git -C class_public checkout --detach FETCH_HEAD
+          test "$(git -C class_public rev-parse HEAD)" = "e85808324f51fc694d12e3ed7439552a3c3f9540"
+      - name: Install original CLASS backend
+        run: python -m pip install ./class_public
+      - name: Run the three original F states in separate Python processes, z 0.945 0.950 0.955
+        run: |
+          for s in FD plus minus; do
+            python -u scripts/audit_eboss_dr16_a03_e13_rank_matched_direct_vTk_squeezed_source.py \
+              --state "$s" --output-dir eboss_workspace/a03_physics_source/e13_direct_rank_matched_source
+          done
+      - name: Validate exact filtered long rank, Gaussian Hermite-Legendre, Stein and original source-only scope
+        run: |
+          python -u scripts/audit_eboss_dr16_a03_e13_rank_matched_direct_vTk_squeezed_source.py \
+            --aggregate --output-dir eboss_workspace/a03_physics_source/e13_direct_rank_matched_source
+      - name: Permanently archive all original E13 JSONs on audit branch, never main
+        run: |
+          set -eu
+          orig=eboss_workspace/a03_physics_source/e13_direct_rank_matched_source
+          dest=source_data/eboss_dr16_a03_e13_archived_CI_2026_09_27
+          mkdir -p "$dest"
+          cp "$orig"/e13_direct_wind_FD.json "$dest/"
+          cp "$orig"/e13_direct_wind_plus.json "$dest/"
+          cp "$orig"/e13_direct_wind_minus.json "$dest/"
+          cp "$orig"/e13_rank_matched_direct_vTk_gaussian_fixed_mode_source_only.json "$dest/"
+          python - <<'PY'
+          import hashlib,json,pathlib,os
+          d=pathlib.Path("source_data/eboss_dr16_a03_e13_archived_CI_2026_09_27")
+          records=[]
+          for path in sorted(d.glob("*.json")):
+              if path.name=="archive_manifest.json":continue
+              raw=path.read_bytes()
+              records.append({"file":path.name,"size_bytes":len(raw),"sha256":hashlib.sha256(raw).hexdigest()})
+          assert len(records)==4
+          j={"date":"2026-09-27","original_CI_run_id":os.environ.get("GITHUB_RUN_ID"),
+             "prospective_E13_protocol_git_blob":"3c0e2031a14b5bb07e41dce29005e07dc1439deb",
+             "original_E12b_R16_filter_correction_git_blob":"09bac4f72e325578cbed7e790c50114150087e89",
+             "source_only":True,"observed_odd_sealed":True,
+             "full_real_eBOSS_bispectrum_or_covariance_not_computed":True,
+             "original_Fplus_Fminus_parent_files_unchanged":True,"files":records}
+          (d/"archive_manifest.json").write_text(json.dumps(j,indent=2)+"\n")
+          for row in records:print("E13_ORIGINAL_ARCHIVED",row["file"],row["sha256"],row["size_bytes"],flush=True)
+          PY
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "$dest"
+          if git diff --cached --quiet; then
+            echo "E13_SOURCE_RESULTS_ALREADY_COMMITTED"
+          else
+            git commit -m "archive(E13): frozen direct-vTk rank-matched Gaussian fixed-mode source with R16 corrected long kernel"
+            git push origin HEAD:refs/heads/audit/eboss-elg-bit8-ra-orientation-20260925
+          fi
+          echo "E13_ALL_SOURCE_REPORTS_VERSIONED_ON_GITHUB_AUDIT_BRANCH"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: eboss-a03-e13-pinned-direct-vTk-filtered-Gaussian-source-only
+          retention-days: 30
+          if-no-files-found: warn
+          path: eboss_workspace/a03_physics_source/e13_direct_rank_matched_source/*.json
