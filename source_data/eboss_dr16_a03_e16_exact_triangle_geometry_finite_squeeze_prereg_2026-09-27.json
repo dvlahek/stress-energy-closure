@@ -1,0 +1,116 @@
+{
+  "date": "2026-09-27",
+  "status": "REGISTERED_AFTER_E15_ARCHIVAL_BEFORE_E16_NEW_GEOMETRIC_TEST",
+  "problem": "E14/E15 reduced i muLong S(kshort,Klong,ellshort) lacks both actual short legs k1,k2, their LOS angles and azimuth. Certify exact closed three-vector Fourier triangle and finite K/k geometry without promoting truncated source into full halo/tracer bispectrum.",
+  "immutable_parents": {
+    "E14_full_path": "source_data/eboss_dr16_a03_e14_archived_CI_2026_09_27/e14_frozen_multik_direct_rank_unitbias_source_only.json",
+    "E14_full_sha256": "0f1efb45593cd51d9ffa1818157bdd52baba525a8fc4bb9cc30c12d98ba91fd8",
+    "E14_full_git_blob": "6ef0b2c3268a5bae9564b58abdd914328e861cba",
+    "E15_full_path": "source_data/eboss_dr16_a03_e15_original_E14_long_LOS_parity_and_toy_selection_2026_09_27.json",
+    "E15_full_sha256": "6062aed4b581f2db89192bd1c1cf2639a74b6a313db9e10dca9e53041a95d983",
+    "E15_full_git_blob": "9da057195b9fb34c113be53533af129f9de8809f",
+    "E14_original_manifest_git_blob": "ba747f413988693278a6322bffe2da69d4c52d68",
+    "E15_independent_pure_python_analytic_audit_git_blob": "18bf68b868a164289d1b7b5974d656dbd17ea3de",
+    "CLASS_original_commit": "e85808324f51fc694d12e3ed7439552a3c3f9540",
+    "E8_frozen_csv_sha256": "bf8f48deb9514c5101d5ce314bfbd397485102a5487da1039f141e3cad6143d0"
+  },
+  "original_axes": {
+    "states": [
+      "FD",
+      "plus",
+      "minus"
+    ],
+    "short_k_comoving_h_per_Mpc": [
+      0.05,
+      0.075,
+      0.1
+    ],
+    "long_K_comoving_h_per_Mpc": [
+      0.001,
+      0.002,
+      0.003,
+      0.005
+    ],
+    "ell_short": [
+      1,
+      3
+    ],
+    "n_original_source_cases": 72,
+    "n_original_plus_minus_contrasts": 24,
+    "z_math_midpoint_not_z_eff": 0.95
+  },
+  "fixed_triangle_model": {
+    "orientation": "Right-handed LOS n=(0,0,1); khat=(sqrt(1-mu_s²),0,mu_s); Khat=(sqrt(1-mu_L²)*cos(phi),sqrt(1-mu_L²)*sin(phi),mu_L).",
+    "closed_vectors": "k1=kshort*khat-(Klong/2)*Khat; k2=-kshort*khat-(Klong/2)*Khat; k1+k2+Klong*Khat=0.",
+    "relative_angle": "c=khat·Khat=mu_s mu_L+sqrt(1-mu_s²)sqrt(1-mu_L²)cos(phi)",
+    "short_magnitudes": "|k1|/k=sqrt(1+r²/4-r*c); |k2|/k=sqrt(1+r²/4+r*c), r=K/k<=.1",
+    "short_los": "mu1=(mu_s-r*mu_L/2)/(|k1|/k); mu2=(-mu_s-r*mu_L/2)/(|k2|/k)",
+    "orientation_mu_short": [
+      -1,
+      0,
+      0.6,
+      1
+    ],
+    "orientation_mu_long": [
+      -1,
+      0,
+      0.5,
+      1
+    ],
+    "orientation_azimuth_rad": [
+      "0",
+      "pi/2",
+      "pi"
+    ],
+    "n_orientation_cases_per_parent": 48
+  },
+  "analytic_controls": {
+    "continuous_relative_orientation_c_range": [
+      -1,
+      1
+    ],
+    "leg_modulus_range_over_k": [
+      "1-r/2",
+      "1+r/2"
+    ],
+    "individual_exact_static_inverse_k2_factor_relative_to_original": [
+      "1/(1+r/2)^2",
+      "1/(1-r/2)^2"
+    ],
+    "toy_symmetric_factor": "Gsym=0.5*((k/k1)^2+(k/k2)^2), not physically validated symmetrized halo response",
+    "toy_asymmetric_factor": "Godd=0.5*((k/k1)^2-(k/k2)^2), exchanges sign under k1↔k2",
+    "two_Hermitian_consistent_but_physically_UNIDENTIFIED_completions": [
+      "A=i*muLong*S",
+      "B=i*muLong*S*Gsym"
+    ],
+    "squeezed_limit_both_match_original_E15": "r->0 gives Gsym->1, but for r>0 original S and E15 parities alone do not fix full triangle response",
+    "long_reversal": "Khat->-Khat implies muLong->-muLong and c->-c; Gsym invariant, so both A/B satisfy B(-K)=conj(B(K)) with k_center fixed for real S",
+    "short_center_flip": "khat->-khat interchanges |k1| and |k2|; Gsym unchanged, Godd reverses",
+    "physical_claim": "Exact geometry and possible inverse-k2 prefactor range only; neither that range nor toy completion difference is error bar or upper bound on actual nonretarded/full Einstein-Vlasov bispectrum."
+  },
+  "technical_QA": {
+    "triangle_cartesian_closure_absolute_h_per_Mpc": 1e-14,
+    "dot_angle_max_abs_gap": 1e-13,
+    "moduli_and_mu_max_abs_gap": 1e-13,
+    "leg_swap_relative_gap": 1e-13,
+    "conjugation_relative_gap": 1e-13,
+    "archived_original_source_contrast_scaled_gap": 1e-13,
+    "continuous_analytic_envelope_tolerance": 1e-12,
+    "no_retuning_on_failure": true
+  },
+  "output": [
+    "72 rows with 48 sampled exact orientations, analytic full-c bounds and toy geometry only",
+    "24 Fplus-minus algebraic source contrasts checked against original E14 and E15",
+    "Explicit failure to reconstruct state-dependent P_cb(k1,k2), full short-leg and halo/tracer triangle response, long–short anisotropy or true selection",
+    "Source-only E16 JSON and independent exact-identity audit, permanent GitHub archive with SHAs"
+  ],
+  "prohibitions": {
+    "no_new_CLASS_FITS_mock_catalogue_download": true,
+    "no_new_survey_cuts_or_random_science_seeds": true,
+    "no_observed_galaxy_random_odd_read": true,
+    "no_original_E14_E15_rewrite": true,
+    "no_full_bispectrum_detection_significance_or_physical_acceptance": true,
+    "no_main_mutation": true,
+    "PR_remains_draft": true
+  }
+}
