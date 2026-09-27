@@ -1,0 +1,124 @@
+{
+  "study": "A-03E5/A-04 source-only physics-first READINESS/STOP protocol, registered AFTER completed E4 mock-only audit, BEFORE any new A-03/A-04 experiment",
+  "date": "2026-09-27",
+  "branch": "audit/eboss-elg-bit8-ra-orientation-20260925",
+  "pr_number": 1,
+  "scope": "PLANNING_AND_INDEPENDENT_SOURCE_ONLY_READINESS_NOT_NEW_FITS_OR_INFERENCE",
+  "registration_honesty": "E4 already measured; do not call any E4 threshold prospective; future physical acceptance numbers currently undefined",
+  "parents": {
+    "E4_original_report": "source_data/eboss_dr16_a03_e4_mock_galaxy_nested_random_density_1200_2400_4800_report_2026-09-27.json",
+    "E4_report_sha256": "ec45931f815dad8845bae41111f11b3e11cc0a5912f14c3e2b22c2f090e1045f",
+    "E4_report_exact_bytes": 444242,
+    "E4_report_git_blob_sha1": "32246a495506deac5b9dfe71bea51c3db33202b1",
+    "E4_original_stdout": "source_data/eboss_dr16_a03_e4_local_stdout_2026-09-27.log",
+    "E4_stdout_sha256": "32d93ec0aae6214881ba7852dfe148d2e82a284de5389aeba1dd2c2ba06798a4",
+    "E4_stdout_exact_bytes": 11200,
+    "E4_stdout_git_blob_sha1": "31eb941a5a0fb65a8efca2a25530099b0bcc057d",
+    "E4_uploaded_manifest": "source_data/eboss_dr16_a03_e4_mock_galaxy_nested_random_density_1200_2400_4800_uploaded_manifest_2026-09-27.json",
+    "E4_manifest_git_blob_sha1": "8e73c473319963c2c1d8a1c9887226da889d2126",
+    "E4_original_prereg": "source_data/eboss_dr16_a03_e4_nested_1200_2400_4800_mock_random_density_protocol_2026-09-27.json",
+    "E4_prereg_git_blob_sha1": "b9e040e026cb2e6f6c1ad896f556fa29e295a6a1",
+    "A02_report_sha256": "15f7668fd483d8e1329fbb9684bbdf07cb49d1974d264f9ceebd85e0156daa27",
+    "E3_report_sha256": "1e52f95be973aa6616337c2427fde60725a0df31ce7d3a818e99d1dd1fb0fb35",
+    "A03_empirical_only_user_decision": "source_data/eboss_dr16_a03_empirical_only_user_decision_2026-09-26.json",
+    "A03_user_decision_git_blob_sha1": "203c6550b320c731576359c210edb9c3",
+    "A03_E0E1_report": "source_data/eboss_dr16_a03_empirical_rr_window_injection_report_2026-09-26.json",
+    "A03_E0E1_report_git_blob_sha1": "35cb92b3ce2b870ae6d984f0e9692266b3e025ac",
+    "DESI_120mock_covariance": "source_data/lrg_elg_covariance_r4_120_checkpoint_2026-09-23.json",
+    "DESI_120mock_covariance_git_blob_sha1": "e1c11ab41fe459fa261c59e731f9bffa7b0ccd42",
+    "DESI_windowed_result": "source_data/lrg_elg_windowed_finite_mock_r4_120_final_2026-09-23.json",
+    "DESI_windowed_result_git_blob_sha1": "4babbd9e23ba541a29caf5fb8fa5c3f22bca8388"
+  },
+  "E4_retrospective_status": {
+    "mock_realizations": 9,
+    "caps": [
+      "NGC",
+      "SGC"
+    ],
+    "completed_cases": 18,
+    "RR_supported_cells_per_all_54_case_level": 144,
+    "relative_L1_xi_median_2400_to_4800": {
+      "NGC": 0.43874130582203774,
+      "SGC": 0.4347157365142096
+    },
+    "finite_random_convergence": "NOT_DEMONSTRATED",
+    "physical_selection_uncertainty": "NOT_MEASURED",
+    "observed_odd_data_vector_read": false
+  },
+  "A03_E5_prospective_requirements": {
+    "status": "BLOCKED_PENDING_PHYSICS_GROUNDED_NUMERICAL_TOLERANCES_FINAL_OBSERVABLE_AND_INDEPENDENT_VALIDATION",
+    "estimand": "Finite published tracer-specific eBOSS DR16 LRG×ELG pair-window R_LRG×R_ELG, not historical complete continuous production mask",
+    "conditioning": [
+      "NGC and SGC separately",
+      "LRG and ELG tracer-specific acceptance separately",
+      "ELG exact chunk and imaging depth/redshift shuffle where source data establishes it",
+      "weighted fine radial n(z) and independent angular selection",
+      "original pilot redshift interval [0.9,1.0), no new cuts"
+    ],
+    "no_historical_mask_reconstruction_or_author_contact": true,
+    "must_freeze_BEFORE_future_physical_measurement": [
+      "Exact final observable ordering and physically derived wake template and survey pair-window propagation, cap/z/s/ell/weights/LOS convention",
+      "Original released tracer-specific random source identities, conditional chunk/depth and RR estimator operator, any independent sampling seeds and both cap treatments",
+      "Numerical finite-random and physical selection/window uncertainty budget in units of the FINAL observable, with a fixed physical wake signal/sensitivity requirement and separate defensible inference covariance, not thresholds fitted to E4 output",
+      "Blind true physical injection/recovery distinct from previous arbitrary synthetic post-DD injections; modeled even-to-odd leakage, null controls and conditional selection uncertainties",
+      "Independent holdout/random-draw validation of new criteria after E4 outcome; register all cohort IDs/failures and never cherry-pick favorable sources or bins"
+    ],
+    "numeric_error_budget_now": "NOT_DEFINED_UNTIL_FINAL_OBSERVABLE_THEORY_AND_INDEPENDENT_COVARIANCE_FROZEN",
+    "new_random_density_or_seed_run_now": "NOT_AUTHORIZED",
+    "acceptance_rule": "Fail closed if derived projected finite-random plus selection leakage budget cannot be justified independently of E4. E4 remains a documented nonconvergence regardless of future success.",
+    "physical_pair_window_certified_now": false
+  },
+  "A04_eboss_prospective_requirements": {
+    "status": "BLOCKED_NO_FINAL_EBOSS_18D_MAPPING_OR_VALID_EBOSS_INFERENTIAL_ENSEMBLE",
+    "pilot_geometry": {
+      "redshift": [
+        0.9,
+        1
+      ],
+      "s_edges_mpc_h": [
+        20,
+        40,
+        60,
+        80,
+        100,
+        120,
+        140
+      ],
+      "odd_ells": [
+        1,
+        3
+      ],
+      "caps": [
+        "NGC",
+        "SGC"
+      ],
+      "components_per_cap": 12,
+      "joint_components": 24
+    },
+    "eboss_final_18D": "NOT_YET_DEFINED; no dropping six of 24 pilot components to fit a target",
+    "DESI_18D": "SEPARATE_DESI_DR1_3Zx6S_DIPOLE_NOT_TRANSFERABLE_TO_EBOSS",
+    "required_preinference_decision": "Select physically justified exact eBOSS observable dimension/order, projection and matched wake/null theory in prospective independent protocol before eBOSS mock extraction/observed unblinding",
+    "current_mock_cohort": {
+      "distinct_mock_realizations": 9,
+      "covariance_centered_rank_upper_bound": 8,
+      "can_invert_p12": false,
+      "can_invert_p18": false,
+      "can_invert_p24": false
+    },
+    "actual_eboss_ensemble": "NOT_ACQUIRED_OR_PROSPECTIVELY_FROZEN",
+    "large_download_authorized": false,
+    "future_gate": "Prospectively freeze complete independent matched source IDs and all original source SHAs, then validate full rank/eigenvalues/conditioning, nuisance, covariance and tail coverage with correct effective N. No imported DESI covariance, Hartlap factor, finite-mock likelihood or purported five-sigma tail."
+  },
+  "source_only_CI_purpose": "Verify immutable E4 parent/SHA, its nonconvergence and observed seal, distinct DESI vs eBOSS scope, and explicit A03/A04 STOP contract. Green is readiness-audit PASS, not physical experiment success.",
+  "current_decision": "STOP_A03_PHYSICAL_AND_A04_EBOSS_INFERENCE_OBSERVED_ODD_SEALED",
+  "observed_galaxy_rows_read": false,
+  "observed_random_rows_read": false,
+  "observed_odd_data_vector_read": false,
+  "new_science_selection_applied": false,
+  "empirical_pair_window_physically_validated": false,
+  "EBOSS_18D_covariance_calibrated": false,
+  "author_contact_approved": false,
+  "new_download_authorized": false,
+  "main_mutation_permitted": false,
+  "unblinding_authorized": false
+}
