@@ -1,0 +1,55 @@
+name: eBOSS DR16 A03E16 exact closed triangle finite squeeze source only
+on:
+  push:
+    branches:
+      - audit/eboss-elg-bit8-ra-orientation-20260925
+    paths:
+      - 'source_data/eboss_dr16_a03_e16_exact_triangle_geometry_finite_squeeze_prereg_2026-09-27.json'
+      - 'scripts/audit_eboss_dr16_a03_e16_exact_closed_triangle_geometry.py'
+      - '.github/workflows/eboss_dr16_a03_e16_exact_triangle_geometry_source_only.yml'
+permissions:
+  contents: write
+jobs:
+  frozen-exact-3vector-geometry:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    env:
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Exact parent E14/E15 SHA-gated vector triangle, short legs and 72/24 source closure
+        run: |
+          python -m py_compile scripts/audit_eboss_dr16_a03_e16_exact_closed_triangle_geometry.py
+          python -u scripts/audit_eboss_dr16_a03_e16_exact_closed_triangle_geometry.py \
+            --output eboss_workspace/a03_physics_source/e16_exact_closed_triangle_geometry_source_only.json
+      - name: Permanently commit E16 full source-only geometry JSON to existing draft PR audit branch
+        run: |
+          set -eu
+          src=eboss_workspace/a03_physics_source/e16_exact_closed_triangle_geometry_source_only.json
+          dest=source_data/eboss_dr16_a03_e16_original_72_source_exact_triangle_geometry_2026_09_27.json
+          test -s "$src"
+          cp "$src" "$dest"
+          sha256sum "$dest"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "$dest"
+          if git diff --cached --quiet; then
+            echo E16_ORIGINAL_RESULT_ALREADY_PERMANENT
+          else
+            git commit -m "archive(E16): original E14/E15 72 exact closed triangles and 24 source contrasts; geometric finite K only"
+            git push origin HEAD:refs/heads/audit/eboss-elg-bit8-ra-orientation-20260925
+          fi
+          echo E16_SOURCE_ONLY_FULL_OUTPUT_PERMANENT_GITHUB_AUDIT_BRANCH
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: eboss-a03-e16-original-e14-e15-72-exact-triangle-source-only
+          path: eboss_workspace/a03_physics_source/e16_exact_closed_triangle_geometry_source_only.json
+          if-no-files-found: warn
+          retention-days: 30
