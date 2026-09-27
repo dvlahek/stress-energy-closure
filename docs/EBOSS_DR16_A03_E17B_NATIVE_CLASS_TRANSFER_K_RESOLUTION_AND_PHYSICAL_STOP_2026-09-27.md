@@ -28,3 +28,23 @@ Opaženi odd je **SEALED**. Ne preuzimati nove kataloge/mockove, ne uvoditi nove
 
 Prvi [CI 36344819090](https://github.com/dvlahek/stress-energy-closure/actions/runs/36344819090) prošao je E8–E17A SHA preflight, izvorni CLASS build i oba rafinirana FD CLASS koraka, ali je zaustavljen Python `AttributeError` zbog pogrešno imenovanoga direktorijskog atributa `e14.E14DIR` u novom E17B čitaču. Nije proizveo izvorni numerički izvještaj ni završni audit. Naknadni commit `f577afa4a2276f2e29a44bacb366cf915f640f6c` zamjenjuje samo čitački put s postojećim `e17.E14DIR`; izvorni protokol, preciznosti, F stanja i acceptance kriteriji nepromijenjeni su. Taj prvi CI ostaje zabilježen kao **FAIL**.
 
+## Završni izvori i stvarni numerički nalaz
+
+[Završni CI 36344909227](https://github.com/dvlahek/stress-energy-closure/actions/runs/36344909227) **SUCCESS** na nepromijenjenom izvornom E17B protokolu i originalnim E8–E17A roditeljima. Originalne CLASS native k mreže imaju **81 → 238 → 475** čvorova za sva tri zamrznuta stanja. E17B svih 576 geometrija, oba kratka kraka i z=(.945,.95,.955) ponovno evaluira i uspoređuje; `P_cb` se poziva izravno na stvarnom `|k_i|` u svakom tieru.
+
+Sljedeća tablica daje **najveće** odstupanje preko FD, F+ i F− i cijeloga zaključanog kračnog/z skupa; ovo su unaprijed definirane **skalirane numeričke dijagnostike**, ne pogreške stvarnog fizičkog bispektra:
+
+| Polje | Izvorni E17A 81 → ultra 475 | high 238 → ultra 475 |
+|---|---:|---:|
+| `P_cb` | `1.5070636903e-5` (0,0015071 %) | `1.8116202781e-6` (0,0001812 %) |
+| direct `theta_ncdm−theta_cdm` iz vTk | `0.0010909734617` (0,10910 %) | `0.0001585246214` (0,015852 %) |
+| Newtonian `delta_cb` | `0.0008990670834` (0,089907 %) | `0.0001119249893` (0,011192 %) |
+
+Najveća razlika rafiniranog `P_cb` na **tri originalna E14 kratkovalna sidra** iznosi `1.3452757763e-5`. To je numerički kontroliran rezultat pri izmjeni precision parametara, ne izmjena originalnih E14 arhivskih bajtova. Sva tri zamrznuta stanja ispunila su unaprijed zaključane E17B *engineering candidate* pragove, bez retuninga.
+
+[Neovisni standard-library replay](../source_data/eboss_dr16_a03_e17b_archived_CI_2026_09_27/e17b_independent_native_array_scalar_replay.json) ponovio je **41.472** native-array interpolacije i **31.104** usporedbe izvornih E17A uzoraka. Najveći skalirani interpolation replay gap `2.1883002059282083e-16`, a maksimalni discrepancy svih originalnih QA maksimuma `0`. Certifikat SHA256 `6b1e99a6d695378453dd47127e642c0d286d08dd75187b1cf0e00c3005d4ea4e` nije drugi neovisni CLASS izvršni backend: rekoristira autentične originalne rafinirane native transfer nizove.
+
+[Originalni objedinjeni izvještaj](../source_data/eboss_dr16_a03_e17b_archived_CI_2026_09_27/e17b_original_joint_native_CLASS_transfer_resolution.json) SHA256 `156763dfb81e2a8c5c9e3615f5022749fa681f458a2753fbfa5f46b462e20658`. [Potpuni arhivski manifest](../source_data/eboss_dr16_a03_e17b_archived_CI_2026_09_27/archive_manifest.json), Git blob `88920dd194febb002f280d676b9df42687b2f949`, SHA-zaključava i tri puna state JSON izvještaja (FD `ff9411b6a1bdf7c3d2b989f61b7741254389faa05bf61e0c8487b77eddb4ce2d`, F+ `66b6a344906621f6655bed09ad72dd0eabbae35bd3c47be483b558cdeb593d48`, F− `1dba5ba3ff8f3790a8ef3231e5da02380163e4672b81c1a40a122e5dd92b711d`). Originalni i neovisni rezultati sada su trajno u `source_data/` iste audit grane, ne samo u privremenim GitHub Actions artefaktima.
+
+**Fizički status nakon numeričkog PASS-a:** E17A i E17B linearni CLASS oba kraka DONE; E17 puni finite-K retarded Einstein–Vlasov halo/tracer response **BLOCKED**. Poznate realne linearne `P_cb`, `delta_cb` i direct-vTk vrijednosti ne određuju dinamičke halo/tracer spregne koeficijente. Nismo proizveli niti prijavili cijeli galaktički `B`, eBOSS 3pt prozor, `xi`, S/N ili značajnost. Opaženi odd SEALED, A03/A04 zasebno otvoreni, izvorni 24D ostaje dvotočkasta statistika, `main` netaknut i PR #1 draft.
+
