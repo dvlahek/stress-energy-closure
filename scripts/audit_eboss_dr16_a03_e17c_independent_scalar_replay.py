@@ -108,7 +108,7 @@ def compare(original,joint,p,q,f):
     n=0
     digest={}
     for state in STATES:
-        src=original/state
+        src=original/("e17c_restricted_streaming_"+state+".json")
         raw=src.read_bytes()
         require(sha(raw)==joint["state_reports"][state]["sha256"],
                 "original E17C worker report SHA mismatch: "+state)
