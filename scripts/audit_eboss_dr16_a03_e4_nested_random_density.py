@@ -47,8 +47,12 @@ def assert_true(ok,msg):
     if not ok:raise ValueError(msg)
 
 def source_gate(p):
+    assert_true(blob(PROTOCOL)=="b9e040e026cb2e6f6c1ad896f556fa29e295a6a1",
+                "Original E4 preregistered protocol Git blob changed")
     assert_true(
-        p["registered_before"]=="Any first E4 FITS header, row or E4 extra random index draw; E3 original 18/18 completed and exact uploaded archive independently audited"
+        p["registered_on"]=="2026-09-27"
+        and p["branch"]=="audit/eboss-elg-bit8-ra-orientation-20260925"
+        and p["registration_before"]=="Any first E4 FITS header, row or E4 extra random index draw; E3 original 18/18 completed and exact uploaded archive independently audited"
         and p["user_decision"]=="EMPIRICAL_ONLY_DO_NOT_CONTACT_AUTHORS"
         and p["same_fixed_mock_ids"]==list(A02.IDS)
         and p["caps"]==list(A02.CAPS) and p["tracers"]==list(A02.TRACERS)
