@@ -1,0 +1,35 @@
+{
+  "date": "2026-09-27",
+  "status": "E17B_INDEPENDENT_FULL_NATIVE_ARRAY_TWO_TIER_THREE_STATE_SCALAR_REPLAY_PASS_NO_PHYSICAL_B",
+  "preregistered_E17B_git_blob": "d0389e336de9e9964cade589fc17594a595f2e17",
+  "original_joint_sha256": "156763dfb81e2a8c5c9e3615f5022749fa681f458a2753fbfa5f46b462e20658",
+  "original_E17A_joint_sha256": "094c49cb89d6dd231a5cbc16ecdfe455bcb3938ddec375fd28c81c8098ab2ad9",
+  "independent_method": "Completely separate standard-library scalar brackets and interpolation from archived actual refined CLASS native transfer arrays; no E17B runner import or fresh independent CLASS rerun. Original E17A already has independent fresh CLASS numerical replay.",
+  "QA": {
+    "states": 3,
+    "independent_native_scalar_interpolation_evaluations": 41472,
+    "original_baseline_leg_z_field_comparisons": 31104,
+    "max_native_transfer_replay_scaled_gap": 2.1883002059282083e-16,
+    "max_original_qa_metric_replay_abs_gap": 0.0,
+    "native_node_counts_by_state": {
+      "FD": {
+        "tier_high": 238,
+        "tier_ultra": 475
+      },
+      "plus": {
+        "tier_high": 238,
+        "tier_ultra": 475
+      },
+      "minus": {
+        "tier_high": 238,
+        "tier_ultra": 475
+      }
+    },
+    "max_original_triangle_coordinate_difference": 0.0
+  },
+  "original_E17B_engineering_candidate": true,
+  "physics_stop": "Full finite-K retarded halo/tracer B and eBOSS 3pt observable BLOCKED",
+  "observed_odd_read": false,
+  "new_mock_catalogue_download_science_seed_cut": false,
+  "main_untouched_PR_draft": true
+}
