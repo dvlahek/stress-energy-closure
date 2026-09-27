@@ -1,0 +1,40 @@
+{
+  "date": "2026-09-27",
+  "CI_run_id": "36348300285",
+  "prospective_E17D0_protocol_git_blob": "66df071f0750201e792ed2b3ffc81e28b13dfce6",
+  "original_E17C_joint_sha256": "ad655ada4f64e5033fe900d5821f58847e3c96e72e081cd1a92eadcf9a7236f4",
+  "original_Fplus_Fminus_unchanged": true,
+  "external_halo_potential_or_cosmological_time_NOT_inferred": true,
+  "full_physical_halo_tracer_bispectrum": "BLOCKED",
+  "observed_odd_SEALED": true,
+  "no_new_CLASS_FITS_mocks": true,
+  "main_untouched": true,
+  "PR_remains_draft": true,
+  "files": [
+    {
+      "file": "e17d0_external_potential_source_FD.json",
+      "size_bytes": 1049175,
+      "sha256": "b6076e8af029c2f51aeb9cc38c455abaca569e7bcead1cb04c60940a6f277670"
+    },
+    {
+      "file": "e17d0_external_potential_source_minus.json",
+      "size_bytes": 1049077,
+      "sha256": "0cb02c8cad6db999ddae5cab55b7eb2fadb8fcb04be0e5be58e100dfd86cb5d0"
+    },
+    {
+      "file": "e17d0_external_potential_source_plus.json",
+      "size_bytes": 1049571,
+      "sha256": "d19b8c0e83ba443844b6c8cf0ef84e6ece94b63691fa6707aeed240012935a42"
+    },
+    {
+      "file": "e17d0_independent_finite_boundary_scalar_replay.json",
+      "size_bytes": 1590,
+      "sha256": "2258c53b35d62ec9f00475894af7fcffdfb1cd98ecc7badef5bdfc131ca7e1af"
+    },
+    {
+      "file": "e17d0_original_joint_external_potential_source_only.json",
+      "size_bytes": 3010,
+      "sha256": "b9c8f21973755c64d8708a4ccb4d86ee56bbc12d448ffaa098b7495eb85661ae"
+    }
+  ]
+}
