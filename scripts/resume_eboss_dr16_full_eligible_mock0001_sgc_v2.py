@@ -147,9 +147,14 @@ def source_signature(info):
 
 
 def validate_progress(progress):
-    need(progress.get("cap")==CAP and progress.get("sources") and
+    sources=progress.get("sources")
+    empty_uninitialized=(sources is None and not progress.get("levels")
+                         and not progress.get("assembled_levels"))
+    pinned=(isinstance(sources,dict) and len(sources)==4
+            and all(isinstance(v,str) and len(v)==64 for v in sources.values()))
+    need(progress.get("cap")==CAP and (empty_uninitialized or pinned) and
          set(progress["levels"]).issubset(V1.LEVELS),
-         "Existing v2 progress lacks original SGC source or level guards")
+         "Existing v2 progress lacks valid original SGC source or level guards")
     for stage,termmap in progress["levels"].items():
         need(set(termmap).issubset(V1.TERMS),
              "Existing v2 progress contains forbidden forward term")
