@@ -116,7 +116,9 @@ def run_state(state,out):
     import class_response_optimize as cro
     import wake_two_tracer_fisher as base
     import audit_eboss_dr16_a03_e12_direct_class_vTk_long_cross as e12
+    import build_eboss_dr16_a03_e9_frozen_class_wind_quasistatic_phase as e9
     from classy import Class
+    frozen_occupation,_,Eq20_physical=e9.source_only_self_test()
     check(cro.CLASS_COMMIT==CLASS_SHA and base.NS==.9649 and
           math.isclose(cro.H0,67.36,abs_tol=1e-12),"frozen CLASS parameters changed")
     arr=old[1];original_e13=old[3][state]
@@ -188,6 +190,24 @@ def run_state(state,out):
                     "leg2":{"P_cb_CLASS_Mpc3":float(pc[2*n+1]),"theta_rel_DIRECT_vTk_per_R_Mpc_inv":float(t[2*n+1]),
                             "delta_cb_Newtonian_per_R":float(dc[2*n+1]),"vTk_E12_convention_single_mode_kms_NOT_R16_sigma":float(v[2*n+1]),
                             "CLASS_transfer_bracket_indices":[int(a[2*n+1]-1),int(a[2*n+1])]}}
+            # MODEL ONLY: carry the original direct-R16 rank into exact Eq20.
+            # Short-leg CLASS theta is NOT substituted for this conditioned rank.
+            for z in ZS:
+                oldwind=original_e13["direct_R16_sigma_LOS_kms_three_fixed_z"][str(z)]
+                for lab,kh in (("leg1",row["k1_h_Mpc"]),("leg2",row["k2_h_Mpc"])):
+                    val=e9.alpha_given_v(frozen_occupation,state,z,oldwind,kh,Eq20_physical)
+                    check(math.isfinite(val) and val>0,"Eq20 source occupancy/phase invalid")
+                    row["z_nodes"][str(z)][lab]["Eq20_positive_R16_rank_static_phase_MODEL_ONLY"]=val
+            for lab in ("leg1","leg2"):
+                am=row["z_nodes"]["0.945"][lab]["Eq20_positive_R16_rank_static_phase_MODEL_ONLY"]
+                ap=row["z_nodes"]["0.955"][lab]["Eq20_positive_R16_rank_static_phase_MODEL_ONLY"]
+                row.setdefault("Eq20_dphase_dln_a_MODEL_ONLY",{})[lab]=-(1.+.95)*(ap-am)/(.955-.945)
+            for z in ZS:
+                a1=row["z_nodes"][str(z)]["leg1"]["Eq20_positive_R16_rank_static_phase_MODEL_ONLY"]
+                a2=row["z_nodes"][str(z)]["leg2"]["Eq20_positive_R16_rank_static_phase_MODEL_ONLY"]
+                check(abs(a1*row["k1_h_Mpc"]**2-a2*row["k2_h_Mpc"]**2)/
+                      max(a1*row["k1_h_Mpc"]**2,a2*row["k2_h_Mpc"]**2,1e-30)<1e-12,
+                      "Eq20 k^-2 both-leg static ratio lost")
             row["central_original_Pcb_z095_Mpc3"]=powers[str(row["k"])]
             row["static_Eq20_individual_k_inverse_square_geometric_ratio_MODEL_ONLY"]=[
                 (row["k"]/row["k1_h_Mpc"])**2,(row["k"]/row["k2_h_Mpc"])**2]
@@ -204,7 +224,7 @@ def run_state(state,out):
             "max_Pcb_squeezed_epsilon1e_minus5_relative_gap":maxsqueeze,
             "rows_original_576_geometry_three_z_two_legs":rows,
             "CLASS_calculated":["P_cb(k1,k2,z) using direct CLASS pk_cb_lin","theta_ncdm-theta_cdm DIRECT CLASS vTk at each actual |ki| using within-grid transfer interpolation","Newtonian delta_cb at each actual |ki| and fixed three times"],
-            "Eq20_MODEL_ONLY":["individual (k/ki)^2 static prefactor per original frozen Eq20 phase, not summed into bispectrum"],
+            "Eq20_MODEL_ONLY":["original exact frozen occupation at positive direct E13 R16 LOS rank on both actual legs at three fixed z; static phase and centered d/dln(a), NOT retarded dynamics or bispectrum"],
             "BLOCKED":["retarded nonlinear Vlasov halo response","finite-K halo/tracer three-point coupling","LRG/ELG bias/HOD/evolution/magnification/GR and triple survey window","independent eBOSS 3pt covariance"],
             "observed_odd_read":False,"new_catalogue_mock_download_science_seed_cut":False,"physical_eBOSS_B_xi_SNR_significance":None}
         save_once(out/("e17_original_both_legs_"+state+".json"),ans)
