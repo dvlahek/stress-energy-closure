@@ -143,7 +143,7 @@ def run(original_dir,output):
                                 check((row["k"],row["K"],row["mu_s"],row["mu_L"],row["phi"])==
                                       (k,K,ms,ml,ph),"changed original 48-orientation ordering")
                                 for i,(v,m) in enumerate(zip((k1,k2),moduli),1):
-                                    saved=row["leg"+str(i)+"_h_Mpc"]
+                                    saved=row["k"+str(i)+"_h_Mpc"]
                                     qa["max_geometric_relative_gap"]=max(qa["max_geometric_relative_gap"],relative(saved,m))
                                     check(relative(saved,m)<1e-12,"independent geometry short leg mismatch")
                                     check(all(relative(t,u)<1e-12 for t,u in zip(v,row["k"+str(i)+"_vec"])),
