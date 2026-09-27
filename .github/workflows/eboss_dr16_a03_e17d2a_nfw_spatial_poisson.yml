@@ -1,0 +1,111 @@
+name: eBOSS DR16 A03E17D2a NFW static spatial Poisson halo family and independent Fourier audit
+on:
+  push:
+    branches:
+      - audit/eboss-elg-bit8-ra-orientation-20260925
+    paths:
+      - 'scripts/audit_eboss_dr16_a03_e17d2a_nfw_spatial_poisson_halo.py'
+      - 'scripts/audit_eboss_dr16_a03_e17d2a_independent_nfw_radial_replay.py'
+      - '.github/workflows/eboss_dr16_a03_e17d2a_nfw_spatial_poisson.yml'
+permissions:
+  contents: write
+jobs:
+  static-NFW-positive-density-Poisson-only:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    env:
+      PYTHONUNBUFFERED: '1'
+      OMP_NUM_THREADS: '1'
+      OPENBLAS_NUM_THREADS: '1'
+      MKL_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install pinned analytic special function and numerical dependencies
+        run: python -m pip install 'numpy==1.26.4' 'scipy==1.14.1'
+      - name: Immutable E8 E16 E17D0 E17D1 SHA gates and analytic NFW radial Poisson preflight
+        run: |
+          python -m py_compile scripts/audit_eboss_dr16_a03_e17d2a_nfw_spatial_poisson_halo.py scripts/audit_eboss_dr16_a03_e17d2a_independent_nfw_radial_replay.py
+          python -u scripts/audit_eboss_dr16_a03_e17d2a_nfw_spatial_poisson_halo.py --self-test
+          python -u scripts/audit_eboss_dr16_a03_e17d2a_independent_nfw_radial_replay.py --self-test
+      - name: Published positive finite-mass NFW 3 c x 2 alpha shape-only both frozen short legs and original long K
+        run: |
+          for c in 2 4 8; do
+            for alpha in 0.1 1.0; do
+              python -u scripts/audit_eboss_dr16_a03_e17d2a_nfw_spatial_poisson_halo.py \
+                --case "$c" "$alpha" \
+                --output-dir eboss_workspace/a03_physics_source/e17d2a_nfw_spatial
+            done
+          done
+          python -u scripts/audit_eboss_dr16_a03_e17d2a_nfw_spatial_poisson_halo.py \
+            --aggregate --output-dir eboss_workspace/a03_physics_source/e17d2a_nfw_spatial
+      - name: Independent pure-stdlib 4096-panel radial NFW Fourier replay of all modes and SHA tamper control
+        run: |
+          python -u scripts/audit_eboss_dr16_a03_e17d2a_independent_nfw_radial_replay.py \
+            --negative-control \
+            --output-dir eboss_workspace/a03_physics_source/e17d2a_nfw_spatial
+          python -u scripts/audit_eboss_dr16_a03_e17d2a_independent_nfw_radial_replay.py \
+            --output-dir eboss_workspace/a03_physics_source/e17d2a_nfw_spatial
+      - name: Permanent source-only SHA archive original and independent seven JSON files on audit branch only
+        run: |
+          set -eu
+          src=eboss_workspace/a03_physics_source/e17d2a_nfw_spatial
+          dest=source_data/eboss_dr16_a03_e17d2a_archived_CI_2026_09_28
+          test -s "$src/e17d2a_original_joint_nfw_static_spatial_poisson_family.json"
+          test -s "$src/e17d2a_independent_stdlib_direct_radial_fourier_replay.json"
+          mkdir -p "$dest"
+          cp "$src"/*.json "$dest/"
+          python - <<'PY'
+          import hashlib,json,os,pathlib
+          d=pathlib.Path("source_data/eboss_dr16_a03_e17d2a_archived_CI_2026_09_28")
+          expected=["e17d2a_original_nfw_c"+str(c)+"_alpha"+str(alpha).replace(".","p")+".json"
+                    for c in (2,4,8) for alpha in (.1,1.)]
+          expected+=["e17d2a_original_joint_nfw_static_spatial_poisson_family.json",
+                     "e17d2a_independent_stdlib_direct_radial_fourier_replay.json"]
+          assert sorted(p.name for p in d.glob("*.json"))==sorted(expected)
+          files=[]
+          for name in sorted(expected):
+              raw=(d/name).read_bytes();j=json.loads(raw)
+              assert len(raw)>1000 and j["observed_odd_SEALED"] is True
+              assert j["full_physical_finiteK_galaxy_bispectrum"]=="BLOCKED"
+              files.append({"file":name,"size_bytes":len(raw),
+                            "sha256":hashlib.sha256(raw).hexdigest()})
+          joint=json.loads((d/"e17d2a_original_joint_nfw_static_spatial_poisson_family.json").read_bytes())
+          audit=json.loads((d/"e17d2a_independent_stdlib_direct_radial_fourier_replay.json").read_bytes())
+          assert joint["original_numerical_QA_cases"]==6
+          assert audit["independently_replayed_actual_two_short_plus_long_modes"]==10368
+          assert joint["actual_M200_c_rs_eBOSS_halo_formation_or_HOD_calibrated"] is False
+          man={"date":"2026-09-28","CI_run_id":os.environ.get("GITHUB_RUN_ID"),
+               "E17D2a_prospective_protocol_git_blob":"e7e0281f0b6b205214db5faf03a7c364521b3f2c",
+               "original_E17D1_joint_sha256":"1e52880db6c60cff1fe3cc1ca0a00e553c63ca08601399334d049e8403e18781",
+               "numeric_c_alpha_are_dimensionless_QA_only_NOT_real_halo_selection":True,
+               "physical_halo_mass_time_HOD_NOT_calibrated":True,
+               "full_physical_halo_tracer_bispectrum":"BLOCKED",
+               "observed_odd_SEALED":True,"no_new_CLASS_FITS_mock":True,
+               "main_untouched":True,"PR_remains_draft":True,"files":files}
+          (d/"archive_manifest.json").write_text(json.dumps(man,indent=2)+"\n")
+          for item in files:
+              print("E17D2A_PERMANENT_SOURCE_ARCHIVE",item["file"],item["sha256"],flush=True)
+          PY
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "$dest"
+          if git diff --cached --quiet; then
+            echo E17D2A_ALREADY_PERMANENTLY_ARCHIVED
+          else
+            git commit -m "archive(E17D2a): physical NFW static Poisson family original and independent spatial SHA QA; full B BLOCKED"
+            git push origin HEAD:refs/heads/audit/eboss-elg-bit8-ra-orientation-20260925
+          fi
+          echo E17D2A_SPATIAL_ONLY_ORIGINAL_AND_INDEPENDENT_PERMANENT_ON_AUDIT
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: eboss-a03-e17d2a-nfw-physical-static-spatial-only-no-halo-time-or-galaxy-b
+          path: eboss_workspace/a03_physics_source/e17d2a_nfw_spatial/*.json
+          if-no-files-found: warn
+          retention-days: 30
