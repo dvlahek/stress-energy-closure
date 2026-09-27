@@ -1,0 +1,115 @@
+name: eBOSS A03E17 original both-leg CLASS and independent fresh 3-state replay archive
+on:
+  push:
+    branches:
+      - audit/eboss-elg-bit8-ra-orientation-20260925
+    paths:
+      - 'source_data/eboss_dr16_a03_e17_two_leg_CLASS_direct_vTk_prereg_2026-09-27.json'
+      - 'scripts/audit_eboss_dr16_a03_e17_two_leg_CLASS_direct_vTk.py'
+      - 'scripts/audit_eboss_dr16_a03_e17_independent_fresh_CLASS_scalar_replay.py'
+      - '.github/workflows/eboss_dr16_a03_e17_frozen_both_leg_CLASS_independent_replay.yml'
+permissions:
+  contents: write
+jobs:
+  frozen-E17-original-and-independent:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    env:
+      PYTHONUNBUFFERED: '1'
+      OMP_NUM_THREADS: '1'
+      OPENBLAS_NUM_THREADS: '1'
+      MKL_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install E14 numerical dependencies unchanged
+        run: python -m pip install --upgrade pip setuptools wheel 'numpy==1.26.4' scipy cython
+      - name: Source-only preregistration and E8-E16 SHA checks BEFORE new CLASS
+        run: |
+          python -m py_compile scripts/audit_eboss_dr16_a03_e17_two_leg_CLASS_direct_vTk.py scripts/audit_eboss_dr16_a03_e17_independent_fresh_CLASS_scalar_replay.py
+          python -u scripts/audit_eboss_dr16_a03_e17_two_leg_CLASS_direct_vTk.py --self-test
+      - name: Fetch ONLY exact original CLASS revision (no eBOSS catalogues or mocks)
+        run: |
+          git init class_public
+          git -C class_public remote add origin https://github.com/lesgourg/class_public.git
+          git -C class_public fetch --depth 1 origin e85808324f51fc694d12e3ed7439552a3c3f9540
+          git -C class_public checkout --detach FETCH_HEAD
+          test "$(git -C class_public rev-parse HEAD)" = "e85808324f51fc694d12e3ed7439552a3c3f9540"
+      - name: Install original pinned CLASS backend
+        run: python -m pip install ./class_public
+      - name: Fresh CLASS original FD plus minus BOTH ACTUAL E16 short legs and 3 time nodes
+        run: |
+          set -eu
+          for state in FD plus minus; do
+            python -u scripts/audit_eboss_dr16_a03_e17_two_leg_CLASS_direct_vTk.py --state "$state" \
+              --output-dir eboss_workspace/a03_physics_source/e17_two_leg_class
+          done
+      - name: Aggregate exactly three original frozen state reports, no full physical B
+        run: |
+          python -u scripts/audit_eboss_dr16_a03_e17_two_leg_CLASS_direct_vTk.py --aggregate \
+            --output-dir eboss_workspace/a03_physics_source/e17_two_leg_class
+      - name: Independently re-run three original CLASS states, all 576 scalar triangles and 10368 short-leg redshift samples
+        run: |
+          python -u scripts/audit_eboss_dr16_a03_e17_independent_fresh_CLASS_scalar_replay.py \
+            --original-dir eboss_workspace/a03_physics_source/e17_two_leg_class \
+            --output eboss_workspace/a03_physics_source/e17_independent_fresh_CLASS_scalar_replay.json
+      - name: Permanently archive ALL original and independent E17 JSONs with SHA256 on draft audit branch ONLY
+        run: |
+          set -eu
+          original=eboss_workspace/a03_physics_source/e17_two_leg_class
+          archive=source_data/eboss_dr16_a03_e17_archived_CI_2026_09_27
+          mkdir -p "$archive"
+          for state in FD plus minus; do
+            cp "$original/e17_original_both_legs_${state}.json" "$archive/"
+          done
+          cp "$original/e17_original_joint_three_state_CLASS_both_short_legs_source_only.json" "$archive/"
+          cp eboss_workspace/a03_physics_source/e17_independent_fresh_CLASS_scalar_replay.json "$archive/"
+          python - <<'PY'
+          import hashlib,json,os,pathlib,subprocess
+          root=pathlib.Path("source_data/eboss_dr16_a03_e17_archived_CI_2026_09_27")
+          names=sorted(p for p in root.glob("*.json") if p.name!="archive_manifest.json")
+          assert len(names)==5
+          records=[{"file":p.name,"size_bytes":p.stat().st_size,
+                    "sha256":hashlib.sha256(p.read_bytes()).hexdigest()} for p in names]
+          assert all(r["size_bytes"]>1000 for r in records)
+          assert sum(r["file"].startswith("e17_original_both_legs_") for r in records)==3
+          src=pathlib.Path("source_data/eboss_dr16_a03_e17_two_leg_CLASS_direct_vTk_prereg_2026-09-27.json")
+          assert subprocess.check_output(["git","hash-object",str(src)],text=True).strip()=="f4bd3ea2a0519c4091ea94d0600ac62e57b3a2d4"
+          manifest={"date":"2026-09-27","CI_run_id":os.environ.get("GITHUB_RUN_ID"),
+            "E17_prospective_protocol_git_blob":"f4bd3ea2a0519c4091ea94d0600ac62e57b3a2d4",
+            "E17_original_runner_git_blob":subprocess.check_output(["git","hash-object","scripts/audit_eboss_dr16_a03_e17_two_leg_CLASS_direct_vTk.py"],text=True).strip(),
+            "E17_independent_runner_git_blob":subprocess.check_output(["git","hash-object","scripts/audit_eboss_dr16_a03_e17_independent_fresh_CLASS_scalar_replay.py"],text=True).strip(),
+            "original_CLASS_commit":"e85808324f51fc694d12e3ed7439552a3c3f9540",
+            "E16_full_original_SHA256":"5d81f95a5571175f06eb032b865285ba34804701693f76af392be7fc31fb06db",
+            "same_three_original_frozen_F_states":True,
+            "linear_CLASS_both_leg_replay_NOT_independent_retarded_halo":True,
+            "physical_finite_K_bispectrum":"BLOCKED",
+            "observed_odd_SEALED":True,"new_catalogue_or_mock_download":False,
+            "main_unchanged":True,"PR_remains_draft":True,"files":records}
+          (root/"archive_manifest.json").write_text(json.dumps(manifest,indent=2)+"\n")
+          for item in records:print("E17_PERMANENT_ORIGINAL_INDEPENDENT",item["file"],item["sha256"],flush=True)
+          PY
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "$archive"
+          if git diff --cached --quiet; then
+            echo E17_EXACT_ARCHIVE_ALREADY_COMMITTED
+          else
+            git commit -m "archive(E17A): all original both-leg CLASS states, independent 10368-point replay and SHA manifest"
+            git push origin HEAD:refs/heads/audit/eboss-elg-bit8-ra-orientation-20260925
+          fi
+          echo E17_ALL_ORIGINAL_AND_INDEPENDENT_FULL_REPORTS_PERMANENT_ON_AUDIT_BRANCH
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: eboss-a03-e17-original-independent-pinned-three-state-two-leg
+          path: |
+            eboss_workspace/a03_physics_source/e17_two_leg_class/*.json
+            eboss_workspace/a03_physics_source/e17_independent_fresh_CLASS_scalar_replay.json
+          if-no-files-found: warn
+          retention-days: 30
