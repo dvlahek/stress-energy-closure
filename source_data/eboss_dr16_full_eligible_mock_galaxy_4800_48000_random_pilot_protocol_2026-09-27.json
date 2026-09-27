@@ -1,0 +1,122 @@
+{
+  "study": "eBOSS DR16 LRGxELG full eligible same-source mock galaxy estimator pilot with exact original nested 4800R and engineering 48000R, optimized sparse cross pairs, no observed science",
+  "registered_on": "2026-09-27",
+  "registered_before": "Any new full-eligible mock galaxy pair count or new 43200 random complement draw. Original 600D/1200/2400/4800R E4 results already inspected; this new 48000 engineering diagnostic is NOT prospective validation of physical finite-random acceptance.",
+  "branch": "audit/eboss-elg-bit8-ra-orientation-20260925",
+  "draft_pr": 1,
+  "source_scope": "REUSE_ORIGINAL_72_LOCAL_SHA_PINNED_REALISTIC_EZMOCK_GZIP_ONLY_NO_NEW_DOWNLOADS",
+  "fixed_id": [
+    1
+  ],
+  "caps": [
+    "NGC",
+    "SGC"
+  ],
+  "tracer_order": [
+    "eBOSS_LRG",
+    "eBOSS_ELG"
+  ],
+  "roles": [
+    "dat",
+    "ran"
+  ],
+  "redshift": [
+    0.9,
+    1
+  ],
+  "geometry": {
+    "s_edges_mpc_h": [
+      20,
+      40,
+      60,
+      80,
+      100,
+      120,
+      140
+    ],
+    "mu_edges": "numpy.linspace(-1-1e-7,1+1e-7,25)",
+    "signed_mu_bins": 24,
+    "midpoint_LOS": true,
+    "orientation": "LRG_to_ELG",
+    "theta_min_deg": 0.05,
+    "fiducial": "published_multitracer"
+  },
+  "galaxies": {
+    "selection": "ALL original same-ID/cap/tracer released mock-galaxy rows passing unchanged A02 [0.9,1.0) and four-column positive weight gate. No 600D selection in new estimator. Reproduce original 600D sample hash before new pair counting.",
+    "full_eligible_counts_from_original_A02_ID0001": {
+      "NGC": {
+        "LRG": 7537,
+        "ELG": 17149
+      },
+      "SGC": {
+        "LRG": 4159,
+        "ELG": 15860
+      }
+    },
+    "galaxy_resampling": false
+  },
+  "randoms": {
+    "nested_levels": [
+      4800,
+      48000
+    ],
+    "original_4800": "Exactly original E4 selected 1200 + original 3600 supplemental positions from same pinned random catalogue; match original E4 full 4800 catalogue SHA before new pair counting.",
+    "new_extra_count_each_tracer_cap": 43200,
+    "new_extra_seed_formula": "2026092707+100000*mockID+1000*capIndex+100*tracerIndex; numpy.random.default_rng(seed).choice(sorted_remaining_eligible_positions,size=43200,replace=False)",
+    "sampling_order": "Sort original 4800 eligible positions union sorted new 43200 complement; no replacement and original 4800 nested in 48000.",
+    "full_eligible_random_min_from_original_A02": {
+      "NGC": {
+        "LRG": 163089,
+        "ELG": 522515
+      },
+      "SGC": {
+        "LRG": 93220,
+        "ELG": 472662
+      }
+    },
+    "not_physical_density_acceptance": true
+  },
+  "source_hash_requirements": {
+    "all_72_full_original_gzip_SHA_reverified_before_any_new_FITS": true,
+    "original_A02_report_SHA256": "15f7668fd483d8e1329fbb9684bbdf07cb49d1974d264f9ceebd85e0156daa27",
+    "original_E4_report_SHA256": "ec45931f815dad8845bae41111f11b3e11cc0a5912f14c3e2b22c2f090e1045f",
+    "original_E4_runner_blob_sha1": "fda4a5eda420a9f69bd4d393bae02419155958f8",
+    "original_E4_uploaded_manifest_blob_sha1": "8e73c473319963c2c1d8a1c9887226da889d2126",
+    "original_sparse_kdtree_code_blob_sha1": "eBOSS existing sparse source script source-pin from audit_eboss_dr16_rr_kdtree_pilot.py",
+    "original_dense_oriented_pair_code_blob_sha1": "a12bb47b16cb879b56f8c9554f62abf4cfff37f7"
+  },
+  "estimator": {
+    "cross_Landy_Szalay": "(D_LD_E/NDL_NDE-D_LR_E/NDL_NRE-R_LD_E/NRL_NDE+R_LR_E/NRL_NRE)/(R_LR_E/NRL_NRE)",
+    "weights": "WEIGHT_SYSTOT*WEIGHT_CP*WEIGHT_NOZ*WEIGHT_FKP",
+    "algorithm": "Already independently scalar-tested scipy.spatial.cKDTree original sparse geometry kdtree_rr; compare against original dense implementation on original 600D/1200R and E4 original 4800R source RR counts for same cap before full computation.",
+    "RR_support": "All 144 cells required for full multipole output; do not zero-fill unsupported cells",
+    "both_orientation_pair_counts": true,
+    "store_all_four_6x24_float64_histograms": true,
+    "store_raw_6x24_xi_array": true,
+    "store_ell0_ell1_ell2_ell3_original_grid_multipoles": true,
+    "original_A02_pair_hist_hash_replay_before_new_mock_pairs": true
+  },
+  "execution": {
+    "scope": "0001 both fixed caps only; full-eligible mock D and exact E4-original 4800 vs engineered 48000 R; no generalization to other IDs until outcome independently audited",
+    "full_72_source_rehash_before_fits": true,
+    "no_new_input_download": true,
+    "no_observed_catalogue_row_read": true,
+    "fail_closed_and_preserve_failure_original": true,
+    "always_unbuffered_stdout_log": true,
+    "output_json": "eboss_workspace/a03_full_eligible_mock/full_eligible_id0001_4800_48000_report.json",
+    "output_log": "eboss_workspace/a03_full_eligible_mock/full_eligible_id0001_4800_48000_stdout.log"
+  },
+  "interpretation": {
+    "what_this_test_can_establish": "Engineering finite-R numerical behavior with ALL current mock galaxies and exact same-source matching, independent tracer reversal and all LS histograms for diagnosis. It can identify DD pilot sparsity versus random term stability.",
+    "cannot_establish": "Historical ELG physical production mask, fully measured selection systematics, true independent 18D covariance, physical absolute Einstein-Vlasov wake amplitude, detection, exclusion or observed odd signal. 48000 random size chosen AFTER examining E4 and cannot retroactively certify E4."
+  },
+  "future_required": "Use separately frozen untouched extra mock IDs and physically motivated acceptance after calibrating actual survey window and final observable. Existing 9 original IDs remain code transport cohort.",
+  "observed_galaxy_rows_read": false,
+  "observed_random_rows_read": false,
+  "observed_odd_data_vector_read": false,
+  "new_science_cut": false,
+  "additional_mock_downloads": false,
+  "author_contact": false,
+  "main_change": false,
+  "unblinding_authorized": false
+}
