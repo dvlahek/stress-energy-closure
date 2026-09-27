@@ -52,7 +52,7 @@ def source_gate(p):
     assert_true(
         p["registered_on"]=="2026-09-27"
         and p["branch"]=="audit/eboss-elg-bit8-ra-orientation-20260925"
-        and p["registration_before"]=="Any first E4 FITS header, row or E4 extra random index draw; E3 original 18/18 completed and exact uploaded archive independently audited"
+        and p["registered_before"]=="Any first E4 FITS header, row or E4 extra random index draw; E3 original 18/18 completed and exact uploaded archive independently audited"
         and p["user_decision"]=="EMPIRICAL_ONLY_DO_NOT_CONTACT_AUTHORS"
         and p["same_fixed_mock_ids"]==list(A02.IDS)
         and p["caps"]==list(A02.CAPS) and p["tracers"]==list(A02.TRACERS)
