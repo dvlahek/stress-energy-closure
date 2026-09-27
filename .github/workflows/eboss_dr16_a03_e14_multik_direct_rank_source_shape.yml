@@ -1,0 +1,98 @@
+name: eBOSS DR16 A03E14 exact E13 direct-rank three-short-k source-only permanent archive
+on:
+  push:
+    branches:
+      - audit/eboss-elg-bit8-ra-orientation-20260925
+    paths:
+      - 'source_data/eboss_dr16_a03_e14_pre_registered_multik_direct_vTk_source_shape_2026-09-27.json'
+      - 'scripts/audit_eboss_dr16_a03_e14_multik_direct_vTk_source_shape.py'
+      - '.github/workflows/eboss_dr16_a03_e14_multik_direct_rank_source_shape.yml'
+permissions:
+  contents: write
+jobs:
+  frozen-three-state-pcb-short:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    env:
+      PYTHONUNBUFFERED: '1'
+      OMP_NUM_THREADS: '1'
+      OPENBLAS_NUM_THREADS: '1'
+      MKL_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Pin original E13 class/numerical dependencies
+        run: python -m pip install --upgrade pip setuptools wheel 'numpy==1.26.4' scipy cython
+      - name: Verify SHA-exact permanent E8-E13 archives and prior original E13 unit-bias source before new CLASS
+        run: |
+          python -m py_compile scripts/audit_eboss_dr16_a03_e14_multik_direct_vTk_source_shape.py
+          python -u scripts/audit_eboss_dr16_a03_e14_multik_direct_vTk_source_shape.py --self-test
+      - name: Fetch exactly original pinned CLASS commit, no catalogue/mock download
+        run: |
+          git init class_public
+          git -C class_public remote add origin https://github.com/lesgourg/class_public.git
+          git -C class_public fetch --depth 1 origin e85808324f51fc694d12e3ed7439552a3c3f9540
+          git -C class_public checkout --detach FETCH_HEAD
+          test "$(git -C class_public rev-parse HEAD)" = "e85808324f51fc694d12e3ed7439552a3c3f9540"
+      - name: Install pinned CLASS Python
+        run: python -m pip install ./class_public
+      - name: Original fixed F0 Fplus Fminus CLASS Pcb(k) at three prospectively fixed short modes
+        run: |
+          for state in FD plus minus; do
+            python -u scripts/audit_eboss_dr16_a03_e14_multik_direct_vTk_source_shape.py \
+              --state "$state" --output-dir eboss_workspace/a03_physics_source/e14_multik_direct_rank_source
+          done
+      - name: Enforce all original E13 fixed-short-k0 anchor products and exact source-only analytical k-scaling
+        run: |
+          python -u scripts/audit_eboss_dr16_a03_e14_multik_direct_vTk_source_shape.py \
+            --aggregate --output-dir eboss_workspace/a03_physics_source/e14_multik_direct_rank_source
+      - name: Permanently archive byte-exact original E14 three CLASS state and joint source-only reports on audit branch
+        run: |
+          set -eu
+          orig=eboss_workspace/a03_physics_source/e14_multik_direct_rank_source
+          dest=source_data/eboss_dr16_a03_e14_archived_CI_2026_09_27
+          mkdir -p "$dest"
+          cp "$orig"/e14_short_Pcb_FD.json "$dest/"
+          cp "$orig"/e14_short_Pcb_plus.json "$dest/"
+          cp "$orig"/e14_short_Pcb_minus.json "$dest/"
+          cp "$orig"/e14_frozen_multik_direct_rank_unitbias_source_only.json "$dest/"
+          python - <<'PY'
+          import hashlib,json,pathlib,os
+          root=pathlib.Path("source_data/eboss_dr16_a03_e14_archived_CI_2026_09_27")
+          files=[]
+          for f in sorted(root.glob("*.json")):
+              if f.name=="archive_manifest.json":continue
+              raw=f.read_bytes()
+              files.append({"file":f.name,"size_bytes":len(raw),"sha256":hashlib.sha256(raw).hexdigest()})
+          assert len(files)==4 and all(x["size_bytes"]>500 for x in files)
+          manifest={"date":"2026-09-27","run_id":os.environ.get("GITHUB_RUN_ID"),
+                    "preregistered_E14_git_blob_sha1":"688c56b5486395911ff39ff6f862b405c1f446d7",
+                    "original_E13_full_sha256":"537365b2e758ec215810bb687557771440851cf2869d02578569b1d47d4ec98d",
+                    "original_Fplus_Fminus_unchanged":True,
+                    "observed_odd_sealed":True,"not_actual_eBOSS_galaxy_bispectrum":True,
+                    "main_unchanged":True,"files":files}
+          (root/"archive_manifest.json").write_text(json.dumps(manifest,indent=2)+"\n")
+          for x in files:print("E14_ORIGINAL_FULL_SOURCE_ARCHIVED",x["file"],x["sha256"],flush=True)
+          PY
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "$dest"
+          if git diff --cached --quiet; then
+            echo E14_EXACT_SOURCE_ALREADY_COMMITTED
+          else
+            git commit -m "archive(E14): exact frozen three-CLASS kshort source-only direct-rank multi-k outputs and SHA manifest"
+            git push origin HEAD:refs/heads/audit/eboss-elg-bit8-ra-orientation-20260925
+          fi
+          echo E14_ORIGINAL_FULL_SOURCE_PERMANENT_ON_GITHUB_AUDIT_BRANCH
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: eboss-a03-e14-original-three-CLASS-fixed-short-k-source-only
+          path: eboss_workspace/a03_physics_source/e14_multik_direct_rank_source/*.json
+          if-no-files-found: warn
+          retention-days: 30
