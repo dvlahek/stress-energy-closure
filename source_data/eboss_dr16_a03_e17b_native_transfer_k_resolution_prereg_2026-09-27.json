@@ -1,0 +1,119 @@
+{
+  "date": "2026-09-27",
+  "status": "E17B_PROSPECTIVELY_REGISTERED_BEFORE_ANY_REFINED_CLASS_EXECUTION",
+  "stage": "E17B_NATIVE_CLASS_TRANSFER_K_RESOLUTION_CONVERGENCE_ONLY",
+  "parent_head_at_registration": "290e37c46d8c01af2c418dd41a36ade6d0b3c669",
+  "parent": {
+    "E17A_protocol_git_blob": "f4bd3ea2a0519c4091ea94d0600ac62e57b3a2d4",
+    "E17A_original_joint_sha256": "094c49cb89d6dd231a5cbc16ecdfe455bcb3938ddec375fd28c81c8098ab2ad9",
+    "E17A_original_per_state_sha256": {
+      "FD": "cd89f798899e12d267fedd1b01d3ef1ddf8b1d8dbe5d14845b5e25d6c9c9af34",
+      "plus": "4c95de74fd7ea03388cecb94bbe9fd06180865b045c5d68b925b69a3f2b3ba10",
+      "minus": "9ed7a5f219367570c37d01ba4b19031152b1930e551a2f77033fa9fa50b9ba52"
+    },
+    "E17A_independent_sha256": "816570daa6acf3f81fffed75f4b3f5b3ba7e446630cfb93a28a1b7d1fdd974f6",
+    "E17A_archive_manifest_git_blob": "a8f4e2d0e19c2deacae375449951d1b85766b3d2",
+    "E16_original_sha256": "5d81f95a5571175f06eb032b865285ba34804701693f76af392be7fc31fb06db",
+    "E8_original_csv_sha256": "bf8f48deb9514c5101d5ce314bfbd397485102a5487da1039f141e3cad6143d0",
+    "original_CLASS_commit": "e85808324f51fc694d12e3ed7439552a3c3f9540"
+  },
+  "frozen": {
+    "states": [
+      "FD",
+      "plus",
+      "minus"
+    ],
+    "tracer_order": [
+      "LRG",
+      "ELG"
+    ],
+    "k_short_comoving_h_Mpc": [
+      0.05,
+      0.075,
+      0.1
+    ],
+    "K_long_comoving_h_Mpc": [
+      0.001,
+      0.002,
+      0.003,
+      0.005
+    ],
+    "orientation_short_mu": [
+      -1,
+      0,
+      0.6,
+      1
+    ],
+    "orientation_long_mu": [
+      -1,
+      0,
+      0.5,
+      1
+    ],
+    "orientation_phi": [
+      "0",
+      "pi/2",
+      "pi"
+    ],
+    "geometry_count": 576,
+    "z": [
+      0.945,
+      0.95,
+      0.955
+    ],
+    "mass_nu_eV": 0.06,
+    "z_match": 1100,
+    "cap": 0.3,
+    "gauge": "newtonian",
+    "CLASS_output": "mPk,dTk,vTk"
+  },
+  "precision": {
+    "baseline": "Unmodified E17A CLASS defaults, verified N_native=81, no original or archived E17A rewrite",
+    "tier_high": {
+      "k_per_decade_for_pk": 40,
+      "k_per_decade_for_bao": 140
+    },
+    "tier_ultra": {
+      "k_per_decade_for_pk": 80,
+      "k_per_decade_for_bao": 280
+    },
+    "note": "Both tiers change only CLASS numerical k sampling, not physical parameters, frozen source, redshift, shape or cosmology. Recompute fresh mPk,dTk,vTk for each frozen state; explicitly record actual native grid size and bounds. No artificial interpolation beyond actual native CLASS k support.",
+    "evaluations": "For both short legs of exactly E16 576 orientations at three frozen z, compare E17A native-grid linear t_ncdm[0]-t_cdm and Newtonian delta_cb against tier-high and tier-ultra direct CLASS transfer grids, plus fresh pk_cb_lin at exact |ki|. Keep original E13 R16 wind rank separate; never substitute short-mode theta for R16 wind.",
+    "scaled_error": "|x-y|/max(|x|,|y|,10^-6 * max_abs_ultra_native_transfer_over_fixed_legs_and_z_for_state_and_field); retain raw absolute and relative gaps and worst geometries; measure baseline/high and high/ultra separately.",
+    "audit": "Store complete actual high and ultra CLASS k grids and t_ncdm[0],t_cdm,d_b,d_cdm arrays at each of three z and each state. Independently reconstruct all leg/z interpolated transfers from archived native arrays, verify exact original E17A per-row SHA, triangle order and Pcb direct values, and report maximum scaled gaps without importing E17B worker."
+  },
+  "prereg_engineering_diagnostics_NOT_physical_error_budget": {
+    "original_baseline_grid_N": 81,
+    "refined_grid_must_be_strictly_larger_than_baseline": true,
+    "ultra_grid_must_be_strictly_larger_than_high": true,
+    "same_three_z_native_grid_within_each_tier": true,
+    "all_legs_bracketed_without_extrapolation": true,
+    "max_original_anchor_Pcb_relative_gap": 0.001,
+    "max_high_ultra_scaled_transfer_gap_CANDIDATE": 0.003,
+    "max_baseline_ultra_scaled_transfer_gap_CANDIDATE": 0.01,
+    "independent_native_array_replay_scaled_tolerance": 1e-11,
+    "independent_original_E17A_anchor_tolerance": 1e-12,
+    "preserve_failure_if_not_met": true,
+    "no_threshold_retuning_on_results": true,
+    "qualification": "Passing these diagnostics supports sampled linear numerical stability on the frozen grid. It is not a mathematically certified truncation error and does not validate a physical retarded halo response."
+  },
+  "absolute_STOP": {
+    "no_new_catalogue_or_mock_download": true,
+    "no_observed_odd_read": true,
+    "no_new_seeds_or_science_cuts": true,
+    "no_new_neutrino_distribution_fit": true,
+    "no_E8_to_E17A_original_rewrite": true,
+    "no_main_mutation": true,
+    "no_PR_merge": true,
+    "PR_remains_draft": true,
+    "no_physical_finite_K_B_claim": true,
+    "no_lrg_elg_halo_tracer_coupling_invented": true,
+    "no_eBOSS_xi_SNR_significance": true,
+    "original_A03_pair_RR_and_A04_independent_covariance_not_certified": true
+  },
+  "outputs": [
+    "Fresh three-state high/ultra CLASS native transfer and direct leg Pcb comparisons with numeric status recorded even when a prereg QA fails.",
+    "Independent standard-library native-array interpolation replay and frozen E17A SHA gate.",
+    "Original report, independent replay, complete SHA manifest committed permanently to source_data on audit branch; update draft PR and master plan only after reviewing CI."
+  ]
+}
