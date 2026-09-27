@@ -163,6 +163,19 @@ def validate_progress(progress):
             need(rec.get("forward_counted_not_mirrored") is True and
                  rec["candidate_neighbour_pairs"] >= rec["accepted_pairs"],
                  "Stored checkpoint is not genuinely forward-counted")
+    assembled=progress.get("assembled_levels",{})
+    need(set(assembled).issubset(progress["levels"]),
+         "Assembled SGC level not backed by stored forward pair checkpoints")
+    for stage,rec in assembled.items():
+        verify_array(rec,pair=False)
+        need(rec["RR_supported_cells"]==144 and
+             rec["reverse_source"]==
+             "EXACT_GEOMETRIC_SIGNED_MU_MIRROR_NOT_INDEPENDENT_RECOUNT" and
+             all(term in progress["levels"][stage] for term in V1.TERMS),
+             "Assembled SGC level missing full RR support, mirror provenance or four terms")
+        reconstructed=close_mirrored_level(progress["levels"][stage])
+        need(reconstructed["xi_SHA256"]==rec["xi_SHA256"],
+             "Tampered assembled SGC xi differs from independently rebuilt stored pairs")
     return progress
 
 
@@ -309,6 +322,23 @@ def synthetic_test():
     need(s.all() and rs.all() and
          np.allclose(x,y[:,::-1],atol=2e-14,rtol=0),
          "Synthetic distinct DR/RD normalizations not preserved on mirror")
+    positive={}
+    for term in V1.TERMS:
+        h=np.ascontiguousarray(arrays[term],dtype="f8")
+        positive[term]={"histogram_6x24":h.tolist(),
+                        "histogram_SHA256":V1.sha(h.tobytes()),
+                        "accepted_pairs":100,"candidate_neighbour_pairs":101,
+                        "pair_normalization":norm[term],
+                        "forward_counted_not_mirrored":True}
+    assembled=close_mirrored_level(positive)
+    need(assembled["RR_supported_cells"]==144 and
+         assembled["reverse"]["R1D2"]["geometric_mirror_of_forward"]=="D1R2",
+         "Synthetic full 4-term checkpointed physical reverse construction failed")
+    progress={"cap":CAP,"sources":{key:"1"*64 for key in
+             ("eBOSS_LRG_dat","eBOSS_LRG_ran","eBOSS_ELG_dat","eBOSS_ELG_ran")},
+             "levels":{"original_4800":positive},
+             "assembled_levels":{"original_4800":assembled}}
+    validate_progress(progress)
     bad={"histogram_6x24":np.ones((6,24)).tolist(),
          "histogram_SHA256":"0"*64,"accepted_pairs":7,
          "pair_normalization":1.}
