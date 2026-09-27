@@ -1,0 +1,124 @@
+{
+  "study": "A03E6 prospective mathematical theory-to-conditional-eBOSS-RR operator bridge, registered after original E4 mock-only results and source-only E5 readiness; synthetic/code-only interface until independently calibrated physical wake model and final eBOSS observable exist",
+  "date": "2026-09-27",
+  "branch": "audit/eboss-elg-bit8-ra-orientation-20260925",
+  "draft_pr": 1,
+  "registration_boundary": "Before new E6 synthetic maths tests and source-only operator-interface implementation; E4 results already inspected and are explicitly retrospective; not a preregistration of any numerical physical acceptance threshold",
+  "parent_source_blobs": {
+    "original_eBOSS_operator_protocol": {
+      "path": "source_data/eboss_dr16_a03_empirical_rr_window_injection_protocol_2026-09-26.json",
+      "git_blob_sha1": "d8bb2d52f9c542edc26a80a23b37d639cadf64f7"
+    },
+    "original_conditional_operator_implementation": {
+      "path": "scripts/build_eboss_dr16_conditional_window.py",
+      "git_blob_sha1": "5e183e9bd6cce74743169f91c8b235c1fabbf1e1"
+    },
+    "original_E4_report": {
+      "path": "source_data/eboss_dr16_a03_e4_mock_galaxy_nested_random_density_1200_2400_4800_report_2026-09-27.json",
+      "git_blob_sha1": "32246a495506deac5b9dfe71bea51c3db33202b1",
+      "sha256": "ec45931f815dad8845bae41111f11b3e11cc0a5912f14c3e2b22c2f090e1045f"
+    },
+    "original_E4_odd_erratum": {
+      "path": "source_data/eboss_dr16_a03_e4_odd_multipole_summary_erratum_and_24d_drift_2026-09-27.json",
+      "git_blob_sha1": "0baf9c5a009bf8f5e78f5725e44395bad6f91715"
+    },
+    "post_E4_E5_STOP": {
+      "path": "source_data/eboss_dr16_a03_e5_a04_physics_first_readiness_protocol_2026-09-27.json",
+      "git_blob_sha1": "0c81483bd9c70daf7cc6341f35a857761ab964d6"
+    },
+    "existing_DESI_shape_only_wake_builder": {
+      "path": "code/build_lrg_elg_wake_template.py",
+      "git_blob_sha1": "5f803071d3b3de19705893fb08e621b7f8ea06db"
+    },
+    "existing_DESI_ideal_shell_physical_basis": {
+      "path": "code/build_lrg_elg_physical_odd_basis.py",
+      "git_blob_sha1": "e08382ae3eb7c701c4219d27ef00ecbbd7a2f8af"
+    },
+    "existing_DESI_3z_18D_basis": {
+      "path": "code/build_lrg_elg_zresolved_physical_basis.py",
+      "git_blob_sha1": "181bb1d500fb44b8c864d352cecec1f2821f862d"
+    }
+  },
+  "unchanged_original_empirical_operator": {
+    "original_A03_E0E1_zip_sha256": "a3b23502073e2a2e46211582d13ee4c1e45cd4984fdedf1ef36df4e0c5a8cda0",
+    "original_A03_E0E1_npz_name": "ninemock_window_ensemble.npz",
+    "original_A03_E0E1_npz_bytes": 250104,
+    "original_A03_E0E1_npz_sha256": "4f63e04ce4c5cfdb9404e5a56dee44907cb9a28cc015c6ed27ac718195feae6b",
+    "existing_matrix_names": "observed_M_{cap}_out{ellout}_in{ellin} and mock_M_{cap}_id{mid:04d}_out{ellout}_in{ellin}",
+    "matrix_shape": [
+      6,
+      120
+    ],
+    "matrix_family_per_cap": 10,
+    "original_npz_array_count": 203,
+    "note": "This E6 CI will NOT open the original NPZ, FITS or observed randoms. Matrix numerical application is demonstrated only on deterministic synthetic positive RR using unchanged canonical conditional_window_block; original SHA pins identify future already-cached operator input without authorizing a new download."
+  },
+  "math_contract": {
+    "estimated_quantity": "Expected conditional finite-bin cross-Landy-Szalay xi(s,mu) projected to signed odd ell at coarse s and cap; it is not a fully validated continuous survey window.",
+    "fine_s_edges_Mpc_over_h": "integers 20 through 140 inclusive (120 fine one-Mpc/h cells, centers 20.5 through 139.5)",
+    "coarse_s_edges_Mpc_over_h": [
+      20,
+      40,
+      60,
+      80,
+      100,
+      120,
+      140
+    ],
+    "signed_mu_edges": "numpy.linspace(-1-1e-7,1+1e-7,241)",
+    "midpoint_LOS": true,
+    "orientation": "LRG_to_ELG",
+    "input_prewindow_ells": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "output_odd_ells": [
+      1,
+      3
+    ],
+    "caps": [
+      "NGC",
+      "SGC"
+    ],
+    "pilot_vector_order": "cap NGC then SGC, output ell 1 then 3 within each cap, s bins 20-40,...,120-140",
+    "pilot_per_cap_dimension": 12,
+    "pilot_joint_dimension": 24,
+    "final_inference_dimension": "UNDECIDED_NOT_AUTOMATIC_18",
+    "input_theory_units": "Dimensionless physical prewindow xi_ell(z,s) coefficients of P_ell(signed_mu), no per-component maximum normalization or inherited DESI HOD calibration",
+    "output_units": "Dimensionless binned xi_1/xi_3 in same orientation as original eBOSS mock-only LS pilot",
+    "equation": "y_{cap,o,J} = sum_{ell=0}^4 sum_{i=0}^{119} M_{cap,o,ell}[J,i] xi_{cap,ell}(s_i) under the original finite-bin piecewise-constant fine-s approximation",
+    "window_kernel": "M_{cap,o,ell}[J,i] = (2o+1)/(mu_max-mu_min) * sum_{j=0}^{239} RR_{cap,i,j}/sum_{i in J}RR_{cap,i,j} * integral_{mu_j}^{mu_(j+1)} P_o(mu)P_ell(mu)dmu for i within J",
+    "decomposition": "intrinsic odd input ell=1,3 + induced even-to-odd contributions from ell=0,2,4. The latter can be nonzero when physically even amplitudes vary across fine s and finite-bin RR(s,mu) is nonseparable.",
+    "zero_and_constant_closure": "Exact linearity and zero field; constant-in-s pure ell0/ell2/ell4 cannot produce odd except documented edge numerical quadrature tolerances. Do not equate this synthetic closure with zero physical leakage.",
+    "signed_tracer_reversal": "If tracer order is reversed, flip signed mu and all odd output coefficients; do not reuse original LRG_to_ELG matrices as if they had reversed orientation.",
+    "relevant_redshift_caveat": "Existing [0.9,1.0) operator marginalizes over pair redshift; z-dependent physical xi_ell(s,z) requires a separately validated effective-z or redshift-conditioned operator and corresponding selection weights. Never silently set z_eff=0.95 or import DESI effective redshift.",
+    "physical_model_normalization_caveat": "Existing DESI build_lrg_elg_wake_template.py explicitly max-normalizes wake and doppler shapes and fits free amplitude. Existing DESI build_lrg_elg_physical_odd_basis.py uses ideal-shell s^2 bin average before RR and omits needed released-eBOSS tracer calibration. They are direction-level research inputs, NOT an absolute physical prediction in eBOSS xi units."
+  },
+  "systematics_budget_symbolic": {
+    "only_if_physical_model_and_EBOSS_C_exist": "A future independently calibrated prewindow physical wake/null model must be propagated to the same 24D (or newly predeclared final pD) observable using the same validated operator, with an independently calibrated eBOSS statistical covariance C and nuisance matrix B.",
+    "metric": "Use W=C^{-1}, t_perp=t-B(B^T W B)^{-1}B^T Wt, physical amplitude bias delta_A=(t_perp^T W delta_y)/(t_perp^T W t_perp) and sigma_A=(t_perp^T W t_perp)^{-1/2}. Here delta_y is a calibrated systematic-response difference in the same observable units. Do not evaluate with DESI C or a shape-only physical amplitude.",
+    "threshold": "UNDEFINED until physical model, selection systematic class, covariance, target coverage and predeclared independent held-out calibration are specified. If t_perp is degenerate, STOP."
+  },
+  "synthetic_ci_contract": [
+    "Verify all pinned parent Git blobs, original math geometry and enforced post-E4 STOP before testing",
+    "Use only synthetic strictly positive 120x240 RR; check 10 original conditional 6x120 window blocks and 24-element output layout, odd/even split, linearity and zero control",
+    "Pure constant even input must not create odd above original numerical integration tolerance; positive odd input must recover normalized synthetic response within numerical integration tolerance",
+    "A nonseparable signed-mu RR with fine-s-varying even field must produce nonzero odd finite-bin projection; mirror RR parity must follow (-1)^(out+in)",
+    "A nuisance-projected covariance matched-filter amplitude bias formula must pass synthetic SPD and singular/null negative controls without importing any DESI/eBOSS empirical C",
+    "Reject improperly max-normalized shape-only DESI basis as an absolutely calibrated eBOSS physical wake template, reject hard-coded z_eff, incorrect 18D pilot truncation, wrong cap/orientation and any observed access"
+  ],
+  "physics_prediction_status": "NO_EBOSS_ABSOLUTE_PHYSICAL_WAKE_AMPLITUDE_OR_EBOSS_FINAL_P_DIMENSIONAL_OBSERVABLE_AVAILABLE",
+  "new_observed_rows_read": false,
+  "observed_odd_data_vector_read": false,
+  "new_mock_gzip_downloads": false,
+  "real_E4_reexecution": false,
+  "new_science_selection": false,
+  "author_contact": false,
+  "main_mutation": false,
+  "physical_A03_acceptance_set": false,
+  "eBOSS_A04_inference_performed": false,
+  "unblinding_authorized": false
+}
