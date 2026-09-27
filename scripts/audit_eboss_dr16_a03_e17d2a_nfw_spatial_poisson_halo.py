@@ -100,6 +100,10 @@ def A(c):
 
 def mass_ratio(y,c):
     check(y>=0 and c>0,"nonphysical radial mass")
+    # The enclosed mass at the origin vanishes; A(0)=0 is a valid
+    # radial limit and must not be passed through A's c>0 guard.
+    if y==0.:
+        return 0.
     return A(min(y,c))/A(c)
 
 def potential_normalized(y,c):
