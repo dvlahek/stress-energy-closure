@@ -21,7 +21,7 @@
     "A02_report_sha256": "15f7668fd483d8e1329fbb9684bbdf07cb49d1974d264f9ceebd85e0156daa27",
     "E3_report_sha256": "1e52f95be973aa6616337c2427fde60725a0df31ce7d3a818e99d1dd1fb0fb35",
     "A03_empirical_only_user_decision": "source_data/eboss_dr16_a03_empirical_only_user_decision_2026-09-26.json",
-    "A03_user_decision_git_blob_sha1": "203c6550b320c731576359c210edb9c3",
+    "A03_user_decision_git_blob_sha1": "203c6550b320c731576359c210fa045210edb9c3",
     "A03_E0E1_report": "source_data/eboss_dr16_a03_empirical_rr_window_injection_report_2026-09-26.json",
     "A03_E0E1_report_git_blob_sha1": "35cb92b3ce2b870ae6d984f0e9692266b3e025ac",
     "DESI_120mock_covariance": "source_data/lrg_elg_covariance_r4_120_checkpoint_2026-09-23.json",
@@ -120,5 +120,6 @@
   "author_contact_approved": false,
   "new_download_authorized": false,
   "main_mutation_permitted": false,
-  "unblinding_authorized": false
+  "unblinding_authorized": false,
+  "source_identity_technical_erratum": "Corrected truncated 32-character A03 user-decision Git blob to original 40-character source Git blob; no science gates, E4 observations or user decisions changed."
 }
