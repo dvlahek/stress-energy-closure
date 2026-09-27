@@ -1,0 +1,75 @@
+{
+  "date": "2026-09-27",
+  "scope": "Source-only necessary E11 mathematical+numerical test for a NONZERO velocity-density-conditioned squeezed THREE-POINT response from original frozen E8/E9/E10; never assign a nonzero unconditional observed LRG×ELG 24D odd mean.",
+  "registration": "Prospectively locked after literature review and after completed E10 outcome but BEFORE new E11 Gaussian-rank quadrature or additional CLASS/dataset extraction. Engineering tolerances not survey physics acceptance.",
+  "original_sha_parents": {
+    "E8_4000q_CSV": "bf8f48deb9514c5101d5ce314bfbd397485102a5487da1039f141e3cad6143d0",
+    "E9_three_CLASS_report": "450b35f68a329f545f21bbe7ec02e36941e4c303037ccb7c011830c315d15890",
+    "E10_ang_report": "cc55a914a8be0174eb7c1e49e0e1968537cedfcf4a429d52ad66ab86cb44a488",
+    "E10_source_python_git_blob": "c396817e4b3983391d8dd722b25711c4336ec173",
+    "E10_protocol_git_blob": "d9de48012103eaa07d531e11bca9cef285e62545",
+    "E9_script_git_blob": "700a80d9ea9bc45454925b9a06fec2106203c506"
+  },
+  "literature": {
+    "conditional_origin": "Okoli et al. MNRAS 468 (2017) eq32-34, Appendix A7-A12 https://doi.org/10.1093/mnras/stx560",
+    "bispectrum_proposal": "Zhu & Castorina PRD 101 (2020) 023525 https://doi.org/10.1103/PhysRevD.101.023525",
+    "modern_independent_scope": "Nascimento & Loverde JCAP 04 (2026) 019 https://doi.org/10.1088/1475-7516/2026/04/019"
+  },
+  "frozen_e11_calculation": {
+    "short_comoving_k_h_per_Mpc": 0.05,
+    "center_z": 0.95,
+    "z_phase_neighbors": [
+      0.945,
+      0.955
+    ],
+    "original_density_velocity_derivative_relative_step": 0.004,
+    "linear_source": "Original three separate E9 CLASS wind v_LOS,state(z)=+sigma_R16,state(z)/sqrt3 for three original frozen F0,F+,F−",
+    "rank_model": "One common standardized scalar r~N(0,1) for all F states and z nodes. Physical LOS v_s(z,r)=r sigma_LOS,s(z). NO measured halo velocity, nonlinear transfer or unblinding.",
+    "angular_phase": "Original exact Eq20 alpha_s(kcom,z,mu,r)=2G*mnu^4*a^2*(mu*v_LOS,s(z,r))*f_s(mnu*abs(mu*v_s(z,r))/(c*Tnu0*(1+z)))/(hbar^3*kcom^2), using original frozen 4000-q CSV CLASS normalization ratio; original E10 C_LE orientation",
+    "conditional_unit_cross_power": "T_s(mu,r)=mu²*dalpha_s(kcom,z,mu,r)/dln(a) using original E9 centered z stencil. T_ell,s(r)=(2ell+1)/2 integral_-1^1 P_ell(mu) T_s(mu,r)dmu, ell1 and 3",
+    "gaussian_symmetric_two_point": "E_r[T_ell,s(r)]=0, exactly odd under r reversal. Original unconditional cross-power wake mean stays zero under the stated independent/symmetric rank model.",
+    "gaussian_three_point_response": "Gamma_ell,s=E_r[r*T_ell,s(r)]=E_r[dT_ell,s/dr]. For a jointly Gaussian long scalar D_L(K) and r(x), E[D_L(K) T_ell,s(r(x))]=exp(-iKx) P_(D_L,r)(K) Gamma_ell,s. Requires P_(D_L,r)(K) independently calibrated. Nonzero Gamma alone does NOT establish actual observed eBOSS bispectrum or significance.",
+    "physical_geometry": "For irrotational v_rel,L(K)=i Khat V_rel,L(K) zeta(K), scalar-long D_L(K)=T_L(K) zeta(K), P_(D_L,r) proportional to i (Khat dot n) T_L V_rel P_zeta/sigma_LOS, with Fourier sign convention explicitly tracked. No external preferred wind vector. Wind-conditioned local two-tracer Fourier odd couples to long-mode density through its correlated velocity, producing a squeezed bispectrum-like response instead of an unconditional odd 2-point mean.",
+    "redshift_and_mu_angle_levels": {
+      "angular_GaussLegendre_nodes": [
+        256,
+        512
+      ],
+      "Gaussian_rank_GaussHermite_nodes": [
+        48,
+        96
+      ],
+      "Stein_central_derivative_rank_steps": [
+        0.002,
+        0.001
+      ],
+      "negative_controls": [
+        "rank oddness",
+        "wind signed reflection all states",
+        "original E10 aligned rank=1 at mu projection 512",
+        "unconditional mean zero by paired signed GH nodes",
+        "equal LRG and ELG bias kills this EqA8 response",
+        "zero long velocity-density cross P gives zero squeezed expectation",
+        "tracer exchange reverses Fourier imaginary sign"
+      ]
+    },
+    "engineering_QA_warning_not_physical_threshold": {
+      "rank_48_vs_96_relative_warn": 0.03,
+      "angular_256_vs_512_relative_warn": 0.0001,
+      "Stein_derivative_0p002_vs_0p001_relative_warn": 0.02,
+      "expected_fixed_E10_rank1_tolerance": 1e-9,
+      "do_not_retune_if_fail": true
+    }
+  },
+  "required_later_to_physical_predict": {
+    "tracer_and_long_mode": "Independent eBOSS-specific b_LRG,b_ELG and long tracer transfer/power, relative neutrino-CDM vector transfer P_vdelta at genuinely squeezed K<<kshort, proper galaxy halo bias/HOD and nonlinear one-halo controls",
+    "full_theory": "full k_short,z and short-long k triangles, gauge/geometry, retarded halo wake, standard GR/evolution/magnification bispectrum nuisances",
+    "survey": "new fixed 3point/velocity-conditioned observable, independently validated cap/chunk/depth pair/triple selection window and enough independent eBOSS mocks for dimension-specific covariance. Existing 24D odd two-point cannot be posthoc relabeled a bispectrum."
+  },
+  "no_new_catalogue_mock_download": true,
+  "observed_galaxies_or_randoms_read": false,
+  "observed_odd_data_vector_read": false,
+  "new_science_seeds_or_cuts": false,
+  "main_mutation": false,
+  "original_PR_remains_draft": true
+}
