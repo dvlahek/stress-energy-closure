@@ -82,7 +82,7 @@
     "original_E4_report_SHA256": "ec45931f815dad8845bae41111f11b3e11cc0a5912f14c3e2b22c2f090e1045f",
     "original_E4_runner_blob_sha1": "fda4a5eda420a9f69bd4d393bae02419155958f8",
     "original_E4_uploaded_manifest_blob_sha1": "8e73c473319963c2c1d8a1c9887226da889d2126",
-    "original_sparse_kdtree_code_blob_sha1": "eBOSS existing sparse source script source-pin from audit_eboss_dr16_rr_kdtree_pilot.py",
+    "original_sparse_kdtree_code_blob_sha1": "25f5643887f7b05db373bbbabe95fd6537a8c2b0",
     "original_dense_oriented_pair_code_blob_sha1": "a12bb47b16cb879b56f8c9554f62abf4cfff37f7"
   },
   "estimator": {
@@ -118,5 +118,6 @@
   "additional_mock_downloads": false,
   "author_contact": false,
   "main_change": false,
-  "unblinding_authorized": false
+  "unblinding_authorized": false,
+  "metadata_only_technical_source_pin_note": "Pinned existing sparse KD-tree source Git blob, not changed algorithm or scientific inputs"
 }
