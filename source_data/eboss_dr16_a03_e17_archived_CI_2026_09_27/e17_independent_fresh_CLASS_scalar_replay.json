@@ -1,0 +1,43 @@
+{
+  "date": "2026-09-27",
+  "status": "E17A_INDEPENDENT_FRESH_PINNED_CLASS_ALL_10368_LEGS_TRANSFER_AND_SCALAR_GEOMETRY_REPLAY_PASS",
+  "method": "Separate Python runner, no import of original E17 implementation; independently generate every original E16 scalar and Cartesian leg; re-run original three frozen CLASS states; separate linear transfer bracketing; exact E13 source PSD SHA. Same CLASS physics backend is NOT independent Einstein-Vlasov halo evolution.",
+  "prospective_E17_protocol_git_blob": "f4bd3ea2a0519c4091ea94d0600ac62e57b3a2d4",
+  "original_joint_SHA256": "094c49cb89d6dd231a5cbc16ecdfe455bcb3938ddec375fd28c81c8098ab2ad9",
+  "original_state_SHA256": {
+    "FD": "cd89f798899e12d267fedd1b01d3ef1ddf8b1d8dbe5d14845b5e25d6c9c9af34",
+    "plus": "4c95de74fd7ea03388cecb94bbe9fd06180865b045c5d68b925b69a3f2b3ba10",
+    "minus": "9ed7a5f219367570c37d01ba4b19031152b1930e551a2f77033fa9fa50b9ba52"
+  },
+  "numerical_QA": {
+    "replayed_state_count": 3,
+    "geometry_count_per_state": 576,
+    "long_short_pairs": 12,
+    "orientation_replays": 1728,
+    "CLASS_Pcb_evaluations": 10368,
+    "direct_vTk_theta_transfer_evaluations": 10368,
+    "max_geometric_relative_gap": 2.920478102429548e-16,
+    "max_CLASS_Pcb_relative_gap": 1.8839397268061077e-15,
+    "max_DIRECT_theta_relative_gap": 6.4358730989037295e-16,
+    "max_cb_density_relative_gap": 4.970422703779554e-16,
+    "max_single_mode_velocity_relative_gap": 6.74790110479567e-16,
+    "max_static_Eq20_ratio_relative_gap": 1.2009694167358196e-15,
+    "max_static_Eq20_time_stencil_relative_gap": 0.0,
+    "max_anchor_E14_Pcb_gap": 0.0,
+    "max_epsilon1e_minus5_squeezed_relative_gap": 4.302313543387438e-07,
+    "max_triangle_closure_h_Mpc": 1.2643861424099487e-17,
+    "all_three_original_redshift_nodes": [
+      0.945,
+      0.95,
+      0.955
+    ]
+  },
+  "original_E14_E15_72_24_unchanged": true,
+  "reversed_tracer_order_formal_factor_only": "(b_LRG-b_ELG)=-(b_ELG-b_LRG), no physical triple model",
+  "Hermitian_scope": "Verified real CLASS scalar spectra and geometry under vector inversion, NOT physical full bispectrum",
+  "retarded_Vlasov_halo_tracer_bispectrum": "BLOCKED",
+  "no_observed_eBOSS_odd_read": true,
+  "no_new_catalogue_mock_download": true,
+  "no_main_change": true,
+  "PR_remains_draft": true
+}
