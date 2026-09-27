@@ -1,0 +1,27 @@
+name: eBOSS DR16 full-eligible mock0001 sparse paired estimator source-only QA
+on:
+  push:
+    branches:
+      - audit/eboss-elg-bit8-ra-orientation-20260925
+    paths:
+      - 'scripts/run_eboss_dr16_full_eligible_mock0001_sparse.py'
+      - 'source_data/eboss_dr16_full_eligible_mock_galaxy_4800_48000_random_pilot_protocol_2026-09-27.json'
+      - '.github/workflows/eboss_dr16_full_eligible_mock_sparse_source_only.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-only-synthetic-original-sparse-dense-no-FITS:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install numerical dependencies for source-only synthetic sparse cross pairs
+        run: python -m pip install 'numpy>=1.24,<2.4' 'scipy>=1.10' 'astropy>=5.3'
+      - name: Compile full-eligible pilot source without mock FITS
+        run: python -m py_compile scripts/run_eboss_dr16_full_eligible_mock0001_sparse.py
+      - name: SHA-pin all original source code and check scalar/dense vs sparse pair geometry
+        run: python -u scripts/run_eboss_dr16_full_eligible_mock0001_sparse.py --self-test
