@@ -1,0 +1,106 @@
+name: eBOSS DR16 A03E17D1 restricted retarded equal-area source history and independent finite-q audit
+on:
+  push:
+    branches:
+      - audit/eboss-elg-bit8-ra-orientation-20260925
+    paths:
+      - 'scripts/audit_eboss_dr16_a03_e17d1_causal_external_history.py'
+      - 'scripts/audit_eboss_dr16_a03_e17d1_independent_finite_q_history_replay.py'
+      - '.github/workflows/eboss_dr16_a03_e17d1_causal_history.yml'
+permissions:
+  contents: write
+jobs:
+  immutable-source-only-causal-history:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    env:
+      PYTHONUNBUFFERED: '1'
+      OMP_NUM_THREADS: '1'
+      OPENBLAS_NUM_THREADS: '1'
+      MKL_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install fixed source-only numerical dependency
+        run: python -m pip install 'numpy==1.26.4'
+      - name: SHA-preflight prospective protocol original E8 E16 E17C E17D0 and physical STOP
+        run: |
+          python -m py_compile scripts/audit_eboss_dr16_a03_e17d1_causal_external_history.py scripts/audit_eboss_dr16_a03_e17d1_independent_finite_q_history_replay.py
+          python -u scripts/audit_eboss_dr16_a03_e17d1_causal_external_history.py --self-test
+          python -u scripts/audit_eboss_dr16_a03_e17d1_independent_finite_q_history_replay.py --self-test
+      - name: Original three frozen neutrino states both legs and two symbolic equal-area force histories
+        run: |
+          for state in FD plus minus; do
+            python -u scripts/audit_eboss_dr16_a03_e17d1_causal_external_history.py \
+              --state "$state" --output-dir eboss_workspace/a03_physics_source/e17d1_causal_history
+          done
+          python -u scripts/audit_eboss_dr16_a03_e17d1_causal_external_history.py \
+            --aggregate --output-dir eboss_workspace/a03_physics_source/e17d1_causal_history
+      - name: Independent full finite-q scalar IBP replay and negative SHA control
+        run: |
+          python -u scripts/audit_eboss_dr16_a03_e17d1_independent_finite_q_history_replay.py \
+            --negative-control --output-dir eboss_workspace/a03_physics_source/e17d1_causal_history
+          python -u scripts/audit_eboss_dr16_a03_e17d1_independent_finite_q_history_replay.py \
+            --output-dir eboss_workspace/a03_physics_source/e17d1_causal_history
+      - name: Permanently SHA-archive original three states independent replay and manifest on audit branch only
+        run: |
+          set -eu
+          src=eboss_workspace/a03_physics_source/e17d1_causal_history
+          dest=source_data/eboss_dr16_a03_e17d1_archived_CI_2026_09_27
+          test -s "$src/e17d1_original_joint_causal_history_nonidentifiability.json"
+          test -s "$src/e17d1_independent_full_finite_q_history_replay.json"
+          mkdir -p "$dest"
+          cp "$src"/*.json "$dest/"
+          python - <<'PY'
+          import hashlib,json,os,pathlib
+          dest=pathlib.Path("source_data/eboss_dr16_a03_e17d1_archived_CI_2026_09_27")
+          expected=["e17d1_causal_history_FD.json","e17d1_causal_history_plus.json",
+                    "e17d1_causal_history_minus.json",
+                    "e17d1_original_joint_causal_history_nonidentifiability.json",
+                    "e17d1_independent_full_finite_q_history_replay.json"]
+          assert sorted(x.name for x in dest.glob("*.json"))==sorted(expected)
+          files=[]
+          for name in sorted(expected):
+              raw=(dest/name).read_bytes();data=json.loads(raw)
+              assert len(raw)>1000 and data["observed_odd_SEALED"] is True
+              assert data["full_physical_finiteK_bispectrum"]=="BLOCKED"
+              files.append({"file":name,"size_bytes":len(raw),
+                            "sha256":hashlib.sha256(raw).hexdigest()})
+          joint=json.loads((dest/"e17d1_original_joint_causal_history_nonidentifiability.json").read_bytes())
+          ind=json.loads((dest/"e17d1_independent_full_finite_q_history_replay.json").read_bytes())
+          assert joint["original_state_leg_phase_samples"]==10368
+          assert ind["replayed_state_leg_phase_samples"]==10368
+          assert joint["fixed_FD_history_witness_abs"]>.001
+          manifest={"date":"2026-09-27","CI_run_id":os.environ.get("GITHUB_RUN_ID"),
+                    "prospective_E17D1_protocol_git_blob":"791502d5385e35b358fb2d2afebf5fac77bd6ad5",
+                    "immutable_E17D0_original_joint_sha256":"b9c8f21973755c64d8708a4ccb4d86ee56bbc12d448ffaa098b7495eb85661ae",
+                    "test_histories_are_equal_area_symbolic_NOT_physical_halo_potentials":True,
+                    "original_Fplus_minus_unchanged":True,
+                    "full_physical_halo_tracer_bispectrum":"BLOCKED",
+                    "observed_odd_SEALED":True,"new_CLASS_FITS_mock":False,
+                    "main_untouched":True,"PR_remains_draft":True,"files":files}
+          (dest/"archive_manifest.json").write_text(json.dumps(manifest,indent=2)+"\n")
+          for row in files:print("E17D1_SOURCE_ONLY_ARCHIVE",row["file"],row["sha256"],flush=True)
+          PY
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "$dest"
+          if git diff --cached --quiet; then
+            echo E17D1_ALREADY_ARCHIVED
+          else
+            git commit -m "archive(E17D1): frozen causal history contrast, independent full finite-q SHA replay and physical STOP"
+            git push origin HEAD:refs/heads/audit/eboss-elg-bit8-ra-orientation-20260925
+          fi
+          echo E17D1_ORIGINAL_AND_INDEPENDENT_SHA_PERMANENT_ON_AUDIT_ONLY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: eboss-a03-e17d1-restricted-causal-history-nonidentifiability-not-physical-b
+          path: eboss_workspace/a03_physics_source/e17d1_causal_history/*.json
+          if-no-files-found: warn
+          retention-days: 30
