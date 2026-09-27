@@ -44,10 +44,10 @@ def sha(b):
     return hashlib.sha256(b).hexdigest()
 
 def blob(b):
-    return hashlib.sha1(b"blob " + str(len(b)).encode() + b"\\0" + b).hexdigest()
+    return hashlib.sha1(b"blob " + str(len(b)).encode() + b"\0" + b).hexdigest()
 
 def pack(obj):
-    return (json.dumps(obj, indent=2, allow_nan=False) + "\\n").encode()
+    return (json.dumps(obj, indent=2, allow_nan=False) + "\n").encode()
 
 def save_once(path, obj):
     raw = pack(obj)
