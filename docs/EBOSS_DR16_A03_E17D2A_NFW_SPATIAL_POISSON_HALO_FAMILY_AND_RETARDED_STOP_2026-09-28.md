@@ -24,7 +24,7 @@ A(c)=\ln(1+c)-\frac{c}{1+c}, \qquad
 A(y)=\ln(1+y)-\frac{y}{1+y}.
 \]
 
-Za y≥c ovdje je halo gustoća modelno odrezana i kumulativna masa jednaka M200. Oštri rez gustoće ne stvara površinski maseni delta-sloj, jer su potencijal i njegova prva radijalna derivacija kontinuirani na r200. Pozitivna radijalna gustoća ima integrabilni NFW centralni cusp, ali model ne evaluira divergentnu gustoću u r=0.
+Za y≥c ovdje je halo gustoća modelno odrezana i kumulativna masa jednaka M200. Za standardno fizičko značenje oznake r200 kao radijusa srednje gustoće 200 puta kritične gustoće dodatno treba zadati redshift i pozadinsku kozmologiju te nametnuti M200=(4π/3)·200·ρcrit(z)·r200³. **E17D2a nije specificirao z, stvarni M200 ni koncentraciju eBOSS haloa**, pa je taj odnos uvjet modela za buduću kalibraciju, a ne ispunjena opservacijska identifikacija.  Oštri rez gustoće ne stvara površinski maseni delta-sloj, jer su potencijal i njegova prva radijalna derivacija kontinuirani na r200. Pozitivna radijalna gustoća ima integrabilni NFW centralni cusp, ali model ne evaluira divergentnu gustoću u r=0.
 
 Uz uvjet da fizički Newtonov potencijal iščezava u beskonačnosti, za y≤c vrijedi
 
