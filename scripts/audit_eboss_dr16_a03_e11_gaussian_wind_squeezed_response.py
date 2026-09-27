@@ -70,7 +70,7 @@ def source_gate(e8_csv,e9_json,e10_json):
 
 def phase_for_rank(q,fs,case,state,mu,rank):
     """Angular alpha using ORIGINAL E9 positive-rank alpha as sole scale."""
-    require(state in STATES and abs(float(case["z"])-float(case["z"]))<1e-10,
+    require(state in STATES and np.isfinite(float(case["z"])),
             "Unknown E9 state/redshift")
     z=float(case["z"])
     own=case["state"][state]
@@ -172,7 +172,7 @@ def analyze(e8_csv,e9_json,e10_json):
             original_n=float(original["conditional_Fourier_source_projected_ells_not_xi"]
                              ["512"]["conditional_positive_LOS"][state][ell])
             rel=abs(found-original_n)/max(abs(original_n),1e-14)
-            require(rel<levels["engineering_QA_warning_not_physical_threshold"]
+            require(rel<g["engineering_QA_warning_not_physical_threshold"]
                     ["expected_fixed_E10_rank1_tolerance"],
                     "Original E10 rank1 angular result did not reproduce")
             qa[f"rank1_original_E10_{state}_ell{ell}"]=rel
@@ -198,7 +198,7 @@ def analyze(e8_csv,e9_json,e10_json):
         for ell in ("1","3"):
             a=stein["0.002"][state][ell];b=stein["0.001"][state][ell]
             qa[f"Stein_steps_{state}_ell{ell}"]=abs(a-b)/max(abs(a),abs(b),1e-14)
-    qs=levels["engineering_QA_warning_not_physical_threshold"]
+    qs=g["engineering_QA_warning_not_physical_threshold"]
     for key,val in qa.items():
         if key.startswith("GH_48_vs_96_") and val>qs["rank_48_vs_96_relative_warn"]:
             warnings.append(key)
