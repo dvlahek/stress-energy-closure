@@ -1,0 +1,32 @@
+name: eBOSS DR16 A-03E4 exact original-upload SOURCE-ONLY 18-case archive audit
+
+on:
+  push:
+    branches:
+      - audit/eboss-elg-bit8-ra-orientation-20260925
+    paths:
+      - 'scripts/audit_eboss_dr16_a03_e4_uploaded_archive.py'
+      - 'source_data/eboss_dr16_a03_e4_mock_galaxy_nested_random_density_1200_2400_4800_report_2026-09-27.json'
+      - 'source_data/eboss_dr16_a03_e4_local_stdout_2026-09-27.log'
+      - 'source_data/eboss_dr16_a03_e4_mock_galaxy_nested_random_density_1200_2400_4800_uploaded_manifest_2026-09-27.json'
+      - '.github/workflows/eboss_dr16_a03_e4_original_upload_archive.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  exact-original-upload-and-parent-replay-without-FITS:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install numerical RNG dependency for frozen pure-index replay
+        run: python -m pip install 'numpy>=1.24,<2.4'
+      - name: Compile independent source-only E4 archive auditor
+        run: python -m py_compile scripts/audit_eboss_dr16_a03_e4_uploaded_archive.py
+      - name: Audit exact original-upload bytes, all 72 original SHA lines, 36 PCG64 extensions and all 18 prior E2/E3 baselines
+        run: python -u scripts/audit_eboss_dr16_a03_e4_uploaded_archive.py --self-test
