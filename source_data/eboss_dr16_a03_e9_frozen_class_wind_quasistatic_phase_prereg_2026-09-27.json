@@ -1,0 +1,107 @@
+{
+  "date": "2026-09-27",
+  "study": "A03E9 prospective fixed-F± CLASS three-state transfer-derived, R16-filtered, one-sigma LOS-wind conditional quasi-static exact-occupancy Eq20/33 phase and dphase/dln(a); NOT survey or full retarded Einstein-Vlasov forecast",
+  "registration_boundary": "Registered after original E8/E8b/E8c static source results and after the independent mathematical fixed-200km/s analytic derivative diagnostic. BEFORE any new three-state CLASS execution or inspection of its transfer-derived wind results. Do not refit grid or cuts to outcomes.",
+  "source_parent_git_blobs": {
+    "code/class_response_optimize.py": "44956e353dbb238537d60da687d1a2a26fa13ee6",
+    "code/wake_two_tracer_fisher.py": "473e6d9b5941d8f67d1ecc1f5f170124d9ef8ea2",
+    "scripts/build_eboss_dr16_a03_e8_frozen_resonant_occupation.py": "3db381a2942832b6500a60291ac864eff929b200",
+    "source_data/eboss_dr16_a03_e8c_exact_eq20_phase_and_bibliography_erratum_2026-09-27.json": "549dccc2b923800f06d0081741ea7c80f3181e4b"
+  },
+  "frozen_physical_parameters": {
+    "mass_eV": 0.06,
+    "z_match": 1100,
+    "frac_cap": 0.3,
+    "fixed_original_CREF_7coeff": true,
+    "CLASS_commit": "e85808324f51fc694d12e3ed7439552a3c3f9540",
+    "CLASS_original_cosmological_parameters": true,
+    "CLASS_original_gauge": "newtonian",
+    "CLASS_request": "mPk,dTk,vTk",
+    "distinct_relic_state_cosmologies": [
+      "FD",
+      "plus",
+      "minus"
+    ],
+    "original_q_grid": "np.linspace(0,20,4000)",
+    "source_only_CSV_SHA256": "bf8f48deb9514c5101d5ce314bfbd397485102a5487da1039f141e3cad6143d0",
+    "no_reoptimization": true
+  },
+  "fixed_numerical_grid": {
+    "k_com_h_per_Mpc_phase": [
+      0.05
+    ],
+    "k_vel_h_per_Mpc": "np.geomspace(1e-4,0.15,180) matching original wake_two_tracer_fisher.KVEL",
+    "v_truncated_cumulative_kupper_h_per_Mpc": 0.1,
+    "original_velocity_filter_R_comoving_Mpc_per_h": 16,
+    "phase_center_z": [
+      0.9,
+      0.95,
+      1
+    ],
+    "phase_redshift_derivative_at_z": 0.95,
+    "phase_derivative_z_steps": [
+      0.01,
+      0.005
+    ],
+    "velocity_transfer_derivative_relative_z_steps": [
+      0.004,
+      0.002
+    ],
+    "velocity_ladder_relative_z_definition": "h_v=delta*(1+z) for delta in [0.004,0.002]",
+    "compute_phase_z_samples": [
+      0.9,
+      0.94,
+      0.945,
+      0.95,
+      0.955,
+      0.96,
+      1
+    ],
+    "CLASS_output_zmax_at_least": 1.05,
+    "interpolation": "linear interpolation on original CLASS transfer-k grid, no extrapolation; source occupation linear interpolation on frozen 4000q grid"
+  },
+  "velocity_definition": {
+    "delta_rel": "CLASS newtonian gauge d_ncdm[0](k,z)-d_cdm(k,z) separately in all three F states",
+    "signed_spectrum": "v_rel(k,z)=-c*H_CLASS(z)/k_Mpc * (d delta_rel/dz) * sqrt(A_s*(k_Mpc/0.05Mpc^-1)^(n_s-1)), same convention as wake_two_tracer_fisher.delta_v_kms except sign retained",
+    "sigma3d": "sqrt(integral up to original k_com=0.1h/Mpc of v_rel(k,z)^2 W_tophat(k R=16Mpc/h)^2 dlnk), original cumulative_trapz_logk convention",
+    "one_sigma_los_condition": "v_parallel(z)=+sigma3d(z)/sqrt(3), SAME +1 normalized Gaussian LOS rank at all z and source states, NOT observed halo wind, not stochastic realization or Gaussian ensemble",
+    "independent_checks": "Original base.delta_v_kms absolute per k agrees with signed velocity magnitude at same step and original velocity_summary filtered cumulative; half-step velocity derivative reported; no tuning if checks fail",
+    "velocity_variation_source": "F± modify their own CLASS relative neutrino-CDM transfers, not frozen FD velocity"
+  },
+  "alpha_and_derivative": {
+    "formula": "alpha_s(k_com,z)=2 G m_nu^4 a(z)^2 v_parallel_s(z) f_eff_s(q_res)/(hbar^3 k_com^2), q_res=m_nu |v_parallel_s|/(c*Tnu0*(1+z)), f_eff_s(q)=fFD_exact(q)*[F_s_interp(q)/F0_interp(q)]; original E8c exact-occupancy branch; k_phys=k_com/a",
+    "phase_source_split": "compute total F± with own CLASS v_LOS and occupation, and counterfactual F± with FD v_LOS to isolate source-only vs wind-induced change. This is exact algebraic bookkeeping under common rank, not a causal assignment of nonlinear halo physics.",
+    "derivative": "dalpha/dln a = -(1+z) [alpha(z+h)-alpha(z-h)]/(2h), two fixed z steps. d alpha/dt = H_phys_s(z) d alpha/dln a with state CLASS H converted to s^-1",
+    "single_redshift_center": "z=0.95 with original [0.9,1.0) pilot only as mathematical midpoint not measured eBOSS z_eff",
+    "mu_convention": "Exact FD occupation first Eq20 only; published mu approximation and its convention conflict remain unresolved"
+  },
+  "numerical_QA_only": {
+    "phase_derivative_step_relative_discrepancy_warn_fraction": 0.05,
+    "velocity_half_step_integrated_relative_discrepancy_warn_fraction": 0.05,
+    "near_zero_relative_denominator_floor": 1e-12,
+    "source_moment_mismatch_limit": 1e-12,
+    "meaning": "5% diagnostics are predeclared technical warnings, NOT a physical A03 error acceptance, and no case may be dropped or parameters retuned if they fail; output reports all failures."
+  },
+  "output": [
+    "Three separately computed CLASS source state arrays at all seven predeclared z, transfer-k and v_R16 filtered velocities, physical H(z)",
+    "3 state conditional phase alpha(z) plus FD-wind matched source-only counterfactual at all seven z, exact split of total vs source-only vs wind-induced delta",
+    "Numerical center d alpha/dln a and SI d alpha/dt using both ±0.01 and ±0.005 and half-step velocity-delta checks",
+    "Retain all transfer and QA failures in JSON; no survey xi/window/likelihood"
+  ],
+  "limits": {
+    "retarded_nonlinear_halo_wake_not_computed": true,
+    "one_sigma_wind_rank_is_model_not_measured": true,
+    "original_Fplus_Fminus_source_coeff_not_reoptimized": true,
+    "source_distribution_evolved_by_CLASS_background": true,
+    "full_Einstein_Vlasov_nonlinear_backreaction_not_computed": true,
+    "CLASS_vTk_used_only_as_unscaled_optional_QA": true,
+    "not_eBOSS_wake_detection_or_exclusion": true,
+    "source_observed_galaxies_read": false,
+    "source_observed_randoms_read": false,
+    "observed_odd_vector_read": false,
+    "no_new_catalogue_or_mock_download": true,
+    "no_new_science_seed_or_cut": true,
+    "no_original_report_edit": true,
+    "no_main_mutation": true
+  }
+}
