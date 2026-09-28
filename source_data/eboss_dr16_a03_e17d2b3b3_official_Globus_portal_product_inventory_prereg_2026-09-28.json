@@ -12,7 +12,8 @@
     "E17D2b3b2_archive_manifest_git_blob": "0563c53fdb966bb9382a3b910e94e237fef90bf8",
     "E17D2b3b2r1_real_ASDF_checker_prereg_blob": "b5e4bed15c9841bdfa8933a4d6960c9eda701e36",
     "master_plan_v139_blob": "e2e835a055cd8f629a0aa5b61db725e05339451c",
-    "main_untouched_sha": "e50549a5c974772eb9576d301df7a5ea6e6d87d2"
+    "main_untouched_sha": "e50549a5c974772eb9576d301df7a5ea6e6d87d2",
+    "E17D2b3b2_protocol_git_blob": "324e722200997b21a0fa97d965b8ef096e1587e6"
   },
   "upstream_public_portal_pins": {
     "repo": "abacusorg/abacussummit-data-portal",
@@ -78,5 +79,11 @@
     "no_retarded_physical_Fplus_minus_neutrino_wake_or_galaxy_B_significance": true,
     "observed_odd_SEALED": true,
     "main_untouched_PR_draft": true
+  },
+  "prereg_amendment_before_upstream_checkout": {
+    "original_prereg_git_blob": "087055f6e71a50d67727e7e29f9ea1754d7d178e",
+    "failed_preflight_run_id": 36451722972,
+    "reason": "The pinned parent E17D2b3b2 prereg protocol already exists, but the original new inventory prereg omitted its immutable Git blob required by its runner. Add the already-frozen parent reference before any new upstream portal Git sparse-checkout, without changing upstream manifest, provider source UUID, product counts, science cuts or no-halo-data STOP.",
+    "official_portal_manifest_fetched_by_this_CI_before_amendment": false
   }
 }
