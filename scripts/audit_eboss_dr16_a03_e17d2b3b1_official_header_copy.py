@@ -18,7 +18,7 @@ from pathlib import Path
 
 ROOT=Path(__file__).resolve().parents[1]
 PROTO=ROOT/"source_data/eboss_dr16_a03_e17d2b3b1_official_embedded_header_metadata_prereg_2026-09-28.json"
-PROTO_BLOB="a282b157a80f88a1e0bf95c01942453d9a59efe4"
+PROTO_BLOB="36c2bcda723b95565e604723e651beef08aad992"
 E8=ROOT/"source_data/eboss_dr16_a03_e8_e11_archived_CI_2026_09_27/E8/frozen_matched_distributions_4000q.csv"
 E16=ROOT/"source_data/eboss_dr16_a03_e16_original_72_source_exact_triangle_geometry_2026_09_27.json"
 E17A=ROOT/"source_data/eboss_dr16_a03_e17_archived_CI_2026_09_27/e17_original_joint_three_state_CLASS_both_short_legs_source_only.json"
@@ -53,7 +53,7 @@ def gate(upstream_root,skip_upstream=False):
     for f,key in ((E8,"E8_original_4000q_sha256"),
                   (E16,"E16_original_576_triangle_sha256"),
                   (E17A,"E17A_original_CLASS_joint_sha256"),
-                  (B2,"E17D2b2_official_metadata_original_sha256"),
+                  (B2,"E17D2B2_original_metadata_report_sha256"),
                   (B3A,"E17D2B3A_original_mass_nonidentifiability_sha256"),
                   (B0,"E17D2B3B0_offline_report_sha256")):
         require(sha(f.read_bytes())==locked[key],"immutable original SHA: "+key)
