@@ -1,0 +1,28 @@
+name: eBOSS E17D2b3b2r1 local halo ASDF checksum-header verifier SYNTHETIC SELFTEST ONLY
+on:
+  push:
+    branches:
+      - audit/eboss-elg-bit8-ra-orientation-20260925
+    paths:
+      - 'scripts/audit_eboss_dr16_a03_e17d2b3b2r1_local_halo_ASDF_checksum_header.py'
+      - '.github/workflows/eboss_dr16_a03_e17d2b3b2r1_synthetic_local_ASDF_verifier.yml'
+permissions:
+  contents: read
+jobs:
+  no-real-ASDF-six-synthetic-negative-controls:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Check only code syntax, immutable science source and tiny synthetic file checksum/header tests
+        run: |
+          set -eu
+          python -m py_compile scripts/audit_eboss_dr16_a03_e17d2b3b2r1_local_halo_ASDF_checksum_header.py
+          python -u scripts/audit_eboss_dr16_a03_e17d2b3b2r1_local_halo_ASDF_checksum_header.py --self-test
+          echo E17D2B3B2R1_CI_SYNTHTEST_COMPLETE_NO_ACTUAL_ABACUS_HALO_ASDF_READ_OR_DOWNLOADED
