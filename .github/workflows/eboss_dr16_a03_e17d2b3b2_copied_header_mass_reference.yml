@@ -1,0 +1,123 @@
+name: eBOSS E17D2b3b2 PINNED official Abacus copied-header L1 SO / particle mass, NO real ASDF
+on:
+  push:
+    branches:
+      - audit/eboss-elg-bit8-ra-orientation-20260925
+    paths:
+      - 'scripts/audit_eboss_dr16_a03_e17d2b3b2_header_copy_l1_mass_reference.py'
+      - '.github/workflows/eboss_dr16_a03_e17d2b3b2_copied_header_mass_reference.yml'
+permissions:
+  contents: write
+jobs:
+  original-official-copy-not-actual-halo-file:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 18
+    env:
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Exact prospective prereg and old original E8 E16 E17A b1 source SHA checks
+        run: |
+          set -eu
+          python -m py_compile scripts/audit_eboss_dr16_a03_e17d2b3b2_header_copy_l1_mass_reference.py
+          python -u scripts/audit_eboss_dr16_a03_e17d2b3b2_header_copy_l1_mass_reference.py --preflight
+      - name: Sparse checkout only pinned 9.5MB OFFICIAL embedded header COPY and matching upstream decoder
+        uses: actions/checkout@v4
+        with:
+          repository: abacusorg/abacusutils
+          ref: 24ab0dda5fea9ae406b1afdacaf4bbf989de9bc6
+          path: official-abacusutils
+          fetch-depth: 1
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            README.md
+            pyproject.toml
+            abacusnbody/__init__.py
+            abacusnbody/data/__init__.py
+            abacusnbody/metadata/__init__.py
+            abacusnbody/metadata/abacussummit_headers_compressed.asdf
+            abacusnbody/metadata/abacussummit.py
+            abacusnbody/data/asdf.py
+      - name: Fail closed on exact upstream Git metadata blob, size and source-commit mismatch
+        run: |
+          set -eu
+          cd official-abacusutils
+          test "$(git rev-parse HEAD)" = 24ab0dda5fea9ae406b1afdacaf4bbf989de9bc6
+          test "$(git hash-object abacusnbody/metadata/abacussummit_headers_compressed.asdf)" = 0065029cdd515ffa76c61a27b81e9f16b2656f38
+          test "$(wc -c < abacusnbody/metadata/abacussummit_headers_compressed.asdf)" -eq 9486279
+          test "$(sha256sum abacusnbody/metadata/abacussummit_headers_compressed.asdf | cut -d ' ' -f 1)" = 1c8b690acedd2a61a6a033be3173f79bb7e8cadbcb4a9e97e5db10ee4f10308e
+          echo E17D2B3B2_OFFICIAL_9MB_SOURCE_COPY_GIT_BLOB_SHA256_PASS_NO_HALO_CATALOG
+      - name: Register pinned official source Blosc decoder only, no CLASS or halo reader invocation
+        run: |
+          set -eu
+          python -m pip install --no-cache-dir 'numpy==1.26.4' 'asdf==3.5.0' 'msgpack==1.1.0' 'blosc==1.11.3' 'astropy==6.1.2' 'asdf-astropy==0.7.1'
+          python -m pip install --no-deps -e ./official-abacusutils
+      - name: Compute exact L1 SODensity and particle mass from header COPY, compare 200critical threshold only
+        run: |
+          python -u scripts/audit_eboss_dr16_a03_e17d2b3b2_header_copy_l1_mass_reference.py \
+            --upstream-root official-abacusutils \
+            --output-dir eboss_workspace/a03_physics_source/e17d2b3b2_header_copy_so
+      - name: Permanently archive bounded copied-source report and SHA manifest on audit branch ONLY
+        run: |
+          set -eu
+          src=eboss_workspace/a03_physics_source/e17d2b3b2_header_copy_so
+          dest=source_data/eboss_dr16_a03_e17d2b3b2_archived_CI_2026_09_28
+          name=e17d2b3b2_pinned_header_copy_l1_threshold_vs_200crit.json
+          test -s "$src/$name"
+          mkdir -p "$dest"
+          cp "$src/$name" "$dest/$name"
+          python - <<'PY'
+          import hashlib,json,os,pathlib
+          d=pathlib.Path("source_data/eboss_dr16_a03_e17d2b3b2_archived_CI_2026_09_28")
+          name="e17d2b3b2_pinned_header_copy_l1_threshold_vs_200crit.json"
+          assert sorted(x.name for x in d.glob("*.json"))==[name]
+          raw=(d/name).read_bytes()
+          j=json.loads(raw)
+          assert j["status"]=="E17D2B3B2_PINNED_OFFICIAL_EMBEDDED_HEADER_COPY_L1_THRESHOLD_AND_PARTICLE_MASS_MATCH_ORIGINAL_SOURCE_NO_ACTUAL_HALO_ASDF"
+          assert j["prospective_protocol_git_blob"]=="324e722200997b21a0fa97d965b8ef096e1587e6"
+          assert j["official_metadata_git_blob"]=="0065029cdd515ffa76c61a27b81e9f16b2656f38"
+          assert j["official_metadata_bytes"]==9486279
+          assert j["two_same_pinned_official_copy_decodes_agree"] is True
+          assert len(j["synthetic_tampered_copy_field_negative_tests_rejected"])==2
+          assert j["actual_halo_info_ASDF_byte_checksum_header_verified"] is False
+          assert j["actual_provider_halo_file_GNU_cksum_or_merger_tree_read"] is False
+          assert j["same_object_true_M200c_200critical_remeasured"] is False
+          assert j["observed_odd_SEALED"] is True
+          assert j["full_physical_finiteK_galaxy_bispectrum"]=="BLOCKED"
+          o={"date":"2026-09-28","CI_run_id":os.environ.get("GITHUB_RUN_ID"),
+             "preregistered_E17D2b3b2_protocol_git_blob":"324e722200997b21a0fa97d965b8ef096e1587e6",
+             "upstream_abacusutils_commit":"24ab0dda5fea9ae406b1afdacaf4bbf989de9bc6",
+             "source_bundled_header_copy_SHA256":"1c8b690acedd2a61a6a033be3173f79bb7e8cadbcb4a9e97e5db10ee4f10308e",
+             "source_copy_derived_SO_threshold_NOT_real_halo_200c_mass":True,
+             "NO_actual_provider_halo_ASDF_checksum_or_tree":True,
+             "observed_odd_SEALED":True,"full_physical_halo_tracer_bispectrum":"BLOCKED",
+             "main_untouched":True,"PR_remains_draft":True,
+             "files":[{"file":name,"size_bytes":len(raw),"sha256":hashlib.sha256(raw).hexdigest()}]}
+          (d/"archive_manifest.json").write_text(json.dumps(o,indent=2)+"\n")
+          print("E17D2B3B2_SOURCE_COPY_SO_HEADER_REPORT_SHA",o["files"][0]["sha256"],flush=True)
+          print("E17D2B3B2_SOURCE_COPY_SO_VALUE",j["official_source_copy_six_exact_numeric_fields"]["SODensityL1"],
+                "M_PARTICLE_MSUN_PER_H",j["official_source_copy_six_exact_numeric_fields"]["ParticleMassHMsun"],flush=True)
+          PY
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "$dest"
+          if git diff --cached --quiet; then echo E17D2B3B2_ALREADY_ARCHIVED
+          else
+            git commit -m "archive(E17D2b3b2): pinned official copied L1 SO threshold and particle mass, real halo ASDF unread"
+            git push origin HEAD:refs/heads/audit/eboss-elg-bit8-ra-orientation-20260925
+          fi
+          echo E17D2B3B2_OFFICIAL_SOURCE_COPY_DONE_REAL_HALO_ASDF_AND_M200C_BLOCKED
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: e17d2b3b2-pinned-official-9MB-copy-L1SO-only-NO-HALO-ASDF
+          path: eboss_workspace/a03_physics_source/e17d2b3b2_header_copy_so/*.json
+          if-no-files-found: warn
+          retention-days: 30
