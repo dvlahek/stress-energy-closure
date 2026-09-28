@@ -1,0 +1,102 @@
+name: eBOSS DR16 A03E17D2b1 conditional Wechsler-type exterior halo growth and independent audit
+on:
+  push:
+    branches:
+      - audit/eboss-elg-bit8-ra-orientation-20260925
+    paths:
+      - 'scripts/audit_eboss_dr16_a03_e17d2b1_wechsler_conditional_exterior_assembly.py'
+      - 'scripts/audit_eboss_dr16_a03_e17d2b1_independent_wechsler_exterior_replay.py'
+      - '.github/workflows/eboss_dr16_a03_e17d2b1_conditional_exterior_assembly.yml'
+permissions:
+  contents: write
+jobs:
+  anchored-exterior-conditional-mass-history-NOT-LRG-ELG:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 18
+    env:
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Prospective frozen SHA preflight and original published DM14 median halo anchor
+        run: |
+          python -m py_compile scripts/audit_eboss_dr16_a03_e17d2b1_wechsler_conditional_exterior_assembly.py scripts/audit_eboss_dr16_a03_e17d2b1_independent_wechsler_exterior_replay.py
+          python -u scripts/audit_eboss_dr16_a03_e17d2b1_wechsler_conditional_exterior_assembly.py --self-test
+          python -u scripts/audit_eboss_dr16_a03_e17d2b1_independent_wechsler_exterior_replay.py --self-test
+      - name: Original 2 mass x 2 distinct uncalibrated Wechsler-shape rates x 3 original z exterior Poisson
+        run: |
+          for i in 0 1 2 3; do
+            python -u scripts/audit_eboss_dr16_a03_e17d2b1_wechsler_conditional_exterior_assembly.py \
+              --case-index "$i" --output-dir eboss_workspace/a03_physics_source/e17d2b1_wechsler_exterior
+          done
+          python -u scripts/audit_eboss_dr16_a03_e17d2b1_wechsler_conditional_exterior_assembly.py \
+            --aggregate --output-dir eboss_workspace/a03_physics_source/e17d2b1_wechsler_exterior
+      - name: Full independent pure-stdlib same-anchor exterior derivative proof and SHA tamper negative control
+        run: |
+          python -u scripts/audit_eboss_dr16_a03_e17d2b1_independent_wechsler_exterior_replay.py \
+            --negative-control --output-dir eboss_workspace/a03_physics_source/e17d2b1_wechsler_exterior
+          python -u scripts/audit_eboss_dr16_a03_e17d2b1_independent_wechsler_exterior_replay.py \
+            --output-dir eboss_workspace/a03_physics_source/e17d2b1_wechsler_exterior
+      - name: Permanently archive original four trajectories joint and independent SHA report on AUDIT branch only
+        run: |
+          set -eu
+          src=eboss_workspace/a03_physics_source/e17d2b1_wechsler_exterior
+          dest=source_data/eboss_dr16_a03_e17d2b1_archived_CI_2026_09_28
+          test -s "$src/e17d2b1_original_joint_conditional_exterior_assembly_rates.json"
+          test -s "$src/e17d2b1_independent_stdlib_exterior_assembly_replay.json"
+          mkdir -p "$dest"
+          cp "$src"/*.json "$dest/"
+          python - <<'PY'
+          import hashlib,json,os,pathlib
+          d=pathlib.Path("source_data/eboss_dr16_a03_e17d2b1_archived_CI_2026_09_28")
+          expected=["e17d2b1_original_conditional_wechsler_exterior_%02d.json"%i for i in range(4)]
+          expected+=["e17d2b1_original_joint_conditional_exterior_assembly_rates.json",
+                     "e17d2b1_independent_stdlib_exterior_assembly_replay.json"]
+          assert sorted(p.name for p in d.glob("*.json"))==sorted(expected)
+          files=[]
+          for name in sorted(expected):
+              raw=(d/name).read_bytes();j=json.loads(raw)
+              assert len(raw)>1000 and j["observed_odd_SEALED"] is True
+              assert j["full_physical_finiteK_galaxy_bispectrum"]=="BLOCKED"
+              files.append({"file":name,"size_bytes":len(raw),
+                            "sha256":hashlib.sha256(raw).hexdigest()})
+          j=json.loads((d/"e17d2b1_original_joint_conditional_exterior_assembly_rates.json").read_bytes())
+          independent=json.loads((d/"e17d2b1_independent_stdlib_exterior_assembly_replay.json").read_bytes())
+          assert len(j["original_four_trajectories_3_math_nodes_each"])==4
+          assert independent["full_independent_conditional_exterior_redshift_snapshots"]==12
+          assert j["individual_halo_M200c_and_cvir_ac_relation_NOT_calibrated"] is True
+          assert j["actual_neutrino_halo_tracer_dynamics_calculated"] is False
+          manifest={"date":"2026-09-28","CI_run_id":os.environ.get("GITHUB_RUN_ID"),
+                    "prospective_E17D2b1_protocol_git_blob":"28e33fad09db24b8b19739f50322169180442988",
+                    "original_E17D2b0_joint_sha256":"848d3377830724593d75a02972f209085cb9913d03e8b73789f9b6478e6c11e6",
+                    "wechsler_virial_mass_to_DM14_M200c_history_is_UNCALIBRATED_shape_only":True,
+                    "distinct_exterior_rates_are_conditional_NOT_real_LRG_ELG_formation":True,
+                    "original_E16_72_24_and_F_states_unchanged":True,
+                    "full_physical_halo_tracer_bispectrum":"BLOCKED",
+                    "observed_odd_SEALED":True,"no_new_CLASS_FITS_mock":True,
+                    "main_untouched":True,"PR_remains_draft":True,"files":files}
+          (d/"archive_manifest.json").write_text(json.dumps(manifest,indent=2)+"\n")
+          for x in files:print("E17D2B1_FULL_SOURCE_ARCHIVED",x["file"],x["sha256"],flush=True)
+          PY
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "$dest"
+          if git diff --cached --quiet; then
+            echo E17D2B1_ALREADY_ARCHIVED
+          else
+            git commit -m "archive(E17D2b1): independently audited same-anchor distinct exterior conditional Wechsler rates, physical B STOP"
+            git push origin HEAD:refs/heads/audit/eboss-elg-bit8-ra-orientation-20260925
+          fi
+          echo E17D2B1_ORIGINAL_INDEPENDENT_PERMANENT_AUDIT_ONLY_NO_PHYSICAL_B
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: eboss-a03-e17d2b1-Wechsler-conditional-exterior-only-not-actual-halo
+          path: eboss_workspace/a03_physics_source/e17d2b1_wechsler_exterior/*.json
+          if-no-files-found: warn
+          retention-days: 30
