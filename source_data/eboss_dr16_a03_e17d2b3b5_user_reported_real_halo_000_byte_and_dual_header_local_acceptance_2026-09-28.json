@@ -1,0 +1,73 @@
+{
+  "stage": "E17D2B3B5_USER_REPORTED_REAL_RAW_HALO_000_LOCAL_INTEGRITY_AND_ASDF_HEADER_ACCEPTANCE",
+  "date": "2026-09-28",
+  "provenance": "USER-PASTED_LOCAL_WSL_TERMINAL_OUTPUT_FROM_THREE_SEPARATE_LOCAL_TESTS_NOT_INDEPENDENTLY_RERUN_BY_GITHUB_OR_PROVIDER",
+  "parent": {
+    "exact_one_file_access_prereg_git_blob": "654e01b4718f0d5238147a409060813fb37089cc",
+    "source_only_manifest_git_blob": "0bca2fd0a28c9e163ad6198f67616da4355f4c81",
+    "public_official_header_copy_sha256": "efa1878250ca395ab65207f485f214854b817188613acaae1ce668f58af78a38",
+    "official_pinned_blosc_decoder_git_blob": "8c5e5135736409bb0fab77bff06ad1259951189d",
+    "previous_b5_source_only_CI_success_run_id": 36463523548
+  },
+  "exact_scope": {
+    "basename": "halo_info_000.asdf",
+    "source_collection_uuid_from_pinned_official_portal": "ffc65d7a-0bf9-11ec-90b4-41052087bc27",
+    "source_directory": "/AbacusSummit_base_c000_ph000/halos/z0.950/halo_info/",
+    "user_local_directory": "~/stress-energy-closure/eboss_workspace/AbacusSummit_base_c000_ph000/halos/z0.950/halo_info/",
+    "other_real_superslabs_opened_or_downloaded": false,
+    "halo_columns_decompressed_or_accessed": false
+  },
+  "local_user_reported_byte_preflight": {
+    "reported_exact_file_size_bytes": 2223483833,
+    "expected_selected_manifest_posix_cksum_crc": 3502514872,
+    "reported_computed_POSIX_cksum_crc": 3502514872,
+    "reported_computed_cksum_byte_count": 2223483833,
+    "reported_supplied_manifest_sha256": "b1db66f78cf17d9c2620a0be0917547eb5dc17a9e8f10bd02b0b211691fcb6a5",
+    "reported_computed_full_ASDF_SHA256": "7f3755a469b3c25c869a0394b06192780d4a03717fd918d01c7459b0405724c3",
+    "user_terminal_success_marker": "E17D2B3B5_LOCAL_BYTE_PREFLIGHT_PASS",
+    "reported_checksum_matches_user_supplied_manifest": true,
+    "independent_cryptographic_provider_attestation": false
+  },
+  "local_user_reported_bounded_yaml_header": {
+    "reported_YAML_bytes_read": 14416,
+    "reported_pinned_reference_SHA256_verified": true,
+    "reported_actual_SimName": "AbacusSummit_base_c000_ph000",
+    "reported_six_header_values_formatted": {
+      "Redshift": "0.952838237036305",
+      "ScaleFactor": "0.5120751842291016",
+      "OmegaNow_m": "0.774150059509772",
+      "SODensityL1": "228.523063659668",
+      "ParticleMassHMsun": "2109081520.453063",
+      "ParticleMassMsun": "3131059264.330557"
+    },
+    "user_terminal_success_marker": "E17D2B3B5_BOUNDED_REAL_YAML_HEADER_MATCH",
+    "real_halo_arrays_read": false
+  },
+  "local_user_reported_official_decoder_ASDF_header": {
+    "upstream_decoder_git_blob_verified": "8c5e5135736409bb0fab77bff06ad1259951189d",
+    "asdf_version_reported": "3.5.0",
+    "numpy_version_reported": "2.5.3",
+    "initial_asdf_open_failure": "blsc compressor not registered with asdf.get_config() at block-index parse, NOT demonstrated data corruption",
+    "followup_registration_test_marker": "ABACUS_BLOSC_REGISTERED_OK",
+    "registered_compressor_before_asdf_open": true,
+    "file_open_mode": "asdf.open(halo, extensions=[official_AbacusExtension()], lazy_load=True, memmap=True)",
+    "local_process_RLIMIT_AS_bytes": 6442450944,
+    "reported_all_six_fields_within_frozen_tolerances": true,
+    "user_terminal_success_marker": "E17D2B3B5_ASDF_LIBRARY_HEADER_PASS",
+    "reported_halo_arrays_not_accessed": true,
+    "integrated_existing_E17D2b3b2R1_verifier_completed": false
+  },
+  "evidence_limitations": {
+    "report_compiled_from_user_pasted_stdout_not_from_repo_hosted_real_ASDF": true,
+    "provider_item_URI_or_signed_checksum_independently_verified": false,
+    "original_real_halo_ASDF_transferred_to_GitHub_or_ChatGPT": false,
+    "independent_GitHub_CI_on_real_ASDF": false,
+    "physical_per_halo_M200c_200critical_measured": false,
+    "same_object_merger_tree_across_epochs_verified": false,
+    "physical_Fplus_Fminus_neutrino_wake_or_galaxy_bispectrum_proven": false,
+    "observed_eBOSS_24D_odd_SEALED": true,
+    "no_new_science_cuts_seed_CLASS_mocks_F_or_E8_E16_changes": true,
+    "main_untouched_PR_stays_draft": true
+  },
+  "next_decision": "Archive this user-reported validation; no extra real data or halo-column read under b5. Source-audit official raw column schema and prospectively preregister separate b6 before any per-halo inspection; optional integrated local verifier needs a separately amended registration-safe implementation, not mutation of original pinned b2r1."
+}
