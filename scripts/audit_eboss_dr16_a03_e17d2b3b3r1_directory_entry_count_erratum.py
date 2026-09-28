@@ -71,12 +71,12 @@ def builder_count_semantics(source):
             "manifest product aggregate is not directly stat().st_size")
     foundlen=False;foundsum=False
     for a in ast.walk(tree):
-        if isinstance(a,ast.Assign) and len(a.targets)==1
-           and isinstance(a.targets[0],ast.Name):
+        if (isinstance(a,ast.Assign) and len(a.targets)==1
+            and isinstance(a.targets[0],ast.Name)):
             t=a.targets[0].id;val=a.value
-            if isinstance(val,ast.Call) and isinstance(val.func,ast.Name)
-               and len(val.args)==1 and isinstance(val.args[0],ast.Name)
-               and val.args[0].id=="du":
+            if (isinstance(val,ast.Call) and isinstance(val.func,ast.Name)
+                and len(val.args)==1 and isinstance(val.args[0],ast.Name)
+                and val.args[0].id=="du"):
                 if t=="nfile" and val.func.id=="len":foundlen=True
                 if t=="du" and val.func.id=="sum":foundsum=True
     require(foundlen and foundsum,
@@ -139,7 +139,7 @@ def run(upstream,p,old):
      "date":"2026-09-28",
      "status":"E17D2B3B3R1_ERRATUM_ORIGINAL_35_COUNTS_ARE_UNFILTERED_DIRECTORY_ENTRIES_REAL_ASDF_COUNT_UNVERIFIED",
      "prospective_corrective_protocol_git_blob":P_BLOB,
-     "preserved_old_report_sha256":src and p["prior_original_AUDIT_preserve"]["original_result_SHA256"],
+     "preserved_old_report_sha256":p["prior_original_AUDIT_preserve"]["original_result_SHA256"],
      "preserved_old_manifest_git_blob":p["prior_original_AUDIT_preserve"]["original_archive_manifest_git_blob"],
      "original_run_id":p["prior_original_AUDIT_preserve"]["original_CI_run_id"],
      "upstream_portal_source_commit":src["commit"],
