@@ -1,0 +1,161 @@
+{
+  "date": "2026-09-28",
+  "status": "E17D2B0_PROSPECTIVELY_LOCKED_PUBLISHED_DM14_POPULATION_MASS_CONCENTRATION_AND_RADIUS_BEFORE_ANY_NEW_NUMERICS",
+  "stage": "E17D2B0_EXTERNALLY_CALIBRATED_CONDITIONAL_HALO_SNAPSHOT_FAMILY_NOT_AN_INDIVIDUAL_HALO_HISTORY_OR_PHYSICAL_GALAXY_B",
+  "parent_head_at_registration": "f85b18a21888fe35700698dfe565b7e36e9f6514",
+  "question": "For the original frozen E16 k1,k2,K triangle labels at the original E17A redshift math nodes, what individual-halo spatial radii and NFW form factors follow CONDITIONALLY from the published Dutton & Maccio (2014) relaxed DM-only Planck 2013 population mass-concentration fit, for declared literature pivot/decase mass QA anchors, without fitting actual LRG/ELG masses, mixing cosmologies unacknowledged, or inventing a halo mass-assembly history?",
+  "science_scope": "This stage calibrates the POPULATION median concentration c200c(M200c,z), the 200-critical radius and conditional NFW mass/potential spatial shape. Equal-mass snapshots at three z nodes are NOT tracking the same halo, NOT a mass-accretion history, and NOT a measured high-z HOD or a valid combined neutrino+halo dynamical source.",
+  "external_primary_literature": {
+    "citation": "Dutton & Maccio, Cold dark matter haloes in the Planck era, MNRAS 441 (2014) 3359, DOI 10.1093/mnras/stu742; equations (7),(10),(11), Table 1 and section 4.1",
+    "url": "https://academic.oup.com/mnras/article/441/4/3359/1209689",
+    "arxiv_url": "https://arxiv.org/abs/1402.7073",
+    "simulation": "Relaxed CDM-only Planck-2013 halos, NFW c200c, 200 times CRITICAL density, NOT virial cvir and NOT Einasto. Published Planck simulation Omega_m=.3175,h=.671,sigma8=.8344,n_s=.9624,Omega_b=.0490. The original CLASS E17A source has h=.6736 and massive neutrinos .06 eV, so this conditional external prior is NOT an exact cosmology match to the source CLASS run.",
+    "published_calibration": "log10 c200c = a(z) + b(z) log10(M200c/[1e12 h_DM^-1 Msun]), a(z)=0.520+(0.905-0.520) exp[-0.617 z^1.21], b(z)=-0.101+0.026 z. Validated by authors for halo mass/redshift within simulations; use only mass anchors 1e12 and 1e13 h_DM^-1 Msun and z=.945,.95,.955.",
+    "scatter_scope": "Paper reports roughly log-normal 0.11 dex intrinsic c concentration scatter around z=0 fit; apply offsets +/-0.11 dex at z~.95 ONLY as fixed illustrative sensitivity bracket, NOT a calibrated z~.95 one-sigma interval, HOD prior, measurement or independent halo-to-halo posterior."
+  },
+  "immutable_source_parents": {
+    "E8_original_4000q_CSV_sha256": "bf8f48deb9514c5101d5ce314bfbd397485102a5487da1039f141e3cad6143d0",
+    "E16_original_full_sha256": "5d81f95a5571175f06eb032b865285ba34804701693f76af392be7fc31fb06db",
+    "E17A_original_joint_sha256": "094c49cb89d6dd231a5cbc16ecdfe455bcb3938ddec375fd28c81c8098ab2ad9",
+    "E17D1_original_joint_sha256": "1e52880db6c60cff1fe3cc1ca0a00e553c63ca08601399334d049e8403e18781",
+    "E17D2a_original_joint_sha256": "040c9711bfdfee6682acda4b48bc578b64e88c11d143d35a9a9ae46ff4c74a31",
+    "E17D2a_independent_sha256": "436d689762582e74fda83e3df0f1752fe2bbdf595b2c189f13aabce018ef2287",
+    "E17D2a_archive_manifest_git_blob": "ccb17f155211d88b943306bf5d31a35ffb4811f3",
+    "E17D2a_protocol_git_blob": "e7e0281f0b6b205214db5faf03a7c364521b3f2c",
+    "E17D2a_final_original_runner_git_blob": "5d7248095273f8ab0dc74cb9f95e7f78200044fa",
+    "E17A_protocol_git_blob": "f4bd3ea2a0519c4091ea94d0600ac62e57b3a2d4",
+    "E17A_manifest_git_blob": "a8f4e2d0e19c2deacae375449951d1b85766b3d2"
+  },
+  "frozen_geometry": {
+    "k_short_original_CLASS_h_per_Mpc": [
+      0.05,
+      0.075,
+      0.1
+    ],
+    "K_long_original_CLASS_h_per_Mpc": [
+      0.001,
+      0.002,
+      0.003,
+      0.005
+    ],
+    "mu_short": [
+      -1,
+      0,
+      0.6,
+      1
+    ],
+    "mu_long": [
+      -1,
+      0,
+      0.5,
+      1
+    ],
+    "phi_rad": [
+      "0",
+      "pi/2",
+      "pi"
+    ],
+    "original_E16_closed_geometries": 576,
+    "actual_both_short_legs_and_original_long_K_per_geometry": 3,
+    "redshift_math_nodes_NOT_eBOSS_z_eff": [
+      0.945,
+      0.95,
+      0.955
+    ],
+    "original_states": [
+      "FD",
+      "plus",
+      "minus"
+    ],
+    "original_tracer_order": [
+      "LRG",
+      "ELG"
+    ],
+    "original_CLASS_h": 0.6736,
+    "original_CLASS_massive_neutrino_eV": 0.06,
+    "no_E14_E15_original_72_24_change": true
+  },
+  "precommitted_evaluation_only": {
+    "halo_mass_ratio_to_published_1e12_hDM_inverse_Msun": [
+      1,
+      10
+    ],
+    "redshift_nodes": [
+      0.945,
+      0.95,
+      0.955
+    ],
+    "log10_concentration_offset_dex_illustrative": [
+      -0.11,
+      0,
+      0.11
+    ],
+    "cases": 18,
+    "mode_values": 31104,
+    "mass_grid_not_LRG_ELG_HOD_or_science_cut": true,
+    "all_scatter_branches_not_physical_posterior_at_z095": true
+  },
+  "halo_background_units": {
+    "h_DM14": 0.671,
+    "Omega_m_DM14": 0.3175,
+    "Omega_Lambda_flat_DM14": 0.6825,
+    "sigma8_DM14": 0.8344,
+    "n_s_DM14": 0.9624,
+    "physical_G_Mpc_kms2_per_Msun": 4.30091e-9,
+    "H_DM14_z_km_s_Mpc": "100 h_DM14 sqrt[Omega_m_DM14(1+z)^3+OmegaLambda_DM14], neglect radiation only inside this conditional DM14 halo-radius snapshot calculation, NOT a CLASS background calculation.",
+    "critical_density_Msun_per_Mpc3": "3 H_DM14(z)^2 / (8pi G)",
+    "M200_physical_Msun": "M200_hDM_inverse_Msun / h_DM14",
+    "r200_physical_Mpc": "[3*M200_physical/(4pi*200*rho_crit_DM14(z))]^(1/3)",
+    "r_s_physical_Mpc": "r200_physical / c200c",
+    "r_s_comoving_Mpc": "(1+z)*r_s_physical",
+    "original_CLASS_physical_comoving_k_invMpc": "k_original_h_per_Mpc * original_CLASS_h; mixing original CLASS physical k with DM14 halo r_s is a TAGGED cross-cosmology conditional sensitivity only, never physically self-consistent galaxy source.",
+    "conditional_Fourier_dimensionless_x": "x_i=(k_original_h_per_Mpc*original_CLASS_h)*(1+z)*r_s_physical_Mpc. Same E16 original numerical k labels, with h conversion explicit; do not silently identify h_DM14 with h_CLASS.",
+    "conditional_NFW_spatial_u": "Use EXACT original E17D2a truncated positive NFW analytic Si/Ci formula u(x,c), same virial truncation and mass normalization. Both original short legs and long K, no multiplication into B.",
+    "static_dimensionful_scale_only": "GM200_physical/r_s_physical in (km/s)^2, ONLY a conditional static single-halo potential scale; no source time evolution or neutrino force convolution."
+  },
+  "scientific_nonidentifiability": {
+    "no_individual_halo_assembly_from_population_median": "Knowing the population median c200c(M,z) for fixed masses at z=.945,.95,.955 gives distinct ensembles at each redshift, not an individual halo trajectory M(a) or dPhi/deta. Concentration scatter and individual mergers remain unobserved.",
+    "no_physical_FD_plus_minus_halo_prediction": "DM14 calibration is DM-only Planck2013, whereas the original CLASS neutrino deformation uses slightly different Planck cosmology and massive neutrinos. Do not stitch conditional halo u(x,c) to frozen E17D0/E17D1 susceptibility or infer tracer bias from this exercise.",
+    "no_real_eBOSS_halo_mass_selection": "The two mass anchors are a published pivot and one decade comparison for reproducible evaluations only; not a measurement or HOD for LRG/ELG."
+  },
+  "preregistered_QA": {
+    "all_original_source_SHA_and_manifest_blob_gates": true,
+    "DM14_primary_fit_coefficient_and_cosmology_literal_gate": true,
+    "original_CLASS_vs_DM14_h_mismatch_explicit": true,
+    "all_18_cases_and_576_original_E16_geometries": true,
+    "all_31104_short_short_long_sample_values": true,
+    "triangle_closure_abs_h_per_Mpc_max": 1e-13,
+    "fixed_source_C200_positive_and_strict_offets_order": true,
+    "independent_background_E_and_critical_density_scaled_gap_max": 1e-12,
+    "r200_200critical_mass_reclosure_relative_gap_max": 1e-12,
+    "physical_comoving_rs_factor_scaled_gap_max": 1e-12,
+    "model_nfw_Fourier_u_positive_mass_abs_bound": 1.000000000005,
+    "fourier_reversal_abs_gap_max": 1e-13,
+    "independent_stdlib_direct_radial_Simpson_full_31104_mode_gap_max": 2e-8,
+    "independent_2048_4096_radial_convergence_max": 1e-8,
+    "conditioned_short_leg_spatial_point_mass_limit_report_only": true,
+    "independent_tampered_original_SHA_rejected": true,
+    "no_posthoc_change_to_QA_or_case_grid": true
+  },
+  "archive_and_governance": {
+    "original": "18 full source-only conditional DM14 mass-concentration+200c radius NFW spatial reports for every original E16 k1,k2,K; one original joint with QA and max conditional point-mass suppression. No individual halo time history or cosmology-consistent CLASS cross kernel.",
+    "independent": "Separate stdlib scalar DM14 fitting and critical density re-derivation, full 31104 original Fourier shapes using numerical positive NFW 4096-panel Simpson, immutable SHA report and tamper negative control. Archive full original and independent bytes and manifest on audit branch.",
+    "no_master_plan_PR_PASS_before_independent_CI": true
+  },
+  "absolute_STOP": {
+    "observed_odd_SEALED": true,
+    "no_new_survey_catalogue_mock_FITS_or_CLASS_run": true,
+    "no_new_science_cuts_or_seeds": true,
+    "no_original_E8_E17D2a_rewrite": true,
+    "no_LRG_ELG_observed_galaxy_or_odd_read": true,
+    "no_actual_LRG_ELG_halo_mass_or_HOD_claim": true,
+    "no_true_individual_halo_mass_accretion_history": true,
+    "no_actual_halo_potential_time_history_or_dPhi_deta": true,
+    "no_original_CLASS_DM14_cosmology_equivalence_claim": true,
+    "no_self_consistent_Einstein_Vlasov_response_or_physical_finiteK_B": true,
+    "no_real_eBOSS_three_point_window_or_covariance_claim": true,
+    "no_xi_SN_detection_significance_or_unblinding": true,
+    "main_untouched": true,
+    "PR_remains_draft": true
+  }
+}
