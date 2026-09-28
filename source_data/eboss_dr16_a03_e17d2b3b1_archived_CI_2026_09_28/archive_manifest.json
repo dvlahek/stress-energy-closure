@@ -1,0 +1,23 @@
+{
+  "date": "2026-09-28",
+  "CI_run_id": "36445799032",
+  "prospective_E17D2b3b1_protocol_blob": "36c2bcda723b95565e604723e651beef08aad992",
+  "official_source_repo": "abacusorg/abacusutils",
+  "official_source_commit": "24ab0dda5fea9ae406b1afdacaf4bbf989de9bc6",
+  "embedded_header_copy_git_blob": "0065029cdd515ffa76c61a27b81e9f16b2656f38",
+  "embedded_header_copy_bytes": 9486279,
+  "source_bundled_copy_NOT_actual_provider_halo_info_ASDF_header": true,
+  "no_real_halo_particle_PID_tree_or_observed_galaxy_download": true,
+  "original_E8_E16_F_science_unchanged": true,
+  "full_physical_halo_tracer_bispectrum": "BLOCKED",
+  "observed_odd_SEALED": true,
+  "main_untouched": true,
+  "PR_remains_draft": true,
+  "files": [
+    {
+      "file": "e17d2b3b1_pinned_official_embedded_header_copy_state_z095.json",
+      "size_bytes": 3201,
+      "sha256": "aacd9b4f6e3dd63fb353c72488669e7eb01e365d48c220664a0dfda8dc9e0673"
+    }
+  ]
+}
