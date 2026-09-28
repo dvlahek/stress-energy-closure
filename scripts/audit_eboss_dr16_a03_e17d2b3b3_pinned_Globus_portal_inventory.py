@@ -19,7 +19,7 @@ from urllib.parse import urlencode
 
 ROOT=Path(__file__).resolve().parents[1]
 P=ROOT/"source_data/eboss_dr16_a03_e17d2b3b3_official_Globus_portal_product_inventory_prereg_2026-09-28.json"
-P_BLOB="087055f6e71a50d67727e7e29f9ea1754d7d178e"
+P_BLOB="42dab76d5e4fb7c8325ece9ea4465775b384da21"
 E8=ROOT/"source_data/eboss_dr16_a03_e8_e11_archived_CI_2026_09_27/E8/frozen_matched_distributions_4000q.csv"
 E16=ROOT/"source_data/eboss_dr16_a03_e16_original_72_source_exact_triangle_geometry_2026_09_27.json"
 B1=ROOT/"source_data/eboss_dr16_a03_e17d2b3b1_archived_CI_2026_09_28/e17d2b3b1_pinned_official_embedded_header_copy_state_z095.json"
