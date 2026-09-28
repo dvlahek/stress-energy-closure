@@ -77,8 +77,8 @@ def gate():
     a=json.loads(E17A.read_bytes())
     d=json.loads(NFW_JOINT.read_bytes())
     require(a["geometry_count"]==576
-            and a["full_physical_finite_K_bispectrum"]=="BLOCKED"
-            and a["observed_odd_read"] is False
+            and a["retarded_halo_tracer_physical_bispectrum"]=="BLOCKED"
+            and a["eBOSS_observed_odd_read"] is False
             and d["original_E16_geometries_per_case"]==576
             and d["full_physical_finiteK_galaxy_bispectrum"]=="BLOCKED"
             and d["observed_odd_SEALED"] is True,
