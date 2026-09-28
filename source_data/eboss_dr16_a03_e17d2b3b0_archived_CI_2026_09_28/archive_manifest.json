@@ -1,0 +1,21 @@
+{
+  "date": "2026-09-28",
+  "CI_run_id": "36443992886",
+  "prospective_E17D2b3b0_protocol_git_blob": "49df0cd9c110b3ef9db02a3ad0cb9a4ff20554e1",
+  "original_science_E17D2b3a_sha256": "0b098291122eb51cbd3e113e7edd2276ba7c9b7c38669008486f0f73f897277e",
+  "provider_inventory_only_no_actual_ASDF_byte_verification": true,
+  "candidate_box_phase_raw_cleaned_product_not_selected": true,
+  "no_halo_particle_merger_tree_observed_galaxy_or_mock_download": true,
+  "no_real_M200c_and_no_neutrino_wake": true,
+  "full_physical_halo_tracer_bispectrum": "BLOCKED",
+  "observed_odd_SEALED": true,
+  "main_untouched": true,
+  "PR_remains_draft": true,
+  "files": [
+    {
+      "file": "e17d2b3b0_offline_real_abacus_access_contract_BLOCKED.json",
+      "size_bytes": 3883,
+      "sha256": "3917ce7da42b9064bdaece35e7ed1ef63dc880bf8fb48a5143a38f3882d4c4fe"
+    }
+  ]
+}
