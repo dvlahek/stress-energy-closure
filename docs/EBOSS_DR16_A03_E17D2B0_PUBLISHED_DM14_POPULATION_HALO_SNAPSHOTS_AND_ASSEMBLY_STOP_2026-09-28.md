@@ -69,7 +69,7 @@ Za svaku snapshot konfiguraciju izračunava se originalna E17D2a pozitivna NFW t
 
 Za izvorni matematički z=.95 i **medijan** DM14 koncentracije dvije referentne mase daju:
 
-| Ulazna masena referencija — nije HOD | c200c medijan | r_s,com u Mpc | Najveći |1−u| na originalnom E16 skupu |
+| Ulazna masena referencija — nije HOD | c200c medijan | r_s,com u Mpc | Najveće apsolutno odstupanje u od 1 na E16 |
 |---|---:|---:|---:|
 | 10¹² hDM14⁻¹ M☉ | 5.439874383959189 | 0.05999406475939125 | 2.43292582162713×10⁻⁵ |
 | 10¹³ hDM14⁻¹ M☉ | 4.563403500551233 | 0.1540783506639813 | 1.1817690358140176×10⁻⁴ |
