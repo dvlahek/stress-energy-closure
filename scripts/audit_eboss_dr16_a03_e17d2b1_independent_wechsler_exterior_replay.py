@@ -242,7 +242,7 @@ def main():
             "e17d2b1_original_conditional_wechsler_exterior_00.json"]["sha256"]="0"*64
         try:full_replay(x.output_dir,fake,p,b0)
         except ValueError as err:
-            check("immutable original E17D2B1 report SHA mismatch" in str(err),
+            check("immutable original E17D2b1 report SHA mismatch" in str(err),
                   "negative control rejected at wrong gate")
             print("E17D2B1_INDEPENDENT_TAMPERED_ORIGINAL_SHA_REJECTED",flush=True)
             return
