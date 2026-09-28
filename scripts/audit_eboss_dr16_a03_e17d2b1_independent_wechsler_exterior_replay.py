@@ -70,7 +70,7 @@ def gate():
           and f["z0_anchor_only"]==Z0
           and f["fixed_original_E17A_z_math_nodes_NOT_real_halo_formation_samples"]==list(Z)
           and f["physical_exterior_test_radius_ratio_to_anchor_r200c"]==3
-          and f["DM14_h"]==H0/100.
+          and math.isclose(f["DM14_h"],H0/100.,rel_tol=0.,abs_tol=1e-15)
           and f["DM14_Omega_m"]==OM
           and f["DM14_Omega_lambda"]==OL
           and f["G_Mpc_km2_s2_Msun"]==G
