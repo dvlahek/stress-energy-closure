@@ -1,0 +1,82 @@
+{
+  "date": "2026-09-28",
+  "stage": "E17D2B3B3_PINNED_OFFICIAL_PUBLIC_GLOBUS_PORTAL_SIMULATION_PRODUCT_INVENTORY",
+  "status": "PROSPECTIVE_PORTAL_METADATA_ONLY_NO_LIVE_GLOBUS_ITEM_OR_ASDF_FILE",
+  "question": "Can the exact public source-controlled AbacusSummit data-portal manifest and configuration establish a specific c000 ph000 z0.950 halo_info/cleaning file-count and aggregate-size inventory and generate a narrow Globus browse URL, without claiming live endpoint access or downloading any halo ASDF?",
+  "parent_branch_head_at_registration": "34005788167d9e0cdafae499345bca22e1fca811",
+  "immutable_local_parents": {
+    "E8_csv_sha256": "bf8f48deb9514c5101d5ce314bfbd397485102a5487da1039f141e3cad6143d0",
+    "E16_triangle_sha256": "5d81f95a5571175f06eb032b865285ba34804701693f76af392be7fc31fb06db",
+    "E17D2b3b1_header_copy_sha256": "aacd9b4f6e3dd63fb353c72488669e7eb01e365d48c220664a0dfda8dc9e0673",
+    "E17D2b3b2_source_copy_mass_reference_sha256": "efa1878250ca395ab65207f485f214854b817188613acaae1ce668f58af78a38",
+    "E17D2b3b2_archive_manifest_git_blob": "0563c53fdb966bb9382a3b910e94e237fef90bf8",
+    "E17D2b3b2r1_real_ASDF_checker_prereg_blob": "b5e4bed15c9841bdfa8933a4d6960c9eda701e36",
+    "master_plan_v139_blob": "e2e835a055cd8f629a0aa5b61db725e05339451c",
+    "main_untouched_sha": "e50549a5c974772eb9576d301df7a5ea6e6d87d2"
+  },
+  "upstream_public_portal_pins": {
+    "repo": "abacusorg/abacussummit-data-portal",
+    "immutable_commit": "f877298344a6988d55f57a7c39f5be14dce63ff3",
+    "commit_date_UTC": "2026-08-27T04:33:27Z",
+    "manifest_path": "web/portal/static/data/simulations.table.json",
+    "manifest_git_blob": "cb235ad72ab2516f872bd4ca79b9447a3f4b30e3",
+    "manifest_reported_bytes": 5097824,
+    "manifest_builder_path": "build_manifest.py",
+    "manifest_builder_git_blob": "88dc7c198c1332d2a0204bb0d3c698fd1dcf28a5",
+    "portal_config_path": "web/portal/portal.conf",
+    "portal_config_git_blob": "8ae1eaa5a56ddc72dc5313e9fe52ff4233968286",
+    "portal_view_path": "web/portal/views.py",
+    "portal_view_git_blob": "8c85c76a22746b43b8db2f5e1748a8defbc35f6f",
+    "endpoint_uuid_from_pinned_portal_source": "ffc65d7a-0bf9-11ec-90b4-41052087bc27",
+    "endpoint_base_from_pinned_source": "/",
+    "expected_source_tree_root": "AbacusSummit_base_c000_ph000",
+    "exact_simulation": "AbacusSummit_base_c000_ph000",
+    "exact_directory_label_z": "z0.950",
+    "expected_source_manifest_z_key": "0.95",
+    "official_public_documentation": "https://abacussummit.readthedocs.io/en/latest/data-access.html"
+  },
+  "preobserved_public_manifest_inventory_NOT_new_science_measurement": {
+    "halo_info_files": 35,
+    "halo_info_aggregate_bytes": 75722740486,
+    "halo_pid_A_files": 35,
+    "halo_pid_A_aggregate_bytes": 7933832501,
+    "cleaned_halo_info_files": 35,
+    "cleaned_halo_info_aggregate_bytes": 18363791798,
+    "cleaned_rvpid_files": 35,
+    "cleaned_rvpid_aggregate_bytes": 488961946,
+    "per_file_names_sizes_sha_provider_cksum": "NOT_PRESENT_IN_THIS_AGGREGATED_MANIFEST",
+    "live_provider_collection_status": "UNVERIFIED"
+  },
+  "source_only_validation": {
+    "must_verify_exact_manifest_git_blob_and_bytes": true,
+    "must_verify_exact_config_views_builder_blob": true,
+    "must_refuse_other_box_phase_or_science_redshift": true,
+    "must_not_infer_superslab_numbers_from_count": true,
+    "must_parse_manifest_unambiguous_one_simname_and_product_counts": true,
+    "must_derive_link_from_exact_portal_UUID_base_and_root": true,
+    "must_prove_official_view_code_uses_origin_id_origin_path_and_build_manifest_root": true,
+    "must_reject_synthetic_tamper_count_or_endpoint_or_simname": true,
+    "must_not_call_Globus_Transfer_or_fetch_halo_file": true,
+    "manifest_commit_is_ARCHIVED_SNAPSHOT_not_live_file_availability": true
+  },
+  "next_real_transfer_human_action": {
+    "Globus_source_browse_only": "User may open pinned-origin Globus browser and authenticate with their own account, confirm exact provider-listed halo_info_NNN.asdf and checksums.crc32 in same directory and inspect their actual file sizes before transferring ONE file. Never authorize a bulk 35-file z0.950 or entire 6.6TB base tar by implication.",
+    "dependency": "User's authenticated Globus destination or NERSC CFS access is required. ChatGPT cannot impersonate user or assert that it used their Globus account.",
+    "if_file_arrives": "Only then run existing E17D2b3b2R1 byte/checksum+actual header validation and retain supplied-manifest external provenance UNATTESTED until separately verified by provider. No automatic GitHub upload of actual halo or local report.",
+    "science_scope": "Even a genuinely verified raw halo_info file lacks guaranteed full halo+field particle radial inventory or validated M200c(a) and is not original F+/- neutrino wake, high-z LRG/ELG HOD, or eBOSS 3point B."
+  },
+  "absolute_STOP": {
+    "no_actual_Abacus_halo_info_ASDF_or_particle_PID_merger_tree_data_read_or_download_in_this_stage": true,
+    "no_Globus_login_oauth_token_Transfer_or_bulk_catalogue_copy": true,
+    "no_current_availability_claim_from_static_source_controlled_portal_manifest": true,
+    "no_guessed_halo_info_NNN_file_name_size_cksum_or_selected_product": true,
+    "no_auto_relabel_raw_and_cleaned_halo_products_as_identical": true,
+    "no_GNU_cksum_sha256_or_real_ASDF_claim_without_exact_file": true,
+    "no_M200c_from_L1_or_SO_radius_or_synthetic_test": true,
+    "no_original_E8_Fplus_minus_F0_72_sources_24_contrasts_changed": true,
+    "no_observed_galaxy_odd_or_new_CLASS_FITS_mock_science_cut_seed": true,
+    "no_retarded_physical_Fplus_minus_neutrino_wake_or_galaxy_B_significance": true,
+    "observed_odd_SEALED": true,
+    "main_untouched_PR_draft": true
+  }
+}
