@@ -1,0 +1,115 @@
+{
+  "date": "2026-09-28",
+  "CI_run_id": "36386292471",
+  "prospective_E17D2b0_protocol_git_blob": "8faaf167403e09f321a6c62f452120f8b96898a2",
+  "original_E17D2a_joint_sha256": "040c9711bfdfee6682acda4b48bc578b64e88c11d143d35a9a9ae46ff4c74a31",
+  "published_DM14_is_pop_median_Planck2013_NOT_exact_original_CLASS": true,
+  "numeric_mass_anchor_redshift_scatter_not_actual_LRG_ELG_HOD": true,
+  "full_physical_halo_tracer_bispectrum": "BLOCKED",
+  "observed_odd_SEALED": true,
+  "no_new_CLASS_FITS_mock": true,
+  "main_untouched": true,
+  "PR_remains_draft": true,
+  "files": [
+    {
+      "file": "e17d2b0_independent_stdlib_dm14_full_radial_replay.json",
+      "size_bytes": 8139,
+      "sha256": "61370c5db6a2075da130b0399f374acc0dc8b0cff65ba2e6f380e916d0818b59"
+    },
+    {
+      "file": "e17d2b0_original_DM14_conditional_snapshot_00.json",
+      "size_bytes": 1047584,
+      "sha256": "601054f3202dbde226f3e4651a897da54536ce810ac9f32945a5adf88e9ae41d"
+    },
+    {
+      "file": "e17d2b0_original_DM14_conditional_snapshot_01.json",
+      "size_bytes": 1047865,
+      "sha256": "0ec0ac4151c2513345f682c139d78c2c8e6db8c520c52c3bdd10468ea9758c75"
+    },
+    {
+      "file": "e17d2b0_original_DM14_conditional_snapshot_02.json",
+      "size_bytes": 1048132,
+      "sha256": "69b6d9a99803b6da40002419ca4034d52829f68ef2f3ce0c4a1b71a32a087583"
+    },
+    {
+      "file": "e17d2b0_original_DM14_conditional_snapshot_03.json",
+      "size_bytes": 1048353,
+      "sha256": "3bf2715797190b11213b2e65a52f3bb6600da14bb4528e7f3b9df085e4ecc9ba"
+    },
+    {
+      "file": "e17d2b0_original_DM14_conditional_snapshot_04.json",
+      "size_bytes": 1048306,
+      "sha256": "f3ccd2327b16d305f6ef87255088df60f85a99335145064bc3aed21e82773378"
+    },
+    {
+      "file": "e17d2b0_original_DM14_conditional_snapshot_05.json",
+      "size_bytes": 1048789,
+      "sha256": "64090b826296f8d4897e59d60a4eacd7b47a583ad53b9dbad4101aef90ac90fb"
+    },
+    {
+      "file": "e17d2b0_original_DM14_conditional_snapshot_06.json",
+      "size_bytes": 1047641,
+      "sha256": "d911fd1f539cdca820fa4d97bc5bd2390a854d22da6969b8da6b179c14a403d9"
+    },
+    {
+      "file": "e17d2b0_original_DM14_conditional_snapshot_07.json",
+      "size_bytes": 1048032,
+      "sha256": "ae093f2c4ab9bf65d03aac6e62f06804944157987e14f863dd5d6a499fd4e3af"
+    },
+    {
+      "file": "e17d2b0_original_DM14_conditional_snapshot_08.json",
+      "size_bytes": 1047890,
+      "sha256": "50933f8e378ff9a93e61ae4ea1f144fc43ed08a4e973f9590b49bb85c068ed24"
+    },
+    {
+      "file": "e17d2b0_original_DM14_conditional_snapshot_09.json",
+      "size_bytes": 1047558,
+      "sha256": "a12462e73ac5f8d55344d2be22fef47ee94555c7f515ad863db1b172b0d59c51"
+    },
+    {
+      "file": "e17d2b0_original_DM14_conditional_snapshot_10.json",
+      "size_bytes": 1047545,
+      "sha256": "b9b67bb9c17ceafe3f3920a03ed0254ecddb16e1c76939a932819f9a74128217"
+    },
+    {
+      "file": "e17d2b0_original_DM14_conditional_snapshot_11.json",
+      "size_bytes": 1047696,
+      "sha256": "c316733be5a4e992e4b54d5e5d18ea260ea38862e767ca05de3d4e640bcfd9ba"
+    },
+    {
+      "file": "e17d2b0_original_DM14_conditional_snapshot_12.json",
+      "size_bytes": 1046774,
+      "sha256": "20ac4da930384e8e6a7019e63cc078317ebe08753572ea5e004aa5f69cf0afc7"
+    },
+    {
+      "file": "e17d2b0_original_DM14_conditional_snapshot_13.json",
+      "size_bytes": 1047562,
+      "sha256": "1364d92179e5d203e24ccfead18f14a1aff28c85885b141a416f9f9d39e519be"
+    },
+    {
+      "file": "e17d2b0_original_DM14_conditional_snapshot_14.json",
+      "size_bytes": 1047895,
+      "sha256": "1059fc9e6413d6ee89f686ec06b49bc971d9d23c06ea26e0f4d5a04118260815"
+    },
+    {
+      "file": "e17d2b0_original_DM14_conditional_snapshot_15.json",
+      "size_bytes": 1047329,
+      "sha256": "ed6512e5501a1c8c932603bd6ad982424cfb51463a145541704f85ea8f91100d"
+    },
+    {
+      "file": "e17d2b0_original_DM14_conditional_snapshot_16.json",
+      "size_bytes": 1047151,
+      "sha256": "fe154d509e2fb26052d0a347b7fb6ee0d06567d0fa53288ec8ef8ac9dd3c49e3"
+    },
+    {
+      "file": "e17d2b0_original_DM14_conditional_snapshot_17.json",
+      "size_bytes": 1047733,
+      "sha256": "92db6fc8427202e74681cd038cc71e62a150a30d8fae2693e7b95d1e76b15c4c"
+    },
+    {
+      "file": "e17d2b0_original_joint_DM14_conditional_mass_concentration_spatial_snapshots.json",
+      "size_bytes": 15114,
+      "sha256": "848d3377830724593d75a02972f209085cb9913d03e8b73789f9b6478e6c11e6"
+    }
+  ]
+}
