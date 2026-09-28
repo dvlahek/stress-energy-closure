@@ -1,0 +1,169 @@
+{
+  "date": "2026-09-28",
+  "stage": "E17D2B2_ABACUSSUMMIT_C000_OFFICIAL_DOCUMENTATION_PROVENANCE_AND_HALO_MASS_CONVENTION_GATE",
+  "status": "E17D2B2_PROSPECTIVELY_LOCKED_DOCUMENTATION_ONLY_BEFORE_METADATA_COMPARISON_NO_EXTERNAL_CATALOGUE_DOWNLOAD",
+  "parent_head_at_registration": "cd92c1142d816cda82310c84fc69ae39d0a7acc2",
+  "scientific_goal": "Find an independently published simulation with nominal base cosmology closest to original CLASS h, omega_b, omega_cdm, n_s, m_ncdm, and document exactly which remaining physics and data-format gates still prevent adopting its halo trees for original E8 F0/F+/F− neutrino wake and eBOSS LRG×ELG 3pt. No simulation halo tree/catalogue or observed odd is read.",
+  "official_public_source_evidence_as_of_date": [
+    {
+      "topic": "cosmology",
+      "url": "https://abacussummit.readthedocs.io/en/latest/cosmologies.html",
+      "documented": "Primary c000 table h=.6736 omega_b=.02237 omega_cdm=.1200 As=2.0830e-9 n_s=.9649 N_ur=2.0328 N_ncdm=1 omega_ncdm=.00064420; background neutrinos approximated smooth in CDM-only N-body initial condition and growth; omega_ncdm not the same object as user's custom F+/-."
+    },
+    {
+      "topic": "halo epoch, sample metadata",
+      "url": "https://abacussummit.readthedocs.io/en/latest/data-products.html",
+      "documented": "Primary z .8/1.1 and approximate secondary directory z .875/.95/1.025; actual secondary z MUST be read from the individual ASDF header. CompaSO L1 group mass N, SO threshold header SODensityL1 RELATIVE TO MEAN cosmic density and epoch dependent; no direct M200c inference. Secondary epoch catalogs only halo info and halo particle PIDs without halo RV or field particles."
+    },
+    {
+      "topic": "trees and cleaned products",
+      "url": "https://academic.oup.com/mnras/article/512/1/837/6541858",
+      "documented": "Bose et al. published merger trees for AbacusSummit CompaSO L1 halos, construction links across epochs; cleaned halo catalogs are not the same product as raw L1 and require declared choice."
+    },
+    {
+      "topic": "public access",
+      "url": "https://abacussummit.readthedocs.io/en/latest/data-access.html",
+      "documented": "Public data release and data products documented, but merger trees may require browsing via Globus and availability of exact box/product must be independently verified. No actual dataset file or header has been downloaded in this stage."
+    },
+    {
+      "topic": "simulation primary paper",
+      "url": "https://academic.oup.com/mnras/article/508/3/4017/6366248",
+      "documented": "AbacusSummit nominal c000 cosmic parameter table, particle-based CDM-only N-body with smooth neutrino approximation and group catalog/merger trees. Public report is provenance, not individual eBOSS halo data."
+    }
+  ],
+  "immutable_original_repo_parents": {
+    "original_CLASS_cosmo_source_code_blob": "44956e353dbb238537d60da687d1a2a26fa13ee6",
+    "original_CLASS_parameter_builder_code_blob": "473e6d9b5941d8f67d1ecc1f5f170124d9ef8ea2",
+    "original_E8_F0_Fplus_Fminus_4000q_CSV_sha256": "bf8f48deb9514c5101d5ce314bfbd397485102a5487da1039f141e3cad6143d0",
+    "original_E16_576_geometry_sha256": "5d81f95a5571175f06eb032b865285ba34804701693f76af392be7fc31fb06db",
+    "original_E17A_CLASS_joint_sha256": "094c49cb89d6dd231a5cbc16ecdfe455bcb3938ddec375fd28c81c8098ab2ad9",
+    "original_E17D2b1_joint_sha256": "19cfd3e3a9382d07b4a978522e437780b79467dcbf8f8adcf45d3804b46ad3b9",
+    "original_E17D2b1_independent_sha256": "9a0962b6124bac95e543ce7a392da3f5a14a7d4a058a05174656df6768ed19d9",
+    "original_E17D2b1_manifest_git_blob": "2b6779fdcc39f9c6b5516b64044e6f942f93ebba",
+    "original_E17D2b1_protocol_git_blob": "28e33fad09db24b8b19739f50322169180442988",
+    "original_E17A_protocol_git_blob": "f4bd3ea2a0519c4091ea94d0600ac62e57b3a2d4"
+  },
+  "original_CLASS_literal_frozen_parameter_evidence": {
+    "H0_km_s_Mpc": 67.36,
+    "omega_b": 0.02237,
+    "omega_cdm": 0.12,
+    "A_s_primordial_formula": "exp(3.044)*1e-10",
+    "n_s": 0.9649,
+    "tau_reio": 0.054,
+    "N_ur": 2.0328,
+    "N_ncdm": 1,
+    "m_ncdm_eV": 0.06,
+    "T_ncdm": 0.71611,
+    "has_custom_psd_files": true,
+    "states": [
+      "FD",
+      "plus",
+      "minus"
+    ],
+    "tracer_order": [
+      "LRG",
+      "ELG"
+    ],
+    "original_CLASS_commit": "e85808324f51fc694d12e3ed7439552a3c3f9540"
+  },
+  "AbacusSummit_c000_official_documented_not_file_metadata": {
+    "simulation_family": "AbacusSummit_base_c000",
+    "h": 0.6736,
+    "omega_b": 0.02237,
+    "omega_cdm": 0.12,
+    "A_s": 2.083e-9,
+    "n_s": 0.9649,
+    "N_ur": 2.0328,
+    "N_ncdm": 1,
+    "omega_ncdm": 0.0006442,
+    "tau_reio": 0.0544,
+    "one_standard_massive_neutrino_eV_approx": 0.06,
+    "neutrino_Nbody_treatment": "smooth in background/growth; NO nonlinear neutrino particles or independent neutrino wake response",
+    "mass_type_from_catalogue": "CompaSO L1 halo N/group mass, SODensityL1 epoch-specific vs cosmic mean; NOT M200c",
+    "secondary_directory_redshift_label": 0.95,
+    "secondary_actual_redshift": "UNREAD_MUST_USE_PER_FILE_HEADER",
+    "secondary_data_fields": "halo_info and halo subsample PIDs; NOT complete field particle positions/velocities",
+    "cleaned_merger_tree_product": "PUBLISHED_BUT_EXACT_BOX_PRODUCT_AND_FILE_INTEGRITY_UNVERIFIED",
+    "actual_ASDF_header_or_halo_content_loaded": false
+  },
+  "numerical_diagnostic_only": {
+    "compare_exact": [
+      "h",
+      "omega_b",
+      "omega_cdm",
+      "n_s",
+      "N_ur",
+      "N_ncdm"
+    ],
+    "compare_mismatch": [
+      "A_s",
+      "tau_reio"
+    ],
+    "percent_As_difference_report": "100*(exp(3.044)*1e-10/2.083e-9-1) numerical provenance mismatch, NOT an inferred change in galaxy B.",
+    "omega_ncdm_comparison": "Do not certify original custom F+/F− omega_ncdm or Abacus background neutrino equivalence without an independently checked same-normalization header, original CLASS output and consistent F(q).",
+    "mass_ratio": "Strictly do NOT convert CompaSO L1 N or SO_radius into M200c by relabeling; a separate validated 200rho_crit remeasurement from compatible particle data or a documented conversion profile at actual z is required.",
+    "cleaning": "A tree cleaned mass history must use consistent cleaned/un-cleaned definition and exact merger branch; a cleaned halo catalog at z0 does not imply c200c(z) of same object.",
+    "neutrino_distribution": "Original F0 thermal baseline matches only nominal massive species assumptions; original nonthermal F+/- is not present in Abacus c000 sim and must never be inferred from its merger-tree product."
+  },
+  "preregistered_QA": {
+    "original_all_SHA_and_git_blob_gates": true,
+    "exact_literally_anchored_original_cosmo_source_params": true,
+    "original_A_s_vs_Abacus_A_s_mismatch_must_be_nonzero": true,
+    "original_tau_vs_Abacus_tau_mismatch_must_be_nonzero": true,
+    "exact_primary_six_nominal_matches": true,
+    "c000_neutrino_smooth_vs_original_perturbations_STOP": true,
+    "SO_catalog_L1_vs_200critical_mass_STOP": true,
+    "secondary_z_directory_is_not_actual_header_z_STOP": true,
+    "secondary_halo_only_PID_limited_product_STOP": true,
+    "no_automatic_use_for_Fplus_Fminus_STOP": true,
+    "no_external_ASDF_or_real_halo_header_loaded": true,
+    "negative_synthetic_header_tamper_and_mass_relabel_rejected": true,
+    "independent_stdlib_replay_of_literal_compared_values_scaled_gap_max": 1e-14,
+    "no_posthoc_QA_retuning": true
+  },
+  "future_real_data_acceptance_contract_NOT_RUN": {
+    "simulation_candidate": "AbacusSummit_base_c000_ph000 or other explicitly cited c000 realization ONLY after confirming access, stable persistent data ID and exact product completeness; not chosen as actual LRG/ELG sample.",
+    "required_headers": [
+      "exact_simulation_name_and_phase",
+      "actual_redshift_from_each_ASDF_header",
+      "h_and_omega_b_cdm",
+      "neutrino_treatment_and_mass_metadata",
+      "particle_mass_and_unit_conventions",
+      "SODensityL1_and_actual_reference_density",
+      "catalogue_cleaned_raw_semantics",
+      "merger_tree_branch_ID_progenitor_validity",
+      "file_SHA_or_official_checksums",
+      "M200c_200critical_mass_definition_or_validated_remeasurement_provenance"
+    ],
+    "frozen_Original_E16_z_nodes_not_simulation_header": [
+      ".945",
+      ".950",
+      ".955"
+    ],
+    "only_after_authorized_real_data": "Obtain provider permitted halo/merger-tree data for a single documented compatible c000 box with exact ASDF redshifts and mass semantics, no actual observed eBOSS galaxies, no new galaxy/mock downloads in THIS step; separate protocol required before any future catalog access.",
+    "absolute_fail_closed": "No C000 merger-tree interpretation as E17D2b1 physically validated M200c(a), no massive-neutrino response and no halo LRG/ELG B until all relevant gates satisfied."
+  },
+  "outputs_and_governance": {
+    "original_report": "Small documentation-backed simulation-candidate fit/STOP JSON with exact SHA original E8/E16/E17A/E17D2b1 parents, mismatched As/tau, mass convention and actual z gate. No numerical halo catalog or simulated history.",
+    "independent": "Separate stdlib provenance values and mathematical SHA check, tamper negative control on synthetic metadata without contacting provider or reading user files except immutable science parents.",
+    "CI": "Run source-only GitHub Actions on audit branch; archive both original and independent JSON and permanent SHA manifest only after QA success; update master plan and draft PR after verified PASS.",
+    "main_and_draft": "Never modify main or merge draft PR."
+  },
+  "absolute_STOP": {
+    "no_new_halo_mock_catalogue_ASDF_FITS_or_actual_merger_tree_download": true,
+    "no_new_CLASS_or_simulation_execution": true,
+    "no_observed_galaxy_or_odd_vector_unblind": true,
+    "no_new_science_cuts_or_seeds": true,
+    "no_automatic_CompaSO_L1_mass_equal_M200c": true,
+    "no_automatic_secondary_z_directory_equal_true_z": true,
+    "no_c000_smooth_neutrino_response_equal_E8_Fplus_minus_wake": true,
+    "no_original_AS_FD_exact_equivalence_claim": true,
+    "no_Abacus_halo_formation_history_calculated": true,
+    "no_real_eBOSS_LRG_ELG_HOD_inferred": true,
+    "no_retarded_self_consistent_Einstein_Vlasov_or_physical_finiteK_galaxy_B": true,
+    "no_eBOSS_true_3pt_window_covariance_or_24D_relabel": true,
+    "observed_odd_SEALED": true,
+    "main_untouched": true,
+    "PR_remains_draft": true
+  }
+}
