@@ -35,7 +35,13 @@ jobs:
           path: official-abacusutils
           fetch-depth: 1
           persist-credentials: false
+          sparse-checkout-cone-mode: false
           sparse-checkout: |
+            README.md
+            pyproject.toml
+            abacusnbody/__init__.py
+            abacusnbody/data/__init__.py
+            abacusnbody/metadata/__init__.py
             abacusnbody/metadata/abacussummit_headers_compressed.asdf
             abacusnbody/metadata/abacussummit.py
             abacusnbody/data/asdf.py
@@ -51,7 +57,16 @@ jobs:
           echo E17D2B3B1_OFFICIAL_SOURCE_BUNDLED_HEADER_COPY_9MB_GIT_SHA_PASS_NO_HALO_DATA
       - name: Install only public source COPY decoding dependencies, NOT CLASS or halo reader
         run: |
-          python -m pip install --no-cache-dir 'numpy==1.26.4' 'asdf==3.5.0' 'msgpack==1.1.0' 'blosc==1.11.3'
+          python -m pip install --no-cache-dir 'numpy==1.26.4' 'asdf==3.5.0' 'msgpack==1.1.0' 'blosc==1.11.3' 'astropy==6.1.2' 'asdf-astropy==0.7.1'
+          python -m pip install --no-deps -e ./official-abacusutils
+          python - <<'PY'
+          import importlib.metadata
+          eps=importlib.metadata.entry_points(group="asdf.extensions")
+          hits=[x for x in eps if x.name=="abacusutils"]
+          assert len(hits)==1, "official pinned Abacus ASDF Blosc entrypoint not installed"
+          assert hits[0].value=="abacusnbody.data.asdf:AbacusExtension"
+          print("E17D2B3B1_PINNED_OFFICIAL_BLOSC_ASDF_ENTRYPOINT_REGISTERED",flush=True)
+          PY
       - name: Extract pinned candidate c000 ph000 z0.950 source-copy state and validate by second decode
         run: |
           python -u scripts/audit_eboss_dr16_a03_e17d2b3b1_official_header_copy.py \
