@@ -76,7 +76,7 @@ jobs:
           q=r["archived_provider_portal_source_inventory_not_live"]
           h=r["official_source_code_browse_links_NOT_tested_with_live_Globus"]
           assert r["status"]=="E17D2B3B3_PINNED_PUBLIC_PORTAL_SNAPSHOT_C000_PH000_Z095_35_HALO_INFO_ARCHIVED_NO_LIVE_FILE_ATTESTATION"
-          assert r["prospective_protocol_git_blob"]=="087055f6e71a50d67727e7e29f9ea1754d7d178e"
+          assert r["prospective_protocol_git_blob"]=="42dab76d5e4fb7c8325ece9ea4465775b384da21"
           assert r["upstream_source_commit"]=="f877298344a6988d55f57a7c39f5be14dce63ff3"
           assert q["halo_info"]["file_count_in_archived_snapshot"]==35
           assert q["halo_info"]["total_bytes_for_all_files_in_archived_snapshot"]==75722740486
@@ -91,7 +91,7 @@ jobs:
           assert r["observed_odd_SEALED"] is True
           assert r["full_physical_finiteK_galaxy_bispectrum"]=="BLOCKED"
           manifest={"date":"2026-09-28","CI_run_id":os.getenv("GITHUB_RUN_ID"),
-             "E17D2b3b3_prospective_git_blob":"087055f6e71a50d67727e7e29f9ea1754d7d178e",
+             "E17D2b3b3_prospective_git_blob":"42dab76d5e4fb7c8325ece9ea4465775b384da21",
              "official_portal_source_commit":"f877298344a6988d55f57a7c39f5be14dce63ff3",
              "upstream_static_5mb_portal_manifest_git_blob":"cb235ad72ab2516f872bd4ca79b9447a3f4b30e3",
              "ARCHIVED_static_source_snapshot_NOT_live_Globus_listing":True,
