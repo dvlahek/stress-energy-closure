@@ -1,0 +1,24 @@
+name: "eBOSS A03 E17D2b3b4 user Globus checksum source-only original+independent audit"
+on:
+  push:
+    branches:
+      - audit/eboss-elg-bit8-ra-orientation-20260925
+    paths:
+      - "source_data/eboss_dr16_a03_e17d2b3b4_*"
+      - "source_data/eboss_dr16_a03_e17d2b3b4_archived_source_only_2026_09_28/**"
+      - "scripts/audit_eboss_dr16_a03_e17d2b3b4_user_Globus_checksum_manifest.py"
+      - ".github/workflows/eboss_a03_e17d2b3b4_user_globus_checksum_source_only.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-only-user-supplied-no-real-halo:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Original strict parser and independent tokenizer verify archived immutable JSON and all synthetic negative controls
+        run: python -u scripts/audit_eboss_dr16_a03_e17d2b3b4_user_Globus_checksum_manifest.py
