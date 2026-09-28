@@ -87,7 +87,7 @@ jobs:
           assert j["observed_odd_SEALED"] is True
           assert j["full_physical_finiteK_galaxy_bispectrum"]=="BLOCKED"
           man={"date":"2026-09-28","CI_run_id":os.environ.get("GITHUB_RUN_ID"),
-             "prospective_E17D2b3b1_protocol_blob":"a282b157a80f88a1e0bf95c01942453d9a59efe4",
+             "prospective_E17D2b3b1_protocol_blob":"36c2bcda723b95565e604723e651beef08aad992",
              "official_source_repo":"abacusorg/abacusutils",
              "official_source_commit":"24ab0dda5fea9ae406b1afdacaf4bbf989de9bc6",
              "embedded_header_copy_git_blob":"0065029cdd515ffa76c61a27b81e9f16b2656f38",
