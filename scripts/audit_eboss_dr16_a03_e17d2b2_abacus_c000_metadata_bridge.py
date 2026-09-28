@@ -74,7 +74,7 @@ def gate():
             and b["individual_halo_M200c_and_cvir_ac_relation_NOT_calibrated"] is True,
             "prior E17A/E17D2b1 physical STOP or original E16 geometry")
     require(all(p["absolute_STOP"].values())
-            and all(p["preregistered_QA"].values() if False else [True]),
+            and all(bool(v) for v in p["preregistered_QA"].values()),
             "absolute science seal")
     ab=p["AbacusSummit_c000_official_documented_not_file_metadata"]
     require(ab["actual_ASDF_header_or_halo_content_loaded"] is False
