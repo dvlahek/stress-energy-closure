@@ -1,0 +1,103 @@
+name: eBOSS A03 E17D2b3a idealized CompaSO L1 versus M200c nonidentifiability
+on:
+  push:
+    branches:
+      - audit/eboss-elg-bit8-ra-orientation-20260925
+    paths:
+      - 'scripts/audit_eboss_dr16_a03_e17d2b3a_l1_m200c_nonidentifiability.py'
+      - 'scripts/audit_eboss_dr16_a03_e17d2b3a_independent_decimal_bisection.py'
+      - '.github/workflows/eboss_dr16_a03_e17d2b3a_l1_m200c_identifiability.yml'
+permissions:
+  contents: write
+jobs:
+  synthetic-positive-profile-200critical-mass-no-real-halo-data:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    env:
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Verify prospective SHA-pinned E8 E16 E17A E17D2b1 E17D2b2 and synthetic positivity preflight
+        run: |
+          python -m py_compile scripts/audit_eboss_dr16_a03_e17d2b3a_l1_m200c_nonidentifiability.py scripts/audit_eboss_dr16_a03_e17d2b3a_independent_decimal_bisection.py
+          python -u scripts/audit_eboss_dr16_a03_e17d2b3a_l1_m200c_nonidentifiability.py --self-test
+          python -u scripts/audit_eboss_dr16_a03_e17d2b3a_independent_decimal_bisection.py --self-test
+      - name: Construct two positive monotone enclosed profiles with identical synthetic L1 M R but different M200c
+        run: |
+          python -u scripts/audit_eboss_dr16_a03_e17d2b3a_l1_m200c_nonidentifiability.py \
+            --output-dir eboss_workspace/a03_physics_source/e17d2b3a_l1_vs_200c
+      - name: Independent Decimal and 200-step density-threshold bisection plus synthetic SHA tamper negative control
+        run: |
+          python -u scripts/audit_eboss_dr16_a03_e17d2b3a_independent_decimal_bisection.py \
+            --negative-control --output-dir eboss_workspace/a03_physics_source/e17d2b3a_l1_vs_200c
+          python -u scripts/audit_eboss_dr16_a03_e17d2b3a_independent_decimal_bisection.py \
+            --output-dir eboss_workspace/a03_physics_source/e17d2b3a_l1_vs_200c
+      - name: Archive exact original and independent SHA after strict synthetic and no-real-data QA on audit ONLY
+        run: |
+          set -eu
+          src=eboss_workspace/a03_physics_source/e17d2b3a_l1_vs_200c
+          dest=source_data/eboss_dr16_a03_e17d2b3a_archived_CI_2026_09_28
+          test -s "$src/e17d2b3a_original_l1_200critical_nonidentifiability.json"
+          test -s "$src/e17d2b3a_independent_decimal_bisection_200critical_replay.json"
+          mkdir -p "$dest"
+          cp "$src"/*.json "$dest/"
+          python - <<'PY'
+          import hashlib,json,os,pathlib
+          dest=pathlib.Path("source_data/eboss_dr16_a03_e17d2b3a_archived_CI_2026_09_28")
+          names=["e17d2b3a_independent_decimal_bisection_200critical_replay.json",
+                 "e17d2b3a_original_l1_200critical_nonidentifiability.json"]
+          assert sorted(x.name for x in dest.glob("*.json"))==names
+          files=[]
+          for name in names:
+              raw=(dest/name).read_bytes()
+              j=json.loads(raw)
+              assert len(raw)>1000
+              assert j["observed_odd_SEALED"] is True
+              assert j["full_physical_finiteK_galaxy_bispectrum"]=="BLOCKED"
+              files.append({"file":name,"size_bytes":len(raw),
+                            "sha256":hashlib.sha256(raw).hexdigest()})
+          original=json.loads((dest/names[1]).read_bytes())
+          independent=json.loads((dest/names[0]).read_bytes())
+          assert original["actual_Abacus_halo_particle_or_merger_tree_read"] is False
+          assert original["any_real_halo_M200c_remeasured"] is False
+          assert original["distinct_M200c_mass_fraction_absolute_gap_synthetic_only"]>.05
+          assert independent["real_Abacus_M200c_200critical_mass_remeasured"] is False
+          assert independent["original_full_report_sha256"]==files[1]["sha256"]
+          manifest={"date":"2026-09-28","CI_run_id":os.environ.get("GITHUB_RUN_ID"),
+                    "E17D2b3a_prospective_protocol_git_blob":"81554b0f7cdefa599f302d828ab3529812bb3a59",
+                    "immutable_E17D2b2_source_only_report_sha256":"b8da4d6c33235ed82e76f548f2eb052e0fcd751a42672f48d8fffff153ac6926",
+                    "two_profiles_are_MATHEMATICAL_NOT_real_Abacus_halos":True,
+                    "same_idealized_L1_M_R_not_unique_M200c":True,
+                    "real_ASDF_or_Abacus_halo_PID_tree_downloaded":False,
+                    "no_relabel_L1_SO_radius_as_M200c":True,
+                    "full_physical_halo_tracer_bispectrum":"BLOCKED",
+                    "observed_odd_SEALED":True,
+                    "main_untouched":True,"PR_remains_draft":True,
+                    "files":files}
+          (dest/"archive_manifest.json").write_text(json.dumps(manifest,indent=2)+"\n")
+          for f in files:
+              print("E17D2B3A_ORIGINAL_INDEPENDENT_PERMANENT_SOURCE",f["file"],f["sha256"],flush=True)
+          PY
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "$dest"
+          if git diff --cached --quiet; then
+            echo E17D2B3A_ALREADY_PERMANENTLY_ARCHIVED
+          else
+            git commit -m "archive(E17D2b3a): two positive synthetic same L1 different M200c SHA proof; actual Abacus halo unread"
+            git push origin HEAD:refs/heads/audit/eboss-elg-bit8-ra-orientation-20260925
+          fi
+          echo E17D2B3A_PERMANENT_AUDIT_ONLY_NO_REAL_ABACUS_OR_EBOSS_DATA
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: eboss-a03-e17d2b3a-m200c-synthetic-counterexample-NO-ASDF
+          path: eboss_workspace/a03_physics_source/e17d2b3a_l1_vs_200c/*.json
+          if-no-files-found: warn
+          retention-days: 30
