@@ -1,0 +1,123 @@
+name: eBOSS A03 E17D2b3b3 OFFICIAL static Globus portal c000 ph000 product inventory (NO ASDF)
+on:
+  push:
+    branches:
+      - audit/eboss-elg-bit8-ra-orientation-20260925
+    paths:
+      - 'scripts/audit_eboss_dr16_a03_e17d2b3b3_pinned_Globus_portal_inventory.py'
+      - '.github/workflows/eboss_dr16_a03_e17d2b3b3_Globus_portal_inventory.yml'
+permissions:
+  contents: write
+jobs:
+  frozen-public-metadata-no-live-Globus-or-halo-data:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    env:
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Check original science parent SHAs and public-portal prospective protocol before upstream source
+        run: |
+          set -eu
+          python -m py_compile scripts/audit_eboss_dr16_a03_e17d2b3b3_pinned_Globus_portal_inventory.py
+          python -u scripts/audit_eboss_dr16_a03_e17d2b3b3_pinned_Globus_portal_inventory.py --self-test
+      - name: Sparse checkout only exact 5.1 MB PUBLIC portal product manifest + public source code, no real halo ASDF
+        uses: actions/checkout@v4
+        with:
+          repository: abacusorg/abacussummit-data-portal
+          ref: f877298344a6988d55f57a7c39f5be14dce63ff3
+          path: official-abacus-portal
+          fetch-depth: 1
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            build_manifest.py
+            web/portal/portal.conf
+            web/portal/views.py
+            web/portal/static/data/simulations.table.json
+      - name: Verify upstream public commit and product/Globus source blobs byte for byte
+        run: |
+          set -eu
+          cd official-abacus-portal
+          test "$(git rev-parse HEAD)" = f877298344a6988d55f57a7c39f5be14dce63ff3
+          test "$(git hash-object web/portal/static/data/simulations.table.json)" = cb235ad72ab2516f872bd4ca79b9447a3f4b30e3
+          test "$(wc -c < web/portal/static/data/simulations.table.json)" -eq 5097824
+          test "$(git hash-object web/portal/portal.conf)" = 8ae1eaa5a56ddc72dc5313e9fe52ff4233968286
+          test "$(git hash-object web/portal/views.py)" = 8c85c76a22746b43b8db2f5e1748a8defbc35f6f
+          test "$(git hash-object build_manifest.py)" = 88dc7c198c1332d2a0204bb0d3c698fd1dcf28a5
+          echo E17D2B3B3_OFFICIAL_PUBLIC_MANIFEST_5MB_AND_GLOBUS_SOURCE_EXACT_SHA_PASS
+      - name: Compare exact raw/cleaned c000 ph000 z0.950 35-file inventory and derive browse-only Globus URL
+        run: |
+          python -u scripts/audit_eboss_dr16_a03_e17d2b3b3_pinned_Globus_portal_inventory.py \
+            --upstream-root official-abacus-portal \
+            --output-dir eboss_workspace/a03_physics_source/e17d2b3b3_official_portal
+      - name: Permanently archive source-only public portal product inventory on AUDIT branch only
+        run: |
+          set -eu
+          src=eboss_workspace/a03_physics_source/e17d2b3b3_official_portal
+          dest=source_data/eboss_dr16_a03_e17d2b3b3_archived_CI_2026_09_28
+          name=e17d2b3b3_original_pinned_portal_c000_ph000_z095_aggregate_inventory.json
+          test -s "$src/$name"
+          mkdir -p "$dest"
+          cp "$src/$name" "$dest/$name"
+          python - <<'PY'
+          import hashlib,json,os,pathlib
+          d=pathlib.Path("source_data/eboss_dr16_a03_e17d2b3b3_archived_CI_2026_09_28")
+          name="e17d2b3b3_original_pinned_portal_c000_ph000_z095_aggregate_inventory.json"
+          assert sorted(f.name for f in d.glob("*.json"))==[name]
+          raw=(d/name).read_bytes()
+          r=json.loads(raw)
+          q=r["archived_provider_portal_source_inventory_not_live"]
+          h=r["official_source_code_browse_links_NOT_tested_with_live_Globus"]
+          assert r["status"]=="E17D2B3B3_PINNED_PUBLIC_PORTAL_SNAPSHOT_C000_PH000_Z095_35_HALO_INFO_ARCHIVED_NO_LIVE_FILE_ATTESTATION"
+          assert r["prospective_protocol_git_blob"]=="087055f6e71a50d67727e7e29f9ea1754d7d178e"
+          assert r["upstream_source_commit"]=="f877298344a6988d55f57a7c39f5be14dce63ff3"
+          assert q["halo_info"]["file_count_in_archived_snapshot"]==35
+          assert q["halo_info"]["total_bytes_for_all_files_in_archived_snapshot"]==75722740486
+          assert q["halo_pid_A"]["file_count_in_archived_snapshot"]==35
+          assert q["cleaned_halo_info"]["file_count_in_archived_snapshot"]==35
+          assert h["official_portal_pinned_Globus_collection_UUID"]=="ffc65d7a-0bf9-11ec-90b4-41052087bc27"
+          assert h["source_URL_is_browse_ONLY_and_live_collection_availability_UNVERIFIED"] is True
+          assert r["single_real_halo_info_file_or_supplied_cksum_selected"] is False
+          assert r["actual_Globus_source_file_per_item_size_sha_POSIX_cksum_or_live_status_read"] is False
+          assert r["actual_halo_ASDF_provider_file_or_tree_particle_data_downloaded"] is False
+          assert r["real_M200c_same_halo_mass_history_verified"] is False
+          assert r["observed_odd_SEALED"] is True
+          assert r["full_physical_finiteK_galaxy_bispectrum"]=="BLOCKED"
+          manifest={"date":"2026-09-28","CI_run_id":os.getenv("GITHUB_RUN_ID"),
+             "E17D2b3b3_prospective_git_blob":"087055f6e71a50d67727e7e29f9ea1754d7d178e",
+             "official_portal_source_commit":"f877298344a6988d55f57a7c39f5be14dce63ff3",
+             "upstream_static_5mb_portal_manifest_git_blob":"cb235ad72ab2516f872bd4ca79b9447a3f4b30e3",
+             "ARCHIVED_static_source_snapshot_NOT_live_Globus_listing":True,
+             "individual_provider_file_size_SHA_POSIX_cksum_NOT_seen":True,
+             "no_actual_halo_info_ASDF_merger_tree_or_observed_galaxy_download":True,
+             "observed_odd_SEALED":True,
+             "full_physical_halo_tracer_bispectrum":"BLOCKED",
+             "main_untouched":True,
+             "PR_remains_draft":True,
+             "files":[{"file":name,"size_bytes":len(raw),"sha256":hashlib.sha256(raw).hexdigest()}]}
+          (d/"archive_manifest.json").write_text(json.dumps(manifest,indent=2)+"\n")
+          print("E17D2B3B3_ARCHIVED_PUBLIC_PORTAL_MANIFEST_REPORT_SHA",manifest["files"][0]["sha256"],flush=True)
+          print("E17D2B3B3_NO_REAL_ABACUS_GLOBUS_TRANSFER_OR_HALO_ASDF_PROVENANCE",flush=True)
+          PY
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "$dest"
+          if git diff --cached --quiet; then echo E17D2B3B3_ALREADY_ARCHIVED
+          else
+            git commit -m "archive(E17D2b3b3): exact Git-pinned official Globus portal c000 ph000 z0.950 inventory no halo file access"
+            git push origin HEAD:refs/heads/audit/eboss-elg-bit8-ra-orientation-20260925
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: e17d2b3b3-Git-pinned-public-Globus-portal-metadata-only
+          path: eboss_workspace/a03_physics_source/e17d2b3b3_official_portal/*.json
+          if-no-files-found: warn
+          retention-days: 30
