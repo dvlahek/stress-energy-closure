@@ -1,0 +1,21 @@
+{
+  "date": "2026-09-28",
+  "CI_run_id": "36451864487",
+  "E17D2b3b3_prospective_git_blob": "42dab76d5e4fb7c8325ece9ea4465775b384da21",
+  "official_portal_source_commit": "f877298344a6988d55f57a7c39f5be14dce63ff3",
+  "upstream_static_5mb_portal_manifest_git_blob": "cb235ad72ab2516f872bd4ca79b9447a3f4b30e3",
+  "ARCHIVED_static_source_snapshot_NOT_live_Globus_listing": true,
+  "individual_provider_file_size_SHA_POSIX_cksum_NOT_seen": true,
+  "no_actual_halo_info_ASDF_merger_tree_or_observed_galaxy_download": true,
+  "observed_odd_SEALED": true,
+  "full_physical_halo_tracer_bispectrum": "BLOCKED",
+  "main_untouched": true,
+  "PR_remains_draft": true,
+  "files": [
+    {
+      "file": "e17d2b3b3_original_pinned_portal_c000_ph000_z095_aggregate_inventory.json",
+      "size_bytes": 3896,
+      "sha256": "39b83642737da1f29e71aade85a2ed7d854dbdb3ff02582b7f1d61d5d92cf340"
+    }
+  ]
+}
