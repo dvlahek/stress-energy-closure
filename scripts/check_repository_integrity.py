@@ -81,6 +81,24 @@ def validate_references(files: list[Path], problems: list[str]) -> int:
                     checked += 1
         elif path.suffix == ".json":
             obj = json.loads(path.read_text(encoding="utf-8"))
+            # These two paths are source-pinned to the EXTERNAL official
+            # AbacusSummit Git repository, not files in this repository.
+            # Preserve and validate their exact upstream provenance without
+            # mistakenly treating them as missing local docs references.
+            if path.name == "eboss_dr16_a03_e17d2b3b6_official_schema_real_ASDF_YAML_descriptors_only_prereg_2026-09-28.json":
+                upstream = obj.get("source_pins", {})
+                external_docs = {
+                    "data_products_path": "docs/data-products.rst",
+                    "compaso_path": "docs/compaso.rst",
+                }
+                if (upstream.get("docs_repository") == "abacusorg/AbacusSummit"
+                    and upstream.get("docs_commit") == "4b1959c710cb0c49aa305c6213a228aa2a4587ff"
+                    and all(upstream.get(k) == v for k, v in external_docs.items())):
+                    obj["source_pins"] = {
+                        k: v for k, v in upstream.items() if k not in external_docs
+                    }
+                else:
+                    problems.append(f"{path.relative_to(ROOT)}: external official source pins changed")
             def walk(value: object) -> None:
                 nonlocal checked
                 if isinstance(value, str):
