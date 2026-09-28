@@ -12,7 +12,8 @@
     "E17D2B3B0_archive_manifest_git_blob": "b5b6827b0687b75ed4c0b2db5642bf1e150683a9",
     "E17D2B3B0_protocol_git_blob": "49df0cd9c110b3ef9db02a3ad0cb9a4ff20554e1",
     "E17D2B3A_original_mass_nonidentifiability_sha256": "0b098291122eb51cbd3e113e7edd2276ba7c9b7c38669008486f0f73f897277e",
-    "frozen_main_sha": "e50549a5c974772eb9576d301df7a5ea6e6d87d2"
+    "frozen_main_sha": "e50549a5c974772eb9576d301df7a5ea6e6d87d2",
+    "E17D2B2_original_metadata_report_sha256": "b8da4d6c33235ed82e76f548f2eb052e0fcd751a42672f48d8fffff153ac6926"
   },
   "upstream_public_source_pins": {
     "repo": "abacusorg/abacusutils",
@@ -24,7 +25,7 @@
     "blosc_extension_git_blob": "8c5e5135736409bb0fab77bff06ad1259951189d",
     "official_metadata_decoder_python": "abacusnbody/metadata/abacussummit.py",
     "official_metadata_decoder_git_blob": "0a374324dc5199241473a0a476a94a6b37831473",
-    "source_developer_gather_script": "scripts/metadata/gather_metadata.py",
+    "source_developer_gather_script": "https://github.com/abacusorg/abacusutils/blob/24ab0dda5fea9ae406b1afdacaf4bbf989de9bc6/scripts/metadata/gather_metadata.py",
     "source_developer_gather_script_git_blob": "517fd6880d4ff342a09af5a5e82ed6d6be4ab7e2",
     "source_developer_compress_script_git_blob": "b7cbd6030aa814083d185c7b0d7320f17942927e",
     "official_module_documentation": "https://abacusutils.readthedocs.io/en/latest/metadata.html",
@@ -79,5 +80,12 @@
     "no_actual_eBOSS_3pt_window_covariance_significance": true,
     "observed_odd_SEALED": true,
     "main_untouched_PR_draft": true
+  },
+  "amendment_before_upstream_fetch": {
+    "original_protocol_git_blob": "a282b157a80f88a1e0bf95c01942453d9a59efe4",
+    "failed_preflight_CI_run_id": "36445390661",
+    "failed_repository_integrity_run_id": "36445325404",
+    "why": "Official upstream gathering-script relative-path string was interpreted by repository local-reference audit as missing local file; original runner also required an E17D2b2 immutable parent key that the protocol did not record. Correct upstream link and ADD missing already-frozen E17D2b2 SHA before any official 9.5 MB metadata has been fetched or decoded. No scientific parameter, input snapshot or QA threshold changes.",
+    "official_embedded_metadata_accessed_before_amendment": false
   }
 }
