@@ -50,7 +50,7 @@ def load():
          f["no_new_CLASS_Abacus_eBOSS_FITS_WSL"],
          "E21/E22 original physical STOP drift")
     need(b"[0.9,1.0)" in x["E23"] and
-         b"M200c" in x["E23"],"E23 high-z/HOD source scope drift")
+         b"M_{200c}" in x["E23"],"E23 high-z/HOD source scope drift")
     need(list(e["original_long_modes"])==list(K) and
          list(f["original_E21_physical_velocity_units_ratios"])==list(K),
          "fixed four E21 original K set drift")
