@@ -43,8 +43,14 @@ def sources():
     _,base,profiles=old.sources()  # all original E8/E9/B1/E27 plus DM14 pins
     return p,base,profiles
 
+def r1_k_grid(nseg):
+    need(nseg in (24,48), "unregistered E28R1 log-k grid")
+    sections=[np.geomspace(old.BANDS[i],old.BANDS[i+1],nseg+1)
+              for i in range(3)]
+    return np.concatenate([sections[0],sections[1][1:],sections[2][1:]])
+
 def grid_source(prep,background,nseg,nz):
-    k=old.k_grid(nseg)
+    k=r1_k_grid(nseg)
     z,H,hf,ang,dx=old.kernels_for_state(prep,background,k,nz)
     return {"k":k,"z":z,"H":H,"hf":hf,"ang":ang,"dx":dx}
 
@@ -68,8 +74,8 @@ def main():
     args=ap.parse_args()
     p,base,profiles=sources()
     _,preps,backgrounds,halos=base
-    k0=old.k_grid(24)
-    k1=old.k_grid(48)
+    k0=r1_k_grid(24)
+    k1=r1_k_grid(48)
     need(len(k1)==2*len(k0)-1 and
          np.allclose(k1[::2],k0,rtol=1e-14,atol=0),
          "new R1 k grid must nest the registered original E28 fine grid")
