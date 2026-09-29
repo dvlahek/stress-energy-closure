@@ -99,6 +99,31 @@ def validate_references(files: list[Path], problems: list[str]) -> int:
                     }
                 else:
                     problems.append(f"{path.relative_to(ROOT)}: external official source pins changed")
+            # The immutable B8 source-only prereg also names external upstream docs.
+            # Verify ALL original upstream Git pins before exempting ONLY the
+            # external .rst paths from local file-reference checks.
+            if path.name == "eboss_dr16_a03_e17d2b3b8_official_source_only_L1_threshold_and_M200c_feasibility_prereg_2026-09-29.json":
+                upstream = obj.get("official_source_pins", {})
+                external_docs = {
+                    "data_products_path": "docs/data-products.rst",
+                    "compaso_path": "docs/compaso.rst",
+                }
+                valid = (
+                    upstream.get("docs_repository") == "abacusorg/AbacusSummit"
+                    and upstream.get("docs_commit") == "4b1959c710cb0c49aa305c6213a228aa2a4587ff"
+                    and upstream.get("data_products_git_blob") == "f7c847b174365744b23cb6d1ebaeb010a5bd6ca7"
+                    and upstream.get("compaso_git_blob") == "a5170574467501e0b9adb4a71e8e432a32843dbf"
+                    and upstream.get("loader_repository") == "abacusorg/abacusutils"
+                    and upstream.get("loader_commit") == "24ab0dda5fea9ae406b1afdacaf4bbf989de9bc6"
+                    and upstream.get("loader_git_blob") == "adb16aee1cbac863db5301c6e380938ee7f76547"
+                    and all(upstream.get(k) == v for k, v in external_docs.items())
+                )
+                if valid:
+                    obj["official_source_pins"] = {
+                        k: v for k, v in upstream.items() if k not in external_docs
+                    }
+                else:
+                    problems.append(f"{path.relative_to(ROOT)}: B8 external source Git pins changed")
             def walk(value: object) -> None:
                 nonlocal checked
                 if isinstance(value, str):
