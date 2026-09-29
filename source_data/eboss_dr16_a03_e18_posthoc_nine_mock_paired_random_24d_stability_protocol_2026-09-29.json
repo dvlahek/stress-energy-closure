@@ -1,0 +1,107 @@
+{
+  "stage": "A03E18_POSTHOC_NINE_MOCK_PAIRED_RANDOM_ODD_VECTOR_STABILITY_RELATIVE_TO_DESCRIPTIVE_MOCK_SCATTER",
+  "date": "2026-09-29",
+  "classification": "EXPLICITLY_POSTHOC_SECONDARY_DESCRIPTIVE_ANALYSIS_OF_COMPLETED_E4_AFTER_E4_RESULTS_AND_0001_SCHEMA_WERE_ALREADY_SEEN",
+  "purpose": "Give numerical finite-random vs between-mock engineering evidence for the existing 24D E4 pilot without claiming physical window calibration or inferential covariance.",
+  "parent_original_E4": {
+    "path": "source_data/eboss_dr16_a03_e4_mock_galaxy_nested_random_density_1200_2400_4800_report_2026-09-27.json",
+    "git_blob": "32246a495506deac5b9dfe71bea51c3db33202b1",
+    "original_user_JSON_sha256": "ec45931f815dad8845bae41111f11b3e11cc0a5912f14c3e2b22c2f090e1045f"
+  },
+  "independent_original_E4_odd_erratum": {
+    "path": "source_data/eboss_dr16_a03_e4_odd_multipole_summary_erratum_and_24d_drift_2026-09-27.json",
+    "git_blob": "0baf9c5a009bf8f5e78f5725e44395bad6f91715",
+    "original_unchanged_E4_report_SHA256": "ec45931f815dad8845bae41111f11b3e11cc0a5912f14c3e2b22c2f090e1045f"
+  },
+  "identifiers": {
+    "mock_IDs": [
+      1,
+      125,
+      250,
+      375,
+      500,
+      625,
+      750,
+      875,
+      1000
+    ],
+    "caps": [
+      "NGC",
+      "SGC"
+    ],
+    "s_bin_centers_Mpc_h": [
+      30,
+      50,
+      70,
+      90,
+      110,
+      130
+    ],
+    "odd_multipoles": [
+      "1",
+      "3"
+    ],
+    "joint_vector_order": "NGC ell1 six s bins; NGC ell3 six s bins; SGC ell1 six s bins; SGC ell3 six s bins",
+    "joint_dimension": 24,
+    "galaxy_selection": "same unchanged original 600D per tracer/cap/ID across E4 levels",
+    "random_levels": [
+      "full_1200_original",
+      "nested_2400",
+      "nested_4800"
+    ],
+    "paired_comparisons": [
+      [
+        "full_1200_original",
+        "nested_2400"
+      ],
+      [
+        "nested_2400",
+        "nested_4800"
+      ],
+      [
+        "full_1200_original",
+        "nested_4800"
+      ]
+    ]
+  },
+  "tests_before_numbers": [
+    "Fail closed on original full E4 Git blob and independent 24D erratum Git blob drifts, full 18 case completeness and no-observed seals.",
+    "Reconstruct 3 level 24D vectors per each of nine IDs from original E4 original_physical_domain_multipoles values_by_fixed_s_bin (ell=1 and ell=3, both caps).",
+    "Require exact 144/144 RR support at each E4 case and level, untouched 600D fixed selection and no NaN.",
+    "Validate all 9 by 3 signed 24D vector differences against independently archived E4 erratum as read-only cross-check (equality numerical tolerance only for bookkeeping), not by claiming independent actual FITS replay.",
+    "Reject mock subset, subset-selected bins, mixed caps, tracer orientation swap, failed source identity and any observed input.",
+    "Use NO original full mock0001 48000R as an independent matched comparison because its full mock galaxy DD is different from original E4 600D."
+  ],
+  "descriptive_outputs_before_computation": {
+    "per_comparison_per_24_component": "Arithmetic mean paired delta, root-mean-square paired delta across nine frozen IDs; standard deviation of high-random-level original E4 24D mock values using N-1 divisor, and ratio of two purely descriptive scales if finite/nonzero.",
+    "per_comparison_per_group": "NGC ell1, NGC ell3, SGC ell1, SGC ell3, NGC twelve, SGC twelve, joint 24: paired RMS over all IDs and components; high-level between-ID centered RMS with N-1 denominator per component; ratio of RMS scales.",
+    "per_mock": "For all nine fixed IDs, each full 24D Euclidean norm and max absolute component for all three level comparisons and high-level source sha.",
+    "source_value_handling": "Do not store or publish full 444 KB JSON again; small aggregate JSON, all 24 per-component statistics, all nine per-ID group metrics only.",
+    "covariance": "DO NOT invert or estimate inferential 24D covariance from nine mock IDs; rank bound <=8; even per-component sd is descriptive and contains finite random error.",
+    "interpretation": "Finite-random shift is not independent noise because nested levels share random rows; between-mock scatter is not an independent cosmic variance estimate; no science cut, normalization to null sigma, p value or detection claims.",
+    "no_posthoc_acceptance_threshold": true,
+    "no_new_data_sources_seeds_cuts_or_downloads": true,
+    "no_user_WSL_run": true,
+    "no_observed_galaxy_random_or_odd_input": true,
+    "no_reopened_frozen_E8_E16_48k": true,
+    "main_not_modified_PR_draft": true
+  },
+  "stop_conditions": [
+    "any source SHA/blob mismatch or failed original support/source status",
+    "any case or level missing or RR support !=144",
+    "missing independent erratum signed shift or mismatch",
+    "observed data or non-E4 file access",
+    "attempt to claim 0001 fullmock E7 as same-DD E4 random-only comparison",
+    "attempt to rank/postselect bins or inference from nine mocks"
+  ],
+  "absolute_STOP": {
+    "original_E4_and_erratum_immutable": true,
+    "no_real_FITS_or_new_rerun": true,
+    "no_new_odd_observed_access": true,
+    "no_24D_inferential_C_inverse_or_p_value": true,
+    "no_1000_mock_acquisition": true,
+    "no_WSL_execution": true,
+    "no_F0_Fplus_Fminus_E8_E16_48k_retuning": true,
+    "no_main_or_PR_merge": true
+  }
+}
