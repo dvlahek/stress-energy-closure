@@ -19,7 +19,7 @@
       "minus"
     ],
     "halo_mass_cases": "Exact E27/E17D2B1 conditional 1e12 and 1e13 h_DM14^-1 Msun physical anchors, alpha=.4/.8",
-    "halo_form": "Original E17D2B0 DM14 median c200c,r_s physical at z=.95, spherical truncated NFW, shape held fixed in physical size from z=1 to .95; normalization follows original E17D2B1 M_alpha(z). This is an ADDITIONAL uncalibrated history assumption and DM14 CLASS background mixing, not same-object halo.",
+    "halo_form": "Original E17D2B0 DM14 median c200c and r_s physical at z=.95. Fix the COMOVING radial NFW shape u_h(k) at its z=.95 size throughout z=1 to .95, while normalization follows original E17D2B1 M_alpha(z). Physical scale evolves proportionally to a: ADDITIONAL uncalibrated profile-history ansatz and DM14/CLASS background mixing, not a measured same-object halo.",
     "incoming_wake": "Zero at z=1, same original short historical window as E27.",
     "halo_velocity_km_s": 200,
     "z_obs": 0.95,
@@ -57,5 +57,6 @@
     "no_new_CLASS_ASDF_FITS_Abacus_mock_WSL": true,
     "no_new_science_cuts_or_seed": true,
     "main_unchanged_PR_draft": true
-  }
+  },
+  "protocol_clarification_before_any_E28_execution": "First protocol text mistakenly said physical r_s fixed while its predeclared force equation used u_h(k)^2 constant in z; corrected this internal inconsistency to comoving r_s fixed BEFORE any E28 scientific run, no grid or source change. Earlier Git blob a818d07f9c42baa61ffe0520c9ec6245e32569e3 preserved in Git history."
 }
