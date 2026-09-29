@@ -122,7 +122,7 @@ def response(prep,background,halo,n,mu=1.,wind=VHALO):
     H_F=np.asarray([e17.source(prep,float(x))[1] for x in s])
     weight=np.exp(-alpha*(z-ZOBS)/(1+ZOBS))*H_F/H
     phase=np.exp(1j*KCOM*mu*dx)
-    integral=np.trapezoid(weight*phase,z)
+    integral=np.trapz(weight*phase,z)
     pref=-4*math.pi*G/(C*C)*(MNU/TNU0)*(M0/KCOM)
     return complex(pref*integral),tau,phase[-1]
 
