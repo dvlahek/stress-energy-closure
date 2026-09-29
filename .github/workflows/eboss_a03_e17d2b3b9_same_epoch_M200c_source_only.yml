@@ -1,0 +1,76 @@
+name: eBOSS A03 E17D2b3b9 official same-epoch source-only product availability
+on:
+  push:
+    branches:
+      - audit/eboss-elg-bit8-ra-orientation-20260925
+    paths:
+      - 'source_data/eboss_dr16_a03_e17d2b3b9_*'
+      - 'scripts/audit_eboss_dr16_a03_e17d2b3b9_official_same_epoch_products_source_only.py'
+      - '.github/workflows/eboss_a03_e17d2b3b9_same_epoch_M200c_source_only.yml'
+      - 'EINSTEIN_VLASOV_NP_MASTER_PLAN.md'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  official-text-only-no-real-data:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    env:
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - name: Checkout audit tracked text
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Checkout exact official AbacusSummit four TEXT sources only
+        uses: actions/checkout@v4
+        with:
+          repository: abacusorg/AbacusSummit
+          ref: 4b1959c710cb0c49aa305c6213a228aa2a4587ff
+          path: official-abacussummit
+          fetch-depth: 1
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            docs/simulations.rst
+            docs/data-access.rst
+            docs/data-products.rst
+            Simulations/simulations.csv
+      - name: Checkout exact official abacusutils text schema only
+        uses: actions/checkout@v4
+        with:
+          repository: abacusorg/abacusutils
+          ref: 24ab0dda5fea9ae406b1afdacaf4bbf989de9bc6
+          path: official-abacusutils
+          fetch-depth: 1
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            abacusnbody/data/compaso_halo_catalog.py
+      - name: Validate immutable protocol and five original official Git blobs
+        run: |
+          set -euo pipefail
+          test "$(git hash-object source_data/eboss_dr16_a03_e17d2b3b9_pinned_same_epoch_M200c_public_product_feasibility_prereg_2026-09-29.json)" = 8ed61aa3927a4ab89cf423c424aa9c24563637a9
+          test "$(git hash-object source_data/eboss_dr16_a03_e17d2b3b8_official_source_only_N35_M200c_feasibility_QA_result_2026-09-29.json)" = 1c1de601c657af7c20590a86945d2cb39abe72e9
+          test "$(git hash-object source_data/eboss_dr16_a03_e17d2b3b7r1_user_uploaded_local_id_N_result_and_existing_output_failure_diagnostic_2026-09-29.json)" = f27ed284c95e48548e50336da04c1a1d4b137186
+          test "$(git -C official-abacussummit rev-parse HEAD)" = 4b1959c710cb0c49aa305c6213a228aa2a4587ff
+          test "$(git -C official-abacusutils rev-parse HEAD)" = 24ab0dda5fea9ae406b1afdacaf4bbf989de9bc6
+          test "$(git hash-object official-abacussummit/docs/simulations.rst)" = b5291009d2bb84dfae0c95da2a9734300841f84f
+          test "$(git hash-object official-abacussummit/docs/data-access.rst)" = 6aad7833ab4482ebdd7cd2a23a3011f25e16e329
+          test "$(git hash-object official-abacussummit/docs/data-products.rst)" = f7c847b174365744b23cb6d1ebaeb010a5bd6ca7
+          test "$(git hash-object official-abacussummit/Simulations/simulations.csv)" = 53d32e3fbec68ab64da1d52a3bf904fc3eb06c97
+          test "$(git hash-object official-abacusutils/abacusnbody/data/compaso_halo_catalog.py)" = adb16aee1cbac863db5301c6e380938ee7f76547
+          echo E17D2B3B9_ALL_SOURCE_AND_PARENT_GIT_PINS_PASS
+      - name: Run only text-source CI and 8 synthetic negative controls
+        run: |
+          set -euo pipefail
+          python3 -m py_compile scripts/audit_eboss_dr16_a03_e17d2b3b9_official_same_epoch_products_source_only.py
+          python3 -u scripts/audit_eboss_dr16_a03_e17d2b3b9_official_same_epoch_products_source_only.py \
+            --simulations official-abacussummit/docs/simulations.rst \
+            --access official-abacussummit/docs/data-access.rst \
+            --products official-abacussummit/docs/data-products.rst \
+            --table official-abacussummit/Simulations/simulations.csv \
+            --loader official-abacusutils/abacusnbody/data/compaso_halo_catalog.py \
+            --self-test \
+            --output "$RUNNER_TEMP/e17d2b3b9_source_only_standard_products.json"
+          echo E17D2B3B9_CI_SUCCESS_NO_REAL_ABACUS_OR_OBSERVED_EBOSS
