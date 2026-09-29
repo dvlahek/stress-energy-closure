@@ -24,7 +24,7 @@ PINS={"FD":"3d21ccdce4d3547be927a1fa76626d69e861109d",
 B1_SHA=("10fefba505916ecb173352f17da21929b118978a",
         "72707304484a24c361bcff09ad5061bb82dca434",
         "f0a478caf2c8385ff845d0aa3d8cc9353a2a41d2",
-        "12e7ae9401dd3e9ea2e95a96d5daa680a00cb3")
+        "12e7ae9401dd3e9ea2e95a96d5daa680a00cb3d4")
 S=("FD","plus","minus")
 COL={"FD":"F0_CLASS_normalized","plus":"Fplus_CLASS_normalized",
      "minus":"Fminus_CLASS_normalized"}
