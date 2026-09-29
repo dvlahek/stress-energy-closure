@@ -1,7 +1,7 @@
 {
   "stage": "A03E21_FROZEN_E13_LINEAR_LOS_RELATIVE_VELOCITY_CROSS_TWO_TRACER_RESPONSE_NORMALIZATION",
   "date": "2026-09-29",
-  "registration_honesty": "E21 is explicitly POSTHOC scientific investigation of already completed and inspected E13 direct-rank CLASS sources, after E20. This protocol prospectively freezes only the subsequent new E21 numerical QA, output schema, negative controls and stop conditions; not an advance preregistration of the E13 result or its observed F+/- normalization reversal.",
+  "registration_honesty": "E21 is explicitly POSTHOC scientific investigation of already completed and inspected E13 direct-rank CLASS sources, after E20. This protocol prospectively freezes only the subsequent new E21 numerical QA, output schema, negative controls and stop conditions; not an advance preregistration of the E13 result or its observed F+/- normalization reversal. E20 archived scientific note SHA was resolved by exact Git file fetch before any E21 QA; original E13 values had already been inspected.",
   "parents": {
     "E13_source_only_three_state_summary": {
       "path": "source_data/eboss_dr16_a03_e13_archived_CI_2026_09_27/e13_rank_matched_direct_vTk_gaussian_fixed_mode_source_only.json",
@@ -27,7 +27,7 @@
     },
     "E20_source_only": {
       "path": "source_data/eboss_dr16_a03_e20_archived_exact_moment_and_cross_power_structural_QA_2026-09-29.json",
-      "blob": "TO_BE_PINNED_SOURCE_FETCH_BEFORE_QA"
+      "blob": "c736ea3bca7bd0560ab07225294e1dd0930e0561"
     }
   },
   "source_scope": "Frozen E13 0.95 mathematical redshift (not eBOSS measured z_eff), long K=(.001,.002,.003,.005) h/Mpc only, R16 top-hat filtered direct CLASS theta_ncdm-theta_cdm, original E8 FD Fplus Fminus states. Not k=.05 short angular E10, no full-k/k-z physical xi, no galaxy response.",
