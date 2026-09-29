@@ -124,6 +124,35 @@ def validate_references(files: list[Path], problems: list[str]) -> int:
                     }
                 else:
                     problems.append(f"{path.relative_to(ROOT)}: B8 external source Git pins changed")
+            # E17D2b3b9: exempt ONLY three EXTERNAL official .rst docs;
+            # ensure the exact historical upstream Git commit+file blobs match
+            # the immutable B9 source-only protocol before doing so.
+            if path.name == "eboss_dr16_a03_e17d2b3b9_pinned_same_epoch_M200c_public_product_feasibility_prereg_2026-09-29.json":
+                source = obj.get("source_pins", {})
+                docpaths = {
+                    "simulations_doc_path": "docs/simulations.rst",
+                    "data_access_path": "docs/data-access.rst",
+                    "data_products_path": "docs/data-products.rst",
+                }
+                exact = (
+                    source.get("repository") == "abacusorg/AbacusSummit"
+                    and source.get("commit") == "4b1959c710cb0c49aa305c6213a228aa2a4587ff"
+                    and source.get("simulations_doc_git_blob") == "b5291009d2bb84dfae0c95da2a9734300841f84f"
+                    and source.get("data_access_git_blob") == "6aad7833ab4482ebdd7cd2a23a3011f25e16e329"
+                    and source.get("data_products_git_blob") == "f7c847b174365744b23cb6d1ebaeb010a5bd6ca7"
+                    and source.get("simulation_table_path") == "Simulations/simulations.csv"
+                    and source.get("simulation_table_git_blob") == "53d32e3fbec68ab64da1d52a3bf904fc3eb06c97"
+                    and source.get("loader_repository") == "abacusorg/abacusutils"
+                    and source.get("loader_commit") == "24ab0dda5fea9ae406b1afdacaf4bbf989de9bc6"
+                    and source.get("loader_git_blob") == "adb16aee1cbac863db5301c6e380938ee7f76547"
+                    and all(source.get(k) == v for k, v in docpaths.items())
+                )
+                if exact:
+                    obj["source_pins"] = {
+                        k: v for k, v in source.items() if k not in docpaths
+                    }
+                else:
+                    problems.append(f"{path.relative_to(ROOT)}: B9 official external source Git pins changed")
             def walk(value: object) -> None:
                 nonlocal checked
                 if isinstance(value, str):
