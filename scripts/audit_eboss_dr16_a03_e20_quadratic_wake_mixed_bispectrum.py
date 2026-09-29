@@ -132,7 +132,7 @@ def main():
             json.dump(report,f,indent=2,allow_nan=False)
             f.write("\n")
         print("E20_SOURCE_ONLY_OUTPUT",a.out,flush=True)
-    print("E20_NONZERO_GAUSSIAN_TWO_POINT_DOES_NOT_FORCE_MIXED_THREE_POINT",flush=True)
+    print("E20_NONZERO_PAIR_CORRELATION_WITH_JOINT_SIGN_SYMMETRY_HAS_ZERO_MIXED_THIRD",flush=True)
     print("E20_ZERO_PAIRWISE_DOES_NOT_EXCLUDE_CONNECTED_THREE_POINT",flush=True)
     print("E20_NO_PHYSICAL_BISPECTRUM_NO_OBSERVED_ODD_NO_WSL",flush=True)
 if __name__=="__main__":main()
