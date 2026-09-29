@@ -1,0 +1,26 @@
+{
+  "stage": "E27R1_POSTHOC_PRECISION_VALIDATION_OF_FIRST_CONDITIONAL_DYNAMIC_BORN_FPLUS_MINUS_FMINUS",
+  "registered_after_original_E27_CI": 36599144647,
+  "why": "Original 129-vs-257 per-state quadrature gaps around 2.2e-5 exceed original Fplus/Fminus relative response difference near 1e-5. Must resolve DIFFERENCE before treating it as numerically robust. This is posthoc precision work, not preregistered E27 science.",
+  "freeze": "Same untouched E27 original E8/E9/E17D0/B1 sources, M0 low original B1 only, z_initial=1,z_obs=.95,k=.05 h/Mpc, wind=+200km/s, mu=+1, alpha=.4/.8. No physical cosmology, halo, selection or observational changes.",
+  "new_integration_grid_nodes": [
+    257,
+    513,
+    1025
+  ],
+  "fixed_acceptance_before_r1_run": "At both frozen alpha histories, 513 and 1025 signed imaginary contrast (Im_Fminus-Im_Fplus) must have same nonzero sign and relative difference below 1% of 1025 contrast. 257-vs-1025 gap reported even if larger. If this fails, report unresolved, do not widen tolerance or add new K/cuts.",
+  "units": "Mpc^3 one-k Fourier delta_nu/nbar. Ratio signed contrast divided by positive FD Im only at same grid and halo, not physical LRG/ELG xi and not eBOSS significance.",
+  "original_first_E27_science_CI": {
+    "run_id": 36599144647,
+    "conclusion": "SUCCESS",
+    "physical_conditional_only": true
+  },
+  "guards": {
+    "observed_odd_sealed": true,
+    "no_new_CLASS_Abacus_WSL": true,
+    "no_new_data_or_mock": true,
+    "no_original_protocol_or_Fpm_mutation": true,
+    "not_an_independent_halo_history_calibration": true,
+    "main_untouched_PR_draft": true
+  }
+}
