@@ -52,8 +52,22 @@ Dakle, na dva originalna K čvora sama usporedba po različitim vlastitim state-
 
 E10 u strogoj fiksoj **koherentnoj** dvogranoj \(\pm v\) konstrukciji ima \(\langle T(+v)\rangle_{\pm}=0\) uz od predznaka nezavisnu selekciju. E21 računa drukčiji objekt: prostorni Fourierov **dvotočkasti** \(P_{\delta v}=\langle\delta(k)v(k)^*\rangle\), koji može biti nenulti čak i za \(\langle v\rangle=\langle\delta\rangle=0\). Zato samo E10 jednopointno predznačno usrednjavanje ne dokazuje da je svaki linearni relativno-brzinski galaxy cross-power nula. Ali E21 također ne uklanja E19 problem: empirijski marginalni RR ne određuje fizikalne, tracer- i velocity-sign-uvjetovane \(c_L,c_E\) niti puni halo selection.
 
-## 4. Fizički STOP
+## 4. Nužna razlika: standardna Kaiserova derivacija nije linearni Dopplerov odd
 
-Dobiveni C_v(K) čvorovi su stvarni **linearni izvorni CLASS velocity–density cross** izražen u dosljednim jedinicama. Nisu fizički halo–galaxy coupling, predwindow \(\xi_\ell(s,z)\), realni galaxy Doppler, neutrinski wake 24D oblik ili njegov unblindani S/N. K čvorovi su dugi, a E10 k=.05 je zaseban uvjetni izvor; interpolation/extrapolation 4 K na punu eBOSS 24D mrežu nije autorizirana. Fizički isti-likelihood model mora zasebno odrediti c_a ili pokazati zašto bi bili nula, standardne relativističke/wide-angle/evolution nuisance, puni k/z, stvarni released random prozor i valjanu neovisnu kovarijancu. Alternativni E20 kvadratni kanal ostaje zaseban i zahtijeva B_vδδ plus LOS-odd projiciranje.
+U fiksnoj izvornog E12 Fourier konvenciji \(P_{\delta v}(k,\mu)=i\mu C_v(k)\). Ako se pretpostavljeni neutrino–CDM doprinos manifestira **isključivo kao fizički linearni galaxy velocity bias unutar standardnoga koordinatnog RSD preslikavanja**, očuvanje broja za plane-parallel Jacobian daje
+
+\[
+\delta_a^s=\delta_a^r-\frac{1}{aH}\partial_\parallel v_{g,a,\parallel}+\ldots,\qquad
+\Delta\delta_a^s\big|_{\mathrm{vel.bias}}
+=-\frac{b_{v,a}}{aH}\,i k\mu\,v_{\mathrm{rel},\parallel}.
+\]
+
+Budući da je izvorni \(P_{\delta v}=i\mu C_v\), njegov doprinos \(\langle\delta[\Delta\delta_a^s]^*\rangle\) nosi proizvod dvaju imaginarnih faktora \(i k\mu\) i \(i\mu C_v\), dakle **realni parni \(\mu^2\)** uz odgovarajuću orijentacijsku konvenciju. Samo takva Kaiserova derivacija ne čini nenulti imaginarni cross-power. Prava Doppler-like opažena brojnost može sadržavati **nediferencirani** \(v_\parallel\) uz relativističku, evolucijsku ili selekcijsku težinu, što može dati E21 simbolički \(i\mu\) cross-power. Koeficijent \(c_a\) takvoga člana za neutrino–CDM relativni vjetar **nije** dobiven iz samoga velocity biasa, standardnog galaxy Dopplera ni iz E13 CLASS linearnog transfera. Konačna relativistička opažena brojnost zahtijeva i gauge-konzistentne ostale light-cone termine.
+
+To nije tvrdnja da su svi fizički neutrinski odd mehanizmi nula; upozorenje je da se \(c_a\) ne smije uvesti pod imenom poznatoga Kaiserova velocity-bias koeficijenta. Standardni relativistički Dopplerov međutracerski odd opisan je primjerice u [*Observing relativistic features in large-scale structure surveys – I*](https://academic.oup.com/mnras/article/501/2/2547/6041033), ali taj standardni galaktički bulk velocity nije automatski originalni relativni neutrinski vjetar.
+
+## 5. Fizički STOP
+
+Dobiveni C_v(K) čvorovi su stvarni **linearni izvorni CLASS velocity–density cross** izražen u dosljednim jedinicama. Nisu fizički halo–galaxy coupling, predwindow \(\xi_\ell(s,z)\), realni galaxy Doppler, neutrinski wake 24D oblik ili njegov unblindani S/N. K čvorovi su dugi, a E10 k=.05 je zaseban uvjetni izvor; interpolation/extrapolation 4 K na punu eBOSS 24D mrežu nije autorizirana. Sam standardni linearni halo velocity bias unutar Kaiserova −(aH)⁻¹∂_parallel v_parallel daje parni μ² doprinos, ne E21 zamišljeni nediferencirani Doppler-like c_a v_∥ odd. Fizički isti-likelihood model mora zasebno odrediti c_a ili pokazati zašto bi bili nula, standardne relativističke/wide-angle/evolution nuisance, puni k/z, stvarni released random prozor i valjanu neovisnu kovarijancu. Alternativni E20 kvadratni kanal ostaje zaseban i zahtijeva B_vδδ plus LOS-odd projiciranje.
 
 **Odluka:** dvije teorijske rute su otvorene, a ne spojene ad hoc: (a) fizički specificiran linearni neutrino–CDM LOS tracer response, za koji E21 već daje originalnu linearnu cross-power podlogu; (b) stvarni nelinearni mixed-bispectrum/halo kernel iz E20. Nijedna ruta trenutno nema validirani LRG/ELG c_a ili Γ; ne otvarati observed 24D odd, ne nabavljati nove mockove niti spajati PR.
