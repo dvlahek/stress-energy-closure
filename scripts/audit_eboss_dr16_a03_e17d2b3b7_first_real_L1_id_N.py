@@ -205,7 +205,8 @@ def selftest(p):
     reject("WRONG_DTYPE",lambda:check_schema(changed("id","datatype_METADATA_ONLY","int64")))
     reject("WRONG_SOURCE_INDEX",lambda:check_schema(changed("N","source_METADATA_ONLY",8)))
     reject("B6_REPORT_HASH_DRIFT",lambda:check_report_bytes(b"tampered",p["identity"]["local_b6_report_required_exact_SHA256"]))
-    reject("MASS_REFERENCE_DRIFT",lambda:need(abs(MASS_REF + 10 - MASS_REF)<=1e-7,"mass mismatch"))
+    reject("MASS_REFERENCE_DRIFT",lambda:evaluate_arrays(ids,n,mass=MASS_REF+10,
+           indexes=(0,1,2),expected_rows=3,synthetic_fixture=True))
     class OnlyAllowed:
         def __init__(self):self.data={"id":ids,"N":n}
         def __getitem__(self,k):
@@ -215,7 +216,8 @@ def selftest(p):
     need(only["id"] is ids and only["N"] is n,"synthetic whitelist")
     reject("EXTRA_BINARY_COLUMN",lambda:only["SO_radius"])
     reject("OUTPUT_ALREADY_EXISTS",lambda:need(not True,"no overwrite"))
-    reject("UNAPPROVED_ROW_SELECTOR",lambda:need([0,1,2]==list(SELECTED),"selector changed"))
+    reject("UNAPPROVED_ROW_SELECTOR",lambda:evaluate_arrays(ids,n,indexes=(1,0,2),
+           expected_rows=3,synthetic_fixture=True))
     print("E17D2B3B7_SYNTHETIC_ID_N_AND_EIGHT_NEGATIVES_PASS",flush=True)
     print("E17D2B3B7_NO_REAL_ASDF_NO_OBSERVED_ODD_CI_ONLY",flush=True)
 
