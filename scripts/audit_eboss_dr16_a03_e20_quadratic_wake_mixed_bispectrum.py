@@ -35,7 +35,7 @@ def load():
          "E20 prospective protocol or STOP changed")
     need(e10["observed_odd_sealed"] and
          e10["scientific_interpretation"]["actual_velocity_distribution_or_velocity_density_selection_correlation_not_computed"] and
-         e19["observed_odd_SEALED"] and
+         e19["no_observed_odd_access"] and
          e19["conditional_shape_algebra"]["not_eBOSS_measurable_shape_or_sigma"] and
          e6["math_contract"]["pilot_joint_dimension"]==24 and
          e6["physics_prediction_status"].startswith("NO_EBOSS_ABSOLUTE_PHYSICAL_WAKE") and
