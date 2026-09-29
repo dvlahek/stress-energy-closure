@@ -1,0 +1,84 @@
+{
+  "stage": "E17D2B3B8_PINNED_OFFICIAL_SOURCE_ONLY_L1_THRESHOLD_AND_M200C_FEASIBILITY_QA",
+  "date": "2026-09-29",
+  "status": "PINNED_SOURCE_AND_EIGHT_SYNTHETIC_NEGATIVES_CI_PASS_NO_NEW_REAL_DATA",
+  "prereg_repo_path": "source_data/eboss_dr16_a03_e17d2b3b8_official_source_only_L1_threshold_and_M200c_feasibility_prereg_2026-09-29.json",
+  "prereg_git_blob": "40abc1616ea85d96ec9cb2ba2ca26dc6a8d6fe22",
+  "source_only_reader_repo_path": "scripts/audit_eboss_dr16_a03_e17d2b3b8_source_only_L1_M200c_feasibility.py",
+  "source_only_reader_git_blob": "b435a8b3bbe0c5b10d0e4866da09bb8d07e578ed",
+  "official_sources": {
+    "docs_repo": "abacusorg/AbacusSummit",
+    "docs_commit": "4b1959c710cb0c49aa305c6213a228aa2a4587ff",
+    "data_products_git_blob": "f7c847b174365744b23cb6d1ebaeb010a5bd6ca7",
+    "compaso_git_blob": "a5170574467501e0b9adb4a71e8e432a32843dbf",
+    "loader_repo": "abacusorg/abacusutils",
+    "loader_commit": "24ab0dda5fea9ae406b1afdacaf4bbf989de9bc6",
+    "loader_git_blob": "adb16aee1cbac863db5301c6e380938ee7f76547"
+  },
+  "parent_user_reported_B7R1_summary_git_blob": "f27ed284c95e48548e50336da04c1a1d4b137186",
+  "parent_frozen_B2_header_copy_report_git_blob": "cb911e0f7864738695f20fe3228826374d343378",
+  "CI_success": {
+    "source_only_eight_negatives_run_id": 36529788204,
+    "source_only_conclusion": "SUCCESS",
+    "original_source_ci_commit": "6728f2307fe33ed578c43141d39426215f101abe",
+    "repository_integrity_after_narrow_external_doc_pin_fix_run_id": 36529845688,
+    "integrity_conclusion": "SUCCESS",
+    "fix_commit": "a504798b8ff2c0440f83a0237c186c440b200d05",
+    "earlier_generic_integrity_failure_caused_by_external_upstream_rst_paths": true
+  },
+  "checks_passed": [
+    "Upstream Git-pinned data-products.rst, compaso.rst, compaso_halo_catalog.py source blobs",
+    "Immutable B7R1 user-uploaded summary and original B2 copied-header report blob",
+    "Literal upstream text: L1 outputs with more than 35 particles vs user-uploaded raw superslab min_N 35; unresolved documentation boundary; no cut",
+    "Official L1 membership-defined N and raw density threshold relative to cosmic mean",
+    "Frozen source-copy L1 SO 228.52306365966797 mean vs 200crit 258.3478455412757 mean at actual z 0.952838237036305; density thresholds differ",
+    "SO_radius possibly sentinel; finite condensed r10..r98_L2com quantiles describe L1-only radial summaries",
+    "At secondary redshift 0.95 official product has halo_info and subsample PIDs, not same-epoch RV or field particles",
+    "Loader defaults cleaned=True, which is inappropriate absent cleaned products, and defines explicit raw unit box scaling",
+    "Synthetic same-ranked percentile example has distinct enclosed counts at intermediate synthetic radius",
+    "Eight negative tests rejected drift, false products and illegal promoted M200c claims"
+  ],
+  "synthetic_rank_fixture": {
+    "kind": "TOY_ONLY_NOT_REAL_ABACUS",
+    "identical_rank_percentiles": [
+      10,
+      25,
+      33,
+      50,
+      67,
+      75,
+      90,
+      95,
+      98,
+      100
+    ],
+    "case_A_count_at_toy_radius_1p5": 66,
+    "case_B_count_at_toy_radius_1p5": 50,
+    "interpretation": "finite percentile summaries do not uniquely determine all intermediate enclosed counts, even before a 200critical mass definition"
+  },
+  "source_only_decision": {
+    "actual_raw_min_N": 35,
+    "upstream_documentation_literal": "more than 35 particles",
+    "status": "UNRESOLVED_SOURCE_WORDING_VS_SINGLE_SUPERSLAB_USER_RESULT_NO_DATA_FILTER",
+    "L1_mass_from_N_only": "YES as assigned catalog mass Msun/h",
+    "individual_M200c_200critical_from_current_id_N_SO_summary": "NOT CERTIFIED",
+    "R200critical_from_SO_radius_sentinel": "NOT CERTIFIED",
+    "same_epoch_Eulerian_full_particle_positions_in_current_z095_secondary_products": "NOT PROVIDED_BY_OFFICIAL_SECONDARY_EPOCH_DESCRIPTION",
+    "merger_history_from_one_superslab_one_epoch": "NOT MEASURED"
+  },
+  "limitations": {
+    "GitHub_CI_opened_real_ASDF": false,
+    "GitHub_CI_independent_provider_attestation": false,
+    "full_ASDF_recomputed_or_downloaded": false,
+    "additional_halo_numeric_columns_read": false,
+    "user_WSL_execution_requested": false,
+    "observed_eBOSS_odd_vector_opened": false,
+    "full_catalogue_34_ASDFs_aggregated": false,
+    "individual_M200c_a_measured": false,
+    "physical_original_Fplus_Fminus_wake_or_galaxy_bispectrum_measured": false
+  },
+  "next_gate": "Source-only inventory of independently certified same-epoch 200critical enclosed-mass data products or exact required particle snapshots before any new transfer. If unavailable, explicitly retain M200c(a) BLOCKED. Do not silently rename L1 assigned mass as M200c or retune frozen theory.",
+  "observed_odd_SEALED": true,
+  "main_untouched": true,
+  "draft_PR_unmerged": true
+}
