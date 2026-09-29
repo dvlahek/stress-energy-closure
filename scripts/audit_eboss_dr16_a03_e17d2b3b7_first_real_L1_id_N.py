@@ -127,19 +127,22 @@ def pinned_extension(path):
     asdf.get_config().add_extension(mod.AbacusExtension())
     return asdf
 
-def evaluate_arrays(ids, n, mass=MASS_REF, indexes=SELECTED):
+def evaluate_arrays(ids, n, mass=MASS_REF, indexes=SELECTED, expected_rows=ROWS, synthetic_fixture=False):
     import numpy as np
     need(sys.byteorder == "little", "unexpected machine byteorder")
-    need(getattr(ids, "shape", None) == (ROWS,), "unexpected id array shape")
-    need(getattr(n, "shape", None) == (ROWS,), "unexpected N array shape")
+    need(expected_rows == ROWS or (synthetic_fixture and expected_rows == 3),
+         "unexpected row contract")
+    need(getattr(ids, "shape", None) == (expected_rows,), "unexpected id array shape")
+    need(getattr(n, "shape", None) == (expected_rows,), "unexpected N array shape")
     for name, arr, kind, size in (("id", ids, "u", 8), ("N", n, "u", 4)):
         dt = np.dtype(arr.dtype)
         need(dt.kind == kind and dt.itemsize == size and dt.byteorder in ("<", "="),
              "unexpected raw dtype " + name)
-        need(arr.nbytes == ROWS * size, "unexpected materialized byte count " + name)
+        need(arr.nbytes == expected_rows * size, "unexpected materialized byte count " + name)
     need(ids.nbytes + n.nbytes <= MAX_RAW_ARRAY_BYTES,
          "two columns exceed preregistered raw-array memory bound")
-    need(len(indexes) == 3 and tuple(indexes) == SELECTED,
+    need(len(indexes) == 3 and
+         tuple(indexes) == ((0, 1, 2) if synthetic_fixture else SELECTED),
          "row index selector was altered")
     need(math.isfinite(float(mass)) and abs(float(mass) - MASS_REF) <= 1e-7,
          "unapproved mass reference")
@@ -152,7 +155,7 @@ def evaluate_arrays(ids, n, mass=MASS_REF, indexes=SELECTED):
          "selected raw halo ids are not unique")
     total = int(np.sum(n, dtype=np.int64))
     return {
-        "rows_in_exact_superslab_000":ROWS,
+        "rows_in_exact_superslab_000":expected_rows,
         "minimum_N_full_superslab":int(np.min(n)),
         "maximum_N_full_superslab":int(np.max(n)),
         "sum_N_full_superslab":total,
@@ -165,14 +168,6 @@ def evaluate_arrays(ids, n, mass=MASS_REF, indexes=SELECTED):
         "physical_neutrino_wake_or_galaxy_B_measured":False,
         "observed_odd_SEALED":True
     }
-
-def evaluate_for_test(ids, n):
-    # Tiny generated arrays exercise every numeric calculation with the same
-    # formula, without spoofing the real 11,676,687-row actual array contract.
-    import numpy as np
-    need(ids.dtype == np.dtype("<u8") and n.dtype == np.dtype("<u4"), "synthetic dtype wrong")
-    need(ids.shape == n.shape == (3,), "synthetic shape wrong")
-    return [int(n[i]) * MASS_REF for i in (0, 1, 2)], int(n.sum(dtype=np.int64))
 
 def selftest(p):
     import copy
@@ -190,9 +185,14 @@ def selftest(p):
     check_schema(fake)
     ids = np.array([3, 5, 9], dtype="<u8")
     n = np.array([36, 40, 80], dtype="<u4")
-    masses, total = evaluate_for_test(ids, n)
-    need(total == 156 and masses == [36*MASS_REF,40*MASS_REF,80*MASS_REF],
-         "synthetic numerical happy-path")
+    synthetic_result = evaluate_arrays(ids, n, indexes=(0,1,2),
+                                       expected_rows=3, synthetic_fixture=True)
+    need(synthetic_result["sum_N_full_superslab"] == 156
+         and [q["L1_assigned_mass_Msun_per_h"] for q in synthetic_result["selected_fixed_rows"]]
+             == [36*MASS_REF,40*MASS_REF,80*MASS_REF]
+         and synthetic_result["minimum_N_full_superslab"] == 36
+         and synthetic_result["maximum_N_full_superslab"] == 80,
+         "same actual evaluation function synthetic numeric happy-path")
     def reject(label, action):
         try:action()
         except (ValueError, TypeError, KeyError):
