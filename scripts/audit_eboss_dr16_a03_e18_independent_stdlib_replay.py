@@ -67,7 +67,7 @@ def inputs():
     need(res["observed_odd_SEALED"] and res["nine_ID_centered_covariance_rank_upper_bound"]==8 and
          res["E7_48k_fullgalaxy_different_DD_excluded"] and
          res["not_inferential_covariance_or_wake_physics"] and
-         res["original_E4_galaxy_sample_identical_across_nested_random_levels"],
+         res["all_levels_same_original_mock_DD"],
          "reported result overclaim")
     return e,err,res
 
