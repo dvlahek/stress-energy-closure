@@ -1,0 +1,46 @@
+name: eBOSS A03 E25 total metric Euler residual and LOS number counts source-only
+on:
+  push:
+    branches:
+      - audit/eboss-elg-bit8-ra-orientation-20260925
+    paths:
+      - 'source_data/eboss_dr16_a03_e25_*'
+      - 'scripts/audit_eboss_dr16_a03_e25_total_metric_euler_residual.py'
+      - '.github/workflows/eboss_dr16_a03_e25_total_metric_euler_residual.yml'
+      - 'EINSTEIN_VLASOV_NP_MASTER_PLAN.md'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-source-and-exact-total-metric:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Verify prospective E25 and six untouched small original Git source blobs
+        run: |
+          set -euo pipefail
+          test "$(git hash-object source_data/eboss_dr16_a03_e25_total_metric_euler_residual_and_linear_los_response_protocol_2026-09-29.json)" = 01c8449bf7388b2391b53dd5c7ba069a23c2186c
+          test "$(git hash-object docs/EBOSS_DR16_A03_E24_EXACT_EVEN_SECTOR_SIGN_DUALITY_AND_MINIMAL_NEUTRINO_TRACER_RESPONSE_2026-09-29.md)" = b3a87f1ed42133e164b440e89f45dcbf6f79dc8a
+          test "$(git hash-object source_data/eboss_dr16_a03_e24_source_only_even_odd_linear_response_identifiability_summary_2026-09-29.json)" = ccb64f189941ed0b89efe1462cf8ca86590b17fc
+          test "$(git hash-object docs/EBOSS_DR16_A03_E22_TWO_PHYSICAL_CHANNELS_OKOLI_PHASE_SHARED_WAKE_AND_SIGNED_ESTIMAND_2026-09-29.md)" = d2d08ec43cd2604e9a6207f40a5ac1732699ad8e
+          test "$(git hash-object docs/EBOSS_DR16_A03_E23_HIGHZ_PAIR_REDSHIFT_AND_PUBLISHED_HOD_TRANSPORT_GATE_2026-09-29.md)" = 8fedf17c15d97d49ca45289dc1c0d6cb87b74727
+          test "$(git hash-object docs/EBOSS_DR16_A03_E17D1_RESTRICTED_CAUSAL_SOURCE_HISTORY_NONIDENTIFIABILITY_2026-09-27.md)" = 3a536aa384eec1a202e77c532beb3a55c7333cb2
+          test "$(git hash-object source_data/eboss_dr16_a03_e21_archived_F0_Fpm_linear_LOS_velocity_cross_unit_response_2026-09-29.json)" = cc3312c5313cce60fad4a88c3a56ef3d4e675e38
+          echo E25_SEVEN_SOURCE_GIT_BLOBS_PASS
+      - name: Exact rational geodesic nongeodesic and unit LOS controls
+        env:
+          PYTHONUNBUFFERED: '1'
+        run: |
+          set -euo pipefail
+          python3 -m py_compile scripts/audit_eboss_dr16_a03_e25_total_metric_euler_residual.py
+          python3 -u scripts/audit_eboss_dr16_a03_e25_total_metric_euler_residual.py \
+            --out "$RUNNER_TEMP/e25_total_metric_euler_residual_source_only.json"
+          echo E25_EXACT_TOTAL_METRIC_SOURCE_ONLY_CI_SUCCESS
+      - uses: actions/upload-artifact@v4
+        with:
+          name: E25_source_only_exact_total_metric_and_velocity_unit_QA
+          path: ${{ runner.temp }}/e25_total_metric_euler_residual_source_only.json
+          if-no-files-found: error
