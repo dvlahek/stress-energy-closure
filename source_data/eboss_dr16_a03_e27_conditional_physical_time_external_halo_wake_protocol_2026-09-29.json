@@ -1,10 +1,10 @@
 {
   "stage": "E27_FIRST_PHYSICAL_TIME_CONDITIONAL_EXTERNAL_HALO_BORN_WAKE",
   "date": "2026-09-29",
-  "registration": "New limited physical-time numerical experiment registered before first new E27 computation. Prior original E8b static, E17D0 dimensionless impulse, E17D1 synthetic time and E17D2B1 conditional Wechsler histories already known; NO new calibrated halo or observational hypothesis.",
+  "registration": "New limited physical-time numerical experiment registered before first new E27 computation. Prior original E8b static, E17D0 dimensionless impulse, E17D1 synthetic time and E17D2B1 conditional Wechsler histories already known; NO new calibrated halo or observational hypothesis. The exact E8 archive SHA was corrected before any E27 code execution, without changing inputs, physics or tolerances.",
   "source_pins": {
     "E8_frozen_4000q_git_blob": "52d614041551a5067edda01eca94741241831913",
-    "E8_frozen_4000q_SHA256": "bf8f48deb9514c5101d5ce314bfbd397485102a548ffaa098b7495eb85661ae",
+    "E8_frozen_4000q_SHA256": "bf8f48deb9514c5101d5ce314bfbd397485102a5487da1039f141e3cad6143d0",
     "E17D0_impulse_code": "f8ed0cfcea70251c005a1dd1bb7be403984e9854",
     "original_CLASS_cosmology_code": "44956e353dbb238537d60da687d1a2a26fa13ee6",
     "E9_H_FD": "3d21ccdce4d3547be927a1fa76626d69e861109d",
