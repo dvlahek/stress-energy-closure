@@ -1,5 +1,11 @@
 # EinsteinVlasovNP — povijest i handoff za novi chat
 
+## 29. 9. 2026. — E29 two-time halo profile / Born validity gate
+
+- [E29 fizikalna bilješka](EBOSS_DR16_A03_E29_HALO_HISTORY_TWO_TIME_PROFILE_AND_BORN_VALIDITY_GATE_2026-09-29.md), commit `9091a6c3080bddc982f3d4f9cfb085acd3eda2b6`: u uvjetnom E28 izvornom modelu fiksni komovirajući NFW daje `u(k)^2` izvan vremenskog integrala. Za stvarni evoluirajući halo potrebno je `u_test(k,z_obs) × ∫dz' [M(z')/M_obs] u_src(k,z') K_F(k,z')`; izvorni izraz vraća se samo pod E28 pretpostavkom identičnog oblika na svim vremenima. To je fizikalna strukturna korekcija, **nije** izračun novog halo drag-a ni validacija UV-a.
+- Drugi red Vlasovljeva odziva uključuje konvoluciju Fourierovih modova i gradijente po impulsu. Ne može se opravdano aproksimirati množenjem E27 jednog-k kernela proizvoljnim faktorom. Nužni ulazi: konzistentna same-object masa/profil/centar kroz vrijeme, environment/wind, raniji wake ili njegov kontrolirani bound, faznoprostorna kontrola pogreške i neovisni fizikalni UV kriterij. L1 `N` nije `M200c(a)`; ne interpolirati medijane kao povijest objekta.
+- Trenutačni audit HEAD nakon E29 bilješke bio je `9091a6c...`; PR #1 ostao draft i unmerged, main netaknut. Na tom commitu CI još nije bio potvrđen pri prvoj provjeri. Ovaj history update ne mijenja fizikalne izvore, zamrznute F, opažene podatke ni ranije numeričke rezultate. **A03 PHYSICAL_UNCERTIFIED, A04 BLOCKED, observed odd SEALED.** Nema nove lokalne WSL naredbe ni downloada bez konkretnog physical data gatea.
+
 ## 29. 9. 2026. — E28/E28R1, master plan v1.62
 
 **Namjena:** trajni projektni checkpoint. Kanonski plan je [EINSTEIN_VLASOV_NP_MASTER_PLAN.md](../EINSTEIN_VLASOV_NP_MASTER_PLAN.md), a ovaj zapis olakšava nastavak bez ponavljanja ranijih koraka. Polazni verificirani audit HEAD prije ovoga history zapisa: `de2a15b2360f9738d56d91a8ca00ec7b9a49407b`. Aktualni HEAD i plan uvijek ponovno pročitati prije novih izmjena.
