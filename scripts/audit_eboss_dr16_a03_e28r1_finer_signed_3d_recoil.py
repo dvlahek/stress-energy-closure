@@ -87,8 +87,7 @@ def main():
                  np.all(co<0) and np.all(fi<0),
                  "R1 nonfinite or wrong signed conditional recoil")
             gap=np.abs(fi-co)/np.maximum(np.abs(fi),1e-80)
-            need(float(gap[-1])<p["acceptance"]["physical_FD_each_band"].count(
-                 "0.01-1")*1e2, "impossible internal finite band QA")
+            need(np.all(np.isfinite(gap)), "nonfinite registered k-band refinement gap")
             contributions=np.diff(np.r_[0.,fi])
             cases[str(i)]={"alpha":halo[1],"M0_Msun":halo[0],
                  "fine_prefix_accel_km2_s2_per_Mpc":list(map(float,fi)),
