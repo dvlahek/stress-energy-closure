@@ -1,0 +1,42 @@
+name: eBOSS A03 E27 physical-time conditional halo Born wake
+on:
+  push:
+    branches:
+      - audit/eboss-elg-bit8-ra-orientation-20260925
+    paths:
+      - 'scripts/audit_eboss_dr16_a03_e27_conditional_physical_time_born_wake.py'
+      - 'source_data/eboss_dr16_a03_e27_*'
+      - '.github/workflows/eboss_dr16_a03_e27_conditional_physical_time_born_wake.yml'
+      - 'EINSTEIN_VLASOV_NP_MASTER_PLAN.md'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  finite-physical-time-conditional-Born-wake:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install exact original E17D0 math dependency
+        run: python -m pip install 'numpy==1.26.4'
+      - name: Run pinned E27 actual conditional physical-time Born integral
+        env:
+          PYTHONUNBUFFERED: '1'
+        run: |
+          set -euo pipefail
+          test "$(git hash-object source_data/eboss_dr16_a03_e27_conditional_physical_time_external_halo_wake_protocol_2026-09-29.json)" = d9c9a71841d00cd04db1016ceb2ce1adb5cfc7d5
+          test "$(git hash-object source_data/eboss_dr16_a03_e8_e11_archived_CI_2026_09_27/E8/frozen_matched_distributions_4000q.csv)" = 52d614041551a5067edda01eca94741241831913
+          test "$(git hash-object scripts/audit_eboss_dr16_a03_e17d0_external_potential_vlasov_source.py)" = f8ed0cfcea70251c005a1dd1bb7be403984e9854
+          python -m py_compile scripts/audit_eboss_dr16_a03_e27_conditional_physical_time_born_wake.py
+          python -u scripts/audit_eboss_dr16_a03_e27_conditional_physical_time_born_wake.py --out "$RUNNER_TEMP/e27_conditional_physical_time_born_wake.json"
+          echo E27_NEW_CONDITIONAL_PHYSICAL_TIME_NUMERICS_PASS
+      - uses: actions/upload-artifact@v4
+        with:
+          name: E27_conditional_physical_time_3F_4halo_Born
+          path: ${{ runner.temp }}/e27_conditional_physical_time_born_wake.json
+          if-no-files-found: error
