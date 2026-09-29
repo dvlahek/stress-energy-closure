@@ -1,0 +1,139 @@
+{
+  "stage": "A03E21_FROZEN_E13_LINEAR_LOS_RELATIVE_VELOCITY_CROSS_TWO_TRACER_RESPONSE_NORMALIZATION",
+  "date": "2026-09-29",
+  "status": "ORIGINAL_E13_DIRECT_CLASS_LONG_VELOCITY_CROSS_POSTHOC_UNIT_RESPONSE_SOURCE_ONLY",
+  "classification": "E21 is explicitly POSTHOC scientific investigation of already completed and inspected E13 direct-rank CLASS sources, after E20. This protocol prospectively freezes only the subsequent new E21 numerical QA, output schema, negative controls and stop conditions; not an advance preregistration of the E13 result or its observed F+/- normalization reversal. E20 archived scientific note SHA was resolved by exact Git file fetch before any E21 QA; original E13 values had already been inspected.",
+  "protocol_sha": "7fc84392a915bf3b242bbc12a27e78267dd643f1",
+  "source_git_blobs": {
+    "summary": "d571ef664a4f4c94a0f24e1ba535fbf7c9294f76",
+    "FD": "d8be18c960bd9a42792e77523a551b70a6aece50",
+    "Fplus": "60650738ebbd0ca7b4f14780021e501459213f99",
+    "Fminus": "2e76cf760af7236b1dc4ef5a1260e9b66c468ecf",
+    "E20": "c736ea3bca7bd0560ab07225294e1dd0930e0561"
+  },
+  "source_method": "Read-only E13 original direct CLASS vTk LOS normalised source at original four K, multiply original own sigma_R16 to recover original filtered linear v transfer cross; no CLASS re-execution, new Fourier modes or physical galaxy response.",
+  "redshift_mathematical_not_measured_zeff": 0.95,
+  "LOS_relative_velocity_filter": "Original top-hat R16, state-specific direct sigma_R16",
+  "source_Fourier_convention": "P_delta_cb,r_LOS=+i mu C_r with r=v_rel_LOS_R16/sigma_R16 (original E12 source). Thus P_delta_cb,v_LOS_R16=+i mu C_v where C_v=sigma_R16 C_r.",
+  "linear_two_tracer_symbolic_model": {
+    "fields": "delta_a^s=A_a(k,mu) delta_cb+c_a v_rel_LOS_R16, A real even, c real, but c_a NOT physically inferred from original E13/E17; c_a [s/km]",
+    "imaginary_cross": "Im P_LE = mu (A_L c_E - c_L A_E) C_v(K) under original LRG→ELG ordering; EL reverses sign, mu reversal reverses sign",
+    "normalized_equivalence": "If using original r=v/sigma, c_{a,r}=c_{a,v} sigma_F for the same physical c_{a,v}; holding c_{a,r} fixed across F states is NOT holding c_{a,v} fixed.",
+    "standard_GR": "Regular galaxy Doppler terms may have analogous cross-power, but r_nuCDM is not automatically observed galaxy peculiar velocity.",
+    "limits": "Source is linear long K only; actual velocity-to-galaxy response unmeasured, no physical EV wake amplitude, no original eBOSS 24D prediction."
+  },
+  "original_long_modes": {
+    "0.001": {
+      "k_h_per_Mpc": 0.001,
+      "states": {
+        "FD": {
+          "sigma_R16_LOS_km_per_s": 135.67798143801986,
+          "C_normalized_P_delta_r_over_i_mu_Mpc3": 31826.055140450495,
+          "C_linear_P_delta_vR16_over_i_mu_km_s_Mpc3": 4318094.918591439
+        },
+        "Fplus": {
+          "sigma_R16_LOS_km_per_s": 135.86206681100845,
+          "C_normalized_P_delta_r_over_i_mu_Mpc3": 31858.94595520691,
+          "C_linear_P_delta_vR16_over_i_mu_km_s_Mpc3": 4328422.243894628
+        },
+        "Fminus": {
+          "sigma_R16_LOS_km_per_s": 135.48537162977118,
+          "C_normalized_P_delta_r_over_i_mu_Mpc3": 31720.814637833886,
+          "C_linear_P_delta_vR16_over_i_mu_km_s_Mpc3": 4297706.35960601
+        }
+      },
+      "signed_Fplus_minus_Fminus": {
+        "normalized_Mpc3": 138.1313173730232,
+        "unnormalized_km_s_Mpc3": 30715.88428861834
+      },
+      "opposite_signed_contrasts": false
+    },
+    "0.002": {
+      "k_h_per_Mpc": 0.002,
+      "states": {
+        "FD": {
+          "sigma_R16_LOS_km_per_s": 135.67798143801986,
+          "C_normalized_P_delta_r_over_i_mu_Mpc3": 85366.39114064851,
+          "C_linear_P_delta_vR16_over_i_mu_km_s_Mpc3": 11582339.632611651
+        },
+        "Fplus": {
+          "sigma_R16_LOS_km_per_s": 135.86206681100845,
+          "C_normalized_P_delta_r_over_i_mu_Mpc3": 85425.15250689712,
+          "C_linear_P_delta_vR16_over_i_mu_km_s_Mpc3": 11606037.777232643
+        },
+        "Fminus": {
+          "sigma_R16_LOS_km_per_s": 135.48537162977118,
+          "C_normalized_P_delta_r_over_i_mu_Mpc3": 85251.72773785368,
+          "C_linear_P_delta_vR16_over_i_mu_km_s_Mpc3": 11550362.014643177
+        }
+      },
+      "signed_Fplus_minus_Fminus": {
+        "normalized_Mpc3": 173.4247690434422,
+        "unnormalized_km_s_Mpc3": 55675.76258946583
+      },
+      "opposite_signed_contrasts": false
+    },
+    "0.003": {
+      "k_h_per_Mpc": 0.003,
+      "states": {
+        "FD": {
+          "sigma_R16_LOS_km_per_s": 135.67798143801986,
+          "C_normalized_P_delta_r_over_i_mu_Mpc3": 146282.26468977306,
+          "C_linear_P_delta_vR16_over_i_mu_km_s_Mpc3": 19847282.39329054
+        },
+        "Fplus": {
+          "sigma_R16_LOS_km_per_s": 135.86206681100845,
+          "C_normalized_P_delta_r_over_i_mu_Mpc3": 146192.50120027707,
+          "C_linear_P_delta_vR16_over_i_mu_km_s_Mpc3": 19862015.365340475
+        },
+        "Fminus": {
+          "sigma_R16_LOS_km_per_s": 135.48537162977118,
+          "C_normalized_P_delta_r_over_i_mu_Mpc3": 146323.1415261438,
+          "C_linear_P_delta_vR16_over_i_mu_km_s_Mpc3": 19824645.207705196
+        }
+      },
+      "signed_Fplus_minus_Fminus": {
+        "normalized_Mpc3": -130.64032586672693,
+        "unnormalized_km_s_Mpc3": 37370.157635279
+      },
+      "opposite_signed_contrasts": true
+    },
+    "0.005": {
+      "k_h_per_Mpc": 0.005,
+      "states": {
+        "FD": {
+          "sigma_R16_LOS_km_per_s": 135.67798143801986,
+          "C_normalized_P_delta_r_over_i_mu_Mpc3": 245443.5974086523,
+          "C_linear_P_delta_vR16_over_i_mu_km_s_Mpc3": 33301291.853291947
+        },
+        "Fplus": {
+          "sigma_R16_LOS_km_per_s": 135.86206681100845,
+          "C_normalized_P_delta_r_over_i_mu_Mpc3": 245318.20914711562,
+          "C_linear_P_delta_vR16_over_i_mu_km_s_Mpc3": 33329438.921102364
+        },
+        "Fminus": {
+          "sigma_R16_LOS_km_per_s": 135.48537162977118,
+          "C_normalized_P_delta_r_over_i_mu_Mpc3": 245551.89077210266,
+          "C_linear_P_delta_vR16_over_i_mu_km_s_Mpc3": 33268689.17565131
+        }
+      },
+      "signed_Fplus_minus_Fminus": {
+        "normalized_Mpc3": -233.68162498704623,
+        "unnormalized_km_s_Mpc3": 60749.74545105547
+      },
+      "opposite_signed_contrasts": true
+    }
+  },
+  "contrasts_opposite_sign_K": [
+    "0.003",
+    "0.005"
+  ],
+  "new_physical_halo_galaxy_response": false,
+  "original_E20_quadratic_Gaussian_null_unchanged": true,
+  "original_E13_and_E8_unmodified": true,
+  "no_new_CLASS_or_real_catalogues": true,
+  "no_observed_eBOSS_odd_access": true,
+  "no_covariance_snr_or_pvalues": true,
+  "no_user_WSL": true,
+  "main_unchanged_PR_draft_only": true
+}
