@@ -1,1 +1,44 @@
-{"study":"E26 original E12 E13 E21 source-rank check","registration":"New numerical QA only; theoretical result already derived","states":["FD","plus","minus"],"K_h_Mpc":[0.001,0.002,0.003,0.005],"source":"Existing immutable original E12 primordial power and E13 CB density/relative velocity; independent E21 cross check","tolerance":5e-11,"no_observed_odd":true,"no_new_CLASS":true,"no_new_WSL":true,"no_main_changes":true}
+{
+  "study": "E26 original E12 E13 E21 source-rank check",
+  "registration": "New numerical QA only; theoretical result already derived",
+  "states": [
+    "FD",
+    "plus",
+    "minus"
+  ],
+  "K_h_Mpc": [
+    0.001,
+    0.002,
+    0.003,
+    0.005
+  ],
+  "source": "Existing immutable original E12 primordial power and E13 CB density/relative velocity; independent E21 cross check",
+  "tolerance": 5e-11,
+  "no_observed_odd": true,
+  "no_new_CLASS": true,
+  "no_new_WSL": true,
+  "no_main_changes": true,
+  "pins": {
+    "E12": [
+      "5977fe98df367d1e3f595b06b7c0ded753a2ad48",
+      "9c909d7927cada790bcba4cce573a5b874921f91",
+      "96cecd44c12ddb02174ad72e1c484d9d701fcee2"
+    ],
+    "E13": [
+      "d8be18c960bd9a42792e77523a551b70a6aece50",
+      "60650738ebbd0ca7b4f14780021e501459213f99",
+      "2e76cf760af7236b1dc4ef5a1260e9b66c468ecf"
+    ],
+    "E21": "cc3312c5313cce60fad4a88c3a56ef3d4e675e38",
+    "E12code": "0f516a1525fc5df44e71c400ea0cfb30664a1ce5"
+  },
+  "checks": [
+    "Read original E12 primordial Delta2 at fixed step 0.002; E13 fresh delta_cb, theta_rel, top-hat W.",
+    "Compute P_R=2pi² Delta2/k³, V=-299792.458 theta_rel W/k, Pdd=D² P_R and Pvv=V² P_R independently; E21 provides cross Cv.",
+    "Verify original Cv=-D V P_R and Pdd Pvv=Cv² at mu=1,0.5; handle mu=0 zero velocity.",
+    "Reject altered source SHA, missing K, incorrect sign, omitted filter or light-speed factor, and false claim archived E12 contains raw t_cdm."
+  ],
+  "scope": "Single adiabatic primordial scalar gives same Fourier phase at each fixed k,z. Does NOT establish proportionality of standard Doppler and relative-velocity transfer shapes across K/z, real galaxy response or observed 24D covariance.",
+  "original_e12_cdm_gate": "E12 original runner requested t_cdm but retained long-K JSON has theta_relative only. No source-backed numerical standard-Doppler template from archived E12 alone.",
+  "negative_controls": 8
+}
