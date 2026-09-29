@@ -166,11 +166,53 @@ def evaluate(x):
         result[s]=runs
     return result
 
+def refine_signed_contrast(original):
+    """POSTHOC E27R1, fixed before this additional 513/1025 grid execution."""
+    proof=read_pinned(
+        ROOT/"source_data/eboss_dr16_a03_e27r1_posthoc_Fpm_contrast_resolution_protocol_2026-09-29.json",
+        "a1bdd5264ebe914f0896cc7b60ec8919bb37434e")
+    need(proof["registered_after_original_E27_CI"]==36599144647 and
+         proof["new_integration_grid_nodes"]==[257,513,1025] and
+         all(proof["guards"].values()),"E27R1 posthoc precision scope drift")
+    _,prep,h,halos=original
+    result={}
+    for i in (0,1):   # original smaller mass, both original alpha histories
+        grids={}
+        for n in (257,513,1025):
+            fd=response(prep["FD"],h["FD"],halos[i],n)[0].imag
+            plus=response(prep["plus"],h["plus"],halos[i],n)[0].imag
+            minus=response(prep["minus"],h["minus"],halos[i],n)[0].imag
+            diff=minus-plus
+            need(fd>0 and diff!=0,"E27R1 unresolved signed original F contrast")
+            grids[str(n)]={"FD_im_Mpc3":fd,"Fplus_im_Mpc3":plus,
+                           "Fminus_im_Mpc3":minus,
+                           "Fminus_minus_Fplus_im_Mpc3":diff,
+                           "signed_contrast_over_FD":diff/fd}
+        coarse=grids["257"]["Fminus_minus_Fplus_im_Mpc3"]
+        mid=grids["513"]["Fminus_minus_Fplus_im_Mpc3"]
+        fine=grids["1025"]["Fminus_minus_Fplus_im_Mpc3"]
+        err=abs(fine-mid)/abs(fine)
+        need((mid>0)==(fine>0) and err<.01,
+             "E27R1 Fpm difference not numerically resolved on frozen 513/1025 grids")
+        print("E27R1_POSTHOC_FPM_CONTRAST_RESOLVED",
+              "ALPHA",halos[i][1],"DIFF_FINE_MPC3",format(fine,".15g"),
+              "SIGNED_REL_FD",format(grids["1025"]["signed_contrast_over_FD"],".12g"),
+              "513_VS_1025_REL_GAP",format(err,".8g"),
+              "257_VS_1025_REL_GAP",format(abs(fine-coarse)/abs(fine),".8g"),
+              flush=True)
+        result[str(i)]={"halo_alpha":halos[i][1],
+                        "original_low_mass_M0_Msun":halos[i][0],
+                        "grid_record":grids,
+                        "513_vs_1025_signed_difference_relative_gap":err,
+                        "257_vs_1025_signed_difference_relative_gap":abs(fine-coarse)/abs(fine)}
+    return result
+
 def main():
     a=argparse.ArgumentParser();a.add_argument("--out",type=Path)
     args=a.parse_args()
     x=read_sources()
     res=evaluate(x)
+    contrast=refine_signed_contrast(x)
     print("E27_PHYSICAL_TIME_CAUSAL_EXTERNAL_HALO_BORN_3F_4H_PASS",flush=True)
     for s in S:
         for key in ("0","1","2","3"):
@@ -186,7 +228,9 @@ def main():
          "z_obs":ZOBS,"z_initial_zero_wake":ZINIT,"k_comoving_h_Mpc":.05,
          "reference_halo_v_relative_neutrinos_km_s":VHALO,
          "external_halo_conditioning":"Original E17D2B1 alpha=0.4/0.8 and physical M0, point-mass one-k",
-         "original_F_results":res,"source_only_previous_E8_E9_E17D0_B1_untouched":True,
+         "original_F_results":res,"E27R1_posthoc_contrast_resolution":contrast,
+         "E27R1_protocol_git_blob":"a1bdd5264ebe914f0896cc7b60ec8919bb37434e",
+         "source_only_previous_E8_E9_E17D0_B1_untouched":True,
          "not_full_primordial_halo_wake":True,"not_halo_drag_or_tracer_beta":True,
          "no_galaxy_xi_or_observed_odd_or_new_CLASS_ABACUS_WSL":True}
     if args.out:
