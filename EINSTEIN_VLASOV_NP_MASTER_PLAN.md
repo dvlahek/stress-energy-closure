@@ -338,6 +338,8 @@ Liniju B ne vezati uz rezultat linije A post hoc. Ako pronađeni jači opservabi
 - GitHub dokument je trajni projektni *source of truth*, ne tvrdnja da je interna ChatGPT memorija ručno izmijenjena. Za pristup i izvan repozitorija korisnik može istu Markdown datoteku priložiti u ChatGPT Project files.
 - Obavezna završna provjera prije izjave o rezultatu: **što je zapravo izmjereno, na kojoj populaciji/realizaciji, kojim prozorom, s kakvom kovarijancom, koji su nezavisni testovi prošli i je li opaženi odd vektor bio otvoren?**
 
+**Administrativni handoff za novi chat (29. 9. 2026.; E28/E28R1):** [trajna projektna povijest, numerički checkpoint, UV/halo-history STOP i naredni fizički zadatak](docs/EINSTEIN_VLASOV_NP_HISTORY.md). Ovaj history zapis ne mijenja E28 model, originale, znanstveni status ni numeraciju kanonskoga plana v1.62.
+
 ### Dnevnik verzija
 
 - **v1.0 — 26. 9. 2026.** Zabilježena odluka o dvjema linijama, razdvojene detekcija/isključenje/closure/modelni response, zamrznut trenutačni eBOSS/eZmock gate i definirani prolazni uvjeti za budući observable i inferenciju.
