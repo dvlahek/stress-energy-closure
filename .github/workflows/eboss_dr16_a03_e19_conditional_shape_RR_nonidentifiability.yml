@@ -1,0 +1,31 @@
+name: eBOSS A03 E19 frozen E10 conditional shape and marginal-RR identifiability
+on:
+  push:
+    branches:
+      - audit/eboss-elg-bit8-ra-orientation-20260925
+    paths:
+      - 'scripts/audit_eboss_dr16_a03_e19_conditional_shape_RR_nonidentifiability.py'
+      - 'source_data/eboss_dr16_a03_e19_*'
+      - '.github/workflows/eboss_dr16_a03_e19_conditional_shape_RR_nonidentifiability.yml'
+      - 'EINSTEIN_VLASOV_NP_MASTER_PLAN.md'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-only-mathematics:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Check exact source Git blobs and mathematical E19 result
+        run: |
+          set -euo pipefail
+          test "$(git hash-object source_data/eboss_dr16_a03_e10_frozen_conditional_angular_wind_parity_summary_2026-09-27.json)" = a9e0f49a58b9fd5e0ad975d4d14ba6521a648c28
+          test "$(git hash-object source_data/eboss_dr16_a03_e10_wind_parity_angular_odd_bridge_protocol_2026-09-27.json)" = d9de48012103eaa07d531e11bca9cef285e62545
+          test "$(git hash-object source_data/eboss_dr16_a03_e6_physical_template_to_empirical_window_bridge_protocol_2026-09-27.json)" = 4df20872cff5b3d8aa09831ab50b22fa5f8b6581
+          test "$(git hash-object source_data/eboss_dr16_a03_e19_posthoc_conditional_Fourier_shape_and_marginal_RR_nonidentifiability_2026-09-29.json)" = fc5044684b84ff3de86c236988617ead79d8e7e6
+          python3 -m py_compile scripts/audit_eboss_dr16_a03_e19_conditional_shape_RR_nonidentifiability.py
+          python3 -u scripts/audit_eboss_dr16_a03_e19_conditional_shape_RR_nonidentifiability.py
+          echo E19_SOURCE_ONLY_MATH_CI_SUCCESS
