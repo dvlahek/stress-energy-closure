@@ -164,7 +164,7 @@ def load_quijote_fof(catalog_dir: Path):
         import readfof
     except Exception as e:
         raise RuntimeError(
-            "Missing readfof/Pylians. Install Pylians3 in the project venv before E62."
+            "Missing readfof/Pylians. Install the PyPI package 'Pylians' in the project venv before E62."
         ) from e
 
     need(catalog_dir.is_dir(), f"Missing Quijote FoF directory: {catalog_dir}")
