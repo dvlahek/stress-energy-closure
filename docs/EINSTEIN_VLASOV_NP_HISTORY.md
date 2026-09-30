@@ -1,5 +1,38 @@
 # EinsteinVlasovNP — povijest i handoff za novi chat
 
+## 30. 9. 2026. — E30–E53 catch-up, unconditioned no-go and conditioned-estimator pivot
+
+**Repository checkpoint before catch-up:** `c140bef3e16508246fb0fec0adb4e56fb93b477c`. Work performed locally/offline after E29 is now synchronized to the audit branch. Detailed checkpoint: [EBOSS_DR16_A03_E30_E53_CATCHUP_AND_CONDITIONED_ROUTE_2026-09-30.md](EBOSS_DR16_A03_E30_E53_CATCHUP_AND_CONDITIONED_ROUTE_2026-09-30.md). Machine-readable summary: `source_data/eboss_dr16_a03_e30_e53_conditioned_route_catchup_summary_2026-09-30.json`. Reproducibility artifacts, including scripts, protocols, local reports/results and the explicitly archived buggy E47 v0, are under `artifacts/e30_e53_catchup/` and the synchronized individual paths.
+
+### E29–E44 physical-closure line
+
+- Local E29 found 20 bounded PID-supported two-epoch candidates, but **zero globally certified progenitor links**. Median late PID overlap is 0.9091, median relative L1 particle-count change 3.091%, median comoving centre displacement 0.2311 h^-1 Mpc and median finite-difference centre-speed proxy 547.5 km/s. These are descriptive proxies, not M200c histories, instantaneous winds or certified merger-tree trajectories. A later targeted profile read crashed Ubuntu and was not repeated.
+- E30 sharpened the sign-conditioned estimand: marginal P(S=+)=P(S=-) is not sufficient by itself; the relevant sufficient local condition is E[S|X]=0 for the response-relevant state X.
+- E32–E36 established radial-profile, mass-definition, causal-history and hidden kinetic-state non-identifiabilities. E37–E43 converted these into explicit closure/error budgets. Frozen E28R1 low-mass alpha=.4 has |F−−F+|/|FD|=0.6242%, while 94.22589% of the finite-band FD acceleration comes from k>1/Mpc. None of the incoming-state/history/profile/Born/tracer-response terms is bounded tightly enough for a physical sign certificate.
+- E44 verified the cleaned/tree Abacus direction as the right next multi-epoch object but found no required local cleaned/tree product. Broad ASDF mining was stopped. **A03 remains PHYSICAL_UNCERTIFIED.**
+
+### E45–E48 original unconditioned 2-point route
+
+- E45 archive-only synthetic odd injection: |A|=.02 is small relative to nine-mock apparent-amplitude scatter, SD 0.09495 NGC and 0.06424 SGC. Exact +/- recovery is an estimator-algebra check, not a physical forecast.
+- E46 defined the valid E45 comparison A_phys=(q^T y_phys)/(q^T q) and explicitly rejected direct E28 acceleration -> E45 amplitude identification.
+- Corrected E47R1 reproduces the frozen E21 source to machine precision. The physical response is nevertheless tiny: median alpha_g0 7.51e-8 NGC / 7.05e-8 SGC; ~83% descriptive recovery needs |g0| about 5.55e5 / 6.65e5.
+- E48 shows the required response is outside the linear regime by orders of magnitude. For diagnostic b_L=2, b_E=1, f=1, the most favorable anti-aligned response needs D=max(|d_L|,|d_E|)=1.33e5 NGC / 1.58e5 SGC, yielding one-sigma local perturbations 60.5 / 71.4.
+- **Decision:** retain E21/E47 as a negative/limitation result and do not optimize the unconditioned channel further.
+
+### E49–E53 conditioned route
+
+- E49 direct CLASS vTk passes the strong preregistered tag gate: min |r(v_nu-v_cdm,v_b)|=0.9217 across FD/F+/F−, with minimum Gaussian sign-correlation factor 0.7463.
+- E50 separates amplitude-calibrated and shape-only regimes. The conditional F−/F+ vector difference is ~43.6% of the F+ norm, while the amplitude-free angle is only 1.366 deg. With illustrative reconstruction correlation .8, amplitude-calibrated 3-sigma discrimination needs underlying conditioned S/N of order 13, shape-only order 238.
+- E51 implements the first pair-midpoint externally marked cross-Landy-Szalay estimator on all nine exact eBOSS EZmocks using four fixed synthetic technical sign fields. All 18 cap/mock cases pass parent sample/pair replay. Median post-window F+/F− angle remains 0.02179 rad NGC and 0.02345 rad SGC. No observed galaxies, physical velocity reconstruction or observed odd vector were used.
+- E52 freezes one-dimensional theory directions without a 12D inverse covariance. Descriptive 83% technical-lambda thresholds for the amplitude-calibrated F−−F+ direction are NGC 0.499/0.414/0.381/0.335 and SGC 0.094/0.093/0.276/0.211 for fields A–D. Shape-only remains much harder.
+- E53 Stage 1 changes **only sample size** for mock0001: full eligible galaxies + frozen 4800 randoms. Parent replay passes; fingerprint remains stable, angle 0.02499 NGC / 0.02418 SGC and separation ~43.4%. Baseline 12D norms fall strongly relative to E51 600D/1200R, indicating that much of the E51 background was finite-sample noise. E53 remains one realization only and is not an inference result.
+
+### Frozen status and next action
+
+Observed eBOSS galaxy rows and the original 24D odd vector remain **SEALED**. A03 remains **PHYSICAL_UNCERTIFIED** as an absolute observed Einstein–Vlasov prediction; A04 remains **BLOCKED** for robust inference. Nine mocks are not sufficient for an unrestricted 12D/24D covariance inverse. No detection significance or p-value is authorized.
+
+**Next:** E53 Stage 2 on mock0001 with the already-defined nested 48k randoms. If full-D/4800R -> full-D/48000R changes are small, expand the exact same frozen conditioned estimator to all nine mocks. Only after that build a real external velocity reconstruction/tag model, amplitude calibration, coverage/covariance plan and final preregistration. Observed odd remains sealed.
+
 ## 29. 9. 2026. — E29 two-time halo profile / Born validity gate
 
 - [E29 fizikalna bilješka](EBOSS_DR16_A03_E29_HALO_HISTORY_TWO_TIME_PROFILE_AND_BORN_VALIDITY_GATE_2026-09-29.md), commit `9091a6c3080bddc982f3d4f9cfb085acd3eda2b6`: u uvjetnom E28 izvornom modelu fiksni komovirajući NFW daje `u(k)^2` izvan vremenskog integrala. Za stvarni evoluirajući halo potrebno je `u_test(k,z_obs) × ∫dz' [M(z')/M_obs] u_src(k,z') K_F(k,z')`; izvorni izraz vraća se samo pod E28 pretpostavkom identičnog oblika na svim vremenima. To je fizikalna strukturna korekcija, **nije** izračun novog halo drag-a ni validacija UV-a.

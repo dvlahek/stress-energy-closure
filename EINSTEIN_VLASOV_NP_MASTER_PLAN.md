@@ -1,8 +1,19 @@
 # EinsteinVlasovNP — glavni istraživački plan
 
-**Verzija:** 1.62 · **Datum odluke:** 29. 9. 2026. · **Status:** aktivan plan, ne znanstveni rezultat  
+**Verzija:** 1.63 · **Datum odluke:** 30. 9. 2026. · **Status:** aktivan plan, ne znanstveni rezultat  
 **Kanonski dokument:** `EINSTEIN_VLASOV_NP_MASTER_PLAN.md` u repozitoriju `dvlahek/stress-energy-closure`.  
 **Radna grana:** `audit/eboss-elg-bit8-ra-orientation-20260925`, isključivo **draft PR #1**. Ne mijenjati `main` dok za to ne postoji zasebna odluka.
+
+## v1.63 — E30–E53 catch-up and conditioned-route decision (30. 9. 2026.)
+
+The work performed after E29 is now synchronized. E30–E44 do **not** certify the E28 finite-band F-state sign or an absolute eBOSS wake: incoming kinetic state, same-object causal history/profile, Born/UV control and tracer response remain insufficiently bounded. E47R1+E48 close the original unconditioned E21/E47 linear 2-point route as a practical negative result at the present E45 sensitivity: the response needed for recovery is orders of magnitude outside the linear local-response regime for order-unity tracer geometry.
+
+The active empirical development therefore pivots prospectively, without observing the sealed odd vector, to the E19 velocity-conditioned route. E49 passes the direct-vTk velocity-tag feasibility gate. E51 freezes a pair-midpoint marked cross-Landy-Szalay estimator on the nine eBOSS mocks. E52 freezes amplitude-calibrated and shape-only one-dimensional compressions. E53 Stage 1 shows the F+/F− fingerprint survives the actual pair/window operator and that full-eligible mock0001 + 4800R strongly reduces the technical background relative to 600D/1200R.
+
+**Current decision:** do not further optimize the unconditioned channel. Run E53 Stage 2 with the already-defined 48k randoms. If full-D/4800R -> full-D/48000R is stable, apply the same frozen conditioned estimator to all nine mocks. A real survey velocity-tag reconstruction, amplitude calibration, inferential covariance/coverage and final preregistration remain future gates. A03 remains PHYSICAL_UNCERTIFIED, A04 BLOCKED, observed galaxy rows and the 24D odd vector remain SEALED.
+
+Detailed checkpoint: `docs/EBOSS_DR16_A03_E30_E53_CATCHUP_AND_CONDITIONED_ROUTE_2026-09-30.md`.
+
 
 ## 0. Središnja odluka i pravilo protiv “lovljenja sigme”
 
