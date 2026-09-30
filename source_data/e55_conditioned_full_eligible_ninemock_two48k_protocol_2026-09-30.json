@@ -1,0 +1,38 @@
+{
+  "date": "2026-09-30",
+  "descriptive_outputs": {
+    "between_mock": "sample SD/MAD and symmetric 83.3%/94.4% absolute thresholds from nine mock means",
+    "do_not_pool_tag_fields_as_independent_mocks": true,
+    "finite_random": "paired R1-R2 difference scale"
+  },
+  "engineering_gate": {
+    "diagnostic_random_scale_over_between_mock_sd_median_max": 0.5,
+    "note": "paired-replica scale is diagnostic because finite source-pool overlap violates strict independence",
+    "per_field_max": 1.0
+  },
+  "forbidden": {
+    "covariance_inverse": true,
+    "main_mutation": true,
+    "new_science_cuts": true,
+    "observed_galaxy_rows": true,
+    "observed_odd_vector": true,
+    "physical_velocity_reconstruction": true,
+    "pvalues_or_detection_sigma": true,
+    "retuning_E19_or_E51_fields": true
+  },
+  "frozen_before_local_result": true,
+  "parent": "E54 PASS_RANDOM_REPLICA_FLOOR_QUANTIFIED",
+  "primary_compression": "calibrated Fminus-Fplus 1D coordinate; average R1/R2 within each mock only after complete marked-LS evaluation",
+  "scope": {
+    "caps": ["NGC","SGC"],
+    "galaxies": "all previously defined source-eligible z in [0.9,1.0), no new cuts",
+    "injection_basis": "same frozen E19 F+/F-",
+    "mock0001": "R1/R2 seeds exactly replay E54 and may be reused from local E54 result",
+    "mock_ids": [1,125,250,375,500,625,750,875,1000],
+    "random_replicas": ["R1","R2"],
+    "random_size_per_tracer": 48000,
+    "seed_root": 202609305400,
+    "tag_fields": "same frozen E51 A-D"
+  },
+  "stage": "E55_CONDITIONED_FULL_ELIGIBLE_NINEMOCK_TWO48K_PROTOCOL"
+}
