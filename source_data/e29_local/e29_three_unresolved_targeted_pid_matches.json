@@ -1,0 +1,383 @@
+{
+  "simulation": "AbacusSummit_base_c000_ph000",
+  "late_epoch": "z0.950",
+  "early_epoch": "z1.025",
+  "superslab": 0,
+  "min_shared_pids": 5,
+  "scope": "TARGETED_PID_CHECK_OF_SPATIAL_CANDIDATES_NOT_GLOBAL_PROGENITOR_CERTIFICATION",
+  "targets": [
+    {
+      "late_halo_id": 261000000,
+      "late_row": 27,
+      "late_N": 1438,
+      "late_unique_pid_count": 44,
+      "spatial_candidates_tested": 12,
+      "qualifying_candidates_ge5_shared": 1,
+      "status": "SINGLE_IN_SPATIAL_WINDOW",
+      "candidates": [
+        {
+          "early_row": 231737,
+          "early_halo_id": 17000260002000,
+          "early_N": 1443,
+          "early_unique_pid_count": 48,
+          "shared_pid_count": 42,
+          "late_overlap_fraction": 0.9545454545454546,
+          "early_overlap_fraction": 0.875,
+          "period1_distance": 0.00012788668602260064
+        },
+        {
+          "early_row": 231738,
+          "early_halo_id": 17000260002001,
+          "early_N": 56,
+          "early_unique_pid_count": 3,
+          "shared_pid_count": 0,
+          "late_overlap_fraction": 0.0,
+          "early_overlap_fraction": 0.0,
+          "period1_distance": 0.0003747043919754243
+        },
+        {
+          "early_row": 231739,
+          "early_halo_id": 17000260003000,
+          "early_N": 261,
+          "early_unique_pid_count": 11,
+          "shared_pid_count": 0,
+          "late_overlap_fraction": 0.0,
+          "early_overlap_fraction": 0.0,
+          "period1_distance": 0.00043460804089474295
+        },
+        {
+          "early_row": 231847,
+          "early_halo_id": 100000260001001,
+          "early_N": 75,
+          "early_unique_pid_count": 4,
+          "shared_pid_count": 0,
+          "late_overlap_fraction": 0.0,
+          "early_overlap_fraction": 0.0,
+          "period1_distance": 0.0006374358187275153
+        },
+        {
+          "early_row": 25,
+          "early_halo_id": 260000000,
+          "early_N": 158,
+          "early_unique_pid_count": 3,
+          "shared_pid_count": 0,
+          "late_overlap_fraction": 0.0,
+          "early_overlap_fraction": 0.0,
+          "period1_distance": 0.0006841783747684008
+        },
+        {
+          "early_row": 215,
+          "early_halo_id": 10261000000,
+          "early_N": 358,
+          "early_unique_pid_count": 9,
+          "shared_pid_count": 0,
+          "late_overlap_fraction": 0.0,
+          "early_overlap_fraction": 0.0,
+          "period1_distance": 0.0007675088394941518
+        },
+        {
+          "early_row": 231846,
+          "early_halo_id": 100000260001000,
+          "early_N": 233,
+          "early_unique_pid_count": 11,
+          "shared_pid_count": 0,
+          "late_overlap_fraction": 0.0,
+          "early_overlap_fraction": 0.0,
+          "period1_distance": 0.0008226644969499589
+        },
+        {
+          "early_row": 231740,
+          "early_halo_id": 17000262000000,
+          "early_N": 274,
+          "early_unique_pid_count": 16,
+          "shared_pid_count": 0,
+          "late_overlap_fraction": 0.0,
+          "early_overlap_fraction": 0.0,
+          "period1_distance": 0.000849610427929936
+        },
+        {
+          "early_row": 231850,
+          "early_halo_id": 100000260005001,
+          "early_N": 64,
+          "early_unique_pid_count": 1,
+          "shared_pid_count": 0,
+          "late_overlap_fraction": 0.0,
+          "early_overlap_fraction": 0.0,
+          "period1_distance": 0.0008564183946887549
+        },
+        {
+          "early_row": 464382,
+          "early_halo_id": 200000261000000,
+          "early_N": 96,
+          "early_unique_pid_count": 1,
+          "shared_pid_count": 0,
+          "late_overlap_fraction": 0.0,
+          "early_overlap_fraction": 0.0,
+          "period1_distance": 0.0008602711893223721
+        },
+        {
+          "early_row": 231849,
+          "early_halo_id": 100000260005000,
+          "early_N": 395,
+          "early_unique_pid_count": 12,
+          "shared_pid_count": 0,
+          "late_overlap_fraction": 0.0,
+          "early_overlap_fraction": 0.0,
+          "period1_distance": 0.0009530860033408904
+        },
+        {
+          "early_row": 231848,
+          "early_halo_id": 100000260001002,
+          "early_N": 68,
+          "early_unique_pid_count": 4,
+          "shared_pid_count": 0,
+          "late_overlap_fraction": 0.0,
+          "early_overlap_fraction": 0.0,
+          "period1_distance": 0.0009544574113356724
+        }
+      ]
+    },
+    {
+      "late_halo_id": 283000001,
+      "late_row": 33,
+      "late_N": 1257,
+      "late_unique_pid_count": 39,
+      "spatial_candidates_tested": 9,
+      "qualifying_candidates_ge5_shared": 1,
+      "status": "SINGLE_IN_SPATIAL_WINDOW",
+      "candidates": [
+        {
+          "early_row": 464278,
+          "early_halo_id": 117000283000000,
+          "early_N": 1181,
+          "early_unique_pid_count": 37,
+          "shared_pid_count": 35,
+          "late_overlap_fraction": 0.8974358974358975,
+          "early_overlap_fraction": 0.9459459459459459,
+          "period1_distance": 0.00018275274954758454
+        },
+        {
+          "early_row": 32,
+          "early_halo_id": 284001000,
+          "early_N": 128,
+          "early_unique_pid_count": 4,
+          "shared_pid_count": 0,
+          "late_overlap_fraction": 0.0,
+          "early_overlap_fraction": 0.0,
+          "period1_distance": 0.00033858557363501733
+        },
+        {
+          "early_row": 29,
+          "early_halo_id": 283000000,
+          "early_N": 2930,
+          "early_unique_pid_count": 86,
+          "shared_pid_count": 0,
+          "late_overlap_fraction": 0.0,
+          "early_overlap_fraction": 0.0,
+          "period1_distance": 0.000485284228499773
+        },
+        {
+          "early_row": 231619,
+          "early_halo_id": 16990285002000,
+          "early_N": 687,
+          "early_unique_pid_count": 20,
+          "shared_pid_count": 0,
+          "late_overlap_fraction": 0.0,
+          "early_overlap_fraction": 0.0,
+          "period1_distance": 0.0006534713129803575
+        },
+        {
+          "early_row": 231741,
+          "early_halo_id": 17000282000000,
+          "early_N": 191,
+          "early_unique_pid_count": 4,
+          "shared_pid_count": 0,
+          "late_overlap_fraction": 0.0,
+          "early_overlap_fraction": 0.0,
+          "period1_distance": 0.0008283573955164345
+        },
+        {
+          "early_row": 231856,
+          "early_halo_id": 100000285002000,
+          "early_N": 115,
+          "early_unique_pid_count": 5,
+          "shared_pid_count": 0,
+          "late_overlap_fraction": 0.0,
+          "early_overlap_fraction": 0.0,
+          "period1_distance": 0.0008745297977854479
+        },
+        {
+          "early_row": 231620,
+          "early_halo_id": 16990285002001,
+          "early_N": 450,
+          "early_unique_pid_count": 17,
+          "shared_pid_count": 0,
+          "late_overlap_fraction": 0.0,
+          "early_overlap_fraction": 0.0,
+          "period1_distance": 0.000904285075419549
+        },
+        {
+          "early_row": 33,
+          "early_halo_id": 285001000,
+          "early_N": 116,
+          "early_unique_pid_count": 3,
+          "shared_pid_count": 0,
+          "late_overlap_fraction": 0.0,
+          "early_overlap_fraction": 0.0,
+          "period1_distance": 0.0009893942309837738
+        },
+        {
+          "early_row": 464139,
+          "early_halo_id": 116990282000000,
+          "early_N": 115,
+          "early_unique_pid_count": 3,
+          "shared_pid_count": 0,
+          "late_overlap_fraction": 0.0,
+          "early_overlap_fraction": 0.0,
+          "period1_distance": 0.0009930349521831533
+        }
+      ]
+    },
+    {
+      "late_halo_id": 286001000,
+      "late_row": 37,
+      "late_N": 1010,
+      "late_unique_pid_count": 26,
+      "spatial_candidates_tested": 13,
+      "qualifying_candidates_ge5_shared": 1,
+      "status": "SINGLE_IN_SPATIAL_WINDOW",
+      "candidates": [
+        {
+          "early_row": 231743,
+          "early_halo_id": 17000286000000,
+          "early_N": 979,
+          "early_unique_pid_count": 27,
+          "shared_pid_count": 23,
+          "late_overlap_fraction": 0.8846153846153846,
+          "early_overlap_fraction": 0.8518518518518519,
+          "period1_distance": 0.0001358363667627366
+        },
+        {
+          "early_row": 231744,
+          "early_halo_id": 17000286000001,
+          "early_N": 60,
+          "early_unique_pid_count": 2,
+          "shared_pid_count": 1,
+          "late_overlap_fraction": 0.038461538461538464,
+          "early_overlap_fraction": 0.5,
+          "period1_distance": 0.00019770840680980839
+        },
+        {
+          "early_row": 34,
+          "early_halo_id": 285004000,
+          "early_N": 317,
+          "early_unique_pid_count": 8,
+          "shared_pid_count": 0,
+          "late_overlap_fraction": 0.0,
+          "early_overlap_fraction": 0.0,
+          "period1_distance": 0.0003843722685412841
+        },
+        {
+          "early_row": 231858,
+          "early_halo_id": 100000287004000,
+          "early_N": 60,
+          "early_unique_pid_count": 3,
+          "shared_pid_count": 0,
+          "late_overlap_fraction": 0.0,
+          "early_overlap_fraction": 0.0,
+          "period1_distance": 0.0005624000742894686
+        },
+        {
+          "early_row": 231855,
+          "early_halo_id": 100000285000001,
+          "early_N": 59,
+          "early_unique_pid_count": 2,
+          "shared_pid_count": 0,
+          "late_overlap_fraction": 0.0,
+          "early_overlap_fraction": 0.0,
+          "period1_distance": 0.0006751663576507484
+        },
+        {
+          "early_row": 231620,
+          "early_halo_id": 16990285002001,
+          "early_N": 450,
+          "early_unique_pid_count": 17,
+          "shared_pid_count": 0,
+          "late_overlap_fraction": 0.0,
+          "early_overlap_fraction": 0.0,
+          "period1_distance": 0.0006978922318346883
+        },
+        {
+          "early_row": 33,
+          "early_halo_id": 285001000,
+          "early_N": 116,
+          "early_unique_pid_count": 3,
+          "shared_pid_count": 0,
+          "late_overlap_fraction": 0.0,
+          "early_overlap_fraction": 0.0,
+          "period1_distance": 0.0007442001953214655
+        },
+        {
+          "early_row": 231857,
+          "early_halo_id": 100000287000000,
+          "early_N": 187,
+          "early_unique_pid_count": 4,
+          "shared_pid_count": 0,
+          "late_overlap_fraction": 0.0,
+          "early_overlap_fraction": 0.0,
+          "period1_distance": 0.0007495505538706138
+        },
+        {
+          "early_row": 231619,
+          "early_halo_id": 16990285002000,
+          "early_N": 687,
+          "early_unique_pid_count": 20,
+          "shared_pid_count": 0,
+          "late_overlap_fraction": 0.0,
+          "early_overlap_fraction": 0.0,
+          "period1_distance": 0.0007624590531691114
+        },
+        {
+          "early_row": 232044,
+          "early_halo_id": 100010286000000,
+          "early_N": 192,
+          "early_unique_pid_count": 1,
+          "shared_pid_count": 0,
+          "late_overlap_fraction": 0.0,
+          "early_overlap_fraction": 0.0,
+          "period1_distance": 0.0007944100962374772
+        },
+        {
+          "early_row": 231856,
+          "early_halo_id": 100000285002000,
+          "early_N": 115,
+          "early_unique_pid_count": 5,
+          "shared_pid_count": 0,
+          "late_overlap_fraction": 0.0,
+          "early_overlap_fraction": 0.0,
+          "period1_distance": 0.0008233073802156481
+        },
+        {
+          "early_row": 232045,
+          "early_halo_id": 100010286000001,
+          "early_N": 199,
+          "early_unique_pid_count": 6,
+          "shared_pid_count": 0,
+          "late_overlap_fraction": 0.0,
+          "early_overlap_fraction": 0.0,
+          "period1_distance": 0.0008252191479767783
+        },
+        {
+          "early_row": 231854,
+          "early_halo_id": 100000285000000,
+          "early_N": 1319,
+          "early_unique_pid_count": 35,
+          "shared_pid_count": 0,
+          "late_overlap_fraction": 0.0,
+          "early_overlap_fraction": 0.0,
+          "period1_distance": 0.0008728310913434907
+        }
+      ]
+    }
+  ]
+}
