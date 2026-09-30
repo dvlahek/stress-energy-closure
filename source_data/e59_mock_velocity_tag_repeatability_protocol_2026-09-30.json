@@ -1,0 +1,52 @@
+{
+  "stage": "E59_MOCK_VELOCITY_TAG_REPEATABILITY_PROTOCOL",
+  "date": "2026-09-30",
+  "frozen_before_E59_result": true,
+  "parent_E58": {
+    "status": "PASS_NINEMOCK_FULL_ELIGIBLE_SEVEN48K_BACKGROUND_QUANTIFIED",
+    "random_integration_gate_closed": true,
+    "NGC_median_max": [
+      0.23084495516030917,
+      0.29608692842311274
+    ],
+    "SGC_median_max": [
+      0.2278310690667516,
+      0.2621741100425746
+    ]
+  },
+  "physics": {
+    "reconstruction": "selection-subtracted linear velocity-direction proxy from each tracer separately",
+    "kernel": "exact real-space kernel of a top-hat-smoothed 1/r^2 linear velocity/gravity field",
+    "R_Mpc_over_h": 16,
+    "primary_cutoff_Mpc_over_h": 256,
+    "cutoff_check_Mpc_over_h": 192,
+    "probe_midpoints": {
+      "source": "deterministic full mock LRGxELG DD pairs",
+      "s_Mpc_over_h": [
+        20,
+        140
+      ],
+      "n_per_case": 2048
+    }
+  },
+  "repeatability_screen": {
+    "split_half_pearson_min": 0.3245033112582781,
+    "split_half_sign_agreement_min": 0.6,
+    "cutoff_192_256_pearson_min": 0.9,
+    "cutoff_192_256_sign_agreement_min": 0.9,
+    "selection_rule": "choose passing tracer with largest minimum-cap median split-half Pearson; if none pass, stop",
+    "meaning": "internal mock repeatability only, not true-velocity calibration"
+  },
+  "forbidden": [
+    "observed galaxy rows",
+    "observed odd vector",
+    "observed velocity tag",
+    "covariance inversion",
+    "p-values/detection sigma",
+    "absolute EV amplitude claim",
+    "retuning E19/E51",
+    "new science cuts",
+    "main mutation"
+  ],
+  "next_if_pass": "truth-labelled N-body/lightcone calibration of reconstructed LOS velocity correlation before any observed tag"
+}
