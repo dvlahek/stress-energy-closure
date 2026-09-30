@@ -17,6 +17,17 @@ This checkpoint records the local/offline work that was performed after the GitH
 After E54 passed the 48k random-floor engineering gate, E55 is frozen before any E55 result. It applies the same E51/E19 conditioned estimator to all nine fixed EZmock IDs with all source-eligible galaxies and two fresh 48k random replicas per cap/tracer. R1/R2 are averaged only after separate marked-LS evaluation. The primary output is the 1D calibrated F--F+ coordinate. A diagnostic gate compares the paired random-integration scale with the between-mock SD: median ratio <=0.5 and every field <=1.0. Nine mocks remain descriptive only; no p-values, covariance inversion, observed rows/odd access or physical velocity reconstruction are authorized.
 
 
+### E57 — six-replica nine-mock random integration
+
+E57 reused E56 R1-R4 and added R5/R6 for all nine frozen mock IDs in both caps, retaining the E51 tag fields, E19 F+/F- basis, all source/selection cuts and the E56 final-mean engineering gate unchanged. The run completed with status `PASS_NINEMOCK_FULL_ELIGIBLE_SIX48K_BACKGROUND_QUANTIFIED`; observed galaxy rows, the observed odd vector, physical velocity reconstruction, covariance inversion and p-value/detection calculations were all absent.
+
+NGC effective-random/between-mock ratios A-D = 0.163631, 0.190350, 0.312476, 0.314130, giving median 0.251413 and max 0.314130. The max criterion <=0.50 passes, but the median misses <=0.25 by 0.001413, so NGC formally fails. SGC ratios = 0.129260, 0.221248, 0.299603, 0.269269, giving median 0.245259 and max 0.299603; SGC passes. Global E57 interpretation therefore remains `SIXREP_RANDOM_INTEGRATION_STILL_MATERIAL; DO_NOT_ADVANCE_PHYSICAL_TAG_GATE`.
+
+The F-state geometry remains highly stable across the nine mocks. NGC mean ||q_- - q_+||/||q_+|| = 0.434819 (SD 2.09e-4), mean angle = 0.024217 rad (SD 3.65e-4). SGC = 0.434950 (SD 1.02e-4), angle = 0.024058 rad (SD 1.54e-4). Thus the remaining issue is numerical random integration, not collapse of the conditioned F+/F- fingerprint.
+
+E58 is preregistered before its result. It adds exactly R7 to every mock/cap and reuses E57 R1-R6 and DD. R=7 is the minimum integer obtained from the unchanged NGC gate under standard 1/sqrt(R) scaling: ceil[6*(0.2514132726578298/0.25)^2]=7. The gate stays median <=0.25 and field max <=0.50 in each cap. If E58 fails, stop replica-by-replica chasing and use deterministic or higher-density random integration. Observed rows/odd remain SEALED.
+
+
 ### E56 — four-replica nine-mock random integration
 
 E56 reused E54/E55 parents and completed the frozen conditioned estimator with four 48k random replicas for all nine mock IDs in both caps. Provenance/observation guardrails remained closed. The F+/F- geometry stayed stable: NGC mean relative separation 0.434833 (SD 2.10e-4) and mean post-window angle 0.024202 rad (SD 3.75e-4); SGC 0.434952 (SD 1.07e-4) and 0.024050 rad (SD 1.52e-4).
