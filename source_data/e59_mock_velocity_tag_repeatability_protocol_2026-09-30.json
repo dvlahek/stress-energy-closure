@@ -1,5 +1,6 @@
 {
   "stage": "E59_MOCK_VELOCITY_TAG_REPEATABILITY_PROTOCOL",
+  "revision": "v2-computationally-bounded-before-result",
   "date": "2026-09-30",
   "frozen_before_E59_result": true,
   "parent_E58": {
@@ -17,17 +18,23 @@
   "physics": {
     "reconstruction": "selection-subtracted linear velocity-direction proxy from each tracer separately",
     "kernel": "exact real-space kernel of a top-hat-smoothed 1/r^2 linear velocity/gravity field",
-    "R_Mpc_over_h": 16,
-    "primary_cutoff_Mpc_over_h": 256,
-    "cutoff_check_Mpc_over_h": 192,
+    "R_Mpc_over_h": 16.0,
+    "primary_cutoff_Mpc_over_h": 256.0,
+    "cutoff_check_Mpc_over_h": 192.0,
     "probe_midpoints": {
       "source": "deterministic full mock LRGxELG DD pairs",
       "s_Mpc_over_h": [
         20,
         140
       ],
-      "n_per_case": 2048
+      "n_per_case": 512
     }
+  },
+  "random_selection_policy": {
+    "rows_per_tracer_cap": 48000,
+    "subset": "exact E58 R1 seed, without replacement from full eligible random pool",
+    "common_to_data_halves": true,
+    "reason": "bound runtime and isolate galaxy split-half repeatability; not a final reconstruction-mask convergence claim"
   },
   "repeatability_screen": {
     "split_half_pearson_min": 0.3245033112582781,
@@ -48,5 +55,5 @@
     "new science cuts",
     "main mutation"
   ],
-  "next_if_pass": "truth-labelled N-body/lightcone calibration of reconstructed LOS velocity correlation before any observed tag"
+  "next_if_pass": "truth-labelled N-body/lightcone calibration, including reconstruction-mask robustness, before any observed tag"
 }
