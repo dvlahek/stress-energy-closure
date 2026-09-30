@@ -1,8 +1,14 @@
 # EinsteinVlasovNP — glavni istraživački plan
 
-**Verzija:** 1.69 · **Datum odluke:** 30. 9. 2026. · **Status:** aktivan plan, ne znanstveni rezultat  
+**Verzija:** 1.70 · **Datum odluke:** 30. 9. 2026. · **Status:** aktivan plan, ne znanstveni rezultat  
 **Kanonski dokument:** `EINSTEIN_VLASOV_NP_MASTER_PLAN.md` u repozitoriju `dvlahek/stress-energy-closure`.  
 **Radna grana:** `audit/eboss-elg-bit8-ra-orientation-20260925`, isključivo **draft PR #1**. Ne mijenjati `main` dok za to ne postoji zasebna odluka.
+
+### v1.70 — 30. 9. 2026. — E59 pre-run implementation freeze v2
+
+Before any E59 result, the E59 implementation was refined for a computationally bounded local run without changing its scientific target or its preregistered pass thresholds. The reconstruction still uses the exact real-space spherical-top-hat-smoothed linear velocity kernel at R=16 Mpc/h, the same 192/256 Mpc/h cutoff-stability test, the same tracer-by-tracer LRG/ELG comparison, and the same split-half/sign criteria. The number of deterministic science-like LRGxELG DD midpoint probes is fixed at 512 per mock/cap. Survey selection is represented by the exact frozen E58 R1 48k random subset for each mock/cap/tracer; this same fixed random field is subtracted from both galaxy halves, so the split-half diagnostic isolates galaxy sampling repeatability conditional on that numerical mask. It is explicitly **not** a claim that one 48k random realization is a converged velocity-reconstruction mask.
+
+The E59 thresholds remain unchanged: in both caps, median split-half Pearson >=0.324503, median sign agreement >=0.60, median 192/256 cutoff correlation >=0.90, and median cutoff sign agreement >=0.90. Passing E59 still authorizes only a truth-labelled N-body/lightcone calibration, including reconstruction-mask robustness, before any observed velocity tag. Observed galaxy rows and the observed odd vector remain SEALED; no E59 result existed when this v2 implementation was frozen.
 
 ### v1.69 — 30. 9. 2026. — E58 closes random integration; preregister E59 mock velocity reconstruction
 
