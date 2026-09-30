@@ -287,7 +287,7 @@ def main():
                 case["replicas"][rep]={
                   "status":"complete_reused_E54",
                   "seeds":expected_seed,
-                  "summary":compact_summary(ec["replicas"][rep]["summary"])
+                  "summary":ec["replicas"][rep]["summary"]
                 }
             case["random_pool_rows"]=ec["random_pool_rows"]
             case["fresh_replica_overlap"]=ec["fresh_replica_overlap"]
