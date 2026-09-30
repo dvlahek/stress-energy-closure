@@ -1,0 +1,168 @@
+{
+  "E45_metric": {
+    "important": "Only a physical y_phys in the same dimensionless xi normalization can be compared to the E45 sensitivity curve.",
+    "matched_projection": "A_phys,c = (q_c dot y_phys,c)/(q_c dot q_c), where q_c is the archived unit synthetic response in ell=1,3 x six s bins and y_phys,c is the physical post-window 12D odd vector for the same cap/case",
+    "synthetic_injection_definition": "pair-level DD modulation 1 + A*mu_bin in archived E3; A is not a physical xi amplitude"
+  },
+  "current_physics_inputs": {
+    "E19": {
+      "conditional_Fourier_source_only": {
+        "Fminus_T1": 0.0003147616400323981,
+        "Fminus_T3": 0.00021061456076441418,
+        "Fplus_T1": 0.00022278876746842203,
+        "Fplus_T3": 0.00014150296987877026,
+        "angle_rad": 0.023841179533334908
+      },
+      "reason": "single k,z conditional T1/T3 per unit deltaBias*Pcb; no Hankel, absolute bias/Pcb, wind-sign averaging, redshift integration or empirical window",
+      "usable_as_absolute_eBOSS_12D_template": false
+    },
+    "E21": {
+      "reason": "linear long-K C_v source exists, but the physical tracer response c_a=d_a/c_light is unmeasured",
+      "usable_as_absolute_eBOSS_12D_template": false
+    },
+    "E25": {
+      "reason": "beta, epsilon, wind-selection response and D_a for the actual high-z LRG/ELG sample are not calibrated; full-metric geodesic case forbids double-counting wake acceleration as a separate Euler residual",
+      "usable_as_absolute_eBOSS_12D_template": false
+    },
+    "E28": {
+      "delta_a_Fminus_minus_Fplus_km2_s2_per_Mpc": -1.2599552446650349e-05,
+      "reason": "halo acceleration is not a galaxy-number-count odd coefficient; source is UV-dominated and conditional",
+      "usable_as_direct_E45_amplitude": false
+    }
+  },
+  "date": "2026-09-30",
+  "empirical_E45_sensitivity": {
+    "NGC": {
+      "MAD": 0.024729452308027682,
+      "abs_baseline_sorted": [
+        0.0024061591372598976,
+        0.006145577953705385,
+        0.02130360122338382,
+        0.0286412106802452,
+        0.030875030261733067,
+        0.04059919734049583,
+        0.1281241660516233,
+        0.15132175154220917,
+        0.17130645259789753
+      ],
+      "mean": 0.007131044594958133,
+      "median": -0.006145577953705385,
+      "n": 9,
+      "required_scalar_mapping_from_E28_delta_a_if_A=kappa*delta_a": {
+        "for_about_83pct_sign_recovery": 3222.272974568182,
+        "for_about_94pct_sign_recovery": 12010.08942047293,
+        "for_one_baseline_SD": 7535.855083958791,
+        "units_if_used": "Mpc/(km/s)^2; diagnostic only, no physical derivation exists"
+      },
+      "sample_sd": 0.09494840136069545,
+      "sign_recovery_thresholds": {
+        "100pct_on_9mocks": {
+          "discrete_recovery_at_that_count": 1.0,
+          "empirical_threshold_abs_A_strictly_above": 0.17130645259789753,
+          "minimum_count_inside_amplitude": 9,
+          "target_symmetric_sign_recovery": 0.95
+        },
+        "about_78pct": {
+          "discrete_recovery_at_that_count": 0.7777777777777778,
+          "empirical_threshold_abs_A_strictly_above": 0.030875030261733067,
+          "minimum_count_inside_amplitude": 5,
+          "target_symmetric_sign_recovery": 0.75
+        },
+        "about_83pct": {
+          "discrete_recovery_at_that_count": 0.8333333333333333,
+          "empirical_threshold_abs_A_strictly_above": 0.04059919734049583,
+          "minimum_count_inside_amplitude": 6,
+          "target_symmetric_sign_recovery": 0.8
+        },
+        "about_89pct": {
+          "discrete_recovery_at_that_count": 0.8888888888888888,
+          "empirical_threshold_abs_A_strictly_above": 0.1281241660516233,
+          "minimum_count_inside_amplitude": 7,
+          "target_symmetric_sign_recovery": 0.85
+        },
+        "about_94pct": {
+          "discrete_recovery_at_that_count": 0.9444444444444444,
+          "empirical_threshold_abs_A_strictly_above": 0.15132175154220917,
+          "minimum_count_inside_amplitude": 8,
+          "target_symmetric_sign_recovery": 0.9
+        }
+      }
+    },
+    "SGC": {
+      "MAD": 0.04281979540075062,
+      "abs_baseline_sorted": [
+        0.010054890245336604,
+        0.019097541944847463,
+        0.025870723676956267,
+        0.03276490515541402,
+        0.04029489736431572,
+        0.04633190984022007,
+        0.058208329469156085,
+        0.09091279493841772,
+        0.12406024699411848
+      ],
+      "mean": 0.0011621479671816938,
+      "median": -0.010054890245336604,
+      "n": 9,
+      "required_scalar_mapping_from_E28_delta_a_if_A=kappa*delta_a": {
+        "for_about_83pct_sign_recovery": 3677.2663184982916,
+        "for_about_94pct_sign_recovery": 7215.557482963399,
+        "for_one_baseline_SD": 5098.353615949402,
+        "units_if_used": "Mpc/(km/s)^2; diagnostic only, no physical derivation exists"
+      },
+      "sample_sd": 0.06423697377572395,
+      "sign_recovery_thresholds": {
+        "100pct_on_9mocks": {
+          "discrete_recovery_at_that_count": 1.0,
+          "empirical_threshold_abs_A_strictly_above": 0.12406024699411848,
+          "minimum_count_inside_amplitude": 9,
+          "target_symmetric_sign_recovery": 0.95
+        },
+        "about_78pct": {
+          "discrete_recovery_at_that_count": 0.7777777777777778,
+          "empirical_threshold_abs_A_strictly_above": 0.04029489736431572,
+          "minimum_count_inside_amplitude": 5,
+          "target_symmetric_sign_recovery": 0.75
+        },
+        "about_83pct": {
+          "discrete_recovery_at_that_count": 0.8333333333333333,
+          "empirical_threshold_abs_A_strictly_above": 0.04633190984022007,
+          "minimum_count_inside_amplitude": 6,
+          "target_symmetric_sign_recovery": 0.8
+        },
+        "about_89pct": {
+          "discrete_recovery_at_that_count": 0.8888888888888888,
+          "empirical_threshold_abs_A_strictly_above": 0.058208329469156085,
+          "minimum_count_inside_amplitude": 7,
+          "target_symmetric_sign_recovery": 0.85
+        },
+        "about_94pct": {
+          "discrete_recovery_at_that_count": 0.9444444444444444,
+          "empirical_threshold_abs_A_strictly_above": 0.09091279493841772,
+          "minimum_count_inside_amplitude": 8,
+          "target_symmetric_sign_recovery": 0.9
+        }
+      }
+    }
+  },
+  "science_decision": {
+    "can_now_compare_E28_delta_a_directly_to_A_0p02": false,
+    "can_now_quote_A_EV_physical": false,
+    "next_shortest_path": "construct one prospective physical 12D y_phys from an explicitly frozen response model, then compute A_phys by the exact E45 projection above",
+    "observed_odd_remains_sealed": true,
+    "two_routes": [
+      "unconditioned 2pt: requires physical wind-sign-averaged LRG/ELG response and absolute xi_L(s,z)",
+      "velocity-conditioned route: requires external/reconstructed neutrino-CDM direction and its own conditioned window/mock validation"
+    ]
+  },
+  "sources": {
+    "E19_git_blob": "fc5044684b84ff3de86c236988617ead79d8e7e6",
+    "E21_git_blob": "cc3312c5313cce60fad4a88c3a56ef3d4e675e38",
+    "E25_git_blob": "63b01c3b14dab7b1dc352cb9a1e9900427ace593",
+    "E28_summary_git_blob": "99944cca5e1c5d8ccf3409984f8c0551cb4401c5",
+    "E45_uploaded_report": "/mnt/data/e45_archive_only_synthetic_odd_amplitude_recovery.json",
+    "E6_bridge_git_blob": "b9515cb95405dc271a8be767c78ab70c35c1ff71"
+  },
+  "stage": "E46_PHYSICAL_EV_TO_E45_AMPLITUDE_BRIDGE_FEASIBILITY",
+  "status": "PHYSICAL_SCALAR_AMPLITUDE_NOT_IDENTIFIED; EXACT_REQUIRED_BRIDGE_DEFINED"
+}

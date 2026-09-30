@@ -1,0 +1,24 @@
+{
+  "arrays_opened": false,
+  "asdf_decompression_performed": false,
+  "hit_count": 2,
+  "hits": [
+    {
+      "bytes": 1223,
+      "path": "/home/dino/stress-energy-closure/.github/workflows/eboss_dr16_rr_kdtree_pilot.yml",
+      "type": "file"
+    },
+    {
+      "bytes": 21119,
+      "path": "/home/dino/stress-energy-closure/scripts/audit_eboss_dr16_rr_kdtree_pilot.py",
+      "type": "file"
+    }
+  ],
+  "next_action": "If cleaned_halo_info exists, stop and inspect metadata only.",
+  "roots": [
+    "/home/dino/stress-energy-closure/eboss_workspace",
+    "/home/dino/stress-energy-closure"
+  ],
+  "stage": "E44_LOCAL_FILESYSTEM_INVENTORY_ONLY",
+  "status": "PASS"
+}
