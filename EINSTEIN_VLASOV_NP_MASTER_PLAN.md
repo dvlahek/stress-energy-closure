@@ -1,8 +1,14 @@
 # EinsteinVlasovNP — glavni istraživački plan
 
-**Verzija:** 1.67 · **Datum odluke:** 30. 9. 2026. · **Status:** aktivan plan, ne znanstveni rezultat  
+**Verzija:** 1.68 · **Datum odluke:** 30. 9. 2026. · **Status:** aktivan plan, ne znanstveni rezultat  
 **Kanonski dokument:** `EINSTEIN_VLASOV_NP_MASTER_PLAN.md` u repozitoriju `dvlahek/stress-energy-closure`.  
 **Radna grana:** `audit/eboss-elg-bit8-ra-orientation-20260925`, isključivo **draft PR #1**. Ne mijenjati `main` dok za to ne postoji zasebna odluka.
+
+### v1.68 — 30. 9. 2026. — E57 six-replica result; preregister E58 seven-replica closure
+
+E57 completed six 48k random replicas across all nine frozen full-eligible mocks. SGC now passes the unchanged final-mean random-integration gate: median/max effective-random-to-between-mock ratio = 0.245259/0.299603. NGC misses only the median threshold by 0.001413: median/max = 0.251413/0.314130 versus the frozen limits 0.25/0.50. Therefore the global gate remains formally open and the physical velocity-tag step is not yet activated. The F+/F- geometry remains stable: mean relative separation = 0.434819 NGC and 0.434950 SGC; mean post-window angle = 0.024217 rad NGC and 0.024058 rad SGC. Observed galaxy rows and the observed odd vector remain SEALED.
+
+E58 is fixed prospectively as a **single additional R7 replica** for every mock/cap, reusing E57 R1-R6 and DD exactly. R=7 is the minimum integer implied by the E57 NGC precision diagnostic under standard 1/sqrt(R) scaling, ceil[6*(0.2514132726578298/0.25)^2]=7. The gate is carried forward unchanged: median <=0.25 and every field <=0.50 in each cap. Anti-chasing rule: if E58 still fails, stop one-replica-at-a-time extension and switch to deterministic or higher-density random integration. A03 absolute physical calibration and A04 inference remain blocked until numerical integration closure and the later physical velocity-tag/amplitude gates are complete.
 
 ### v1.67 — 30. 9. 2026. — E56 four-replica result; preregister E57 six-replica closure
 
