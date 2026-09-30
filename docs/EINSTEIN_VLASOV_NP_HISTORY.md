@@ -11,6 +11,11 @@ This checkpoint records the local/offline work that was performed after the GitH
 - **Frozen interpretation:** observed eBOSS galaxy rows and the original 24D odd vector remain SEALED. Nine mocks do not authorize unrestricted 12D/24D inverse-covariance inference. E49 is a source-level tag-feasibility result, not an actual survey velocity reconstruction. A03 remains PHYSICAL_UNCERTIFIED for an absolute observed eBOSS EV prediction; A04 remains BLOCKED for robust inference. main remains untouched and PR #1 remains draft/unmerged.
 - **Next:** E53 Stage 2 on mock0001 with the already-defined nested 48000 randoms. If full-D/4800R -> full-D/48000R is stable, expand the exact same frozen conditioned estimator to all nine mocks before any observed-data access.
 
+
+### E53 Stage 2 — full-D / 48000R
+
+E53 Stage 2 completed on mock0001 for NGC and SGC with the already-defined nested 48000 randoms. The run passed with observed galaxies/odd still sealed and no physical velocity reconstruction or p-value inference. Signal geometry is highly stable: NGC post-window F+/F- angle 0.0245001 rad and ||q_- - q_+||/||q_+||=0.434696; SGC 0.0240902 rad and 0.435085. However, the finite-random background is **not yet converged at 4800R**. Increasing 4800R -> 48000R reduces the baseline 12D norm by factors A-D = 0.352,0.443,0.328,0.351 in NGC (median 0.351) and 0.294,0.536,0.448,0.798 in SGC (median 0.492). The calibrated F--F+ coordinate also drops substantially: NGC ratios 0.462,0.589,0.513,0.569 (median 0.541); SGC 0.376,0.416,0.178,0.185 (median 0.280). Therefore the predeclared criterion for immediate nine-mock expansion is not satisfied. Interpretation: the conditioned fingerprint survives and the background continues to fall with random density, but finite-random noise is still material. Next gate should quantify the random-noise floor with preregistered independent high-density random replicates (or an equivalent deterministic/infinite-random integration), before scaling the expensive conditioned estimator to all nine mocks.
+
 Canonical catch-up document: `docs/EBOSS_DR16_A03_E30_E53_CATCHUP_AND_CONDITIONED_ROUTE_2026-09-30.md`.
 
 
