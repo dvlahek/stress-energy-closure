@@ -1,8 +1,14 @@
 # EinsteinVlasovNP — glavni istraživački plan
 
-**Verzija:** 1.68 · **Datum odluke:** 30. 9. 2026. · **Status:** aktivan plan, ne znanstveni rezultat  
+**Verzija:** 1.69 · **Datum odluke:** 30. 9. 2026. · **Status:** aktivan plan, ne znanstveni rezultat  
 **Kanonski dokument:** `EINSTEIN_VLASOV_NP_MASTER_PLAN.md` u repozitoriju `dvlahek/stress-energy-closure`.  
 **Radna grana:** `audit/eboss-elg-bit8-ra-orientation-20260925`, isključivo **draft PR #1**. Ne mijenjati `main` dok za to ne postoji zasebna odluka.
+
+### v1.69 — 30. 9. 2026. — E58 closes random integration; preregister E59 mock velocity reconstruction
+
+E58 completed the prospectively fixed R7 addition while reusing E57 R1-R6 and DD exactly. The unchanged random-integration gate now passes in both caps. NGC effective-random/between-mock ratios A-D = 0.144669, 0.171511, 0.290179, 0.296087, giving median 0.230845 and max 0.296087. SGC = 0.118636, 0.202948, 0.262174, 0.252714, giving median 0.227831 and max 0.262174. Both satisfy the frozen limits median <=0.25 and every field <=0.50. The numerical random-subset integration branch is therefore closed. The F+/F- survey-window geometry remains stable: mean relative separation = 0.434823 NGC and 0.434951 SGC; mean post-window angle = 0.024213 rad NGC and 0.024058 rad SGC. Observed galaxy rows and the observed odd vector remain SEALED. E58 is not a physical velocity calibration, absolute signal prediction, covariance inference, or significance result.
+
+E59 is frozen prospectively as a **mock-only density-to-velocity-tag repeatability screen**. It reconstructs a linear velocity-direction proxy separately from the full eligible LRG and ELG mock density fields, with matching random-catalogue selection subtraction and the exact real-space kernel of a spherical top-hat-smoothed linear velocity field at R=16 Mpc/h. It evaluates deterministic LRGxELG DD midpoints in the same 20--140 Mpc/h separation range, measures split-half repeatability, and checks 192 versus 256 Mpc/h kernel-cutoff stability. The mock-only selection rule is fixed before E59 results: a tracer candidate must pass both caps with median split-half Pearson >= 0.324503, median sign agreement >=0.60, median cutoff correlation >=0.90 and median cutoff sign agreement >=0.90; among passing candidates choose the largest minimum-cap median split-half Pearson. These are internal repeatability criteria only. Even an E59 pass **does not calibrate correlation with true baryon/halo velocity**; a truth-labelled N-body/lightcone calibration is required next before any observed velocity tag or unblinding.
 
 ### v1.68 — 30. 9. 2026. — E57 six-replica result; preregister E58 seven-replica closure
 
