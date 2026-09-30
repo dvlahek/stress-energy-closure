@@ -184,7 +184,9 @@ def load_quijote_fof(catalog_dir: Path):
     need(len(mass) == len(pos) == len(npart), "FoF array-length mismatch")
     need(np.isfinite(pos).all() and np.isfinite(vel).all() and np.isfinite(mass).all(),
          "Nonfinite FoF values")
-    need(np.all((pos >= 0.0) & (pos < BOX + 1e-6)), "Position outside fixed 1 Gpc/h box")
+    need(np.all((pos >= -1e-6) & (pos <= BOX + 1e-6)), "Position outside fixed 1 Gpc/h box")
+    # cKDTree(boxsize=BOX) requires [0,BOX); wrap only possible roundoff-level edge values.
+    pos = np.mod(pos, BOX)
     need(len(pos) >= NTRACER, f"FoF catalog has only {len(pos)} halos < frozen {NTRACER}")
 
     return pos, mass, vel, npart
