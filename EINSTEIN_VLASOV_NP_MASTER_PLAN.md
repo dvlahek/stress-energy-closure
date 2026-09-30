@@ -4,6 +4,11 @@
 **Kanonski dokument:** `EINSTEIN_VLASOV_NP_MASTER_PLAN.md` u repozitoriju `dvlahek/stress-energy-closure`.  
 **Radna grana:** `audit/eboss-elg-bit8-ra-orientation-20260925`, isključivo **draft PR #1**. Ne mijenjati `main` dok za to ne postoji zasebna odluka.
 
+### v1.63 — 30. 9. 2026. — E30–E53 conditioned-route pivot
+
+E30–E44 convert the post-E29 halo/history/profile problem into explicit closure and non-identifiability bounds; no physical sign certificate is obtained. E45–E48 then close the original unconditioned E21/E47 linear two-point route as a practical negative result: the physical transfer into the E45 amplitude axis is ~1e-7 per unit response and the response required for mock-level recovery is far outside the linear local-response regime. E49–E53 therefore activate a prospectively conditioned route. Direct CLASS vTk gives |r(v_nu-v_cdm,v_b)|~0.922; the E19 F+/F- fingerprint survives an actual pair-midpoint marked cross-Landy-Szalay window on nine eBOSS mocks; and mock0001 full-eligible/4800R scaling reduces the E51 technical background strongly while preserving the ~43.5% F-state amplitude separation and ~0.024-rad shape angle. Observed rows/24D odd remain SEALED, A03 physical absolute calibration remains uncertified, A04 inference remains blocked, main is untouched, PR #1 remains draft. Next gate: E53 full-D/48000R finite-random stability, then the same frozen conditioned estimator across all nine mocks.
+
+
 ## v1.63 — E30–E53 catch-up and conditioned-route decision (30. 9. 2026.)
 
 The work performed after E29 is now synchronized. E30–E44 do **not** certify the E28 finite-band F-state sign or an absolute eBOSS wake: incoming kinetic state, same-object causal history/profile, Born/UV control and tracer response remain insufficiently bounded. E47R1+E48 close the original unconditioned E21/E47 linear 2-point route as a practical negative result at the present E45 sensitivity: the response needed for recovery is orders of magnitude outside the linear local-response regime for order-unity tracer geometry.
