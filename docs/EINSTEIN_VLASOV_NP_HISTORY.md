@@ -1,6 +1,11 @@
 # EinsteinVlasovNP — povijest i handoff za novi chat
 
 
+## 30. 9. 2026. — E59 pre-run implementation refinement v2
+
+Before any E59 output was produced, the local implementation was reduced to a computationally bounded version while preserving the same physical question and the already-frozen E59 thresholds. The exact R=16 Mpc/h top-hat-smoothed real-space velocity kernel and 192/256 Mpc/h cutoff check are unchanged. The probe count is fixed at 512 deterministic full-mock LRGxELG DD midpoints per mock/cap. For survey-selection subtraction, E59 v2 uses the exact E58 R1 48k random subset for each mock/cap/tracer and subtracts that same fixed random field from both galaxy halves. Therefore split-half agreement measures galaxy-sampling repeatability conditional on one fixed numerical mask; it does not establish random-mask convergence or truth-velocity correlation. The preregistered thresholds remain split-half Pearson >=0.324503, sign agreement >=0.60, cutoff Pearson >=0.90 and cutoff sign agreement >=0.90 in both caps. If E59 passes, the next gate remains truth-labelled N-body/lightcone calibration, explicitly including mask/reconstruction robustness. No observed rows or sealed odd vector are opened.
+
+
 ## 30. 9. 2026. — E58 random-integration closure and E59 velocity-tag reconstruction preregistration
 
 E58 completed the seventh 48k random replica for every fixed mock/cap, reusing E57 R1-R6 and DD. The unchanged final-mean gate now passes in both caps. NGC field ratios A-D are 0.144669, 0.171511, 0.290179, 0.296087, with median/max 0.230845/0.296087. SGC ratios are 0.118636, 0.202948, 0.262174, 0.252714, with median/max 0.227831/0.262174. The frozen limits remain median <=0.25 and max <=0.50. The F-state fingerprint remains stable: mean ||q_- - q_+||/||q_+|| = 0.434823 NGC and 0.434951 SGC; mean post-window angle = 0.024213 and 0.024058 rad. E58 final decision: `SEVENREP_RANDOM_INTEGRATION_GATE_CLOSED; ADVANCE_TO_PHYSICAL_VELOCITY_TAG_AND_ABSOLUTE_AMPLITUDE_CALIBRATION`. This closes only conditional random-subset Monte-Carlo precision, not finite-parent-pool bias, physical tagging, absolute EV amplitude, covariance inference, or significance.
