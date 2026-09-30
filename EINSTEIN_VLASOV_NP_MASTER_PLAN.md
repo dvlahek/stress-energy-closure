@@ -1,8 +1,12 @@
 # EinsteinVlasovNP — glavni istraživački plan
 
-**Verzija:** 1.63 · **Datum odluke:** 30. 9. 2026. · **Status:** aktivan plan, ne znanstveni rezultat  
+**Verzija:** 1.64 · **Datum odluke:** 30. 9. 2026. · **Status:** aktivan plan, ne znanstveni rezultat  
 **Kanonski dokument:** `EINSTEIN_VLASOV_NP_MASTER_PLAN.md` u repozitoriju `dvlahek/stress-energy-closure`.  
 **Radna grana:** `audit/eboss-elg-bit8-ra-orientation-20260925`, isključivo **draft PR #1**. Ne mijenjati `main` dok za to ne postoji zasebna odluka.
+
+### v1.64 — 30. 9. 2026. — E53 Stage 2 finite-random gate
+
+E53 Stage 2 completed mock0001 full-eligible galaxies with nested 48000 randoms. F+/F- geometry remains stable (NGC angle 0.024500 rad, separation 43.470%; SGC 0.024090 rad, 43.508%), confirming that the conditioned fingerprint survives the survey operator. The 4800R -> 48000R change is nevertheless not small: baseline L2 median ratios are 0.351 NGC and 0.492 SGC, and calibrated F-state coordinate median ratios are 0.541 NGC and 0.280 SGC. Therefore **do not expand to all nine mocks yet** under the previous gate. E54 should be a preregistered finite-random convergence/floor test at fixed mock0001 full galaxies, preferably using independent high-density random replicates or an equivalent deterministic/infinite-random evaluation. Observed rows/odd remain SEALED; A03 absolute physical calibration and A04 inference remain blocked.
 
 ### v1.63 — 30. 9. 2026. — E30–E53 conditioned-route pivot
 
