@@ -1,8 +1,12 @@
 # EinsteinVlasovNP — glavni istraživački plan
 
-**Verzija:** 1.65 · **Datum odluke:** 30. 9. 2026. · **Status:** aktivan plan, ne znanstveni rezultat  
+**Verzija:** 1.66 · **Datum odluke:** 30. 9. 2026. · **Status:** aktivan plan, ne znanstveni rezultat  
 **Kanonski dokument:** `EINSTEIN_VLASOV_NP_MASTER_PLAN.md` u repozitoriju `dvlahek/stress-energy-closure`.  
 **Radna grana:** `audit/eboss-elg-bit8-ra-orientation-20260925`, isključivo **draft PR #1**. Ne mijenjati `main` dok za to ne postoji zasebna odluka.
+
+### v1.66 — 30. 9. 2026. — E55 nine-mock background; add replica averaging
+
+E55 completes the frozen conditioned estimator on all nine full-eligible eBOSS EZmocks with two fresh 48k random replicas per tracer/cap. Signal geometry is stable across mocks (relative F-state separation ~0.4348-0.4350; post-window angle ~0.024 rad), but the preregistered random-integration gate fails globally: NGC median/max paired-random-to-between-mock ratio = 0.614/1.064, while SGC = 0.465/0.936. Therefore do **not** advance to the physical velocity-tag/amplitude-calibration gate yet. E56 will add R3/R4 and use four-replica random integration. The E56 effective random-mean threshold is inherited algebraically from the E55 single-rep rule: median effective random SE / between-mock SD <=0.25 and every field <=0.50. A methodological clarification is recorded prospectively: independently seeded without-replacement subsets are independent conditional on the fixed eligible pool even when their realized row sets overlap; replica averaging diagnoses conditional Monte-Carlo integration noise but not common finite-pool discretization bias. Observed rows/odd remain SEALED; A03 absolute physical calibration and A04 inference remain blocked.
 
 ### v1.65 — 30. 9. 2026. — E54 passes the 48k random-floor gate
 
