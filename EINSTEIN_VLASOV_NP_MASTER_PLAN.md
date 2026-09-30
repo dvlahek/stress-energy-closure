@@ -1,8 +1,16 @@
 # EinsteinVlasovNP — glavni istraživački plan
 
-**Verzija:** 1.72 · **Datum odluke:** 30. 9. 2026. · **Status:** aktivan plan, ne znanstveni rezultat  
+**Verzija:** 1.73 · **Datum odluke:** 30. 9. 2026. · **Status:** aktivan plan, ne znanstveni rezultat  
 **Kanonski dokument:** `EINSTEIN_VLASOV_NP_MASTER_PLAN.md` u repozitoriju `dvlahek/stress-energy-closure`.  
 **Radna grana:** `audit/eboss-elg-bit8-ra-orientation-20260925`, isključivo **draft PR #1**. Ne mijenjati `main` dok za to ne postoji zasebna odluka.
+
+### v1.73 — 30. 9. 2026. — E61 full-pool PASS; preregister E62 N-body truth velocity calibration
+
+E61 completed the deterministic full-eligible-ELG-random-pool reconstruction for all nine fixed EZmocks and both caps, at the exact E59 512 midpoint probes and R=16 Mpc/h kernel. The complete random pool is now the locked downstream survey-selection operator. The seven-replica E60 mean is retained only as a surrogate diagnostic and passes the prospectively frozen E61 surrogate gate in both caps. NGC seven-replica mean versus full pool: Pearson median/min = 0.991964/0.987763, sign-agreement median/min = 0.962891/0.949219, RMS-difference/full-pool-field-RMS median/max = 0.129771/0.160656. SGC: 0.992069/0.990305, 0.958984/0.939453, and 0.126455/0.140277. E61 decision: `FULLPOOL_ELG_RECONSTRUCTION_LOCKED; SEVENREP_SURROGATE_VALID; NEXT_TRUTH_VELOCITY_CALIBRATION`. No observed galaxy rows, observed odd vector, true velocity, absolute EV amplitude, covariance inversion, p-value or detection significance were used.
+
+The next gate must test actual velocity truth, not another internal-repeatability proxy. A direct point-by-point truth calibration cannot be obtained from the current eBOSS EZmock galaxy files because they do not carry the required true peculiar-velocity field. The locally inspected Abacus superslab metadata does contain `x_L2com`/`v_L2com`, but one superslab is spatially incomplete for the frozen 256 Mpc/h E59 kernel and therefore would introduce an uncontrolled boundary/missing-neighbour bias. E62 is therefore prospectively frozen as an **independent periodic-box N-body reconstruction-method calibration** using the public Quijote fiducial realization 0 FoF halo catalogue at z=1. This is intentionally a method gate, not an eBOSS cut-sky transfer calibration.
+
+E62 fixes exactly 165107 most massive FoF halos (the public Quijote z=1 fiducial Ntot), unit number weights, the unchanged E59 R=16 Mpc/h top-hat-smoothed kernel, primary/check cutoffs 256/192 Mpc/h, periodic minimum-image geometry, and 4096 deterministic tracer-halo probes (seed 202609620000). True peculiar velocities are the documented FoF `GroupVel*(1+z)`. All x/y/z components must independently satisfy truth Pearson >=0.70, truth sign agreement >=0.70, 192/256 cutoff Pearson >=0.90 and cutoff sign agreement >=0.90. No post-result mass threshold, weighting, smoothing or cutoff tuning is allowed. A PASS authorizes only a later end-to-end survey/lightcone truth-transfer test; it does not authorize observed eBOSS access or an absolute Einstein–Vlasov amplitude claim. Observed galaxy rows and the observed odd vector remain SEALED.
 
 ### v1.72 — 30. 9. 2026. — E60 fails 48k mask gate; lock deterministic full-pool E61
 
