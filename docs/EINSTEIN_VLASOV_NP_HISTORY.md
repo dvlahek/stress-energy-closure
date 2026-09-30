@@ -16,6 +16,11 @@ This checkpoint records the local/offline work that was performed after the GitH
 
 E53 Stage 2 completed on mock0001 for NGC and SGC with the already-defined nested 48000 randoms. The run passed with observed galaxies/odd still sealed and no physical velocity reconstruction or p-value inference. Signal geometry is highly stable: NGC post-window F+/F- angle 0.0245001 rad and ||q_- - q_+||/||q_+||=0.434696; SGC 0.0240902 rad and 0.435085. However, the finite-random background is **not yet converged at 4800R**. Increasing 4800R -> 48000R reduces the baseline 12D norm by factors A-D = 0.352,0.443,0.328,0.351 in NGC (median 0.351) and 0.294,0.536,0.448,0.798 in SGC (median 0.492). The calibrated F--F+ coordinate also drops substantially: NGC ratios 0.462,0.589,0.513,0.569 (median 0.541); SGC 0.376,0.416,0.178,0.185 (median 0.280). Therefore the predeclared criterion for immediate nine-mock expansion is not satisfied. Interpretation: the conditioned fingerprint survives and the background continues to fall with random density, but finite-random noise is still material. Next gate should quantify the random-noise floor with preregistered independent high-density random replicates (or an equivalent deterministic/infinite-random integration), before scaling the expensive conditioned estimator to all nine mocks.
 
+
+### E54 preregistration — 48k random-replica floor
+
+After E53 Stage 2 showed stable F+/F- geometry but material 4800R -> 48000R background reduction, E54 was frozen before execution. It keeps mock0001 full galaxies, E51 tag fields and E19 injection fixed and runs four fresh deterministic 48k random replicas per cap/tracer from the same eligible random pools. Engineering gate: median calibrated-difference replica SD <=0.01, max field SD <=0.02, angle range <=0.002 rad and F-state difference-ratio range <=0.01. Local script SHA256 658e91ad7d3434385844f149762d88f336566fd0928dfe248236b7d9b33b7f87; package SHA256 fa091a20df15989fc6ac7efb10f2029f58faaeeb1843802a539358a88429df73. No result exists yet; observed rows/odd remain sealed.
+
 Canonical catch-up document: `docs/EBOSS_DR16_A03_E30_E53_CATCHUP_AND_CONDITIONED_ROUTE_2026-09-30.md`.
 
 
