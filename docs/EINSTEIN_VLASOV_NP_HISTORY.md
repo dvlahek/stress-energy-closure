@@ -1,5 +1,12 @@
 # EinsteinVlasovNP — povijest i handoff za novi chat
 
+## 30. 9. 2026. — E59 selects ELG; E60 mask-robustness gate frozen
+
+E59 completed all 18 mock/cap cases. Under the prospectively frozen cap-median screen, **eBOSS_ELG passes and eBOSS_LRG fails**. ELG minimum-cap medians are split-half Pearson 0.455661, sign agreement 0.667969, 192/256 cutoff Pearson 0.999202 and cutoff sign agreement 0.96875. NGC/SGC ELG split-half Pearson medians are 0.487084/0.455661; sign-agreement medians are 0.675781/0.667969. The equal-independent-noise diagnostic gives implied full-vs-latent r medians 0.809374/0.791236, but this remains diagnostic only and is not correlation with true baryon/halo velocity. LRG minimum-cap medians are only 0.176041 in split-half Pearson and 0.564453 in sign agreement. The frozen selection rule therefore carries ELG forward. One ELG individual case (mock0125/NGC) has sign agreement 0.585938 below 0.60, but the preregistered decision rule is cap-median based; 17/18 ELG cases satisfy all four individual thresholds, while 0/18 LRG cases do.
+
+E59 still shares one fixed E58 R1 48k random field between split halves. E60 is therefore frozen before any E60 output as an ELG-only random-mask robustness test using exact E58 R1-R7 48k subsets, the same E59 probes, and the same R=16 Mpc/h kernel. The cap gates are median pairwise Pearson >=0.95, median pairwise sign agreement >=0.90, median random-RMS/mean-field-RMS <=0.25, and maximum case ratio <=0.50. Mock0001 in both caps additionally uses the complete eligible ELG random pool as a common-bias anchor, requiring Pearson >=0.98, sign agreement >=0.95, and relative RMS difference <=0.25. Passing E60 authorizes only the next truth-labelled velocity-calibration stage. No observed galaxy rows or observed odd vector are opened.
+
+
 
 ## 30. 9. 2026. — E59 pre-run implementation refinement v2
 
