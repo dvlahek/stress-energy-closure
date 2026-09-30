@@ -1,0 +1,64 @@
+{
+  "classification": "E30_E32_E33_OFFLINE_PACKAGE_SHA256_MANIFEST",
+  "files": {
+    "E30_E32_OFFLINE_PROTOCOL.md": {
+      "sha256": "0abeb7e55c09fb0e959cfa57b36721883fc9a74f64783c4237ac3a68b44fa536",
+      "bytes": 3198
+    },
+    "E33_OFFLINE_PROTOCOL.md": {
+      "sha256": "772054878ee6e0f68de2cad04ff9504a8c972a76ade75535791f2494b8f1323b",
+      "bytes": 1641
+    },
+    "E30_OFFLINE_WIND_SIGN_AND_TWO_TRACER_ESTIMAND.md": {
+      "sha256": "e83b596720c2b81d9a7b58f2dfb94ea3edc01991e51bd09878eaa0d61b00ee53",
+      "bytes": 8046
+    },
+    "E32_OFFLINE_RADIAL_PROFILE_ENCLOSURE.md": {
+      "sha256": "3c43498856b7905bd6f5c9ccbc7745f75613c11f36f82c9fba09127585b07a8b",
+      "bytes": 4384
+    },
+    "E33_OFFLINE_M200C_PSEUDOEVOLUTION.md": {
+      "sha256": "a4c43f77705a6a89857000af86adee77aa7bc4c0a540bf4bb14c1aebeb6c1e07",
+      "bytes": 2361
+    },
+    "E30_E33_OFFLINE_HANDOFF.md": {
+      "sha256": "4b77337bebdc953d8db55b90614eea3e63e2d1532142c317754dfe881fcd5fe1",
+      "bytes": 4429
+    },
+    "e30_offline_estimand_qa.py": {
+      "sha256": "257a0497a97c06d6642f55a48f1cc4a3ff582852c4ce9e8338c493dd03a3bccf",
+      "bytes": 6712
+    },
+    "e30_offline_estimand_result.json": {
+      "sha256": "dea17ce263af1887e532b2b82d648c5527b2ab366891a70a8a6ce54abc096ff5",
+      "bytes": 2640
+    },
+    "e32_offline_radial_quantile_qa.py": {
+      "sha256": "16eb248d12cdcf38415baef422ef73d9e5dc5e08258191d79a89fd015df61127",
+      "bytes": 5533
+    },
+    "e32_offline_radial_quantile_result.json": {
+      "sha256": "5981bc8919c4e856f48ecc27fa2ef7854a4b2b1afeab92c2f1d068ffc1ba4071",
+      "bytes": 5149
+    },
+    "e33_offline_mass_definition_qa.py": {
+      "sha256": "48f485d46f4548312a4e5c3ce2fcccf370f8dc25410762b0cc620b28321f33b9",
+      "bytes": 3598
+    },
+    "e33_offline_mass_definition_result.json": {
+      "sha256": "5fc6d88abb6da5a6d200781d6fcdc38392c066e928cb0eed8f286cfec6a4b82d",
+      "bytes": 2372
+    },
+    "e29_20_pair_posthoc_offline_kinematic_audit.json": {
+      "sha256": "2934abe216abe39e87611937b265d8473696db5e0768ce425af7bfeb6f030a3d",
+      "bytes": 12674
+    },
+    "E30_E33_OFFLINE_REPLAY.log": {
+      "sha256": "72289ae56a7c843a12c37457691836d7ae1cfe5d1b056e3af32fecea4f86c4ae",
+      "bytes": 1249
+    }
+  },
+  "no_big_data_files": true,
+  "github_writes": false,
+  "observed_odd": "SEALED"
+}
