@@ -1,5 +1,21 @@
 # EinsteinVlasovNP — povijest i handoff za novi chat
 
+## 30. 9. 2026. — E61 full-pool lock PASS; E62 truth-velocity method gate frozen
+
+E61 completed all 18 mock/cap full-pool reconstructions using the exact E59 probes and kernel. The complete source-eligible ELG random pool is now the final deterministic survey-selection operator. The seven-replica E60 mean is diagnostic only, but it is an excellent surrogate for the full-pool reconstruction across all nine mocks in both caps.
+
+NGC aggregate seven-replica mean vs full-pool metrics: Pearson median 0.9919635, minimum 0.9877627; sign-agreement median 0.9628906, minimum 0.9492188; RMS-difference/full-pool-field-RMS median 0.1297709, maximum 0.1606560. SGC: Pearson median 0.9920690, minimum 0.9903052; sign-agreement median 0.9589844, minimum 0.9394531; RMS ratio median 0.1264548, maximum 0.1402768. Both prospectively frozen surrogate gates pass. E61 final decision is `FULLPOOL_ELG_RECONSTRUCTION_LOCKED; SEVENREP_SURROGATE_VALID; NEXT_TRUTH_VELOCITY_CALIBRATION`. Observed galaxy rows and observed odd were not used; true velocity and absolute EV amplitude remain uncalibrated.
+
+For the next stage, do not reinterpret internal mock repeatability as truth. The current eBOSS EZmock galaxy files do not provide the required true peculiar-velocity labels. Earlier local Abacus metadata confirmed `x_L2com` and `v_L2com`, but a single superslab cannot support the unchanged 256 Mpc/h E59 kernel without missing-neighbour/boundary bias. To avoid a large multi-superslab download and a geometrically incomplete calibration, E62 is frozen as a lightweight independent N-body method calibration on one complete periodic Quijote box: fiducial realization 0, FoF snapshot 2 (z=1).
+
+E62 uses exactly the 165107 most massive FoF halos, unit number weights, R=16 Mpc/h smoothing, 256/192 Mpc/h cutoffs, periodic minimum-image geometry, and 4096 deterministic probe halos (seed 202609620000). The primary truth metrics are reconstructed-vs-true halo velocity Pearson and sign agreement separately for x/y/z, with frozen per-axis thresholds 0.70/0.70, plus 192-vs-256 cutoff stability thresholds 0.90/0.90. No mass-threshold or kernel tuning after truth is allowed. Passing E62 authorizes only a later end-to-end survey/lightcone truth-transfer test. It does not validate an ELG HOD, the custom F+/F− neutrino states, or an absolute Einstein–Vlasov amplitude. Observed eBOSS rows/odd remain SEALED.
+
+Artifacts synchronized to the audit branch:
+- `source_data/e61_elg_fullpool_reconstruction_lock_compact_summary_2026-09-30.json`
+- `source_data/e62_quijote_z1_truth_velocity_calibration_prereg_2026-09-30.json`
+- `scripts/e62_quijote_z1_truth_velocity_calibration.py`
+- `docs/E62_QUIJOTE_Z1_TRUTH_VELOCITY_CALIBRATION_2026-09-30.md`
+
 ## 30. 9. 2026. — E60 mask robustness fails; full-pool operator chosen
 
 E60 completed the ELG-only random-mask robustness test across all nine fixed EZmocks and both caps. The frozen individual-48k-replica gate fails in both caps. NGC cap medians: pairwise Pearson 0.889595 < 0.95, pairwise sign agreement 0.849609 < 0.90, and random-replica RMS / seven-replica-mean field RMS 0.346451 > 0.25 (maximum 0.370690). SGC: 0.899388, 0.843750, and 0.332598 (maximum 0.384874), also failing. Therefore one 48k random mask, and the individual 48k-replica stability criterion, are not adequate for the final velocity reconstruction.
