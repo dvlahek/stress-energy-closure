@@ -1,8 +1,14 @@
 # EinsteinVlasovNP — glavni istraživački plan
 
-**Verzija:** 1.66 · **Datum odluke:** 30. 9. 2026. · **Status:** aktivan plan, ne znanstveni rezultat  
+**Verzija:** 1.67 · **Datum odluke:** 30. 9. 2026. · **Status:** aktivan plan, ne znanstveni rezultat  
 **Kanonski dokument:** `EINSTEIN_VLASOV_NP_MASTER_PLAN.md` u repozitoriju `dvlahek/stress-energy-closure`.  
 **Radna grana:** `audit/eboss-elg-bit8-ra-orientation-20260925`, isključivo **draft PR #1**. Ne mijenjati `main` dok za to ne postoji zasebna odluka.
+
+### v1.67 — 30. 9. 2026. — E56 four-replica result; preregister E57 six-replica closure
+
+E56 completed four 48k random replicas across all nine frozen full-eligible mocks. Geometry remains stable, but the frozen final-mean precision gate is not yet closed: NGC median/max effective-random-to-between-mock ratio = 0.289/0.443 and SGC = 0.289/0.424. Both maxima already satisfy <=0.50; both medians narrowly miss <=0.25. Do not advance to physical velocity-tag calibration yet.
+
+E57 is fixed as a six-replica engineering closure. The replica count is chosen as the minimum integer predicted by standard 1/sqrt(R) scaling from E56: R=5 projects to median ~0.259 and R=6 to ~0.236 in both caps. The **E56 final-mean gate is carried forward unchanged**: median <=0.25 and every field <=0.50 in each cap. E57 reuses R1-R4 exactly and computes only R5/R6. This is numerical integration control, not an observational or physics retuning step. Observed rows and the observed odd vector remain SEALED; A03 physical absolute calibration and A04 inference remain blocked until this gate and the later velocity-tag/amplitude gates are closed.
 
 ### v1.66 — 30. 9. 2026. — E55 nine-mock background; add replica averaging
 
