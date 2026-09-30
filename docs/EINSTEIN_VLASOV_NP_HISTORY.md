@@ -1,5 +1,14 @@
 # EinsteinVlasovNP — povijest i handoff za novi chat
 
+## 30. 9. 2026. — E60 mask robustness fails; full-pool operator chosen
+
+E60 completed the ELG-only random-mask robustness test across all nine fixed EZmocks and both caps. The frozen individual-48k-replica gate fails in both caps. NGC cap medians: pairwise Pearson 0.889595 < 0.95, pairwise sign agreement 0.849609 < 0.90, and random-replica RMS / seven-replica-mean field RMS 0.346451 > 0.25 (maximum 0.370690). SGC: 0.899388, 0.843750, and 0.332598 (maximum 0.384874), also failing. Therefore one 48k random mask, and the individual 48k-replica stability criterion, are not adequate for the final velocity reconstruction.
+
+At the same time the direct complete-random-pool anchor on mock0001 is excellent in both caps: NGC seven-replica mean vs full eligible ELG random pool gives Pearson 0.991964, sign agreement 0.966797 and RMS difference / full-pool field RMS 0.129771; SGC gives 0.992069, 0.970703 and 0.126455. E60 remains a preregistered FAIL and is not retroactively relabelled.
+
+Downstream consequence: use the complete source-eligible ELG random pool as the deterministic survey-selection operator. E61 is frozen as an all-18-case full-pool lock at the same E59 probes/kernel. Seven-replica fields are diagnostic only. Observed galaxies and observed odd remain SEALED. Truth-velocity calibration remains the next physical gate.
+
+
 ## 30. 9. 2026. — E59 selects ELG; E60 mask-robustness gate frozen
 
 E59 completed all 18 mock/cap cases. Under the prospectively frozen cap-median screen, **eBOSS_ELG passes and eBOSS_LRG fails**. ELG minimum-cap medians are split-half Pearson 0.455661, sign agreement 0.667969, 192/256 cutoff Pearson 0.999202 and cutoff sign agreement 0.96875. NGC/SGC ELG split-half Pearson medians are 0.487084/0.455661; sign-agreement medians are 0.675781/0.667969. The equal-independent-noise diagnostic gives implied full-vs-latent r medians 0.809374/0.791236, but this remains diagnostic only and is not correlation with true baryon/halo velocity. LRG minimum-cap medians are only 0.176041 in split-half Pearson and 0.564453 in sign agreement. The frozen selection rule therefore carries ELG forward. One ELG individual case (mock0125/NGC) has sign agreement 0.585938 below 0.60, but the preregistered decision rule is cap-median based; 17/18 ELG cases satisfy all four individual thresholds, while 0/18 LRG cases do.
