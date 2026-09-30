@@ -16,6 +16,15 @@ This checkpoint records the local/offline work that was performed after the GitH
 
 After E54 passed the 48k random-floor engineering gate, E55 is frozen before any E55 result. It applies the same E51/E19 conditioned estimator to all nine fixed EZmock IDs with all source-eligible galaxies and two fresh 48k random replicas per cap/tracer. R1/R2 are averaged only after separate marked-LS evaluation. The primary output is the 1D calibrated F--F+ coordinate. A diagnostic gate compares the paired random-integration scale with the between-mock SD: median ratio <=0.5 and every field <=1.0. Nine mocks remain descriptive only; no p-values, covariance inversion, observed rows/odd access or physical velocity reconstruction are authorized.
 
+
+### E56 — four-replica nine-mock random integration
+
+E56 reused E54/E55 parents and completed the frozen conditioned estimator with four 48k random replicas for all nine mock IDs in both caps. Provenance/observation guardrails remained closed. The F+/F- geometry stayed stable: NGC mean relative separation 0.434833 (SD 2.10e-4) and mean post-window angle 0.024202 rad (SD 3.75e-4); SGC 0.434952 (SD 1.07e-4) and 0.024050 rad (SD 1.52e-4).
+
+The already-preregistered E56 final-mean random-integration gate was not met, but only narrowly on its median criterion. NGC effective-random/between-mock ratios A-D = 0.232, 0.186, 0.443, 0.346, giving median 0.289 (>0.25) and max 0.443 (<0.50). SGC = 0.149, 0.224, 0.424, 0.353, giving median 0.289 (>0.25) and max 0.424 (<0.50). Final E56 interpretation: `FOURREP_RANDOM_INTEGRATION_STILL_MATERIAL; USE_HIGHER_REPLICA_OR_DETERMINISTIC_RANDOM_INTEGRATION`.
+
+Standard 1/sqrt(R) scaling of the measured E56 random component gives projected five-replica medians ~0.259 in both caps, still above target, and six-replica medians ~0.236 with projected maxima ~0.362 (NGC) and ~0.346 (SGC). Therefore E57 is preregistered as the minimum-integer six-replica engineering closure: reuse R1-R4 exactly, add R5/R6 only, and keep the E56 final-mean gate unchanged at median <=0.25 and per-field max <=0.50 in each cap. This uses no observed galaxy rows or observed odd vector and does not alter science cuts, E19 or E51.
+
 ### E55 — nine full-eligible mocks with paired 48k randoms
 
 E55 completed all nine frozen EZmock IDs in both NGC and SGC using all source-eligible galaxies and two fresh 48k random replicas per tracer/cap, with the E51 tag fields and E19 F+/F- basis unchanged. The run passed its computational/provenance gates and kept observed galaxy rows and the observed odd vector sealed. The F-state geometry remains extremely stable across mocks: mean ||q_- - q_+||/||q_+|| = 0.434831 (NGC, SD 2.03e-4) and 0.434953 (SGC, SD 1.23e-4); mean post-window angle = 0.024214 rad (NGC, SD 3.58e-4) and 0.024045 rad (SGC, SD 1.37e-4).
