@@ -1,0 +1,28 @@
+{
+  "checkpointing": "every cap/level/pair term",
+  "date": "2026-09-30",
+  "forbidden": {
+    "covariance_inverse": true,
+    "main_mutation": true,
+    "new_tag_fields": true,
+    "observed_galaxy_rows": true,
+    "observed_odd_vector": true,
+    "pvalues": true
+  },
+  "frozen_before_local_result": true,
+  "no_retuning": true,
+  "parent_E51": "same four fixed technical tag fields and same E19 F+/F- angular injection basis",
+  "scientific_question": "Does the large E51 conditioned background shrink when the same estimator is run on full eligible mock galaxies and denser frozen randoms?",
+  "scope": {
+    "caps": [
+      "NGC",
+      "SGC"
+    ],
+    "galaxies": "all source-eligible z in [0.9,1.0), no new cut",
+    "mock_id": 1,
+    "ordinary_parent_replay": "mandatory original 600D/1200R sparse-vs-dense closure; original E4 4800 RR count+weighted sum replay",
+    "random_stage1": "exact original nested 4800 per tracer/cap",
+    "random_stage2": "exact already-defined nested 48000 per tracer/cap, opt-in after stage1"
+  },
+  "stage": "E53_CONDITIONED_MOCK0001_SAMPLE_SCALING_PROTOCOL"
+}
