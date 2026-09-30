@@ -1,0 +1,48 @@
+{
+  "E19_conditional_ratio": {
+    "T3_over_T1_Fminus": 0.6691239782037476,
+    "T3_over_T1_Fplus": 0.6351440940523486,
+    "symmetric_multiplicative_ratio_uncertainty_nonoverlap_threshold": 0.02605283750649608
+  },
+  "E21_componentwise": {
+    "K_h_per_Mpc": [
+      0.001,
+      0.002,
+      0.003,
+      0.005
+    ],
+    "interpretation": "For positive source amplitudes and independent symmetric multiplicative response uncertainty \u00b1eta applied to each candidate state, F+ and F- prediction intervals at component j remain disjoint iff eta < (Cplus-Cminus)/(Cplus+Cminus).",
+    "relative_Fplus_minus_Fminus_over_mean": [
+      0.007121592014325704,
+      0.004808671735664115,
+      0.0018832603749311177,
+      0.001824367957093278
+    ],
+    "symmetric_multiplicative_response_uncertainty_nonoverlap_threshold_each": [
+      0.003560796007162852,
+      0.0024043358678320576,
+      0.0009416301874655589,
+      0.000912183978546639
+    ],
+    "threshold_all_four_components": 0.000912183978546639,
+    "threshold_at_least_one_component": 0.003560796007162852
+  },
+  "comparison": {
+    "E19_ratio_threshold_over_E21_all_component_threshold": 28.560946167905126,
+    "statement": "At source level only, the conditional E19 T3/T1 ratio tolerates ~28.6 times larger symmetric relative calibration uncertainty than requiring non-overlap in all four E21 long-K components."
+  },
+  "limits": [
+    "not a survey sensitivity or sigma",
+    "not a physical model for response uncertainty",
+    "no covariance, window, HOD, or velocity reconstruction",
+    "E19 and E21 are different estimands"
+  ],
+  "parent_git_blobs": {
+    "E19_result": "fc5044684b84ff3de86c236988617ead79d8e7e6",
+    "E21_result": "cc3312c5313cce60fad4a88c3a56ef3d4e675e38"
+  },
+  "qa_checks": 10,
+  "qa_pass": true,
+  "stage": "E41_OFFLINE_RESPONSE_CALIBRATION_TOLERANCE_GEOMETRY",
+  "status": "SOURCE_LEVEL_ROBUSTNESS_THRESHOLDS_FROM_FROZEN_E21_E19_NO_COVARIANCE"
+}
