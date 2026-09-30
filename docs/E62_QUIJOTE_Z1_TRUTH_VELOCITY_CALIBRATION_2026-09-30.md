@@ -58,7 +58,7 @@ to a local directory, for example:
 
 `~/stress-energy-closure/eboss_workspace/quijote/Halos/FoF/fiducial/0/`
 
-If the project environment does not provide `readfof`, install Pylians3 in the project venv before running E62.
+If the project environment does not provide `readfof`, install the stable PyPI package with `python -m pip install Pylians` in the project venv before running E62.
 
 ## Run
 
