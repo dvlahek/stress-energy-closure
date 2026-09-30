@@ -1,0 +1,43 @@
+{
+  "date": "2026-09-30",
+  "fixed": {
+    "caps": ["NGC", "SGC"],
+    "kernel_R_Mpc_over_h": 16.0,
+    "mock_ids": [1,125,250,375,500,625,750,875,1000],
+    "primary_cutoff_Mpc_over_h": 256.0,
+    "probe_count_per_case": 512,
+    "probe_policy": "exact E59 deterministic full-mock LRGxELG DD midpoints",
+    "random_replicas": ["R1","R2","R3","R4","R5","R6","R7"],
+    "random_rows_per_replica": 48000,
+    "tracer": "eBOSS_ELG only; fixed by E59 result, no E60 tracer search"
+  },
+  "forbidden": [
+    "observed galaxy rows",
+    "observed odd vector",
+    "truth velocity use",
+    "absolute EV amplitude calibration",
+    "inverse covariance",
+    "p-values/detection sigma",
+    "retuning E19/E51",
+    "changing selected tracer after E59"
+  ],
+  "frozen_before_E60_result": true,
+  "gate": {
+    "cap_max_random_rms_over_mean_field_rms_max": 0.5,
+    "cap_median_case_pairwise_pearson_min": 0.95,
+    "cap_median_case_pairwise_sign_agreement_min": 0.9,
+    "cap_median_random_rms_over_mean_field_rms_max": 0.25,
+    "mock0001_full_pool_anchor_pearson_min": 0.98,
+    "mock0001_full_pool_anchor_rms_difference_ratio_max": 0.25,
+    "mock0001_full_pool_anchor_sign_agreement_min": 0.95
+  },
+  "if_fail": "replace 48k selection subtraction with full-pool or denser deterministic scheme before truth calibration",
+  "if_pass": "proceed to truth-labelled N-body/lightcone velocity calibration",
+  "parent_E59": {
+    "min_cap_median_split_half_pearson": 0.4556611964471438,
+    "min_cap_median_split_half_sign_agreement": 0.66796875,
+    "repeatability_pass": true,
+    "selected_tracer": "eBOSS_ELG"
+  },
+  "stage": "E60_ELG_VELOCITY_RECONSTRUCTION_MASK_ROBUSTNESS_PROTOCOL"
+}
