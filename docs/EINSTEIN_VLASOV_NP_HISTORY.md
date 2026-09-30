@@ -1,5 +1,12 @@
 # EinsteinVlasovNP — povijest i handoff za novi chat
 
+
+## 30. 9. 2026. — E58 random-integration closure and E59 velocity-tag reconstruction preregistration
+
+E58 completed the seventh 48k random replica for every fixed mock/cap, reusing E57 R1-R6 and DD. The unchanged final-mean gate now passes in both caps. NGC field ratios A-D are 0.144669, 0.171511, 0.290179, 0.296087, with median/max 0.230845/0.296087. SGC ratios are 0.118636, 0.202948, 0.262174, 0.252714, with median/max 0.227831/0.262174. The frozen limits remain median <=0.25 and max <=0.50. The F-state fingerprint remains stable: mean ||q_- - q_+||/||q_+|| = 0.434823 NGC and 0.434951 SGC; mean post-window angle = 0.024213 and 0.024058 rad. E58 final decision: `SEVENREP_RANDOM_INTEGRATION_GATE_CLOSED; ADVANCE_TO_PHYSICAL_VELOCITY_TAG_AND_ABSOLUTE_AMPLITUDE_CALIBRATION`. This closes only conditional random-subset Monte-Carlo precision, not finite-parent-pool bias, physical tagging, absolute EV amplitude, covariance inference, or significance.
+
+E59 is preregistered before its result. It moves from the four synthetic E51 sign fields to a mock-survey-derived linear velocity-direction proxy, reconstructed separately from LRG and ELG density fields with their own full random selections. The kernel is the exact real-space top-hat-smoothed linear velocity/gravity kernel at R=16 Mpc/h, evaluated to 256 Mpc/h with a fixed 192 Mpc/h cutoff-stability check. Probes are 2048 deterministic full-mock LRGxELG DD midpoints per cap/mock in 20--140 Mpc/h. Split-half repeatability is the primary internal diagnostic. The fixed screen requires, in both caps, median half-half Pearson >=0.324503, sign agreement >=0.60, cutoff correlation >=0.90 and cutoff sign agreement >=0.90. If more than one tracer passes, select the candidate maximizing the minimum-cap median half-half Pearson. If neither passes, do not use an observed tag. A pass authorizes only a subsequent truth-labelled N-body/lightcone calibration; split-half agreement is not true-velocity correlation and can be optimistic because the halves share mask and cosmic modes. Observed galaxy rows and the observed odd vector remain SEALED.
+
 ## 30. 9. 2026. — E30–E53 catch-up, unconditioned STOP and conditioned-route pivot
 
 This checkpoint records the local/offline work that was performed after the GitHub E29 checkpoint and had not yet been synchronized to the audit branch.
