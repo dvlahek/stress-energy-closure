@@ -1,8 +1,14 @@
 # EinsteinVlasovNP — glavni istraživački plan
 
-**Verzija:** 1.70 · **Datum odluke:** 30. 9. 2026. · **Status:** aktivan plan, ne znanstveni rezultat  
+**Verzija:** 1.71 · **Datum odluke:** 30. 9. 2026. · **Status:** aktivan plan, ne znanstveni rezultat  
 **Kanonski dokument:** `EINSTEIN_VLASOV_NP_MASTER_PLAN.md` u repozitoriju `dvlahek/stress-energy-closure`.  
 **Radna grana:** `audit/eboss-elg-bit8-ra-orientation-20260925`, isključivo **draft PR #1**. Ne mijenjati `main` dok za to ne postoji zasebna odluka.
+
+### v1.71 — 30. 9. 2026. — E59 result selects ELG; preregister E60 mask robustness
+
+E59 completed the prospectively frozen mock-only density-to-velocity reconstruction screen across all nine fixed EZmocks and both caps. The ELG reconstruction passes the predeclared cap-median screen: minimum-cap median split-half Pearson = 0.455661 > 0.324503, minimum-cap median sign agreement = 0.667969 > 0.60, minimum-cap median 192/256 cutoff Pearson = 0.999202 > 0.90, and minimum-cap median cutoff sign agreement = 0.96875 > 0.90. The corresponding ELG split-half medians are 0.487084/0.455661 (NGC/SGC), with sign-agreement medians 0.675781/0.667969. The equal-independent-noise diagnostic implies full-vs-latent r about 0.809/0.791, close to the previously screened E49 r_rec=0.8 point, but this is explicitly not truth-velocity calibration. LRG fails the frozen repeatability screen with minimum-cap median split-half Pearson 0.176041 and sign agreement 0.564453. The E59 selection rule therefore fixes **eBOSS_ELG** as the only tracer reconstruction carried forward.
+
+A key E59 limitation remains: both galaxy halves shared one fixed E58 R1 48k random selection field, which can artificially improve split-half agreement if random-mask error is common. Therefore E60 is preregistered before its result as an ELG-only random-mask robustness gate. E60 replays the exact E59 512 probe midpoints and R=16 Mpc/h reconstruction, but cycles through the frozen E58 R1-R7 48k ELG random subsets. It compares all 21 replica pairs and the random-replica RMS relative to the seven-replica mean. The frozen cap-level limits are median pairwise Pearson >=0.95, median pairwise sign agreement >=0.90, median random-RMS/mean-field-RMS <=0.25, and maximum case ratio <=0.50. In addition, mock0001 in each cap must match the full eligible ELG random-pool anchor with Pearson >=0.98, sign agreement >=0.95, and RMS-difference/full-pool-field-RMS <=0.25. If E60 passes, proceed to truth-labelled N-body/lightcone velocity calibration; if it fails, use full-pool or denser deterministic selection subtraction before truth calibration. Observed galaxies and the observed odd vector remain SEALED.
 
 ### v1.70 — 30. 9. 2026. — E59 pre-run implementation freeze v2
 
