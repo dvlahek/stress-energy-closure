@@ -1,8 +1,14 @@
 # EinsteinVlasovNP — glavni istraživački plan
 
-**Verzija:** 1.71 · **Datum odluke:** 30. 9. 2026. · **Status:** aktivan plan, ne znanstveni rezultat  
+**Verzija:** 1.72 · **Datum odluke:** 30. 9. 2026. · **Status:** aktivan plan, ne znanstveni rezultat  
 **Kanonski dokument:** `EINSTEIN_VLASOV_NP_MASTER_PLAN.md` u repozitoriju `dvlahek/stress-energy-closure`.  
 **Radna grana:** `audit/eboss-elg-bit8-ra-orientation-20260925`, isključivo **draft PR #1**. Ne mijenjati `main` dok za to ne postoji zasebna odluka.
+
+### v1.72 — 30. 9. 2026. — E60 fails 48k mask gate; lock deterministic full-pool E61
+
+E60 completed the frozen ELG random-mask robustness test and fails the individual-48k mask gate in both caps. NGC median pairwise Pearson/sign agreement/random-RMS ratio = 0.889595/0.849609/0.346451; SGC = 0.899388/0.843750/0.332598, versus frozen limits 0.95/0.90/0.25. Maximum random-RMS ratios are 0.370690 and 0.384874. Therefore individual 48k random masks are not sufficiently stable for the final survey-derived velocity tag.
+
+The direct complete-random-pool anchor on mock0001 passes strongly: NGC seven-replica mean versus full eligible ELG random pool has Pearson 0.991964, sign agreement 0.966797 and RMS-difference ratio 0.129771; SGC has 0.992069, 0.970703 and 0.126455. E60 remains FAIL. The downstream reconstruction operator is prospectively changed to the complete source-eligible ELG random pool, removing random-subset mask Monte-Carlo error. E61 is preregistered as an all-nine-mock/all-cap deterministic full-pool lock using the exact E59 probes and kernel. Seven-replica comparison is diagnostic only. Observed rows/odd remain SEALED. Next physical gate after E61 is truth-labelled velocity calibration.
 
 ### v1.71 — 30. 9. 2026. — E59 result selects ELG; preregister E60 mask robustness
 
