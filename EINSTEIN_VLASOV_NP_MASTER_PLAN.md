@@ -1,8 +1,12 @@
 # EinsteinVlasovNP — glavni istraživački plan
 
-**Verzija:** 1.64 · **Datum odluke:** 30. 9. 2026. · **Status:** aktivan plan, ne znanstveni rezultat  
+**Verzija:** 1.65 · **Datum odluke:** 30. 9. 2026. · **Status:** aktivan plan, ne znanstveni rezultat  
 **Kanonski dokument:** `EINSTEIN_VLASOV_NP_MASTER_PLAN.md` u repozitoriju `dvlahek/stress-energy-closure`.  
 **Radna grana:** `audit/eboss-elg-bit8-ra-orientation-20260925`, isključivo **draft PR #1**. Ne mijenjati `main` dok za to ne postoji zasebna odluka.
+
+### v1.65 — 30. 9. 2026. — E54 passes the 48k random-floor gate
+
+E54 quantifies the finite-random floor directly with four fresh 48k random replicas at fixed mock0001 full galaxies, fixed E51 tag fields and fixed E19 F+/F- theory basis. Both caps pass the preregistered engineering gate. NGC calibrated-difference median/max SD = 0.00394/0.01291, angle spread 1.92e-4 rad; SGC = 0.00728/0.01746, angle spread 1.72e-4 rad. Geometry is extremely stable and the 48k random floor is small relative to unit technical lambda. The conditioned estimator may therefore expand to all nine mocks as an **engineering/background-scatter** test. Do not interpret this as physical sensitivity or unseal observations. Because finite source pools induce replica overlap (especially SGC LRG ~51%), and the prior nested E53 48k NGC realization is atypical for several directions, the nine-mock implementation should use a frozen multi-replica random-integration policy rather than one privileged random realization. A03 absolute physical calibration and A04 inference remain blocked; observed rows/odd remain SEALED.
 
 ### v1.64 — 30. 9. 2026. — E53 Stage 2 finite-random gate
 
