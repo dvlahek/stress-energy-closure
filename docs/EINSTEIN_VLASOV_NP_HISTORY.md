@@ -1,5 +1,11 @@
 # EinsteinVlasovNP — povijest i handoff za novi chat
 
+## 1. 10. 2026. — E63 public OuterRim lightcone source preflight preregistered
+
+After the E62 periodic N-body truth PASS, the next scientific requirement is a truth-labelled survey/lightcone transfer, not further periodic-box optimization. Public-source research found that the eBOSS Sky-cut OuterRim mocks are documented in the DR16 papers but a directly downloadable sky-cut catalogue with retained per-object velocity truth is not clearly exposed in the public DR16 data release. In contrast, the public CosmoDC2 catalogue is based on the Outer Rim N-body lightcone, covers 440 deg^2, is accessible through IRSA TAP, and exposes true sky coordinates/redshift plus 3D position and velocity components. Therefore E63 is split into a source preflight followed by a separately preregistered scientific transfer test.
+
+The E63 preflight is bounded and does not define the final science sample: IRSA table `cosmodc2mockv1`, a 2-degree radius around RA=55 deg, Dec=-41 deg, 0.9<=z_true<1.0, TOP 4097 rows. It requires `galaxy_id, ra_true, dec_true, redshift_true, position_{x,y,z}, velocity_{x,y,z}, halo_mass, is_central`, at least 256 returned rows and finite required quantities. A PASS authorizes only the final E63 lightcone-transfer preregistration. Observed eBOSS rows and observed odd remain SEALED.
+
 ## 1. 10. 2026. — E62 Quijote truth-velocity calibration PASS
 
 E62 completed the preregistered Quijote fiducial realization-0 FoF z=1 periodic-box truth calibration using exactly 165107 most massive halos and 4096 deterministic probe halos. All three Cartesian velocity components pass the frozen truth and cutoff gates. x: truth Pearson 0.794758, truth sign agreement 0.798340, 192/256 cutoff Pearson 0.986083 and cutoff sign agreement 0.939453. y: 0.827203, 0.813232, 0.988552 and 0.949219. z: 0.819602, 0.810059, 0.989258 and 0.950195. The frozen requirements were >=0.70 for truth Pearson/sign and >=0.90 for cutoff Pearson/sign. E62 final decision is `PERIODIC_NBODY_TRUTH_CALIBRATION_PASS; NEXT_END_TO_END_SURVEY_LIGHTCONE_TRUTH_TRANSFER`.
