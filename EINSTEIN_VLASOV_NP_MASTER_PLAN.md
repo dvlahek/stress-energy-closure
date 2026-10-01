@@ -1,8 +1,12 @@
 # EinsteinVlasovNP — glavni istraživački plan
 
-**Verzija:** 1.75 · **Datum odluke:** 1. 10. 2026. · **Status:** aktivan plan, ne znanstveni rezultat  
+**Verzija:** 1.76 · **Datum odluke:** 1. 10. 2026. · **Status:** aktivan plan, ne znanstveni rezultat  
 **Kanonski dokument:** `EINSTEIN_VLASOV_NP_MASTER_PLAN.md` u repozitoriju `dvlahek/stress-energy-closure`.  
 **Radna grana:** `audit/eboss-elg-bit8-ra-orientation-20260925`, isključivo **draft PR #1**. Ne mijenjati `main` dok za to ne postoji zasebna odluka.
+
+### v1.76 — 1. 10. 2026. — E63 public OuterRim lightcone source preflight
+
+E62 closed the periodic-box truth gate. The next required bridge is survey/lightcone transfer with retained velocity truth. The published eBOSS DR16 Sky-cut OuterRim mocks reproduce the ELG footprint, veto masks and radial selection, but a public download exposing those exact sky-cut objects together with retained velocity truth was not verified. A clearly public alternative is CosmoDC2: an Outer Rim-based 440-deg^2 lightcone available through IRSA TAP with true sky coordinates/redshift, 3D positions and velocity components. E63 therefore starts with a fail-closed bounded source/schema preflight before freezing the actual transfer geometry or tracer sample. The preflight uses no observed eBOSS rows and cannot change E62/E59 physics. If it passes, a second E63 preregistration will freeze the lightcone tracer, geometry, selection subtraction and truth gates before any large query.
 
 ### v1.75 — 1. 10. 2026. — E62 periodic N-body truth calibration PASS
 
