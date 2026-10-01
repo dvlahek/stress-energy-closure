@@ -1,8 +1,12 @@
 # EinsteinVlasovNP — glavni istraživački plan
 
-**Verzija:** 1.83 · **Datum odluke:** 1. 10. 2026. · **Status:** aktivan plan, ne znanstveni rezultat  
+**Verzija:** 1.84 · **Datum odluke:** 1. 10. 2026. · **Status:** aktivan plan, ne znanstveni rezultat  
 **Kanonski dokument:** `EINSTEIN_VLASOV_NP_MASTER_PLAN.md` u repozitoriju `dvlahek/stress-energy-closure`.  
 **Radna grana:** `audit/eboss-elg-bit8-ra-orientation-20260925`, isključivo **draft PR #1**. Ne mijenjati `main` dok za to ne postoji zasebna odluka.
+
+### v1.84 — 1. 10. 2026. — E63B-R3 schema-confirmed central predicate
+
+A live bounded TAP schema audit confirms `cosmodc2mockv1.is_central` has datatype `char` (arraysize 11), raw values are literal `True/False`, and the exact predicate `is_central='True'` returns a valid central row. R3 therefore retains this server-side central-only filter. The prior failed R3 micro-preflight did not produce a science result and is treated as a transient/server query failure. No E63B truth metric exists yet; all frozen science settings and SEALED observation guards remain unchanged.
 
 ### v1.83 — 1. 10. 2026. — E63B-R3 IRSA boolean literal
 
