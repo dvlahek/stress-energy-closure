@@ -1,8 +1,12 @@
 # EinsteinVlasovNP — glavni istraživački plan
 
-**Verzija:** 1.80 · **Datum odluke:** 1. 10. 2026. · **Status:** aktivan plan, ne znanstveni rezultat  
+**Verzija:** 1.81 · **Datum odluke:** 1. 10. 2026. · **Status:** aktivan plan, ne znanstveni rezultat  
 **Kanonski dokument:** `EINSTEIN_VLASOV_NP_MASTER_PLAN.md` u repozitoriju `dvlahek/stress-energy-closure`.  
 **Radna grana:** `audit/eboss-elg-bit8-ra-orientation-20260925`, isključivo **draft PR #1**. Ne mijenjati `main` dok za to ne postoji zasebna odluka.
+
+### v1.81 — 1. 10. 2026. — E63B-R1 central-only retrieval completeness
+
+The first E63B production TAP job completed but returned exactly the preregistered TOP 600000 all-galaxy candidates. The fail-closed runner stopped before truth evaluation. Retrieval-only inspection found only 39729 centrals in that capped cache versus the frozen target 54893, showing that satellite over-retrieval, not a truth result, blocked completeness. E63B-R1 moves the already-frozen central-only tracer condition into the TAP query itself (`is_central=1`), keeps the same 5e12 Msun floor and TOP 600000 cap, and uses a new central-only cache. The legacy capped all-galaxy cache is provenance only. If the central-only query itself reaches TOP, E63B still stops before truth metrics. Geometry, E62-matched density, mass-ranking rule, probe seed/count, R=16 kernel, 256/192 cutoffs, LOS gates and SEALED observations are unchanged.
 
 ### v1.80 — 1. 10. 2026. — E63B transient DNS retry
 
