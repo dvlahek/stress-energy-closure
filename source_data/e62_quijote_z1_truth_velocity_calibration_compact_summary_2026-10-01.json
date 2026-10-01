@@ -1,0 +1,73 @@
+{
+  "stage": "E62_QUIJOTE_Z1_TRUTH_VELOCITY_CALIBRATION",
+  "date": "2026-09-30",
+  "status": "PASS_TRUTH_CALIBRATION_QUANTIFIED",
+  "dataset": {
+    "suite": "Quijote",
+    "cosmology": "fiducial",
+    "realization": 0,
+    "halo_catalog": "FoF",
+    "snapshot_number": 2,
+    "nominal_redshift": 1,
+    "box_size_Mpc_over_h": 1000,
+    "catalog_total_halos": 195524
+  },
+  "tracer": {
+    "policy": "exactly 165107 most massive FoF halos",
+    "n": 165107,
+    "minimum_selected_mass_Msun_over_h": 14444340820312.5,
+    "maximum_selected_mass_Msun_over_h": 1266508906250000,
+    "minimum_selected_particle_count": 22
+  },
+  "probes": {
+    "n": 4096,
+    "seed": 202609620000
+  },
+  "reconstruction": {
+    "smoothing_R_Mpc_over_h": 16,
+    "primary_cutoff_Mpc_over_h": 256,
+    "check_cutoff_Mpc_over_h": 192,
+    "periodic_minimum_image": true,
+    "unit_number_weights": true,
+    "same_kernel_as_E59": true
+  },
+  "gates": {
+    "each_axis_truth_pearson_min": 0.7,
+    "each_axis_truth_sign_agreement_min": 0.7,
+    "each_axis_cutoff_pearson_min": 0.9,
+    "each_axis_cutoff_sign_agreement_min": 0.9
+  },
+  "axes": {
+    "x": {
+      "truth_pearson": 0.7947575876615189,
+      "truth_sign_agreement": 0.79833984375,
+      "cutoff_pearson": 0.9860830654393173,
+      "cutoff_sign_agreement": 0.939453125,
+      "gate_pass": true
+    },
+    "y": {
+      "truth_pearson": 0.8272031761288812,
+      "truth_sign_agreement": 0.813232421875,
+      "cutoff_pearson": 0.9885522672246274,
+      "cutoff_sign_agreement": 0.94921875,
+      "gate_pass": true
+    },
+    "z": {
+      "truth_pearson": 0.8196021735865331,
+      "truth_sign_agreement": 0.81005859375,
+      "cutoff_pearson": 0.9892584402600095,
+      "cutoff_sign_agreement": 0.9501953125,
+      "gate_pass": true
+    }
+  },
+  "decision": {
+    "truth_velocity_gate_pass": true,
+    "interpretation": "PERIODIC_NBODY_TRUTH_CALIBRATION_PASS; NEXT_END_TO_END_SURVEY_LIGHTCONE_TRUTH_TRANSFER",
+    "important_limit": "Periodic-box method calibration only; not eBOSS cut-sky transfer, ELG HOD realism, custom F+/F- neutrino wakes, or absolute EV amplitude."
+  },
+  "observed_galaxy_rows_used": false,
+  "observed_odd_used": false,
+  "absolute_EV_amplitude_calibrated": false,
+  "covariance_inverse_used": false,
+  "pvalue_or_detection_sigma": false
+}
