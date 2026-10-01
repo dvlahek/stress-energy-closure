@@ -1,8 +1,12 @@
 # EinsteinVlasovNP — glavni istraživački plan
 
-**Verzija:** 1.79 · **Datum odluke:** 1. 10. 2026. · **Status:** aktivan plan, ne znanstveni rezultat  
+**Verzija:** 1.80 · **Datum odluke:** 1. 10. 2026. · **Status:** aktivan plan, ne znanstveni rezultat  
 **Kanonski dokument:** `EINSTEIN_VLASOV_NP_MASTER_PLAN.md` u repozitoriju `dvlahek/stress-energy-closure`.  
 **Radna grana:** `audit/eboss-elg-bit8-ra-orientation-20260925`, isključivo **draft PR #1**. Ne mijenjati `main` dok za to ne postoji zasebna odluka.
+
+### v1.80 — 1. 10. 2026. — E63B transient DNS retry
+
+The first E63B TAP candidate retrieval was submitted successfully but WSL temporarily lost DNS resolution during async phase polling. No candidate result or E63B truth metric was produced. The shared TAP helper now retries transient DNS/URL/timeouts with bounded backoff across phase polling and result retrieval. This is transport hardening only; the preregistered E63B source, geometry, tracer density, candidate floor, probe rule, reconstruction and truth gates remain unchanged.
 
 ### v1.79 — 1. 10. 2026. — E63 source PASS; E63B buffered lightcone truth transfer
 
