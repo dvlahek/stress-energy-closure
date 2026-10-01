@@ -1,5 +1,11 @@
 # EinsteinVlasovNP — povijest i handoff za novi chat
 
+## 1. 10. 2026. — E63 preflight transport fix: TAP async
+
+The first local E63 CosmoDC2 source-preflight attempt successfully reached IRSA and completed the schema query, but the bounded sample query timed out after the local 180-second synchronous HTTP read limit. This occurred before any E63 scientific result was written. IRSA documents `/TAP/async` for longer-running TAP jobs, with polling via the UWS phase endpoint and result retrieval from `/results/result`.
+
+The E63 script is therefore changed only in transport: the exact preregistered ADQL table, columns, sky center, 2-degree radius, redshift interval 0.9<=z_true<1.0 and TOP 4097 limit are unchanged. The schema query remains synchronous because it is small; the bounded CosmoDC2 sample query now runs through TAP async with fail-closed phase polling. No scientific selection, source, threshold or observed-data guardrail changed.
+
 ## 1. 10. 2026. — E63 public OuterRim lightcone source preflight preregistered
 
 After the E62 periodic N-body truth PASS, the next scientific requirement is a truth-labelled survey/lightcone transfer, not further periodic-box optimization. Public-source research found that the eBOSS Sky-cut OuterRim mocks are documented in the DR16 papers but a directly downloadable sky-cut catalogue with retained per-object velocity truth is not clearly exposed in the public DR16 data release. In contrast, the public CosmoDC2 catalogue is based on the Outer Rim N-body lightcone, covers 440 deg^2, is accessible through IRSA TAP, and exposes true sky coordinates/redshift plus 3D position and velocity components. Therefore E63 is split into a source preflight followed by a separately preregistered scientific transfer test.
