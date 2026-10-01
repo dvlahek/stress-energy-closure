@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 from __future__ import annotations
-import csv, io, json, math, time, urllib.parse, urllib.request
+import csv, io, json, math, socket, time, urllib.error, urllib.parse, urllib.request
 from pathlib import Path
 import numpy as np
 
@@ -16,6 +16,26 @@ TOP=4097
 def need(c,m):
     if not c: raise RuntimeError(m)
 
+def _urlopen_retry(req, timeout, attempts=10, label="IRSA TAP"):
+    delay=5.0
+    last=None
+    for k in range(1,attempts+1):
+        try:
+            return urllib.request.urlopen(req,timeout=timeout)
+        except urllib.error.HTTPError as e:
+            last=e
+            if e.code not in (408,429,500,502,503,504):
+                raise
+        except (urllib.error.URLError, TimeoutError, ConnectionError, socket.timeout) as e:
+            last=e
+        if k==attempts:
+            break
+        print("E63_TAP_TRANSIENT_RETRY",label,"ATTEMPT",k,"SLEEP",delay,
+              "ERROR",repr(last),flush=True)
+        time.sleep(delay)
+        delay=min(60.0,delay*1.7)
+    raise last
+
 def _check_csv(raw):
     if raw.lstrip().startswith("<?xml") or "QUERY_STATUS" in raw[:1000]:
         raise RuntimeError("IRSA TAP returned an error document instead of CSV")
@@ -28,7 +48,7 @@ def query_sync(adql):
     req=urllib.request.Request(
         TAP_BASE+"/sync",data=data,
         headers={"User-Agent":"EinsteinVlasovNP-E63/1.1"})
-    with urllib.request.urlopen(req,timeout=120) as r:
+    with _urlopen_retry(req,timeout=120,label="sync") as r:
         return _check_csv(r.read().decode("utf-8"))
 
 def _post_phase_run(job_url):
@@ -36,7 +56,7 @@ def _post_phase_run(job_url):
     req=urllib.request.Request(
         job_url.rstrip("/")+"/phase",data=data,
         headers={"User-Agent":"EinsteinVlasovNP-E63/1.1"})
-    with urllib.request.urlopen(req,timeout=60) as r:
+    with _urlopen_retry(req,timeout=60,label="phase-RUN") as r:
         r.read()
 
 def query_async(adql, poll_seconds=5, max_wait_seconds=7200):
@@ -48,7 +68,7 @@ def query_async(adql, poll_seconds=5, max_wait_seconds=7200):
     req=urllib.request.Request(
         TAP_BASE+"/async",data=data,
         headers={"User-Agent":"EinsteinVlasovNP-E63/1.1"})
-    with urllib.request.urlopen(req,timeout=120) as r:
+    with _urlopen_retry(req,timeout=120,label="async-create") as r:
         job_url=r.geturl().rstrip("/")
         location=r.headers.get("Location")
         if location:
@@ -61,7 +81,7 @@ def query_async(adql, poll_seconds=5, max_wait_seconds=7200):
     started=False
     last_phase=None
     while True:
-        with urllib.request.urlopen(job_url+"/phase",timeout=60) as r:
+        with _urlopen_retry(job_url+"/phase",timeout=60,label="phase-poll") as r:
             phase=r.read().decode("utf-8").strip().upper()
         if phase!=last_phase:
             print("E63_TAP_ASYNC_PHASE",phase,flush=True)
@@ -77,13 +97,13 @@ def query_async(adql, poll_seconds=5, max_wait_seconds=7200):
             time.sleep(poll_seconds)
             continue
         if phase=="COMPLETED":
-            with urllib.request.urlopen(
-                job_url+"/results/result",timeout=300) as r:
+            with _urlopen_retry(
+                job_url+"/results/result",timeout=300,label="result-download") as r:
                 return _check_csv(r.read().decode("utf-8"))
         if phase in ("ERROR","ABORTED","ABORT"):
             detail=""
             try:
-                with urllib.request.urlopen(job_url+"/error",timeout=60) as r:
+                with _urlopen_retry(job_url+"/error",timeout=60,label="error-detail") as r:
                     detail=r.read().decode("utf-8")[:4000]
             except Exception:
                 pass
