@@ -1,8 +1,14 @@
 # EinsteinVlasovNP — glavni istraživački plan
 
-**Verzija:** 1.74 · **Datum odluke:** 1. 10. 2026. · **Status:** aktivan plan, ne znanstveni rezultat  
+**Verzija:** 1.75 · **Datum odluke:** 1. 10. 2026. · **Status:** aktivan plan, ne znanstveni rezultat  
 **Kanonski dokument:** `EINSTEIN_VLASOV_NP_MASTER_PLAN.md` u repozitoriju `dvlahek/stress-energy-closure`.  
 **Radna grana:** `audit/eboss-elg-bit8-ra-orientation-20260925`, isključivo **draft PR #1**. Ne mijenjati `main` dok za to ne postoji zasebna odluka.
+
+### v1.75 — 1. 10. 2026. — E62 periodic N-body truth calibration PASS
+
+E62 completed the frozen Quijote fiducial realization-0 FoF z=1 truth calibration using exactly 165107 most massive halos and 4096 deterministic probe halos. All three components independently pass the frozen gates. Truth Pearson/sign: x 0.794758/0.798340, y 0.827203/0.813232, z 0.819602/0.810059, all above 0.70. The 192/256 Mpc/h cutoff Pearson/sign diagnostics are x 0.986083/0.939453, y 0.988552/0.949219, z 0.989258/0.950195, all above 0.90. This directly validates the unchanged E59/E61 reconstruction method against known N-body peculiar-velocity truth in a complete periodic z~1 box.
+
+The next gate is **not** another periodic-box optimization and does not authorize observations. It must quantify transfer through survey-like cut-sky/radial selection and tracer sampling while retaining velocity truth. E62 therefore advances only to an end-to-end survey/lightcone truth-transfer stage. Observed eBOSS galaxy rows and the sealed 24D odd vector remain inaccessible; A03 absolute conditioned amplitude and A04 inference remain blocked.
 
 ### v1.74 — 1. 10. 2026. — E62 implementation fix: vendored readfof
 
