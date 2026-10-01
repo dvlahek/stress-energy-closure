@@ -1,8 +1,12 @@
 # EinsteinVlasovNP — glavni istraživački plan
 
-**Verzija:** 1.78 · **Datum odluke:** 1. 10. 2026. · **Status:** aktivan plan, ne znanstveni rezultat  
+**Verzija:** 1.79 · **Datum odluke:** 1. 10. 2026. · **Status:** aktivan plan, ne znanstveni rezultat  
 **Kanonski dokument:** `EINSTEIN_VLASOV_NP_MASTER_PLAN.md` u repozitoriju `dvlahek/stress-energy-closure`.  
 **Radna grana:** `audit/eboss-elg-bit8-ra-orientation-20260925`, isključivo **draft PR #1**. Ne mijenjati `main` dok za to ne postoji zasebna odluka.
+
+### v1.79 — 1. 10. 2026. — E63 source PASS; E63B buffered lightcone truth transfer
+
+E63 public-source preflight passed on IRSA `cosmodc2mockv1`: all required true sky/redshift, 3D position, peculiar-velocity, halo-mass and central/satellite fields are available and the bounded preregistered query returned TOP 4097 rows with finite diagnostics. The next scientific gate is split deliberately. E63B first tests periodic-snapshot -> observer-lightcone transfer **without** survey-mask subtraction by fully buffering every truth probe from source boundaries. The source cone is RA=55 deg, Dec=-41 deg, radius 9.5 deg, 0.75<=z_true<1.16; probes are 512 deterministic tracers within radius 2.5 deg and 0.9<=z_true<1.0. Central galaxies are mass-ranked to the exact E62 tracer density 1.65107e-4 h^3 Mpc^-3, preserving tracer sparsity while changing geometry and epoch structure. The unchanged E59/E62 R=16 Mpc/h reconstruction uses 256 Mpc/h primary and 192 Mpc/h check cutoffs. The primary LOS truth gate remains Pearson/sign>=0.70 and cutoff Pearson/sign>=0.90. Only an E63B PASS can advance to E64, which will add survey angular/radial selection and ELG-like sampling with truth still retained. Observed eBOSS rows/odd remain SEALED; A03 absolute conditioned amplitude and A04 inference remain blocked.
 
 ### v1.78 — 1. 10. 2026. — E63 CosmoDC2 boolean parser fix
 
