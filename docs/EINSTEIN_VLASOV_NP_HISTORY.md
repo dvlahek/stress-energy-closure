@@ -1,5 +1,9 @@
 # EinsteinVlasovNP — povijest i handoff za novi chat
 
+## 1. 10. 2026. — E63B-R3 schema audit confirms central predicate
+
+A bounded TAP schema audit established `cosmodc2mockv1.is_central` as `char` with arraysize 11. A no-filter sample returned literal CSV values `True` and `False`, and the exact bounded predicate `is_central='True'` returned a valid central row. Therefore the R3 central-only ADQL representation is confirmed against the live service. The earlier R3 micro-preflight error is treated as a transient/server-side query failure, not evidence against the predicate. No E63B production truth metric has yet been produced. Science tracer density, mass floor, TOP cap, geometry, kernel, probes, gates and observed-data sealing remain unchanged.
+
 ## 1. 10. 2026. — E63B-R3 IRSA boolean-literal fix
 
 The crash-resumable R2 transport worked: IRSA async job 23976432 was checkpointed, progressed QUEUED -> EXECUTING, then the server returned ERROR before any cache or truth metric. The VOTable error was Oracle ORA-12801 / ORA-01722 invalid number. This isolates the failure to the ADQL predicate `is_central=1`. Earlier E63 had already established that IRSA serializes this CosmoDC2 field as boolean text `True/False`. R3 therefore changes only the server-side representation of the already-frozen central-only condition to `is_central='True'` and uses a fresh R3 async checkpoint file, preserving the known failed R2 job state as provenance. The 5e12 Msun floor, TOP 600000 cap, E62-matched density, geometry, probe rule, R=16 kernel, 256/192 cutoffs, truth thresholds and observation sealing remain unchanged. No E63B truth metric exists yet.
