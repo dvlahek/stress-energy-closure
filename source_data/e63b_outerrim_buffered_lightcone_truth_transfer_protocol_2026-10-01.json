@@ -18,9 +18,10 @@
     "candidate_retrieval_halo_mass_floor_Msun": 5000000000000,
     "candidate_TOP_cap": 600000,
     "central_only_science_tracer": true,
-    "server_side_candidate_filter": "is_central=1",
+    "server_side_candidate_filter": "is_central='True'",
     "candidate_cache": "eboss_workspace/cosmodc2/e63b_outerrim_central_candidates.csv",
-    "legacy_capped_all_galaxy_cache": "eboss_workspace/cosmodc2/e63b_outerrim_candidates.csv"
+    "legacy_capped_all_galaxy_cache": "eboss_workspace/cosmodc2/e63b_outerrim_candidates.csv",
+    "tap_resume_state": "eboss_workspace/cosmodc2/e63b_outerrim_central_candidates_tap_job_R3.json"
   },
   "outerrim_cosmology": {
     "Omega_m": 0.2648,
@@ -107,5 +108,24 @@
       "observed-data sealing"
     ],
     "prior_cache_use": "provenance/diagnostic only; never accepted for E63B truth evaluation"
+  },
+  "retrieval_repair_r3": {
+    "id": "E63B_R3_IRSA_BOOLEAN_LITERAL_FIX",
+    "frozen_before_any_truth_metric": true,
+    "trigger": "R2 central-only async job 23976432 failed at IRSA with ORA-01722 invalid number before any candidate cache or truth metric. Earlier E63 returned is_central as CSV boolean text True/False.",
+    "change": "Represent the already-frozen central-only predicate as the IRSA-compatible text literal is_central='True'. Use a fresh R3 async-job checkpoint file so the known ERROR R2 job is preserved as provenance and cannot be resumed.",
+    "unchanged": [
+      "central-only science-tracer definition",
+      "IRSA table and source cone/shell",
+      "halo-mass retrieval floor 5e12 Msun",
+      "TOP cap 600000",
+      "target tracer density 1.65107e-4 h^3 Mpc^-3",
+      "mass-descending plus galaxy_id tie-break science selection",
+      "512 probe rule and seed",
+      "R=16 Mpc/h smoothing and 256/192 Mpc/h cutoffs",
+      "LOS truth and cutoff gates",
+      "observed-data sealing"
+    ],
+    "classification": "query/schema representation fix only; no science selection change"
   }
 }
