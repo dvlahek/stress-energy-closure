@@ -1,8 +1,12 @@
 # EinsteinVlasovNP — glavni istraživački plan
 
-**Verzija:** 1.76 · **Datum odluke:** 1. 10. 2026. · **Status:** aktivan plan, ne znanstveni rezultat  
+**Verzija:** 1.77 · **Datum odluke:** 1. 10. 2026. · **Status:** aktivan plan, ne znanstveni rezultat  
 **Kanonski dokument:** `EINSTEIN_VLASOV_NP_MASTER_PLAN.md` u repozitoriju `dvlahek/stress-energy-closure`.  
 **Radna grana:** `audit/eboss-elg-bit8-ra-orientation-20260925`, isključivo **draft PR #1**. Ne mijenjati `main` dok za to ne postoji zasebna odluka.
+
+### v1.77 — 1. 10. 2026. — E63 TAP async transport fix
+
+The first E63 public-source preflight attempt reached IRSA but the preregistered bounded CosmoDC2 sample query exceeded the local synchronous HTTP read timeout before producing a result. IRSA explicitly provides TAP asynchronous jobs for longer searches. E63 therefore changes only the transport layer: the schema query remains `/sync`, while the exact same preregistered sample ADQL now uses `/async` with UWS phase polling. Table, required columns, RA/Dec center, 2-degree radius, 0.9<=z_true<1.0 interval, TOP 4097 limit and all sealing rules are unchanged. This is an implementation repair, not a science change.
 
 ### v1.76 — 1. 10. 2026. — E63 public OuterRim lightcone source preflight
 
