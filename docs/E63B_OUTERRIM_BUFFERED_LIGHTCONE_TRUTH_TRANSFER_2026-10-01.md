@@ -1,5 +1,13 @@
 # E63B — buffered OuterRim lightcone truth transfer
 
+## E63B-R1 retrieval-completeness repair — 1 October 2026
+
+The first production candidate query completed at IRSA but returned exactly the preregistered TOP 600000 rows. The cached result contained 39729 central galaxies, below the frozen geometric target count of 54893. The runner therefore stopped before any velocity reconstruction or truth metric. This is a candidate-retrieval completeness failure, not an E63B science FAIL.
+
+R1 moves the already-frozen central-only science-tracer condition into the TAP candidate query itself using `is_central=1`. The mass floor remains 5e12 Msun and the TOP cap remains 600000. The central-only retrieval is written to a new cache, `eboss_workspace/cosmodc2/e63b_outerrim_central_candidates.csv`; the earlier all-galaxy capped cache is provenance/diagnostic only and is never reused for truth evaluation. R1 still fails closed if the central-only query reaches TOP 600000.
+
+No source geometry, tracer density, mass-ranking rule, probe definition, reconstruction kernel, 256/192 Mpc/h cutoffs, truth thresholds, or observed-data guardrail changes. Observed eBOSS rows and the observed odd vector remain SEALED.
+
 E63 source preflight passed: the public IRSA CosmoDC2 table exposes true sky/redshift, 3D position and velocity truth. E63B now performs the first preregistered lightcone truth test.
 
 The test deliberately isolates **periodic snapshot -> lightcone geometry/evolution** from later survey-mask/HOD effects.
