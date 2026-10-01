@@ -1,8 +1,12 @@
 # EinsteinVlasovNP — glavni istraživački plan
 
-**Verzija:** 1.77 · **Datum odluke:** 1. 10. 2026. · **Status:** aktivan plan, ne znanstveni rezultat  
+**Verzija:** 1.78 · **Datum odluke:** 1. 10. 2026. · **Status:** aktivan plan, ne znanstveni rezultat  
 **Kanonski dokument:** `EINSTEIN_VLASOV_NP_MASTER_PLAN.md` u repozitoriju `dvlahek/stress-energy-closure`.  
 **Radna grana:** `audit/eboss-elg-bit8-ra-orientation-20260925`, isključivo **draft PR #1**. Ne mijenjati `main` dok za to ne postoji zasebna odluka.
+
+### v1.78 — 1. 10. 2026. — E63 CosmoDC2 boolean parser fix
+
+The E63 async TAP transport now reaches COMPLETED successfully. The returned CosmoDC2 CSV represents `is_central` as boolean text rather than a numeric scalar, so the preflight parser is updated to parse `True/False` explicitly. No E63 source, geometry, redshift range, required-column list, TOP limit, threshold or sealing rule changes. The fix is parser-only and precedes any E63 preflight result.
 
 ### v1.77 — 1. 10. 2026. — E63 TAP async transport fix
 
