@@ -1,8 +1,12 @@
 # EinsteinVlasovNP — glavni istraživački plan
 
-**Verzija:** 1.73 · **Datum odluke:** 30. 9. 2026. · **Status:** aktivan plan, ne znanstveni rezultat  
+**Verzija:** 1.74 · **Datum odluke:** 1. 10. 2026. · **Status:** aktivan plan, ne znanstveni rezultat  
 **Kanonski dokument:** `EINSTEIN_VLASOV_NP_MASTER_PLAN.md` u repozitoriju `dvlahek/stress-energy-closure`.  
 **Radna grana:** `audit/eboss-elg-bit8-ra-orientation-20260925`, isključivo **draft PR #1**. Ne mijenjati `main` dok za to ne postoji zasebna odluka.
+
+### v1.74 — 1. 10. 2026. — E62 implementation fix: vendored readfof
+
+E62 scientific preregistration is unchanged. The initial Python 3.12 environment attempt to install the complete Pylians package failed while compiling unrelated Cython extensions before any Quijote data were read. Because E62 needs only the upstream pure-Python FoF reader, `scripts/readfof.py` is now vendored from Pylians3 and the E62 runner/documentation are updated to use it directly. No E62 dataset, tracer, probe, kernel, cutoff, truth metric, threshold or sealing rule changed. Full Pylians installation is explicitly not required.
 
 ### v1.73 — 30. 9. 2026. — E61 full-pool PASS; preregister E62 N-body truth velocity calibration
 
