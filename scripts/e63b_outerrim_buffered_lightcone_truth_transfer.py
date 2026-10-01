@@ -40,7 +40,8 @@ import e63_cosmodc2_outerrim_lightcone_source_preflight as P
 PREFLIGHT=ROOT/"source_data/e63_cosmodc2_outerrim_lightcone_source_preflight_result_compact_2026-10-01.json"
 E62=ROOT/"source_data/e62_quijote_z1_truth_velocity_calibration_compact_summary_2026-10-01.json"
 OUT=ROOT/"source_data/e63b_outerrim_buffered_lightcone_truth_transfer_result.json"
-CACHE=ROOT/"eboss_workspace/cosmodc2/e63b_outerrim_candidates.csv"
+CACHE=ROOT/"eboss_workspace/cosmodc2/e63b_outerrim_central_candidates.csv"
+LEGACY_CAPPED_CACHE=ROOT/"eboss_workspace/cosmodc2/e63b_outerrim_candidates.csv"
 
 TABLE="cosmodc2mockv1"
 RA0=55.0
@@ -183,6 +184,7 @@ def query_string():
       f"SELECT TOP {TOP_CAP} {cols} FROM {TABLE} WHERE "
       f"redshift_true>={SOURCE_Z0} AND redshift_true<{SOURCE_Z1} AND "
       f"halo_mass>={MASS_FLOOR:.1f} AND "
+      f"is_central=1 AND "
       f"1=CONTAINS(POINT('ICRS',ra_true,dec_true),"
       f"CIRCLE('ICRS',{RA0},{DEC0},{OUTER_RADIUS_DEG}))"
     )
@@ -298,6 +300,7 @@ def metrics(rec,chk,truth,pos):
 
 def self_test():
     need(abs(N_TARGET-0.000165107)<1e-15,"density constant drift")
+    need("is_central=1" in query_string(),"central-only TAP retrieval predicate missing")
     need(chi_h(PROBE_Z0)-chi_h(SOURCE_Z0)>256.0,"lower radial buffer prereg invalid")
     need(chi_h(SOURCE_Z1)-chi_h(PROBE_Z1)>256.0,"upper radial buffer prereg invalid")
     need(chi_h(PROBE_Z0)*math.sin(math.radians(OUTER_RADIUS_DEG-INNER_RADIUS_DEG))>256.0,
@@ -336,6 +339,8 @@ def main():
     d=parse_rows(rows)
     central=np.flatnonzero(d["is_central"])
     need(len(central)>0,"No central candidates")
+    need(len(central)==len(rows),
+         f"Server-side central-only retrieval leaked non-central rows: {len(rows)-len(central)}")
     need(len(np.unique(d["halo_id"][central]))==len(central),
          "Central sample has duplicate halo_id values")
 
@@ -393,6 +398,9 @@ def main():
       "source":{
         "table":TABLE,"tap_endpoint":"https://irsa.ipac.caltech.edu/TAP",
         "query":q,"cache":str(CACHE),"cache_sha256":sha256_bytes(raw.encode()),
+        "legacy_all_galaxy_capped_cache":str(LEGACY_CAPPED_CACHE),
+        "server_side_central_filter":True,
+        "retrieval_complete_below_TOP_cap":bool(len(rows)<TOP_CAP),
         "candidate_rows":len(rows),"central_candidate_rows":len(central),
         "outer_radius_deg":OUTER_RADIUS_DEG,
         "source_redshift_true":[SOURCE_Z0,SOURCE_Z1],
