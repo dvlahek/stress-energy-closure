@@ -1,8 +1,12 @@
 # EinsteinVlasovNP — glavni istraživački plan
 
-**Verzija:** 1.82 · **Datum odluke:** 1. 10. 2026. · **Status:** aktivan plan, ne znanstveni rezultat  
+**Verzija:** 1.83 · **Datum odluke:** 1. 10. 2026. · **Status:** aktivan plan, ne znanstveni rezultat  
 **Kanonski dokument:** `EINSTEIN_VLASOV_NP_MASTER_PLAN.md` u repozitoriju `dvlahek/stress-energy-closure`.  
 **Radna grana:** `audit/eboss-elg-bit8-ra-orientation-20260925`, isključivo **draft PR #1**. Ne mijenjati `main` dok za to ne postoji zasebna odluka.
+
+### v1.83 — 1. 10. 2026. — E63B-R3 IRSA boolean literal
+
+The R2 crash-resumable transport successfully checkpointed IRSA async job 23976432, which reached EXECUTING and then failed server-side with Oracle ORA-01722 invalid number before any candidate cache or truth metric. This identifies a query-type mismatch in `is_central=1`, not a scientific result. E63 had already shown the returned field is boolean text `True/False`. R3 therefore represents the same frozen central-only science condition as `is_central='True'` and uses a fresh R3 TAP-state file, while retaining the failed R2 state as provenance. No source geometry, 5e12 Msun retrieval floor, TOP 600000 cap, E62-matched tracer density, mass ranking, probes, R=16 kernel, 256/192 cutoffs, LOS gates or SEALED observation rule changes.
 
 ### v1.82 — 1. 10. 2026. — E63B crash-resumable TAP job
 
