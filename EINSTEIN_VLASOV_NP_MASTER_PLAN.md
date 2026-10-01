@@ -1,8 +1,12 @@
 # EinsteinVlasovNP — glavni istraživački plan
 
-**Verzija:** 1.81 · **Datum odluke:** 1. 10. 2026. · **Status:** aktivan plan, ne znanstveni rezultat  
+**Verzija:** 1.82 · **Datum odluke:** 1. 10. 2026. · **Status:** aktivan plan, ne znanstveni rezultat  
 **Kanonski dokument:** `EINSTEIN_VLASOV_NP_MASTER_PLAN.md` u repozitoriju `dvlahek/stress-energy-closure`.  
 **Radna grana:** `audit/eboss-elg-bit8-ra-orientation-20260925`, isključivo **draft PR #1**. Ne mijenjati `main` dok za to ne postoji zasebna odluka.
+
+### v1.82 — 1. 10. 2026. — E63B crash-resumable TAP job
+
+Repeated WSL instability occurred before any R1 central-only cache or E63B truth metric was produced. The E63 TAP async transport now checkpoints the exact IRSA UWS job URL plus ADQL SHA immediately after server-side job creation and resumes that same job after a local WSL crash. E63B uses a dedicated central-candidate TAP state file; a changed ADQL cannot reuse the state and fails closed. A completed server job can therefore be redownloaded without resubmission if WSL dies before local cache creation. This is implementation-only transport hardening. E63B-R1 central-only retrieval, 5e12 Msun floor, TOP 600000 cap, E62-matched density, source/probe geometry, R=16 kernel, 256/192 cutoffs, LOS gates and SEALED observations remain unchanged.
 
 ### v1.81 — 1. 10. 2026. — E63B-R1 central-only retrieval completeness
 
