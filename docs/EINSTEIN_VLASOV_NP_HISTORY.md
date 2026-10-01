@@ -1,5 +1,11 @@
 # EinsteinVlasovNP — povijest i handoff za novi chat
 
+## 1. 10. 2026. — E62 Quijote truth-velocity calibration PASS
+
+E62 completed the preregistered Quijote fiducial realization-0 FoF z=1 periodic-box truth calibration using exactly 165107 most massive halos and 4096 deterministic probe halos. All three Cartesian velocity components pass the frozen truth and cutoff gates. x: truth Pearson 0.794758, truth sign agreement 0.798340, 192/256 cutoff Pearson 0.986083 and cutoff sign agreement 0.939453. y: 0.827203, 0.813232, 0.988552 and 0.949219. z: 0.819602, 0.810059, 0.989258 and 0.950195. The frozen requirements were >=0.70 for truth Pearson/sign and >=0.90 for cutoff Pearson/sign. E62 final decision is `PERIODIC_NBODY_TRUTH_CALIBRATION_PASS; NEXT_END_TO_END_SURVEY_LIGHTCONE_TRUTH_TRANSFER`.
+
+This is the first direct truth-labelled evidence that the unchanged E59/E61 density-to-velocity reconstruction recovers the sign/direction of a known N-body halo peculiar-velocity field at z~1 with ~0.80-0.83 component Pearson and ~0.80-0.81 sign agreement. It does not yet validate transfer through the eBOSS cut sky, radial selection, ELG HOD/shot noise, custom F+/F- neutrino states or an absolute Einstein-Vlasov amplitude. Observed eBOSS galaxy rows and observed odd remain SEALED; no covariance inverse, p-value or detection significance was used.
+
 ## 1. 10. 2026. — E62 pre-run reader fix: vendored pure-Python readfof
 
 The first local E62 environment setup attempted `pip install Pylians` under Python 3.12 and failed while compiling unrelated Cython extensions (notably `HI_clusters_library`) because the build environment pulled an incompatible Cython/NumPy combination. This failure occurred before any Quijote data read or E62 truth calculation.
