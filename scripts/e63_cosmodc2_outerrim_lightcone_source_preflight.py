@@ -109,8 +109,16 @@ def main():
     rows=parse_csv(query_async(sample_q))
     need(len(rows)>=256,f"Bounded CosmoDC2 probe returned only {len(rows)} rows")
 
-    numeric=[x for x in REQ if x!="galaxy_id"]
+    numeric=[x for x in REQ if x not in ("galaxy_id","is_central")]
     arr={k:np.asarray([float(r[k]) for r in rows],dtype=float) for k in numeric}
+    truthy={"true","1","t","yes"}
+    falsy={"false","0","f","no"}
+    ic=[]
+    for r in rows:
+        v=str(r["is_central"]).strip().lower()
+        need(v in truthy or v in falsy,f"Unexpected is_central value: {r['is_central']!r}")
+        ic.append(1.0 if v in truthy else 0.0)
+    arr["is_central"]=np.asarray(ic,dtype=float)
     for k,a in arr.items():
         need(np.isfinite(a).all(),f"Nonfinite values in {k}")
     need(np.all((arr["redshift_true"]>=Z0)&(arr["redshift_true"]<Z1)),"redshift_true range drift")
