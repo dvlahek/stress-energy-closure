@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 from __future__ import annotations
-import csv, io, json, math, socket, time, urllib.error, urllib.parse, urllib.request
+import csv, hashlib, io, json, math, os, socket, time, urllib.error, urllib.parse, urllib.request
 from pathlib import Path
 import numpy as np
 
@@ -59,23 +59,60 @@ def _post_phase_run(job_url):
     with _urlopen_retry(req,timeout=60,label="phase-RUN") as r:
         r.read()
 
-def query_async(adql, poll_seconds=5, max_wait_seconds=7200):
-    # Keep the exact preregistered ADQL query unchanged; only switch transport
-    # from TAP /sync to the standard UWS /async job interface.
-    data=urllib.parse.urlencode({
-      "REQUEST":"doQuery","LANG":"ADQL","FORMAT":"csv","QUERY":adql
-    }).encode()
-    req=urllib.request.Request(
-        TAP_BASE+"/async",data=data,
-        headers={"User-Agent":"EinsteinVlasovNP-E63/1.1"})
-    with _urlopen_retry(req,timeout=120,label="async-create") as r:
-        job_url=r.geturl().rstrip("/")
-        location=r.headers.get("Location")
-        if location:
-            job_url=urllib.parse.urljoin(job_url+"/",location).rstrip("/")
+def _adql_sha256(adql):
+    return hashlib.sha256(adql.encode("utf-8")).hexdigest()
 
-    if "/async/" not in job_url:
-        raise RuntimeError(f"Could not resolve IRSA TAP async job URL: {job_url}")
+def _write_async_state(state_path, adql, job_url, phase=None):
+    if state_path is None:
+        return
+    p=Path(state_path)
+    p.parent.mkdir(parents=True,exist_ok=True)
+    obj={
+      "adql_sha256":_adql_sha256(adql),
+      "job_url":job_url,
+      "phase":phase,
+      "tap_base":TAP_BASE,
+    }
+    tmp=p.with_suffix(p.suffix+".tmp")
+    tmp.write_text(json.dumps(obj,indent=2,sort_keys=True)+"\n")
+    os.replace(tmp,p)
+
+def _load_async_state(state_path, adql):
+    if state_path is None:
+        return None
+    p=Path(state_path)
+    if not p.is_file():
+        return None
+    obj=json.loads(p.read_text())
+    need(obj.get("adql_sha256")==_adql_sha256(adql),
+         f"IRSA TAP resume state ADQL mismatch: {p}")
+    job_url=str(obj.get("job_url","")).rstrip("/")
+    need("/async/" in job_url,f"Invalid IRSA TAP resume job URL in {p}: {job_url}")
+    print("E63_TAP_ASYNC_RESUME",job_url,"STATE",p,flush=True)
+    return job_url
+
+def query_async(adql, poll_seconds=5, max_wait_seconds=7200, state_path=None):
+    # Keep the exact preregistered ADQL unchanged. If state_path is supplied,
+    # checkpoint the IRSA UWS job URL immediately so a local WSL crash can
+    # resume the same server-side job instead of resubmitting it.
+    job_url=_load_async_state(state_path,adql)
+    if job_url is None:
+        data=urllib.parse.urlencode({
+          "REQUEST":"doQuery","LANG":"ADQL","FORMAT":"csv","QUERY":adql
+        }).encode()
+        req=urllib.request.Request(
+            TAP_BASE+"/async",data=data,
+            headers={"User-Agent":"EinsteinVlasovNP-E63/1.2"})
+        with _urlopen_retry(req,timeout=120,label="async-create") as r:
+            job_url=r.geturl().rstrip("/")
+            location=r.headers.get("Location")
+            if location:
+                job_url=urllib.parse.urljoin(job_url+"/",location).rstrip("/")
+
+        if "/async/" not in job_url:
+            raise RuntimeError(f"Could not resolve IRSA TAP async job URL: {job_url}")
+        _write_async_state(state_path,adql,job_url,"CREATED")
+        print("E63_TAP_ASYNC_JOB_CHECKPOINTED",job_url,flush=True)
 
     t0=time.time()
     started=False
@@ -85,6 +122,7 @@ def query_async(adql, poll_seconds=5, max_wait_seconds=7200):
             phase=r.read().decode("utf-8").strip().upper()
         if phase!=last_phase:
             print("E63_TAP_ASYNC_PHASE",phase,flush=True)
+            _write_async_state(state_path,adql,job_url,phase)
             last_phase=phase
         if phase=="PENDING" and not started:
             _post_phase_run(job_url)
@@ -93,13 +131,16 @@ def query_async(adql, poll_seconds=5, max_wait_seconds=7200):
         if phase in ("QUEUED","EXECUTING","PENDING"):
             if time.time()-t0>max_wait_seconds:
                 raise TimeoutError(
-                    f"IRSA TAP async job exceeded {max_wait_seconds}s: {job_url}")
+                    f"IRSA TAP async job exceeded local wait {max_wait_seconds}s; "
+                    f"resume state preserved at {state_path}: {job_url}")
             time.sleep(poll_seconds)
             continue
         if phase=="COMPLETED":
             with _urlopen_retry(
                 job_url+"/results/result",timeout=300,label="result-download") as r:
-                return _check_csv(r.read().decode("utf-8"))
+                raw=_check_csv(r.read().decode("utf-8"))
+            _write_async_state(state_path,adql,job_url,"RESULT_DOWNLOADED")
+            return raw
         if phase in ("ERROR","ABORTED","ABORT"):
             detail=""
             try:
