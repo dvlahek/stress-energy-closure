@@ -41,7 +41,7 @@ PREFLIGHT=ROOT/"source_data/e63_cosmodc2_outerrim_lightcone_source_preflight_res
 E62=ROOT/"source_data/e62_quijote_z1_truth_velocity_calibration_compact_summary_2026-10-01.json"
 OUT=ROOT/"source_data/e63b_outerrim_buffered_lightcone_truth_transfer_result.json"
 CACHE=ROOT/"eboss_workspace/cosmodc2/e63b_outerrim_central_candidates.csv"
-LEGACY_CAPPED_CACHE=ROOT/"eboss_workspace/cosmodc2/e63b_outerrim_candidates.csv"
+LEGACY_CAPPED_CACHE=ROOT/"eboss_workspace/cosmodc2/e63b_outerrim_candidates.csv"\nTAP_STATE=ROOT/"eboss_workspace/cosmodc2/e63b_outerrim_central_candidates_tap_job.json"
 
 TABLE="cosmodc2mockv1"
 RA0=55.0
@@ -197,7 +197,7 @@ def load_or_query():
         print("E63B_REUSE_CACHED_CANDIDATES",CACHE,flush=True)
     else:
         print("E63B_TAP_QUERY_START",flush=True)
-        raw=P.query_async(q,poll_seconds=5,max_wait_seconds=14400)
+        raw=P.query_async(q,poll_seconds=5,max_wait_seconds=14400,state_path=TAP_STATE)
         tmp=CACHE.with_suffix(".tmp")
         tmp.write_text(raw)
         os.replace(tmp,CACHE)
@@ -398,7 +398,7 @@ def main():
       "source":{
         "table":TABLE,"tap_endpoint":"https://irsa.ipac.caltech.edu/TAP",
         "query":q,"cache":str(CACHE),"cache_sha256":sha256_bytes(raw.encode()),
-        "legacy_all_galaxy_capped_cache":str(LEGACY_CAPPED_CACHE),
+        "legacy_all_galaxy_capped_cache":str(LEGACY_CAPPED_CACHE),\n        "tap_resume_state":str(TAP_STATE),
         "server_side_central_filter":True,
         "retrieval_complete_below_TOP_cap":bool(len(rows)<TOP_CAP),
         "candidate_rows":len(rows),"central_candidate_rows":len(central),
