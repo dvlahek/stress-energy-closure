@@ -1,5 +1,11 @@
 # EinsteinVlasovNP — povijest i handoff za novi chat
 
+## 1. 10. 2026. — E63 source preflight PASS; E63B buffered lightcone truth test preregistered
+
+The corrected E63 CosmoDC2/OuterRim source preflight passed. The public IRSA TAP table `cosmodc2mockv1` exposed all required truth columns, returned the full bounded TOP 4097 probe in the preregistered RA=55 deg, Dec=-41 deg, radius=2 deg, 0.9<=z_true<1.0 region, and reported 301 schema columns. Required position, velocity, halo-mass and central/satellite fields were finite; observed eBOSS rows and observed odd remained sealed.
+
+Because the next bridge should separate lightcone evolution/observer geometry from later survey-mask/HOD effects, E63B is preregistered as a **buffered OuterRim lightcone truth transfer**. It uses a 9.5-deg source cone over 0.75<=z_true<1.16 and a 2.5-deg, 0.9<=z_true<1.0 inner probe core. The 7-deg angular gap and radial padding are prospectively required to exceed the frozen 256 Mpc/h reconstruction cutoff. The science tracer is central-only and mass-ranked to exactly the E62 number density, 165107/(1000 Mpc/h)^3, so E63B changes geometry/lightcone evolution without changing tracer sparsity. The unchanged R=16 Mpc/h kernel is evaluated at 512 deterministic inner probes. Primary truth gate is LOS Pearson>=0.70 and sign agreement>=0.70, with 192/256 cutoff Pearson/sign>=0.90. A PASS advances only to E64 survey-mask/radial-selection/HOD truth transfer; it does not authorize eBOSS observations or absolute EV amplitude calibration.
+
 ## 1. 10. 2026. — E63 preflight parser fix: boolean is_central
 
 The second local E63 preflight attempt completed the IRSA asynchronous TAP job successfully (QUEUED -> EXECUTING -> COMPLETED) and failed only while parsing the returned CSV because CosmoDC2 exposes `is_central` as boolean text (`True/False`), while the first parser treated every non-`galaxy_id` required field as float. This occurred after data retrieval but before any E63 PASS/FAIL result was written.
