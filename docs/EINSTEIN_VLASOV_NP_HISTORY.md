@@ -1,5 +1,11 @@
 # EinsteinVlasovNP — povijest i handoff za novi chat
 
+## 1. 10. 2026. — E63B TAP transient-network retry fix
+
+The first E63B candidate retrieval created/submitted the IRSA TAP async job and then failed during UWS phase polling with `socket.gaierror: [Errno -3] Temporary failure in name resolution`. This is a transient local/network DNS failure, not an IRSA query error and not an E63B science result. No E63B output JSON was accepted.
+
+The shared E63 TAP helper is patched to retry transient DNS/URL/timeout and HTTP 408/429/5xx failures with bounded exponential backoff during sync calls, async job creation, RUN submission, phase polling and result download. The exact preregistered E63B ADQL, source cone, redshift shell, mass floor, tracer-density rule, probes, kernel and truth gates are unchanged. If the existing async job or local candidate cache survives, the next run should reuse it where possible; otherwise the same query is resubmitted.
+
 ## 1. 10. 2026. — E63B transport resilience: transient DNS retry
 
 The first local E63B candidate retrieval created an IRSA TAP async job but the WSL host temporarily lost DNS resolution while polling the job phase (`socket.gaierror: Temporary failure in name resolution`). This is a transport failure after query submission, not an E63B science result. The shared E63 TAP helper is hardened with bounded exponential retries for transient DNS/URL/timeouts during sync access, async creation, phase polling and result download. The exact E63B ADQL query, source cone, redshift shell, mass floor, TOP cap, tracer-density rule, probes, kernel and truth gates are unchanged.
