@@ -1,5 +1,9 @@
 # EinsteinVlasovNP — povijest i handoff za novi chat
 
+## 1. 10. 2026. — E63B-R2 crash-resumable IRSA TAP transport
+
+A second local WSL crash occurred before the R1 central-only candidate cache or any truth result was produced. The earlier 600000-row all-galaxy capped cache remains provenance only; no R1 central cache and no E63B result JSON existed after recovery. Because repeated WSL instability can discard only the local poller while the IRSA UWS job continues server-side, the shared E63 async helper now optionally checkpoints the exact IRSA job URL and ADQL SHA immediately after job creation and records phase changes. E63B uses a dedicated state file `eboss_workspace/cosmodc2/e63b_outerrim_central_candidates_tap_job.json`. On rerun, an exact ADQL-hash match resumes the same server-side job, including a completed job whose result still needs downloading. ADQL mismatch fails closed. This is transport resilience only: the E63B-R1 central-only query, 5e12 Msun floor, TOP 600000 cap, density, geometry, probes, kernel and truth gates are unchanged. No truth metric or observed data were accessed.
+
 ## 1. 10. 2026. — E63B-R1 central-only retrieval-completeness repair
 
 The first E63B production TAP query eventually completed and cached exactly TOP 600000 rows, then correctly failed before any truth evaluation because candidate completeness was not established. A retrieval-only diagnostic of that capped cache found 39729 central galaxies (central fraction 0.066215), below the frozen E63B target count 54893. Cache halo masses span the original 5e12 Msun floor to 8.36e14 Msun. No velocity/truth metric or observed data were used.
