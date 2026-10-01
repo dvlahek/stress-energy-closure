@@ -1,5 +1,11 @@
 # EinsteinVlasovNP — povijest i handoff za novi chat
 
+## 1. 10. 2026. — E63B-R1 central-only retrieval-completeness repair
+
+The first E63B production TAP query eventually completed and cached exactly TOP 600000 rows, then correctly failed before any truth evaluation because candidate completeness was not established. A retrieval-only diagnostic of that capped cache found 39729 central galaxies (central fraction 0.066215), below the frozen E63B target count 54893. Cache halo masses span the original 5e12 Msun floor to 8.36e14 Msun. No velocity/truth metric or observed data were used.
+
+The cause is satellite over-retrieval relative to the already-frozen central-only science tracer. E63B-R1 therefore applies `is_central=1` directly in the IRSA TAP candidate query, retains the same 5e12 Msun floor and TOP 600000 cap, and writes to a new central-only cache so the capped all-galaxy cache cannot be reused accidentally. The run remains fail-closed if the central-only query itself reaches TOP. Tracer density, mass-ranking/tie-break rule, probes, R=16 kernel, 256/192 cutoffs, LOS gates and all SEALED observation rules are unchanged.
+
 ## 1. 10. 2026. — E63B TAP transient-network retry fix
 
 The first E63B candidate retrieval created/submitted the IRSA TAP async job and then failed during UWS phase polling with `socket.gaierror: [Errno -3] Temporary failure in name resolution`. This is a transient local/network DNS failure, not an IRSA query error and not an E63B science result. No E63B output JSON was accepted.
