@@ -42,7 +42,7 @@ E62=ROOT/"source_data/e62_quijote_z1_truth_velocity_calibration_compact_summary_
 OUT=ROOT/"source_data/e63b_outerrim_buffered_lightcone_truth_transfer_result.json"
 CACHE=ROOT/"eboss_workspace/cosmodc2/e63b_outerrim_central_candidates.csv"
 LEGACY_CAPPED_CACHE=ROOT/"eboss_workspace/cosmodc2/e63b_outerrim_candidates.csv"
-TAP_STATE=ROOT/"eboss_workspace/cosmodc2/e63b_outerrim_central_candidates_tap_job.json"
+TAP_STATE=ROOT/"eboss_workspace/cosmodc2/e63b_outerrim_central_candidates_tap_job_R3.json"
 
 TABLE="cosmodc2mockv1"
 RA0=55.0
@@ -185,7 +185,7 @@ def query_string():
       f"SELECT TOP {TOP_CAP} {cols} FROM {TABLE} WHERE "
       f"redshift_true>={SOURCE_Z0} AND redshift_true<{SOURCE_Z1} AND "
       f"halo_mass>={MASS_FLOOR:.1f} AND "
-      f"is_central=1 AND "
+      f"is_central=\'True\' AND "
       f"1=CONTAINS(POINT('ICRS',ra_true,dec_true),"
       f"CIRCLE('ICRS',{RA0},{DEC0},{OUTER_RADIUS_DEG}))"
     )
@@ -301,7 +301,7 @@ def metrics(rec,chk,truth,pos):
 
 def self_test():
     need(abs(N_TARGET-0.000165107)<1e-15,"density constant drift")
-    need("is_central=1" in query_string(),"central-only TAP retrieval predicate missing")
+    need("is_central=\'True\'" in query_string(),"central-only TAP text predicate missing")
     need(chi_h(PROBE_Z0)-chi_h(SOURCE_Z0)>256.0,"lower radial buffer prereg invalid")
     need(chi_h(SOURCE_Z1)-chi_h(PROBE_Z1)>256.0,"upper radial buffer prereg invalid")
     need(chi_h(PROBE_Z0)*math.sin(math.radians(OUTER_RADIUS_DEG-INNER_RADIUS_DEG))>256.0,
