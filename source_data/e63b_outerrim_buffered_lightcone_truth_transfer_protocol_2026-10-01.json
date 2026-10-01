@@ -1,0 +1,90 @@
+{
+  "stage": "E63B_OUTERRIM_BUFFERED_LIGHTCONE_TRUTH_TRANSFER_PROTOCOL",
+  "date": "2026-10-01",
+  "frozen_before_result": true,
+  "parent_preflight_status": "PASS_PUBLIC_OUTERRIM_LIGHTCONE_SOURCE_AVAILABLE",
+  "parent_E62_status": "PASS_TRUTH_CALIBRATION_QUANTIFIED",
+  "purpose": "Test transfer of the unchanged E59/E62 density-to-velocity reconstruction from an ideal periodic snapshot to a non-periodic OuterRim lightcone with known peculiar-velocity truth, while explicitly buffering probes from source boundaries. This isolates lightcone geometry/evolution before adding a survey mask/HOD stage.",
+  "source": {
+    "service": "IRSA TAP",
+    "table": "cosmodc2mockv1",
+    "center_ra_deg": 55,
+    "center_dec_deg": -41,
+    "outer_radius_deg": 9.5,
+    "source_redshift_true": [
+      0.75,
+      1.16
+    ],
+    "candidate_retrieval_halo_mass_floor_Msun": 5000000000000,
+    "candidate_TOP_cap": 600000,
+    "central_only_science_tracer": true
+  },
+  "outerrim_cosmology": {
+    "Omega_m": 0.2648,
+    "Omega_Lambda": 0.7352,
+    "h": 0.71
+  },
+  "tracer": {
+    "target_number_density_h3_Mpc3": 0.000165107,
+    "origin": "exact E62 tracer density = 165107 halos / (1000 Mpc/h)^3",
+    "rule": "Among central galaxies above the retrieval floor in the outer cone/shell, sort by halo_mass descending then galaxy_id ascending and retain exactly round(n_target*geometric_outer_volume).",
+    "unit_number_weights": true,
+    "retrieval_floor_guard": "minimum selected halo_mass must exceed 1.10 times the retrieval floor",
+    "reason": "Match E62 tracer sparsity prospectively so E63B isolates periodic-box to lightcone transfer rather than changing tracer density."
+  },
+  "probes": {
+    "inner_radius_deg": 2.5,
+    "redshift_true": [
+      0.9,
+      1
+    ],
+    "count": 512,
+    "seed": 202610630001,
+    "requirement": "selected tracer members only"
+  },
+  "buffer_guards": {
+    "angular_gap_deg": 7,
+    "minimum_3D_angular_boundary_distance_Mpc_over_h": 256,
+    "minimum_radial_boundary_distance_Mpc_over_h": 256,
+    "candidate_outer_annulus_deg": [
+      8.5,
+      9.5
+    ],
+    "azimuth_sectors": 24,
+    "minimum_central_candidates_per_outer_sector": 50
+  },
+  "reconstruction": {
+    "smoothing_R_Mpc_over_h": 16,
+    "primary_cutoff_Mpc_over_h": 256,
+    "cutoff_check_Mpc_over_h": 192,
+    "same_real_space_kernel_as_E59_E62": true,
+    "random_subtraction": false,
+    "reason": "Every probe is required to have the full 256 Mpc/h kernel support inside the complete source cone/shell; this stage isolates lightcone transfer, not survey-mask subtraction."
+  },
+  "position_unit_guard": {
+    "policy": "Compare |position| with OuterRim comoving distance. Accept either IRSA Mpc convention (ratio~1, then multiply positions by h) or native Mpc/h convention (ratio~h, no conversion); otherwise fail."
+  },
+  "primary_truth_gate": {
+    "observable": "line-of-sight peculiar velocity at the 512 buffered lightcone probes",
+    "truth_pearson_min": 0.7,
+    "truth_sign_agreement_min": 0.7,
+    "cutoff_192_256_pearson_min": 0.9,
+    "cutoff_192_256_sign_agreement_min": 0.9
+  },
+  "secondary_diagnostics": [
+    "Cartesian x/y/z truth Pearson and sign agreement",
+    "3D reconstruction-truth vector cosine",
+    "selected halo-mass threshold",
+    "source/probe geometry checks"
+  ],
+  "if_pass": "Advance to E64 cut-sky/radial-selection/HOD truth transfer. Observed eBOSS remains sealed.",
+  "if_fail": "Do not introduce survey masks or observed tags; diagnose lightcone transfer without changing frozen E63B tracer density, kernel or truth thresholds.",
+  "forbidden": [
+    "observed eBOSS galaxy rows",
+    "observed 24D odd vector",
+    "post-result tracer-density tuning",
+    "post-result R=16 or cutoff tuning",
+    "absolute EV amplitude calibration",
+    "p-values/detection significance"
+  ]
+}
