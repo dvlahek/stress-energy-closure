@@ -1,5 +1,11 @@
 # EinsteinVlasovNP — povijest i handoff za novi chat
 
+## 1. 10. 2026. — E63 preflight parser fix: boolean is_central
+
+The second local E63 preflight attempt completed the IRSA asynchronous TAP job successfully (QUEUED -> EXECUTING -> COMPLETED) and failed only while parsing the returned CSV because CosmoDC2 exposes `is_central` as boolean text (`True/False`), while the first parser treated every non-`galaxy_id` required field as float. This occurred after data retrieval but before any E63 PASS/FAIL result was written.
+
+The runner is corrected to parse `is_central` explicitly as a boolean and to keep all other required numerical columns unchanged. The preregistered table, required columns, sky center, radius, redshift interval, TOP limit, pass conditions and sealing rules are unchanged. This is a schema-parser repair only.
+
 ## 1. 10. 2026. — E63 preflight transport fix: TAP async
 
 The first local E63 CosmoDC2 source-preflight attempt successfully reached IRSA and completed the schema query, but the bounded sample query timed out after the local 180-second synchronous HTTP read limit. This occurred before any E63 scientific result was written. IRSA documents `/TAP/async` for longer-running TAP jobs, with polling via the UWS phase endpoint and result retrieval from `/results/result`.
