@@ -1,5 +1,11 @@
 # EinsteinVlasovNP — povijest i handoff za novi chat
 
+## 1. 10. 2026. — E62 pre-run reader fix: vendored pure-Python readfof
+
+The first local E62 environment setup attempted `pip install Pylians` under Python 3.12 and failed while compiling unrelated Cython extensions (notably `HI_clusters_library`) because the build environment pulled an incompatible Cython/NumPy combination. This failure occurred before any Quijote data read or E62 truth calculation.
+
+Inspection of upstream Pylians3 confirms that `library/readfof.py`, the only component E62 needs, is a standalone pure-Python reader depending on NumPy plus standard-library modules. The audit branch therefore vendors the upstream MIT-licensed reader as `scripts/readfof.py` and E62 now imports that file directly. No E62 scientific parameter, dataset choice, halo count, smoothing scale, cutoff, probe seed, gate threshold or observed-data guardrail changed. Full Pylians installation is no longer required for E62.
+
 ## 30. 9. 2026. — E61 full-pool lock PASS; E62 truth-velocity method gate frozen
 
 E61 completed all 18 mock/cap full-pool reconstructions using the exact E59 probes and kernel. The complete source-eligible ELG random pool is now the final deterministic survey-selection operator. The seven-replica E60 mean is diagnostic only, but it is an excellent surrogate for the full-pool reconstruction across all nine mocks in both caps.
