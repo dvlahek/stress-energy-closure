@@ -1,5 +1,9 @@
 # EinsteinVlasovNP — povijest i handoff za novi chat
 
+## 1. 10. 2026. — E63B transport resilience: transient DNS retry
+
+The first local E63B candidate retrieval created an IRSA TAP async job but the WSL host temporarily lost DNS resolution while polling the job phase (`socket.gaierror: Temporary failure in name resolution`). This is a transport failure after query submission, not an E63B science result. The shared E63 TAP helper is hardened with bounded exponential retries for transient DNS/URL/timeouts during sync access, async creation, phase polling and result download. The exact E63B ADQL query, source cone, redshift shell, mass floor, TOP cap, tracer-density rule, probes, kernel and truth gates are unchanged.
+
 ## 1. 10. 2026. — E63 source preflight PASS; E63B buffered lightcone truth test preregistered
 
 The corrected E63 CosmoDC2/OuterRim source preflight passed. The public IRSA TAP table `cosmodc2mockv1` exposed all required truth columns, returned the full bounded TOP 4097 probe in the preregistered RA=55 deg, Dec=-41 deg, radius=2 deg, 0.9<=z_true<1.0 region, and reported 301 schema columns. Required position, velocity, halo-mass and central/satellite fields were finite; observed eBOSS rows and observed odd remained sealed.
