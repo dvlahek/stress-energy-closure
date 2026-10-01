@@ -1,0 +1,56 @@
+{
+  "stage": "E63_COSMODC2_OUTERRIM_LIGHTCONE_SOURCE_PREFLIGHT_PROTOCOL",
+  "date": "2026-10-01",
+  "frozen_before_result": true,
+  "parent_E62": {
+    "status": "PASS_TRUTH_CALIBRATION_QUANTIFIED",
+    "decision": "PERIODIC_NBODY_TRUTH_CALIBRATION_PASS; NEXT_END_TO_END_SURVEY_LIGHTCONE_TRUTH_TRANSFER"
+  },
+  "purpose": "Verify a public OuterRim-based lightcone source with sky coordinates, true redshift, 3D positions and peculiar velocities before designing the end-to-end survey/lightcone truth-transfer test.",
+  "public_source": {
+    "service": "IRSA TAP",
+    "endpoint": "https://irsa.ipac.caltech.edu/TAP",
+    "table": "cosmodc2mockv1",
+    "catalog": "CosmoDC2 Mock V1",
+    "basis": "Outer Rim N-body lightcone",
+    "sky_area_deg2": 440
+  },
+  "required_columns": [
+    "galaxy_id",
+    "ra_true",
+    "dec_true",
+    "redshift_true",
+    "position_x",
+    "position_y",
+    "position_z",
+    "velocity_x",
+    "velocity_y",
+    "velocity_z",
+    "halo_mass",
+    "is_central"
+  ],
+  "bounded_probe": {
+    "center_ra_deg": 55,
+    "center_dec_deg": -41,
+    "radius_deg": 2,
+    "redshift_true_min": 0.9,
+    "redshift_true_max_exclusive": 1,
+    "max_rows": 4097,
+    "reason": "Source/schema availability only; not a scientific selection or final E63 lightcone geometry."
+  },
+  "pass_conditions": {
+    "all_required_columns_present": true,
+    "tap_query_succeeds": true,
+    "minimum_rows_returned": 256,
+    "all_numeric_required_fields_finite": true,
+    "redshift_range_respected": true
+  },
+  "interpretation": "A PASS authorizes only preregistration of the actual E63 lightcone truth-transfer test. It does not select the final tracer, sky footprint, radial selection, or truth threshold.",
+  "forbidden": [
+    "observed eBOSS galaxy rows",
+    "observed 24D odd vector",
+    "post-result choice of final E63 lightcone geometry",
+    "absolute Einstein-Vlasov amplitude calibration",
+    "p-values or detection significance"
+  ]
+}
