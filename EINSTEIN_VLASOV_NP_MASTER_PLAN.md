@@ -1,8 +1,12 @@
 # EinsteinVlasovNP — glavni istraživački plan
 
-**Verzija:** 1.84 · **Datum odluke:** 1. 10. 2026. · **Status:** aktivan plan, ne znanstveni rezultat  
+**Verzija:** 1.85 · **Datum odluke:** 1. 10. 2026. · **Status:** aktivan plan, ne znanstveni rezultat  
 **Kanonski dokument:** `EINSTEIN_VLASOV_NP_MASTER_PLAN.md` u repozitoriju `dvlahek/stress-energy-closure`.  
 **Radna grana:** `audit/eboss-elg-bit8-ra-orientation-20260925`, isključivo **draft PR #1**. Ne mijenjati `main` dok za to ne postoji zasebna odluka.
+
+### v1.85 — 2. 10. 2026. — E63B-R4 partitioned exact-equivalent retrieval
+
+The monolithic schema-confirmed R3 central-only TAP query remained EXECUTING for many hours without producing a science cache or truth metric. R4 keeps the identical frozen candidate domain but retrieves it incrementally: eight disjoint redshift chunks span exactly 0.75<=z_true<1.16, with the same central-only predicate and 5e12 Msun floor. Server-side geometry is a fixed RA 42..68 deg, Dec -50.6..-31.4 deg rectangular superset that contains the entire frozen 9.5-deg cone around (55,-41); the exact original spherical cut is applied locally before mass ranking or probes. Each chunk has its own TOP 600000 fail-closed gate, cache and resumable IRSA job state. This is retrieval engineering only. Target density, exact cone/shell, mass selection, probe seed/count, R=16 kernel, 256/192 cutoffs, LOS gates and SEALED observations remain unchanged.
 
 ### v1.84 — 1. 10. 2026. — E63B-R3 schema-confirmed central predicate
 
