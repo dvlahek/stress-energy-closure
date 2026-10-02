@@ -1,5 +1,9 @@
 # EinsteinVlasovNP — povijest i handoff za novi chat
 
+## 2. 10. 2026. — E63B-R4 partitioned exact-equivalent retrieval
+
+The live schema-confirmed R3 central-only IRSA job remained in EXECUTING for many hours and had not produced a central cache or any truth metric. R4 changes retrieval engineering only. The frozen source shell 0.75<=z_true<1.16 is split prospectively into eight disjoint intervals [0.75,0.80), [0.80,0.85), [0.85,0.90), [0.90,0.95), [0.95,1.00), [1.00,1.05), [1.05,1.10), [1.10,1.16). Each query keeps central-only `is_central='True'`, the 5e12 Msun floor and TOP 600000, but replaces the expensive server-side spherical CONTAINS predicate with the fixed RA/Dec rectangular superset RA 42..68 deg and Dec -50.6..-31.4 deg. This rectangle provably contains the entire frozen 9.5-deg cone around (55,-41); the exact original spherical angular cut is then applied locally before any science selection. Each chunk has its own resumable UWS state and cache. Any chunk hitting TOP, any guard leakage, or any duplicate merged galaxy_id fails closed before truth. Thus the admissible science objects are unchanged while retrieval becomes incremental and crash-resumable. No E63B truth metric exists yet; observed eBOSS remains SEALED.
+
 ## 1. 10. 2026. — E63B-R3 schema audit confirms central predicate
 
 A bounded TAP schema audit established `cosmodc2mockv1.is_central` as `char` with arraysize 11. A no-filter sample returned literal CSV values `True` and `False`, and the exact bounded predicate `is_central='True'` returned a valid central row. Therefore the R3 central-only ADQL representation is confirmed against the live service. The earlier R3 micro-preflight error is treated as a transient/server-side query failure, not evidence against the predicate. No E63B production truth metric has yet been produced. Science tracer density, mass floor, TOP cap, geometry, kernel, probes, gates and observed-data sealing remain unchanged.
