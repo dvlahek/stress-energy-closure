@@ -40,9 +40,10 @@ import e63_cosmodc2_outerrim_lightcone_source_preflight as P
 PREFLIGHT=ROOT/"source_data/e63_cosmodc2_outerrim_lightcone_source_preflight_result_compact_2026-10-01.json"
 E62=ROOT/"source_data/e62_quijote_z1_truth_velocity_calibration_compact_summary_2026-10-01.json"
 OUT=ROOT/"source_data/e63b_outerrim_buffered_lightcone_truth_transfer_result.json"
-CACHE=ROOT/"eboss_workspace/cosmodc2/e63b_outerrim_central_candidates.csv"
+CACHE=ROOT/"eboss_workspace/cosmodc2/e63b_outerrim_central_candidates_R4.csv"
+CHUNK_DIR=ROOT/"eboss_workspace/cosmodc2/e63b_r4_chunks"
 LEGACY_CAPPED_CACHE=ROOT/"eboss_workspace/cosmodc2/e63b_outerrim_candidates.csv"
-TAP_STATE=ROOT/"eboss_workspace/cosmodc2/e63b_outerrim_central_candidates_tap_job_R3.json"
+LEGACY_R3_STATE=ROOT/"eboss_workspace/cosmodc2/e63b_outerrim_central_candidates_tap_job_R3.json"
 
 TABLE="cosmodc2mockv1"
 RA0=55.0
@@ -55,6 +56,11 @@ PROBE_Z0=0.9
 PROBE_Z1=1.0
 MASS_FLOOR=5.0e12
 TOP_CAP=600000
+Z_EDGES=(0.75,0.80,0.85,0.90,0.95,1.00,1.05,1.10,1.16)
+RA_BOX0=42.0
+RA_BOX1=68.0
+DEC_BOX0=-50.6
+DEC_BOX1=-31.4
 NPROBE=512
 PROBE_SEED=202610630001
 
@@ -179,34 +185,92 @@ def vector_cosines(a,b):
     need(np.count_nonzero(m)>=0.95*len(a),"Too many zero vectors")
     return np.einsum("ij,ij->i",a[m],b[m])/den[m]
 
-def query_string():
+def query_string_chunk(z0,z1):
     cols=",".join(REQ)
     return (
       f"SELECT TOP {TOP_CAP} {cols} FROM {TABLE} WHERE "
-      f"redshift_true>={SOURCE_Z0} AND redshift_true<{SOURCE_Z1} AND "
+      f"redshift_true>={z0:.8g} AND redshift_true<{z1:.8g} AND "
       f"halo_mass>={MASS_FLOOR:.1f} AND "
       f"is_central=\'True\' AND "
-      f"1=CONTAINS(POINT('ICRS',ra_true,dec_true),"
-      f"CIRCLE('ICRS',{RA0},{DEC0},{OUTER_RADIUS_DEG}))"
+      f"ra_true>={RA_BOX0:.8g} AND ra_true<={RA_BOX1:.8g} AND "
+      f"dec_true>={DEC_BOX0:.8g} AND dec_true<={DEC_BOX1:.8g}"
     )
 
+def _write_rows_csv(path,rows):
+    path.parent.mkdir(parents=True,exist_ok=True)
+    tmp=path.with_suffix(path.suffix+".tmp")
+    with tmp.open("w",newline="") as f:
+        w=csv.DictWriter(f,fieldnames=REQ,extrasaction="ignore")
+        w.writeheader()
+        w.writerows(rows)
+    os.replace(tmp,path)
+
 def load_or_query():
-    q=query_string()
     CACHE.parent.mkdir(parents=True,exist_ok=True)
+    CHUNK_DIR.mkdir(parents=True,exist_ok=True)
+
     if CACHE.is_file():
         raw=CACHE.read_text()
-        print("E63B_REUSE_CACHED_CANDIDATES",CACHE,flush=True)
-    else:
-        print("E63B_TAP_QUERY_START",flush=True)
-        raw=P.query_async(q,poll_seconds=5,max_wait_seconds=14400,state_path=TAP_STATE)
-        tmp=CACHE.with_suffix(".tmp")
-        tmp.write_text(raw)
-        os.replace(tmp,CACHE)
-        print("E63B_TAP_QUERY_CACHED",CACHE,flush=True)
-    rows=P.parse_csv(raw)
-    need(len(rows)<TOP_CAP,
-         f"Candidate query hit TOP {TOP_CAP}; retrieval floor/cap must be revised before truth evaluation")
-    return q,raw,rows
+        rows=P.parse_csv(raw)
+        print("E63B_R4_REUSE_MERGED_CACHE",CACHE,"ROWS",len(rows),flush=True)
+        return [],raw,rows,[]
+
+    all_rows=[]
+    queries=[]
+    chunk_meta=[]
+
+    for i,(z0,z1) in enumerate(zip(Z_EDGES[:-1],Z_EDGES[1:])):
+        q=query_string_chunk(z0,z1)
+        queries.append(q)
+        cp=CHUNK_DIR/f"chunk_{i:02d}_z{z0:.2f}_{z1:.2f}.csv"
+        sp=CHUNK_DIR/f"chunk_{i:02d}_z{z0:.2f}_{z1:.2f}_tap_job.json"
+
+        if cp.is_file():
+            raw=cp.read_text()
+            print("E63B_R4_REUSE_CHUNK",i,cp,flush=True)
+        else:
+            print("E63B_R4_CHUNK_START",i,"Z",z0,z1,flush=True)
+            raw=P.query_async(q,poll_seconds=5,max_wait_seconds=14400,state_path=sp)
+            tmp=cp.with_suffix(".tmp")
+            tmp.write_text(raw)
+            os.replace(tmp,cp)
+            print("E63B_R4_CHUNK_CACHED",i,cp,flush=True)
+
+        rows=P.parse_csv(raw)
+        need(len(rows)<TOP_CAP,
+             f"R4 chunk {i} hit TOP {TOP_CAP}; partition must fail closed")
+        print("E63B_R4_CHUNK_ROWS",i,len(rows),flush=True)
+
+        # Retrieval guards before exact local cone cut.
+        for r in rows:
+            need(parse_bool(r["is_central"]),f"R4 chunk {i} leaked non-central row")
+            z=float(r["redshift_true"])
+            need(z>=z0 and z<z1,f"R4 chunk {i} redshift leakage z={z}")
+            need(float(r["halo_mass"])>=MASS_FLOOR,f"R4 chunk {i} mass-floor leakage")
+            ra=float(r["ra_true"]); dec=float(r["dec_true"])
+            need(RA_BOX0<=ra<=RA_BOX1 and DEC_BOX0<=dec<=DEC_BOX1,
+                 f"R4 chunk {i} rectangular-superset leakage")
+        all_rows.extend(rows)
+        chunk_meta.append({
+          "index":i,"z":[z0,z1],"rows":len(rows),
+          "cache":str(cp),"state":str(sp),"query":q
+        })
+
+    need(len(all_rows)>0,"R4 returned no rows")
+    d=parse_rows(all_rows)
+    ang=angular_sep_deg(d["ra_true"],d["dec_true"])
+    keep=(ang<=OUTER_RADIUS_DEG)
+    rows=[all_rows[int(i)] for i in np.flatnonzero(keep)]
+
+    gids=np.asarray([int(float(r["galaxy_id"])) for r in rows],dtype=np.int64)
+    need(len(np.unique(gids))==len(gids),"R4 exact-cone merge has duplicate galaxy_id")
+    need(len(rows)>0,"R4 exact-cone filter returned no rows")
+
+    _write_rows_csv(CACHE,rows)
+    raw=CACHE.read_text()
+    print("E63B_R4_MERGED_CACHE",CACHE,
+          "RECT_ROWS",len(all_rows),"EXACT_CONE_ROWS",len(rows),flush=True)
+    return queries,raw,rows,chunk_meta
 
 def parse_bool(v):
     s=str(v).strip().lower()
@@ -301,7 +365,19 @@ def metrics(rec,chk,truth,pos):
 
 def self_test():
     need(abs(N_TARGET-0.000165107)<1e-15,"density constant drift")
-    need("is_central=\'True\'" in query_string(),"central-only TAP text predicate missing")
+    q0=query_string_chunk(Z_EDGES[0],Z_EDGES[1])
+    need("is_central=\'True\'" in q0,"central-only TAP text predicate missing")
+    need("CONTAINS" not in q0,"R4 server query must use rectangular superset, not cone geometry")
+    need(Z_EDGES[0]==SOURCE_Z0 and Z_EDGES[-1]==SOURCE_Z1,
+         "R4 z partition does not cover the frozen source shell")
+    need(all(b>a for a,b in zip(Z_EDGES[:-1],Z_EDGES[1:])),
+         "R4 z partition edges not strictly increasing")
+    max_dra=math.degrees(math.asin(math.sin(math.radians(OUTER_RADIUS_DEG))/
+                                   math.cos(math.radians(DEC0))))
+    need(RA_BOX0<=RA0-max_dra and RA_BOX1>=RA0+max_dra,
+         "R4 RA rectangular superset does not contain frozen cone")
+    need(DEC_BOX0<=DEC0-OUTER_RADIUS_DEG and DEC_BOX1>=DEC0+OUTER_RADIUS_DEG,
+         "R4 Dec rectangular superset does not contain frozen cone")
     need(chi_h(PROBE_Z0)-chi_h(SOURCE_Z0)>256.0,"lower radial buffer prereg invalid")
     need(chi_h(SOURCE_Z1)-chi_h(PROBE_Z1)>256.0,"upper radial buffer prereg invalid")
     need(chi_h(PROBE_Z0)*math.sin(math.radians(OUTER_RADIUS_DEG-INNER_RADIUS_DEG))>256.0,
@@ -335,7 +411,7 @@ def main():
     need(pf["observed_eBOSS_rows_used"] is False and pf["observed_odd_used"] is False,
          "Observation guardrail changed")
 
-    q,raw,rows=load_or_query()
+    queries,raw,rows,chunk_meta=load_or_query()
     print("E63B_CANDIDATE_ROWS",len(rows),flush=True)
     d=parse_rows(rows)
     central=np.flatnonzero(d["is_central"])
@@ -398,11 +474,15 @@ def main():
       "status":"PASS_BUFFERED_LIGHTCONE_TRUTH_TRANSFER_QUANTIFIED" if passed else "FAIL_BUFFERED_LIGHTCONE_TRUTH_TRANSFER_QUANTIFIED",
       "source":{
         "table":TABLE,"tap_endpoint":"https://irsa.ipac.caltech.edu/TAP",
-        "query":q,"cache":str(CACHE),"cache_sha256":sha256_bytes(raw.encode()),
+        "queries":queries,"cache":str(CACHE),"cache_sha256":sha256_bytes(raw.encode()),
         "legacy_all_galaxy_capped_cache":str(LEGACY_CAPPED_CACHE),
-        "tap_resume_state":str(TAP_STATE),
+        "legacy_R3_tap_resume_state":str(LEGACY_R3_STATE),
+        "r4_chunk_directory":str(CHUNK_DIR),
+        "r4_chunks":chunk_meta,
         "server_side_central_filter":True,
-        "retrieval_complete_below_TOP_cap":bool(len(rows)<TOP_CAP),
+        "server_side_geometry":"fixed rectangular superset; exact 9.5-deg cone applied locally",
+        "retrieval_complete_below_TOP_cap":bool(
+            not chunk_meta or all(x["rows"]<TOP_CAP for x in chunk_meta)),
         "candidate_rows":len(rows),"central_candidate_rows":len(central),
         "outer_radius_deg":OUTER_RADIUS_DEG,
         "source_redshift_true":[SOURCE_Z0,SOURCE_Z1],
