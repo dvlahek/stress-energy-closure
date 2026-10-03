@@ -1,8 +1,12 @@
 # EinsteinVlasovNP — glavni istraživački plan
 
-**Verzija:** 1.85 · **Datum odluke:** 1. 10. 2026. · **Status:** aktivan plan, ne znanstveni rezultat  
+**Verzija:** 1.86 · **Datum odluke:** 1. 10. 2026. · **Status:** aktivan plan, ne znanstveni rezultat  
 **Kanonski dokument:** `EINSTEIN_VLASOV_NP_MASTER_PLAN.md` u repozitoriju `dvlahek/stress-energy-closure`.  
 **Radna grana:** `audit/eboss-elg-bit8-ra-orientation-20260925`, isključivo **draft PR #1**. Ne mijenjati `main` dok za to ne postoji zasebna odluka.
+
+### v1.86 — 3. 10. 2026. — E63B-R5 indexed spatial BOX tiling
+
+R4 tile 0 remained EXECUTING for roughly a day without a tile cache or truth metric. R5 preserves the exact frozen science domain but changes retrieval to sixteen IRSA-native spatial BOX queries covering the fixed RA/Dec superset over the full 0.75<=z_true<1.16 shell. The slow server-side char `is_central` predicate is removed; central=True, galaxy_id deduplication and the exact frozen 9.5-deg cone are imposed locally before any mass ranking, probe selection or truth calculation. Each tile retains TOP 600000 fail-closed logic, its own cache and resumable UWS state. Target density, mass floor, exact source cone/shell, 512 probes, R=16 kernel, 256/192 cutoffs, LOS gates and SEALED observations are unchanged.
 
 ### v1.85 — 2. 10. 2026. — E63B-R4 partitioned exact-equivalent retrieval
 
