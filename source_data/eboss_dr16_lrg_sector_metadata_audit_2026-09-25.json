@@ -1,0 +1,94 @@
+{
+  "status": "OFFICIAL_LRG_SECTOR_METADATA_AGGREGATES_ONLY_NOT_SEMANTICS_CERTIFIED",
+  "full_catalogue_rows": 311848,
+  "distinct_integer_sector_labels": 5813,
+  "sector_label_less_or_equal_zero_count": 0,
+  "rows_per_sector_minimum": 1,
+  "rows_per_sector_median": 29.0,
+  "rows_per_sector_maximum": 285,
+  "column_aggregate_diagnostics": {
+    "sector_TSR": {
+      "finite_count": 311848,
+      "minimum": 0.0,
+      "median": 0.9421487603305785,
+      "maximum": 1.0,
+      "exact_zero_count": 9413,
+      "less_or_equal_0_5_DIAGNOSTIC_NOT_A_CUT": 59250,
+      "greater_than_1_count": 0,
+      "less_than_0_count": 0
+    },
+    "sector_SSR": {
+      "finite_count": 311848,
+      "minimum": 0.0,
+      "median": 0.9855072463768116,
+      "maximum": 1.0,
+      "exact_zero_count": 9424,
+      "less_or_equal_0_5_DIAGNOSTIC_NOT_A_CUT": 9528,
+      "greater_than_1_count": 0,
+      "less_than_0_count": 0
+    },
+    "COMP_BOSS": {
+      "finite_count": 311848,
+      "minimum": 0.0,
+      "median": 0.9855072463768116,
+      "maximum": 1.0,
+      "exact_zero_count": 9413,
+      "less_or_equal_0_5_DIAGNOSTIC_NOT_A_CUT": 58575,
+      "greater_than_1_count": 0,
+      "less_than_0_count": 0
+    }
+  },
+  "within_exact_sector_label_constancy": {
+    "sector_TSR": {
+      "sector_labels_with_span_gt_fixed_tol": 0,
+      "largest_within_sector_span": 0.0
+    },
+    "sector_SSR": {
+      "sector_labels_with_span_gt_fixed_tol": 0,
+      "largest_within_sector_span": 0.0
+    },
+    "COMP_BOSS": {
+      "sector_labels_with_span_gt_fixed_tol": 0,
+      "largest_within_sector_span": 0.0
+    }
+  },
+  "fixed_candidate_formula_diagnostics_NO_SEMANTIC_CONCLUSION": {
+    "COMP_BOSS - sector_TSR": {
+      "abs_difference_le_fixed_tol_count": 107090,
+      "max_abs_difference": 0.5,
+      "median_abs_difference": 0.025974025974025983
+    },
+    "COMP_BOSS - sector_TSR * sector_SSR": {
+      "abs_difference_le_fixed_tol_count": 74143,
+      "max_abs_difference": 1.0,
+      "median_abs_difference": 0.0444444444444444
+    },
+    "sector_TSR - sector_SSR": {
+      "abs_difference_le_fixed_tol_count": 25676,
+      "max_abs_difference": 1.0,
+      "median_abs_difference": 0.04048085641580623
+    }
+  },
+  "fixed_numeric_abs_tolerance": 1e-10,
+  "observed_row_columns_decoded": [
+    "SECTOR",
+    "sector_TSR",
+    "sector_SSR",
+    "COMP_BOSS"
+  ],
+  "individual_sector_ids_or_galaxy_rows_output": false,
+  "observed_coordinates_or_redshifts_decoded": false,
+  "observed_galaxy_weight_columns_decoded": false,
+  "observed_random_or_mock_rows_decoded": false,
+  "observed_odd_data_vector_read": false,
+  "new_selection_rule_applied": false,
+  "lrg_sector_completeness_semantics_certified": false,
+  "official_lrg_veto_polygon_composition_certified": false,
+  "physical_lrg_mask_certified": false,
+  "physical_lrg_elg_pair_window_certified": false,
+  "note": "Aggregate sector-field consistency of published full catalogue, not proof of C_eBOSS/C_z field equivalence, historical MANGLE production, random weights, published clustering cuts, physical continuous mask, pair window or odd-sector inference.",
+  "errors": [],
+  "full_file_sha256_reverified_before_rows": "39b831801adec04fe6dc5d6ab76a4b303aa58bfd303548cb7fddfae7d7f9331d",
+  "first_header_sha256_reverified_before_rows": "a48b0d1055b5f7638dc77a86eb5ff5c861b629d19ff75cd8ae8122caa7e9014b",
+  "frozen_previous_byte_only_report_sha256": "a8d515ff27c9368f65f93ee1803ae30b94eca29d945820b91807d1063c7b1d0d"
+}

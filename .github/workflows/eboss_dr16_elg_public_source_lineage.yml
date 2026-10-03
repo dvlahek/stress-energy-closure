@@ -1,0 +1,30 @@
+name: eBOSS DR16 ELG public extra-mask production-source lineage gate
+
+on:
+  push:
+    branches:
+      - audit/eboss-elg-bit8-ra-orientation-20260925
+    paths:
+      - 'scripts/audit_eboss_dr16_elg_public_source_lineage.py'
+      - 'source_data/eboss_dr16_elg_production_lineage_gate_2026-09-26.json'
+      - '.github/workflows/eboss_dr16_elg_public_source_lineage.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-and-archived-aggregate-only:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Compile offline source-only lineage checker
+        run: python -m py_compile scripts/audit_eboss_dr16_elg_public_source_lineage.py
+      - name: Synthetic negative control for changed bits and RA source
+        run: python -u scripts/audit_eboss_dr16_elg_public_source_lineage.py --self-test
+      - name: Verify exact pinned public upstream source, old aggregate bit8 report and archived polygon SHA
+        run: python -u scripts/audit_eboss_dr16_elg_public_source_lineage.py --out /tmp/elg_public_source_lineage_gate.json

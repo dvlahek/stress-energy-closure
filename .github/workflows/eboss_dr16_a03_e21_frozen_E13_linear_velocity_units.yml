@@ -1,0 +1,41 @@
+name: eBOSS A03 E21 original E13 linear LOS velocity units source-only
+on:
+  push:
+    branches:
+      - audit/eboss-elg-bit8-ra-orientation-20260925
+    paths:
+      - 'source_data/eboss_dr16_a03_e21_*'
+      - 'scripts/audit_eboss_dr16_a03_e21_original_E13_linear_LOS_velocity_units.py'
+      - '.github/workflows/eboss_dr16_a03_e21_frozen_E13_linear_velocity_units.yml'
+      - 'EINSTEIN_VLASOV_NP_MASTER_PLAN.md'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-E13-json-only-unit-and-tracer-sign-check:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Verify exact original source and E21 original archived read-only result SHA
+        run: |
+          set -euo pipefail
+          test "$(git hash-object source_data/eboss_dr16_a03_e21_linear_LOS_velocity_two_tracer_response_normalization_protocol_2026-09-29.json)" = 7fc84392a915bf3b242bbc12a27e78267dd643f1
+          test "$(git hash-object source_data/eboss_dr16_a03_e21_archived_F0_Fpm_linear_LOS_velocity_cross_unit_response_2026-09-29.json)" = cc3312c5313cce60fad4a88c3a56ef3d4e675e38
+          test "$(git hash-object source_data/eboss_dr16_a03_e13_archived_CI_2026_09_27/e13_rank_matched_direct_vTk_gaussian_fixed_mode_source_only.json)" = d571ef664a4f4c94a0f24e1ba535fbf7c9294f76
+          test "$(git hash-object source_data/eboss_dr16_a03_e13_archived_CI_2026_09_27/e13_direct_wind_FD.json)" = d8be18c960bd9a42792e77523a551b70a6aece50
+          test "$(git hash-object source_data/eboss_dr16_a03_e13_archived_CI_2026_09_27/e13_direct_wind_plus.json)" = 60650738ebbd0ca7b4f14780021e501459213f99
+          test "$(git hash-object source_data/eboss_dr16_a03_e13_archived_CI_2026_09_27/e13_direct_wind_minus.json)" = 2e76cf760af7236b1dc4ef5a1260e9b66c468ecf
+          test "$(git hash-object scripts/audit_eboss_dr16_a03_e12_direct_class_vTk_long_cross.py)" = 0f516a1525fc5df44e71c400ea0cfb30664a1ce5
+          test "$(git hash-object source_data/eboss_dr16_a03_e20_archived_exact_moment_and_cross_power_structural_QA_2026-09-29.json)" = c736ea3bca7bd0560ab07225294e1dd0930e0561
+          echo E21_EIGHT_IMMUTABLE_GIT_SOURCE_PINS_PASS
+      - name: Recompute all F 4K both-unit cross values and five tamper controls
+        env:
+          PYTHONUNBUFFERED: '1'
+        run: |
+          set -euo pipefail
+          python3 -m py_compile scripts/audit_eboss_dr16_a03_e21_original_E13_linear_LOS_velocity_units.py
+          python3 -u scripts/audit_eboss_dr16_a03_e21_original_E13_linear_LOS_velocity_units.py
+          echo E21_ORIGINAL_E13_TWO_UNIT_LINEAR_LOS_QA_SUCCESS

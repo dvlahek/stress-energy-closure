@@ -1,0 +1,91 @@
+{
+  "date": "2026-09-28",
+  "stage": "E17D2B3B1_OFFICIAL_PINNED_ABACUSUTILS_EMBEDDED_HEADER_METADATA_ONLY",
+  "status": "PROSPECTIVE_PREREG_BEFORE_ANY_NEW_OFFICIAL_COMPRESSED_METADATA_FETCH_OR_DECODING",
+  "parent_head_at_registration": "45d02af630ffec1a722b50011bd9c70ff6076ced",
+  "question": "What exact output state/epoch parameters does the official source-controlled AbacusSummit bundled header-derived metadata record for frozen candidate AbacusSummit_base_c000_ph000 state z0.950, and how do its source limitations constrain subsequent real halo ASDF and M200c validation? Resolve a copied header value if unambiguously present, without downloading or reading a halo/tree catalogue.",
+  "immutable_project_parents": {
+    "E8_original_4000q_sha256": "bf8f48deb9514c5101d5ce314bfbd397485102a5487da1039f141e3cad6143d0",
+    "E16_original_576_triangle_sha256": "5d81f95a5571175f06eb032b865285ba34804701693f76af392be7fc31fb06db",
+    "E17A_original_CLASS_joint_sha256": "094c49cb89d6dd231a5cbc16ecdfe455bcb3938ddec375fd28c81c8098ab2ad9",
+    "E17D2B3B0_offline_report_sha256": "3917ce7da42b9064bdaece35e7ed1ef63dc880bf8fb48a5143a38f3882d4c4fe",
+    "E17D2B3B0_archive_manifest_git_blob": "b5b6827b0687b75ed4c0b2db5642bf1e150683a9",
+    "E17D2B3B0_protocol_git_blob": "49df0cd9c110b3ef9db02a3ad0cb9a4ff20554e1",
+    "E17D2B3A_original_mass_nonidentifiability_sha256": "0b098291122eb51cbd3e113e7edd2276ba7c9b7c38669008486f0f73f897277e",
+    "frozen_main_sha": "e50549a5c974772eb9576d301df7a5ea6e6d87d2",
+    "E17D2B2_original_metadata_report_sha256": "b8da4d6c33235ed82e76f548f2eb052e0fcd751a42672f48d8fffff153ac6926"
+  },
+  "upstream_public_source_pins": {
+    "repo": "abacusorg/abacusutils",
+    "public_commit": "24ab0dda5fea9ae406b1afdacaf4bbf989de9bc6",
+    "metadata_filename": "abacusnbody/metadata/abacussummit_headers_compressed.asdf",
+    "metadata_git_blob": "0065029cdd515ffa76c61a27b81e9f16b2656f38",
+    "metadata_exact_size_bytes": 9486279,
+    "blosc_extension_python": "abacusnbody/data/asdf.py",
+    "blosc_extension_git_blob": "8c5e5135736409bb0fab77bff06ad1259951189d",
+    "official_metadata_decoder_python": "abacusnbody/metadata/abacussummit.py",
+    "official_metadata_decoder_git_blob": "0a374324dc5199241473a0a476a94a6b37831473",
+    "source_developer_gather_script": "https://github.com/abacusorg/abacusutils/blob/24ab0dda5fea9ae406b1afdacaf4bbf989de9bc6/scripts/metadata/gather_metadata.py",
+    "source_developer_gather_script_git_blob": "517fd6880d4ff342a09af5a5e82ed6d6be4ab7e2",
+    "source_developer_compress_script_git_blob": "b7cbd6030aa814083d185c7b0d7320f17942927e",
+    "official_module_documentation": "https://abacusutils.readthedocs.io/en/latest/metadata.html",
+    "original_file_header_documentation": "https://abacussummit.readthedocs.io/en/latest/data-products.html"
+  },
+  "prospective_locked_access": {
+    "allowed_external_bytes": "Only exact pinned 9,486,279-byte upstream Git blob abacussummit_headers_compressed.asdf as OFFICIAL SOURCE-CODE-BUNDLED COPIES OF SIMULATION HEADERS; no actual halo_info ASDF or particle/tree catalogue. Upstream Python code needed for decompression must be fetched by pinning sparse Git checkout to exact source commit, not mutable main.",
+    "max_official_metadata_bytes": 9486279,
+    "exact_simname": "AbacusSummit_base_c000_ph000",
+    "exact_state_label_from_official_get_meta_z_normalization": "z0.950",
+    "original_E17A_math_nodes_NOT_simulation_header": [
+      0.945,
+      0.95,
+      0.955
+    ],
+    "metadata_provenance_class": "OFFICIAL_BUNDLED_HEADER_DERIVED_COPY_NOT_ACTUAL_PROVIDER_HALO_ASDF_FILE",
+    "need_real_file_verification_for_actual_halo_provenance": true,
+    "metadata_output": "Record provider commit, git blobs, source byte size, exact source Git hash-object computed locally, package reported state keys, exact z-bearing scalar keys if present, and whether copied header actual z can be extracted unambiguously. Never fill missing key using directory z.",
+    "do_not_persist_any_embedded_power_spectra_or_halo_data": true,
+    "no_new_cosmology_parameter_fit": true
+  },
+  "prospective_QA": {
+    "metadata_blob_and_official_code_git_blob_gate_before_parsing": true,
+    "no_actual_ASDF_halo_tree_or_particle_download": true,
+    "exact_simulation_name_and_state_label_required": true,
+    "if_numeric_actual_z_missing_or_ambiguous_FAIL_CLOSED_do_not_impute_0p95": true,
+    "if_numeric_actual_z_found_must_be_finite_nonnegative": true,
+    "actual_z_is_copied_sim_metadata_only_not_independent_raw_halo_header": true,
+    "all_header_state_key_discovery_reported_for_audit_if_extraction_blocked": true,
+    "no_original_CLASS_state_or_E8_E16_mutation": true,
+    "duplicate_decode_of_official_source_bytewise_metadata_verification_without_new_simulation": true,
+    "no_posthoc_state_or_threshold_or_snapshot_change": true
+  },
+  "real_halo_data_stop": {
+    "an_official_copied_header_state_never_proves_the_concrete_halo_info_000_ASDF_exists_at_selected_provider_item": true,
+    "actual_per_file_halo_ASDF_z_particle_mass_units_SODensityL1_cksum_and_SHA256_UNVERIFIED": true,
+    "chosen_raw_or_cleaned_tree_branch_product_UNVERIFIED": true,
+    "validated_real_M200c_same_halo_history_UNVERIFIED": true,
+    "original_CLASS_As_tau_and_nonthermal_Fplus_Fminus_response_vs_smooth_nu_UNMATCHED": true,
+    "original_observed_LRG_ELG_24D_odd_SEALED": true,
+    "actual_LRG_ELG_HOD_eBOSS_true_3pt_window_covariance_UNVERIFIED": true
+  },
+  "absolute_STOP": {
+    "no_actual_Abacus_halo_info_ASDF_particle_PID_or_merger_tree_file_read_download": true,
+    "only_approved_embedded_header_metadata_9p5MB_official_SOURCE_blob": true,
+    "no_new_CLASS_FITS_mock_catalogue_or_eBOSS_observed_galaxy_odd_read": true,
+    "no_new_science_cut_seed_or_redshift_grid": true,
+    "do_not_relabel_copied_metadata_as_actual_halo_file_verified": true,
+    "do_not_relabel_L1_halo_mass_as_M200c": true,
+    "do_not_claim_c000_smooth_nu_models_original_Fplus_minus_wake": true,
+    "no_retarded_self_consistent_Einstein_Vlasov_or_finiteK_galaxy_B": true,
+    "no_actual_eBOSS_3pt_window_covariance_significance": true,
+    "observed_odd_SEALED": true,
+    "main_untouched_PR_draft": true
+  },
+  "amendment_before_upstream_fetch": {
+    "original_protocol_git_blob": "a282b157a80f88a1e0bf95c01942453d9a59efe4",
+    "failed_preflight_CI_run_id": "36445390661",
+    "failed_repository_integrity_run_id": "36445325404",
+    "why": "Official upstream gathering-script relative-path string was interpreted by repository local-reference audit as missing local file; original runner also required an E17D2b2 immutable parent key that the protocol did not record. Correct upstream link and ADD missing already-frozen E17D2b2 SHA before any official 9.5 MB metadata has been fetched or decoded. No scientific parameter, input snapshot or QA threshold changes.",
+    "official_embedded_metadata_accessed_before_amendment": false
+  }
+}

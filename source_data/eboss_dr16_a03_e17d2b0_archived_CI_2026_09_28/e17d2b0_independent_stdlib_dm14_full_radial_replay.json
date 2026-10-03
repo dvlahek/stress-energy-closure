@@ -1,0 +1,165 @@
+{
+  "date": "2026-09-28",
+  "status": "E17D2B0_INDEPENDENT_PUBLISHED_DM14_CONDITIONAL_18_POPULATION_SNAPSHOTS_FULL_ORIGINAL_31104_RADIAL_REPLAY_PASS_PHYSICAL_B_BLOCKED",
+  "original_joint_sha256": "848d3377830724593d75a02972f209085cb9913d03e8b73789f9b6478e6c11e6",
+  "prospective_protocol_git_blob": "8faaf167403e09f321a6c62f452120f8b96898a2",
+  "original_E16_full_sha256": "5d81f95a5571175f06eb032b865285ba34804701693f76af392be7fc31fb06db",
+  "all_original_case_sha_and_mode_counts": {
+    "e17d2b0_original_DM14_conditional_snapshot_00.json": {
+      "sha256": "601054f3202dbde226f3e4651a897da54536ce810ac9f32945a5adf88e9ae41d",
+      "mass_ratio_to_published_pivot_QA_only": 1.0,
+      "z_math_only": 0.945,
+      "dex_sensitivity_only": -0.11,
+      "independent_unique_radial_integrals": 208,
+      "replayed_frozen_E16_short_short_long": 1728
+    },
+    "e17d2b0_original_DM14_conditional_snapshot_01.json": {
+      "sha256": "0ec0ac4151c2513345f682c139d78c2c8e6db8c520c52c3bdd10468ea9758c75",
+      "mass_ratio_to_published_pivot_QA_only": 1.0,
+      "z_math_only": 0.945,
+      "dex_sensitivity_only": 0.0,
+      "independent_unique_radial_integrals": 208,
+      "replayed_frozen_E16_short_short_long": 1728
+    },
+    "e17d2b0_original_DM14_conditional_snapshot_02.json": {
+      "sha256": "69b6d9a99803b6da40002419ca4034d52829f68ef2f3ce0c4a1b71a32a087583",
+      "mass_ratio_to_published_pivot_QA_only": 1.0,
+      "z_math_only": 0.945,
+      "dex_sensitivity_only": 0.11,
+      "independent_unique_radial_integrals": 208,
+      "replayed_frozen_E16_short_short_long": 1728
+    },
+    "e17d2b0_original_DM14_conditional_snapshot_03.json": {
+      "sha256": "3bf2715797190b11213b2e65a52f3bb6600da14bb4528e7f3b9df085e4ecc9ba",
+      "mass_ratio_to_published_pivot_QA_only": 1.0,
+      "z_math_only": 0.95,
+      "dex_sensitivity_only": -0.11,
+      "independent_unique_radial_integrals": 208,
+      "replayed_frozen_E16_short_short_long": 1728
+    },
+    "e17d2b0_original_DM14_conditional_snapshot_04.json": {
+      "sha256": "f3ccd2327b16d305f6ef87255088df60f85a99335145064bc3aed21e82773378",
+      "mass_ratio_to_published_pivot_QA_only": 1.0,
+      "z_math_only": 0.95,
+      "dex_sensitivity_only": 0.0,
+      "independent_unique_radial_integrals": 208,
+      "replayed_frozen_E16_short_short_long": 1728
+    },
+    "e17d2b0_original_DM14_conditional_snapshot_05.json": {
+      "sha256": "64090b826296f8d4897e59d60a4eacd7b47a583ad53b9dbad4101aef90ac90fb",
+      "mass_ratio_to_published_pivot_QA_only": 1.0,
+      "z_math_only": 0.95,
+      "dex_sensitivity_only": 0.11,
+      "independent_unique_radial_integrals": 208,
+      "replayed_frozen_E16_short_short_long": 1728
+    },
+    "e17d2b0_original_DM14_conditional_snapshot_06.json": {
+      "sha256": "d911fd1f539cdca820fa4d97bc5bd2390a854d22da6969b8da6b179c14a403d9",
+      "mass_ratio_to_published_pivot_QA_only": 1.0,
+      "z_math_only": 0.955,
+      "dex_sensitivity_only": -0.11,
+      "independent_unique_radial_integrals": 208,
+      "replayed_frozen_E16_short_short_long": 1728
+    },
+    "e17d2b0_original_DM14_conditional_snapshot_07.json": {
+      "sha256": "ae093f2c4ab9bf65d03aac6e62f06804944157987e14f863dd5d6a499fd4e3af",
+      "mass_ratio_to_published_pivot_QA_only": 1.0,
+      "z_math_only": 0.955,
+      "dex_sensitivity_only": 0.0,
+      "independent_unique_radial_integrals": 208,
+      "replayed_frozen_E16_short_short_long": 1728
+    },
+    "e17d2b0_original_DM14_conditional_snapshot_08.json": {
+      "sha256": "50933f8e378ff9a93e61ae4ea1f144fc43ed08a4e973f9590b49bb85c068ed24",
+      "mass_ratio_to_published_pivot_QA_only": 1.0,
+      "z_math_only": 0.955,
+      "dex_sensitivity_only": 0.11,
+      "independent_unique_radial_integrals": 208,
+      "replayed_frozen_E16_short_short_long": 1728
+    },
+    "e17d2b0_original_DM14_conditional_snapshot_09.json": {
+      "sha256": "a12462e73ac5f8d55344d2be22fef47ee94555c7f515ad863db1b172b0d59c51",
+      "mass_ratio_to_published_pivot_QA_only": 10.0,
+      "z_math_only": 0.945,
+      "dex_sensitivity_only": -0.11,
+      "independent_unique_radial_integrals": 208,
+      "replayed_frozen_E16_short_short_long": 1728
+    },
+    "e17d2b0_original_DM14_conditional_snapshot_10.json": {
+      "sha256": "b9b67bb9c17ceafe3f3920a03ed0254ecddb16e1c76939a932819f9a74128217",
+      "mass_ratio_to_published_pivot_QA_only": 10.0,
+      "z_math_only": 0.945,
+      "dex_sensitivity_only": 0.0,
+      "independent_unique_radial_integrals": 208,
+      "replayed_frozen_E16_short_short_long": 1728
+    },
+    "e17d2b0_original_DM14_conditional_snapshot_11.json": {
+      "sha256": "c316733be5a4e992e4b54d5e5d18ea260ea38862e767ca05de3d4e640bcfd9ba",
+      "mass_ratio_to_published_pivot_QA_only": 10.0,
+      "z_math_only": 0.945,
+      "dex_sensitivity_only": 0.11,
+      "independent_unique_radial_integrals": 208,
+      "replayed_frozen_E16_short_short_long": 1728
+    },
+    "e17d2b0_original_DM14_conditional_snapshot_12.json": {
+      "sha256": "20ac4da930384e8e6a7019e63cc078317ebe08753572ea5e004aa5f69cf0afc7",
+      "mass_ratio_to_published_pivot_QA_only": 10.0,
+      "z_math_only": 0.95,
+      "dex_sensitivity_only": -0.11,
+      "independent_unique_radial_integrals": 208,
+      "replayed_frozen_E16_short_short_long": 1728
+    },
+    "e17d2b0_original_DM14_conditional_snapshot_13.json": {
+      "sha256": "1364d92179e5d203e24ccfead18f14a1aff28c85885b141a416f9f9d39e519be",
+      "mass_ratio_to_published_pivot_QA_only": 10.0,
+      "z_math_only": 0.95,
+      "dex_sensitivity_only": 0.0,
+      "independent_unique_radial_integrals": 208,
+      "replayed_frozen_E16_short_short_long": 1728
+    },
+    "e17d2b0_original_DM14_conditional_snapshot_14.json": {
+      "sha256": "1059fc9e6413d6ee89f686ec06b49bc971d9d23c06ea26e0f4d5a04118260815",
+      "mass_ratio_to_published_pivot_QA_only": 10.0,
+      "z_math_only": 0.95,
+      "dex_sensitivity_only": 0.11,
+      "independent_unique_radial_integrals": 208,
+      "replayed_frozen_E16_short_short_long": 1728
+    },
+    "e17d2b0_original_DM14_conditional_snapshot_15.json": {
+      "sha256": "ed6512e5501a1c8c932603bd6ad982424cfb51463a145541704f85ea8f91100d",
+      "mass_ratio_to_published_pivot_QA_only": 10.0,
+      "z_math_only": 0.955,
+      "dex_sensitivity_only": -0.11,
+      "independent_unique_radial_integrals": 208,
+      "replayed_frozen_E16_short_short_long": 1728
+    },
+    "e17d2b0_original_DM14_conditional_snapshot_16.json": {
+      "sha256": "fe154d509e2fb26052d0a347b7fb6ee0d06567d0fa53288ec8ef8ac9dd3c49e3",
+      "mass_ratio_to_published_pivot_QA_only": 10.0,
+      "z_math_only": 0.955,
+      "dex_sensitivity_only": 0.0,
+      "independent_unique_radial_integrals": 208,
+      "replayed_frozen_E16_short_short_long": 1728
+    },
+    "e17d2b0_original_DM14_conditional_snapshot_17.json": {
+      "sha256": "92db6fc8427202e74681cd038cc71e62a150a30d8fae2693e7b95d1e76b15c4c",
+      "mass_ratio_to_published_pivot_QA_only": 10.0,
+      "z_math_only": 0.955,
+      "dex_sensitivity_only": 0.11,
+      "independent_unique_radial_integrals": 208,
+      "replayed_frozen_E16_short_short_long": 1728
+    }
+  },
+  "original_DM14_population_mass_anchor_redshift_concentration_cases": 18,
+  "full_original_E16_geometries_per_case": 576,
+  "independent_replayed_conditional_short_short_long_shapes": 31104,
+  "max_scaled_DM14_200crit_radius_and_independent_NFW_radial_gap": 7.172623019743967e-13,
+  "method": "Pure stdlib independently evaluate primary published DM14 c200c fit and physical H/rho_crit200/radii in original DM14 Planck2013 background; independent Cartesian-free E16 analytic magnitudes; direct 4096-panel positive NFW radial Simpson for all 31104 original conditional modes; SHA tamper rejection. No original runner import, NumPy, SciPy, CLASS or observed galaxies.",
+  "DM14_population_prior_is_NOT_a_single_halo_mass_assembly": true,
+  "original_CLASS_and_DM14_cosmology_not_equal": true,
+  "real_LRG_ELG_halo_mass_concentration_HOD_time_history_known": false,
+  "full_physical_finiteK_galaxy_bispectrum": "BLOCKED",
+  "observed_odd_SEALED": true,
+  "no_new_CLASS_FITS_mock": true,
+  "main_untouched_PR_draft": true
+}

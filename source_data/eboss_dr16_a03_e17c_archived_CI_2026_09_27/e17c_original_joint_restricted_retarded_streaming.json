@@ -1,0 +1,58 @@
+{
+  "date": "2026-09-27",
+  "status": "E17C_FROZEN_THREE_STATE_RESTRICTED_CAUSAL_STREAMING_COMPONENT_COMPLETE_FULL_PHYSICAL_B_BLOCKED",
+  "prospective_protocol_git_blob": "33defef2020f2931756e3ef7a3959d905d539165",
+  "parents": {
+    "E8_original_4000q_CSV_sha256": "bf8f48deb9514c5101d5ce314bfbd397485102a5487da1039f141e3cad6143d0",
+    "E14_original_full_sha256": "0f1efb45593cd51d9ffa1818157bdd52baba525a8fc4bb9cc30c12d98ba91fd8",
+    "E15_original_full_sha256": "6062aed4b581f2db89192bd1c1cf2639a74b6a313db9e10dca9e53041a95d983",
+    "E16_original_full_sha256": "5d81f95a5571175f06eb032b865285ba34804701693f76af392be7fc31fb06db",
+    "E16_independent_sha256": "8a6ee7610a0412de7bcaf5333950f41add0973a000bd245d49b41b77efc8e10d",
+    "E17A_original_joint_sha256": "094c49cb89d6dd231a5cbc16ecdfe455bcb3938ddec375fd28c81c8098ab2ad9",
+    "E17B_original_joint_sha256": "156763dfb81e2a8c5c9e3615f5022749fa681f458a2753fbfa5f46b462e20658",
+    "E17A_manifest_git_blob": "a8f4e2d0e19c2deacae375449951d1b85766b3d2",
+    "E17B_manifest_git_blob": "88920dd194febb002f280d676b9df42687b2f949",
+    "CLASS_original_commit": "e85808324f51fc694d12e3ed7439552a3c3f9540"
+  },
+  "state_reports": {
+    "FD": {
+      "sha256": "91c767a242d1cd6739cd16e4227ce32a72d0a4bb66447648d5e4abb3ec6b219f",
+      "size_bytes": 884679,
+      "QA": {
+        "zero_lag_max_abs": 0.0,
+        "fourier_reversal_max_abs": 0.0,
+        "leg_swap_max_abs": 2.7755575615628914e-17,
+        "max_triangle_closure_h_Mpc": 1.2643861424099487e-17
+      }
+    },
+    "plus": {
+      "sha256": "5b61d48640ad00dc501f72aeafc24786d592b3121ace70d35d15642dd5203814",
+      "size_bytes": 884907,
+      "QA": {
+        "zero_lag_max_abs": 0.0,
+        "fourier_reversal_max_abs": 0.0,
+        "leg_swap_max_abs": 2.7755575615628914e-17,
+        "max_triangle_closure_h_Mpc": 1.2643861424099487e-17
+      }
+    },
+    "minus": {
+      "sha256": "edb90e9e4372e26d13af8a13a59f2b633d7c8711184f8c9ee875ddd3732f1d28",
+      "size_bytes": 884739,
+      "QA": {
+        "zero_lag_max_abs": 0.0,
+        "fourier_reversal_max_abs": 0.0,
+        "leg_swap_max_abs": 2.7755575615628914e-17,
+        "max_triangle_closure_h_Mpc": 1.2643861424099487e-17
+      }
+    }
+  },
+  "original_E16_geometries": 576,
+  "three_state_leg_phase_samples": 10368,
+  "actual_evolving_FRW_time_or_external_halo_potential_specified": false,
+  "actual_finiteK_long_short_halo_tracer_coupling_calculated": false,
+  "original_E14_E15_reduced_72_24_unchanged": true,
+  "full_physical_bispectrum": "BLOCKED",
+  "observed_odd_SEALED": true,
+  "new_survey_download": false,
+  "main_untouched_PR_draft": true
+}

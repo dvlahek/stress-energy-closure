@@ -1,0 +1,274 @@
+{
+  "date": "2026-09-30",
+  "guardrails": {
+    "ASDF_used": false,
+    "FITS_used": false,
+    "kSZ_data_used": false,
+    "observed_galaxy_rows_used": false,
+    "observed_odd_used": false,
+    "physical_conditioned_eBOSS_covariance": false,
+    "survey_velocity_reconstruction_performed": false
+  },
+  "physics": {
+    "R_Mpc_over_h": 16.0,
+    "gaussian_sign_identity": "E[sign X sign Y]=(2/pi) asin(r)",
+    "k_h_range": [
+      0.0001,
+      0.1
+    ],
+    "mass_eV": 0.06,
+    "tag": "direct CLASS baryon bulk velocity; prospective proxy for kSZ/velocity reconstruction",
+    "target": "direct CLASS neutrino-CDM relative velocity",
+    "z_mathematical": 0.95
+  },
+  "stage": "E49_DIRECT_VTK_CONDITIONED_VELOCITY_TAG_FEASIBILITY",
+  "states": {
+    "FD": {
+      "CLASS_transfer_keys": [
+        "d_b",
+        "d_cdm",
+        "d_g",
+        "d_m",
+        "d_ncdm[0]",
+        "d_tot",
+        "d_ur",
+        "k (h/Mpc)",
+        "phi",
+        "psi",
+        "t_b",
+        "t_cdm",
+        "t_g",
+        "t_ncdm[0]",
+        "t_tot",
+        "t_ur"
+      ],
+      "E21_sigma_LOS_target_kms": 135.67798143801986,
+      "E21_sigma_relative_gap": 0.0,
+      "direct_sigma_LOS_replay_kms": 135.67798143801986,
+      "h": 0.6736,
+      "ideal_baryon_correct_sign_probability": 0.8733598169026158,
+      "ideal_baryon_sign_factor": -0.7467196338052317,
+      "ideal_cdm_correct_sign_probability": 0.8733724671726893,
+      "ideal_cdm_sign_factor": -0.7467449343453787,
+      "reconstruction_degradation": {
+        "0.50": {
+          "assumed_reconstruction_corr_with_true_baryon_velocity": 0.5,
+          "effective_r_rel_tag": -0.4609476949609435,
+          "gaussian_sign_correlation_factor": -0.3049808605424104,
+          "ideal_correct_sign_probability": 0.6524904302712052
+        },
+        "0.70": {
+          "assumed_reconstruction_corr_with_true_baryon_velocity": 0.7,
+          "effective_r_rel_tag": -0.6453267729453209,
+          "gaussian_sign_correlation_factor": -0.4465575578223544,
+          "ideal_correct_sign_probability": 0.7232787789111772
+        },
+        "0.80": {
+          "assumed_reconstruction_corr_with_true_baryon_velocity": 0.8,
+          "effective_r_rel_tag": -0.7375163119375097,
+          "gaussian_sign_correlation_factor": -0.5280030114598286,
+          "ideal_correct_sign_probability": 0.7640015057299143
+        },
+        "0.90": {
+          "assumed_reconstruction_corr_with_true_baryon_velocity": 0.9,
+          "effective_r_rel_tag": -0.8297058509296983,
+          "gaussian_sign_correlation_factor": -0.6229837070087911,
+          "ideal_correct_sign_probability": 0.8114918535043956
+        },
+        "1.00": {
+          "assumed_reconstruction_corr_with_true_baryon_velocity": 1.0,
+          "effective_r_rel_tag": -0.921895389921887,
+          "gaussian_sign_correlation_factor": -0.7467196338052317,
+          "ideal_correct_sign_probability": 0.8733598169026158
+        }
+      },
+      "relative_vs_baryon": {
+        "abs_r": 0.921895389921887,
+        "r": -0.921895389921887,
+        "regression_a_on_b": -0.5779469478104746,
+        "sigma_a_3d_proxy_kms": 235.00115731903745,
+        "sigma_a_LOS_kms": 135.67798143801986,
+        "sigma_b_3d_proxy_kms": 374.8553122037999,
+        "sigma_b_LOS_kms": 216.4228154080251
+      },
+      "relative_vs_cdm": {
+        "abs_r": 0.9219107867883076,
+        "r": -0.9219107867883076,
+        "regression_a_on_b": -0.5778396583249509,
+        "sigma_a_3d_proxy_kms": 235.00115731903745,
+        "sigma_a_LOS_kms": 135.67798143801986,
+        "sigma_b_3d_proxy_kms": 374.93117462409003,
+        "sigma_b_LOS_kms": 216.46661459680098
+      }
+    },
+    "minus": {
+      "CLASS_transfer_keys": [
+        "d_b",
+        "d_cdm",
+        "d_g",
+        "d_m",
+        "d_ncdm[0]",
+        "d_tot",
+        "d_ur",
+        "k (h/Mpc)",
+        "phi",
+        "psi",
+        "t_b",
+        "t_cdm",
+        "t_g",
+        "t_ncdm[0]",
+        "t_tot",
+        "t_ur"
+      ],
+      "E21_sigma_LOS_target_kms": 135.48537162977118,
+      "E21_sigma_relative_gap": 0.0,
+      "direct_sigma_LOS_replay_kms": 135.48537162977118,
+      "h": 0.6736,
+      "ideal_baryon_correct_sign_probability": 0.8731593087009384,
+      "ideal_baryon_sign_factor": -0.7463186174018767,
+      "ideal_cdm_correct_sign_probability": 0.8731719478847544,
+      "ideal_cdm_sign_factor": -0.7463438957695089,
+      "reconstruction_degradation": {
+        "0.50": {
+          "assumed_reconstruction_corr_with_true_baryon_velocity": 0.5,
+          "effective_r_rel_tag": -0.4608255767177154,
+          "gaussian_sign_correlation_factor": -0.3048932588766136,
+          "ideal_correct_sign_probability": 0.6524466294383068
+        },
+        "0.70": {
+          "assumed_reconstruction_corr_with_true_baryon_velocity": 0.7,
+          "effective_r_rel_tag": -0.6451558074048015,
+          "gaussian_sign_correlation_factor": -0.4464150930869216,
+          "ideal_correct_sign_probability": 0.7232075465434609
+        },
+        "0.80": {
+          "assumed_reconstruction_corr_with_true_baryon_velocity": 0.8,
+          "effective_r_rel_tag": -0.7373209227483447,
+          "gaussian_sign_correlation_factor": -0.5278188509707386,
+          "ideal_correct_sign_probability": 0.7639094254853693
+        },
+        "0.90": {
+          "assumed_reconstruction_corr_with_true_baryon_velocity": 0.9,
+          "effective_r_rel_tag": -0.8294860380918877,
+          "gaussian_sign_correlation_factor": -0.6227330870583629,
+          "ideal_correct_sign_probability": 0.8113665435291815
+        },
+        "1.00": {
+          "assumed_reconstruction_corr_with_true_baryon_velocity": 1.0,
+          "effective_r_rel_tag": -0.9216511534354308,
+          "gaussian_sign_correlation_factor": -0.7463186174018767,
+          "ideal_correct_sign_probability": 0.8731593087009384
+        }
+      },
+      "relative_vs_baryon": {
+        "abs_r": 0.9216511534354308,
+        "r": -0.9216511534354308,
+        "regression_a_on_b": -0.5769263914526114,
+        "sigma_a_3d_proxy_kms": 234.66754734511463,
+        "sigma_a_LOS_kms": 135.48537162977118,
+        "sigma_b_3d_proxy_kms": 374.88598006398155,
+        "sigma_b_LOS_kms": 216.44052150535643
+      },
+      "relative_vs_cdm": {
+        "abs_r": 0.9216665598649287,
+        "r": -0.9216665598649287,
+        "regression_a_on_b": -0.5768193015085834,
+        "sigma_a_3d_proxy_kms": 234.66754734511463,
+        "sigma_a_LOS_kms": 135.48537162977118,
+        "sigma_b_3d_proxy_kms": 374.96184768410296,
+        "sigma_b_LOS_kms": 216.4843236962563
+      }
+    },
+    "plus": {
+      "CLASS_transfer_keys": [
+        "d_b",
+        "d_cdm",
+        "d_g",
+        "d_m",
+        "d_ncdm[0]",
+        "d_tot",
+        "d_ur",
+        "k (h/Mpc)",
+        "phi",
+        "psi",
+        "t_b",
+        "t_cdm",
+        "t_g",
+        "t_ncdm[0]",
+        "t_tot",
+        "t_ur"
+      ],
+      "E21_sigma_LOS_target_kms": 135.86206681100845,
+      "E21_sigma_relative_gap": 2.0919532653614167e-16,
+      "direct_sigma_LOS_replay_kms": 135.86206681100848,
+      "h": 0.6736,
+      "ideal_baryon_correct_sign_probability": 0.8735542350883181,
+      "ideal_baryon_sign_factor": -0.7471084701766362,
+      "ideal_cdm_correct_sign_probability": 0.8735668943685966,
+      "ideal_cdm_sign_factor": -0.747133788737193,
+      "reconstruction_degradation": {
+        "0.50": {
+          "assumed_reconstruction_corr_with_true_baryon_velocity": 0.5,
+          "effective_r_rel_tag": -0.461065929466851,
+          "gaussian_sign_correlation_factor": -0.30506568217081526,
+          "ideal_correct_sign_probability": 0.6525328410854077
+        },
+        "0.70": {
+          "assumed_reconstruction_corr_with_true_baryon_velocity": 0.7,
+          "effective_r_rel_tag": -0.6454923012535914,
+          "gaussian_sign_correlation_factor": -0.44669551740495594,
+          "ideal_correct_sign_probability": 0.7233477587024779
+        },
+        "0.80": {
+          "assumed_reconstruction_corr_with_true_baryon_velocity": 0.8,
+          "effective_r_rel_tag": -0.7377054871469616,
+          "gaussian_sign_correlation_factor": -0.5281813705267018,
+          "ideal_correct_sign_probability": 0.7640906852633509
+        },
+        "0.90": {
+          "assumed_reconstruction_corr_with_true_baryon_velocity": 0.9,
+          "effective_r_rel_tag": -0.8299186730403318,
+          "gaussian_sign_correlation_factor": -0.6232264962787142,
+          "ideal_correct_sign_probability": 0.8116132481393571
+        },
+        "1.00": {
+          "assumed_reconstruction_corr_with_true_baryon_velocity": 1.0,
+          "effective_r_rel_tag": -0.922131858933702,
+          "gaussian_sign_correlation_factor": -0.7471084701766362,
+          "ideal_correct_sign_probability": 0.8735542350883181
+        }
+      },
+      "relative_vs_baryon": {
+        "abs_r": 0.922131858933702,
+        "r": -0.922131858933702,
+        "regression_a_on_b": -0.578947092845926,
+        "sigma_a_3d_proxy_kms": 235.32000253798395,
+        "sigma_a_LOS_kms": 135.86206681100848,
+        "sigma_b_3d_proxy_kms": 374.8115744358411,
+        "sigma_b_LOS_kms": 216.39756339592032
+      },
+      "relative_vs_cdm": {
+        "abs_r": 0.922147244369249,
+        "r": -0.922147244369249,
+        "regression_a_on_b": -0.5788396086484933,
+        "sigma_a_3d_proxy_kms": 235.32000253798395,
+        "sigma_a_LOS_kms": 135.86206681100848,
+        "sigma_b_3d_proxy_kms": 374.88742761061127,
+        "sigma_b_LOS_kms": 216.44135724679276
+      }
+    }
+  },
+  "status": "PASS_SOURCE_ONLY_ALIGNMENT_SCREEN",
+  "summary": {
+    "interpretation_gate": {
+      "intermediate": "0.4 <= min |r_rel,b| < 0.7 -> conditioned route possible but tag noise is a major loss",
+      "strong": "min |r_rel,b| >= 0.7 -> external baryon velocity is a promising direction tag; proceed to conditioned estimator mock design",
+      "weak": "min |r_rel,b| < 0.4 -> baryon/kSZ sign tag is a poor proxy; do not build survey estimator around it"
+    },
+    "max_abs_r_rel_baryon_across_F_states": 0.922131858933702,
+    "median_abs_ideal_sign_factor_across_F_states": 0.7467196338052317,
+    "median_abs_r_rel_baryon_across_F_states": 0.921895389921887,
+    "min_abs_ideal_sign_factor_across_F_states": 0.7463186174018767,
+    "min_abs_r_rel_baryon_across_F_states": 0.9216511534354308
+  }
+}

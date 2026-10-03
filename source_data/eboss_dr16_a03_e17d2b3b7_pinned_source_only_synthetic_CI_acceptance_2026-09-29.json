@@ -1,0 +1,52 @@
+{
+  "stage": "E17D2B3B7_PINNED_TWO_COLUMN_ID_N_SYNTHETIC_CI_ACCEPTANCE",
+  "date": "2026-09-29",
+  "status": "SOURCE_ONLY_AND_SYNTHETIC_PASS_REAL_ID_N_LOCAL_RUN_NOT_YET_PERFORMED",
+  "prereg_repo_path": "source_data/eboss_dr16_a03_e17d2b3b7_first_real_L1_id_N_columns_prereg_2026-09-29.json",
+  "prereg_git_blob": "296bc22e3d38a414017cc018e1f8ba8658899278",
+  "b6_user_reported_evidence_git_blob": "570366acf3c9db90a3d7542b2ce80bc21195a6ba",
+  "b6_user_local_JSON_SHA256_USER_REPORTED": "70820fb64965849ec692a035d4c2d6a1dedf38a8de492f19c88a4082dd42cedd",
+  "local_reader_repo_path": "scripts/audit_eboss_dr16_a03_e17d2b3b7_first_real_L1_id_N.py",
+  "local_reader_git_blob": "f3df40e44a87aa0784fe1c017ce431da089920d8",
+  "synthetic_success_at_commit": "d2ba150cb48105402b2477a62dc9912aadc68882",
+  "synthetic_CI_run_id": 36528381102,
+  "synthetic_CI_conclusion": "SUCCESS",
+  "repository_integrity_run_id": 36528385130,
+  "repository_integrity_conclusion": "SUCCESS",
+  "ci_verified_steps": [
+    "Prospective B7 Git blob and original B6 source/evidence pins",
+    "Same real numeric evaluator on tiny synthetic two-column arrays",
+    "Synthetic wrong row count, datatype, binary block source",
+    "Synthetic B6 report SHA mismatch and actual mass reference drift",
+    "Extra column access guard and no output overwrite",
+    "Actual numeric evaluator wrong prospective row selector rejected",
+    "No real ASDF and no observed eBOSS accessed by CI"
+  ],
+  "real_reader_columns": [
+    "id",
+    "N"
+  ],
+  "source_blocks": [
+    0,
+    7
+  ],
+  "locked_row_indices": [
+    0,
+    5838343,
+    11676686
+  ],
+  "max_declared_two_raw_array_bytes": 268435456,
+  "process_virtual_memory_bytes": 6442450944,
+  "physical_limits": {
+    "user_real_numeric_column_read_completed": false,
+    "independent_real_file_CI_replay": false,
+    "provider_origin_independently_attested": false,
+    "whole_simulation_halo_mass_function": false,
+    "individual_M200c_a_measured": false,
+    "same_halo_merger_history_measured": false,
+    "physical_original_neutrino_wake_or_galaxy_bispectrum_measured": false,
+    "observed_odd_SEALED": true
+  },
+  "main_expected_unchanged": "e50549a5c974772eb9576d301df7a5ea6e6d87d2",
+  "PR_1_should_remain_draft": true
+}

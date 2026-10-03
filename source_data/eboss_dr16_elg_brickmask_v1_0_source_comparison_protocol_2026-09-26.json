@@ -1,0 +1,67 @@
+{
+  "study": "eBOSS DR16 published brickmask v1.0 tag versus later pinned public implementation, static source-version reconciliation",
+  "record_date": "2026-09-26",
+  "classification": "POST-SOURCE_DISCOVERY_STATIC_PROVENANCE_ONLY; not original pipeline execution certification, not independent validation of selection on sky",
+  "paper_reference": "Raichoor et al., MNRAS 500 (2021) 3254, Data Availability; bits 1-7 publicly reproducible using brickmask release tag v1.0",
+  "paper_source_url": "https://academic.oup.com/mnras/article/500/3/3254/5942664",
+  "upstream_repository": "cheng-zhao/brickmask",
+  "historical_tag": {
+    "name": "v1.0",
+    "annotated_tag_object_sha": "3a94b72f4ee39c215cab713cf464d54106899838",
+    "tagged_commit": "4c0f940934ff8c4e6b0f0c709b3093383abff8d0",
+    "tag_message": "Version for eBOSS DR16",
+    "tag_date_UTC": "2020-05-09T13:14:45Z",
+    "tagged_commit_tagged_as_release": true,
+    "source_files": {
+      "LICENSE.txt": "3604f659833889b4ac8d9650cd4836724956139b",
+      "define.h": "c4734f82f31c45e515c100e4048e39c4f8473e52",
+      "brickmask.c": "a6c0787f09ed3ad5273c7150bee05d4fe59e7fc0",
+      "baselib.c": "fda0effb8e059cd488b0e8b1f6830c17950470bf",
+      "read_data.c": "c174b46512babefb1a88986e5719a487ada800ea"
+    },
+    "no_scripts_directory_in_tag_tree": true,
+    "legacy_four_filenames": [
+      "mask-eboss21-%s.fits.gz",
+      "mask-eboss22-%s.fits.gz",
+      "mask-eboss23-%s.fits.gz",
+      "mask-eboss25-%s.fits.gz"
+    ],
+    "legacy_mask_output_column": "VETOMASK",
+    "legacy_chunk_output_column": "MCHUNK",
+    "legacy_chunk_encoding": "bitset: one bit 1<<i for each valid source family",
+    "legacy_default_mask_validity_bit": "bit&1",
+    "legacy_xybug_bit_value": 4,
+    "legacy_xybug_coordinate_logic": "Round (x,y) for valid bit0 and all other mask codes; remove rounded bit2 and restore bit2 if truncated (x,y) pixel has bit2."
+  },
+  "later_public_checkout": {
+    "commit": "b9eb684a579b56ec3dbdb46549224be7e3fa2830",
+    "commit_date_UTC": "2023-11-08T05:28:53Z",
+    "required_compile_flag": "-DEBOSS",
+    "source_files": {
+      "LICENSE.txt": "463e23e5e19b7c579716f98463b158bdd8110ad0",
+      "src/define.h": "a6b85bfbc7745388a076fba822a0dc27d52d9809",
+      "src/bit_code.c": "0ab07730c491324fac3222ebac1ae1c763efe980"
+    },
+    "extra_helper_path": "scripts/eBOSS_ELG_extra.py",
+    "extra_helper_blob_sha1": "d66c5e6ed6a8260b5e8dcc840795485345392ced",
+    "modern_subsample_encoding": "optional single SUBID field assigned from last valid checked subsample; not the older MCHUNK bitset when overlap occurs",
+    "eBOSS_validity_and_XYBUG_logic_matches_legacy_in_reviewed_source_blocks": true
+  },
+  "findings": {
+    "four_source_image_family_names_match": true,
+    "rounded_validity_bit0_and_truncated_xybug_bit2_logic_matches_in_reviewed_blocks": true,
+    "legacy_tag_does_not_contain_post2020_extra_helper": true,
+    "legacy_and_modern_subsample_outputs_not_identical_for_overlapping_families": true,
+    "source_equivalence_for_actual_release_catalogue_NOT_CLAIMED": true,
+    "legacy_VETOMASK_to_released_full_mskbit_pipeline_NOT_AUTHENTICATED": true,
+    "tagged_release_source_not_evidence_of_exact_historical_execution": true
+  },
+  "archived_source_root": "source_data/upstream/brickmask_v1_0",
+  "archived_later_source_root": "source_data/upstream/brickmask_b9eb684",
+  "next_gate": "Offline verify every vendored source file's exact Git blob SHA and source-only overlap/rounding negative controls. Then prioritize authenticated historical version/config of bits8-11 and eboss22 two-plate exclusion; do not compare masks to observed odd data or introduce science selection.",
+  "no_FITS_or_observed_catalogue_rows_or_random_rows_read": true,
+  "observed_odd_data_vector_read": false,
+  "new_selection_applied": false,
+  "physical_elg_mask_certified": false,
+  "physical_lrg_elg_pair_window_certified": false
+}

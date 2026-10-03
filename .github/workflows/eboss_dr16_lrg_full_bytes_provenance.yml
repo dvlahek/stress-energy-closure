@@ -1,0 +1,26 @@
+name: eBOSS DR16 official LRG full FITS raw-byte provenance synthetic gate
+
+on:
+  push:
+    branches:
+      - audit/eboss-elg-bit8-ra-orientation-20260925
+    paths:
+      - 'scripts/audit_eboss_dr16_lrg_full_bytes_provenance.py'
+      - 'source_data/eboss_dr16_lrg_full_bytes_provenance_protocol_2026-09-25.json'
+      - '.github/workflows/eboss_dr16_lrg_full_bytes_provenance.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  synthetic-no-observed-data:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Validate exact raw stream, corruption rejection, pinned LRG protocol without FITS rows
+        run: python -u scripts/audit_eboss_dr16_lrg_full_bytes_provenance.py --self-test

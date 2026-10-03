@@ -1,0 +1,97 @@
+{
+  "classification": "E29_POSTHOC_OFFLINE_SPATIAL_SELECTION_AND_CENTRE_DISPLACEMENT_QA",
+  "source_sha256": {
+    "e29_20_halo_two_epoch_pair_catalog.json": "424954175ff97226f6d4be1dd82c008388b0a18abf5ce128f5cd7df45206b77e",
+    "e29_z0950_20_halo_candidates.json": "7440fa8268c5e47b4ab7bf019afcc1b5666ae7f82762b90ed1e4738980ef91b8",
+    "e29_20_pair_posthoc_offline_kinematic_audit.json": "2934abe216abe39e87611937b265d8473696db5e0768ce425af7bfeb6f030a3d"
+  },
+  "inputs_no_ASDF_FITS_or_observed_galaxy_rows_read": true,
+  "simulation": "AbacusSummit_base_c000_ph000",
+  "epochs": {
+    "early": "z1.025",
+    "late": "z0.950"
+  },
+  "sample_contract": {
+    "late_superslab": 0,
+    "original_first_rows_window": [
+      0,
+      256
+    ],
+    "selection": {
+      "min_N": 100,
+      "min_npoutA": 5,
+      "max_halos": 20
+    },
+    "pair_count": 20,
+    "early_match_scope_counts": 17,
+    "targeted_spatial_scope_counts": 3,
+    "globally_certified_progenitor_count": 0,
+    "not_random_not_representative_population_sample": true
+  },
+  "unit_contract": "raw normalized unit-box positions, period 1, BoxSizeHMpc=2000",
+  "minimal_periodic_cover_of_late_centres_by_axis": {
+    "x": {
+      "minimal_cover_width_unit_box": 0.0006018280982971191,
+      "minimal_cover_width_comoving_hinv_mpc": 1.2036561965942383,
+      "fraction_of_full_box_axis": 0.0006018280982971191,
+      "minimum_arc_origin_mod_unit_box": 0.0001620650291442871,
+      "raw_unit_box_min": -0.4998379349708557,
+      "raw_unit_box_max": -0.4992361068725586
+    },
+    "y": {
+      "minimal_cover_width_unit_box": 0.0008059442043304443,
+      "minimal_cover_width_comoving_hinv_mpc": 1.6118884086608887,
+      "fraction_of_full_box_axis": 0.0008059442043304443,
+      "minimum_arc_origin_mod_unit_box": 0.9998711347579956,
+      "raw_unit_box_min": -0.49999499320983887,
+      "raw_unit_box_max": 0.49994033575057983
+    },
+    "z": {
+      "minimal_cover_width_unit_box": 0.20521047711372375,
+      "minimal_cover_width_comoving_hinv_mpc": 410.4209542274475,
+      "fraction_of_full_box_axis": 0.20521047711372375,
+      "minimum_arc_origin_mod_unit_box": 0.015570342540740967,
+      "raw_unit_box_min": -0.48442965745925903,
+      "raw_unit_box_max": -0.2792191803455353
+    }
+  },
+  "periodic_wrap_negative_control": {
+    "late_y_raw_max_minus_min_unit_box": 0.9999353289604187,
+    "late_y_correct_minimal_periodic_arc_unit_box": 0.0008059442043304443,
+    "integer_period_shift_invariance_all_20_pairs_all_3_axes": "PASS"
+  },
+  "centre_displacement_descriptive": {
+    "mean_vector_comoving_hinv_mpc": [
+      -0.04482567310333252,
+      0.0034689903259277344,
+      0.13310611248016357
+    ],
+    "norm_of_mean_vector_comoving_hinv_mpc": 0.14049417084929242,
+    "rms_individual_magnitude_comoving_hinv_mpc": 0.2522888532007731,
+    "median_individual_magnitude_comoving_hinv_mpc": 0.23110637833994851,
+    "rms_after_subtracting_sample_mean_comoving_hinv_mpc": 0.2095496442534109,
+    "median_after_subtracting_sample_mean_comoving_hinv_mpc": 0.18187596093016067,
+    "norm_sample_mean_over_individual_rms": 0.5568782332903398,
+    "positive_negative_axis_displacement_counts": {
+      "x": {
+        "positive": 8,
+        "negative": 12
+      },
+      "y": {
+        "positive": 12,
+        "negative": 8
+      },
+      "z": {
+        "positive": 16,
+        "negative": 4
+      }
+    }
+  },
+  "interpretation_stop": {
+    "selection": "The first 20 eligible halos in first 256 superslab-000 rows form a narrow x/y stripe, not a representative or independent halo population.",
+    "displacement": "The sample-average centre displacement is descriptive, not a neutrino-CDM wind measurement or a halo acceleration.",
+    "mass_and_profile": "L1 N is not M200c; no same-object u_src(k,z), u_test(k,zobs), environment, or certified UV recoil.",
+    "progenitors": "All 20 matches are unique only in their previously tested early-catalog windows, not a globally validated merger tree.",
+    "observations": "No observed eBOSS galaxy rows or 24D odd vector used; A03 PHYSICAL_UNCERTIFIED, A04 BLOCKED."
+  }
+}

@@ -1,0 +1,85 @@
+{
+  "date": "2026-09-27",
+  "status": "REGISTERED_POST_E13_INDEPENDENT_PASS_PRE_E14_THREE_CLASS_SHORT_PCB_RUNS",
+  "goal": "Verify E13 fixed-k conditional source shape on three prospectively locked short modes using original three F-state pinned CLASS Pcb, E13 rank-matched direct-vTk Gamma and E13 corrected long P_Dr. Only source-only, no observed eBOSS bispectrum.",
+  "source_pins": {
+    "CLASS_commit": "e85808324f51fc694d12e3ed7439552a3c3f9540",
+    "kinetic_git_blob": "44956e353dbb238537d60da687d1a2a26fa13ee6",
+    "base_wake_git_blob": "473e6d9b5941d8f67d1ecc1f5f170124d9ef8ea2",
+    "E8_E11_archive_manifest_blob": "83748b452f26b31da34a51c2c5de509d6b7ae3af",
+    "E13_archive_manifest_blob": "67ea3407393ddd2b8fd679c493ef36550ad15642",
+    "E13_source_git_blob": "b031c7d9bb95fd55eb4cffac19a46d0674325916",
+    "E13_prereg_git_blob": "3c0e2031a14b5bb07e41dce29005e07dc1439deb",
+    "E13_independent_audit_git_blob": "18b5cc834db70fb2619b619ea2026e84eefd5cb2",
+    "E8_CSV_sha256": "bf8f48deb9514c5101d5ce314bfbd397485102a5487da1039f141e3cad6143d0",
+    "E13_full_JSON_sha256": "537365b2e758ec215810bb687557771440851cf2869d02578569b1d47d4ec98d",
+    "E13_per_state_JSON_sha256": {
+      "FD": "f32527307024480e031e3d7952caf681b577f528d70b86fae1efa4ee7828bfde",
+      "plus": "40d0da5e772ee99dce809a48179064a964ae20f46876dacde8d529158a8c7dd2",
+      "minus": "bf94d3b701867492f91768b182839b149de68cce147de2d5b21a813c2d907a7a"
+    }
+  },
+  "physics_and_grid": {
+    "source_mass_eV": 0.06,
+    "source_match_z": 1100,
+    "source_deformation_cap": 0.3,
+    "frozen_E8_7coeff_unchanged": true,
+    "exact_Eq20_FD_only": true,
+    "published_mu_approx_normalization": "UNRESOLVED",
+    "states": [
+      "FD",
+      "plus",
+      "minus"
+    ],
+    "z_math_midpoint": 0.95,
+    "k_short_comoving_h_per_Mpc": [
+      0.05,
+      0.075,
+      0.1
+    ],
+    "K_long_comoving_h_per_Mpc": [
+      0.001,
+      0.002,
+      0.003,
+      0.005
+    ],
+    "max_K_long_over_k_short": 0.1,
+    "odd_ells": [
+      1,
+      3
+    ],
+    "CLASS_params": "Same E13 base.class_params with ZBINS=[0.9,1.0], output mPk,dTk,vTk, new PSD paths only",
+    "CLASS_PSD_format": ".14e q and f separated by space, newline, exact E8 4000q source",
+    "Pcb_short": "pk_cb_lin(kshort*h,z=.95) units Mpc^3 separately each frozen state",
+    "E13_rank": "Same original E13 R16-filtered direct CLASS vTk Gaussian rank and same R16 long mode filter; E11 density-proxy Gamma never used"
+  },
+  "formula": {
+    "phase_fixed_static_k": "For fixed z/wind/source and physical Eq20 a²/kcom², direct-rank Gamma_s,ell(kshort)=Gamma_s,ell(k0=.05)*(.05/kshort)^2. Exact within THIS E13 static Eq20/source model, not universal retarded Vlasov law.",
+    "reduced_source": "Bsource_s,ell/(i mu_long DeltaBias) = Pcb_s(kshort) * Gamma_s,ell(kshort) * E13 P_delta_cb,r_direct_R16,s(K) (Mpc^6)",
+    "contrast": "Compute each F state with own CLASS Pcb, direct rank Gamma and long cross; Fplus-Fminus difference only after full state-wise products"
+  },
+  "technical_QA_not_physical_budget": {
+    "PSD_SHA_matches_archived_E13_state": true,
+    "CLASS_h": 0.6736,
+    "original_E13_k0_Pcb_and_full_product_relative_tolerance": 0.00001,
+    "exact_k_scaling_source_closure_tolerance": 1e-12,
+    "registered_K_over_k_upper": 0.1,
+    "fail_if_missing_or_exceeded_no_retuning": true
+  },
+  "limits": {
+    "only_three_short_modes_not_full_continuous_triangles": true,
+    "finite_squeeze_K_over_k_corrections_unestimated": true,
+    "triangle_azimuth_and_observed_LOS_unmodeled": true,
+    "full_retarded_Einstein_Vlasov_halo_unavailable": true,
+    "original_Newtonian_gauge_only": true,
+    "eBOSS_LRG_ELG_bias_HOD_evolution_magnification_GR_uncalibrated": true,
+    "physical_triple_window_and_covariance_absent": true,
+    "existing_unconditional_24D_odd_mean_unchanged": true,
+    "observed_odd_sealed": true,
+    "no_new_catalogue_mock_download": true,
+    "no_new_survey_cuts_or_science_seeds": true,
+    "main_untouched": true,
+    "PR_draft": true
+  },
+  "storage": "E8-E13 original numeric outputs are already permanent on audit branch. E14 source-only full state and joint report plus SHA archive manifest must be committed permanently on same audit branch."
+}

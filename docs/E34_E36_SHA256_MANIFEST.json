@@ -1,0 +1,85 @@
+{
+  "classification": "E34_E36_OFFLINE_SHA256_INPUT_AND_RESULT_MANIFEST",
+  "files": {
+    "E30_OFFLINE_WIND_SIGN_AND_TWO_TRACER_ESTIMAND.md": {
+      "bytes": 8046,
+      "sha256": "e83b596720c2b81d9a7b58f2dfb94ea3edc01991e51bd09878eaa0d61b00ee53"
+    },
+    "E32_OFFLINE_RADIAL_PROFILE_ENCLOSURE.md": {
+      "bytes": 4384,
+      "sha256": "3c43498856b7905bd6f5c9ccbc7745f75613c11f36f82c9fba09127585b07a8b"
+    },
+    "E33_OFFLINE_M200C_PSEUDOEVOLUTION.md": {
+      "bytes": 2361,
+      "sha256": "a4c43f77705a6a89857000af86adee77aa7bc4c0a540bf4bb14c1aebeb6c1e07"
+    },
+    "E34_E35_OFFLINE_HANDOFF.md": {
+      "bytes": 3694,
+      "sha256": "72507ea4dfed32338d0554740f35ffda70f5a2128aaa680b6c9e5140d988cb5f"
+    },
+    "E34_E35_OFFLINE_PROTOCOL.md": {
+      "bytes": 4097,
+      "sha256": "4b8bdc0a95ffec5ff3057eb65ae90835055232714312258e91cf4607493adb33"
+    },
+    "E34_E36_OFFLINE_HANDOFF.md": {
+      "bytes": 4441,
+      "sha256": "baaca41f91fd4d14ff912905773a902f7c7c67cf5c345894740cb66834639e02"
+    },
+    "E34_OFFLINE_TWO_SNAPSHOT_CAUSAL_HISTORY_NONIDENTIFIABILITY.md": {
+      "bytes": 4134,
+      "sha256": "2247db32d401682c332b53327207bc964f4dbaec2cccdb51db669537e51f8346"
+    },
+    "E35_OFFLINE_LOWK_PROFILE_ERROR_BOUND.md": {
+      "bytes": 3878,
+      "sha256": "b13f25836050095b0c6d213acb106213627ff90ad5503b5905501fd788a2441d"
+    },
+    "E36_OFFLINE_HIDDEN_INITIAL_KINETIC_MODE.md": {
+      "bytes": 3890,
+      "sha256": "9f4fcc9f4e8fc420ef39c7e45bc862d490397062368678e12535badf3a1a2485"
+    },
+    "E36_OFFLINE_PROTOCOL.md": {
+      "bytes": 2257,
+      "sha256": "8993d43bae33521eb67b9ebfac7a6f8b378c77da7fd31cb0d74c86d55a367064"
+    },
+    "e29_20_halo_two_epoch_pair_catalog.json": {
+      "bytes": 20629,
+      "sha256": "424954175ff97226f6d4be1dd82c008388b0a18abf5ce128f5cd7df45206b77e"
+    },
+    "e34_offline_causal_history_qa.py": {
+      "bytes": 5716,
+      "sha256": "9c73b1770fdd790d8f5763d175f1cc1cb844a93ce1f467b70d83e9f6c9258a5d"
+    },
+    "e34_offline_causal_history_result.json": {
+      "bytes": 2888,
+      "sha256": "8e75d12b05d97af9c370f93ba7f4954051785c31cd7e370bba8bbc67384f54d7"
+    },
+    "e35_offline_lowk_profile_bound_qa.py": {
+      "bytes": 6496,
+      "sha256": "73849bdb3904ccc7142420fc5f44bd3499379b7c88896130047fc179f9d88563"
+    },
+    "e35_offline_lowk_profile_bound_result.json": {
+      "bytes": 8004,
+      "sha256": "7e0e4c642fd0ebc61bdbfbded28f58c06821fff31e3196f4fefcf63b740329c6"
+    },
+    "e36_offline_hidden_kinetic_initial_data_qa.py": {
+      "bytes": 4684,
+      "sha256": "526d22beec3562435a21f2450daa2163e5a0fa55953a3b5d77e4399c514eb902"
+    },
+    "e36_offline_hidden_kinetic_initial_data_result.json": {
+      "bytes": 1709,
+      "sha256": "239ebe48f1cb05eefcbf634a0ad90ebff79d6d93b0f101f0cabfcba4779b8890"
+    },
+    "replay_e34_e36_offline.py": {
+      "bytes": 1128,
+      "sha256": "10b32d75f7e192f135b5c85097021e711756a950d8b280d33ff74fab204689e3"
+    }
+  },
+  "github_modified": false,
+  "observed_odd_read": false,
+  "qa": {
+    "e34": 51,
+    "e35": 85,
+    "e36": 179
+  },
+  "wsl_used": false
+}

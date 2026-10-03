@@ -1,0 +1,55 @@
+{
+  "study": "User-authorized EinsteinVlasovNP A-03 empirical-only LRG×ELG released-random window pathway, superseding historical source-request-as-next-action without altering any frozen prior source evidence",
+  "record_date": "2026-09-26",
+  "decision": "Do not contact Raichoor, de Mattia or other original DR16 authors for ELG source; proceed with only public, source-SHA-pinned tracer-specific published LRG and ELG randoms and strictly bounded empirical pair-window validation",
+  "original_a03_provenance_record": "source_data/eboss_dr16_a03_selection_window_provenance_decision_2026-09-26.json",
+  "original_record_unchanged": true,
+  "original_source_request_draft": "docs/EBOSS_DR16_ELG_PRODUCTION_SOURCE_REQUEST.md",
+  "author_contact_approved": false,
+  "email_sent": false,
+  "automatic_reminders_to_request_sources": false,
+  "contact_reconsideration_only_if_user_explicitly_changes_decision": true,
+  "historical_ELG_production_mask_certified": false,
+  "historical_production_source_required_for_limited_empirical_pair_window": false,
+  "empirical_LRG_ELG_window_validated": false,
+  "empirical_window_scope": "finite-published-random LRG×ELG R_LR_E conditional finite-bin angular/radial pair response, not complete continuous source/veto geometry; no new common hard mask, no retroactive application of guessed ELG vetoes",
+  "source_priorities": [
+    "Predeclared source-only replay of existing original 2026-09-24 completed 9-ID RR window artifact with all original SHA/ID/cap and observed-RANDOM-only labels; no observed galaxy or odd data.",
+    "Synthetic even/odd window-operator injections with independently frozen scales, cap-specific mock-vs-observed-random response scatter, finite-random half references, negative controls, and all nine predeclared IDs retained.",
+    "Explicitly separate mathematical conditional finite-bin response from physical leakage and complete continuous real-data survey window; revisit A-04 18D covariance and systematics only after scoped A-03 controls."
+  ],
+  "nine_original_mock_ids": [
+    1,
+    125,
+    250,
+    375,
+    500,
+    625,
+    750,
+    875,
+    1000
+  ],
+  "caps": [
+    "NGC",
+    "SGC"
+  ],
+  "tracers": [
+    "eBOSS_LRG",
+    "eBOSS_ELG"
+  ],
+  "original_20260924_artifact_run": 36017670812,
+  "original_20260924_artifact_id": 10815013322,
+  "original_20260924_artifact_name": "eboss-dr16-nine-mock-window-ensemble",
+  "original_artifact_zip_sha256": "a3b23502073e2a2e46211582d13ee4c1e45cd4984fdedf1ef36df4e0c5a8cda0",
+  "original_artifact_json_sha256": "8702adaf1284068c26e79555feb76c7a709df9a265f9e2194409cc4161602e01",
+  "original_artifact_npz_sha256": "PENDING_PIN_BEFORE_READING_NPZ_VALUES",
+  "observed_random_inputs_reused_only_for_blind_window_comparison": true,
+  "observed_galaxy_rows_read": false,
+  "observed_odd_data_vector_read": false,
+  "release_data_reselected": false,
+  "additional_mock_sources_download_authorized": false,
+  "physical_window_certified": false,
+  "statistical_covariance_or_significance_computed": false,
+  "draft_PR_only": true,
+  "main_untouched": true
+}

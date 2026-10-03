@@ -1,0 +1,77 @@
+{
+  "stage": "E17D2B3B8_PROSPECTIVE_OFFICIAL_SOURCE_ONLY_L1_N35_AND_M200C_PROFILE_IDENTIFIABILITY_AUDIT",
+  "date": "2026-09-29",
+  "status": "PREREG_BEFORE_B8_SOURCE_ONLY_CI_NO_MORE_REAL_HALO_IO",
+  "repository": "dvlahek/stress-energy-closure",
+  "branch": "audit/eboss-elg-bit8-ra-orientation-20260925",
+  "parents": {
+    "b7r1_user_uploaded_post_run_summary_repo_path": "source_data/eboss_dr16_a03_e17d2b3b7r1_user_uploaded_local_id_N_result_and_existing_output_failure_diagnostic_2026-09-29.json",
+    "b7r1_user_uploaded_summary_git_blob": "f27ed284c95e48548e50336da04c1a1d4b137186",
+    "b2_frozen_official_header_copy_repo_path": "source_data/eboss_dr16_a03_e17d2b3b2_archived_CI_2026_09_28/e17d2b3b2_pinned_header_copy_l1_threshold_vs_200crit.json",
+    "b2_frozen_header_copy_report_git_blob": "cb911e0f7864738695f20fe3228826374d343378",
+    "b7_prospective_data_field_protocol_git_blob": "296bc22e3d38a414017cc018e1f8ba8658899278",
+    "b7_original_numeric_reader_git_blob": "f3df40e44a87aa0784fe1c017ce431da089920d8",
+    "parent_plan_version": "1.47",
+    "frozen_main_SHA": "e50549a5c974772eb9576d301df7a5ea6e6d87d2"
+  },
+  "official_source_pins": {
+    "docs_repository": "abacusorg/AbacusSummit",
+    "docs_commit": "4b1959c710cb0c49aa305c6213a228aa2a4587ff",
+    "data_products_path": "docs/data-products.rst",
+    "data_products_git_blob": "f7c847b174365744b23cb6d1ebaeb010a5bd6ca7",
+    "compaso_path": "docs/compaso.rst",
+    "compaso_git_blob": "a5170574467501e0b9adb4a71e8e432a32843dbf",
+    "loader_repository": "abacusorg/abacusutils",
+    "loader_commit": "24ab0dda5fea9ae406b1afdacaf4bbf989de9bc6",
+    "loader_path": "abacusnbody/data/compaso_halo_catalog.py",
+    "loader_git_blob": "adb16aee1cbac863db5301c6e380938ee7f76547"
+  },
+  "fixed_questions": [
+    "Contrast actual user-reported raw N minimum 35 against frozen official CompaSO docs prose 'more than 35 particles'. Classify unresolved documentation-boundary discrepancy, not a new data cut or inferred upstream bug.",
+    "Check if the fixed raw L1 id/N catalogue and published SO/percentile definitions contain enough per-particle Eulerian positional/enclosed-mass information to CERTIFY an individual same-epoch R200critical and M200critical.",
+    "Identify separately official secondary-redshift available product types and the unavoidable further same-epoch mass profile inputs; do not download any.",
+    "Check source-defined raw-to-physical unit scaling of SO_radius/r100/r50_i16 and sentinel caveat before any future real-column proposal.",
+    "Preserve original E8/E16, observed eBOSS 24D odd seal and literal user-uploaded B7R1 evidence limits."
+  ],
+  "source_only_test_contract": {
+    "exact_files_downloaded_to_GitHub_runner": "sparse checkout three pinned text source files only, never Abacus ASDF/PID/RV/observed eBOSS",
+    "local_parent_files": "tracked small JSON documents only",
+    "no_user_WSL_execution": true,
+    "no_real_halo_numeric_columns": true,
+    "checks": [
+      "three exact upstream commits/blob hashes",
+      "two parent JSON blob hashes",
+      "literal source N>35 and user minimum N=35 discrepancy with no cut",
+      "L1 N assigned number times particle mass not M200c",
+      "CompaSO SO L1 threshold relative cosmic mean differs from 200critical at source header epoch",
+      "SO_radius sentinel/noncrossing and L2com percentile caveat",
+      "secondary has catalog+PID only, no matching RV/field arrays",
+      "loader cleaned=True default forbidden when only raw data available",
+      "synthetic toy fixed radial percentiles with different intermediate enclosed counts",
+      "explicit classification of available vs unavailable inputs for measured M200c"
+    ],
+    "synthetic_only_negative_cases": [
+      "tampered min_N without user evidence",
+      "tampered source wording",
+      "equalized L1 mean and 200critical thresholds",
+      "claim full secondary RV or field products",
+      "confuse L1 N with M200c",
+      "treat sentinel SO radius as measured R200critical",
+      "allow real ASDF file or observed eBOSS to enter source-only CI"
+    ],
+    "expected_report": "SOURCE_ONLY_PROVENANCE_PINNED_PASS; N35_RAW_VS_DOCS_UNRESOLVED; CURRENT_ID_N_DO_NOT_IDENTIFY_M200C; NO_NEW_REAL_DATA",
+    "stop_if": "source Git blob, parent Git blob or exact scope deviates; no rescue by different dataset, science cut, correction of source wording, additional binary read"
+  },
+  "no_new_real_data_transfer": true,
+  "absolute_STOP": {
+    "no_new_real_halo_column_or_other_superslab_read": true,
+    "no_new_RV_PID_cleaned_tree_download": true,
+    "no_actual_M200c_from_L1_catalog_N_or_SO_radius": true,
+    "no_real_halo_mass_history_inferred": true,
+    "no_finiteK_physical_original_Fplus_Fminus_neutrino_wake_or_galaxy_B_claim": true,
+    "no_observed_galaxy_or_24D_odd_unseal": true,
+    "no_new_science_cuts_seeds_or_E8_E16_48k_retuning": true,
+    "no_main_commit_or_PR_merge": true,
+    "no_WSL_rerun_during_reported_instability": true
+  }
+}

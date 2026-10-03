@@ -1,0 +1,58 @@
+name: eBOSS DR16 A03E15 original E14 long LOS parity and toy angular selection
+on:
+  push:
+    branches:
+      - audit/eboss-elg-bit8-ra-orientation-20260925
+    paths:
+      - 'source_data/eboss_dr16_a03_e15_long_los_parity_and_selection_leakage_prereg_2026-09-27.json'
+      - 'scripts/audit_eboss_dr16_a03_e15_long_los_parity_and_synthetic_selection.py'
+      - '.github/workflows/eboss_dr16_a03_e15_long_los_parity_synthetic_selection.yml'
+permissions:
+  contents: write
+jobs:
+  frozen-e14-long-los-geometry:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    env:
+      PYTHONUNBUFFERED: '1'
+      OMP_NUM_THREADS: '1'
+      OPENBLAS_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install deterministic angular quadrature dependency
+        run: python -m pip install 'numpy==1.26.4'
+      - name: Byte-exact original E14 SHA and independent 72/24 replay; two angular quadratures, parity and toy selection
+        run: |
+          python -m py_compile scripts/audit_eboss_dr16_a03_e15_long_los_parity_and_synthetic_selection.py
+          python -u scripts/audit_eboss_dr16_a03_e15_long_los_parity_and_synthetic_selection.py             --output eboss_workspace/a03_physics_source/e15_long_los_parity_source_only.json
+      - name: Permanently archive original E15 full 72-case plus 24-contrast source-only report on draft branch
+        run: |
+          set -eu
+          src=eboss_workspace/a03_physics_source/e15_long_los_parity_source_only.json
+          dest=source_data/eboss_dr16_a03_e15_original_E14_long_LOS_parity_and_toy_selection_2026_09_27.json
+          test -s "$src"
+          cp "$src" "$dest"
+          sha256sum "$dest"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "$dest"
+          if git diff --cached --quiet; then
+            echo E15_EXACT_SOURCE_RESULT_ALREADY_PERMANENT
+          else
+            git commit -m "archive(E15): frozen E14 72 source LOS parity and 24 contrasts; toy selection only, no real eBOSS bispectrum"
+            git push origin HEAD:refs/heads/audit/eboss-elg-bit8-ra-orientation-20260925
+          fi
+          echo E15_FULL_ORIGINAL_RESULT_PERMANENT_GITHUB_AUDIT_BRANCH
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: eboss-a03-e15-original-e14-72-long-LOS-parity-and-toy-selection
+          path: eboss_workspace/a03_physics_source/e15_long_los_parity_source_only.json
+          if-no-files-found: warn
+          retention-days: 30

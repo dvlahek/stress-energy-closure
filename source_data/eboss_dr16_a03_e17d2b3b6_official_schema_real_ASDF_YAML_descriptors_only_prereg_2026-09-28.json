@@ -1,0 +1,100 @@
+{
+  "stage": "E17D2B3B6_OFFICIAL_RAW_CATALOG_SCHEMA_AND_REAL_ASDF_YAML_DESCRIPTOR_METADATA_ONLY",
+  "date": "2026-09-28",
+  "status": "PROSPECTIVE_PREREG_BEFORE_REAL_ASDF_COLUMN_OR_BINARY_BLOCK_ACCESS_AND_BEFORE_METADATA_RUN",
+  "parent_repo": "dvlahek/stress-energy-closure",
+  "audit_branch": "audit/eboss-elg-bit8-ra-orientation-20260925",
+  "frozen_main_sha": "e50549a5c974772eb9576d301df7a5ea6e6d87d2",
+  "parent_local_evidence_report_git_blob": "c0ac072263f3d8b19d01caae091cb743c22a4037",
+  "parent_exact_one_file_access_prereg_git_blob": "654e01b4718f0d5238147a409060813fb37089cc",
+  "parent_user_supplied_checksum_manifest_git_blob": "0bca2fd0a28c9e163ad6198f67616da4355f4c81",
+  "parent_user_reported_real_file_sha256": "7f3755a469b3c25c869a0394b06192780d4a03717fd918d01c7459b0405724c3",
+  "source_pins": {
+    "docs_repository": "abacusorg/AbacusSummit",
+    "docs_commit": "4b1959c710cb0c49aa305c6213a228aa2a4587ff",
+    "data_products_path": "docs/data-products.rst",
+    "data_products_git_blob": "f7c847b174365744b23cb6d1ebaeb010a5bd6ca7",
+    "compaso_path": "docs/compaso.rst",
+    "compaso_git_blob": "a5170574467501e0b9adb4a71e8e432a32843dbf",
+    "utilities_repository": "abacusorg/abacusutils",
+    "utilities_commit": "24ab0dda5fea9ae406b1afdacaf4bbf989de9bc6",
+    "halo_loader_path": "abacusnbody/data/compaso_halo_catalog.py",
+    "halo_loader_git_blob": "adb16aee1cbac863db5301c6e380938ee7f76547",
+    "official_asdf_extension_path": "abacusnbody/data/asdf.py",
+    "official_asdf_extension_git_blob": "8c5e5135736409bb0fab77bff06ad1259951189d"
+  },
+  "source_only_preestablished_constraints": {
+    "raw_z095_is_secondary_epoch_true": true,
+    "primary_catalogue_halo_mass": "N times ParticleMassHMsun, L1 membership-defined; NOT M200c",
+    "raw_box_normalized_position_radius": true,
+    "source_units_after_abacusutils_positions": "comoving Mpc/h",
+    "source_density_units": "cosmic mean density",
+    "actual_L1_overdensity_relative_mean": "SODensityL1 header, do not substitute 200critical",
+    "SO_radius_special_sentinel_for_unreached_SO_crossing": true,
+    "selected_epoch_secondary_particle_file_limits": "At secondary z=0.950 official docs provide halo catalog and halo subsample PIDs; no same-epoch halo A/B RV/field products promised.",
+    "any_M200c_for_one_halo_requiring_full_enclosed_mass_profile": true,
+    "column_per_binary_block_metadata_narrow_access_supported": true,
+    "default_abacusutils_cleaned_true_requires_unavailable_cleaned_data": true,
+    "no_imputation_of_cleaned_catalogue_or_time_series": true
+  },
+  "only_allowed_actual_file": {
+    "simulation": "AbacusSummit_base_c000_ph000",
+    "directory": "halos/z0.950/halo_info",
+    "filename": "halo_info_000.asdf",
+    "size_bytes": 2223483833,
+    "local_full_SHA256_reported_from_previous_gate": "7f3755a469b3c25c869a0394b06192780d4a03717fd918d01c7459b0405724c3",
+    "same_directory_manifest_sha256": "b1db66f78cf17d9c2620a0be0917547eb5dc17a9e8f10bd02b0b211691fcb6a5"
+  },
+  "metadata_only_run_gate": {
+    "parser": "Python PyYAML yaml.compose ASDF textual prefix until first standalone '...' without asdf.open",
+    "max_total_prefix_bytes": 262144,
+    "no_access_to_any_binary_block": true,
+    "no_array_materialization_or_dtype_conversion": true,
+    "no_halo_individual_values_or_mass_calculation": true,
+    "read_only_header_and_data_descriptor_field_names": true,
+    "mandatory_schema_field_names": [
+      "id",
+      "N",
+      "SO_radius",
+      "SO_central_particle"
+    ],
+    "optional_metadata_field_names": [
+      "SO_central_density",
+      "x_L2com",
+      "r100_L2com",
+      "r50_L2com_i16"
+    ],
+    "permit_only_metadata_shape_datatype_byteorder_source_descriptor": true,
+    "output_only_small_local_JSON_with_no_real_halo_values": true,
+    "require_local_manifest_sha_and_file_size_and_frozen_reference_before_prefix_read": true,
+    "no_repeated_full_file_hash": "Parent b5 SHA256 and cksum already user-reported; b6 stat/prefix only, not independent full-file rehash."
+  },
+  "pass_criteria": [
+    "Source pinned official docs and loader have exact Git blobs and documented field/unit/sentinel/secondary epoch semantics",
+    "Synthetic parser tests pass on tiny fixture plus negative controls",
+    "Actual local YAML length within 262144 B and exact expected file identity/size",
+    "Actual raw data mapping lists mandatory field descriptors without reading their array values",
+    "Actual metadata output marked unverified provider origin and physical_M200c_not_measured"
+  ],
+  "fail_closed_if": [
+    "source Git blob drift",
+    "file path/size/manifest SHA drift",
+    "duplicate YAML header/data/schema keys",
+    "missing mandatory raw field",
+    "invalid or ambiguous ASDF YAML terminator",
+    "metadata descriptor not mapping or lacks shape/datatype"
+  ],
+  "next_gate": "NO raw real array column read until a separate prospective E17D2b3b7 protocol fixes a strictly bounded data field selector and interprets L1-only mass as L1, not 200critical M200c.",
+  "absolute_STOP": {
+    "no_real_halo_numeric_arrays_opened": true,
+    "no_other_real_halo_PID_RV_cleaned_tree_download": true,
+    "no_cleaned_true_or_merger_history_inferred": true,
+    "no_independent_provider_origin_claim": true,
+    "no_M200c_200critical_from_N_or_SO_radius": true,
+    "no_conditional_proxy_promoted_to_physical": true,
+    "no_physical_Fplus_Fminus_neutrino_wake_or_galaxy_B": true,
+    "no_observed_galaxy_or_24D_odd_unseal": true,
+    "no_new_science_cuts_seeds_CLASS_mocks_original_F_E8_E16_changes": true,
+    "no_main_commit_or_PR_merge": true
+  }
+}

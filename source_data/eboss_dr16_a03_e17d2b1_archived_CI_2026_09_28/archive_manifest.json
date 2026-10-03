@@ -1,0 +1,46 @@
+{
+  "date": "2026-09-28",
+  "CI_run_id": "36387669876",
+  "prospective_E17D2b1_protocol_git_blob": "28e33fad09db24b8b19739f50322169180442988",
+  "original_E17D2b0_joint_sha256": "848d3377830724593d75a02972f209085cb9913d03e8b73789f9b6478e6c11e6",
+  "wechsler_virial_mass_to_DM14_M200c_history_is_UNCALIBRATED_shape_only": true,
+  "distinct_exterior_rates_are_conditional_NOT_real_LRG_ELG_formation": true,
+  "original_E16_72_24_and_F_states_unchanged": true,
+  "full_physical_halo_tracer_bispectrum": "BLOCKED",
+  "observed_odd_SEALED": true,
+  "no_new_CLASS_FITS_mock": true,
+  "main_untouched": true,
+  "PR_remains_draft": true,
+  "files": [
+    {
+      "file": "e17d2b1_independent_stdlib_exterior_assembly_replay.json",
+      "size_bytes": 2494,
+      "sha256": "9a0962b6124bac95e543ce7a392da3f5a14a7d4a058a05174656df6768ed19d9"
+    },
+    {
+      "file": "e17d2b1_original_conditional_wechsler_exterior_00.json",
+      "size_bytes": 4684,
+      "sha256": "486b1b4e532f0661895878bdcc211fa6af52c1bde3facda6fa92187fa206489b"
+    },
+    {
+      "file": "e17d2b1_original_conditional_wechsler_exterior_01.json",
+      "size_bytes": 4656,
+      "sha256": "a8490ad1f81b404dbb0e442c1caafe2324f0f2e15e2b6b40f1756b3b8f18d5ef"
+    },
+    {
+      "file": "e17d2b1_original_conditional_wechsler_exterior_02.json",
+      "size_bytes": 4625,
+      "sha256": "5fe3ec25ddb8abd1bf27414795fe0b909db2d7154d5100082fd3eacc9315187c"
+    },
+    {
+      "file": "e17d2b1_original_conditional_wechsler_exterior_03.json",
+      "size_bytes": 4637,
+      "sha256": "95a3d98df5e9dd0308f2a2f85fe080651331a9136bf06a958f8444e5bd208adb"
+    },
+    {
+      "file": "e17d2b1_original_joint_conditional_exterior_assembly_rates.json",
+      "size_bytes": 4645,
+      "sha256": "19cfd3e3a9382d07b4a978522e437780b79467dcbf8f8adcf45d3804b46ad3b9"
+    }
+  ]
+}

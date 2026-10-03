@@ -1,0 +1,30 @@
+name: eBOSS DR16 A-03E5 / A-04 physics-first SOURCE-ONLY readiness STOP
+
+on:
+  push:
+    branches:
+      - audit/eboss-elg-bit8-ra-orientation-20260925
+    paths:
+      - 'scripts/audit_eboss_dr16_a03_e5_a04_readiness.py'
+      - 'source_data/eboss_dr16_a03_e5_a04_physics_first_readiness_protocol_2026-09-27.json'
+      - 'source_data/eboss_dr16_a03_e4_mock_galaxy_nested_random_density_1200_2400_4800_report_2026-09-27.json'
+      - 'source_data/eboss_dr16_a03_e4_mock_galaxy_nested_random_density_1200_2400_4800_uploaded_manifest_2026-09-27.json'
+      - '.github/workflows/eboss_dr16_a03_e5_a04_readiness.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-only-preregistered-STOP-no-FITS-no-unblinding:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Compile standard-library-only source readiness auditor
+        run: python -m py_compile scripts/audit_eboss_dr16_a03_e5_a04_readiness.py
+      - name: Verify immutable E4/parents, nonconvergence, eBOSS vs DESI scope, and negative STOP controls
+        run: python -u scripts/audit_eboss_dr16_a03_e5_a04_readiness.py --self-test

@@ -1,0 +1,32 @@
+{
+  "date": "2026-09-27",
+  "original_CI_run_id": "36332661676",
+  "prospective_E13_protocol_git_blob": "3c0e2031a14b5bb07e41dce29005e07dc1439deb",
+  "original_E12b_R16_filter_correction_git_blob": "09bac4f72e325578cbed7e790c50114150087e89",
+  "source_only": true,
+  "observed_odd_sealed": true,
+  "full_real_eBOSS_bispectrum_or_covariance_not_computed": true,
+  "original_Fplus_Fminus_parent_files_unchanged": true,
+  "files": [
+    {
+      "file": "e13_direct_wind_FD.json",
+      "size_bytes": 3799,
+      "sha256": "f32527307024480e031e3d7952caf681b577f528d70b86fae1efa4ee7828bfde"
+    },
+    {
+      "file": "e13_direct_wind_minus.json",
+      "size_bytes": 3858,
+      "sha256": "bf94d3b701867492f91768b182839b149de68cce147de2d5b21a813c2d907a7a"
+    },
+    {
+      "file": "e13_direct_wind_plus.json",
+      "size_bytes": 3802,
+      "sha256": "40d0da5e772ee99dce809a48179064a964ae20f46876dacde8d529158a8c7dd2"
+    },
+    {
+      "file": "e13_rank_matched_direct_vTk_gaussian_fixed_mode_source_only.json",
+      "size_bytes": 16678,
+      "sha256": "537365b2e758ec215810bb687557771440851cf2869d02578569b1d47d4ec98d"
+    }
+  ]
+}

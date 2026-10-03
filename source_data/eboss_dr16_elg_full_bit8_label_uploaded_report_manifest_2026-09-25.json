@@ -1,0 +1,46 @@
+{
+  "study": "eBOSS DR16 ELG bit8 local label-audit uploaded artifact verification",
+  "registered_on": "2026-09-25",
+  "verification_stage": "exact bytes of user-uploaded JSON independently SHA256-hashed and matched to archived Git blob; official FITS catalogue itself not independently reprocessed by assistant",
+  "input_fits_sha256_from_frozen_protocol": "8806699e14422904ef91efb6f1632184171fb740c2e074456c0534b7d2dc28b3",
+  "uploaded_report_byte_count": 2836,
+  "uploaded_report_sha256": "950fc1edb1c84d5d57545bb9b7617e632859f31953f9a9102547d5832d188751",
+  "uploaded_report_git_blob_sha1": "c96cee4de03adcaf0fa666d8355825c0fd1ccd02",
+  "archived_report_path": "source_data/eboss_dr16_elg_full_bit8_label_geometry_audit_2026-09-25.json",
+  "archived_report_git_blob_sha1": "c96cee4de03adcaf0fa666d8355825c0fd1ccd02",
+  "archived_byte_identical": true,
+  "preceding_outcome_file": "source_data/eboss_dr16_elg_full_bit8_label_reported_outcome_2026-09-25.json",
+  "preceding_outcome_file_report_SHA_pending_now_superseded": true,
+  "source_audit_protocol": "source_data/eboss_dr16_elg_full_bit8_label_protocol_2026-09-25.json",
+  "summary": {
+    "rows": 269178,
+    "official_label_bit8_positive": 15,
+    "native_RA_radians": {
+      "tp": 15,
+      "fp": 0,
+      "fn": 0,
+      "tn": 269163
+    },
+    "native_RA_degrees": {
+      "tp": 15,
+      "fp": 0,
+      "fn": 0,
+      "tn": 269163
+    },
+    "literal_upstream": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 15,
+      "tn": 269163
+    },
+    "units_only_reflected_RA": {
+      "tp": 0,
+      "fp": 5,
+      "fn": 15,
+      "tn": 269158
+    }
+  },
+  "reported_odd_data_vector_read": false,
+  "physical_mask_certified": false,
+  "independent_official_production_chain_authenticated": false
+}

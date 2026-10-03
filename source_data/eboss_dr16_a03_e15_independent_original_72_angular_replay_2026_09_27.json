@@ -1,0 +1,30 @@
+{
+  "date": "2026-09-27",
+  "status": "RETROSPECTIVE_INDEPENDENT_E15_ORIGINAL_72_ANGULAR_PARITY_AND_24_CONTRAST_ANALYTIC_REPLAY_PASS",
+  "original_E14_full_sha256": "0f1efb45593cd51d9ffa1818157bdd52baba525a8fc4bb9cc30c12d98ba91fd8",
+  "original_E15_full_sha256": "6062aed4b581f2db89192bd1c1cf2639a74b6a313db9e10dca9e53041a95d983",
+  "independence": "Pure Python standard-library exact Legendre/selection polynomial replay from original archived E14 and E15 values. E15 script not imported. Same RESTRICTED E14 source model, NOT independent physics, numerical CLASS run, real galaxy triangle or real survey-window validation.",
+  "analytical_identities": {
+    "B_unit_DeltaBias": "i muLong S",
+    "long_L1_imag": "S",
+    "long_L0_L2_L3_L4_imag": "0",
+    "even_synthetic_selection_W": "1+0.1 P2, monopole 0 and dipole 1.04 S",
+    "odd_synthetic_selection_W": "1+0.1 P1, monopole S/30 and dipole S",
+    "long_K_reverse": "B(-K)=conjugate(B(K)), imaginary sign reversed"
+  },
+  "original_state_cases": 72,
+  "original_Fplus_minus_Fminus_contrasts": 24,
+  "max_scaled_absolute_replay_gap": 1.1960918366860087e-15,
+  "worst_case": {
+    "state": "FD",
+    "k": "0.05",
+    "K": "0.001",
+    "ell": "1",
+    "check": "Legendre n32 L3",
+    "gap": 1.1960918366860087e-15
+  },
+  "physical_eBOSS_bispectrum_or_physical_window_calculated": false,
+  "original_observed_odd_data_sealed": true,
+  "new_CLASS_FITS_mock_download_or_science_seed_cut": false,
+  "main_untouched": true
+}

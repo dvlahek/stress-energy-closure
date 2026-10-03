@@ -1,0 +1,35 @@
+name: eBOSS DR16 A-03E3 immutable original-upload 18-case source-only archive audit
+
+on:
+  push:
+    branches:
+      - audit/eboss-elg-bit8-ra-orientation-20260925
+    paths:
+      - 'scripts/audit_eboss_dr16_a03_e3_uploaded_archive.py'
+      - 'source_data/eboss_dr16_a03_e3_mock_galaxy_nested_random_split_and_synthetic_dd_odd_injection_report_2026-09-26.json'
+      - 'source_data/eboss_dr16_a03_e3_mock_galaxy_nested_random_split_synthetic_dd_uploaded_manifest_2026-09-26.json'
+      - 'source_data/eboss_dr16_a03_e3_local_stdout_2026-09-26.log'
+      - 'source_data/eboss_dr16_a03_e3_nested_mock_random_split_synthetic_dd_injection_protocol_2026-09-26.json'
+      - 'source_data/eboss_dr16_a03_e2_mock_galaxy_elg_random_radial_weight_stress_report_2026-09-26.json'
+      - 'source_data/eboss_dr16_nine_ezmock_galaxy_cross_ls_code_transport_report_2026-09-26.json'
+      - '.github/workflows/eboss_dr16_a03_e3_uploaded_archive.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  exact-original-E3-upload-and-sparse-RR-negative-controls-NO-FITS:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install deterministic PCG64 audit dependency
+        run: python -m pip install 'numpy>=1.24,<2.4'
+      - name: Compile independent source-only E3 report auditor
+        run: python -m py_compile scripts/audit_eboss_dr16_a03_e3_uploaded_archive.py
+      - name: Verify exact original upload, all 18x4 RR cases, original E2 and both signed DD injections
+        run: python -u scripts/audit_eboss_dr16_a03_e3_uploaded_archive.py --self-test

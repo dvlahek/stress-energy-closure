@@ -1,0 +1,46 @@
+{
+  "stage": "E17D2B3B6_SOURCE_ONLY_OFFICIAL_RAW_SCHEMA_AND_METADATA_ONLY_PARSER_SYNTHETIC_QA",
+  "date": "2026-09-28",
+  "status": "OFFICIAL_GIT_PINNED_DOCS_AND_UTILS_SOURCE_ONLY_PASS_SYNTHETIC_YAML_QA_PASS_REAL_SCHEMA_METADATA_LOCAL_RUN_PENDING",
+  "prereg_git_blob": "e1f43da1a73aad3ef85c76a114fbffadc76d4761",
+  "metadata_script_git_blob": "718d2dde75f29dfbf2e32ab54cb624fc2a6688f8",
+  "official_docs_commit": "4b1959c710cb0c49aa305c6213a228aa2a4587ff",
+  "official_docs_data_products_git_blob": "f7c847b174365744b23cb6d1ebaeb010a5bd6ca7",
+  "official_docs_compaso_git_blob": "a5170574467501e0b9adb4a71e8e432a32843dbf",
+  "official_utils_commit": "24ab0dda5fea9ae406b1afdacaf4bbf989de9bc6",
+  "official_compaso_loader_git_blob": "adb16aee1cbac863db5301c6e380938ee7f76547",
+  "official_asdf_decoder_git_blob": "8c5e5135736409bb0fab77bff06ad1259951189d",
+  "source_only_synthetic_CI": {
+    "run_id": 36475043792,
+    "conclusion": "SUCCESS",
+    "exact_pinned_docs_checkout_and_blob_checks": true,
+    "exact_pinned_code_checkout_and_blob_checks": true,
+    "source_semantics_checks": 12,
+    "python_script_synthetic_happy_path": true,
+    "six_negative_controls_pass": true,
+    "actual_real_ASDF_in_GitHub_CI": false
+  },
+  "repository_integrity_technical_fix": {
+    "cause": "Pinned external AbacusSummit docs paths in b6 prereg were incorrectly interpreted as local repository files by generic checker.",
+    "correction": "Exact external docs repo+commit+source file paths now verified and excluded from local-file existence check only for exact immutable b6 prereg; previous prereg unchanged.",
+    "corrected_repo_integrity_CI_run_id": 36475172756,
+    "conclusion": "SUCCESS"
+  },
+  "source_documented_physical_limits": {
+    "secondary_z095_output": "Halo_info and halo particle subsample PID only; full corresponding halo particle RV/field products not provided as primary-redshift outputs.",
+    "N_meaning": "L1 CompaSO halo assigned particle count; N*ParticleMassHMsun is L1 catalog mass, NOT M200c",
+    "L1_SO_threshold": "SODensityL1 relative to cosmic mean density, not fixed 200 times critical",
+    "SO_radius": "distance to furthest assigned SO particle or special sentinel if crossing not reached; not always exact crossing",
+    "centers": "SO_central_particle and x_L2com different center definitions",
+    "raw_position_radius_units": "unit simulation box for nonratio raw fields; abacusutils multiplies by BoxSize to comoving Mpc/h",
+    "raw_density_units": "cosmic mean density",
+    "raw_catalog_columns": "separate ASDF compressed binary block for each column; schema descriptors can be read without array values",
+    "abacusutils_cleaned_default": "cleaned=True requires unavailable separate cleaned products, prohibited in this gate",
+    "exact_M200c_from_one_raw_halo_info": "NOT_DETERMINED"
+  },
+  "next_local_user_gate": "Run b6 metadata-only bounded YAML prefix reader on already checksum-verified exact halo_info_000.asdf and same-directory user checksum manifest. Read only <=262144 bytes YAML field names, shapes and datatype descriptors, NO binary block.",
+  "no_actual_real_halo_array_read": true,
+  "no_user_observed_odd_access": true,
+  "no_physical_Fplus_Fminus_wake_or_galaxy_B": true,
+  "main_unchanged_PR_draft": true
+}

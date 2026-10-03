@@ -1,0 +1,37 @@
+{
+  "a03": "PHYSICAL_UNCERTIFIED",
+  "a04": "BLOCKED",
+  "classification": "E36_OFFLINE_TOY_HIDDEN_INITIAL_KINETIC_MODE_FREE_STREAMING",
+  "density_at_t1_x0": {
+    "minus": 1.005425055136364,
+    "plus": 0.9945749448636361,
+    "signed_plus_minus": -0.010850110272727807
+  },
+  "fourth_order_coefficient_limit": -0.07581633246407918,
+  "kinetic_setup": {
+    "amplitude_eps": 0.1,
+    "background": "standard normal F0(v)",
+    "domain": "1D x periodic [0,2pi), v in R",
+    "equation": "free collisionless streaming only: df/dt+v*dxf=0",
+    "global_lower_density_factor_bound": 0.7424679737631008,
+    "h": "cos(v)-exp(3/2)/4*cos(2v)-3*exp(-1/2)/4",
+    "initial_equal_moments": {
+      "momentum": 0,
+      "rho": 1,
+      "second_velocity_moment": 1
+    },
+    "initial_full_velocity_distribution_equal": false
+  },
+  "mode_at_t1": -0.05425055136363903,
+  "mode_formula": "G(s)=-(1/2)*exp(-(s^2+1)/2)*(cosh(s)-1)^2",
+  "observed_odd_read": false,
+  "parent_sha256": {
+    "E34_OFFLINE_TWO_SNAPSHOT_CAUSAL_HISTORY_NONIDENTIFIABILITY.md": "2247db32d401682c332b53327207bc964f4dbaec2cccdb51db669537e51f8346",
+    "E35_OFFLINE_LOWK_PROFILE_ERROR_BOUND.md": "b13f25836050095b0c6d213acb106213627ff90ad5503b5905501fd788a2441d",
+    "E36_OFFLINE_PROTOCOL.md": "8993d43bae33521eb67b9ebfac7a6f8b378c77da7fd31cb0d74c86d55a367064",
+    "e34_offline_causal_history_result.json": "8e75d12b05d97af9c370f93ba7f4954051785c31cd7e370bba8bbc67384f54d7",
+    "e35_offline_lowk_profile_bound_result.json": "7e0e4c642fd0ebc61bdbfbded28f58c06821fff31e3196f4fefcf63b740329c6"
+  },
+  "qa_checks_passed": 179,
+  "scope_limit": "Not self-gravitating or Einstein-Vlasov constraint-matched; not halo forcing or eBOSS galaxy signal."
+}

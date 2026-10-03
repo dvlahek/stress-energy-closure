@@ -1,0 +1,65 @@
+{
+  "stage": "A03E21_FROZEN_E13_LINEAR_LOS_RELATIVE_VELOCITY_CROSS_TWO_TRACER_RESPONSE_NORMALIZATION",
+  "date": "2026-09-29",
+  "registration_honesty": "E21 is explicitly POSTHOC scientific investigation of already completed and inspected E13 direct-rank CLASS sources, after E20. This protocol prospectively freezes only the subsequent new E21 numerical QA, output schema, negative controls and stop conditions; not an advance preregistration of the E13 result or its observed F+/- normalization reversal. E20 archived scientific note SHA was resolved by exact Git file fetch before any E21 QA; original E13 values had already been inspected.",
+  "parents": {
+    "E13_source_only_three_state_summary": {
+      "path": "source_data/eboss_dr16_a03_e13_archived_CI_2026_09_27/e13_rank_matched_direct_vTk_gaussian_fixed_mode_source_only.json",
+      "blob": "d571ef664a4f4c94a0f24e1ba535fbf7c9294f76"
+    },
+    "E13_direct_state_Git_blobs": {
+      "FD": {
+        "path": "source_data/eboss_dr16_a03_e13_archived_CI_2026_09_27/e13_direct_wind_FD.json",
+        "blob": "d8be18c960bd9a42792e77523a551b70a6aece50"
+      },
+      "Fplus": {
+        "path": "source_data/eboss_dr16_a03_e13_archived_CI_2026_09_27/e13_direct_wind_plus.json",
+        "blob": "60650738ebbd0ca7b4f14780021e501459213f99"
+      },
+      "Fminus": {
+        "path": "source_data/eboss_dr16_a03_e13_archived_CI_2026_09_27/e13_direct_wind_minus.json",
+        "blob": "2e76cf760af7236b1dc4ef5a1260e9b66c468ecf"
+      }
+    },
+    "E12_direct_source_py": {
+      "path": "scripts/audit_eboss_dr16_a03_e12_direct_class_vTk_long_cross.py",
+      "blob": "0f516a1525fc5df44e71c400ea0cfb30664a1ce5"
+    },
+    "E20_source_only": {
+      "path": "source_data/eboss_dr16_a03_e20_archived_exact_moment_and_cross_power_structural_QA_2026-09-29.json",
+      "blob": "c736ea3bca7bd0560ab07225294e1dd0930e0561"
+    }
+  },
+  "source_scope": "Frozen E13 0.95 mathematical redshift (not eBOSS measured z_eff), long K=(.001,.002,.003,.005) h/Mpc only, R16 top-hat filtered direct CLASS theta_ncdm-theta_cdm, original E8 FD Fplus Fminus states. Not k=.05 short angular E10, no full-k/k-z physical xi, no galaxy response.",
+  "definitions": {
+    "r": "r_LOS=v_rel,LOS,R16/sigma_R16,LOS,F (state-specific sigma, original E13 convention); r is not observed per-halo velocity.",
+    "C_normalized": "P_{delta_cb,r_F}(K,mu) = + i mu C_F(K), original E12 direct source Fourier sign and E13 original C from E13 field P_delta_cb_rDIRECT_R16_filtered_over_i_mu_Mpc3",
+    "C_velocity": "P_{delta_cb,v_rel,LOS,R16,F}/(i mu)=sigma_R16,F * C_F(K), units km/s Mpc^3. This is re-expressing original E13 direct linear velocity, not an independently measured halo relative velocity.",
+    "state_comparison": "Hold exactly the same observable and units: compare C_F among F states only under state-wise r units, or compare sigma_F*C_F among states under v units; do not mix or infer physical galaxy wake-sign from one normalization.",
+    "phenomenological_two_tracer": "delta_L^s=A_L(K,mu)delta_cb + c_L v_rel,LOS,R16 ; delta_E^s=A_E delta_cb + c_E v_rel,LOS,R16 with real even A_L,A_E, real unknown c_L,c_E in 1/(km/s). O(v^2) and all physical standard relativistic/evolution/magnification/tracer bias terms omitted from the illustrative contribution; NOT established Einstein-Vlasov halo response.",
+    "cross_sign": "For P_LE=<delta_L delta_E*> and P_delta,v=+i mu C_velocity, the linear term is Im P_LE = mu (A_L c_E - c_L A_E) C_velocity. Swapping L<->E reverses sign. Equal A and equal c gives zero; equal A alone does not imply zero for unequal c.",
+    "relation_to_E20": "E20 quadratic response S~v delta can be zero at leading order for Gaussian fields; this separate linear LOS velocity response correlates with delta at two-point order and is not subject to the E20 quadratic third-moment null. This does not prove any nonzero physical c_a from neutrino halos.",
+    "response_unit_template": "Only C_velocity(K), and C_normalized(K), per each original F and four K are obtained; all A_a,c_a remain symbolic. No pretending C(K) at long modes determines original eBOSS 24D xi ell1/ell3.",
+    "possible_non_velocity_effects": "Standard relativistic galaxy Doppler has a structurally analogous line-of-sight odd cross-power, but its coefficient uses galaxy bulk velocity, not automatically r_nuCDM. No attribution of all observed odd to neutrinos."
+  },
+  "qa_before_next_implementation": [
+    "Require all exact Git blobs of E12/E13 state and E13 aggregate; original E13 source status and observed seal; E20 restricted source status.",
+    "Require only original four long K and same E13 redshift/velocity filter per all original states, positive sigma_R16 and positive filtered C, original normalized C agreement with E13 aggregate long-K C.",
+    "Reconstruct both original P_delta,r and sigma*P_delta,r per all three F and all four K in frozen units, preserving F+ minus F- sign in original source.",
+    "Numerically compare signed F+ minus F- on both definitions without cherry-picked K or changing original sample.",
+    "Use symbolic linear cross-power coefficient and transparent purely synthetic A,c to verify LE/EL sign reversal, mu reversal, r-to-v coefficient reparameterization, both zero and nonzero counterexamples; never infer physical c.",
+    "Five negative controls: original sigma altered without source check, altered K source, original E13 aggregate mismatch, LE orientation tamper, false universal Gaussian null for linear response.",
+    "Fail closed on observed eBOSS odd/galaxy/random files or any new redshift/mock/class/halo data, new seeds and cuts."
+  ],
+  "numerical_science_acceptance_threshold": "NONE. All checks are read-only arithmetic and sign/hashes. No significance or survey forecast.",
+  "STOP": {
+    "observed_eBOSS_odd_and_galaxies_SEALED": true,
+    "no_FITS_ASDF_PID_RV_cleaned_or_tree": true,
+    "no_new_CLASS_or_E8_Fpm_E16": true,
+    "no_local_WSL_or_data_transfer": true,
+    "no_new_eBOSS_random_mock_or_science_cut": true,
+    "no_24D_covariance_pvalue_or_snr": true,
+    "no_author_contact": true,
+    "no_main_or_draft_PR_merge": true
+  }
+}

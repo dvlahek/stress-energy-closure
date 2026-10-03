@@ -1,0 +1,104 @@
+name: eBOSS DR16 A03E17C frozen causal streaming component and independent two-leg audit
+on:
+  push:
+    branches:
+      - audit/eboss-elg-bit8-ra-orientation-20260925
+    paths:
+      - 'scripts/audit_eboss_dr16_a03_e17c_restricted_retarded_streaming.py'
+      - 'scripts/audit_eboss_dr16_a03_e17c_independent_scalar_replay.py'
+      - '.github/workflows/eboss_dr16_a03_e17c_restricted_retarded_streaming.yml'
+permissions:
+  contents: write
+jobs:
+  immutable-original-source-only-retarded-streaming:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    env:
+      PYTHONUNBUFFERED: '1'
+      OMP_NUM_THREADS: '1'
+      OPENBLAS_NUM_THREADS: '1'
+      MKL_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install frozen E17C source-only numerical dependency
+        run: python -m pip install 'numpy==1.26.4'
+      - name: SHA-verify prospective protocol original E8 E16 E17A E17B and no observable read
+        run: |
+          python -m py_compile scripts/audit_eboss_dr16_a03_e17c_restricted_retarded_streaming.py scripts/audit_eboss_dr16_a03_e17c_independent_scalar_replay.py
+          python -u scripts/audit_eboss_dr16_a03_e17c_restricted_retarded_streaming.py --self-test
+          python -u scripts/audit_eboss_dr16_a03_e17c_independent_scalar_replay.py --self-test
+      - name: Three unchanged original F states restricted both-leg collisionless streaming component only
+        run: |
+          for state in FD plus minus; do
+            python -u scripts/audit_eboss_dr16_a03_e17c_restricted_retarded_streaming.py \
+              --state "$state" --output-dir eboss_workspace/a03_physics_source/e17c_restricted_retarded_kinetic
+          done
+          python -u scripts/audit_eboss_dr16_a03_e17c_restricted_retarded_streaming.py \
+            --aggregate --output-dir eboss_workspace/a03_physics_source/e17c_restricted_retarded_kinetic
+      - name: Independently recompute every original scalar integral and reject mutated original report SHA
+        run: |
+          python -u scripts/audit_eboss_dr16_a03_e17c_independent_scalar_replay.py \
+            --negative-control --output-dir eboss_workspace/a03_physics_source/e17c_restricted_retarded_kinetic
+          python -u scripts/audit_eboss_dr16_a03_e17c_independent_scalar_replay.py \
+            --output-dir eboss_workspace/a03_physics_source/e17c_restricted_retarded_kinetic
+      - name: Permanently archive full original and independent JSON plus exact SHA manifest on audit branch
+        run: |
+          set -eu
+          src=eboss_workspace/a03_physics_source/e17c_restricted_retarded_kinetic
+          dest=source_data/eboss_dr16_a03_e17c_archived_CI_2026_09_27
+          test -s "$src/e17c_original_joint_restricted_retarded_streaming.json"
+          test -s "$src/e17c_independent_scalar_source_only_replay.json"
+          mkdir -p "$dest"
+          cp "$src"/*.json "$dest/"
+          python - <<'PY'
+          import hashlib,json,os,pathlib
+          d=pathlib.Path("source_data/eboss_dr16_a03_e17c_archived_CI_2026_09_27")
+          names=["e17c_restricted_streaming_FD.json","e17c_restricted_streaming_plus.json",
+                 "e17c_restricted_streaming_minus.json",
+                 "e17c_original_joint_restricted_retarded_streaming.json",
+                 "e17c_independent_scalar_source_only_replay.json"]
+          assert sorted(x.name for x in d.glob("*.json"))==sorted(names)
+          rows=[]
+          for name in sorted(names):
+              raw=(d/name).read_bytes()
+              assert len(raw)>250 and json.loads(raw)["observed_odd_SEALED"] is True if name.startswith("e17c_original_joint") or name.startswith("e17c_independent") else len(raw)>250
+              rows.append({"file":name,"size_bytes":len(raw),"sha256":hashlib.sha256(raw).hexdigest()})
+          joint=json.loads((d/"e17c_original_joint_restricted_retarded_streaming.json").read_bytes())
+          independent=json.loads((d/"e17c_independent_scalar_source_only_replay.json").read_bytes())
+          assert joint["full_physical_bispectrum"]=="BLOCKED"
+          assert independent["full_physical_finiteK_bispectrum"]=="BLOCKED"
+          assert independent["replayed_state_leg_phase_values"]==10368
+          manifest={"date":"2026-09-27","CI_run_id":os.environ.get("GITHUB_RUN_ID"),
+                    "prospective_E17C_protocol_git_blob":"33defef2020f2931756e3ef7a3959d905d539165",
+                    "original_E17B_joint_sha256":"156763dfb81e2a8c5c9e3615f5022749fa681f458a2753fbfa5f46b462e20658",
+                    "original_Fplus_Fminus_unmodified":True,
+                    "no_new_CLASS_FITS_or_mock":True,"observed_odd_SEALED":True,
+                    "full_physical_halo_tracer_bispectrum":"BLOCKED",
+                    "main_untouched":True,"PR_remains_draft":True,"files":rows}
+          (d/"archive_manifest.json").write_text(json.dumps(manifest,indent=2)+"\n")
+          for row in rows:
+              print("E17C_PERMANENT_SOURCE_ARCHIVE",row["file"],row["sha256"],flush=True)
+          PY
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "$dest"
+          if git diff --cached --quiet; then
+            echo E17C_SOURCE_ALREADY_COMMITTED
+          else
+            git commit -m "archive(E17C): frozen two-leg streaming sources, independent 10368 replay and permanent SHA manifest"
+            git push origin HEAD:refs/heads/audit/eboss-elg-bit8-ra-orientation-20260925
+          fi
+          echo E17C_FULL_ORIGINAL_INDEPENDENT_SHA_PERMANENT_AUDIT_BRANCH_PHYSICAL_B_BLOCKED
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: eboss-a03-e17c-restricted-retarded-free-streaming-physical-b-blocked
+          path: eboss_workspace/a03_physics_source/e17c_restricted_retarded_kinetic/*.json
+          if-no-files-found: warn
+          retention-days: 30

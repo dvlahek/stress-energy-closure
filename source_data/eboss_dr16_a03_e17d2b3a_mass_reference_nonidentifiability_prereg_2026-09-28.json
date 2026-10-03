@@ -1,0 +1,92 @@
+{
+  "date": "2026-09-28",
+  "status": "E17D2B3A_PROSPECTIVELY_LOCKED_TWO_POSITIVE_HALO_PROFILES_SAME_L1_DIFFERENT_M200C_BEFORE_NUMERICS",
+  "stage": "E17D2B3A_OFFICIAL_ABACUS_C000_DATA_ACCEPTANCE_AND_SYNTHETIC_MEAN_TO_CRITICAL_MASS_NONIDENTIFIABILITY",
+  "parent_head_at_registration": "0658997430f58aeef725cac6e4913e6779486637",
+  "question": "Do exactly identical idealized CompaSO-like L1 mass, SO radius, mean-density threshold and redshift uniquely determine M200c? Construct two positive monotone spherical profiles that share those external values but have different M200c, then specify fail-closed conditions for future real Abacus headers/merger trees without accessing them now.",
+  "original_pinned": {
+    "E8_csv_sha256": "bf8f48deb9514c5101d5ce314bfbd397485102a5487da1039f141e3cad6143d0",
+    "E16_full_sha256": "5d81f95a5571175f06eb032b865285ba34804701693f76af392be7fc31fb06db",
+    "E17A_joint_sha256": "094c49cb89d6dd231a5cbc16ecdfe455bcb3938ddec375fd28c81c8098ab2ad9",
+    "E17D2b1_joint_sha256": "19cfd3e3a9382d07b4a978522e437780b79467dcbf8f8adcf45d3804b46ad3b9",
+    "E17D2b2_original_sha256": "b8da4d6c33235ed82e76f548f2eb052e0fcd751a42672f48d8fffff153ac6926",
+    "E17D2b2_independent_sha256": "10c81a9c513b6206beb4cbf1bacdc9ee51946cbe8b62bb534e91d20da88f2d96",
+    "E17D2b2_archive_manifest_blob": "de7c5850d1a776c9cf0f301ba60611808b162169",
+    "E17D2b2_protocol_blob": "c1079b666fa8b91af42a8191dbddf56966ea3221",
+    "E17D2b2_original_runner_blob": "d09c7d5ff2a0178242f439ca6ea7f39ae4bb00f8"
+  },
+  "official_sources": [
+    {
+      "url": "https://abacussummit.readthedocs.io/en/latest/data-products.html",
+      "evidence": "L1 N particle mass, SO_radius possible special non-crossing value, epoch SODensityL1 relative mean, 10 percent RV+PID at primary, secondary z0.95 approximate and only halo-info+PID, actual redshift header, POSIX cksum in checksums.crc32."
+    },
+    {
+      "url": "https://abacussummit.readthedocs.io/en/latest/compaso.html",
+      "evidence": "L0/L1 competitive spherical-overdensity group definitions, threshold varies with epoch; N is L1 membership and SO_radius is not 200 critical radius."
+    },
+    {
+      "url": "https://abacussummit.readthedocs.io/en/latest/cosmologies.html",
+      "evidence": "Official c000 h=.6736, omega_b=.02237, omega_cdm=.12, omega_ncdm=.00064420, smooth-neutrino IC/growth; use actual header over public table for a real dataset."
+    },
+    {
+      "url": "https://abacussummit.readthedocs.io/en/latest/data-access.html",
+      "evidence": "Provider first release and cleaned catalogs have distinct persistent identifiers; actual c000 tree product and exact box/version/files not verified in this stage."
+    }
+  ],
+  "synthetic_scope": {
+    "h_c000_documented": 0.6736,
+    "omega_b_documented": 0.02237,
+    "omega_cdm_documented": 0.12,
+    "omega_ncdm_documented": 0.0006442,
+    "z_illustrative_ONLY_not_real_header": 0.95,
+    "delta_L1_mean_illustrative_ONLY_not_real_header": 200,
+    "reference_radius_R_L1_normalized": 1,
+    "reference_mass_M_L1_normalized": 1,
+    "positive_enclosed_mass_exponents": [
+      1,
+      2
+    ],
+    "background": "Analytic FLAT matter+Lambda toy Omega_m0=(omega_b+omega_cdm+omega_ncdm)/h^2, E2=Omega_m0*(1+z)^3+1-Omega_m0, Omega_m_z=Omega_m0*(1+z)^3/E2. This ignores radiation and nuanced massive neutrino evolution. The actual mean density convention of an Abacus ASDF header is NOT inferred from this toy.",
+    "two_models": "For p in {1,2}, enclosed M_p(r)=M_L1*(r/R_L1)^p inside R_L1, M_L1 outside. For 0<r<R_L1 the positive integrable density is p*M_L1*r^(p-3)/(4*pi*R_L1^p). Exactly identical M_L1,R_L1 and synthetic mean SO threshold at R_L1.",
+    "target": "For synthetic total matter mean, Delta200c_in_mean=200/Omega_m_z. Since illustrative DeltaL1_mean=200<Delta200c_mean, x=r200c/R_L1=(DeltaL1_mean/Delta200c_mean)^(1/(3-p)), M200c/M_L1=x^p. Reclose 200 critical mean density exactly.",
+    "strict_caveat": "Even stronger idealized perfect L1 SO crossing leaves M200c underdetermined from mass/radius alone. This is NOT a real Abacus halo, not a claim that ALL halo_info fields or actual complete particles are insufficient, not an actual measured SODensityL1 value. Real SO_radius may use sentinel when crossing absent."
+  },
+  "predeclared_checks": {
+    "synthetic_omega_m0_between_zero_one": true,
+    "Delta200c_in_mean_strictly_greater_than_illustrative_DeltaL1": true,
+    "both_profiles_positive_integrable_monotone_and_same_MR": true,
+    "both_200crit_roots_inside_L1_radius": true,
+    "M200c_mass_fraction_difference_greater_than_0p05": true,
+    "root_and_mass_density_equation_relative_tolerance": 1e-12,
+    "independent_stdlib_Decimal_bisection_scaled_tolerance": 2e-12,
+    "reject_two_synthetic_fake_ASDF_headers_and_naive_L1_mass_relabel": true,
+    "independently_reject_corrupted_original_sha": true,
+    "all_parent_SHA_and_git_blob_requirements": true,
+    "no_posthoc_parameter_or_threshold_change": true
+  },
+  "next_real_data_gate_not_executed": {
+    "accession": "Separate prereg/approval before any real halo file; provider persistent DOI, c000 box+phase, raw/cleaned product, version, actual path, provider POSIX/GNU cksum and locally computed SHA256. Provider checksums.crc32 must not be assumed to equal zlib.crc32.",
+    "exact_epoch": "Read actual per-file ASDF redshift and cosmology. Directory z0.95 is only approximate; do not treat original E17A z=.945,.950,.955 as actual Abacus times.",
+    "actual_mass": "Read ParticleMassHMsun, N, SODensityL1 and species/reference density/units from actual header; detect SO_radius non-crossing special value. Do not rename N*ParticleMassHMsun or SO_radius to M200c. For M200c demand validated same-epoch 200*rho_crit remeasurement with sufficient full halo+field radial inventory, periodic padding and center OR independently validated provider M200c with provenance; sparse subsamples and secondary PID-only are insufficient for exact mass.",
+    "actual_tree": "Actual halo branch, cleaning/raw consistency, per-epoch mass definition, progenitor and descendant IDs, exact epoch and checksum are mandatory before claiming M200c(a).",
+    "original_neutrino": "c000 smooth neutrino CDM-only N-body and original nonthermal E8 F+/F- are distinct; neither actual halo tree nor its mass history is a self-consistent neutrino wake.",
+    "data_request": "No actual ASDF, halo/tree/particle files are accessed or downloaded under this preregistration; a different data-access stage must be explicitly adopted first."
+  },
+  "archived_results": "One original mathematical counterexample and provider-readiness report, one independent Decimal/bisection proof and exact SHA negative control, permanent CI SHA manifest on audit branch after all tests pass. No real astrophysical halo data.",
+  "absolute_STOP": {
+    "observed_odd_SEALED": true,
+    "no_actual_ASDF_halo_merger_tree_particle_PID_read_or_download": true,
+    "no_new_halo_catalogue_mock_FITS_or_CLASS_run": true,
+    "no_observed_galaxy_odd_or_science_cut_or_seed": true,
+    "no_naive_L1_mass_or_SO_radius_equals_M200c": true,
+    "no_directory_z_as_actual_ASDF_header_z": true,
+    "no_10percent_subsample_as_exact_M200c_measurement": true,
+    "no_unvalidated_virial_mass_to_200c_history": true,
+    "no_c000_smooth_neutrino_tree_as_Fplus_Fminus_wake": true,
+    "no_full_retarded_Einstein_Vlasov_galaxy_bispectrum": true,
+    "no_true_eBOSS_3pt_covariance_window_or_significance": true,
+    "no_original_E8_E17D2b2_or_original_72_24_mutation": true,
+    "no_main_mutation_or_PR_merge": true,
+    "PR_remains_draft": true
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "stage": "E61_ELG_FULLPOOL_RECONSTRUCTION_LOCK_PROTOCOL",
+  "date": "2026-09-30",
+  "frozen_before_E61_result": true,
+  "parent_E60": {
+    "status": "PASS_ELG_MASK_ROBUSTNESS_QUANTIFIED",
+    "mask_robustness_pass": false
+  },
+  "final_reconstruction_operator": {
+    "tracer": "eBOSS_ELG",
+    "selection_subtraction": "complete source-eligible ELG random pool",
+    "probes": "exact E59 deterministic 512 full-mock LRGxELG DD midpoints",
+    "kernel": "exact E59 R=16 Mpc/h top-hat-smoothed real-space linear velocity kernel; 256 Mpc/h primary cutoff"
+  },
+  "sevenrep_surrogate_diagnostic": {
+    "cap_median_pearson_min": 0.98,
+    "cap_median_sign_agreement_min": 0.95,
+    "cap_median_rms_difference_ratio_max": 0.25,
+    "every_case_pearson_min": 0.95,
+    "every_case_sign_agreement_min": 0.9,
+    "every_case_rms_difference_ratio_max": 0.5,
+    "role": "diagnostic only; full-pool operator remains final regardless"
+  },
+  "downstream": "truth-labelled velocity calibration must use full-pool operator",
+  "guardrails": {
+    "observed_galaxy_rows": false,
+    "observed_odd_vector": false,
+    "true_velocity_in_E61": false,
+    "absolute_EV_amplitude": false,
+    "covariance_inverse": false,
+    "pvalues_or_detection_sigma": false
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "date": "2026-09-27",
+  "status": "POST_E8_SOURCE_ONLY_PHYSICAL_CONVENTION_ERRATUM_AND_CONDITIONAL_MODE_PHASE_NOT_GALAXY_PREDICTION",
+  "scope": "Retrospective external source check after E8/E8b numeric results; no new physical-acceptance threshold, raw data, fit, mocked observables or changed original E8 parents",
+  "original_parent_blobs": {
+    "archived_E8_source_and_SI_summary": "b2978e74384356db72dbb3af2e93b55cc3e16b38",
+    "frozen_E8_protocol": "2856c190b58fde9b39e2cb3f0d0006a77fe9b70c",
+    "frozen_E8b_protocol": "7865f059d312a0a97753f7c13b6faa5bb07a0e16",
+    "frozen_E8b_SI_implementation": "dbbc574a8da2c176827d160455b9be46f24977fa"
+  },
+  "parent_user_uploaded_files_sha256": {
+    "E8_4000q_distribution_CSV": "bf8f48deb9514c5101d5ce314bfbd397485102a5487da1039f141e3cad6143d0",
+    "E8_resonant_JSON": "d82bcf4df279ddb8d7fca89f07f8e3d711ed74285cd5ac6ce055fcc88c32ae14",
+    "E8b_SI_JSON": "f001ee510aeeb4449c464aede9a3ae9b00b93f6c3f2a9e384751fb1e8bbb4126"
+  },
+  "source_paper": {
+    "title": "Dynamical friction in the primordial neutrino sea",
+    "authors": [
+      "Chiamaka Okoli",
+      "Morag I. Scrimgeour",
+      "Niayesh Afshordi",
+      "Michael J. Hudson"
+    ],
+    "journal": "Monthly Notices of the Royal Astronomical Society 468 (2017), 2164–2175",
+    "verified_DOI": "10.1093/mnras/stx560",
+    "verified_source": "https://academic.oup.com/mnras/article/468/2/2164/3063204",
+    "original_frozen_E8_protocol_DOI_typo": "10.1093/mnras/stx539",
+    "originals_modified": false,
+    "published_exact_equation": "Published article Eq.(20), first equality, static halo longitudinal g_nu,k/Phi_k includes exact FD 1/(exp(q_res)+1).",
+    "published_approximation": "The same printed article's Eq.(20), second approximate equality, calls mu in [0.7,1), then uses mu=1 in later modeling Eq.(33) and Appendix A.",
+    "unresolved_convention": "As printed, mu in [0.7,1) cannot equal bare FD occupation 1/(exp(q)+1), which is <= 1/2 for q>=0. It may involve a separate normalization or published inconsistency; do NOT silently infer factor two or transfer the mu=1 forecast calibration to exact-denominator E8b."
+  },
+  "physics": {
+    "exact_E8b_branch": "K_s=(2 N G m_nu^4 v_parallel)/(hbar^3 k_phys) F_s(q_res)/F_Class_prefactor, with FD branch F_FD=1/(exp(q_res)+1), N=1; same Phi,v,k for all; first equality of published Eq.(20)",
+    "mode_response_definition": "alpha_s=(g_nu,k/Phi_k)_s/k_phys, dimensionless conditional Fourier longitudinal field-to-original-gradient ratio at fixed halo Phi. The ratio of g_nu to -i k_phys Phi is imaginary, modulo the stated Fourier/sign convention. alpha is not dphi/dt, redshift-space xi or sample-averaged wake.",
+    "comoving_formula_under_same_physical_state": "For k_com=a*k_phys and a=1/(1+z), alpha_s=2 N G m_nu^4 a^2 v_parallel F_s(q_res)/(hbar^3 k_com^2), with F_s the occupation without CLASS phase-space prefactor. This matches published Eq.(33)'s algebraic a^2/k_com^2 structure only if its mu symbol is consistently identified with exact occupation; its printed mu normalization remains unresolved.",
+    "at_reference_z095_v200_kphysical_0p05_hMpc": {
+      "q_res": 0.12204700265022027,
+      "exact_FD_occupation": 0.4695260669151108,
+      "k_phys_per_m": 1.0914944646848623e-24,
+      "alpha_FD": 0.0011741803783003515,
+      "alpha_plus": 0.0009567193487769012,
+      "alpha_minus": 0.001391641407823802,
+      "delta_alpha_plus_minus": -0.00043492205904690075,
+      "mu_1_over_exact_FD_occupation": 2.129807204
+    },
+    "k_convention": "k_phys=k_com/a=(1+z)k_com, do not re-label same numerical h/Mpc value without conversion"
+  },
+  "scientific_gate": {
+    "relative_response_from_fixed_Fplus_Fminus_usable_conditional": true,
+    "absolute_halo_SI_normalization_vs_published_mu_1_forecast_UNRESOLVED": true,
+    "CLASS_evolving_relative_velocity_field_required": true,
+    "independent_halo_tracer_b_LRG_ELG_and_evolution_magnification_required": true,
+    "independent_eBOSS_A03_physical_window_required": true,
+    "independent_eBOSS_A04_covariance_required": true,
+    "observed_odd_sealed": true,
+    "absolute_eBOSS_xi_ell_or_SNR_computed": false
+  },
+  "no_new_downloads_or_sources": true,
+  "main_unchanged": true
+}

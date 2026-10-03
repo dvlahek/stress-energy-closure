@@ -1,0 +1,70 @@
+{
+  "stage": "A03E25_TOTAL_METRIC_VS_EULER_RESIDUAL_FOR_LINEAR_NEUTRINO_LOS_TRACER_RESPONSE",
+  "date": "2026-09-29",
+  "registration_status": "POSTHOC_THEORY_AFTER_E24_AND_PRIMARY_OBSERVED_NUMBER_COUNT_EQUATION_RESEARCH; PROSPECTIVE_ONLY_FOR_NEW_E25_EXACT_SYNTHETIC_QA_BEFORE_FIRST_E25_EXECUTION",
+  "original_branch_head_at_decision": "fb02886a71af2313c9359c317aaf64e2b0c09d95",
+  "original_sources": {
+    "E24_note": {
+      "path": "docs/EBOSS_DR16_A03_E24_EXACT_EVEN_SECTOR_SIGN_DUALITY_AND_MINIMAL_NEUTRINO_TRACER_RESPONSE_2026-09-29.md",
+      "git_blob": "b3a87f1ed42133e164b440e89f45dcbf6f79dc8a"
+    },
+    "E24_report": {
+      "path": "source_data/eboss_dr16_a03_e24_source_only_even_odd_linear_response_identifiability_summary_2026-09-29.json",
+      "git_blob": "ccb64f189941ed0b89efe1462cf8ca86590b17fc"
+    },
+    "E22_note": {
+      "path": "docs/EBOSS_DR16_A03_E22_TWO_PHYSICAL_CHANNELS_OKOLI_PHASE_SHARED_WAKE_AND_SIGNED_ESTIMAND_2026-09-29.md",
+      "git_blob": "d2d08ec43cd2604e9a6207f40a5ac1732699ad8e"
+    },
+    "E23_note": {
+      "path": "docs/EBOSS_DR16_A03_E23_HIGHZ_PAIR_REDSHIFT_AND_PUBLISHED_HOD_TRANSPORT_GATE_2026-09-29.md",
+      "git_blob": "8fedf17c15d97d49ca45289dc1c0d6cb87b74727"
+    },
+    "E17D1_note": {
+      "path": "docs/EBOSS_DR16_A03_E17D1_RESTRICTED_CAUSAL_SOURCE_HISTORY_NONIDENTIFIABILITY_2026-09-27.md",
+      "git_blob": "3a536aa384eec1a202e77c532beb3a55c7333cb2"
+    },
+    "E21_Cv": {
+      "path": "source_data/eboss_dr16_a03_e21_archived_F0_Fpm_linear_LOS_velocity_cross_unit_response_2026-09-29.json",
+      "git_blob": "cc3312c5313cce60fad4a88c3a56ef3d4e675e38"
+    }
+  },
+  "external_primary_source": {
+    "Bonvin_Lepori_et_al_2023": "https://academic.oup.com/mnras/article/525/3/4611/7251503 — Eq. (2), full gauge-invariant number counts includes B_a V_parallel + (V_parallel' +partial_parallel Psi)/conformal_H; only this LOCAL subset used and gauge convention inherited, not whole observer/cross response.",
+    "Bonvin_et_al_2017_Doppler": "https://academic.oup.com/mnras/article/472/4/3936/4082100 — Eq. (48), velocity derivative and gravitational-gradient terms must be retained together.",
+    "Okoli_et_al_2017_neutrino_halo_drag": "https://doi.org/10.1093/mnras/stx560 — neutrino-induced halo drag and common-wake halo-model context; not a calibrated E8 Fplus/Fminus response."
+  },
+  "analytic_contract": {
+    "units": "Work in gauge-invariant linear number-count convention with conformal Hcal=aH and c_light=299792.458 km/s exact SI speed conversion; dimensionless LOS V=v_phys/c_light; E21 Cv original (km/s) Mpc^3, CU=Cv/c_light Mpc^3. No mixing Euler conformal time derivative with physical km/s without this normalization.",
+    "local_number_count_subset": "Delta_loc,a=B_a V_a,LOS +(V'_a,LOS +partial_LOS Psi_tot)/Hcal, plus the separate STANDARD Kaiser -partial_LOS V_a,LOS/Hcal and other number-count potential/lensing/selection terms not modeled here.",
+    "B_coefficient": "In the chosen Bonvin/Lepori et al. convention, B_a=1-Hcal'/Hcal^2+(5 s_a-2)/(r Hcal)-5 s_a+f_evo,a. Consequently D_a=B_a-1. This is convention-specific; do not transplant to other s/f_evo definitions without translating.",
+    "euler_residual": "E_a=V'_a,LOS+Hcal V_a,LOS+partial_LOS Psi_tot; Delta_loc,a=D_a V_a,LOS+E_a/Hcal by algebra. Psi_tot INCLUDES neutrino wake potential if wake gravity is represented in metric.",
+    "neutrino_induced_decomposition": "For linear signed wind response if delta V_a=beta_a U_rel, delta E_a/Hcal=epsilon_a U_rel, and separately physical LOS selection delta Delta_sel,a=s_a,wind U_rel (avoid confusing with conventional magnification s_a), define d_a=D_a beta_a+epsilon_a+s_a,wind and original E21 km/s coefficient c_a^E21=d_a/c_light.",
+    "two_tracer_odd": "Original P_delta,v_km_s=+i mu Cv,F gives Im P_LE=mu (A_L d_E-A_E d_L) Cv,F/c_light, ONLY if all coefficient/model assumptions apply and other complex GR/selection baseline separately modeled.",
+    "metric_and_double_count": "If each tracer follows geodesic of the FULL Psi_tot (point-source large-scale Euler limit) E_a=0, even with nonzero Psi_wake and changed V_a. If Psi_tot=Psi_bg+Psi_wake, E_bg=V'+Hcal V+partial Psi_bg=E_tot-partial Psi_wake. Inserting E_bg as independent wake force while also retaining full Psi_tot double counts. A coarse-grained halo COM residual requires an actual finite-size, environment or bias derivation and is not an equivalence-principle violation claim by itself.",
+    "null_and_scope": "Neither total-metric Euler residual=0 nor E21 even-sector degeneracy entails all observed odd=0: Doppler D_a deltaV and other metric/selection terms remain. Conversely beta !=0 does not imply chi !=0, and pure Kaiser velocity derivative produces even mu^2 in symmetric plane-parallel limit.",
+    "missing_physics": "Neither physical Psi_wake(t) matching E8 original F states and high-z host profiles, nor independently derived beta_a,epsilon_a,s_a,wind, D_a for exact original .9<=z<1 tracer selection exist. E17D1 test-source kernels do not provide them."
+  },
+  "new_exact_synthetic_QA": [
+    "SHA-pin all six original small files, validate E21 observed seal/physical nonclaim and E24 caveat, and ensure source high-z [0.9,1.0) was not replaced by broad-sample zeff.",
+    "Use exact Fraction arithmetic to prove Delta_loc=B V+(V'+gradPsi_tot)/Hcal=(B-1)V+E_tot/Hcal on several finite independent rational examples.",
+    "Exact geodesic full-Psi case with nonzero Psi_wake and velocity: E_tot=0, E_background=-gradPsi_wake; reject false direct force from E_background alone and demonstrate complete cancellation when restoring wake metric gradient.",
+    "Exact physically DISTINCT synthetic coarse-grained residual E_tot!=0: direct epsilon term survives with no claim it is physically calibrated.",
+    "Separate standard Kaiser derivative parity (i k mu)*(i mu Cv) real-even from undifferentiated Doppler/selection LOS projection i mu Cv imaginary odd; ensure LE/EL reversal and mu reversal.",
+    "Verify exact light speed conversion physical E21 Cv and dimensionless U term; reject missing c_light.",
+    "Demonstrate physically distinct D_a beta_a and epsilon_a+selection contributions and a nonzero-beta but zero-chi counterexample.",
+    "At least eight independent negative controls, including observed-seal tamper, original Cv tamper, wrong metric double count, fake nongeodesic residual, incorrectly odd Kaiser, wrong velocity unit, wrong LE sign, false beta-implies-chi."
+  ],
+  "STOP": {
+    "observed_odd_24D_SEALED": true,
+    "no_observed_galaxy_or_random_rows": true,
+    "no_real_RR_NPZ_or_FITS_ASDF_Abacus": true,
+    "no_new_CLASS_or_local_WSL": true,
+    "no_new_mock_or_science_cut_seed": true,
+    "no_F0_Fplus_Fminus_E8_E16_E21_E22_E23_E24_mutation": true,
+    "no_physical_halo_force_beta_epsilon_selection_or_Doppler_calibration_claim": true,
+    "no_eBOSS_xi_covariance_snr_detection_claim": true,
+    "no_author_contact": true,
+    "main_untouched_and_PR1_draft_unmerged": true
+  }
+}

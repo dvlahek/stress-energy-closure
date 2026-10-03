@@ -1,0 +1,85 @@
+{
+  "stage": "E27_CONDITIONAL_PHYSICAL_TIME_EXTERNAL_POINT_HALO_LINEAR_BORN_NEUTRINO_WAKE",
+  "date": "2026-09-29",
+  "scientific_scope": "New causal physical-time original E8 finite-q source with state-specific original E9 CLASS expansion and four original E17D2B1 uncalibrated conditional Wechsler M(z) point-halo histories, 0.95<=z<=1 with artificially zero incoming wake at z=1; one original short k=0.05 h_CLASS/Mpc; halo wind +200 km/s mu=+1. NOT total force or LRG/ELG galaxy prediction.",
+  "original_E27_protocol_git_blob": "d9c9a71841d00cd04db1016ceb2ce1adb5cfc7d5",
+  "posthoc_R1_protocol_git_blob": "a1bdd5264ebe914f0896cc7b60ec8919bb37434e",
+  "original_new_E27_numerical_CI": {
+    "id": 36599144647,
+    "conclusion": "SUCCESS",
+    "prior_technical_failure_source_pin": 36598915322,
+    "prior_technical_failure_numpy_API": 36599047664
+  },
+  "E27R1_contrast_numerical_CI": {
+    "id": 36599391672,
+    "conclusion": "SUCCESS",
+    "original_artifact_id": 11048261514,
+    "original_artifact_not_downloaded_or_byte_rehashed_here": true
+  },
+  "physical_anchor_low_M0_Msun": 1490312965722.8018,
+  "physical_anchor_high_M0_Msun": 14903129657228.018,
+  "alpha_values": [
+    0.4,
+    0.8
+  ],
+  "result_units": "Fourier delta_nu_over_mean_nu density per halo comoving mode, Mpc^3",
+  "original_257_node_physical_numeric": {
+    "FD": {
+      "0.4": {
+        "real": 0.0139098599799407,
+        "imag": 0.0000262774557197819
+      },
+      "0.8": {
+        "real": 0.0138154572175025,
+        "imag": 0.0000260767355606882
+      }
+    },
+    "plus": {
+      "0.4": {
+        "real": 0.0139098007485878,
+        "imag": 0.0000262773211932041
+      },
+      "0.8": {
+        "real": 0.0138153984689093,
+        "imag": 0.0000260766021764594
+      }
+    },
+    "minus": {
+      "0.4": {
+        "real": 0.0139099192386454,
+        "imag": 0.0000262775903238812
+      },
+      "0.8": {
+        "real": 0.0138155159932617,
+        "imag": 0.0000260768690218459
+      }
+    }
+  },
+  "FD_alpha04_minus_alpha08_imag_relative_to_alpha04": 0.007638492905635311,
+  "high_over_low_mass_response_exact_within_tolerance": 10,
+  "original_129_vs_257_individual_F_imag_relative_gap_approximately": 0.000022,
+  "original_129_vs_257_gap_exceeds_Fpm_fraction": true,
+  "posthoc_R1_1025_node_precise_signed_contrast": {
+    "alpha04": {
+      "Fminus_minus_Fplus_imag_Mpc3": 2.69124460564041e-10,
+      "normalized_to_FD_imag": 0.0000102417184096,
+      "relative_513_vs_1025_contrast_gap": 0.0000046196774,
+      "relative_257_vs_1025_contrast_gap": 0.000023098865
+    },
+    "alpha08": {
+      "Fminus_minus_Fplus_imag_Mpc3": 2.66839249508282e-10,
+      "normalized_to_FD_imag": 0.0000102329166299,
+      "relative_513_vs_1025_contrast_gap": 0.0000045996901,
+      "relative_257_vs_1025_contrast_gap": 0.00002299878
+    }
+  },
+  "posthoc_preregistered_precision_gate_below_one_percent_PASS": true,
+  "independent_kinetic_solver_or_whole_model_error_certified": false,
+  "original_Fpm_halos_independently_calibrated": false,
+  "full_neutrino_halo_drag_or_3D_k_integral_calculated": false,
+  "physical_LRG_ELG_chi_or_highz_HOD_calibrated": false,
+  "eBOSS_24D_template_covariance_significance": false,
+  "observed_odd_SEALED": true,
+  "no_new_CLASS_ASDF_FITS_Abacus_mock_WSL": true,
+  "main_untouched_PR_draft": true
+}

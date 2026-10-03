@@ -1,0 +1,33 @@
+name: eBOSS DR16 A03E8c exact FD conditional k-mode phase and reference erratum
+on:
+  push:
+    branches:
+      - audit/eboss-elg-bit8-ra-orientation-20260925
+    paths:
+      - 'scripts/audit_eboss_dr16_a03_e8c_conditional_phase_and_eq20_conventions.py'
+      - 'source_data/eboss_dr16_a03_e8c_exact_eq20_phase_and_bibliography_erratum_2026-09-27.json'
+      - '.github/workflows/eboss_dr16_a03_e8c_conditional_mode_phase.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  exact-eq20-source-only:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Exact frozen-source SI, published DOI/mu erratum and signed physical/comoving k negative controls
+        run: |
+          python -m py_compile scripts/audit_eboss_dr16_a03_e8c_conditional_phase_and_eq20_conventions.py
+          python -u scripts/audit_eboss_dr16_a03_e8c_conditional_phase_and_eq20_conventions.py --self-test
+      - name: Save the exact one-mode conditional source-only phase audit
+        run: python -u scripts/audit_eboss_dr16_a03_e8c_conditional_phase_and_eq20_conventions.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: eboss-a03-e8c-conditional-mode-phase-source-only
+          if-no-files-found: error
+          retention-days: 30
+          path: eboss_workspace/a03_physics_source/e8c_exact_conditional_mode_phase_source_only.json

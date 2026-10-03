@@ -1,0 +1,45 @@
+name: eBOSS A03 E22 dual-channel halo response source-only limits
+on:
+  push:
+    branches:
+      - audit/eboss-elg-bit8-ra-orientation-20260925
+    paths:
+      - 'scripts/audit_eboss_dr16_a03_e22_dual_channel_halo_response.py'
+      - 'source_data/eboss_dr16_a03_e22_*'
+      - '.github/workflows/eboss_dr16_a03_e22_dual_channel_halo_response.yml'
+      - 'EINSTEIN_VLASOV_NP_MASTER_PLAN.md'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  exact-frozen-source-and-toy-limits:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Verify prospectively pinned original source blobs
+        run: |
+          set -euo pipefail
+          test "$(git hash-object source_data/eboss_dr16_a03_e22_dual_channel_halo_response_comparison_protocol_2026-09-29.json)" = 5832921806cdbf4dd5ab3fba06e3ce6903d4f025
+          test "$(git hash-object docs/EBOSS_DR16_A03_E17D1_RESTRICTED_CAUSAL_SOURCE_HISTORY_NONIDENTIFIABILITY_2026-09-27.md)" = 3a536aa384eec1a202e77c532beb3a55c7333cb2
+          test "$(git hash-object source_data/eboss_dr16_a03_e17d1_archived_CI_2026_09_27/e17d1_original_joint_causal_history_nonidentifiability.json)" = 9f7e96b034779d0e20f4f9db61d5a642fda03975
+          test "$(git hash-object source_data/eboss_dr16_a03_e20_archived_exact_moment_and_cross_power_structural_QA_2026-09-29.json)" = c736ea3bca7bd0560ab07225294e1dd0930e0561
+          test "$(git hash-object source_data/eboss_dr16_a03_e21_archived_F0_Fpm_linear_LOS_velocity_cross_unit_response_2026-09-29.json)" = cc3312c5313cce60fad4a88c3a56ef3d4e675e38
+          test "$(git hash-object docs/EBOSS_DR16_A03_E21_ORIGINAL_E13_LINEAR_LOS_CHANNEL_AND_NORMALIZATION_2026-09-29.md)" = f418e2bd1546f01b2b1f140fb5a7b9e1bf427c43
+          echo E22_SIX_ORIGINAL_GIT_BLOB_PINS_PASS
+      - name: Verify two separate physical limiting-case channels without new data
+        env:
+          PYTHONUNBUFFERED: '1'
+        run: |
+          set -euo pipefail
+          python3 -m py_compile scripts/audit_eboss_dr16_a03_e22_dual_channel_halo_response.py
+          python3 -u scripts/audit_eboss_dr16_a03_e22_dual_channel_halo_response.py \
+            --out "$RUNNER_TEMP/e22_source_only_dual_channel_limits.json"
+          echo E22_SOURCE_ONLY_DUAL_CHANNEL_QA_SUCCESS
+      - uses: actions/upload-artifact@v4
+        with:
+          name: E22_original_source_only_dual_channel_toy_limits
+          path: ${{ runner.temp }}/e22_source_only_dual_channel_limits.json
+          if-no-files-found: error

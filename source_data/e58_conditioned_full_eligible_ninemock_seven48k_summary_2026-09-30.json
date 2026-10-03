@@ -1,0 +1,52 @@
+{
+  "stage": "E58_CONDITIONED_FULL_ELIGIBLE_NINEMOCK_SEVEN48K",
+  "date": "2026-09-30",
+  "exact_local_result": {
+    "bytes": 3167295,
+    "sha256": "ed2f031965863861ef4b57f46199a7407ca2b4c89ca965a3d9271ba008217d87"
+  },
+  "status": "PASS_NINEMOCK_FULL_ELIGIBLE_SEVEN48K_BACKGROUND_QUANTIFIED",
+  "gate_carried_forward_unchanged": true,
+  "gate": {
+    "median_max": 0.25,
+    "field_max": 0.5
+  },
+  "aggregate": {
+    "NGC": {
+      "effective_random_over_between_by_field": {
+        "A": 0.14466865605553358,
+        "B": 0.1715111150669509,
+        "C": 0.2901787952536674,
+        "D": 0.29608692842311274
+      },
+      "median_ratio": 0.23084495516030917,
+      "max_ratio": 0.29608692842311274,
+      "pass": true,
+      "mean_relative_F_state_separation": 0.43482309579885237,
+      "mean_postwindow_angle_rad": 0.02421284859365298
+    },
+    "SGC": {
+      "effective_random_over_between_by_field": {
+        "A": 0.11863619046435764,
+        "B": 0.20294792233250078,
+        "C": 0.2621741100425746,
+        "D": 0.2527142158010024
+      },
+      "median_ratio": 0.2278310690667516,
+      "max_ratio": 0.2621741100425746,
+      "pass": true,
+      "mean_relative_F_state_separation": 0.4349509618605556,
+      "mean_postwindow_angle_rad": 0.02405803475651279
+    }
+  },
+  "decision": "SEVENREP_RANDOM_INTEGRATION_GATE_CLOSED; ADVANCE_TO_PHYSICAL_VELOCITY_TAG_AND_ABSOLUTE_AMPLITUDE_CALIBRATION",
+  "guardrails": {
+    "observed_galaxy_rows_used": false,
+    "observed_odd_used": false,
+    "physical_velocity_reconstruction_used": false,
+    "covariance_inverse_used": false,
+    "pvalue_or_detection_sigma": false,
+    "all_72_full_gzip_rehashed_before_any_FITS": true
+  },
+  "important_limit": "Passing closes only conditional random-subset Monte-Carlo precision. It does not calibrate a physical velocity tag, absolute eBOSS EV amplitude, finite-parent-pool common bias, covariance inference, or significance."
+}

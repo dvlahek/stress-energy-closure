@@ -1,0 +1,140 @@
+name: eBOSS A03 E17D2b3b1 pinned official Abacus embedded header COPY only, NO halo ASDF
+on:
+  push:
+    branches:
+      - audit/eboss-elg-bit8-ra-orientation-20260925
+    paths:
+      - 'scripts/audit_eboss_dr16_a03_e17d2b3b1_official_header_copy.py'
+      - '.github/workflows/eboss_dr16_a03_e17d2b3b1_official_embedded_header_copy.yml'
+permissions:
+  contents: write
+jobs:
+  public-source-controlled-9mb-header-copy-not-real-halo-catalog:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 18
+    env:
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: SHA-gate original E8 E16 E17A E17D2b3a E17D2b3b0 before fetching upstream metadata
+        run: |
+          set -eu
+          python -m py_compile scripts/audit_eboss_dr16_a03_e17d2b3b1_official_header_copy.py
+          python -u scripts/audit_eboss_dr16_a03_e17d2b3b1_official_header_copy.py --preflight
+      - name: Checkout ONLY source-controlled upstream compressed header COPY and Blosc decoder at immutable Git commit
+        uses: actions/checkout@v4
+        with:
+          repository: abacusorg/abacusutils
+          ref: 24ab0dda5fea9ae406b1afdacaf4bbf989de9bc6
+          path: official-abacusutils
+          fetch-depth: 1
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            README.md
+            pyproject.toml
+            abacusnbody/__init__.py
+            abacusnbody/data/__init__.py
+            abacusnbody/metadata/__init__.py
+            abacusnbody/metadata/abacussummit_headers_compressed.asdf
+            abacusnbody/metadata/abacussummit.py
+            abacusnbody/data/asdf.py
+      - name: Validate immutable upstream blob SHA and strict metadata byte cap
+        run: |
+          set -eu
+          cd official-abacusutils
+          test "$(git rev-parse HEAD)" = 24ab0dda5fea9ae406b1afdacaf4bbf989de9bc6
+          test "$(git hash-object abacusnbody/metadata/abacussummit_headers_compressed.asdf)" = 0065029cdd515ffa76c61a27b81e9f16b2656f38
+          test "$(wc -c < abacusnbody/metadata/abacussummit_headers_compressed.asdf)" -eq 9486279
+          test "$(git hash-object abacusnbody/metadata/abacussummit.py)" = 0a374324dc5199241473a0a476a94a6b37831473
+          test "$(git hash-object abacusnbody/data/asdf.py)" = 8c5e5135736409bb0fab77bff06ad1259951189d
+          echo E17D2B3B1_OFFICIAL_SOURCE_BUNDLED_HEADER_COPY_9MB_GIT_SHA_PASS_NO_HALO_DATA
+      - name: Install only public source COPY decoding dependencies, NOT CLASS or halo reader
+        run: |
+          python -m pip install --no-cache-dir 'numpy==1.26.4' 'asdf==3.5.0' 'msgpack==1.1.0' 'blosc==1.11.3' 'astropy==6.1.2' 'asdf-astropy==0.7.1'
+          python -m pip install --no-deps -e ./official-abacusutils
+          python - <<'PY'
+          import importlib.metadata
+          eps=importlib.metadata.entry_points(group="asdf.extensions")
+          hits=[x for x in eps if x.name=="abacusutils"]
+          assert len(hits)==1, "official pinned Abacus ASDF Blosc entrypoint not installed"
+          assert hits[0].value=="abacusnbody.data.asdf:AbacusExtension"
+          print("E17D2B3B1_PINNED_OFFICIAL_BLOSC_ASDF_ENTRYPOINT_REGISTERED",flush=True)
+          PY
+      - name: Extract pinned candidate c000 ph000 z0.950 source-copy state and validate by second decode
+        run: |
+          python -u scripts/audit_eboss_dr16_a03_e17d2b3b1_official_header_copy.py \
+            --upstream-root official-abacusutils \
+            --output-dir eboss_workspace/a03_physics_source/e17d2b3b1_official_header_copy
+      - name: Persist small exact source-copy metadata report + SHA manifest to AUDIT branch only
+        run: |
+          set -eu
+          src=eboss_workspace/a03_physics_source/e17d2b3b1_official_header_copy
+          dest=source_data/eboss_dr16_a03_e17d2b3b1_archived_CI_2026_09_28
+          name=e17d2b3b1_pinned_official_embedded_header_copy_state_z095.json
+          test -s "$src/$name"
+          mkdir -p "$dest"
+          cp "$src/$name" "$dest/$name"
+          python - <<'PY'
+          import hashlib,json,os,pathlib
+          dest=pathlib.Path("source_data/eboss_dr16_a03_e17d2b3b1_archived_CI_2026_09_28")
+          name="e17d2b3b1_pinned_official_embedded_header_copy_state_z095.json"
+          assert sorted(x.name for x in dest.glob("*.json"))==[name]
+          raw=(dest/name).read_bytes()
+          j=json.loads(raw)
+          assert j["status"]=="E17D2B3B1_OFFICIAL_GIT_PINNED_ABACUS_EMBEDDED_HEADER_COPY_DECODED_NO_ACTUAL_HALO_ASDF_VERIFIED"
+          assert j["upstream_public_official_commit"]=="24ab0dda5fea9ae406b1afdacaf4bbf989de9bc6"
+          assert j["upstream_source_git_blob"]=="0065029cdd515ffa76c61a27b81e9f16b2656f38"
+          assert j["upstream_source_size_bytes"]==9486279
+          assert j["upstream_simulation"]=="AbacusSummit_base_c000_ph000"
+          assert j["exact_source_copy_state_label"]=="z0.950"
+          assert j["state_in_official_bundle_exists"] is True
+          assert j["full_upstream_state_second_decode_identical"] is True
+          assert j["real_halo_info_ASDF_header_and_GNU_cksum_SHA256_verified"] is False
+          assert j["actual_halo_or_merger_tree_or_particle_data_downloaded"] is False
+          assert j["actual_M200c_200critical_same_halo_history_verified"] is False
+          assert j["observed_odd_SEALED"] is True
+          assert j["full_physical_finiteK_galaxy_bispectrum"]=="BLOCKED"
+          man={"date":"2026-09-28","CI_run_id":os.environ.get("GITHUB_RUN_ID"),
+             "prospective_E17D2b3b1_protocol_blob":"36c2bcda723b95565e604723e651beef08aad992",
+             "official_source_repo":"abacusorg/abacusutils",
+             "official_source_commit":"24ab0dda5fea9ae406b1afdacaf4bbf989de9bc6",
+             "embedded_header_copy_git_blob":"0065029cdd515ffa76c61a27b81e9f16b2656f38",
+             "embedded_header_copy_bytes":9486279,
+             "source_bundled_copy_NOT_actual_provider_halo_info_ASDF_header":True,
+             "no_real_halo_particle_PID_tree_or_observed_galaxy_download":True,
+             "original_E8_E16_F_science_unchanged":True,
+             "full_physical_halo_tracer_bispectrum":"BLOCKED",
+             "observed_odd_SEALED":True,
+             "main_untouched":True,"PR_remains_draft":True,
+             "files":[{"file":name,"size_bytes":len(raw),
+                       "sha256":hashlib.sha256(raw).hexdigest()}]}
+          (dest/"archive_manifest.json").write_text(json.dumps(man,indent=2)+"\n")
+          print("E17D2B3B1_GIT_PINNED_PUBLIC_BUNDLED_HEADER_COPY_REPORT_SHA",
+                man["files"][0]["sha256"],flush=True)
+          print("E17D2B3B1_SOURCE_COPY_Z_STATUS",j["copied_header_z_extraction_status"],
+                "Z",j["copied_header_z_value_if_unambiguous"],flush=True)
+          PY
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "$dest"
+          if git diff --cached --quiet; then
+            echo E17D2B3B1_ALREADY_SOURCE_COPY_REPORT_ARCHIVED
+          else
+            git commit -m "archive(E17D2b3b1): pinned official 9.5MB header-copy state z0.950 no real halo ASDF/merger tree"
+            git push origin HEAD:refs/heads/audit/eboss-elg-bit8-ra-orientation-20260925
+          fi
+          echo E17D2B3B1_OFFICIAL_EMBEDDED_METADATA_ONLY_REAL_HALO_ASDF_AND_B_BLOCKED
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: eboss-E17D2b3b1-public-Git-pinned-9mb-HEADER-COPY-only
+          path: eboss_workspace/a03_physics_source/e17d2b3b1_official_header_copy/*.json
+          if-no-files-found: warn
+          retention-days: 30

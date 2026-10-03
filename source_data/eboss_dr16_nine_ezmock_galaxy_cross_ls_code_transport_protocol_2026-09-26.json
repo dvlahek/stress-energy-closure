@@ -1,0 +1,122 @@
+{
+  "study": "Prospectively fixed BLINDED nine-realization realistic EZmock mock-GALAXY × tracer/cap/same-realization RANDOM cross-Landy–Szalay code-transport audit",
+  "registered_on": "2026-09-26",
+  "registered_after": "The original ID0001 mock galaxy estimator and descriptive odd projection, full 36 galaxy compressed source inventory and independent original-artifact 36 mock random source verification all completed and archived.",
+  "registered_before": "First mock GALAXY/random FITS row from IDs 0125,0250,0375,0500,0625,0750,0875,1000 is read in THIS code-transport campaign. No observed galaxy/odd read.",
+  "nine_galaxy_input_source_report_archive": "source_data/eboss_dr16_nine_ezmock_galaxy_source_sha_report_2026-09-26.json",
+  "nine_galaxy_input_source_report_local": "eboss_workspace/official_mask_inventory/ezmock_nine_galaxy_source_raw_sha.json",
+  "nine_galaxy_input_source_report_sha256": "2c6b55bf5611dc71449ecbbfc2dedf545f2d22250147ed08f6a072536b50f06c",
+  "nine_galaxy_input_source_manifest": "source_data/eboss_dr16_nine_ezmock_galaxy_source_sha_uploaded_manifest_2026-09-26.json",
+  "nine_random_input_source_report_archive": "source_data/eboss_dr16_nine_ezmock_matched_random_sha_report_2026-09-26.json",
+  "nine_random_input_source_report_local": "eboss_workspace/official_mask_inventory/ezmock_nine_matched_random_source_sha.json",
+  "nine_random_input_source_report_sha256": "229a107a44fa1e8665c39acc9050982f8a0fcc39d15cc35e5bbc9bc272116c47",
+  "nine_random_input_source_manifest": "source_data/eboss_dr16_nine_ezmock_matched_random_sha_uploaded_manifest_2026-09-26.json",
+  "original_20260924_random_SHA_reference": "source_data/eboss_dr16_nine_ezmock_random_reference_sha_from_20260924_artifact.json",
+  "original_0001_cross_ls_report_archive": "source_data/eboss_dr16_ezmock0001_galaxy_cross_ls_pilot_report_2026-09-26.json",
+  "original_0001_cross_ls_report_SHA256": "b8ea4545d433900c1364d1c12e2638a2d2288e35f0a327c22b8ad1ec9ae8510c",
+  "original_0001_cross_ls_protocol": "source_data/eboss_dr16_ezmock0001_galaxy_cross_ls_pilot_protocol_2026-09-26.json",
+  "original_0001_cross_ls_manifest": "source_data/eboss_dr16_ezmock0001_galaxy_cross_ls_pilot_uploaded_manifest_2026-09-26.json",
+  "previously_fixed_ids": [
+    1,
+    125,
+    250,
+    375,
+    500,
+    625,
+    750,
+    875,
+    1000
+  ],
+  "caps": [
+    "NGC",
+    "SGC"
+  ],
+  "tracers": [
+    "eBOSS_LRG",
+    "eBOSS_ELG"
+  ],
+  "roles": [
+    "dat",
+    "ran"
+  ],
+  "source_input_total_count": 72,
+  "byte_identity_rule": "Before ANY new FITS header/row is opened, independently rehash all 36 mock galaxy full gzip files and all 36 corresponding matched random full gzip files. Confirm exact frozen local successful source report bytes against archived report SHA. Missing/moved/symlink/different SHA/size/source URL means INCOMPLETE_STOP with zero mock FITS row reads; never fetch or repin in this code-transport runner.",
+  "one_mock_0001_exact_reproduction": "Before accepting new mock ID code-transport summary, reproduce 0001 original predeclared 8 selected array SHA256 and 16 weighted histogram SHA256 values per cap/orientation and 0001 xI mirror residual/support invariants. The original 0001 source reports and bins/seeds are unchanged.",
+  "fixed_candidate_redshift": [
+    0.9,
+    1
+  ],
+  "fixed_sampling": {
+    "data_per_tracer_cap_id": 600,
+    "random_per_tracer_cap_id": 1200,
+    "seed_root": 93127,
+    "seed_formula": "seed_root + 10000*cap_index + 100*tracer_index + (0 for D or 1 for R); same original seed root for each fixed ID and identical deterministic algorithm to original 0001; independent source data per ID and role, no per-ID outcome-dependent seed or sample-size changes",
+    "sampling_without_replacement": true,
+    "ELG_chunk_handling": "Select uniformly among eligible ELG rows across original exact chunks; report exact chunk counts before and after sampling, no chunk-conditioned resampling, reweighting or new angular mask.",
+    "if_insufficient_rows": "Record the exact ID/cap/tracer/role as failing input; do not replace IDs, increase sample count, widen redshift, redo random seed or discard that case."
+  },
+  "fixed_geometry": {
+    "orientation": "LRG_to_ELG",
+    "reverse_orientation": "ELG_to_LRG",
+    "line_of_sight": "midpoint",
+    "fiducial": "published_multitracer",
+    "theta_min_deg": 0.05,
+    "separation_edges_mpc_h": [
+      20,
+      40,
+      60,
+      80,
+      100,
+      120,
+      140
+    ],
+    "mu_edges": "np.linspace(-1 - 1e-7, 1 + 1e-7, 25), 24 signed bins, physical range clipped only if later independently preregistered multipole projection"
+  },
+  "fixed_weights": "WEIGHT_SYSTOT*WEIGHT_CP*WEIGHT_NOZ*WEIGHT_FKP",
+  "fixed_numerical_zero_systot_tol": 1e-12,
+  "LS": {
+    "terms": [
+      "D_LD_E",
+      "D_LR_E",
+      "R_LD_E",
+      "R_LR_E"
+    ],
+    "independent_weight_normalization": "sum_w(first)*sum_w(second)",
+    "xi": "DD/n_DD - DR/n_DR - RD/n_RD + RR/n_RR divided by RR/n_RR, where normalized RR>0 only",
+    "signed_mu_reverse": "Swap LRG and ELG, reverse all cross pairs independently, use mirrored signed mu and DR/RD exchange",
+    "relative_pair_mirror_threshold": 1e-10,
+    "xi_reverse_mirror_max_abs_threshold": 1e-8,
+    "RR_support_policy": "Record positive-RR support for all 6x24 cells for each fixed ID/cap; do not require or assume 144/144 on all nine; never zero-fill missing RR cells or silently drop a fixed mock. If no RR-supported cell or reverse support mismatch, retain explicit failed case.",
+    "raw_RR_odd_orientation_threshold": 1e-10
+  },
+  "prior_0001_eligible_header_counts_not_generalized_to_other_ids": true,
+  "other_mock_exact_FITS_row_counts": "Source-dependent metadata are recorded from authenticated exact full gzip bytes AFTER all 72 full SHA gates pass; no invented header-row prior for the other eight IDs.",
+  "positive_control": "Predeclared 0001 matching original selected-array SHAs/weighted histograms/normalizations and forward/reverse parity must pass.",
+  "negative_controls": [
+    "Tamper one archived source SHA in a copied synthetic manifest: preflight must reject",
+    "Tamper one registered galaxy/random sample SHA in a copied synthetic 0001 report: original replay must reject",
+    "Synthetic wrong separately normalized pair histogram must reject; partial RR coverage never generates physical odd multipoles"
+  ],
+  "outputs": [
+    "full 72-source binary identities and full-source rehash pass",
+    "deterministic 600D/1200R eligible counts and exact ELG chunk composition by case",
+    "forward/reverse pair-term weighted histogram SHA, normalization and accepted-pair summaries by ID and cap",
+    "reverse pair weighted/mu parity residual, positive RR support mask/count and unsupported cells for every fixed case",
+    "original 0001 prior result replay confirmation",
+    "all failures plus same-ID, same-cap, tracer-specific source references"
+  ],
+  "excluded_outputs": [
+    "no mock-template optimization, physical odd null p value, covariance inverse, 18D Sigma",
+    "no observed real-galaxy catalogue, random catalogue or odd data access",
+    "no detection or exclusion inference; no cap coaddition based on outcomes"
+  ],
+  "ninerealization_sample_covariance_rank_at_most": 8,
+  "all_phys_mask_or_pair_window_certified": false,
+  "observed_galaxy_rows_read": false,
+  "observed_odd_data_vector_read": false,
+  "new_science_selection_applied": false,
+  "inference_or_detection_authorized": false,
+  "local_checkpoint_dir": "eboss_workspace/local_ninemock_galaxy_cross_ls",
+  "local_summary_report": "eboss_workspace/local_ninemock_galaxy_cross_ls/nine_mock_galaxy_cross_ls_code_transport.json",
+  "failure_policy": "Report exact failure for each fixed ID/cap while preserving every successful case, do not recalculate samples after inspecting mock outcomes, do not unblind observed odd. The all-cases COMPLETED status only if all 18 ID/cap cases pass."
+}

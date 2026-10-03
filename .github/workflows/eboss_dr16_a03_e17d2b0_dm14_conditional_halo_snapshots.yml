@@ -1,0 +1,107 @@
+name: eBOSS DR16 A03E17D2b0 DM14 externally calibrated conditional halo snapshots and independent audit
+on:
+  push:
+    branches:
+      - audit/eboss-elg-bit8-ra-orientation-20260925
+    paths:
+      - 'scripts/audit_eboss_dr16_a03_e17d2b0_dm14_halo_snapshots.py'
+      - 'scripts/audit_eboss_dr16_a03_e17d2b0_independent_dm14_radial_replay.py'
+      - '.github/workflows/eboss_dr16_a03_e17d2b0_dm14_conditional_halo_snapshots.yml'
+permissions:
+  contents: write
+jobs:
+  dm14-population-prior-only-not-individual-halo-history:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    env:
+      PYTHONUNBUFFERED: '1'
+      OMP_NUM_THREADS: '1'
+      OPENBLAS_NUM_THREADS: '1'
+      MKL_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install pinned original SiCi and numeric dependencies for source-only spatial model
+        run: python -m pip install 'numpy==1.26.4' 'scipy==1.14.1'
+      - name: Immutable parent E8 E16 E17A E17D1 E17D2a SHA, published DM14 fit and cosmology mismatch preflight
+        run: |
+          python -m py_compile scripts/audit_eboss_dr16_a03_e17d2b0_dm14_halo_snapshots.py scripts/audit_eboss_dr16_a03_e17d2b0_independent_dm14_radial_replay.py
+          python -u scripts/audit_eboss_dr16_a03_e17d2b0_dm14_halo_snapshots.py --self-test
+          python -u scripts/audit_eboss_dr16_a03_e17d2b0_independent_dm14_radial_replay.py --self-test
+      - name: Compute all 18 published conditional DM14 200crit mass radius and six-dimensional frozen original E16 spatial modes
+        run: |
+          for i in $(seq 0 17); do
+            python -u scripts/audit_eboss_dr16_a03_e17d2b0_dm14_halo_snapshots.py \
+              --case-index "$i" --output-dir eboss_workspace/a03_physics_source/e17d2b0_dm14_population
+          done
+          python -u scripts/audit_eboss_dr16_a03_e17d2b0_dm14_halo_snapshots.py \
+            --aggregate --output-dir eboss_workspace/a03_physics_source/e17d2b0_dm14_population
+      - name: Independently evaluate full 31104 mode stdlib DM14 Planck critical radius and NFW direct radial integral
+        run: |
+          python -u scripts/audit_eboss_dr16_a03_e17d2b0_independent_dm14_radial_replay.py \
+            --negative-control --output-dir eboss_workspace/a03_physics_source/e17d2b0_dm14_population
+          python -u scripts/audit_eboss_dr16_a03_e17d2b0_independent_dm14_radial_replay.py \
+            --output-dir eboss_workspace/a03_physics_source/e17d2b0_dm14_population
+      - name: Permanently archive original 18 snapshots joint independent and exact SHA manifest on audit branch only
+        run: |
+          set -eu
+          src=eboss_workspace/a03_physics_source/e17d2b0_dm14_population
+          dest=source_data/eboss_dr16_a03_e17d2b0_archived_CI_2026_09_28
+          test -s "$src/e17d2b0_original_joint_DM14_conditional_mass_concentration_spatial_snapshots.json"
+          test -s "$src/e17d2b0_independent_stdlib_dm14_full_radial_replay.json"
+          mkdir -p "$dest"
+          cp "$src"/*.json "$dest/"
+          python - <<'PY'
+          import hashlib,json,os,pathlib
+          d=pathlib.Path("source_data/eboss_dr16_a03_e17d2b0_archived_CI_2026_09_28")
+          expected=["e17d2b0_original_DM14_conditional_snapshot_%02d.json"%i for i in range(18)]
+          expected+=["e17d2b0_original_joint_DM14_conditional_mass_concentration_spatial_snapshots.json",
+                     "e17d2b0_independent_stdlib_dm14_full_radial_replay.json"]
+          assert sorted(x.name for x in d.glob("*.json"))==sorted(expected)
+          files=[]
+          for name in sorted(expected):
+              raw=(d/name).read_bytes();j=json.loads(raw)
+              assert len(raw)>1000 and j["observed_odd_SEALED"] is True
+              assert j["full_physical_finiteK_galaxy_bispectrum"]=="BLOCKED"
+              files.append({"file":name,"size_bytes":len(raw),
+                            "sha256":hashlib.sha256(raw).hexdigest()})
+          joint=json.loads((d/"e17d2b0_original_joint_DM14_conditional_mass_concentration_spatial_snapshots.json").read_bytes())
+          independent=json.loads((d/"e17d2b0_independent_stdlib_dm14_full_radial_replay.json").read_bytes())
+          assert joint["number_of_frozen_conditional_halo_snapshots"]==18
+          assert joint["total_conditional_spatial_Fourier_modes"]==31104
+          assert independent["independent_replayed_conditional_short_short_long_shapes"]==31104
+          assert joint["individual_LRG_ELG_halo_M_HOD_time_history_known"] is False
+          assert independent["original_CLASS_and_DM14_cosmology_not_equal"] is True
+          manifest={"date":"2026-09-28","CI_run_id":os.environ.get("GITHUB_RUN_ID"),
+                    "prospective_E17D2b0_protocol_git_blob":"8faaf167403e09f321a6c62f452120f8b96898a2",
+                    "original_E17D2a_joint_sha256":"040c9711bfdfee6682acda4b48bc578b64e88c11d143d35a9a9ae46ff4c74a31",
+                    "published_DM14_is_pop_median_Planck2013_NOT_exact_original_CLASS":True,
+                    "numeric_mass_anchor_redshift_scatter_not_actual_LRG_ELG_HOD":True,
+                    "full_physical_halo_tracer_bispectrum":"BLOCKED",
+                    "observed_odd_SEALED":True,"no_new_CLASS_FITS_mock":True,
+                    "main_untouched":True,"PR_remains_draft":True,"files":files}
+          (d/"archive_manifest.json").write_text(json.dumps(manifest,indent=2)+"\n")
+          for o in files:print("E17D2B0_PERMANENT_FULL_ORIGINAL_INDEPENDENT",o["file"],o["sha256"],flush=True)
+          PY
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "$dest"
+          if git diff --cached --quiet; then
+            echo E17D2B0_ORIGINAL_SOURCE_ALREADY_ARCHIVED
+          else
+            git commit -m "archive(E17D2b0): DM14 population halo snapshots independent full 31104 SHA replay; physical B blocked"
+            git push origin HEAD:refs/heads/audit/eboss-elg-bit8-ra-orientation-20260925
+          fi
+          echo E17D2B0_DM14_CONDITIONAL_SOURCE_ONLY_AND_INDEPENDENT_FULL_SHA_PERMANENT_ON_AUDIT
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: eboss-a03-e17d2b0-published-DM14-conditional-population-snapshots-NOT-halo-history
+          path: eboss_workspace/a03_physics_source/e17d2b0_dm14_population/*.json
+          if-no-files-found: warn
+          retention-days: 30

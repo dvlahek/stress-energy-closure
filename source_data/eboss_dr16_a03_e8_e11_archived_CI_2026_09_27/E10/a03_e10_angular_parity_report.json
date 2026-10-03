@@ -1,0 +1,139 @@
+{
+  "date": "2026-09-27",
+  "status": "E10_CONDITIONAL_ANGULAR_FOURIER_SOURCE_TESTS_PASS_UNCONDITIONAL_EBOSS_ODD_MEAN_NOT_ESTABLISHED",
+  "protocol_git_blob_sha1": "d9de48012103eaa07d531e11bca9cef285e62545",
+  "original_E8_4000q_CSV_sha256": "bf8f48deb9514c5101d5ce314bfbd397485102a5487da1039f141e3cad6143d0",
+  "original_E9_three_CLASS_JSON_sha256": "450b35f68a329f545f21bbe7ec02e36941e4c303037ccb7c011830c315d15890",
+  "original_CLASS_commit": "e85808324f51fc694d12e3ed7439552a3c3f9540",
+  "definition": "Original Eq A8 C_LE=<delta_LRG^s delta_ELG^s*>; unit-DeltaBias/unit-Pcb conditional T(mu)=mu\u00b2 dphi(kcom,mu)/dln a, phi from exact FD Eq20 occupancy and original E9 +1sigma LOS wind, explicitly aligned with LOS",
+  "frozen_example_not_measured_eBOSS": {
+    "k_com_h_per_Mpc": 0.05,
+    "z": 0.95,
+    "mu_quad_nodes": [
+      256,
+      512
+    ],
+    "z_stencil_step": 0.005,
+    "density_velocity_step_relative_1plusz": 0.004
+  },
+  "conditional_Fourier_source_projected_ells_not_xi": {
+    "256": {
+      "conditional_positive_LOS": {
+        "FD": {
+          "1": 0.0002688857232290194,
+          "3": 0.00017614445289762835
+        },
+        "plus": {
+          "1": 0.00022278867148171175,
+          "3": 0.0001415028935008308
+        },
+        "minus": {
+          "1": 0.00031476169263509304,
+          "3": 0.0002106144390423998
+        }
+      },
+      "conditional_negative_LOS": {
+        "FD": {
+          "1": -0.0002688857232290194,
+          "3": -0.00017614445289762835
+        },
+        "plus": {
+          "1": -0.00022278867148171175,
+          "3": -0.0001415028935008308
+        },
+        "minus": {
+          "1": -0.00031476169263509304,
+          "3": -0.0002106144390423998
+        }
+      },
+      "symmetric_equal_weight_ensemble_intrinsic_odd_mean": {
+        "FD": {
+          "1": 0.0,
+          "3": 0.0
+        },
+        "plus": {
+          "1": 0.0,
+          "3": 0.0
+        },
+        "minus": {
+          "1": 0.0,
+          "3": 0.0
+        }
+      },
+      "conditional_positive_plus_minus_difference": {
+        "1": -9.197302115338129e-05,
+        "3": -6.911154554156899e-05
+      }
+    },
+    "512": {
+      "conditional_positive_LOS": {
+        "FD": {
+          "1": 0.00026888572322902307,
+          "3": 0.00017614445289763344
+        },
+        "plus": {
+          "1": 0.00022278876746842203,
+          "3": 0.00014150296987877026
+        },
+        "minus": {
+          "1": 0.0003147616400323981,
+          "3": 0.00021061456076441418
+        }
+      },
+      "conditional_negative_LOS": {
+        "FD": {
+          "1": -0.00026888572322902307,
+          "3": -0.00017614445289763344
+        },
+        "plus": {
+          "1": -0.00022278876746842203,
+          "3": -0.00014150296987877026
+        },
+        "minus": {
+          "1": -0.0003147616400323981,
+          "3": -0.00021061456076441418
+        }
+      },
+      "symmetric_equal_weight_ensemble_intrinsic_odd_mean": {
+        "FD": {
+          "1": 0.0,
+          "3": 0.0
+        },
+        "plus": {
+          "1": 0.0,
+          "3": 0.0
+        },
+        "minus": {
+          "1": 0.0,
+          "3": 0.0
+        }
+      },
+      "conditional_positive_plus_minus_difference": {
+        "1": -9.197287256397608e-05,
+        "3": -6.911159088564392e-05
+      }
+    }
+  },
+  "quadrature_256_512_relative_gaps": {
+    "FD_ell1": 1.3709494658855221e-14,
+    "FD_ell3": 2.8929382259021646e-14,
+    "plus_ell1": 4.308417851134678e-07,
+    "plus_ell3": 5.397620948891487e-07,
+    "minus_ell1": 1.671191131669575e-07,
+    "minus_ell3": 5.779373180249596e-07,
+    "delta_plus_minus_ell1": 1.6155759955262566e-06,
+    "delta_plus_minus_ell3": 6.560994234008912e-07
+  },
+  "technical_QA_warnings": [],
+  "physical_ensemble_statement": "Equal +/- LOS wind at same magnitude, independent of tracer selection => intrinsic mean conditional response zero for each ell. This is a necessary null for this simplified symmetric model, NOT a theorem for nonlinear correlated real halo/tracer selection.",
+  "physical_ensemble_second_moment_qualifier": "Equal +/- fixed |v_LOS| two-point ensemble RMS equals absolute positive conditional projected coefficient; NOT the true velocity-distributed variance or survey S/N.",
+  "tracer_response": "Im P_LRG_ELG(k,mu)=(b_LRG-b_ELG)P_cb(k,z)T(mu) under original Eq A8 assumptions; actual biases, P_cb covariance, halo velocity-density cross response and redshift-pair window NOT determined here.",
+  "cannot_directly_propagate_E9_positive_LOS_into_unconditional_eBOSS_24D": true,
+  "A03_physical_pair_z_RR_window_certified": false,
+  "A04_independent_eBOSS_covariance_available": false,
+  "observed_galaxies_or_randoms_or_odd_read": false,
+  "new_catalogue_or_mock_download": false,
+  "new_science_seeds_or_cuts": false,
+  "full_retarded_Einstein_Vlasov_halo_response_computed": false,
+  "absolute_eBOSS_xi1_xi3_or_detection_calculated": false
+}

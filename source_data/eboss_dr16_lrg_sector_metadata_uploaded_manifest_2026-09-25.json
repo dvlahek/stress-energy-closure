@@ -1,0 +1,22 @@
+{
+  "study": "eBOSS DR16 LRG four-column sector metadata uploaded report exact-byte manifest",
+  "record_date": "2026-09-25",
+  "registered_after_local_four_column_run": true,
+  "source_report_path": "eboss_workspace/official_mask_inventory/lrg_full_sector_metadata_audit.json",
+  "uploaded_report_file_bytes": 3462,
+  "uploaded_report_sha256": "ead2ff920592af381bc65478a8393ed9c0238f0e150a343e50287168f8f0442c",
+  "uploaded_report_git_blob_sha1": "792affb7e06008e432ddd1fdf288b17057e6754f",
+  "archived_source_report_path": "source_data/eboss_dr16_lrg_sector_metadata_audit_2026-09-25.json",
+  "exact_git_blob_match_verified": true,
+  "frozen_source_FITS_sha256_prior_to_rows": "39b831801adec04fe6dc5d6ab76a4b303aa58bfd303548cb7fddfae7d7f9331d",
+  "frozen_pre_row_protocol": "source_data/eboss_dr16_lrg_sector_metadata_protocol_2026-09-25.json",
+  "user_report_status": "OFFICIAL_LRG_SECTOR_METADATA_AGGREGATES_ONLY_NOT_SEMANTICS_CERTIFIED",
+  "catalogue_rows": 311848,
+  "distinct_sectors": 5813,
+  "within_sector_constancy_all_three_fields": true,
+  "prior_bounded_header_sha256": "a48b0d1055b5f7638dc77a86eb5ff5c861b629d19ff75cd8ae8122caa7e9014b",
+  "observed_odd_data_vector_read": false,
+  "no_new_selection_applied": true,
+  "limitation": "File SHA verified and exact output archived, but assistant did not itself rerun official 196-MB FITS row audit; report documents the local WSL execution.",
+  "next_gate": "Compare only literature-published fixed Table 2 LRG total and consecutive sector-completeness tally with same four SHA-gated columns, explicitly classify as source-informed follow-up after aggregate field counts were already observed; not a pristine preregistered independent validation."
+}

@@ -1,0 +1,25 @@
+name: eBOSS DR16 A03E7 fullmock source-only LS cancellation audit
+on:
+  push:
+    branches:
+      - audit/eboss-elg-bit8-ra-orientation-20260925
+    paths:
+      - 'scripts/audit_eboss_dr16_a03_e7_fullmock_pair_conditioning.py'
+      - 'source_data/eboss_dr16_mock0001_full_galaxy_4800_48000_completed_source_only_audit_2026-09-27.json'
+      - '.github/workflows/eboss_dr16_a03_e7_fullmock_source_only_conditioning.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  pinned-source-only-math:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install 'numpy>=1.24,<2.4'
+      - run: python -m py_compile scripts/audit_eboss_dr16_a03_e7_fullmock_pair_conditioning.py
+      - name: Exact six-order DR/RD/RR test, clipped signed-mu parity and frozen source/stop provenance
+        run: python -u scripts/audit_eboss_dr16_a03_e7_fullmock_pair_conditioning.py --self-test

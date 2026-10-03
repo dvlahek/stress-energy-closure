@@ -1,0 +1,67 @@
+{
+  "study": "Frozen, blinded eBOSS DR16 ELG official full-catalogue bit8 label-to-geometry audit",
+  "registered_on": "2026-09-25",
+  "parent_index_protocol": "source_data/eboss_dr16_elg_bit8_reference_discovery_protocol_2026-09-25.json",
+  "parent_header_protocol": "source_data/eboss_dr16_elg_full_header_only_protocol_2026-09-25.json",
+  "parent_raw_provenance_protocol": "source_data/eboss_dr16_elg_full_bytes_provenance_protocol_2026-09-25.json",
+  "parent_ra_protocol": "source_data/eboss_dr16_elg_bit8_ra_orientation_protocol_2026-09-25.json",
+  "first_observed_full_file_sha256_from_local_byte_only_run": "8806699e14422904ef91efb6f1632184171fb740c2e074456c0534b7d2dc28b3",
+  "source_url": "https://portal.nersc.gov/project/cosmo/data/sdss/dr17/eboss/lss/catalogs/DR16/eBOSS_ELG_full_ALLdata-vDR16.fits",
+  "source_file": "eboss_workspace/quarantine_official_elg_bit8/eBOSS_ELG_full_ALLdata-vDR16.fits",
+  "expected_source_bytes": 188985600,
+  "expected_header_bytes": 20160,
+  "expected_header_sha256": "138e9ef0ba23b0cc934c087e44564229822944579903223d41d3823cb737657f",
+  "expected_first_extension": "BINTABLE",
+  "expected_declared_rows": 269178,
+  "expected_row_bytes": 702,
+  "expected_column_count": 85,
+  "allowed_observed_row_columns": [
+    "RA",
+    "DEC",
+    "mskbit"
+  ],
+  "allowed_structural_metadata": [
+    "FITS primary/BINTABLE header bytes",
+    "column names, FITS TFORM and offsets",
+    "raw file size/SHA256"
+  ],
+  "forbidden_observed_row_columns": [
+    "Z",
+    "any WEIGHT column",
+    "any spectroscopic field",
+    "EBOSS_TARGET_ID",
+    "any galaxy identity/photometry beyond allowed three"
+  ],
+  "bit8_integer_mask": 256,
+  "published_bit8_removed_targets_for_diagnostic_only": 15,
+  "source_pixels": "Exactly 37 source pixels AST-parsed and source-Git-blob-verified by frozen RA-orientation audit; no new list, no altered pixels",
+  "candidate_coordinate_conventions": [
+    "literal_upstream",
+    "units_only_reflected_RA",
+    "native_RA_radians",
+    "native_RA_degrees"
+  ],
+  "primary_comparison": "All-row confusion counts between the published catalogue's mskbit bit 8 and source HEALPix 37-pixel membership for each of the four predeclared coordinate conventions; independently confirm native degrees and radians yield identical membership for all rows",
+  "permitted_outputs": [
+    "full file and source SHA identities",
+    "row count and bit8-positive count",
+    "aggregate TP/FP/FN/TN for each frozen convention",
+    "aggregate count of finite/out-of-domain RA/DEC",
+    "whether positive reference labels are present",
+    "diagnostic comparison of total labels against published 15"
+  ],
+  "forbidden_outputs": [
+    "individual observed RA/DEC",
+    "individual observed target identifiers, redshifts or weights",
+    "spatially optimized coordinate shifts/cuts",
+    "any observed odd-sector vector, pair counts or correlations"
+  ],
+  "classification_rule": "If zero bit8-labelled rows or any provenance/format mismatch, stop or report unresolved. If positive labels are present, report aggregate conditional agreement for the released catalogue only. Do not label implementation as verified solely from catalogue agreement; additional official production-chain provenance would be needed. No mask application to science selection is authorized.",
+  "expected_result_counts": "NOT DECLARED; do not fabricate 15 positive rows; 15 is published removed-target aggregate for diagnostic only",
+  "official_production_coordinate_contract_certified": false,
+  "physical_LRG_ELG_pair_window_certified": false,
+  "observed_odd_data_vector_read": false,
+  "inference_protocol_frozen": false,
+  "mask_selection_changed": false,
+  "output": "eboss_workspace/official_mask_inventory/elg_full_bit8_label_geometry_audit.json"
+}

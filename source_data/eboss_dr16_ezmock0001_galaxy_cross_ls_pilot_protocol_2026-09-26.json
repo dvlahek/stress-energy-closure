@@ -1,0 +1,126 @@
+{
+  "study": "eBOSS DR16 first matched realistic EZmock mock-GALAXY cross-Landy-Szalay estimator pilot, no observed odd access",
+  "registered_on": "2026-09-26",
+  "registered_before_first_seen_galaxy_SHA_and_BEFORE_mock_galaxy_rows_for_this_pilot": true,
+  "prerequisite_source_byte_gate": "source_data/eboss_dr16_ezmock0001_galaxy_raw_bytes_protocol_2026-09-26.json",
+  "prerequisite_source_byte_report_local": "eboss_workspace/official_mask_inventory/ezmock0001_galaxy_data_raw_sha.json",
+  "prerequisite_next_step": "After the four exact source SHAs are produced, upload unchanged JSON and freeze those four full-byte SHA256 values in a separate follow-up protocol BEFORE opening any galaxy FITS rows. Do not run this galaxy pilot yet.",
+  "mock_id": 1,
+  "mock_ensemble_reserved_ids": [
+    1,
+    125,
+    250,
+    375,
+    500,
+    625,
+    750,
+    875,
+    1000
+  ],
+  "caps": [
+    "NGC",
+    "SGC"
+  ],
+  "tracers": [
+    "eBOSS_LRG",
+    "eBOSS_ELG"
+  ],
+  "matching_data_and_random": "Same realistic v1_0_0 realization 0001, same Galactic cap, tracer-specific dat and ran; never use observed data or borrow randoms from a different mock ID for this pilot.",
+  "exact_fixed_highz_bin": [
+    0.9,
+    1
+  ],
+  "other_predeclared_candidate_bins": [
+    [
+      0.6,
+      0.7
+    ],
+    [
+      0.7,
+      0.8
+    ],
+    [
+      0.8,
+      0.9
+    ],
+    [
+      0.9,
+      1
+    ]
+  ],
+  "pilot_counts_per_cap_tracer": {
+    "mock_galaxy_D": 600,
+    "mock_random_R": 1200
+  },
+  "sampling": {
+    "without_replacement": true,
+    "independent_D_and_R_source_catalogues": true,
+    "seed_root": 93127,
+    "seed_formula": "seed_root + 10000*cap_index + 100*tracer_index + (0 for mock galaxy D or 1 for matched mock random R); indexes follow listed caps/tracers order",
+    "first_elg_chunk_sampling": "Uniform eligible ELG row sample across the exact published cap's chunks, preserve and report original chunk labels; no chunk-conditioned oversampling, reweighting or merging across Galactic caps.",
+    "if_insufficient_rows": "INCOMPLETE_STOP; never silently change sample size, cap, mock, bin or seed."
+  },
+  "geometry": {
+    "orientation": "LRG_to_ELG",
+    "independent_reverse": "ELG_to_LRG",
+    "line_of_sight": "midpoint",
+    "fiducial": "published_multitracer",
+    "theta_min_deg": 0.05,
+    "s_edges_mpc_h": [
+      20,
+      40,
+      60,
+      80,
+      100,
+      120,
+      140
+    ],
+    "mu_edges": "np.linspace(-1 - 1e-7,1 + 1e-7,25); 24 signed bins"
+  },
+  "weights": {
+    "formula": "WEIGHT_SYSTOT*WEIGHT_CP*WEIGHT_NOZ*WEIGHT_FKP",
+    "zero_weight_rule": "WEIGHT_SYSTOT <= 1e-12 excludes only previously defined numerical-zero mock rows; fail on nonfinite or significantly negative input",
+    "no_CMASS_additive_adjustment": true
+  },
+  "estimator": {
+    "four_terms": [
+      "D_L D_E",
+      "D_L R_E",
+      "R_L D_E",
+      "R_L R_E"
+    ],
+    "each_independent_norm": "sum_w(first)*sum_w(second)",
+    "xi": "(DD/n_DD - DR/n_DR - RD/n_RD + RR/n_RR) / (RR/n_RR), only where RR>0",
+    "reverse_mapping": "DD->DD, DR->RD, RD->DR, RR->RR, signed mu mirror"
+  },
+  "fixed_algorithmic_checks": {
+    "weighted_pair_reverse_relative_l1_less_than": 1e-10,
+    "independent_weight_normalization_relative_less_than": 1e-12,
+    "xi_reverse_mirror_abs_less_than": 1e-8,
+    "RR_supported_cells_positive": true,
+    "uncovered_mu_cells": "record nan and support mask, not zero-filled to infer a physical odd multipole",
+    "raw_RR_odd_parity_reflection_abs_less_than": 1e-10
+  },
+  "permitted_outputs": [
+    "input full compressed SHA256 and fixed source keys",
+    "eligible and retained rows in fixed bin; numerical-zero counts; ELG exact chunk counts before/after fixed sampling",
+    "deterministic selected array SHA256s and four weighted pair norm/count aggregate summaries",
+    "RR supported cell counts and forward/reverse closure metrics",
+    "mock galaxy cross-xi descriptive diagnostics with no p value or reported detection"
+  ],
+  "forbidden_outputs": [
+    "observed real galaxy pair/odd-sector vector",
+    "wake matched-filter or significance",
+    "new angular intersection or posterior science cut",
+    "physical null or covariance inference from a single mock",
+    "post-result sample-size or mock-ID substitutions"
+  ],
+  "inference_status": "One mock and finite 600D/1200R per tracer per cap are a computational/normalization pilot ONLY. The fixed nine mocks are themselves still an input/window pilot, not an inferential covariance ensemble.",
+  "observed_galaxy_data_read": false,
+  "observed_odd_data_vector_read": false,
+  "new_selection_rule_applied": false,
+  "full_physical_ELG_or_LRG_mask_certified": false,
+  "full_LRG_ELG_pair_window_certified": false,
+  "joint_mock_covariance_certified": false,
+  "unblinding_authorized": false
+}

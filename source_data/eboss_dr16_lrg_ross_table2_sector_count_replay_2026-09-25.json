@@ -1,0 +1,41 @@
+{
+  "status": "LRG_ROSS_TABLE2_SOURCE_INFORMED_AGGREGATE_REPLAY_ONLY",
+  "full_catalogue_rows": 311848,
+  "first_stage_comp_boss_rejected": 58575,
+  "first_stage_comp_boss_retained": 253273,
+  "paper_first_stage_rejected": 58575,
+  "first_stage_difference_from_paper": 0,
+  "paper_subsequent_rejected": 53,
+  "paper_after_both_retained": 253220,
+  "fixed_second_field_candidates": {
+    "sector_SSR": {
+      "rejected_after_first_stage": 53,
+      "retained_after_both_stages": 253220,
+      "rejected_difference_from_paper": 0,
+      "retained_difference_from_paper": 0
+    },
+    "sector_TSR": {
+      "rejected_after_first_stage": 675,
+      "retained_after_both_stages": 252598,
+      "rejected_difference_from_paper": 622,
+      "retained_difference_from_paper": -622
+    }
+  },
+  "post_aggregate_source_informed": true,
+  "historical_production_code_authenticated": false,
+  "physical_lrg_mask_certified": false,
+  "physical_lrg_elg_pair_window_certified": false,
+  "observed_row_columns_decoded": [
+    "SECTOR",
+    "sector_TSR",
+    "sector_SSR",
+    "COMP_BOSS"
+  ],
+  "observed_redshift_coordinates_weight_ID_read": false,
+  "observed_random_or_mock_rows_read": false,
+  "observed_odd_data_vector_read": false,
+  "new_science_selection_applied": false,
+  "errors": [],
+  "full_file_sha256_reverified_before_rows": "39b831801adec04fe6dc5d6ab76a4b303aa58bfd303548cb7fddfae7d7f9331d",
+  "first_sector_report_sha256_verified": "ead2ff920592af381bc65478a8393ed9c0238f0e150a343e50287168f8f0442c"
+}

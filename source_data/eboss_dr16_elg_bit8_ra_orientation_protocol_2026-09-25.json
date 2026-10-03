@@ -1,0 +1,86 @@
+{
+  "study": "Blinded eBOSS DR16 ELG bit-8 independent RA-orientation follow-up, source-only",
+  "registration_date": "2026-09-25",
+  "stage": "Follow-up protocol frozen after the documented exploratory source-centre arithmetic; not a prospective discovery claim",
+  "parent_commit": "e50549a5c974772eb9576d301df7a5ea6e6d87d2",
+  "published_upstream": {
+    "repository": "cheng-zhao/brickmask",
+    "commit": "b9eb684a579b56ec3dbdb46549224be7e3fa2830",
+    "file": "scripts/eBOSS_ELG_extra.py",
+    "git_blob_sha": "d66c5e6ed6a8260b5e8dcc840795485345392ced",
+    "source_pixels_sha256": "2ad068ea9043ed505bb02e4f173bc370ccda4b2f701deb1a389156655ad4c0ef"
+  },
+  "nside": 1024,
+  "ordering": "RING",
+  "published_source_pixel_count": 37,
+  "published_reference": {
+    "paper": "Raichoor et al., MNRAS 500 (2021) 3254–3274, doi:10.1093/mnras/staa3336, Sec. 3.2 and Table 5",
+    "reported_bit8_area_deg2_rounded": 0.1,
+    "reported_removed_targets": 15,
+    "reported_rejected_pixels": 37,
+    "approximate_survey_rectangles_for_diagnostic_only": {
+      "NGC": {
+        "ra_deg": [
+          126,
+          166
+        ],
+        "dec_deg": [
+          13.8,
+          32.5
+        ]
+      },
+      "SGC": {
+        "ra_deg_wrap": [
+          317,
+          45
+        ],
+        "dec_deg": [
+          -5,
+          5
+        ]
+      }
+    }
+  },
+  "frozen_probe": "Extract all 37 listed bit-8 pixels by AST from the pinned, byte-identical upstream script. Generate their pixel centres with healpy.pix2ang(nside,pixels,nest=False,lonlat=True); interpret the returned native longitude as celestial RA and latitude as DEC only for a source/footprint compatibility diagnostic; do not read galaxy or random catalogues.",
+  "candidates": {
+    "literal_upstream": "theta=radians(90-DEC), phi=radians(360-RA), ang2pix(lonlat=True,nest=False)",
+    "units_only_reflected_RA": "theta=radians(90-DEC), phi=radians(360-RA), ang2pix(lonlat=False,nest=False)",
+    "native_RA_radians": "theta=radians(90-DEC), phi=radians(RA), ang2pix(lonlat=False,nest=False)",
+    "native_RA_degrees": "ang2pix(RA,DEC,lonlat=True,nest=False)"
+  },
+  "frozen_diagnostics": [
+    "At every source-pixel centre compare four candidate returned indices against its original index and membership in the complete source list",
+    "Require native-RA radian and native-RA degree implementations to coincide exactly for all 37 centres and recover all source indices",
+    "Compute 37 times the HEALPix pixel area in deg^2 and compare only with the published one-decimal approximate area",
+    "Count source-pixel centres in the approximate published NGC/SGC rectangular survey bounds under native-RA and reflected-RA readings separately; these rectangles are NOT official angular masks",
+    "Keep literal source/API discrepancy, RA orientation ambiguity, released-catalogue mask implementation and exact pair-window as distinct unresolved gates"
+  ],
+  "exploratory_values_disclosed_before_frozen_followup": {
+    "native_RA_rectangles": {
+      "NGC": 10,
+      "SGC": 26,
+      "outside": 1
+    },
+    "reflected_RA_rectangles": {
+      "NGC": 0,
+      "SGC": 26,
+      "outside": 11
+    },
+    "native_centre_reflected_mapping_source_memberships": 0,
+    "area_37_pixels_deg2_approx": 0.12130415965942647
+  },
+  "official_reference_requirement": "Only an independently verified official production mask bitmap or bit-coded pre-veto output with exact release/version and SHA256 and both positive and negative test positions can resolve which candidate was used to generate DR16 selection. Counts or post-veto clustering catalogues alone are insufficient.",
+  "no_selection_change": true,
+  "official_reference_output_compared": false,
+  "official_bit8_convention_resolved": false,
+  "official_bit8_applied": false,
+  "physical_ELG_mask_certified": false,
+  "physical_LRG_ELG_pair_window_certified": false,
+  "observed_galaxy_catalogue_read": false,
+  "mock_galaxy_catalogue_read": false,
+  "observed_random_positions_read": false,
+  "mock_random_positions_read": false,
+  "observed_odd_data_vector_read": false,
+  "inference_protocol_frozen": false,
+  "stop_rule": "Any SHA mismatch, malformed pixel list, failing synthetic native-RA roundtrip or absent independent official reference keeps bit 8 unapplied and the observed eBOSS odd data unopened."
+}

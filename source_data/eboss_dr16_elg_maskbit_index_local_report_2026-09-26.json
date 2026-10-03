@@ -1,0 +1,58 @@
+{
+  "status": "OFFICIAL_ELG_FOUR_FAMILY_FILENAME_INDEX_SHA_PINNED_ONLY",
+  "uploaded_index_sha256_reverified": "84a3a163ec0b28a5392dadc95aa757e469cb9cb6e94cc731aac2fa2958fc6c18",
+  "uploaded_index_bytes": 803716,
+  "official_elg_directory_index_sha256": "0ebd4d2ad4b9b1849286961617ccf151ce7be7054242498c8d264914b677a8f8",
+  "total_listed_maskbit_fits": 19381,
+  "families": {
+    "eboss21": {
+      "listed_images": 2904,
+      "filename_list_sha256": "93ae831a54451edf81f8e42b6babe62c62e9386bf61c65c950d5aefcee961cf1",
+      "subsample_id_from_pinned_upstream": 0,
+      "first": "mask-eboss21-3168m010.fits.gz",
+      "middle": "mask-eboss21-3386m005.fits.gz",
+      "last": "mask-eboss21-3598p020.fits.gz",
+      "individual_image_file_bytes_sha256_verified": false
+    },
+    "eboss22": {
+      "listed_images": 7315,
+      "filename_list_sha256": "caf4a1bfeee3e05734612de11f027fbf63d49a1c14d445e4fc909fee2698e1f7",
+      "subsample_id_from_pinned_upstream": 1,
+      "first": "mask-eboss22-0001m002.fits.gz",
+      "middle": "mask-eboss22-0226m005.fits.gz",
+      "last": "mask-eboss22-0450m050.fits.gz",
+      "individual_image_file_bytes_sha256_verified": false
+    },
+    "eboss23": {
+      "listed_images": 6159,
+      "filename_list_sha256": "a5349c71bf0e9828e9eeed2b9fd38608d7ba7d65fc1c8de3335ae79d09ded01e",
+      "subsample_id_from_pinned_upstream": 2,
+      "first": "mask-eboss23-1258p280.fits.gz",
+      "middle": "mask-eboss23-1415p232.fits.gz",
+      "last": "mask-eboss23-1571p175.fits.gz",
+      "individual_image_file_bytes_sha256_verified": false
+    },
+    "eboss25": {
+      "listed_images": 3003,
+      "filename_list_sha256": "d40edf32fe50aaabd99c6c06aaa2424335b00d1fde1c5a1b9cc00d5c3a05e1d8",
+      "subsample_id_from_pinned_upstream": 3,
+      "first": "mask-eboss25-1308p300.fits.gz",
+      "middle": "mask-eboss25-1538p312.fits.gz",
+      "last": "mask-eboss25-1661p292.fits.gz",
+      "individual_image_file_bytes_sha256_verified": false
+    }
+  },
+  "previously_independently_pinned_extra_polygon_sha256": {
+    "ELG_TDSSFES_62arcsec.pix.snap.balk.ply": "ad1e4c135c351008eec316d8ff7e95f749ffd1b1b207fdcbd5ebae2181bcee0c",
+    "ELG_centerpost.ply": "2a9494725c9265894b9b463d6ccc8616d4979ed2c7bbc213764bf81b94e0b4c9",
+    "ebosselg_badphot.26Aug2019.ply": "80aacd51459be796ccc493bad0450c9f8c26b0de7005dd2e3e5bfaadd0095a8d"
+  },
+  "maskbit_image_bytes_downloaded_or_verified": false,
+  "observed_galaxy_or_random_rows_read": false,
+  "observed_odd_data_vector_read": false,
+  "physical_elg_mask_certified": false,
+  "physical_lrg_elg_pair_window_certified": false,
+  "new_selection_rule_applied": false,
+  "note": "Exact published filename inventory and previous extra-polygon SHA only. No brickmask FITS images or maskbit values inspected.",
+  "errors": []
+}

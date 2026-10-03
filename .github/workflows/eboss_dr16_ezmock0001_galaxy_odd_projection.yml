@@ -1,0 +1,32 @@
+name: eBOSS DR16 SHA-replayed realistic EZmock0001 galaxy odd projection synthetic gate
+
+on:
+  push:
+    branches:
+      - audit/eboss-elg-bit8-ra-orientation-20260925
+    paths:
+      - 'scripts/audit_eboss_dr16_ezmock0001_galaxy_odd_projection.py'
+      - 'source_data/eboss_dr16_ezmock0001_galaxy_odd_projection_protocol_2026-09-26.json'
+      - 'source_data/eboss_dr16_ezmock0001_galaxy_cross_ls_pilot_report_2026-09-26.json'
+      - 'source_data/eboss_dr16_ezmock0001_galaxy_cross_ls_pilot_uploaded_manifest_2026-09-26.json'
+      - '.github/workflows/eboss_dr16_ezmock0001_galaxy_odd_projection.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  synthetic-and-archived-report-only:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install numerical dependencies for pure synthetic Legendre checks
+        run: python -m pip install 'numpy>=1.24,<2.4' 'astropy>=6,<8' 'scipy>=1.11,<2'
+      - name: Compile SHA-first post-pilot mock-only projection
+        run: python -m py_compile scripts/audit_eboss_dr16_ezmock0001_galaxy_odd_projection.py
+      - name: Verify archived first true galaxy mock report and constant/odd synthetic multipole controls
+        run: python -u scripts/audit_eboss_dr16_ezmock0001_galaxy_odd_projection.py --self-test

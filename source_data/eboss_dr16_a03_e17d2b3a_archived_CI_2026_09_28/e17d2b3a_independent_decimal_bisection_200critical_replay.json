@@ -1,0 +1,41 @@
+{
+  "date": "2026-09-28",
+  "status": "E17D2B3A_INDEPENDENT_DECIMAL_AND_EXACT_BISECTION_TWO_POSITIVE_SAME_L1_DIFFERENT_M200C_PASS_ACTUAL_HALO_UNREAD",
+  "prospective_protocol_git_blob": "81554b0f7cdefa599f302d828ab3529812bb3a59",
+  "original_full_report_sha256": "0b098291122eb51cbd3e113e7edd2276ba7c9b7c38669008486f0f73f897277e",
+  "independent_decimal_synthetic_flat_matterLambda": {
+    "omega_m0_flat_matterLambda_TOY": 0.31519186799329724,
+    "E2_z_flat_matterLambda_TOY": 3.021916434193503,
+    "omega_m_z_flat_matterLambda_TOY": 0.7733861452097148,
+    "synthetic_200crit_over_total_matter_mean_threshold": 258.6030293389431,
+    "synthetic_L1_SO_threshold_over_total_matter_mean_NOT_ABACUS_HEADER": 200.0,
+    "synthetic_ratio_threshold_200c_to_L1": 1.2930151466947155
+  },
+  "independent_two_exact_200critical_roots_and_mass_fractions": [
+    {
+      "power": 1,
+      "root": 0.8794237574740148,
+      "mass_fraction": 0.8794237574740148,
+      "bisection_root": 0.8794237574740148,
+      "exact_root_minus_bisection_abs": 0.0,
+      "200critical_reclosure_abs": 0.0
+    },
+    {
+      "power": 2,
+      "root": 0.7733861452097148,
+      "mass_fraction": 0.5981261296023421,
+      "bisection_root": 0.7733861452097148,
+      "exact_root_minus_bisection_abs": 3e-55,
+      "200critical_reclosure_abs": 1e-54
+    }
+  ],
+  "independent_mass_fraction_nonidentifiability_gap_synthetic_only": 0.2812976278716727,
+  "max_scaled_independent_original_analytic_vs_decimal_gap": 2.220446049250313e-16,
+  "method": "Pure stdlib Decimal exact algebra and independent 200-step density-threshold root bisection, SHA-gated original science parents, fail closed no real halo data. NO original E17D2b3a runner import, CLASS, NumPy, ASDF, actual Abacus mass/history or observed odd.",
+  "real_Abacus_SODensityL1_or_actual_z_header_loaded": false,
+  "real_Abacus_M200c_200critical_mass_remeasured": false,
+  "full_physical_finiteK_galaxy_bispectrum": "BLOCKED",
+  "observed_odd_SEALED": true,
+  "new_CLASS_ASDF_FITS_halo_catalogue_mock_download": false,
+  "main_untouched_PR_draft": true
+}

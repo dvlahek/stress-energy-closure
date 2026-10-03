@@ -1,0 +1,1442 @@
+{
+  "date": "2026-09-27",
+  "status": "E16_EXACT_THREE_VECTOR_CLOSED_TRIANGLE_AND_FINITE_K_GEOMETRY_CERTIFIED_PHYSICAL_BISPECTRUM_NONIDENTIFIABLE",
+  "prospective_E16_protocol_git_blob": "28127fbedddc320660b6ac3f9d6262272905c7ca",
+  "original_E14_full_SHA256": "0f1efb45593cd51d9ffa1818157bdd52baba525a8fc4bb9cc30c12d98ba91fd8",
+  "original_E15_full_SHA256": "6062aed4b581f2db89192bd1c1cf2639a74b6a313db9e10dca9e53041a95d983",
+  "original_frozen_source_CLASS_commit": "e85808324f51fc694d12e3ed7439552a3c3f9540",
+  "scope": "Exact geometric necessary closure and inverse-k2 factor ONLY; unmodified archived original E14/E15 reduced source not an Einstein-Vlasov full triangle kernel.",
+  "fixed_geometry": "K+k1+k2=0, k1=k-K/2, k2=-k-K/2, LOS n=z; original axes, 48 registered orientations per pair",
+  "twelve_original_short_long_geometry_cases": {
+    "0.05": {
+      "0.001": {
+        "r_K_over_k": 0.02,
+        "exact_continuous_c_envelope_individual_static_inverse_k2_factor": [
+          0.9802960494069208,
+          1.0203040506070808
+        ],
+        "max_abs_individual_static_inverse_k2_fractional_change": 0.020304050607080848,
+        "uniform_relative_c_geometry_ONLY_mean_symmetrized_factor": 1.0000333353334718,
+        "N_fixed_Cartesian_orientation_probes": 48,
+        "max_Cartesian_triangle_closure_h_per_Mpc": 4.25057033492431e-18,
+        "max_cartesian_vs_analytic_geometry_abs_gap": 2.220446049250313e-16,
+        "min_sampled_k1_h_per_Mpc": 0.0495,
+        "max_sampled_k1_h_per_Mpc": 0.0505,
+        "min_sampled_k2_h_per_Mpc": 0.0495,
+        "max_sampled_k2_h_per_Mpc": 0.0505,
+        "at_least_one_short_leg_outside_original_three_k_CLASS_Pcb_support": true,
+        "max_abs_symmetrized_TOY_completion_ratio_minus_original": 0.0003000500070009515,
+        "min_antisymmetric_TOY_leg_ratio": -0.020004000600080007,
+        "max_antisymmetric_TOY_leg_ratio": 0.020004000600080007,
+        "one_explicit_same_squeezed_limit_distinct_finiteK_witness": {
+          "geometry": {
+            "mu_s": 0.0,
+            "mu_L": 1.0,
+            "azimuth_rad": 0.0,
+            "cos_k_K": 0.0,
+            "mu1_LOS": -0.009999500037496875,
+            "mu2_LOS": -0.009999500037496875,
+            "k1_over_k": 1.0000499987500626,
+            "k2_over_k": 1.0000499987500626
+          },
+          "model_A_reduced_source_multiplier": 1.0,
+          "model_B_symmetrized_STATIC_GEOMETRY_ONLY_source_multiplier": 0.9999000099989999,
+          "these_are_not_physical_predictions_or_error_bars": true
+        }
+      },
+      "0.002": {
+        "r_K_over_k": 0.04,
+        "exact_continuous_c_envelope_individual_static_inverse_k2_factor": [
+          0.9611687812379854,
+          1.0412328196584757
+        ],
+        "max_abs_individual_static_inverse_k2_fractional_change": 0.041232819658475695,
+        "uniform_relative_c_geometry_ONLY_mean_symmetrized_factor": 1.0001333653424802,
+        "N_fixed_Cartesian_orientation_probes": 48,
+        "max_Cartesian_triangle_closure_h_per_Mpc": 5.489961307248299e-18,
+        "max_cartesian_vs_analytic_geometry_abs_gap": 2.220446049250313e-16,
+        "min_sampled_k1_h_per_Mpc": 0.049,
+        "max_sampled_k1_h_per_Mpc": 0.051000000000000004,
+        "min_sampled_k2_h_per_Mpc": 0.049,
+        "max_sampled_k2_h_per_Mpc": 0.051000000000000004,
+        "at_least_one_short_leg_outside_original_three_k_CLASS_Pcb_support": true,
+        "max_abs_symmetrized_TOY_completion_ratio_minus_original": 0.0012008004482306767,
+        "min_antisymmetric_TOY_leg_ratio": -0.04003201921024513,
+        "max_antisymmetric_TOY_leg_ratio": 0.04003201921024513,
+        "one_explicit_same_squeezed_limit_distinct_finiteK_witness": {
+          "geometry": {
+            "mu_s": 0.0,
+            "mu_L": 1.0,
+            "azimuth_rad": 0.0,
+            "cos_k_K": 0.0,
+            "mu1_LOS": -0.019996001199600138,
+            "mu2_LOS": -0.019996001199600138,
+            "k1_over_k": 1.0001999800039991,
+            "k2_over_k": 1.0001999800039991
+          },
+          "model_A_reduced_source_multiplier": 1.0,
+          "model_B_symmetrized_STATIC_GEOMETRY_ONLY_source_multiplier": 0.9996001599360254,
+          "these_are_not_physical_predictions_or_error_bars": true
+        }
+      },
+      "0.003": {
+        "r_K_over_k": 0.06,
+        "exact_continuous_c_envelope_individual_static_inverse_k2_factor": [
+          0.9425959091337544,
+          1.0628122010840686
+        ],
+        "max_abs_individual_static_inverse_k2_fractional_change": 0.0628122010840686,
+        "uniform_relative_c_geometry_ONLY_mean_symmetrized_factor": 1.0003001621042158,
+        "N_fixed_Cartesian_orientation_probes": 48,
+        "max_Cartesian_triangle_closure_h_per_Mpc": 2.6020852139652106e-18,
+        "max_cartesian_vs_analytic_geometry_abs_gap": 2.220446049250313e-16,
+        "min_sampled_k1_h_per_Mpc": 0.0485,
+        "max_sampled_k1_h_per_Mpc": 0.051500000000000004,
+        "min_sampled_k2_h_per_Mpc": 0.0485,
+        "max_sampled_k2_h_per_Mpc": 0.051500000000000004,
+        "at_least_one_short_leg_outside_original_three_k_CLASS_Pcb_support": true,
+        "max_abs_symmetrized_TOY_completion_ratio_minus_original": 0.002704055108911474,
+        "min_antisymmetric_TOY_leg_ratio": -0.06010814597515712,
+        "max_antisymmetric_TOY_leg_ratio": 0.06010814597515712,
+        "one_explicit_same_squeezed_limit_distinct_finiteK_witness": {
+          "geometry": {
+            "mu_s": 0.0,
+            "mu_L": 1.0,
+            "azimuth_rad": 0.0,
+            "cos_k_K": 0.0,
+            "mu1_LOS": -0.029986509105671,
+            "mu2_LOS": -0.029986509105671,
+            "k1_over_k": 1.0004498987955368,
+            "k2_over_k": 1.0004498987955368
+          },
+          "model_A_reduced_source_multiplier": 1.0,
+          "model_B_symmetrized_STATIC_GEOMETRY_ONLY_source_multiplier": 0.9991008092716556,
+          "these_are_not_physical_predictions_or_error_bars": true
+        }
+      },
+      "0.005": {
+        "r_K_over_k": 0.09999999999999999,
+        "exact_continuous_c_envelope_individual_static_inverse_k2_factor": [
+          0.9070294784580498,
+          1.10803324099723
+        ],
+        "max_abs_individual_static_inverse_k2_fractional_change": 0.10803324099723,
+        "uniform_relative_c_geometry_ONLY_mean_symmetrized_factor": 1.0008345855698264,
+        "N_fixed_Cartesian_orientation_probes": 48,
+        "max_Cartesian_triangle_closure_h_per_Mpc": 7.269816092100959e-18,
+        "max_cartesian_vs_analytic_geometry_abs_gap": 2.220446049250313e-16,
+        "min_sampled_k1_h_per_Mpc": 0.0475,
+        "max_sampled_k1_h_per_Mpc": 0.052500000000000005,
+        "min_sampled_k2_h_per_Mpc": 0.0475,
+        "max_sampled_k2_h_per_Mpc": 0.052500000000000005,
+        "at_least_one_short_leg_outside_original_three_k_CLASS_Pcb_support": true,
+        "max_abs_symmetrized_TOY_completion_ratio_minus_original": 0.0075313597276398525,
+        "min_antisymmetric_TOY_leg_ratio": -0.10050188126959009,
+        "max_antisymmetric_TOY_leg_ratio": 0.10050188126959009,
+        "one_explicit_same_squeezed_limit_distinct_finiteK_witness": {
+          "geometry": {
+            "mu_s": 0.0,
+            "mu_L": 1.0,
+            "azimuth_rad": 0.0,
+            "cos_k_K": 0.0,
+            "mu1_LOS": -0.049937616943892225,
+            "mu2_LOS": -0.049937616943892225,
+            "k1_over_k": 1.0012492197250393,
+            "k2_over_k": 1.0012492197250393
+          },
+          "model_A_reduced_source_multiplier": 1.0,
+          "model_B_symmetrized_STATIC_GEOMETRY_ONLY_source_multiplier": 0.9975062344139649,
+          "these_are_not_physical_predictions_or_error_bars": true
+        }
+      }
+    },
+    "0.075": {
+      "0.001": {
+        "r_K_over_k": 0.013333333333333334,
+        "exact_continuous_c_envelope_individual_static_inverse_k2_factor": [
+          0.9867988246129556,
+          1.0134678618080268
+        ],
+        "max_abs_individual_static_inverse_k2_fractional_change": 0.013467861808026838,
+        "uniform_relative_c_geometry_ONLY_mean_symmetrized_factor": 1.0000148152098876,
+        "N_fixed_Cartesian_orientation_probes": 48,
+        "max_Cartesian_triangle_closure_h_per_Mpc": 4.25057033492431e-18,
+        "max_cartesian_vs_analytic_geometry_abs_gap": 2.220446049250313e-16,
+        "min_sampled_k1_h_per_Mpc": 0.0745,
+        "max_sampled_k1_h_per_Mpc": 0.0755,
+        "min_sampled_k2_h_per_Mpc": 0.0745,
+        "max_sampled_k2_h_per_Mpc": 0.0755,
+        "at_least_one_short_leg_outside_original_three_k_CLASS_Pcb_support": false,
+        "max_abs_symmetrized_TOY_completion_ratio_minus_original": 0.00013334321049129905,
+        "min_antisymmetric_TOY_leg_ratio": -0.013334518597535594,
+        "max_antisymmetric_TOY_leg_ratio": 0.013334518597535594,
+        "one_explicit_same_squeezed_limit_distinct_finiteK_witness": {
+          "geometry": {
+            "mu_s": 0.0,
+            "mu_L": 1.0,
+            "azimuth_rad": 0.0,
+            "cos_k_K": 0.0,
+            "mu1_LOS": -0.006666518523456608,
+            "mu2_LOS": -0.006666518523456608,
+            "k1_over_k": 1.000022221975314,
+            "k2_over_k": 1.000022221975314
+          },
+          "model_A_reduced_source_multiplier": 1.0,
+          "model_B_symmetrized_STATIC_GEOMETRY_ONLY_source_multiplier": 0.9999555575307766,
+          "these_are_not_physical_predictions_or_error_bars": true
+        }
+      },
+      "0.002": {
+        "r_K_over_k": 0.02666666666666667,
+        "exact_continuous_c_envelope_individual_static_inverse_k2_factor": [
+          0.9738573407202213,
+          1.027209642074507
+        ],
+        "max_abs_individual_static_inverse_k2_fractional_change": 0.027209642074506935,
+        "uniform_relative_c_geometry_ONLY_mean_symmetrized_factor": 1.0000592655810558,
+        "N_fixed_Cartesian_orientation_probes": 48,
+        "max_Cartesian_triangle_closure_h_per_Mpc": 8.456776945386935e-18,
+        "max_cartesian_vs_analytic_geometry_abs_gap": 2.220446049250313e-16,
+        "min_sampled_k1_h_per_Mpc": 0.074,
+        "max_sampled_k1_h_per_Mpc": 0.076,
+        "min_sampled_k2_h_per_Mpc": 0.074,
+        "max_sampled_k2_h_per_Mpc": 0.076,
+        "at_least_one_short_leg_outside_original_three_k_CLASS_Pcb_support": false,
+        "max_abs_symmetrized_TOY_completion_ratio_minus_original": 0.0005334913973640276,
+        "min_antisymmetric_TOY_leg_ratio": -0.026676150677142796,
+        "max_antisymmetric_TOY_leg_ratio": 0.026676150677142796,
+        "one_explicit_same_squeezed_limit_distinct_finiteK_witness": {
+          "geometry": {
+            "mu_s": 0.0,
+            "mu_L": 1.0,
+            "azimuth_rad": 0.0,
+            "cos_k_K": 0.0,
+            "mu1_LOS": -0.013332148306149434,
+            "mu2_LOS": -0.013332148306149434,
+            "k1_over_k": 1.0000888849386227,
+            "k2_over_k": 1.0000888849386227
+          },
+          "model_A_reduced_source_multiplier": 1.0,
+          "model_B_symmetrized_STATIC_GEOMETRY_ONLY_source_multiplier": 0.999822253821543,
+          "these_are_not_physical_predictions_or_error_bars": true
+        }
+      },
+      "0.003": {
+        "r_K_over_k": 0.04,
+        "exact_continuous_c_envelope_individual_static_inverse_k2_factor": [
+          0.9611687812379854,
+          1.0412328196584757
+        ],
+        "max_abs_individual_static_inverse_k2_fractional_change": 0.041232819658475695,
+        "uniform_relative_c_geometry_ONLY_mean_symmetrized_factor": 1.0001333653424802,
+        "N_fixed_Cartesian_orientation_probes": 48,
+        "max_Cartesian_triangle_closure_h_per_Mpc": 1.2576745200831851e-17,
+        "max_cartesian_vs_analytic_geometry_abs_gap": 2.220446049250313e-16,
+        "min_sampled_k1_h_per_Mpc": 0.0735,
+        "max_sampled_k1_h_per_Mpc": 0.0765,
+        "min_sampled_k2_h_per_Mpc": 0.0735,
+        "max_sampled_k2_h_per_Mpc": 0.0765,
+        "at_least_one_short_leg_outside_original_three_k_CLASS_Pcb_support": false,
+        "max_abs_symmetrized_TOY_completion_ratio_minus_original": 0.0012008004482306767,
+        "min_antisymmetric_TOY_leg_ratio": -0.04003201921024513,
+        "max_antisymmetric_TOY_leg_ratio": 0.04003201921024513,
+        "one_explicit_same_squeezed_limit_distinct_finiteK_witness": {
+          "geometry": {
+            "mu_s": 0.0,
+            "mu_L": 1.0,
+            "azimuth_rad": 0.0,
+            "cos_k_K": 0.0,
+            "mu1_LOS": -0.01999600119960014,
+            "mu2_LOS": -0.01999600119960014,
+            "k1_over_k": 1.0001999800039991,
+            "k2_over_k": 1.0001999800039991
+          },
+          "model_A_reduced_source_multiplier": 1.0,
+          "model_B_symmetrized_STATIC_GEOMETRY_ONLY_source_multiplier": 0.9996001599360254,
+          "these_are_not_physical_predictions_or_error_bars": true
+        }
+      },
+      "0.005": {
+        "r_K_over_k": 0.06666666666666667,
+        "exact_continuous_c_envelope_individual_static_inverse_k2_factor": [
+          0.9365244536940686,
+          1.070154577883472
+        ],
+        "max_abs_individual_static_inverse_k2_fractional_change": 0.07015457788347201,
+        "uniform_relative_c_geometry_ONLY_mean_symmetrized_factor": 1.0003706174800853,
+        "N_fixed_Cartesian_orientation_probes": 48,
+        "max_Cartesian_triangle_closure_h_per_Mpc": 7.269816092100959e-18,
+        "max_cartesian_vs_analytic_geometry_abs_gap": 2.220446049250313e-16,
+        "min_sampled_k1_h_per_Mpc": 0.0725,
+        "max_sampled_k1_h_per_Mpc": 0.0775,
+        "min_sampled_k2_h_per_Mpc": 0.0725,
+        "max_sampled_k2_h_per_Mpc": 0.0775,
+        "at_least_one_short_leg_outside_original_three_k_CLASS_Pcb_support": false,
+        "max_abs_symmetrized_TOY_completion_ratio_minus_original": 0.003339515788770342,
+        "min_antisymmetric_TOY_leg_ratio": -0.06681506209470173,
+        "max_antisymmetric_TOY_leg_ratio": 0.06681506209470173,
+        "one_explicit_same_squeezed_limit_distinct_finiteK_witness": {
+          "geometry": {
+            "mu_s": 0.0,
+            "mu_L": 1.0,
+            "azimuth_rad": 0.0,
+            "cos_k_K": 0.0,
+            "mu1_LOS": -0.03331483023263848,
+            "mu2_LOS": -0.03331483023263848,
+            "k1_over_k": 1.0005554013202422,
+            "k2_over_k": 1.0005554013202422
+          },
+          "model_A_reduced_source_multiplier": 1.0,
+          "model_B_symmetrized_STATIC_GEOMETRY_ONLY_source_multiplier": 0.9988901220865706,
+          "these_are_not_physical_predictions_or_error_bars": true
+        }
+      }
+    },
+    "0.1": {
+      "0.001": {
+        "r_K_over_k": 0.01,
+        "exact_continuous_c_envelope_individual_static_inverse_k2_factor": [
+          0.990074503106359,
+          1.01007550314386
+        ],
+        "max_abs_individual_static_inverse_k2_fractional_change": 0.010075503143859965,
+        "uniform_relative_c_geometry_ONLY_mean_symmetrized_factor": 1.0000083334583179,
+        "N_fixed_Cartesian_orientation_probes": 48,
+        "max_Cartesian_triangle_closure_h_per_Mpc": 4.25057033492431e-18,
+        "max_cartesian_vs_analytic_geometry_abs_gap": 2.220446049250313e-16,
+        "min_sampled_k1_h_per_Mpc": 0.0995,
+        "max_sampled_k1_h_per_Mpc": 0.10049999999999999,
+        "min_sampled_k2_h_per_Mpc": 0.0995,
+        "max_sampled_k2_h_per_Mpc": 0.10049999999999999,
+        "at_least_one_short_leg_outside_original_three_k_CLASS_Pcb_support": true,
+        "max_abs_symmetrized_TOY_completion_ratio_minus_original": 7.500312510955176e-05,
+        "min_antisymmetric_TOY_leg_ratio": -0.010000500018750469,
+        "max_antisymmetric_TOY_leg_ratio": 0.010000500018750469,
+        "one_explicit_same_squeezed_limit_distinct_finiteK_witness": {
+          "geometry": {
+            "mu_s": 0.0,
+            "mu_L": 1.0,
+            "azimuth_rad": 0.0,
+            "cos_k_K": 0.0,
+            "mu1_LOS": -0.00499993750117185,
+            "mu2_LOS": -0.00499993750117185,
+            "k1_over_k": 1.000012499921876,
+            "k2_over_k": 1.000012499921876
+          },
+          "model_A_reduced_source_multiplier": 1.0,
+          "model_B_symmetrized_STATIC_GEOMETRY_ONLY_source_multiplier": 0.9999750006249842,
+          "these_are_not_physical_predictions_or_error_bars": true
+        }
+      },
+      "0.002": {
+        "r_K_over_k": 0.02,
+        "exact_continuous_c_envelope_individual_static_inverse_k2_factor": [
+          0.9802960494069208,
+          1.0203040506070808
+        ],
+        "max_abs_individual_static_inverse_k2_fractional_change": 0.020304050607080848,
+        "uniform_relative_c_geometry_ONLY_mean_symmetrized_factor": 1.0000333353334718,
+        "N_fixed_Cartesian_orientation_probes": 48,
+        "max_Cartesian_triangle_closure_h_per_Mpc": 8.50114066984862e-18,
+        "max_cartesian_vs_analytic_geometry_abs_gap": 2.220446049250313e-16,
+        "min_sampled_k1_h_per_Mpc": 0.099,
+        "max_sampled_k1_h_per_Mpc": 0.101,
+        "min_sampled_k2_h_per_Mpc": 0.099,
+        "max_sampled_k2_h_per_Mpc": 0.101,
+        "at_least_one_short_leg_outside_original_three_k_CLASS_Pcb_support": true,
+        "max_abs_symmetrized_TOY_completion_ratio_minus_original": 0.0003000500070009515,
+        "min_antisymmetric_TOY_leg_ratio": -0.020004000600080007,
+        "max_antisymmetric_TOY_leg_ratio": 0.020004000600080007,
+        "one_explicit_same_squeezed_limit_distinct_finiteK_witness": {
+          "geometry": {
+            "mu_s": 0.0,
+            "mu_L": 1.0,
+            "azimuth_rad": 0.0,
+            "cos_k_K": 0.0,
+            "mu1_LOS": -0.009999500037496875,
+            "mu2_LOS": -0.009999500037496875,
+            "k1_over_k": 1.0000499987500626,
+            "k2_over_k": 1.0000499987500626
+          },
+          "model_A_reduced_source_multiplier": 1.0,
+          "model_B_symmetrized_STATIC_GEOMETRY_ONLY_source_multiplier": 0.9999000099989999,
+          "these_are_not_physical_predictions_or_error_bars": true
+        }
+      },
+      "0.003": {
+        "r_K_over_k": 0.03,
+        "exact_continuous_c_envelope_individual_static_inverse_k2_factor": [
+          0.9706617486471405,
+          1.0306887577623747
+        ],
+        "max_abs_individual_static_inverse_k2_fractional_change": 0.030688757762374674,
+        "uniform_relative_c_geometry_ONLY_mean_symmetrized_factor": 1.0000750101266234,
+        "N_fixed_Cartesian_orientation_probes": 48,
+        "max_Cartesian_triangle_closure_h_per_Mpc": 1.2643861424099487e-17,
+        "max_cartesian_vs_analytic_geometry_abs_gap": 2.220446049250313e-16,
+        "min_sampled_k1_h_per_Mpc": 0.0985,
+        "max_sampled_k1_h_per_Mpc": 0.10149999999999999,
+        "min_sampled_k2_h_per_Mpc": 0.0985,
+        "max_sampled_k2_h_per_Mpc": 0.10149999999999999,
+        "at_least_one_short_leg_outside_original_three_k_CLASS_Pcb_support": true,
+        "max_abs_symmetrized_TOY_completion_ratio_minus_original": 0.0006752532047575865,
+        "min_antisymmetric_TOY_leg_ratio": -0.030013504557617088,
+        "max_antisymmetric_TOY_leg_ratio": 0.030013504557617088,
+        "one_explicit_same_squeezed_limit_distinct_finiteK_witness": {
+          "geometry": {
+            "mu_s": 0.0,
+            "mu_L": 1.0,
+            "azimuth_rad": 0.0,
+            "cos_k_K": 0.0,
+            "mu1_LOS": -0.014998312784712241,
+            "mu2_LOS": -0.014998312784712241,
+            "k1_over_k": 1.000112493672587,
+            "k2_over_k": 1.000112493672587
+          },
+          "model_A_reduced_source_multiplier": 1.0,
+          "model_B_symmetrized_STATIC_GEOMETRY_ONLY_source_multiplier": 0.9997750506136118,
+          "these_are_not_physical_predictions_or_error_bars": true
+        }
+      },
+      "0.005": {
+        "r_K_over_k": 0.049999999999999996,
+        "exact_continuous_c_envelope_individual_static_inverse_k2_factor": [
+          0.9518143961927424,
+          1.051939513477975
+        ],
+        "max_abs_individual_static_inverse_k2_fractional_change": 0.051939513477974986,
+        "uniform_relative_c_geometry_ONLY_mean_symmetrized_factor": 1.0002084114932284,
+        "N_fixed_Cartesian_orientation_probes": 48,
+        "max_Cartesian_triangle_closure_h_per_Mpc": 7.269816092100959e-18,
+        "max_cartesian_vs_analytic_geometry_abs_gap": 2.220446049250313e-16,
+        "min_sampled_k1_h_per_Mpc": 0.0975,
+        "max_sampled_k1_h_per_Mpc": 0.1025,
+        "min_sampled_k2_h_per_Mpc": 0.0975,
+        "max_sampled_k2_h_per_Mpc": 0.1025,
+        "at_least_one_short_leg_outside_original_three_k_CLASS_Pcb_support": true,
+        "max_abs_symmetrized_TOY_completion_ratio_minus_original": 0.0018769548353587684,
+        "min_antisymmetric_TOY_leg_ratio": -0.05006255864261627,
+        "max_antisymmetric_TOY_leg_ratio": 0.05006255864261627,
+        "one_explicit_same_squeezed_limit_distinct_finiteK_witness": {
+          "geometry": {
+            "mu_s": 0.0,
+            "mu_L": 1.0,
+            "azimuth_rad": 0.0,
+            "cos_k_K": 0.0,
+            "mu1_LOS": -0.024992191160203066,
+            "mu2_LOS": -0.024992191160203066,
+            "k1_over_k": 1.000312451187128,
+            "k2_over_k": 1.000312451187128
+          },
+          "model_A_reduced_source_multiplier": 1.0,
+          "model_B_symmetrized_STATIC_GEOMETRY_ONLY_source_multiplier": 0.9993753903810115,
+          "these_are_not_physical_predictions_or_error_bars": true
+        }
+      }
+    }
+  },
+  "all_72_original_state_short_long_shortell_source_cases": {
+    "FD": {
+      "0.05": {
+        "0.001": {
+          "1": {
+            "original_frozen_E14_E15_reduced_source_S_Mpc6": 128493.99781205184,
+            "exact_geometric_r_K_over_k": 0.02,
+            "static_inverse_k2_individual_prefactor_envelope_ONLY": [
+              0.9802960494069208,
+              1.0203040506070808
+            ],
+            "full_physical_closed_triangle_bispectrum_calculated": false
+          },
+          "3": {
+            "original_frozen_E14_E15_reduced_source_S_Mpc6": 83220.78981082854,
+            "exact_geometric_r_K_over_k": 0.02,
+            "static_inverse_k2_individual_prefactor_envelope_ONLY": [
+              0.9802960494069208,
+              1.0203040506070808
+            ],
+            "full_physical_closed_triangle_bispectrum_calculated": false
+          }
+        },
+        "0.002": {
+          "1": {
+            "original_frozen_E14_E15_reduced_source_S_Mpc6": 344656.88028384355,
+            "exact_geometric_r_K_over_k": 0.04,
+            "static_inverse_k2_individual_prefactor_envelope_ONLY": [
+              0.9611687812379854,
+              1.0412328196584757
+            ],
+            "full_physical_closed_triangle_bispectrum_calculated": false
+          },
+          "3": {
+            "original_frozen_E14_E15_reduced_source_S_Mpc6": 223221.45998532718,
+            "exact_geometric_r_K_over_k": 0.04,
+            "static_inverse_k2_individual_prefactor_envelope_ONLY": [
+              0.9611687812379854,
+              1.0412328196584757
+            ],
+            "full_physical_closed_triangle_bispectrum_calculated": false
+          }
+        },
+        "0.003": {
+          "1": {
+            "original_frozen_E14_E15_reduced_source_S_Mpc6": 590597.6381942391,
+            "exact_geometric_r_K_over_k": 0.06,
+            "static_inverse_k2_individual_prefactor_envelope_ONLY": [
+              0.9425959091337544,
+              1.0628122010840686
+            ],
+            "full_physical_closed_triangle_bispectrum_calculated": false
+          },
+          "3": {
+            "original_frozen_E14_E15_reduced_source_S_Mpc6": 382508.154060443,
+            "exact_geometric_r_K_over_k": 0.06,
+            "static_inverse_k2_individual_prefactor_envelope_ONLY": [
+              0.9425959091337544,
+              1.0628122010840686
+            ],
+            "full_physical_closed_triangle_bispectrum_calculated": false
+          }
+        },
+        "0.005": {
+          "1": {
+            "original_frozen_E14_E15_reduced_source_S_Mpc6": 990949.9914214967,
+            "exact_geometric_r_K_over_k": 0.09999999999999999,
+            "static_inverse_k2_individual_prefactor_envelope_ONLY": [
+              0.9070294784580498,
+              1.10803324099723
+            ],
+            "full_physical_closed_triangle_bispectrum_calculated": false
+          },
+          "3": {
+            "original_frozen_E14_E15_reduced_source_S_Mpc6": 641801.5032091705,
+            "exact_geometric_r_K_over_k": 0.09999999999999999,
+            "static_inverse_k2_individual_prefactor_envelope_ONLY": [
+              0.9070294784580498,
+              1.10803324099723
+            ],
+            "full_physical_closed_triangle_bispectrum_calculated": false
+          }
+        }
+      },
+      "0.075": {
+        "0.001": {
+          "1": {
+            "original_frozen_E14_E15_reduced_source_S_Mpc6": 41443.54659182276,
+            "exact_geometric_r_K_over_k": 0.013333333333333334,
+            "static_inverse_k2_individual_prefactor_envelope_ONLY": [
+              0.9867988246129556,
+              1.0134678618080268
+            ],
+            "full_physical_closed_triangle_bispectrum_calculated": false
+          },
+          "3": {
+            "original_frozen_E14_E15_reduced_source_S_Mpc6": 26841.445815843967,
+            "exact_geometric_r_K_over_k": 0.013333333333333334,
+            "static_inverse_k2_individual_prefactor_envelope_ONLY": [
+              0.9867988246129556,
+              1.0134678618080268
+            ],
+            "full_physical_closed_triangle_bispectrum_calculated": false
+          }
+        },
+        "0.002": {
+          "1": {
+            "original_frozen_E14_E15_reduced_source_S_Mpc6": 111163.19609830079,
+            "exact_geometric_r_K_over_k": 0.02666666666666667,
+            "static_inverse_k2_individual_prefactor_envelope_ONLY": [
+              0.9738573407202213,
+              1.027209642074507
+            ],
+            "full_physical_closed_triangle_bispectrum_calculated": false
+          },
+          "3": {
+            "original_frozen_E14_E15_reduced_source_S_Mpc6": 71996.27324793937,
+            "exact_geometric_r_K_over_k": 0.02666666666666667,
+            "static_inverse_k2_individual_prefactor_envelope_ONLY": [
+              0.9738573407202213,
+              1.027209642074507
+            ],
+            "full_physical_closed_triangle_bispectrum_calculated": false
+          }
+        },
+        "0.003": {
+          "1": {
+            "original_frozen_E14_E15_reduced_source_S_Mpc6": 190487.19124861495,
+            "exact_geometric_r_K_over_k": 0.04,
+            "static_inverse_k2_individual_prefactor_envelope_ONLY": [
+              0.9611687812379854,
+              1.0412328196584757
+            ],
+            "full_physical_closed_triangle_bispectrum_calculated": false
+          },
+          "3": {
+            "original_frozen_E14_E15_reduced_source_S_Mpc6": 123371.47862535597,
+            "exact_geometric_r_K_over_k": 0.04,
+            "static_inverse_k2_individual_prefactor_envelope_ONLY": [
+              0.9611687812379854,
+              1.0412328196584757
+            ],
+            "full_physical_closed_triangle_bispectrum_calculated": false
+          }
+        },
+        "0.005": {
+          "1": {
+            "original_frozen_E14_E15_reduced_source_S_Mpc6": 319614.0118522426,
+            "exact_geometric_r_K_over_k": 0.06666666666666667,
+            "static_inverse_k2_individual_prefactor_envelope_ONLY": [
+              0.9365244536940686,
+              1.070154577883472
+            ],
+            "full_physical_closed_triangle_bispectrum_calculated": false
+          },
+          "3": {
+            "original_frozen_E14_E15_reduced_source_S_Mpc6": 207002.12425374778,
+            "exact_geometric_r_K_over_k": 0.06666666666666667,
+            "static_inverse_k2_individual_prefactor_envelope_ONLY": [
+              0.9365244536940686,
+              1.070154577883472
+            ],
+            "full_physical_closed_triangle_bispectrum_calculated": false
+          }
+        }
+      },
+      "0.1": {
+        "0.001": {
+          "1": {
+            "original_frozen_E14_E15_reduced_source_S_Mpc6": 14332.002797879799,
+            "exact_geometric_r_K_over_k": 0.01,
+            "static_inverse_k2_individual_prefactor_envelope_ONLY": [
+              0.990074503106359,
+              1.01007550314386
+            ],
+            "full_physical_closed_triangle_bispectrum_calculated": false
+          },
+          "3": {
+            "original_frozen_E14_E15_reduced_source_S_Mpc6": 9282.30588758826,
+            "exact_geometric_r_K_over_k": 0.01,
+            "static_inverse_k2_individual_prefactor_envelope_ONLY": [
+              0.990074503106359,
+              1.01007550314386
+            ],
+            "full_physical_closed_triangle_bispectrum_calculated": false
+          }
+        },
+        "0.002": {
+          "1": {
+            "original_frozen_E14_E15_reduced_source_S_Mpc6": 38442.44444601807,
+            "exact_geometric_r_K_over_k": 0.02,
+            "static_inverse_k2_individual_prefactor_envelope_ONLY": [
+              0.9802960494069208,
+              1.0203040506070808
+            ],
+            "full_physical_closed_triangle_bispectrum_calculated": false
+          },
+          "3": {
+            "original_frozen_E14_E15_reduced_source_S_Mpc6": 24897.743424062566,
+            "exact_geometric_r_K_over_k": 0.02,
+            "static_inverse_k2_individual_prefactor_envelope_ONLY": [
+              0.9802960494069208,
+              1.0203040506070808
+            ],
+            "full_physical_closed_triangle_bispectrum_calculated": false
+          }
+        },
+        "0.003": {
+          "1": {
+            "original_frozen_E14_E15_reduced_source_S_Mpc6": 65874.2598654451,
+            "exact_geometric_r_K_over_k": 0.03,
+            "static_inverse_k2_individual_prefactor_envelope_ONLY": [
+              0.9706617486471405,
+              1.0306887577623747
+            ],
+            "full_physical_closed_triangle_bispectrum_calculated": false
+          },
+          "3": {
+            "original_frozen_E14_E15_reduced_source_S_Mpc6": 42664.311388496026,
+            "exact_geometric_r_K_over_k": 0.03,
+            "static_inverse_k2_individual_prefactor_envelope_ONLY": [
+              0.9706617486471405,
+              1.0306887577623747
+            ],
+            "full_physical_closed_triangle_bispectrum_calculated": false
+          }
+        },
+        "0.005": {
+          "1": {
+            "original_frozen_E14_E15_reduced_source_S_Mpc6": 110528.8829940956,
+            "exact_geometric_r_K_over_k": 0.049999999999999996,
+            "static_inverse_k2_individual_prefactor_envelope_ONLY": [
+              0.9518143961927424,
+              1.051939513477975
+            ],
+            "full_physical_closed_triangle_bispectrum_calculated": false
+          },
+          "3": {
+            "original_frozen_E14_E15_reduced_source_S_Mpc6": 71585.4522102398,
+            "exact_geometric_r_K_over_k": 0.049999999999999996,
+            "static_inverse_k2_individual_prefactor_envelope_ONLY": [
+              0.9518143961927424,
+              1.051939513477975
+            ],
+            "full_physical_closed_triangle_bispectrum_calculated": false
+          }
+        }
+      }
+    },
+    "plus": {
+      "0.05": {
+        "0.001": {
+          "1": {
+            "original_frozen_E14_E15_reduced_source_S_Mpc6": 100761.74030200773,
+            "exact_geometric_r_K_over_k": 0.02,
+            "static_inverse_k2_individual_prefactor_envelope_ONLY": [
+              0.9802960494069208,
+              1.0203040506070808
+            ],
+            "full_physical_closed_triangle_bispectrum_calculated": false
+          },
+          "3": {
+            "original_frozen_E14_E15_reduced_source_S_Mpc6": 62031.951001611385,
+            "exact_geometric_r_K_over_k": 0.02,
+            "static_inverse_k2_individual_prefactor_envelope_ONLY": [
+              0.9802960494069208,
+              1.0203040506070808
+            ],
+            "full_physical_closed_triangle_bispectrum_calculated": false
+          }
+        },
+        "0.002": {
+          "1": {
+            "original_frozen_E14_E15_reduced_source_S_Mpc6": 270178.02297230676,
+            "exact_geometric_r_K_over_k": 0.04,
+            "static_inverse_k2_individual_prefactor_envelope_ONLY": [
+              0.9611687812379854,
+              1.0412328196584757
+            ],
+            "full_physical_closed_triangle_bispectrum_calculated": false
+          },
+          "3": {
+            "original_frozen_E14_E15_reduced_source_S_Mpc6": 166329.6984797753,
+            "exact_geometric_r_K_over_k": 0.04,
+            "static_inverse_k2_individual_prefactor_envelope_ONLY": [
+              0.9611687812379854,
+              1.0412328196584757
+            ],
+            "full_physical_closed_triangle_bispectrum_calculated": false
+          }
+        },
+        "0.003": {
+          "1": {
+            "original_frozen_E14_E15_reduced_source_S_Mpc6": 462369.6860766906,
+            "exact_geometric_r_K_over_k": 0.06,
+            "static_inverse_k2_individual_prefactor_envelope_ONLY": [
+              0.9425959091337544,
+              1.0628122010840686
+            ],
+            "full_physical_closed_triangle_bispectrum_calculated": false
+          },
+          "3": {
+            "original_frozen_E14_E15_reduced_source_S_Mpc6": 284648.653599805,
+            "exact_geometric_r_K_over_k": 0.06,
+            "static_inverse_k2_individual_prefactor_envelope_ONLY": [
+              0.9425959091337544,
+              1.0628122010840686
+            ],
+            "full_physical_closed_triangle_bispectrum_calculated": false
+          }
+        },
+        "0.005": {
+          "1": {
+            "original_frozen_E14_E15_reduced_source_S_Mpc6": 775879.0801236583,
+            "exact_geometric_r_K_over_k": 0.09999999999999999,
+            "static_inverse_k2_individual_prefactor_envelope_ONLY": [
+              0.9070294784580498,
+              1.10803324099723
+            ],
+            "full_physical_closed_triangle_bispectrum_calculated": false
+          },
+          "3": {
+            "original_frozen_E14_E15_reduced_source_S_Mpc6": 477654.444406684,
+            "exact_geometric_r_K_over_k": 0.09999999999999999,
+            "static_inverse_k2_individual_prefactor_envelope_ONLY": [
+              0.9070294784580498,
+              1.10803324099723
+            ],
+            "full_physical_closed_triangle_bispectrum_calculated": false
+          }
+        }
+      },
+      "0.075": {
+        "0.001": {
+          "1": {
+            "original_frozen_E14_E15_reduced_source_S_Mpc6": 32496.742082366647,
+            "exact_geometric_r_K_over_k": 0.013333333333333334,
+            "static_inverse_k2_individual_prefactor_envelope_ONLY": [
+              0.9867988246129556,
+              1.0134678618080268
+            ],
+            "full_physical_closed_triangle_bispectrum_calculated": false
+          },
+          "3": {
+            "original_frozen_E14_E15_reduced_source_S_Mpc6": 20005.96959246052,
+            "exact_geometric_r_K_over_k": 0.013333333333333334,
+            "static_inverse_k2_individual_prefactor_envelope_ONLY": [
+              0.9867988246129556,
+              1.0134678618080268
+            ],
+            "full_physical_closed_triangle_bispectrum_calculated": false
+          }
+        },
+        "0.002": {
+          "1": {
+            "original_frozen_E14_E15_reduced_source_S_Mpc6": 87135.31051110518,
+            "exact_geometric_r_K_over_k": 0.02666666666666667,
+            "static_inverse_k2_individual_prefactor_envelope_ONLY": [
+              0.9738573407202213,
+              1.027209642074507
+            ],
+            "full_physical_closed_triangle_bispectrum_calculated": false
+          },
+          "3": {
+            "original_frozen_E14_E15_reduced_source_S_Mpc6": 53643.11191861548,
+            "exact_geometric_r_K_over_k": 0.02666666666666667,
+            "static_inverse_k2_individual_prefactor_envelope_ONLY": [
+              0.9738573407202213,
+              1.027209642074507
+            ],
+            "full_physical_closed_triangle_bispectrum_calculated": false
+          }
+        },
+        "0.003": {
+          "1": {
+            "original_frozen_E14_E15_reduced_source_S_Mpc6": 149119.1834331553,
+            "exact_geometric_r_K_over_k": 0.04,
+            "static_inverse_k2_individual_prefactor_envelope_ONLY": [
+              0.9611687812379854,
+              1.0412328196584757
+            ],
+            "full_physical_closed_triangle_bispectrum_calculated": false
+          },
+          "3": {
+            "original_frozen_E14_E15_reduced_source_S_Mpc6": 91802.24410972658,
+            "exact_geometric_r_K_over_k": 0.04,
+            "static_inverse_k2_individual_prefactor_envelope_ONLY": [
+              0.9611687812379854,
+              1.0412328196584757
+            ],
+            "full_physical_closed_triangle_bispectrum_calculated": false
+          }
+        },
+        "0.005": {
+          "1": {
+            "original_frozen_E14_E15_reduced_source_S_Mpc6": 250229.32591588056,
+            "exact_geometric_r_K_over_k": 0.06666666666666667,
+            "static_inverse_k2_individual_prefactor_envelope_ONLY": [
+              0.9365244536940686,
+              1.070154577883472
+            ],
+            "full_physical_closed_triangle_bispectrum_calculated": false
+          },
+          "3": {
+            "original_frozen_E14_E15_reduced_source_S_Mpc6": 154048.6819486866,
+            "exact_geometric_r_K_over_k": 0.06666666666666667,
+            "static_inverse_k2_individual_prefactor_envelope_ONLY": [
+              0.9365244536940686,
+              1.070154577883472
+            ],
+            "full_physical_closed_triangle_bispectrum_calculated": false
+          }
+        }
+      },
+      "0.1": {
+        "0.001": {
+          "1": {
+            "original_frozen_E14_E15_reduced_source_S_Mpc6": 11236.878801270423,
+            "exact_geometric_r_K_over_k": 0.01,
+            "static_inverse_k2_individual_prefactor_envelope_ONLY": [
+              0.990074503106359,
+              1.01007550314386
+            ],
+            "full_physical_closed_triangle_bispectrum_calculated": false
+          },
+          "3": {
+            "original_frozen_E14_E15_reduced_source_S_Mpc6": 6917.759787814657,
+            "exact_geometric_r_K_over_k": 0.01,
+            "static_inverse_k2_individual_prefactor_envelope_ONLY": [
+              0.990074503106359,
+              1.01007550314386
+            ],
+            "full_physical_closed_triangle_bispectrum_calculated": false
+          }
+        },
+        "0.002": {
+          "1": {
+            "original_frozen_E14_E15_reduced_source_S_Mpc6": 30130.06414743488,
+            "exact_geometric_r_K_over_k": 0.02,
+            "static_inverse_k2_individual_prefactor_envelope_ONLY": [
+              0.9802960494069208,
+              1.0203040506070808
+            ],
+            "full_physical_closed_triangle_bispectrum_calculated": false
+          },
+          "3": {
+            "original_frozen_E14_E15_reduced_source_S_Mpc6": 18548.971636130496,
+            "exact_geometric_r_K_over_k": 0.02,
+            "static_inverse_k2_individual_prefactor_envelope_ONLY": [
+              0.9802960494069208,
+              1.0203040506070808
+            ],
+            "full_physical_closed_triangle_bispectrum_calculated": false
+          }
+        },
+        "0.003": {
+          "1": {
+            "original_frozen_E14_E15_reduced_source_S_Mpc6": 51563.14398950194,
+            "exact_geometric_r_K_over_k": 0.03,
+            "static_inverse_k2_individual_prefactor_envelope_ONLY": [
+              0.9706617486471405,
+              1.0306887577623747
+            ],
+            "full_physical_closed_triangle_bispectrum_calculated": false
+          },
+          "3": {
+            "original_frozen_E14_E15_reduced_source_S_Mpc6": 31743.818753615593,
+            "exact_geometric_r_K_over_k": 0.03,
+            "static_inverse_k2_individual_prefactor_envelope_ONLY": [
+              0.9706617486471405,
+              1.0306887577623747
+            ],
+            "full_physical_closed_triangle_bispectrum_calculated": false
+          }
+        },
+        "0.005": {
+          "1": {
+            "original_frozen_E14_E15_reduced_source_S_Mpc6": 86525.49233130913,
+            "exact_geometric_r_K_over_k": 0.049999999999999996,
+            "static_inverse_k2_individual_prefactor_envelope_ONLY": [
+              0.9518143961927424,
+              1.051939513477975
+            ],
+            "full_physical_closed_triangle_bispectrum_calculated": false
+          },
+          "3": {
+            "original_frozen_E14_E15_reduced_source_S_Mpc6": 53267.689547628055,
+            "exact_geometric_r_K_over_k": 0.049999999999999996,
+            "static_inverse_k2_individual_prefactor_envelope_ONLY": [
+              0.9518143961927424,
+              1.051939513477975
+            ],
+            "full_physical_closed_triangle_bispectrum_calculated": false
+          }
+        }
+      }
+    },
+    "minus": {
+      "0.05": {
+        "0.001": {
+          "1": {
+            "original_frozen_E14_E15_reduced_source_S_Mpc6": 155682.98257863297,
+            "exact_geometric_r_K_over_k": 0.02,
+            "static_inverse_k2_individual_prefactor_envelope_ONLY": [
+              0.9802960494069208,
+              1.0203040506070808
+            ],
+            "full_physical_closed_triangle_bispectrum_calculated": false
+          },
+          "3": {
+            "original_frozen_E14_E15_reduced_source_S_Mpc6": 104031.02188765375,
+            "exact_geometric_r_K_over_k": 0.02,
+            "static_inverse_k2_individual_prefactor_envelope_ONLY": [
+              0.9802960494069208,
+              1.0203040506070808
+            ],
+            "full_physical_closed_triangle_bispectrum_calculated": false
+          }
+        },
+        "0.002": {
+          "1": {
+            "original_frozen_E14_E15_reduced_source_S_Mpc6": 418408.01996240776,
+            "exact_geometric_r_K_over_k": 0.04,
+            "static_inverse_k2_individual_prefactor_envelope_ONLY": [
+              0.9611687812379854,
+              1.0412328196584757
+            ],
+            "full_physical_closed_triangle_bispectrum_calculated": false
+          },
+          "3": {
+            "original_frozen_E14_E15_reduced_source_S_Mpc6": 279590.05641926284,
+            "exact_geometric_r_K_over_k": 0.04,
+            "static_inverse_k2_individual_prefactor_envelope_ONLY": [
+              0.9611687812379854,
+              1.0412328196584757
+            ],
+            "full_physical_closed_triangle_bispectrum_calculated": false
+          }
+        },
+        "0.003": {
+          "1": {
+            "original_frozen_E14_E15_reduced_source_S_Mpc6": 718141.1749083967,
+            "exact_geometric_r_K_over_k": 0.06,
+            "static_inverse_k2_individual_prefactor_envelope_ONLY": [
+              0.9425959091337544,
+              1.0628122010840686
+            ],
+            "full_physical_closed_triangle_bispectrum_calculated": false
+          },
+          "3": {
+            "original_frozen_E14_E15_reduced_source_S_Mpc6": 479878.7834603984,
+            "exact_geometric_r_K_over_k": 0.06,
+            "static_inverse_k2_individual_prefactor_envelope_ONLY": [
+              0.9425959091337544,
+              1.0628122010840686
+            ],
+            "full_physical_closed_triangle_bispectrum_calculated": false
+          }
+        },
+        "0.005": {
+          "1": {
+            "original_frozen_E14_E15_reduced_source_S_Mpc6": 1205147.1934024119,
+            "exact_geometric_r_K_over_k": 0.09999999999999999,
+            "static_inverse_k2_individual_prefactor_envelope_ONLY": [
+              0.9070294784580498,
+              1.10803324099723
+            ],
+            "full_physical_closed_triangle_bispectrum_calculated": false
+          },
+          "3": {
+            "original_frozen_E14_E15_reduced_source_S_Mpc6": 805307.6320744758,
+            "exact_geometric_r_K_over_k": 0.09999999999999999,
+            "static_inverse_k2_individual_prefactor_envelope_ONLY": [
+              0.9070294784580498,
+              1.10803324099723
+            ],
+            "full_physical_closed_triangle_bispectrum_calculated": false
+          }
+        }
+      },
+      "0.075": {
+        "0.001": {
+          "1": {
+            "original_frozen_E14_E15_reduced_source_S_Mpc6": 50215.192159532795,
+            "exact_geometric_r_K_over_k": 0.013333333333333334,
+            "static_inverse_k2_individual_prefactor_envelope_ONLY": [
+              0.9867988246129556,
+              1.0134678618080268
+            ],
+            "full_physical_closed_triangle_bispectrum_calculated": false
+          },
+          "3": {
+            "original_frozen_E14_E15_reduced_source_S_Mpc6": 33554.96964482016,
+            "exact_geometric_r_K_over_k": 0.013333333333333334,
+            "static_inverse_k2_individual_prefactor_envelope_ONLY": [
+              0.9867988246129556,
+              1.0134678618080268
+            ],
+            "full_physical_closed_triangle_bispectrum_calculated": false
+          }
+        },
+        "0.002": {
+          "1": {
+            "original_frozen_E14_E15_reduced_source_S_Mpc6": 134956.55578727048,
+            "exact_geometric_r_K_over_k": 0.02666666666666667,
+            "static_inverse_k2_individual_prefactor_envelope_ONLY": [
+              0.9738573407202213,
+              1.027209642074507
+            ],
+            "full_physical_closed_triangle_bispectrum_calculated": false
+          },
+          "3": {
+            "original_frozen_E14_E15_reduced_source_S_Mpc6": 90181.13718303596,
+            "exact_geometric_r_K_over_k": 0.02666666666666667,
+            "static_inverse_k2_individual_prefactor_envelope_ONLY": [
+              0.9738573407202213,
+              1.027209642074507
+            ],
+            "full_physical_closed_triangle_bispectrum_calculated": false
+          }
+        },
+        "0.003": {
+          "1": {
+            "original_frozen_E14_E15_reduced_source_S_Mpc6": 231634.80361434913,
+            "exact_geometric_r_K_over_k": 0.04,
+            "static_inverse_k2_individual_prefactor_envelope_ONLY": [
+              0.9611687812379854,
+              1.0412328196584757
+            ],
+            "full_physical_closed_triangle_bispectrum_calculated": false
+          },
+          "3": {
+            "original_frozen_E14_E15_reduced_source_S_Mpc6": 154783.81082900707,
+            "exact_geometric_r_K_over_k": 0.04,
+            "static_inverse_k2_individual_prefactor_envelope_ONLY": [
+              0.9611687812379854,
+              1.0412328196584757
+            ],
+            "full_physical_closed_triangle_bispectrum_calculated": false
+          }
+        },
+        "0.005": {
+          "1": {
+            "original_frozen_E14_E15_reduced_source_S_Mpc6": 388717.48790307075,
+            "exact_geometric_r_K_over_k": 0.06666666666666667,
+            "static_inverse_k2_individual_prefactor_envelope_ONLY": [
+              0.9365244536940686,
+              1.070154577883472
+            ],
+            "full_physical_closed_triangle_bispectrum_calculated": false
+          },
+          "3": {
+            "original_frozen_E14_E15_reduced_source_S_Mpc6": 259750.1462417911,
+            "exact_geometric_r_K_over_k": 0.06666666666666667,
+            "static_inverse_k2_individual_prefactor_envelope_ONLY": [
+              0.9365244536940686,
+              1.070154577883472
+            ],
+            "full_physical_closed_triangle_bispectrum_calculated": false
+          }
+        }
+      },
+      "0.1": {
+        "0.001": {
+          "1": {
+            "original_frozen_E14_E15_reduced_source_S_Mpc6": 17366.611203517623,
+            "exact_geometric_r_K_over_k": 0.01,
+            "static_inverse_k2_individual_prefactor_envelope_ONLY": [
+              0.990074503106359,
+              1.01007550314386
+            ],
+            "full_physical_closed_triangle_bispectrum_calculated": false
+          },
+          "3": {
+            "original_frozen_E14_E15_reduced_source_S_Mpc6": 11604.77709447143,
+            "exact_geometric_r_K_over_k": 0.01,
+            "static_inverse_k2_individual_prefactor_envelope_ONLY": [
+              0.990074503106359,
+              1.01007550314386
+            ],
+            "full_physical_closed_triangle_bispectrum_calculated": false
+          }
+        },
+        "0.002": {
+          "1": {
+            "original_frozen_E14_E15_reduced_source_S_Mpc6": 46673.88359836098,
+            "exact_geometric_r_K_over_k": 0.02,
+            "static_inverse_k2_individual_prefactor_envelope_ONLY": [
+              0.9802960494069208,
+              1.0203040506070808
+            ],
+            "full_physical_closed_triangle_bispectrum_calculated": false
+          },
+          "3": {
+            "original_frozen_E14_E15_reduced_source_S_Mpc6": 31188.584171365314,
+            "exact_geometric_r_K_over_k": 0.02,
+            "static_inverse_k2_individual_prefactor_envelope_ONLY": [
+              0.9802960494069208,
+              1.0203040506070808
+            ],
+            "full_physical_closed_triangle_bispectrum_calculated": false
+          }
+        },
+        "0.003": {
+          "1": {
+            "original_frozen_E14_E15_reduced_source_S_Mpc6": 80109.45298772282,
+            "exact_geometric_r_K_over_k": 0.03,
+            "static_inverse_k2_individual_prefactor_envelope_ONLY": [
+              0.9706617486471405,
+              1.0306887577623747
+            ],
+            "full_physical_closed_triangle_bispectrum_calculated": false
+          },
+          "3": {
+            "original_frozen_E14_E15_reduced_source_S_Mpc6": 53531.0161659092,
+            "exact_geometric_r_K_over_k": 0.03,
+            "static_inverse_k2_individual_prefactor_envelope_ONLY": [
+              0.9706617486471405,
+              1.0306887577623747
+            ],
+            "full_physical_closed_triangle_bispectrum_calculated": false
+          }
+        },
+        "0.005": {
+          "1": {
+            "original_frozen_E14_E15_reduced_source_S_Mpc6": 134435.52021017505,
+            "exact_geometric_r_K_over_k": 0.049999999999999996,
+            "static_inverse_k2_individual_prefactor_envelope_ONLY": [
+              0.9518143961927424,
+              1.051939513477975
+            ],
+            "full_physical_closed_triangle_bispectrum_calculated": false
+          },
+          "3": {
+            "original_frozen_E14_E15_reduced_source_S_Mpc6": 89832.96898489854,
+            "exact_geometric_r_K_over_k": 0.049999999999999996,
+            "static_inverse_k2_individual_prefactor_envelope_ONLY": [
+              0.9518143961927424,
+              1.051939513477975
+            ],
+            "full_physical_closed_triangle_bispectrum_calculated": false
+          }
+        }
+      }
+    }
+  },
+  "all_24_original_Fplus_minus_Fminus_reduced_source_contrasts": {
+    "0.05": {
+      "0.001": {
+        "1": {
+          "original_frozen_Fplus_minus_Fminus_E14_reduced_S_Mpc6": -54921.24227662524,
+          "checked_E15_reduced_S_Mpc6": -54921.24227662524,
+          "E16_not_bispectrum_difference": true
+        },
+        "3": {
+          "original_frozen_Fplus_minus_Fminus_E14_reduced_S_Mpc6": -41999.07088604237,
+          "checked_E15_reduced_S_Mpc6": -41999.07088604237,
+          "E16_not_bispectrum_difference": true
+        }
+      },
+      "0.002": {
+        "1": {
+          "original_frozen_Fplus_minus_Fminus_E14_reduced_S_Mpc6": -148229.996990101,
+          "checked_E15_reduced_S_Mpc6": -148229.996990101,
+          "E16_not_bispectrum_difference": true
+        },
+        "3": {
+          "original_frozen_Fplus_minus_Fminus_E14_reduced_S_Mpc6": -113260.35793948753,
+          "checked_E15_reduced_S_Mpc6": -113260.35793948753,
+          "E16_not_bispectrum_difference": true
+        }
+      },
+      "0.003": {
+        "1": {
+          "original_frozen_Fplus_minus_Fminus_E14_reduced_S_Mpc6": -255771.48883170605,
+          "checked_E15_reduced_S_Mpc6": -255771.48883170605,
+          "E16_not_bispectrum_difference": true
+        },
+        "3": {
+          "original_frozen_Fplus_minus_Fminus_E14_reduced_S_Mpc6": -195230.12986059336,
+          "checked_E15_reduced_S_Mpc6": -195230.12986059336,
+          "E16_not_bispectrum_difference": true
+        }
+      },
+      "0.005": {
+        "1": {
+          "original_frozen_Fplus_minus_Fminus_E14_reduced_S_Mpc6": -429268.1132787536,
+          "checked_E15_reduced_S_Mpc6": -429268.1132787536,
+          "E16_not_bispectrum_difference": true
+        },
+        "3": {
+          "original_frozen_Fplus_minus_Fminus_E14_reduced_S_Mpc6": -327653.18766779173,
+          "checked_E15_reduced_S_Mpc6": -327653.18766779173,
+          "E16_not_bispectrum_difference": true
+        }
+      }
+    },
+    "0.075": {
+      "0.001": {
+        "1": {
+          "original_frozen_Fplus_minus_Fminus_E14_reduced_S_Mpc6": -17718.450077166148,
+          "checked_E15_reduced_S_Mpc6": -17718.450077166148,
+          "E16_not_bispectrum_difference": true
+        },
+        "3": {
+          "original_frozen_Fplus_minus_Fminus_E14_reduced_S_Mpc6": -13549.000052359639,
+          "checked_E15_reduced_S_Mpc6": -13549.000052359639,
+          "E16_not_bispectrum_difference": true
+        }
+      },
+      "0.002": {
+        "1": {
+          "original_frozen_Fplus_minus_Fminus_E14_reduced_S_Mpc6": -47821.2452761653,
+          "checked_E15_reduced_S_Mpc6": -47821.2452761653,
+          "E16_not_bispectrum_difference": true
+        },
+        "3": {
+          "original_frozen_Fplus_minus_Fminus_E14_reduced_S_Mpc6": -36538.025264420474,
+          "checked_E15_reduced_S_Mpc6": -36538.025264420474,
+          "E16_not_bispectrum_difference": true
+        }
+      },
+      "0.003": {
+        "1": {
+          "original_frozen_Fplus_minus_Fminus_E14_reduced_S_Mpc6": -82515.62018119384,
+          "checked_E15_reduced_S_Mpc6": -82515.62018119384,
+          "E16_not_bispectrum_difference": true
+        },
+        "3": {
+          "original_frozen_Fplus_minus_Fminus_E14_reduced_S_Mpc6": -62981.56671928048,
+          "checked_E15_reduced_S_Mpc6": -62981.56671928048,
+          "E16_not_bispectrum_difference": true
+        }
+      },
+      "0.005": {
+        "1": {
+          "original_frozen_Fplus_minus_Fminus_E14_reduced_S_Mpc6": -138488.1619871902,
+          "checked_E15_reduced_S_Mpc6": -138488.1619871902,
+          "E16_not_bispectrum_difference": true
+        },
+        "3": {
+          "original_frozen_Fplus_minus_Fminus_E14_reduced_S_Mpc6": -105701.46429310451,
+          "checked_E15_reduced_S_Mpc6": -105701.46429310451,
+          "E16_not_bispectrum_difference": true
+        }
+      }
+    },
+    "0.1": {
+      "0.001": {
+        "1": {
+          "original_frozen_Fplus_minus_Fminus_E14_reduced_S_Mpc6": -6129.7324022472,
+          "checked_E15_reduced_S_Mpc6": -6129.7324022472,
+          "E16_not_bispectrum_difference": true
+        },
+        "3": {
+          "original_frozen_Fplus_minus_Fminus_E14_reduced_S_Mpc6": -4687.017306656773,
+          "checked_E15_reduced_S_Mpc6": -4687.017306656773,
+          "E16_not_bispectrum_difference": true
+        }
+      },
+      "0.002": {
+        "1": {
+          "original_frozen_Fplus_minus_Fminus_E14_reduced_S_Mpc6": -16543.8194509261,
+          "checked_E15_reduced_S_Mpc6": -16543.8194509261,
+          "E16_not_bispectrum_difference": true
+        },
+        "3": {
+          "original_frozen_Fplus_minus_Fminus_E14_reduced_S_Mpc6": -12639.612535234817,
+          "checked_E15_reduced_S_Mpc6": -12639.612535234817,
+          "E16_not_bispectrum_difference": true
+        }
+      },
+      "0.003": {
+        "1": {
+          "original_frozen_Fplus_minus_Fminus_E14_reduced_S_Mpc6": -28546.308998220877,
+          "checked_E15_reduced_S_Mpc6": -28546.308998220877,
+          "E16_not_bispectrum_difference": true
+        },
+        "3": {
+          "original_frozen_Fplus_minus_Fminus_E14_reduced_S_Mpc6": -21787.197412293604,
+          "checked_E15_reduced_S_Mpc6": -21787.197412293604,
+          "E16_not_bispectrum_difference": true
+        }
+      },
+      "0.005": {
+        "1": {
+          "original_frozen_Fplus_minus_Fminus_E14_reduced_S_Mpc6": -47910.02787886592,
+          "checked_E15_reduced_S_Mpc6": -47910.02787886592,
+          "E16_not_bispectrum_difference": true
+        },
+        "3": {
+          "original_frozen_Fplus_minus_Fminus_E14_reduced_S_Mpc6": -36565.27943727049,
+          "checked_E15_reduced_S_Mpc6": -36565.27943727049,
+          "E16_not_bispectrum_difference": true
+        }
+      }
+    }
+  },
+  "QA": {
+    "original_72_cases": 72,
+    "original_24_contrasts": 24,
+    "distinct_short_long_pairs": 12,
+    "orientation_probes_per_pair": 48,
+    "max_triangle_closure_h_per_Mpc": 1.2643861424099487e-17,
+    "max_cartesian_vs_analytic_gap": 2.220446049250313e-16,
+    "technical_warnings": []
+  },
+  "finite_ratio_scope": {
+    "max_original_K_over_k_short": 0.09999999999999999,
+    "max_single_short_leg_STATIC_inverse_k2_geometric_relative_variation": 0.10803324099723,
+    "max_sampled_symmetrized_geometry_TOY_relative_variation": 0.0075313597276398525,
+    "pairs_with_some_closed_short_leg_outside_original_three_k_CLASS_Pcb_support": [
+      [
+        0.05,
+        0.001
+      ],
+      [
+        0.05,
+        0.002
+      ],
+      [
+        0.05,
+        0.003
+      ],
+      [
+        0.05,
+        0.005
+      ],
+      [
+        0.1,
+        0.001
+      ],
+      [
+        0.1,
+        0.002
+      ],
+      [
+        0.1,
+        0.003
+      ],
+      [
+        0.1,
+        0.005
+      ]
+    ],
+    "n_pairs_outside_original_3point_Pcb_support": 8,
+    "example_original_k_0p05_K_0p005": {
+      "r_K_over_k": 0.09999999999999999,
+      "exact_continuous_c_envelope_individual_static_inverse_k2_factor": [
+        0.9070294784580498,
+        1.10803324099723
+      ],
+      "max_abs_individual_static_inverse_k2_fractional_change": 0.10803324099723,
+      "uniform_relative_c_geometry_ONLY_mean_symmetrized_factor": 1.0008345855698264,
+      "N_fixed_Cartesian_orientation_probes": 48,
+      "max_Cartesian_triangle_closure_h_per_Mpc": 7.269816092100959e-18,
+      "max_cartesian_vs_analytic_geometry_abs_gap": 2.220446049250313e-16,
+      "min_sampled_k1_h_per_Mpc": 0.0475,
+      "max_sampled_k1_h_per_Mpc": 0.052500000000000005,
+      "min_sampled_k2_h_per_Mpc": 0.0475,
+      "max_sampled_k2_h_per_Mpc": 0.052500000000000005,
+      "at_least_one_short_leg_outside_original_three_k_CLASS_Pcb_support": true,
+      "max_abs_symmetrized_TOY_completion_ratio_minus_original": 0.0075313597276398525,
+      "min_antisymmetric_TOY_leg_ratio": -0.10050188126959009,
+      "max_antisymmetric_TOY_leg_ratio": 0.10050188126959009,
+      "one_explicit_same_squeezed_limit_distinct_finiteK_witness": {
+        "geometry": {
+          "mu_s": 0.0,
+          "mu_L": 1.0,
+          "azimuth_rad": 0.0,
+          "cos_k_K": 0.0,
+          "mu1_LOS": -0.049937616943892225,
+          "mu2_LOS": -0.049937616943892225,
+          "k1_over_k": 1.0012492197250393,
+          "k2_over_k": 1.0012492197250393
+        },
+        "model_A_reduced_source_multiplier": 1.0,
+        "model_B_symmetrized_STATIC_GEOMETRY_ONLY_source_multiplier": 0.9975062344139649,
+        "these_are_not_physical_predictions_or_error_bars": true
+      }
+    },
+    "NOT_an_error_bound_on_actual_Einstein_Vlasov_tracer_bispectrum": true
+  },
+  "nonuniqueness_witness": {
+    "A": "B_A/(i mu_long DeltaBias)=S (original E15 separable source)",
+    "B": "B_B/(i mu_long DeltaBias)=S*Gsym(c,r), Gsym=0.5*((k/k1)^2+(k/k2)^2)",
+    "both_have_E15_squeezed_limit_and_Hermitian_reality_under_k_K_reversal": true,
+    "different_at_registered_nonzero_r": true,
+    "Gsym_model_is_artificial_GEOMETRIC_ONLY_not_physical_prediction": true,
+    "identifying_actual_finite_K_triangle_from_only_E14_E15_data": false
+  },
+  "physical_stop": {
+    "full_both_short_leg_Pcb_and_RSD_growth_transfer": false,
+    "short_long_angle_and_halo_tracer_velocity_density_response_calibrated": false,
+    "full_retarded_Einstein_Vlasov_and_wake_phase_evolution": false,
+    "eBOSS_HOD_b_LRG_ELG_evolution_magnification_wide_angle": false,
+    "actual_eBOSS_triple_random_window_and_independent_bispectrum_covariance": false,
+    "original_unconditional_24D_odd_is_three_point_observable": false,
+    "observed_odd_SEALED": true,
+    "new_catalogue_or_mock_download": false,
+    "new_survey_cuts_science_seeds": false,
+    "main_mutated": false,
+    "PR_remains_draft": true
+  }
+}

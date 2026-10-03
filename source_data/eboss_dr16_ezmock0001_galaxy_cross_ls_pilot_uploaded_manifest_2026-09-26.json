@@ -1,0 +1,92 @@
+{
+  "study": "Blinded eBOSS DR16 first true matched realistic EZmock0001 galaxy cross-LS orientation pilot, exact uploaded output manifest",
+  "record_date": "2026-09-26",
+  "uploaded_name": "ezmock0001_galaxy_cross_ls_pilot.json",
+  "local_output": "eboss_workspace/official_mask_inventory/ezmock0001_galaxy_cross_ls_pilot.json",
+  "exact_uploaded_bytes": 17995,
+  "exact_uploaded_sha256": "b8ea4545d433900c1364d1c12e2638a2d2288e35f0a327c22b8ad1ec9ae8510c",
+  "exact_uploaded_git_blob_sha1": "4f35e17a44a226235d9f45ff3afb5adc5f0c3579",
+  "exact_archive_path": "source_data/eboss_dr16_ezmock0001_galaxy_cross_ls_pilot_report_2026-09-26.json",
+  "archived_git_blob_sha1": "4f35e17a44a226235d9f45ff3afb5adc5f0c3579",
+  "archive_exact_byte_identity_verified": true,
+  "parent_pre_galaxy_pair_protocol": "source_data/eboss_dr16_ezmock0001_galaxy_cross_ls_pilot_protocol_2026-09-26.json",
+  "parent_uploaded_source_sha_manifest": "source_data/eboss_dr16_ezmock0001_galaxy_raw_sha_uploaded_manifest_2026-09-26.json",
+  "parent_source_sha_report_sha256": "ae9dc13ca27d7c4f4a6123cbc2526b44866aacc7db3add3f7a2b000773d86b4b",
+  "report_status": "EZMOCK0001_MATCHED_GALAXY_CROSS_LS_PILOT_ALGEBRA_ONLY",
+  "mock_id": 1,
+  "fixed_redshift_interval": [
+    0.9,
+    1
+  ],
+  "fixed_D_per_tracer_cap": 600,
+  "fixed_R_per_tracer_cap": 1200,
+  "source_galaxy_sha256_4": {
+    "NGC/eBOSS_LRG": "67862ecb7860eef939f03c459ba424709cd37e8bbf00aa916f2bb2d351896536",
+    "NGC/eBOSS_ELG": "aa399797762153b0ccff4960928c55336b35dc1131a44fbc735a7e668fbeb31e",
+    "SGC/eBOSS_LRG": "ba271958cf01a10c293b7c2876a5cad688c4618228c82378273cdb5451ae8a46",
+    "SGC/eBOSS_ELG": "a7df8700eed4e4dbcc97cd184007efff2fcbe7e354001ed1334b1bf572d9595a"
+  },
+  "matched_random_sha256_4": {
+    "NGC/eBOSS_LRG": "2f7966ab7de195353cf4d0b14f0fe4d14e4633cef5d156722e8a822518893dca",
+    "NGC/eBOSS_ELG": "c36c4ad26ee62696c0df99c6106c895a6931bdc56e84164e0a52b55f0e88c1c9",
+    "SGC/eBOSS_LRG": "94c8940734f3c647a2b883124392cd39855034a212ce9c6a05a6bd052bba8efe",
+    "SGC/eBOSS_ELG": "1af8f7f95f6d477049c80302300e97ed2c0aa7f584a0595d61f78dea80057e38"
+  },
+  "per_cap": {
+    "NGC": {
+      "eligible_galaxy_LRG": 7537,
+      "eligible_galaxy_ELG": 17149,
+      "eligible_random_LRG": 163089,
+      "eligible_random_ELG": 522515,
+      "RR_supported_cells": 144,
+      "RR_total_cells": 144,
+      "xi_forward_reverse_max_abs_residual": 8.881784197001252e-16,
+      "all_four_pair_reverse_checks_passed": true,
+      "max_normalization_relative_residual": 0,
+      "forward_accepted_pairs": {
+        "DD": 1486,
+        "DR": 2825,
+        "RD": 3946,
+        "RR": 7151
+      },
+      "ELG_chunks": {
+        "eboss23": 334,
+        "eboss25": 266
+      }
+    },
+    "SGC": {
+      "eligible_galaxy_LRG": 4159,
+      "eligible_galaxy_ELG": 15860,
+      "eligible_random_LRG": 93220,
+      "eligible_random_ELG": 472662,
+      "RR_supported_cells": 144,
+      "RR_total_cells": 144,
+      "xi_forward_reverse_max_abs_residual": 1.3322676295501878e-15,
+      "all_four_pair_reverse_checks_passed": true,
+      "max_normalization_relative_residual": 0,
+      "forward_accepted_pairs": {
+        "DD": 5637,
+        "DR": 11159,
+        "RD": 10414,
+        "RR": 20102
+      },
+      "ELG_chunks": {
+        "eboss21": 167,
+        "eboss22": 433
+      }
+    }
+  },
+  "verified_report_invariants": "Exact upload parsed and validated; both caps present; each four pair reverse closure passes, all signed-mu bins RR-supported; no numerical-zero weight exclusions; no report errors; all four galaxy and four mock random source SHA pins match prior.",
+  "scope_limits": {
+    "source_only_four_fixed_tracer_cap_inputs": true,
+    "one_mock_realization_only": true,
+    "finite_D_R_subsample_only": true,
+    "no_physical_odd_null_test": true,
+    "no_observed_odd_data_vector_read": true,
+    "no_observed_galaxy_rows_read": true,
+    "no_new_science_selection": true,
+    "no_physical_mask_or_cross_pair_window_certified": true,
+    "no_mock_covariance_estimated": true
+  },
+  "next_source_gate": "The previously predeclared nine-ID cohort may be used for a separately frozen, source-SHA-first, 9-mock code-transport audit. If run, no adaptive mock selection or physical inference from nine realizations; a statistically credible 18D covariance needs a much larger separately designed ensemble."
+}

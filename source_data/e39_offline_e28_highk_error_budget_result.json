@@ -1,0 +1,34 @@
+{
+  "interpretation": {
+    "Fpm_contrast_percent_of_FD": 0.6242009713736083,
+    "lowk_share_percent": 5.7741099999999985,
+    "required_highk_differential_control_percent": 0.6624516588525811,
+    "statement": "If unknown high-k state-differential model error is adversarially bounded by epsilon*|a_FD,k>1|, epsilon below this value is sufficient to preserve the frozen finite-band sign. It is not necessary and is not a measured uncertainty."
+  },
+  "limits": [
+    "not a measured physical uncertainty",
+    "no Born-breakdown estimate",
+    "does not assume independent F-state errors",
+    "no physical kmax"
+  ],
+  "lowmass_alpha04": {
+    "FD_accel_km2_s2_per_Mpc": -0.00201850894575251,
+    "Fminus_accel": -0.00202480872683428,
+    "Fminus_minus_Fplus": -1.2599552446650349e-05,
+    "Fplus_accel": -0.00201220917438763,
+    "R1_grid_gap_absolute_accel": 5.284903113407236e-08,
+    "R1_grid_gap_fraction_of_signed_difference": 0.00419451654,
+    "complement_fraction_k_le_1": 0.05774109999999999,
+    "reported_fraction_FD_force_k_gt_1": 0.9422589,
+    "signed_difference_over_FD": 0.006242009713736083,
+    "sufficient_highk_state_differential_fraction_for_sign_robustness": 0.006624516588525811
+  },
+  "parent_git_blobs": {
+    "E28_protocol": "e8feedc4d09965a24d8eb60c16454d6e03b2fbff",
+    "E28_summary": "99944cca5e1c5d8ccf3409984f8c0551cb4401c5"
+  },
+  "qa_checks": 5,
+  "qa_pass": true,
+  "stage": "E39_OFFLINE_E28_NUMERICAL_VS_PHYSICAL_HIGHK_ERROR_BUDGET",
+  "status": "DERIVED_FROM_FROZEN_E28R1_VALUES_NO_NEW_MODEL_RUN"
+}

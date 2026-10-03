@@ -1,0 +1,79 @@
+{
+  "date": "2026-09-27",
+  "study": "A03E8 post-E7 physics-only fixed-F± resonant neutrino occupation response, exact FD-relative source coefficient; NOT eBOSS observed galaxy xi prediction",
+  "scope": "FIXED_SOURCE_ONLY_DISTRIBUTION_AND_CONDITIONAL_RESONANT_FACTOR_NO_CLASS_OR_FITS_REQUIRED",
+  "preregistered_relative_to": "Only this new source-only reconstruction and diagnostic tests; original DESI direction and full mock E7 results are already fixed and inspected.",
+  "parents": {
+    "kinetic_constructor": {
+      "path": "code/class_response_optimize.py",
+      "git_blob_sha1": "44956e353dbb238537d60da687d1a2a26fa13ee6"
+    },
+    "fixed_low_z_direction": {
+      "path": "code/wake_phase7_template.py",
+      "git_blob_sha1": "63b291fdbbf1bf76df82583583c22ddf7bdc68a7",
+      "origin": "Prior published seven-coefficient DESI forecast direction, no eBOSS reoptimization"
+    },
+    "completed_fullmock_source_only_archive": {
+      "path": "source_data/eboss_dr16_mock0001_full_galaxy_4800_48000_completed_source_only_audit_2026-09-27.json",
+      "git_blob_sha1": "aa080ec8a3f5faab1731396bed1b048c7dfa991c",
+      "uploaded_report_sha256": "187e21e206cdb6ded1108887a2b6670113d50b752e438d28212cfc3d187572da"
+    },
+    "prior_E6_theory_window_bridge": {
+      "path": "source_data/eboss_dr16_a03_e6_physical_template_to_empirical_window_bridge_protocol_2026-09-27.json",
+      "git_blob_sha1": "4df20872cff5b3d8aa09831ab50b22fa5f8b6581"
+    }
+  },
+  "fixed_physics": {
+    "relic_mass_eV": 0.06,
+    "match_z": 1100,
+    "pointwise_deformation": 0.3,
+    "q_grid": "np.linspace(0,20,4000)",
+    "coefficient_source": "existing wake_phase7_template.COEFF (seven numbers parsed from exact SHA source)",
+    "CLASS_background_kinetic_normalization": "f_CLASS(q)=[2/(2pi)^3]/[exp(q)+1]",
+    "physical_velocity_to_resonance_q": "q_res=m_nu[eV]*abs(v_parallel)[km/s]/(c[km/s]*T_nu0[eV]*(1+z))",
+    "T_nu0": "original cro.T_NCDM*cro.TCMB_K*cro.KB_EV_K",
+    "illustrative_z": [
+      0.9,
+      0.95,
+      1
+    ],
+    "illustrative_line_of_sight_velocity_kms": [
+      100,
+      200,
+      400
+    ],
+    "z_0p95_label": "Mathematical midpoint of original [0.9,1.0) high-z pilot, NOT measured z_eff",
+    "velocity_200_label": "Original 200 km/s control reference used in earlier hidden-channel response study, NOT eBOSS measured vrel"
+  },
+  "physical_reference": {
+    "paper": "Okoli et al., Dynamical friction in the primordial neutrino sea, MNRAS 468 (2017) 2164-2175",
+    "doi": "10.1093/mnras/stx539",
+    "relevant_equations": "Collisionless linear response Eq.(14)-(19) and exact resonant FD occupation in Eq.(19), replacing FD occupation by alternative isotropic positive F while holding mass, potential and relative velocity fixed.",
+    "assumption": "Ratio of exact resonant imaginary source for F± to FD when same shift/single-species degeneracy and isotropic equilibrium. Does not include independently modified evolving halo potential/velocity distribution."
+  },
+  "deliverables": [
+    "F0,F+,F- original q grid with physical CLASS source normalization and three moments",
+    "FD-relative F±(qres)/F0(qres) and (F+-F-)/F0 dimensionless conditional source coefficients",
+    "Signed and sign-swap negative controls, positivity, 30% cap, exact moment match",
+    "No max-normalization of output, no arbitrary fitted amplitude"
+  ],
+  "not_deliverables": [
+    "Absolutely calibrated eBOSS ξ1 or ξ3",
+    "Physically complete collisionless wake with altered halo velocity field",
+    "Tracer-specific LRG/ELG nonlinear response/HOD, magnification or evolution biases",
+    "A03 survey-window redshift/chunk/depth validation",
+    "A04 independent eBOSS covariance",
+    "Observed odd significance or detection"
+  ],
+  "downstream_gate": "Real eBOSS galaxy-space amplitude requires separately specified sign-oriented physical wake-to-tracer operator, measured tracer biases and selection, z-conditioned window and independent eBOSS C; NOT identifiable from F(q) alone.",
+  "inviolable_guards": {
+    "new_galaxy_or_random_FITS_read": false,
+    "observed_odd_read": false,
+    "new_mock_download": false,
+    "new_source_seed_or_cut": false,
+    "change_original_direction": false,
+    "borrow_DESI_BGS_literature_Fisher_calibration_as_eBOSS_absolute": false,
+    "use_FD_relative_fraction_as_absolute_galaxy_xi": false,
+    "main_change": false
+  }
+}

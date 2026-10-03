@@ -1,0 +1,30 @@
+{
+  "date": "2026-09-27",
+  "status": "E17C_INDEPENDENT_STDLIB_ALL_FROZEN_Q_BOTH_LEG_CAUSAL_PROPAGATOR_REPLAY_PASS_FULL_B_BLOCKED",
+  "original_joint_SHA256": "ad655ada4f64e5033fe900d5821f58847e3c96e72e081cd1a92eadcf9a7236f4",
+  "original_E8_CSV_SHA256": "bf8f48deb9514c5101d5ce314bfbd397485102a5487da1039f141e3cad6143d0",
+  "original_E16_full_SHA256": "5d81f95a5571175f06eb032b865285ba34804701693f76af392be7fc31fb06db",
+  "state_original_sha256_and_counts": {
+    "FD": {
+      "original_sha256": "91c767a242d1cd6739cd16e4227ce32a72d0a4bb66447648d5e4abb3ec6b219f",
+      "replayed_samples": 3456
+    },
+    "plus": {
+      "original_sha256": "5b61d48640ad00dc501f72aeafc24786d592b3121ace70d35d15642dd5203814",
+      "replayed_samples": 3456
+    },
+    "minus": {
+      "original_sha256": "edb90e9e4372e26d13af8a13a59f2b633d7c8711184f8c9ee875ddd3732f1d28",
+      "replayed_samples": 3456
+    }
+  },
+  "replayed_original_E16_geometries": 576,
+  "replayed_state_leg_phase_values": 10368,
+  "max_scaled_independent_scalar_replay_gap": 3.3306690738754696e-16,
+  "independent_method": "Pure standard library CSV and analytic triangle k1,k2; own node-weight scalar trapezoid and sinc, no original runner import/NumPy/CLASS.",
+  "free_streaming_only_not_forced_halo_or_retarded_tracer_response": true,
+  "full_physical_finiteK_bispectrum": "BLOCKED",
+  "observed_odd_SEALED": true,
+  "new_catalogue_mock_download": false,
+  "main_untouched_PR_draft": true
+}

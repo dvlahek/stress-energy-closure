@@ -1,0 +1,94 @@
+{
+  "closure_matrix": [
+    {
+      "can_current_information_certify_E28_sign": false,
+      "current_status": "UNBOUNDED",
+      "term": "incoming_kinetic_state",
+      "what_exists": "E36 establishes non-identifiability of hidden kinetic structure from low moments; E27 zero incoming wake is a benchmark condition.",
+      "what_is_missing": "A physical norm bound on the propagated homogeneous Vlasov contribution."
+    },
+    {
+      "can_current_information_certify_E28_sign": false,
+      "current_status": "FORMULA_ONLY",
+      "term": "halo_history",
+      "what_exists": "E37 gives a sharp endpoint+Lipschitz retarded bound.",
+      "what_is_missing": "A physical L_k=sup|partial_t u(k,t)| or stronger dynamical envelope."
+    },
+    {
+      "can_current_information_certify_E28_sign": false,
+      "current_status": "FORMULA_ONLY",
+      "term": "finite_size_profile",
+      "what_exists": "E35/E38 give a second-moment low-k profile certificate.",
+      "what_is_missing": "Physical radial second moments through the relevant history."
+    },
+    {
+      "can_current_information_certify_E28_sign": false,
+      "current_status": "UNBOUNDED",
+      "term": "Born_remainder",
+      "what_exists": "E42 gives a geometric-series sufficient form if a perturbative norm ratio q<1 is known.",
+      "what_is_missing": "A physical q or independent second-order force bound on the same halo+environment source."
+    },
+    {
+      "can_current_information_certify_E28_sign": false,
+      "current_status": "STRUCTURALLY_UNIDENTIFIED",
+      "term": "tracer_response_chi",
+      "what_exists": "E40/E41 quantify source-level conditioning and exact response reparameterization freedom.",
+      "what_is_missing": "Independent high-z LRG/ELG response calibration and uncertainty bound."
+    }
+  ],
+  "current_certification": {
+    "A03_physical_template_ready": false,
+    "A04_should_resume_now": false,
+    "galaxy_response_certified": false,
+    "halo_acceleration_sign_certified": false,
+    "observed_odd_should_unblind_now": false
+  },
+  "date": "2026-09-30",
+  "frozen_E28_sign_budget": {
+    "absolute_total_budget_km2_s2_per_Mpc": 1.2599552446650349e-05,
+    "fraction_of_abs_FD": 0.006242009713736083,
+    "meaning": "Any sufficient physical sign certificate must make the total state-differential closure error across Fminus and Fplus smaller than this absolute benchmark contrast.",
+    "percent_of_abs_FD": 0.6242009713736083
+  },
+  "illustrative_budget_allocations": {
+    "equal_split_across_four_categories_and_two_states": {
+      "budget_per_state_per_category": 1.5749440558312936e-06,
+      "fraction_of_abs_FD": 0.0007802512142170104,
+      "percent_of_abs_FD": 0.07802512142170104
+    },
+    "equal_split_across_four_pairwise_physical_source_categories": {
+      "budget_per_category_sum_over_both_states": 3.149888111662587e-06,
+      "categories": [
+        "incoming",
+        "history",
+        "profile",
+        "Born"
+      ],
+      "fraction_of_abs_FD": 0.0015605024284340208,
+      "percent_of_abs_FD": 0.15605024284340208
+    },
+    "warning": "These equal splits are bookkeeping examples, not physical priors or measured uncertainties."
+  },
+  "next_data_gate_if_returning_to_WSL": {
+    "minimum_useful_fields": [
+      "documented same-object linkage/tree identifier",
+      "mass definition consistent across epochs",
+      "one or more radial second moments or sufficiently rich profile summaries",
+      "halo centre and bulk velocity",
+      "at least three epochs if possible"
+    ],
+    "priority": 1,
+    "purpose": "Estimate or bound the history derivative L_k / profile evolution, not merely add endpoint metadata.",
+    "recommended_target": "small pre-decoded same-object multi-epoch halo dynamical summary, not another whole-column ASDF read"
+  },
+  "qa_checks": 6,
+  "qa_pass": true,
+  "source": {
+    "uploaded_E42_qa_checks": 19,
+    "uploaded_E42_qa_pass": true,
+    "uploaded_E42_stage": "E42_LOCAL_WSL_OPERATOR_LEVEL_PHYSICAL_CLOSURE_BUDGET",
+    "uploaded_E42_status": "PURE_STDLIB_OFFLINE_QA_PASS"
+  },
+  "stage": "E43_OFFLINE_CLOSURE_FEASIBILITY_MATRIX_AND_MINIMUM_REQUIRED_BUDGET",
+  "status": "CURRENT_INFORMATION_CANNOT_CERTIFY_PHYSICAL_FPM_SIGN"
+}

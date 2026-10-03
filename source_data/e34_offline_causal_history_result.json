@@ -1,0 +1,72 @@
+{
+  "a03": "PHYSICAL_UNCERTIFIED",
+  "a04": "BLOCKED",
+  "classification": "E34_OFFLINE_TOY_CAUSAL_PROFILE_HISTORY_NONIDENTIFIABILITY",
+  "conditional_lipschitz_L": 0.15707963267948966,
+  "construction": {
+    "common_test_u": 0.8414709848078965,
+    "continuity": "distributional shell transport, identical mass and fixed center",
+    "endpoint_radial_velocities": [
+      0,
+      0
+    ],
+    "endpoint_shell_radii": [
+      1.0,
+      1.0
+    ],
+    "eps": 0.1,
+    "illustrative_kernel": "exp(-(1-t)); not E28 physical kernel",
+    "k_dimensionless": 1.0,
+    "r0": 1.0,
+    "r_minus": "1-0.1*sin(pi*t)^2",
+    "r_plus": "1+0.1*sin(pi*t)^2",
+    "source_and_test_mass": "same positive constant M",
+    "source_u": "sinc(k*r(t))",
+    "time_domain": "dimensionless [0,1]"
+  },
+  "endpoint_only_prediction": 0.44758776485073914,
+  "lipschitz_integral_bound_before_test_factor": 0.032558939578284665,
+  "observed_odd_read": false,
+  "physical_total_halo_drag_certified": false,
+  "qa_checks_passed": 51,
+  "simpson": {
+    "1024": {
+      "J_minus": 0.45516383334208665,
+      "J_plus": 0.439549571374331,
+      "signed_gap_minus_plus": 0.015614261967755672
+    },
+    "128": {
+      "J_minus": 0.45516383337098554,
+      "J_plus": 0.4395495713639564,
+      "signed_gap_minus_plus": 0.015614262007029145
+    },
+    "256": {
+      "J_minus": 0.4551638333438857,
+      "J_plus": 0.4395495713736857,
+      "signed_gap_minus_plus": 0.015614261970199994
+    },
+    "512": {
+      "J_minus": 0.4551638333421921,
+      "J_plus": 0.4395495713742932,
+      "signed_gap_minus_plus": 0.015614261967898946
+    },
+    "64": {
+      "J_minus": 0.4551638338050597,
+      "J_plus": 0.4395495712079148,
+      "signed_gap_minus_plus": 0.015614262597144879
+    }
+  },
+  "source_files_sha256": {
+    "E30_OFFLINE_WIND_SIGN_AND_TWO_TRACER_ESTIMAND.md": "e83b596720c2b81d9a7b58f2dfb94ea3edc01991e51bd09878eaa0d61b00ee53",
+    "E32_OFFLINE_RADIAL_PROFILE_ENCLOSURE.md": "3c43498856b7905bd6f5c9ccbc7745f75613c11f36f82c9fba09127585b07a8b",
+    "E33_OFFLINE_M200C_PSEUDOEVOLUTION.md": "a4c43f77705a6a89857000af86adee77aa7bc4c0a540bf4bb14c1aebeb6c1e07",
+    "E34_E35_OFFLINE_PROTOCOL.md": "4b8bdc0a95ffec5ff3057eb65ae90835055232714312258e91cf4607493adb33",
+    "e29_20_halo_two_epoch_pair_catalog.json": "424954175ff97226f6d4be1dd82c008388b0a18abf5ce128f5cd7df45206b77e"
+  },
+  "theorem": {
+    "claim": "Endpoint positions, masses, radial velocities and profiles do not identify retarded source-profile integral.",
+    "conditional_stability": "Given independently justified |du/dt|<=L, |u(t)-u_lin(t)| <= 2L*t*(T-t)/T and integrated error <=2L/T*integral |K|*t*(T-t)dt.",
+    "rigorous_sign": "On [0.9,1.1], sinc(k*r) decreases in radius for k=1; K>0 and g>0 in (0,1), so J_minus>J_plus.",
+    "signed_kernel_caveat": "This fixed toy K is positive; no numerical nonzero E28 actual kernel gap is claimed."
+  }
+}

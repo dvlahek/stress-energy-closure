@@ -1,0 +1,52 @@
+name: eBOSS DR16 A03E16 independent original E14 E15 E16 scalar triangle replay
+on:
+  push:
+    branches:
+      - audit/eboss-elg-bit8-ra-orientation-20260925
+    paths:
+      - 'scripts/audit_eboss_dr16_a03_e16_independent_exact_triangle_replay.py'
+      - '.github/workflows/eboss_dr16_a03_e16_independent_scalar_triangle_replay.yml'
+permissions:
+  contents: write
+jobs:
+  independent-source-exact-scalar-geometry:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    env:
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Independent original 12x48 scalar vector-norm replay and SHA pinned 72/24 source accounting
+        run: |
+          python -m py_compile scripts/audit_eboss_dr16_a03_e16_independent_exact_triangle_replay.py
+          python -u scripts/audit_eboss_dr16_a03_e16_independent_exact_triangle_replay.py
+      - name: Permanently commit independent E16 certificate on audit branch
+        run: |
+          set -eu
+          src=eboss_workspace/a03_physics_source/e16_independent_original_scalar_geometry_replay.json
+          dst=source_data/eboss_dr16_a03_e16_independent_original_scalar_geometry_replay_2026_09_27.json
+          test -s "$src"
+          cp "$src" "$dst"
+          sha256sum "$dst"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "$dst"
+          if git diff --cached --quiet; then
+            echo E16_INDEPENDENT_ORIGINAL_SOURCE_ALREADY_ARCHIVED
+          else
+            git commit -m "audit(E16): archive independent SHA-gated E14/E15/E16 72/24 scalar triangle and 576 probe replay"
+            git push origin HEAD:refs/heads/audit/eboss-elg-bit8-ra-orientation-20260925
+          fi
+          echo E16_INDEPENDENT_CERTIFICATE_PERMANENT_GITHUB_AUDIT_BRANCH
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: eboss-a03-e16-original-independent-scalar-triangle-72-24
+          path: eboss_workspace/a03_physics_source/e16_independent_original_scalar_geometry_replay.json
+          if-no-files-found: warn
+          retention-days: 30

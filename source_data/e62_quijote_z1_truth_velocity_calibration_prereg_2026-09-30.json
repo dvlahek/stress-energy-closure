@@ -1,0 +1,70 @@
+{
+  "stage": "E62_QUIJOTE_Z1_TRUTH_VELOCITY_CALIBRATION_PROTOCOL",
+  "date": "2026-09-30",
+  "frozen_before_result": true,
+  "purpose": "Independent N-body truth calibration of the E59/E61 density-to-velocity sign reconstruction. This is a method-calibration gate, not an eBOSS-specific transfer calibration and not an Einstein-Vlasov amplitude prediction.",
+  "parent_E61": {
+    "status": "PASS_ELG_FULLPOOL_RECONSTRUCTION_LOCK_QUANTIFIED",
+    "selected_tracer": "eBOSS_ELG",
+    "full_pool_reconstruction_operator_locked": true
+  },
+  "dataset": {
+    "suite": "Quijote",
+    "cosmology": "fiducial",
+    "realization": 0,
+    "halo_catalog": "FoF",
+    "snapshot_number": 2,
+    "nominal_redshift": 1,
+    "box_size_Mpc_over_h": 1000,
+    "source_path_hint": "/Halos/FoF/fiducial/0/",
+    "rationale": "A complete periodic box with halo positions and peculiar velocities; z=1 is close to the eBOSS z~0.95 reconstruction epoch. Used only to truth-calibrate the reconstruction method."
+  },
+  "tracer_definition": {
+    "policy": "exactly the 165107 most massive FoF halos",
+    "n_halos": 165107,
+    "provenance": "Quijote public halo-statistics documentation lists Ntot=165107 for the fiducial z=1 halo sample.",
+    "weights": "unit number weights; no mass weighting in the primary test"
+  },
+  "reconstruction": {
+    "smoothing_R_Mpc_over_h": 16,
+    "primary_cutoff_Mpc_over_h": 256,
+    "cutoff_check_Mpc_over_h": 192,
+    "kernel": "same top-hat-smoothed real-space 1/r^2 vector kernel as E59",
+    "periodic_minimum_image": true,
+    "survey_mask_subtraction": false,
+    "reason_no_randoms": "complete periodic box has no angular/radial selection mask"
+  },
+  "probes": {
+    "count": 4096,
+    "selection": "deterministic without-replacement subset of the fixed tracer sample",
+    "seed": 202609620000,
+    "truth": "FoF halo peculiar velocity GroupVel*(1+z), km/s"
+  },
+  "primary_metrics": {
+    "axes": [
+      "x",
+      "y",
+      "z"
+    ],
+    "pearson": "reconstructed component versus true halo peculiar-velocity component",
+    "sign_agreement": "fraction with matching nonzero component sign",
+    "cutoff_stability": "192 versus 256 Mpc/h reconstructed components"
+  },
+  "gate": {
+    "each_axis_truth_pearson_min": 0.7,
+    "each_axis_truth_sign_agreement_min": 0.7,
+    "each_axis_cutoff_pearson_min": 0.9,
+    "each_axis_cutoff_sign_agreement_min": 0.9
+  },
+  "if_pass": "Advance only to an end-to-end survey/lightcone truth-transfer test. Do not open observed galaxies or observed odd.",
+  "if_fail": "Do not use the survey-derived velocity tag for observations; revisit reconstruction assumptions before any observational access.",
+  "forbidden": [
+    "observed eBOSS galaxy rows",
+    "observed 24D odd vector",
+    "retuning R=16 or 192/256 cutoffs after seeing truth",
+    "changing tracer count after seeing truth",
+    "mass weighting as a rescue of the primary gate",
+    "absolute Einstein-Vlasov amplitude calibration",
+    "inverse covariance, p-values or detection significance"
+  ]
+}

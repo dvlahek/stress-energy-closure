@@ -1,0 +1,42 @@
+{
+  "study": "eBOSS DR16 ELG official maskbit gzip source-byte sampling by preselected middle filename in all four chunk families",
+  "registered_on": "2026-09-26",
+  "predeclared_before_any_selected_sample_gzip_byte_transfer": true,
+  "sampling_rule": "For each of the four official lexicographically sorted SHA-pinned lists, choose names[len(names)//2], exactly one filename per chunk. No resampling or substitutions if a file fails.",
+  "parent_uploaded_official_inventory_sha256": "84a3a163ec0b28a5392dadc95aa757e469cb9cb6e94cc731aac2fa2958fc6c18",
+  "parent_offline_index_report_sha256": "32104c056ab86637df1d236bdde04263ab18393b66302b690d70ce331102f2b7",
+  "parent_offline_index_report_git_blob_sha1": "ca9555978b4198515ebd3f907cfbc72f859f5aa1",
+  "parent_offline_report_local": "eboss_workspace/official_mask_inventory/elg_maskbit_index_pin.json",
+  "parent_offline_report_archive": "source_data/eboss_dr16_elg_maskbit_index_local_report_2026-09-26.json",
+  "parent_official_index_protocol": "source_data/eboss_dr16_elg_maskbit_index_pin_2026-09-26.json",
+  "approved_source_origin": "https://portal.nersc.gov",
+  "approved_source_directory": "https://portal.nersc.gov/project/cosmo/data/sdss/dr17/eboss/lss/catalogs/DR16/ELGmasks/",
+  "selected_filename_by_chunk": {
+    "eboss21": "mask-eboss21-3386m005.fits.gz",
+    "eboss22": "mask-eboss22-0226m005.fits.gz",
+    "eboss23": "mask-eboss23-1415p232.fits.gz",
+    "eboss25": "mask-eboss25-1538p312.fits.gz"
+  },
+  "expected_family_order": [
+    "eboss21",
+    "eboss22",
+    "eboss23",
+    "eboss25"
+  ],
+  "max_compressed_bytes_per_selected_image": 67108864,
+  "max_total_selected_compressed_bytes": 268435456,
+  "network_contract": "Official HTTPS approved URL only; GET exactly selected published gzip file; HTTP status 200, Accept-Encoding identity, Content-Length required and bounded, resolved URL unchanged, SHA256 of every raw gzip byte; gzip magic+compression-method prefix check. Record ETag and Last-Modified if present, but do not interpret them as official SHA.",
+  "retained_raw_files_directory": "eboss_workspace/quarantine_official_elg_sample_maskbits",
+  "local_report": "eboss_workspace/official_mask_inventory/elg_maskbit_four_sample_raw_sha.json",
+  "first_seen_full_gzip_SHA256_NOT_PUBLISHED": true,
+  "gzip_header_or_fits_header_parsed": false,
+  "gzip_payload_decompressed": false,
+  "fits_image_pixels_read": false,
+  "catalogue_rows_read": false,
+  "random_or_mock_rows_read": false,
+  "observed_odd_data_vector_read": false,
+  "new_mask_or_selection_applied": false,
+  "physical_elg_mask_certified": false,
+  "physical_lrg_elg_pair_window_certified": false,
+  "freeze_next": "Upload the exact per-file first-seen gzip SHA report and register each checksum in a separate immutable protocol before decompressing even FITS headers or inspecting WCS; no mask pixel interpretation at this byte provenance stage."
+}

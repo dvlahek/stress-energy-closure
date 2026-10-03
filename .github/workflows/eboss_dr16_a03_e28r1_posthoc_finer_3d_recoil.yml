@@ -1,0 +1,48 @@
+name: eBOSS A03 E28R1 posthoc finer signed finite-band 3D recoil
+on:
+  push:
+    branches:
+      - audit/eboss-elg-bit8-ra-orientation-20260925
+    paths:
+      - 'source_data/eboss_dr16_a03_e28r1_*'
+      - 'scripts/audit_eboss_dr16_a03_e28r1_finer_signed_3d_recoil.py'
+      - '.github/workflows/eboss_dr16_a03_e28r1_posthoc_finer_3d_recoil.yml'
+      - 'EINSTEIN_VLASOV_NP_MASTER_PLAN.md'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  fixed-original-physics-posthoc-finer-grid:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Original numpy dependency
+        run: python -m pip install 'numpy==1.26.4'
+      - name: Gate prior original E28 code and prospectively fixed posthoc grid
+        run: |
+          set -euo pipefail
+          test "$(git hash-object source_data/eboss_dr16_a03_e28r1_posthoc_signed_recoil_contrast_and_band_convergence_protocol_2026-09-29.json)" = 5d0a0ac96364916e95328c0f9ef6d30fb528c229
+          test "$(git hash-object scripts/audit_eboss_dr16_a03_e28_conditional_3d_finite_band_neutrino_recoil.py)" = c02dc66f4c235427d6f3e7dac85b5d617ed7717e
+          test "$(git hash-object source_data/eboss_dr16_a03_e28_conditional_finite_band_3d_wake_recoil_protocol_2026-09-29.json)" = e8feedc4d09965a24d8eb60c16454d6e03b2fbff
+          echo E28R1_PRIOR_FAILED_SIGNED_CONTRAST_AND_GRID_PINS_PASS
+      - name: Run registered 24 vs 48 log-k and 257 vs 513 physical-z grids
+        env:
+          PYTHONUNBUFFERED: '1'
+          OPENBLAS_NUM_THREADS: '1'
+          OMP_NUM_THREADS: '1'
+        run: |
+          set -euo pipefail
+          python -m py_compile scripts/audit_eboss_dr16_a03_e28r1_finer_signed_3d_recoil.py
+          python -u scripts/audit_eboss_dr16_a03_e28r1_finer_signed_3d_recoil.py --out "$RUNNER_TEMP/e28r1_original_3F_4halo_registered_contrasts.json"
+          echo E28R1_POSTHOC_SOURCE_PINNED_FINER_CONTRAST_QA_DONE
+      - uses: actions/upload-artifact@v4
+        with:
+          name: E28R1_original_conditional_signed_band_recoil
+          path: ${{ runner.temp }}/e28r1_original_3F_4halo_registered_contrasts.json
+          if-no-files-found: error

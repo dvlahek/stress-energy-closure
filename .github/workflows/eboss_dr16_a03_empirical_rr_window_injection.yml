@@ -1,0 +1,73 @@
+name: eBOSS DR16 A-03 empirical RR 9-mock finite-bin even-odd injection audit
+
+on:
+  push:
+    branches:
+      - audit/eboss-elg-bit8-ra-orientation-20260925
+    paths:
+      - 'scripts/audit_eboss_dr16_a03_empirical_rr_window_injection.py'
+      - 'source_data/eboss_dr16_a03_empirical_rr_window_injection_protocol_2026-09-26.json'
+      - 'source_data/eboss_dr16_a03_empirical_only_user_decision_2026-09-26.json'
+      - '.github/workflows/eboss_dr16_a03_empirical_rr_window_injection.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  immutable-nine-mock-random-only-window-no-FITS-no-observed-odd:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install numpy for deterministic synthetic/archived finite-bin operator replay
+        run: python -m pip install 'numpy>=1.24,<2.4'
+      - name: Compile and synthetically negative-test the A-03 blinded operator runner
+        run: |
+          python -m py_compile scripts/audit_eboss_dr16_a03_empirical_rr_window_injection.py
+          python -u scripts/audit_eboss_dr16_a03_empirical_rr_window_injection.py --self-test
+      - name: Fetch the exact original 2026-09-24 completed nine-ID random-only window members
+        uses: actions/download-artifact@v4
+        with:
+          name: eboss-dr16-nine-mock-window-ensemble
+          run-id: 36017670812
+          github-token: ${{ github.token }}
+          path: eboss_workspace/local_a03_rr_source_artifact
+      - name: Reverify both original archive member SHA256s and run 18 fixed random-only operator injection cases
+        run: python -u scripts/audit_eboss_dr16_a03_empirical_rr_window_injection.py --artifact-dir eboss_workspace/local_a03_rr_source_artifact
+      - name: Archive exact successfully SHA-pinned CI report on draft audit branch only
+        if: success()
+        run: |
+          python - <<'PY'
+          import hashlib
+          from pathlib import Path
+          p=Path('eboss_workspace/local_a03_empirical_rr/a03_empirical_rr_window_injection.json')
+          raw=p.read_bytes()
+          assert len(raw)==90307, f'Unexpected A-03 source report byte count {len(raw)}'
+          assert hashlib.sha256(raw).hexdigest()=='e6b8db10d31bc297426cb8fe6bf9a19c9a97ab6f938da2da9d4a9710cfa420e7', 'Unexpected A-03 CI report SHA256'
+          out=Path('source_data/eboss_dr16_a03_empirical_rr_window_injection_report_2026-09-26.json')
+          if out.exists() and out.read_bytes()!=raw:
+              raise ValueError('Archived A-03 result differs; do not overwrite it')
+          out.write_bytes(raw)
+          print('A03_SOURCE_REPORT_EXACT_SHA_ARCHIVE_READY',len(raw),hashlib.sha256(raw).hexdigest())
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add source_data/eboss_dr16_a03_empirical_rr_window_injection_report_2026-09-26.json
+          if git diff --cached --quiet; then
+            echo 'A03_EXACT_SOURCE_REPORT_ALREADY_ARCHIVED'
+          else
+            git commit -m 'Archive immutable completed A-03 18-case empirical RR operator synthetic injection report'
+            git push origin HEAD:refs/heads/audit/eboss-elg-bit8-ra-orientation-20260925
+          fi
+      - name: Preserve original A-03 completed or incomplete unmodified report as workflow artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: eboss-dr16-a03-empirical-rr-9mock-injection-report
+          path: eboss_workspace/local_a03_empirical_rr/a03_empirical_rr_window_injection.json
+          if-no-files-found: warn

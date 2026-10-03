@@ -1,0 +1,61 @@
+{
+  "study": "Exact uploaded four realized EZmock0001 raw galaxy-gzip SHA report and post-source pre-row fixed mock pair SHA gate",
+  "registered_on": "2026-09-26",
+  "exact_uploaded_filename": "ezmock0001_galaxy_data_raw_sha.json",
+  "local_report": "eboss_workspace/official_mask_inventory/ezmock0001_galaxy_data_raw_sha.json",
+  "archived_report": "source_data/eboss_dr16_ezmock0001_galaxy_raw_sha_report_2026-09-26.json",
+  "uploaded_report_bytes": 5609,
+  "uploaded_report_sha256": "ae9dc13ca27d7c4f4a6123cbc2526b44866aacc7db3add3f7a2b000773d86b4b",
+  "uploaded_report_git_blob_sha1": "406617081d3f50ad872de41b53a2fe4e91acd4b2",
+  "archived_git_blob_sha1": "406617081d3f50ad872de41b53a2fe4e91acd4b2",
+  "archive_byte_identical_verified": true,
+  "parent_source_protocol": "source_data/eboss_dr16_ezmock0001_galaxy_raw_bytes_protocol_2026-09-26.json",
+  "parent_protocol_sha256": "f2df7e8e837119c85e1ad04e0dae5692d140b7db13c4fdcc49f46e942e98c70a",
+  "pre_first_seen_pair_protocol": "source_data/eboss_dr16_ezmock0001_galaxy_cross_ls_pilot_protocol_2026-09-26.json",
+  "raw_status": "EZMOCK0001_FOUR_GALAXY_RAW_GZIP_SOURCES_FIRST_SEEN_SHA_ONLY",
+  "mock_realization_id": 1,
+  "expected_total_compressed_galaxy_bytes": 8307621,
+  "fixed_source_order": [
+    "NGC/eBOSS_LRG",
+    "NGC/eBOSS_ELG",
+    "SGC/eBOSS_LRG",
+    "SGC/eBOSS_ELG"
+  ],
+  "per_source_frozen_from_uploaded_report": {
+    "NGC/eBOSS_LRG": {
+      "released_filename": "EZmock_realistic_eBOSS_LRG_NGC_v7_0001.dat.fits.gz",
+      "compressed_bytes": 2576333,
+      "full_compressed_sha256": "67862ecb7860eef939f03c459ba424709cd37e8bbf00aa916f2bb2d351896536",
+      "expected_mock_galaxy_header_rows_from_prior_header_audit": 129262,
+      "matched_same_mock_realization_random_full_compressed_sha256": "2f7966ab7de195353cf4d0b14f0fe4d14e4633cef5d156722e8a822518893dca"
+    },
+    "NGC/eBOSS_ELG": {
+      "released_filename": "EZmock_realistic_eBOSS_ELG_NGC_v7_0001.dat.fits.gz",
+      "compressed_bytes": 1933801,
+      "full_compressed_sha256": "aa399797762153b0ccff4960928c55336b35dc1131a44fbc735a7e668fbeb31e",
+      "expected_mock_galaxy_header_rows_from_prior_header_audit": 83747,
+      "matched_same_mock_realization_random_full_compressed_sha256": "c36c4ad26ee62696c0df99c6106c895a6931bdc56e84164e0a52b55f0e88c1c9"
+    },
+    "SGC/eBOSS_LRG": {
+      "released_filename": "EZmock_realistic_eBOSS_LRG_SGC_v7_0001.dat.fits.gz",
+      "compressed_bytes": 1675016,
+      "full_compressed_sha256": "ba271958cf01a10c293b7c2876a5cad688c4618228c82378273cdb5451ae8a46",
+      "expected_mock_galaxy_header_rows_from_prior_header_audit": 82921,
+      "matched_same_mock_realization_random_full_compressed_sha256": "94c8940734f3c647a2b883124392cd39855034a212ce9c6a05a6bd052bba8efe"
+    },
+    "SGC/eBOSS_ELG": {
+      "released_filename": "EZmock_realistic_eBOSS_ELG_SGC_v7_0001.dat.fits.gz",
+      "compressed_bytes": 2122471,
+      "full_compressed_sha256": "a7df8700eed4e4dbcc97cd184007efff2fcbe7e354001ed1334b1bf572d9595a",
+      "expected_mock_galaxy_header_rows_from_prior_header_audit": 90650,
+      "matched_same_mock_realization_random_full_compressed_sha256": "1af8f7f95f6d477049c80302300e97ed2c0aa7f584a0595d61f78dea80057e38"
+    }
+  },
+  "source_fingerprints_are_first_seen_not_official_SDSS_published_reference": true,
+  "prior_mock_random_SHA256_from_prior_three_id_random_audit_only": true,
+  "no_mock_galaxy_or_random_rows_read_in_sha_stage": true,
+  "observed_galaxy_data_read": false,
+  "observed_odd_data_vector_read": false,
+  "new_science_selection_applied": false,
+  "physical_mask_or_cross_window_certified": false
+}

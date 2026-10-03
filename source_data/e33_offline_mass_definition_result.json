@@ -1,0 +1,63 @@
+{
+  "classification": "E33_POSTHOC_OFFLINE_M200C_REFERENCE_DENSITY_PSEUDOEVOLUTION_TOY",
+  "input_file": "e29_20_pair_posthoc_offline_kinematic_audit.json",
+  "input_sha256": "2934abe216abe39e87611937b265d8473696db5e0768ce425af7bfeb6f030a3d",
+  "no_asdf_fits_observed_data_or_new_halo_column_read": true,
+  "source_epoch": {
+    "z_early": 1.027997062494471,
+    "z_late": 0.952838237036305,
+    "approx_H0_km_s_Mpc": 67.36,
+    "Omega_m0": 0.315192,
+    "Omega_Lambda0": 0.684808,
+    "cosmology_approximation": "flat matter+Lambda approximation to snapshot spacing; not exact CLASS/Abacus time integral with massive neutrinos"
+  },
+  "E2_early": 3.3137266704676636,
+  "E2_late": 3.0321371726446444,
+  "rho_crit_late_over_early": 0.9150233179059157,
+  "rho_crit_percent_change": -8.497668209408427,
+  "example_static_halos": [
+    {
+      "gamma": 2.0,
+      "physical_profile": "static_power_law_toy",
+      "R200c_late_over_early": 1.0454034265068075,
+      "M200c_late_over_early": 1.0454034265068075,
+      "apparent_M200c_growth_percent": 4.540342650680751,
+      "physical_accretion_percent_by_construction": 0.0
+    },
+    {
+      "gamma": 2.5,
+      "physical_profile": "static_power_law_toy",
+      "R200c_late_over_early": 1.0361607459581508,
+      "M200c_late_over_early": 1.0179198131278075,
+      "apparent_M200c_growth_percent": 1.791981312780755,
+      "physical_accretion_percent_by_construction": 0.0
+    }
+  ],
+  "QA": {
+    "status": "PASS",
+    "assertions": 12,
+    "checks": [
+      "parent_is_20_pair_previous_offline_audit",
+      "correct_time_order",
+      "flat_background_approximation",
+      "critical_density_decreases",
+      "same_redshift_no_change",
+      "de_sitter_null",
+      "static_profile_r200_moves_2.0",
+      "static_profile_M200_increases_2.0",
+      "analytic_mass_ratio_2.0",
+      "static_profile_r200_moves_2.5",
+      "static_profile_M200_increases_2.5",
+      "analytic_mass_ratio_2.5"
+    ]
+  },
+  "scope": "Purely hypothetical fixed physical density rho(r) proportional r^-gamma; do not transfer example masses to measured L1 N or actual M200c",
+  "physical_stop": {
+    "L1_N_as_M200c": "NOT_PERMITTED",
+    "physical_accretion_from_two_snapshot_N": "NOT_IDENTIFIED",
+    "M200c_from_real_20_halo_profiles": "NOT_MEASURED",
+    "A03": "PHYSICAL_UNCERTIFIED",
+    "A04": "BLOCKED",
+    "observed_odd": "SEALED"
+  }
+}

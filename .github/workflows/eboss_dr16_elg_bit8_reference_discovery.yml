@@ -1,0 +1,26 @@
+name: eBOSS DR16 ELG bit8 official-reference index self-test
+
+on:
+  push:
+    branches:
+      - audit/eboss-elg-bit8-ra-orientation-20260925
+    paths:
+      - 'scripts/audit_eboss_dr16_elg_bit8_reference_discovery.py'
+      - 'source_data/eboss_dr16_elg_bit8_reference_discovery_protocol_2026-09-25.json'
+      - '.github/workflows/eboss_dr16_elg_bit8_reference_discovery.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  only-synthetic-filename-discovery:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Test official-root allowlist and filename-only classification without networking
+        run: python scripts/audit_eboss_dr16_elg_bit8_reference_discovery.py --self-test

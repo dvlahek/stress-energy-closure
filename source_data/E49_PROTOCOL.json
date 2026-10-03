@@ -1,0 +1,28 @@
+{
+  "R_Mpc_over_h": 16,
+  "date": "2026-09-30",
+  "decision_gate": {
+    "intermediate": "minimum |r_rel,b| in [0.4,0.7)",
+    "strong": "minimum |r_rel,b| over three F states >=0.7",
+    "weak": "minimum |r_rel,b| <0.4"
+  },
+  "frozen_before_local_result": true,
+  "k_h_max_for_stats": 0.1,
+  "k_h_min": 0.0001,
+  "main_untouched": true,
+  "mandatory_replay": "state-specific E21 direct R16 LOS sigma within relative 2e-5",
+  "no_FITS_ASDF": true,
+  "no_new_selection_tuning": true,
+  "no_observed_galaxy_rows": true,
+  "no_observed_odd": true,
+  "question": "Can a direct baryon bulk-velocity tag preserve enough neutrino-CDM relative-velocity sign information to justify a new velocity-conditioned estimator?",
+  "stage": "E49_PROSPECTIVE_CONDITIONED_VELOCITY_TAG_SCREEN",
+  "states": [
+    "FD",
+    "plus",
+    "minus"
+  ],
+  "tag_field": "v_baryon from direct CLASS vTk",
+  "target_field": "v_ncdm-v_cdm from direct CLASS vTk",
+  "z": 0.95
+}

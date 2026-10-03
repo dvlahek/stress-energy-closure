@@ -1,0 +1,59 @@
+{
+  "date": "2026-09-27",
+  "status": "E17A_ORIGINAL_THREE_STATE_576_EXACT_TRIANGLES_BOTH_CLASS_LEGS_LINEAR_TRANSFER_DONE_PHYSICAL_B_BLOCKED",
+  "prospective_E17_protocol_git_blob": "f4bd3ea2a0519c4091ea94d0600ac62e57b3a2d4",
+  "immutable_parent_SHA256": {
+    "E8_original_4000q_CSV_sha256": "bf8f48deb9514c5101d5ce314bfbd397485102a5487da1039f141e3cad6143d0",
+    "E13_original_full_sha256": "537365b2e758ec215810bb687557771440851cf2869d02578569b1d47d4ec98d",
+    "E14_original_full_sha256": "0f1efb45593cd51d9ffa1818157bdd52baba525a8fc4bb9cc30c12d98ba91fd8",
+    "E15_original_full_sha256": "6062aed4b581f2db89192bd1c1cf2639a74b6a313db9e10dca9e53041a95d983",
+    "E16_original_full_sha256": "5d81f95a5571175f06eb032b865285ba34804701693f76af392be7fc31fb06db",
+    "E16_independent_sha256": "8a6ee7610a0412de7bcaf5333950f41add0973a000bd245d49b41b77efc8e10d",
+    "E14_original_per_state_sha256": {
+      "FD": "639eb2346f074bdcdf87aecaeee1f0e3f497ee065272b1373c8a804cb32582f4",
+      "plus": "01dd19c93551ad846505980d673c454ad6dc36d9d0f03c7dda79f9c9388c9a30",
+      "minus": "6d7c5b657aef2c9d7d05d7e028dd83b053649123192866312c0835aa81e67d32"
+    },
+    "original_CLASS_git_commit": "e85808324f51fc694d12e3ed7439552a3c3f9540",
+    "E14_runner_git_blob": "d2c6f568ddd8f5650e9817072ae3dfd4166a4697",
+    "E16_protocol_git_blob": "28127fbedddc320660b6ac3f9d6262272905c7ca"
+  },
+  "state_reports": {
+    "FD": {
+      "sha256": "cd89f798899e12d267fedd1b01d3ef1ddf8b1d8dbe5d14845b5e25d6c9c9af34",
+      "bytes": 2237046,
+      "max_E14_Pcb_anchor_relative_gap": 0.0,
+      "max_squeezed_Pcb_diagnostic": 4.3015850081928875e-07
+    },
+    "plus": {
+      "sha256": "4c95de74fd7ea03388cecb94bbe9fd06180865b045c5d68b925b69a3f2b3ba10",
+      "bytes": 2236590,
+      "max_E14_Pcb_anchor_relative_gap": 0.0,
+      "max_squeezed_Pcb_diagnostic": 4.3023153950549897e-07
+    },
+    "minus": {
+      "sha256": "9ed7a5f219367570c37d01ba4b19031152b1930e551a2f77033fa9fa50b9ba52",
+      "bytes": 2236815,
+      "max_E14_Pcb_anchor_relative_gap": 0.0,
+      "max_squeezed_Pcb_diagnostic": 4.3012002515219194e-07
+    }
+  },
+  "geometry_count": 576,
+  "state_geometry_count": 1728,
+  "redshift_nodes": [
+    0.945,
+    0.95,
+    0.955
+  ],
+  "original_E14_E15_72_source_24_contrasts_UNMODIFIED": true,
+  "both_short_leg_direct_CLASS_Pcb_and_vTk_linear_transfer_CALCULATED": true,
+  "static_Eq20_distinct_from_CLASS_linear_transfer": true,
+  "retarded_halo_tracer_physical_bispectrum": "BLOCKED",
+  "tracer_swap_formal_antisymmetric_Delta_b_only_not_physical_amplitude": "Delta_b(LRG,ELG)=-Delta_b(ELG,LRG)",
+  "Hermitian_reality_for_real_linear_CLASS_transfer_only": "Pcb(-ki)=Pcb(ki); i mu_long S has original E15 parity; full B cannot be asserted",
+  "eBOSS_observed_odd_read": false,
+  "eBOSS_24D_two_point_is_not_three_point": true,
+  "new_catalogue_or_mock_download": false,
+  "main_untouched": true,
+  "PR_remains_draft": true
+}

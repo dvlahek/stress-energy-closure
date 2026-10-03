@@ -1,0 +1,50 @@
+{
+  "stage": "E27_FIRST_PHYSICAL_TIME_CONDITIONAL_EXTERNAL_HALO_BORN_WAKE",
+  "date": "2026-09-29",
+  "registration": "New limited physical-time numerical experiment registered before first new E27 computation. Prior original E8b static, E17D0 dimensionless impulse, E17D1 synthetic time and E17D2B1 conditional Wechsler histories already known; NO new calibrated halo or observational hypothesis. The exact E8 archive SHA was corrected before any E27 code execution, without changing inputs, physics or tolerances.",
+  "source_pins": {
+    "E8_frozen_4000q_git_blob": "52d614041551a5067edda01eca94741241831913",
+    "E8_frozen_4000q_SHA256": "bf8f48deb9514c5101d5ce314bfbd397485102a5487da1039f141e3cad6143d0",
+    "E17D0_impulse_code": "f8ed0cfcea70251c005a1dd1bb7be403984e9854",
+    "original_CLASS_cosmology_code": "44956e353dbb238537d60da687d1a2a26fa13ee6",
+    "E9_H_FD": "3d21ccdce4d3547be927a1fa76626d69e861109d",
+    "E9_H_plus": "e4765dbab6d9814e999ff2178e020fb7df547c9c",
+    "E9_H_minus": "106acd41328482dde887c1bda0976f34ad44902e",
+    "E17D2B1_case00": "10fefba505916ecb173352f17da21929b118978a",
+    "E17D2B1_case01": "72707304484a24c361bcff09ad5061bb82dca434",
+    "E17D2B1_case02": "f0a478caf2c8385ff845d0aa3d8cc9353a2a41d2",
+    "E17D2B1_case03": "12e7ae9401dd3e9ea2e95a96d5daa680a00cb3"
+  },
+  "immutable_numerical_inputs": {
+    "z_observation": 0.95,
+    "z_initial_zero_response": 1,
+    "k_comoving_h_Mpc": 0.05,
+    "mu": [
+      -1,
+      0,
+      1
+    ],
+    "fixed_halo_velocity_relative_neutrinos_km_s": 200,
+    "mass_trajectories": "Exactly original E17D2B1 two M0 physical Msun anchors times alpha=0.4,0.8. Conditional Wechsler M(z)/M0=exp[-alpha*(z-z0)/(1+z0)].",
+    "halo_density": "EXTERNAL COMOVING POINT-MASS potential U(k)=1 in original Class h=.6736 cosmology; no finite-size M200c conversion, no LRG/ELG occupation.",
+    "background": "Original E9 state-specific H_CLASS in inverse comoving Mpc, linear interpolation only on original 0.95<=z<=1 z nodes.",
+    "T_nu0": "0.71611*2.7255*8.617333262e-5 eV from original cosmology code and original E9 T_ncdm; m_nu=.06 eV.",
+    "kernel": "Original E17D0 finite-q H_F(s) with s=k_comoving*(T_nu0/mnu)*integral_{zobs}^z[(1+zp)/H_CLASS(zp)]dzp. Halo lookback distance dX=(v_h/c)*integral dz/H_CLASS. Complex halo-frame phase exp(+i*k*mu*dX).",
+    "output": "Finite-window z=1 to .95 Born scalar delta_nu(k)/nbar_nu per EXTERNAL conditional point-mass halo Fourier source; in Mpc^3, not force, acceleration, beta, epsilon, galaxy chi, xi or survey odd.",
+    "amplitude": "Use 4*pi G M0/(c^2*k) and mnu/Tnu0 point-mass Fourier potential plus exact source-time cancellation of a; G=4.30091e-9 Mpc (km/s)^2 /Msun (fixed convention).",
+    "integration": "Trapezoid physical z grid 129 and 257 inclusive. Every F original 4000q piecewise-linear q with original E17D0 GL2 source kernel. Quantify quadrature change without posthoc thresholds.",
+    "tests": "Original source blob and SHA, z/H interpolation domain, original fixed parameters, q denominator positive, 129 vs 257 convergence 5e-3 normalized full complex, mu reversal/conjugation, zero wind imaginary zero, alpha histories anchored, tenfold M0 response scaling, unknown pre-z1 wake explicitly excluded."
+  },
+  "physical_nonclaims": {
+    "original_Fplus_Fminus_unmodified": true,
+    "original_E8_E9_E17D0_E17D2B1_unmodified": true,
+    "conditional_external_halo_not_real_highz_LRG_ELG": true,
+    "zero_prior_wake_at_z1_is_artificial": true,
+    "pointmass_Born_not_selfconsistent_EinsteinVlasov": true,
+    "no_total_halo_drag_or_galaxy_chi": true,
+    "no_standard_Doppler_or_full_24D_window": true,
+    "no_observed_galaxy_or_odd_read": true,
+    "no_new_CLASS_ASDF_FITS_mock_or_WSL": true,
+    "no_main_PR_merge": true
+  }
+}
