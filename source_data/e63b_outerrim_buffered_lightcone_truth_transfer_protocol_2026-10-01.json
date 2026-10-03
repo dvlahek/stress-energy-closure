@@ -172,5 +172,58 @@
       "LOS truth thresholds",
       "observed-data sealing"
     ]
+  },
+  "retrieval_repair_r5": {
+    "id": "E63B_R5_SPATIAL_BOX_TILING_LOCAL_CENTRAL_FILTER",
+    "frozen_before_any_truth_metric": true,
+    "trigger": "R4 tile-0 equivalent rectangular-SQL retrieval remained EXECUTING for roughly a day; no R4 tile cache or E63B truth metric was produced.",
+    "rationale": "IRSA TAP documentation exposes BOX as a native geometric constraint. R5 restores the spatial-indexable geometry path and removes the unindexed/slow char is_central server predicate.",
+    "server_partition": {
+      "geometry": "4x4 BOX tiling",
+      "bounding_superset_deg": {
+        "ra": [
+          42,
+          68
+        ],
+        "dec": [
+          -50.6,
+          -31.4
+        ]
+      },
+      "tile_count": 16,
+      "redshift_true": [
+        0.75,
+        1.16
+      ],
+      "halo_mass_floor_Msun": 5000000000000,
+      "server_side_central_filter": false,
+      "per_tile_TOP_cap": 600000
+    },
+    "local_equivalence": {
+      "deduplicate": "galaxy_id",
+      "central_filter": "parse is_central and retain True only",
+      "exact_geometry": "angular separation from RA=55 deg, Dec=-41 deg <= 9.5 deg",
+      "ordering": "all local filtering precedes mass ranking, probe choice, reconstruction and truth metrics"
+    },
+    "fail_closed": [
+      "any tile reaches TOP 600000",
+      "redshift or mass guard leakage",
+      "duplicate galaxy_id after final merge",
+      "empty exact-cone central set"
+    ],
+    "unchanged": [
+      "CosmoDC2 table",
+      "exact source shell 0.75<=z_true<1.16",
+      "exact 9.5-degree science cone",
+      "central-only science tracer",
+      "5e12 Msun retrieval floor",
+      "target density 1.65107e-4 h^3 Mpc^-3",
+      "mass ranking and galaxy_id tie break",
+      "512 probes and seed",
+      "R=16 Mpc/h kernel",
+      "256/192 Mpc/h cutoffs",
+      "LOS truth thresholds",
+      "observed-data sealing"
+    ]
   }
 }
