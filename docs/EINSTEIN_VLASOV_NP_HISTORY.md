@@ -1,5 +1,18 @@
 # EinsteinVlasovNP — povijest i handoff za novi chat
 
+## 18. 10. 2026. — E63B-R6 lightcone truth FAIL; E63C/D diagnostics frozen
+
+R6 repaired only the pre-truth geometry after R5 showed inadequate footprint coverage at the original center. The replacement center RA=62.5 deg, Dec=-35.5 deg was locked before truth evaluation. Hybrid retrieval then produced 200,493 unique central candidates with minimum frozen outer-sector coverage of 1,460. The final pre-truth lock retained the original E63B source density, 54,893 selected centrals, 512 probes, seed, R=16 Mpc/h kernel, 256/192 Mpc/h cutoffs and truth thresholds.
+
+The frozen E63B-R6 execution fails the lightcone-transfer gate: LOS truth Pearson=0.3449885 and sign agreement=0.5703125. Cutoff Pearson/sign are 0.9934461/0.8886719. Cartesian truth Pearson is x=0.7731326, y=0.7132135 and z=-0.6751749. This is a valid negative transfer result, not a retrieval or geometry failure.
+
+A single independent catalog-redshift convention audit confirms the original (+,+,+) velocity convention with Pearson=0.999947, sign agreement=1.0 and slope=0.999770. No sign correction or rerun is licensed.
+
+E63C exactly reproduced the parent LOS result and found an anisotropic local-basis pattern: radial r=0.344989, e_RA r=0.731279 and e_Dec r=-0.152256. E63D used only the fixed z_true=0.95 and Dec=-35.5 deg halves. Radial transfer worsens at higher redshift, but no single redshift or north/south explanation accounts for the full failure. No new gate or p-value was introduced.
+
+Final decision: preserve E63B FAIL, close the E63B-D diagnostic branch, do not advance to E64, and keep observed eBOSS rows and the observed odd vector SEALED. Any future lightcone-aware estimator requires a separately declared methodological branch.
+
+
 ## 3. 10. 2026. — E63B-R5 indexed spatial BOX tiling
 
 R4 tile 0 remained server-side EXECUTING for roughly a day despite removing the original cone and using a redshift chunk, indicating that raw RA/Dec SQL predicates did not provide an efficient retrieval path. No R4 tile cache or E63B truth metric was produced. R5 switches retrieval engineering again before any truth result: sixteen 4x4 IRSA-native BOX geometry queries tile the fixed RA 42..68 deg, Dec -50.6..-31.4 deg superset over the full frozen 0.75<=z_true<1.16 shell. Server-side `is_central` filtering is removed because the char predicate was a prior bottleneck; each tile retrieves all objects above the unchanged 5e12 Msun floor, and central=True is applied locally together with galaxy_id deduplication and the exact original 9.5-deg spherical cut before mass ranking, probes or truth metrics. IRSA documents BOX as a supported geometric constraint. Every tile remains resumable and fails closed if it hits TOP 600000. The admissible science set, target density, reconstruction kernel, gates and SEALED observations are unchanged.

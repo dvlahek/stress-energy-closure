@@ -1,0 +1,293 @@
+{
+  "E63B_fail_preserved": true,
+  "descriptive_contrasts": {
+    "north_minus_south": {
+      "radial_e_r": {
+        "delta_cutoff_pearson_B_minus_A": -0.0005141691696320949,
+        "delta_truth_pearson_B_minus_A": 0.0453811939877099,
+        "delta_truth_sign_B_minus_A": 0.07684367826716587
+      },
+      "tangential_e_Dec": {
+        "delta_cutoff_pearson_B_minus_A": -0.0025430229460340348,
+        "delta_truth_pearson_B_minus_A": -0.09959804285372013,
+        "delta_truth_sign_B_minus_A": 0.03299902944031058
+      },
+      "tangential_e_RA": {
+        "delta_cutoff_pearson_B_minus_A": -0.0016242675704782883,
+        "delta_truth_pearson_B_minus_A": -0.08943889859105991,
+        "delta_truth_sign_B_minus_A": -0.08864445163377555
+      }
+    },
+    "redshift_high_minus_low": {
+      "radial_e_r": {
+        "delta_cutoff_pearson_B_minus_A": -0.005188028961879532,
+        "delta_truth_pearson_B_minus_A": -0.11259407892106002,
+        "delta_truth_sign_B_minus_A": -0.11721410356253914
+      },
+      "tangential_e_Dec": {
+        "delta_cutoff_pearson_B_minus_A": -0.0007513111892487601,
+        "delta_truth_pearson_B_minus_A": -0.055669225783475856,
+        "delta_truth_sign_B_minus_A": -0.049322766350573366
+      },
+      "tangential_e_RA": {
+        "delta_cutoff_pearson_B_minus_A": -0.002171880602894638,
+        "delta_truth_pearson_B_minus_A": 0.009450225642083088,
+        "delta_truth_sign_B_minus_A": -0.08902530273183995
+      }
+    }
+  },
+  "diagnostic_only": true,
+  "estimator_changed": false,
+  "fixed_splits": {
+    "declination": {
+      "north": "dec_true >= -35.5 deg",
+      "south": "dec_true < -35.5 deg",
+      "threshold_deg": -35.5,
+      "variable": "dec_true_deg"
+    },
+    "redshift": {
+      "exact_threshold_probe_count": 0,
+      "high": "redshift_true >= 0.95",
+      "low": "redshift_true < 0.95",
+      "threshold": 0.95,
+      "variable": "serialized redshift_true in frozen R6 cache"
+    }
+  },
+  "frozen_inputs": {
+    "NPROBE": 512,
+    "NSEL": 54893,
+    "cache_sha256": "74d0402bfb2dc87b7ba5f174fb43adb141db4dc21c7f7b1b8acc9a20eefa1f82",
+    "membership_sha256": "112836101c35286f803f99954969d2512e55a746c8fbeae84839b486134b1dd6",
+    "probe_galaxy_id_sha256": "e9414b79fa1b51cbacb345d3cad6361f0cff6b301b7f77793e5ed8263a381113",
+    "probe_seed": 202610630001,
+    "selected_galaxy_id_sha256": "050e96027ebe97f3b924efae2d3300022966978f302e99a935d9e39b30d1fb8f"
+  },
+  "groups": {
+    "dec_north_ge_minus35p5": {
+      "dec_true_max_deg": -33.0464615,
+      "dec_true_mean_deg": -34.38715177224199,
+      "dec_true_min_deg": -35.487484,
+      "local_basis": {
+        "radial_e_r": {
+          "cutoff_192_vs_256_pearson": 0.9943281203775198,
+          "cutoff_192_vs_256_sign_agreement": 0.9217081850533808,
+          "n": 281,
+          "reconstructed_mean": -1.1176722875474531e-07,
+          "reconstructed_std": 3.732401106278246e-07,
+          "truth_mean": 169.22904051720505,
+          "truth_pearson": 0.371535120933276,
+          "truth_sign_agreement": 0.604982206405694,
+          "truth_std": 594.2870279966602
+        },
+        "tangential_e_Dec": {
+          "cutoff_192_vs_256_pearson": 0.9843479410605397,
+          "cutoff_192_vs_256_sign_agreement": 0.9466192170818505,
+          "n": 281,
+          "reconstructed_mean": 6.720599026712504e-08,
+          "reconstructed_std": 3.211537503123198e-07,
+          "truth_mean": 50.01719736278816,
+          "truth_pearson": -0.18537508460606078,
+          "truth_sign_agreement": 0.4875444839857651,
+          "truth_std": 608.1032549433204
+        },
+        "tangential_e_RA": {
+          "cutoff_192_vs_256_pearson": 0.9947637849129344,
+          "cutoff_192_vs_256_sign_agreement": 0.9572953736654805,
+          "n": 281,
+          "reconstructed_mean": -1.1776572617920923e-07,
+          "reconstructed_std": 3.7397232932728356e-07,
+          "truth_mean": -99.31983969583223,
+          "truth_pearson": 0.6849755014478635,
+          "truth_sign_agreement": 0.7295373665480427,
+          "truth_std": 580.0073314614606
+        }
+      },
+      "n": 281,
+      "z_true_max": 0.9999,
+      "z_true_mean": 0.9464750889679717,
+      "z_true_min": 0.9001
+    },
+    "dec_south_lt_minus35p5": {
+      "dec_true_max_deg": -35.5058062,
+      "dec_true_mean_deg": -36.48658951731602,
+      "dec_true_min_deg": -37.8799633,
+      "local_basis": {
+        "radial_e_r": {
+          "cutoff_192_vs_256_pearson": 0.9948422895471519,
+          "cutoff_192_vs_256_sign_agreement": 0.8484848484848485,
+          "n": 231,
+          "reconstructed_mean": -1.2853508476367444e-07,
+          "reconstructed_std": 3.416751669243581e-07,
+          "truth_mean": 352.0687889205264,
+          "truth_pearson": 0.3261539269455661,
+          "truth_sign_agreement": 0.5281385281385281,
+          "truth_std": 478.83418568422854
+        },
+        "tangential_e_Dec": {
+          "cutoff_192_vs_256_pearson": 0.9868909640065737,
+          "cutoff_192_vs_256_sign_agreement": 0.9307359307359307,
+          "n": 231,
+          "reconstructed_mean": 2.8654206164026726e-07,
+          "reconstructed_std": 3.038616463780422e-07,
+          "truth_mean": -4.702937046073565,
+          "truth_pearson": -0.08577704175234065,
+          "truth_sign_agreement": 0.45454545454545453,
+          "truth_std": 532.4578916464616
+        },
+        "tangential_e_RA": {
+          "cutoff_192_vs_256_pearson": 0.9963880524834127,
+          "cutoff_192_vs_256_sign_agreement": 0.9523809523809523,
+          "n": 231,
+          "reconstructed_mean": -1.2086286103137618e-07,
+          "reconstructed_std": 4.4196538175757087e-07,
+          "truth_mean": -51.70012486501889,
+          "truth_pearson": 0.7744144000389234,
+          "truth_sign_agreement": 0.8181818181818182,
+          "truth_std": 663.6781355360698
+        }
+      },
+      "n": 231,
+      "z_true_max": 1.0,
+      "z_true_mean": 0.9584290043290045,
+      "z_true_min": 0.9064
+    },
+    "z_high_ge_0p95": {
+      "dec_true_max_deg": -33.144233,
+      "dec_true_mean_deg": -35.59915231178707,
+      "dec_true_min_deg": -37.6237404,
+      "local_basis": {
+        "radial_e_r": {
+          "cutoff_192_vs_256_pearson": 0.99063741223721,
+          "cutoff_192_vs_256_sign_agreement": 0.8783269961977186,
+          "n": 263,
+          "reconstructed_mean": -2.3945043199087033e-07,
+          "reconstructed_std": 3.139265151824257e-07,
+          "truth_mean": 132.67626426436664,
+          "truth_pearson": 0.23778006098328838,
+          "truth_sign_agreement": 0.5133079847908745,
+          "truth_std": 552.3417675649993
+        },
+        "tangential_e_Dec": {
+          "cutoff_192_vs_256_pearson": 0.9899249876641092,
+          "cutoff_192_vs_256_sign_agreement": 0.9201520912547528,
+          "n": 263,
+          "reconstructed_mean": 1.284064038599164e-07,
+          "reconstructed_std": 3.4976981321934e-07,
+          "truth_mean": -61.49787499225166,
+          "truth_pearson": -0.2000033025800461,
+          "truth_sign_agreement": 0.44866920152091255,
+          "truth_std": 558.8912632742911
+        },
+        "tangential_e_RA": {
+          "cutoff_192_vs_256_pearson": 0.9941276191938254,
+          "cutoff_192_vs_256_sign_agreement": 0.9657794676806084,
+          "n": 263,
+          "reconstructed_mean": -3.923701473258327e-08,
+          "reconstructed_std": 3.735530607266696e-07,
+          "truth_mean": 59.648962281369116,
+          "truth_pearson": 0.7249907279742217,
+          "truth_sign_agreement": 0.7262357414448669,
+          "truth_std": 606.8116188132454
+        }
+      },
+      "n": 263,
+      "z_true_max": 1.0,
+      "z_true_mean": 0.9776612167300379,
+      "z_true_min": 0.9501
+    },
+    "z_low_lt_0p95": {
+      "dec_true_max_deg": -33.0464615,
+      "dec_true_mean_deg": -35.05467778514056,
+      "dec_true_min_deg": -37.8799633,
+      "local_basis": {
+        "radial_e_r": {
+          "cutoff_192_vs_256_pearson": 0.9958254411990896,
+          "cutoff_192_vs_256_sign_agreement": 0.8995983935742972,
+          "n": 249,
+          "reconstructed_mean": 7.539227924123174e-09,
+          "reconstructed_std": 3.608744131425592e-07,
+          "truth_mean": 377.4594101383446,
+          "truth_pearson": 0.3503741399043484,
+          "truth_sign_agreement": 0.6305220883534136,
+          "truth_std": 524.6721417922838
+        },
+        "tangential_e_Dec": {
+          "cutoff_192_vs_256_pearson": 0.990676298853358,
+          "cutoff_192_vs_256_sign_agreement": 0.9598393574297188,
+          "n": 249,
+          "reconstructed_mean": 2.0604504132050547e-07,
+          "reconstructed_std": 3.069735591141287e-07,
+          "truth_mean": 117.0377314227416,
+          "truth_pearson": -0.14433407679657023,
+          "truth_sign_agreement": 0.4979919678714859,
+          "truth_std": 579.2743678903805
+        },
+        "tangential_e_RA": {
+          "cutoff_192_vs_256_pearson": 0.9962994997967201,
+          "cutoff_192_vs_256_sign_agreement": 0.9437751004016064,
+          "n": 249,
+          "reconstructed_mean": -2.0358295212825825e-07,
+          "reconstructed_std": 4.216453345906271e-07,
+          "truth_mean": -223.04932079657954,
+          "truth_pearson": 0.7155405023321386,
+          "truth_sign_agreement": 0.8152610441767069,
+          "truth_std": 599.5403038301703
+        }
+      },
+      "n": 249,
+      "z_true_max": 0.9499,
+      "z_true_mean": 0.9246253012048193,
+      "z_true_min": 0.9001
+    }
+  },
+  "new_science_gate_defined": false,
+  "observed_eBOSS_rows_used": false,
+  "observed_odd_used": false,
+  "parent_full_sample_local_basis": {
+    "radial_e_r": {
+      "cutoff_192_vs_256_pearson": 0.9934461286000962,
+      "cutoff_192_vs_256_sign_agreement": 0.888671875,
+      "n": 512,
+      "reconstructed_mean": -1.1933241379002389e-07,
+      "reconstructed_std": 3.594391993561467e-07,
+      "truth_mean": 251.7211926288598,
+      "truth_pearson": 0.34498853228374005,
+      "truth_sign_agreement": 0.5703125,
+      "truth_std": 552.7721674196938
+    },
+    "tangential_e_Dec": {
+      "cutoff_192_vs_256_pearson": 0.9846076674080839,
+      "cutoff_192_vs_256_sign_agreement": 0.939453125,
+      "n": 512,
+      "reconstructed_mean": 1.6616425684367947e-07,
+      "reconstructed_std": 3.3192758362239097e-07,
+      "truth_mean": 25.329011721289998,
+      "truth_pearson": -0.1522564675125304,
+      "truth_sign_agreement": 0.47265625,
+      "truth_std": 575.8513026331843
+    },
+    "tangential_e_RA": {
+      "cutoff_192_vs_256_pearson": 0.9953936719945352,
+      "cutoff_192_vs_256_sign_agreement": 0.955078125,
+      "n": 512,
+      "reconstructed_mean": -1.1916306631758927e-07,
+      "reconstructed_std": 4.060638308116582e-07,
+      "truth_mean": -77.83516366864887,
+      "truth_pearson": 0.7312789185396915,
+      "truth_sign_agreement": 0.76953125,
+      "truth_std": 619.6119965446729
+    }
+  },
+  "parents": {
+    "E63B_original_fail_preserved": true,
+    "E63B_status": "FAIL_BUFFERED_LIGHTCONE_TRUTH_TRANSFER_QUANTIFIED",
+    "E63C_result": "source_data/e63c_r6_local_basis_failure_diagnostic.json",
+    "E63C_sha256": "36fa9b76c12aeb57d58b9ad0fcd532ab6158351cc2a4c2563c9d3d39a6997301"
+  },
+  "probe_sample_changed": false,
+  "purpose": "Describe whether the frozen E63B lightcone-transfer failure varies across preregistered redshift and declination halves without changing estimator, sample, thresholds or science decision.",
+  "pvalues_computed": false,
+  "science_gate_reevaluated": false,
+  "science_threshold_changed": false,
+  "stage": "E63D_R6_FIXED_SPLIT_POST_FAILURE_DIAGNOSTIC"
+}

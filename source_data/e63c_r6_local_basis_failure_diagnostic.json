@@ -1,0 +1,91 @@
+{
+  "diagnostic_only": true,
+  "estimator_changed": false,
+  "frozen_inputs": {
+    "NPROBE": 512,
+    "NSEL": 54893,
+    "boundary_membership_sha256": "112836101c35286f803f99954969d2512e55a746c8fbeae84839b486134b1dd6",
+    "cache_sha256": "74d0402bfb2dc87b7ba5f174fb43adb141db4dc21c7f7b1b8acc9a20eefa1f82",
+    "probe_galaxy_id_sha256": "e9414b79fa1b51cbacb345d3cad6361f0cff6b301b7f77793e5ed8263a381113",
+    "probe_seed": 202610630001,
+    "selected_galaxy_id_sha256": "050e96027ebe97f3b924efae2d3300022966978f302e99a935d9e39b30d1fb8f"
+  },
+  "global_cartesian_parent_metrics": {
+    "x": {
+      "cutoff_192_vs_256_pearson": 0.9940088182052579,
+      "cutoff_192_vs_256_sign_agreement": 0.947265625,
+      "truth_pearson": 0.7731325873273963,
+      "truth_sign_agreement": 0.8046875
+    },
+    "y": {
+      "cutoff_192_vs_256_pearson": 0.9938642149509516,
+      "cutoff_192_vs_256_sign_agreement": 0.94921875,
+      "truth_pearson": 0.7132134833493671,
+      "truth_sign_agreement": 0.735812133072407
+    },
+    "z": {
+      "cutoff_192_vs_256_pearson": 0.9869505361120937,
+      "cutoff_192_vs_256_sign_agreement": 0.896484375,
+      "truth_pearson": -0.6751748543956078,
+      "truth_sign_agreement": 0.2622309197651663
+    }
+  },
+  "local_basis_metrics": {
+    "radial_e_r": {
+      "cutoff_192_vs_256_pearson": 0.9934461286000962,
+      "cutoff_192_vs_256_sign_agreement": 0.888671875,
+      "reconstructed_mean": -1.1933241379002389e-07,
+      "reconstructed_std": 3.594391993561467e-07,
+      "truth_mean": 251.7211926288598,
+      "truth_pearson": 0.34498853228374005,
+      "truth_sign_agreement": 0.5703125,
+      "truth_std": 552.7721674196938
+    },
+    "tangential_e_Dec": {
+      "cutoff_192_vs_256_pearson": 0.9846076674080839,
+      "cutoff_192_vs_256_sign_agreement": 0.939453125,
+      "reconstructed_mean": 1.6616425684367947e-07,
+      "reconstructed_std": 3.3192758362239097e-07,
+      "truth_mean": 25.329011721289998,
+      "truth_pearson": -0.1522564675125304,
+      "truth_sign_agreement": 0.47265625,
+      "truth_std": 575.8513026331843
+    },
+    "tangential_e_RA": {
+      "cutoff_192_vs_256_pearson": 0.9953936719945352,
+      "cutoff_192_vs_256_sign_agreement": 0.955078125,
+      "reconstructed_mean": -1.1916306631758927e-07,
+      "reconstructed_std": 4.060638308116582e-07,
+      "truth_mean": -77.83516366864887,
+      "truth_pearson": 0.7312789185396915,
+      "truth_sign_agreement": 0.76953125,
+      "truth_std": 619.6119965446729
+    }
+  },
+  "observed_eBOSS_rows_used": false,
+  "observed_odd_used": false,
+  "parent_E63B": {
+    "gate_pass": false,
+    "original_fail_preserved": true,
+    "result": "source_data/e63b_r6_outerrim_buffered_lightcone_truth_transfer_result.json",
+    "status": "FAIL_BUFFERED_LIGHTCONE_TRUTH_TRANSFER_QUANTIFIED"
+  },
+  "parent_LOS_reproduction": {
+    "cutoff_192_vs_256_pearson": 0.9934461286000962,
+    "cutoff_192_vs_256_sign_agreement": 0.888671875,
+    "gate_pass": false,
+    "truth_pearson": 0.34498853228374005,
+    "truth_sign_agreement": 0.5703125
+  },
+  "probe_sample_changed": false,
+  "science_gate_reevaluated": false,
+  "science_threshold_changed": false,
+  "stage": "E63C_R6_LOCAL_BASIS_POST_FAILURE_DIAGNOSTIC",
+  "z_axis_local_basis_geometry": {
+    "mean_abs_projection_on_e_Dec": 0.8156084168137205,
+    "mean_abs_projection_on_e_RA": 0.0,
+    "mean_abs_projection_on_e_r": 0.5782174396886797,
+    "median_projection_on_e_Dec": 0.8163264641019911,
+    "median_projection_on_e_r": -0.5775907746719198
+  }
+}

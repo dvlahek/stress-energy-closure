@@ -1,8 +1,20 @@
 # EinsteinVlasovNP — glavni istraživački plan
 
-**Verzija:** 1.86 · **Datum odluke:** 1. 10. 2026. · **Status:** aktivan plan, ne znanstveni rezultat  
+**Verzija:** 1.87 · **Datum odluke:** 18. 10. 2026. · **Status:** aktivan plan, ne znanstveni rezultat  
 **Kanonski dokument:** `EINSTEIN_VLASOV_NP_MASTER_PLAN.md` u repozitoriju `dvlahek/stress-energy-closure`.  
 **Radna grana:** `audit/eboss-elg-bit8-ra-orientation-20260925`, isključivo **draft PR #1**. Ne mijenjati `main` dok za to ne postoji zasebna odluka.
+
+### v1.87 — 18. 10. 2026. — E63B-R6 frozen lightcone truth FAIL; E63C/D diagnostic closure
+
+The R5 retrieval completed without a truth result but its original center lay against the usable CosmoDC2 footprint boundary. A geometry-only scout performed before truth access locked the replacement R6 center at RA=62.5 deg, Dec=-35.5 deg. Hybrid reuse of the valid R5 retrieval plus seven missing spatial boxes produced 5,339,896 raw rows and 200,493 unique central objects in the exact frozen 9.5-deg cone. The weakest frozen outer-annulus sector contains 1,460 central candidates, well above the required minimum of 50. Probe-redshift serialization at the 0.9<=z_true<1.0 boundary was resolved before truth using a four-object server membership audit.
+
+The final pre-truth lock preserved NSEL=54,893, NPROBE=512, seed 202610630001, R=16 Mpc/h, 256/192 Mpc/h cutoffs and all original truth gates. The first frozen R6 truth execution is a valid FAIL. LOS truth Pearson/sign are 0.344989/0.570312, while the 192/256 cutoff Pearson/sign diagnostics are 0.993446/0.888672. Cartesian truth Pearson values are x=0.773133, y=0.713213 and z=-0.675175. The frozen decision is therefore `OUTERRIM_BUFFERED_LIGHTCONE_TRUTH_TRANSFER_FAIL; DO_NOT_ADD_SURVEY_MASK_OR_OBSERVED_TAG`.
+
+One independent post-result convention audit was permitted without reconstruction-metric or science-gate reevaluation. The catalog redshift displacement selects the original (+,+,+) velocity convention with Pearson=0.999947, robust sign agreement=1.0 and slope=0.999770, excluding a velocity-axis/sign convention error.
+
+E63C exactly reproduced the frozen E63B LOS result and decomposed the unchanged reconstruction into the local observer basis. Truth Pearson is 0.344989 for radial e_r, 0.731279 for tangential e_RA and -0.152256 for tangential e_Dec. E63D then used only the fixed z_true=0.95 and Dec=-35.5 deg diagnostic halves. Radial transfer degrades further at higher redshift, while neither the fixed redshift split nor the fixed north/south split provides a single explanation for the full failure. Cutoff stability remains high throughout.
+
+The E63B-D diagnostic branch is now closed. E64 is not authorized. Observed eBOSS galaxy rows and the sealed odd vector remain inaccessible. No estimator parameter, science threshold, probe sample or significance calculation was changed after the E63B result. Any future lightcone-aware estimator must be declared as a separate methodological branch and cannot replace or relabel this frozen negative transfer result.
 
 ### v1.86 — 3. 10. 2026. — E63B-R5 indexed spatial BOX tiling
 

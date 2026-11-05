@@ -1,0 +1,100 @@
+{
+  "stage": "E63B_R6D1_INDEPENDENT_VELOCITY_REDSHIFT_CONVENTION_AUDIT",
+  "purpose": "Audit catalog velocity-axis/sign convention independently of E63B reconstruction metrics using redshift-redshift_true LOS motion.",
+  "r6_cache_sha256": "74d0402bfb2dc87b7ba5f174fb43adb141db4dc21c7f7b1b8acc9a20eefa1f82",
+  "sample": {
+    "n": 512,
+    "selection": "512 evenly spaced indices after sorting exact-cone R6 cache by galaxy_id",
+    "galaxy_id_sha256": "9714c36187a9d056dcc9a3ac05cc684019d864c3f21bea1c2a0b8ba4b5cbee13"
+  },
+  "formula": "dv_los_approx_km_s = c*(redshift-redshift_true)/(1+redshift_true)",
+  "sign_combinations": [
+    {
+      "sign_x": 1,
+      "sign_y": 1,
+      "sign_z": 1,
+      "pearson_vlos_vs_redshift_motion": 0.9999469737846878,
+      "sign_agreement_abs_dv_ge_30_kms": 1.0,
+      "linear_slope_dv_over_vlos": 0.9997697543221477,
+      "robust_sign_n": 501
+    },
+    {
+      "sign_x": -1,
+      "sign_y": 1,
+      "sign_z": 1,
+      "pearson_vlos_vs_redshift_motion": 0.7202094707712003,
+      "sign_agreement_abs_dv_ge_30_kms": 0.7445109780439122,
+      "linear_slope_dv_over_vlos": 0.7839586385388316,
+      "robust_sign_n": 501
+    },
+    {
+      "sign_x": 1,
+      "sign_y": 1,
+      "sign_z": -1,
+      "pearson_vlos_vs_redshift_motion": 0.3423659961267223,
+      "sign_agreement_abs_dv_ge_30_kms": 0.6047904191616766,
+      "linear_slope_dv_over_vlos": 0.37342169036402767,
+      "robust_sign_n": 501
+    },
+    {
+      "sign_x": 1,
+      "sign_y": -1,
+      "sign_z": 1,
+      "pearson_vlos_vs_redshift_motion": 0.01723817275239637,
+      "sign_agreement_abs_dv_ge_30_kms": 0.5469061876247505,
+      "linear_slope_dv_over_vlos": 0.011214716889500017,
+      "robust_sign_n": 501
+    },
+    {
+      "sign_x": -1,
+      "sign_y": 1,
+      "sign_z": -1,
+      "pearson_vlos_vs_redshift_motion": -0.01723817275239637,
+      "sign_agreement_abs_dv_ge_30_kms": 0.4530938123752495,
+      "linear_slope_dv_over_vlos": -0.011214716889500017,
+      "robust_sign_n": 501
+    },
+    {
+      "sign_x": -1,
+      "sign_y": -1,
+      "sign_z": 1,
+      "pearson_vlos_vs_redshift_motion": -0.3423659961267223,
+      "sign_agreement_abs_dv_ge_30_kms": 0.39520958083832336,
+      "linear_slope_dv_over_vlos": -0.37342169036402767,
+      "robust_sign_n": 501
+    },
+    {
+      "sign_x": 1,
+      "sign_y": -1,
+      "sign_z": -1,
+      "pearson_vlos_vs_redshift_motion": -0.7202094707712003,
+      "sign_agreement_abs_dv_ge_30_kms": 0.2554890219560878,
+      "linear_slope_dv_over_vlos": -0.7839586385388316,
+      "robust_sign_n": 501
+    },
+    {
+      "sign_x": -1,
+      "sign_y": -1,
+      "sign_z": -1,
+      "pearson_vlos_vs_redshift_motion": -0.9999469737846878,
+      "sign_agreement_abs_dv_ge_30_kms": 0.0,
+      "linear_slope_dv_over_vlos": -0.9997697543221477,
+      "robust_sign_n": 501
+    }
+  ],
+  "best_by_pearson": {
+    "sign_x": 1,
+    "sign_y": 1,
+    "sign_z": 1,
+    "pearson_vlos_vs_redshift_motion": 0.9999469737846878,
+    "sign_agreement_abs_dv_ge_30_kms": 1.0,
+    "linear_slope_dv_over_vlos": 0.9997697543221477,
+    "robust_sign_n": 501
+  },
+  "science_gate_reevaluated": false,
+  "reconstruction_metric_computed": false,
+  "science_threshold_changed": false,
+  "observed_eBOSS_rows_used": false,
+  "observed_odd_used": false,
+  "original_E63B_R6_FAIL_preserved": true
+}
