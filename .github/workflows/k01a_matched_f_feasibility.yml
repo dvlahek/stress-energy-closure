@@ -4,6 +4,12 @@ on:
   push:
     branches:
       - experiment/k01-matched-f-detectability-20261105
+  pull_request:
+    branches:
+      - audit/eboss-elg-bit8-ra-orientation-20260925
+    paths:
+      - "scripts/k01a_matched_custom_f_particle_sampling_ci.py"
+      - ".github/workflows/k01a_matched_f_feasibility.yml"
   workflow_dispatch:
 
 jobs:
