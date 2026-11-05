@@ -100,11 +100,18 @@ def mp_orbit_chi(v,b,M,potential,c=None,rs=None):
     def integrand(t):
         if t == 0:
             return lim
+        if t == 1:
+            return 2*h/(rmin*v)
         u=1-t*t
         r=rmin/u
         rad=v*v-2*phi(r)-h*h/(r*r)
-        if rad<0 and abs(rad)<mp.mpf("1e-60")*max(v*v,1):
-            rad=mp.mpf(0)
+        scale=max(v*v,mp.mpf(1))
+        # At the turning point, the transformed integrand has a finite
+        # analytic limit although direct evaluation is 0/0. mpmath may
+        # land close enough to the endpoint that rad rounds to zero.
+        if abs(rad)<mp.mpf("1e-55")*scale:
+            return lim
+        need(rad>0,"arbitrary-precision orbit radicand")
         return 2*t*(h/rmin)/mp.sqrt(rad)
 
     phi0=mp.quad(integrand,[0,mp.mpf("0.05"),mp.mpf("0.2"),mp.mpf("0.5"),mp.mpf("0.8"),mp.mpf("0.95"),1])
