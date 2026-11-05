@@ -1,0 +1,170 @@
+{
+  "classification": "E32_SYNTHETIC_MATHEMATICAL_L2_RADIAL_PERCENTILE_NONIDENTIFIABILITY",
+  "status": "PASS",
+  "no_real_halo_columns_ASDF_FITS_or_observed_data_read": true,
+  "units": "dimensionless toy r100=1, q=k*r100; not Abacus halo radii",
+  "percentiles": [
+    {
+      "percent": 10,
+      "radius_over_r100": "1/10"
+    },
+    {
+      "percent": 25,
+      "radius_over_r100": "1/5"
+    },
+    {
+      "percent": 33,
+      "radius_over_r100": "3/10"
+    },
+    {
+      "percent": 50,
+      "radius_over_r100": "2/5"
+    },
+    {
+      "percent": 67,
+      "radius_over_r100": "1/2"
+    },
+    {
+      "percent": 75,
+      "radius_over_r100": "3/5"
+    },
+    {
+      "percent": 90,
+      "radius_over_r100": "7/10"
+    },
+    {
+      "percent": 95,
+      "radius_over_r100": "4/5"
+    },
+    {
+      "percent": 98,
+      "radius_over_r100": "9/10"
+    },
+    {
+      "percent": 100,
+      "radius_over_r100": "1"
+    }
+  ],
+  "mass_in_quantile_bins": [
+    "1/10",
+    "3/20",
+    "2/25",
+    "17/100",
+    "17/100",
+    "2/25",
+    "3/20",
+    "1/20",
+    "3/100",
+    "1/50"
+  ],
+  "A_shell_count": 10,
+  "B_shell_count": 20,
+  "QA": {
+    "assertions": 41,
+    "checks": [
+      "positive_bin_mass_10",
+      "positive_bin_mass_25",
+      "positive_bin_mass_33",
+      "positive_bin_mass_50",
+      "positive_bin_mass_67",
+      "positive_bin_mass_75",
+      "positive_bin_mass_90",
+      "positive_bin_mass_95",
+      "positive_bin_mass_98",
+      "positive_bin_mass_100",
+      "both_normalized",
+      "quantile_10_identical",
+      "quantile_25_identical",
+      "quantile_33_identical",
+      "quantile_50_identical",
+      "quantile_67_identical",
+      "quantile_75_identical",
+      "quantile_90_identical",
+      "quantile_95_identical",
+      "quantile_98_identical",
+      "quantile_100_identical",
+      "first_mass_toy_as_expected",
+      "tampered_quantile_rejected",
+      "tampered_distribution_still_normalized",
+      "Fourier_A_inside_enclosure_q_0.1",
+      "Fourier_B_inside_enclosure_q_0.1",
+      "Fourier_normalized_modulus_bound_q_0.1",
+      "Fourier_A_inside_enclosure_q_1.0",
+      "Fourier_B_inside_enclosure_q_1.0",
+      "Fourier_normalized_modulus_bound_q_1.0",
+      "Fourier_A_inside_enclosure_q_3.0",
+      "Fourier_B_inside_enclosure_q_3.0",
+      "Fourier_normalized_modulus_bound_q_3.0",
+      "Fourier_A_inside_enclosure_q_8.0",
+      "Fourier_B_inside_enclosure_q_8.0",
+      "Fourier_normalized_modulus_bound_q_8.0",
+      "Fourier_A_inside_enclosure_q_20.0",
+      "Fourier_B_inside_enclosure_q_20.0",
+      "Fourier_normalized_modulus_bound_q_20.0",
+      "two_profiles_differ_at_positive_k",
+      "toy_high_k_not_a_physical_UV_certification"
+    ],
+    "intentional_mass_reassignment_rejected": true
+  },
+  "mathematical_result": {
+    "u_spherical": "u(k)=integral sinc(k*r) dM(r)/M",
+    "quantile_enclosure": "Let w_i=p_i-p_(i-1), Q(p_i)=r_i, r_0=0. m_i=(r_(i-1)+r_i)/2. Then |u(k)-sum_i w_i sinc(k m_i)| <= |k|/4 sum_i w_i (r_i-r_(i-1)). Clip interval to [-1,1].",
+    "derivative_bound": "sinc(x)=int_0^1 cos(tx)dt, |sinc_prime(x)|<=1/2",
+    "scope": "radially averaged Fourier mass profile for positive mass relative to a documented L2 centre; does not constrain anisotropic u(vector k), M200c, environment, progenitor, or nonlinear Born correction"
+  },
+  "grid": [
+    {
+      "k_times_r100": 0.1,
+      "u_shell_A": 0.9995626020028485,
+      "u_shell_B": 0.9995985892373832,
+      "absolute_difference": 3.5987234534684553e-05,
+      "quantile_only_lower": 0.997134576471918,
+      "quantile_only_upper": 1.0,
+      "Lipschitz_radius": 0.0025000000000000005
+    },
+    {
+      "k_times_r100": 1.0,
+      "u_shell_A": 0.957255664542272,
+      "u_shell_B": 0.9607303067992534,
+      "absolute_difference": 0.003474642256981464,
+      "quantile_only_lower": 0.9392049490562349,
+      "quantile_only_upper": 0.9892049490562349,
+      "Lipschitz_radius": 0.025000000000000005
+    },
+    {
+      "k_times_r100": 3.0,
+      "u_shell_A": 0.679086258679133,
+      "u_shell_B": 0.7026886618153663,
+      "absolute_difference": 0.023602403136233296,
+      "quantile_only_lower": 0.6512910649515995,
+      "quantile_only_upper": 0.8012910649515994,
+      "Lipschitz_radius": 0.07500000000000001
+    },
+    {
+      "k_times_r100": 8.0,
+      "u_shell_A": 0.14380895801051824,
+      "u_shell_B": 0.17654728777047796,
+      "absolute_difference": 0.03273832975995972,
+      "quantile_only_lower": 0.009285617530437662,
+      "quantile_only_upper": 0.40928561753043774,
+      "Lipschitz_radius": 0.20000000000000004
+    },
+    {
+      "k_times_r100": 20.0,
+      "u_shell_A": 0.030932841074660183,
+      "u_shell_B": 0.06436861681083755,
+      "absolute_difference": 0.03343577573617737,
+      "quantile_only_lower": -0.4021956074529851,
+      "quantile_only_upper": 0.5978043925470149,
+      "Lipschitz_radius": 0.5
+    }
+  ],
+  "interpretation_stop": {
+    "physical_E28_u(k)": "NOT_IDENTIFIED_FROM_L2_PERCENTILES",
+    "real_20_pair_L2_quantile_values": "NOT_READ",
+    "UV_total_drag": "UNCERTIFIED",
+    "A03": "PHYSICAL_UNCERTIFIED",
+    "A04": "BLOCKED",
+    "observed_odd": "SEALED"
+  }
+}

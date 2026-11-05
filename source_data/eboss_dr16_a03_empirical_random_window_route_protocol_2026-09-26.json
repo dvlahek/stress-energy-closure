@@ -1,0 +1,198 @@
+{
+  "study": "A-03E chosen empirical released LRG×ELG random pair-window route, source-only archive re-audit and synthetic selection-mismatch control; NOT historical mask reconstruction or observed odd inference",
+  "registered_on": "2026-09-26",
+  "trigger": "User explicitly opts out of contacting historical ELG production authors and selects existing released tracer-specific random empirical window route. This new decision supersedes the outreach step only; historical archive/protocol records remain immutable.",
+  "user_author_contact_decision": "DO_NOT_CONTACT_AUTHORS",
+  "send_draft_or_suggest_again_without_user_initiative": false,
+  "prior_A03_decision_original_immutable": "source_data/eboss_dr16_a03_selection_window_provenance_decision_2026-09-26.json",
+  "prior_A03_decision_meaning": "Historical production source unverified, empirical window is a potential LIMITED scope requiring independent calibration. Original historic snapshot is not retroactively edited.",
+  "fixed_observed_and_mock_random_window_source": {
+    "prior_original_workflow_run": 36017670812,
+    "artifact_id": 10815013322,
+    "artifact_name": "eboss-dr16-nine-mock-window-ensemble",
+    "exact_artifact_zip_sha256": "a3b23502073e2a2e46211582d13ee4c1e45cd4984fdedf1ef36df4e0c5a8cda0",
+    "member_json": "ninemock_window_ensemble.json",
+    "member_json_exact_bytes": 337280,
+    "member_json_exact_sha256": "8702adaf1284068c26e79555feb76c7a709df9a265f9e2194409cc4161602e01",
+    "member_json_git_blob_sha1": "9f74dd14a9a9ac69c3554cad8cfddc51bb98ac73",
+    "original_random_window_protocol": "source_data/eboss_dr16_predeclared_9mock_window_pilot_2026-09-24.json",
+    "prior_snapshot": "source_data/eboss_dr16_conditional_window_highz_2026-09-24.json",
+    "nine_mock_galaxy_code_transport_exact_sha256": "15f7668fd483d8e1329fbb9684bbdf07cb49d1974d264f9ceebd85e0156daa27",
+    "mock_galaxy_source_identity": "source_data/eboss_dr16_nine_ezmock_galaxy_cross_ls_code_transport_uploaded_manifest_2026-09-26.json"
+  },
+  "fixed_case_order": [
+    {
+      "id": 1,
+      "cap": "NGC"
+    },
+    {
+      "id": 1,
+      "cap": "SGC"
+    },
+    {
+      "id": 125,
+      "cap": "NGC"
+    },
+    {
+      "id": 125,
+      "cap": "SGC"
+    },
+    {
+      "id": 250,
+      "cap": "NGC"
+    },
+    {
+      "id": 250,
+      "cap": "SGC"
+    },
+    {
+      "id": 375,
+      "cap": "NGC"
+    },
+    {
+      "id": 375,
+      "cap": "SGC"
+    },
+    {
+      "id": 500,
+      "cap": "NGC"
+    },
+    {
+      "id": 500,
+      "cap": "SGC"
+    },
+    {
+      "id": 625,
+      "cap": "NGC"
+    },
+    {
+      "id": 625,
+      "cap": "SGC"
+    },
+    {
+      "id": 750,
+      "cap": "NGC"
+    },
+    {
+      "id": 750,
+      "cap": "SGC"
+    },
+    {
+      "id": 875,
+      "cap": "NGC"
+    },
+    {
+      "id": 875,
+      "cap": "SGC"
+    },
+    {
+      "id": 1000,
+      "cap": "NGC"
+    },
+    {
+      "id": 1000,
+      "cap": "SGC"
+    }
+  ],
+  "candidate_redshift_interval": [
+    0.9,
+    1
+  ],
+  "caps": [
+    "NGC",
+    "SGC"
+  ],
+  "tracer_order": [
+    "LRG",
+    "ELG"
+  ],
+  "orientation": "LRG->ELG",
+  "line_of_sight": "midpoint",
+  "separation_edges_coarse_mpc_h": [
+    20,
+    40,
+    60,
+    80,
+    100,
+    120,
+    140
+  ],
+  "fine_s_step_mpc_h": 1,
+  "mu_bins": 240,
+  "even_probe_input_ells": [
+    0,
+    2,
+    4
+  ],
+  "odd_probe_output_ells": [
+    1,
+    3
+  ],
+  "all_ten_operator_input_ells": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "RR_split": [
+    "full",
+    "half_A",
+    "half_B"
+  ],
+  "diagnostic_sky_grid": {
+    "ra_step_deg": 0.5,
+    "sin_dec_step": 0.01,
+    "thresholds": [
+      1,
+      5,
+      10,
+      15,
+      25
+    ],
+    "predeclared_descriptive_reporting_threshold": 15,
+    "exact_hard_mask": false
+  },
+  "stage_E0_original_archive_numeric_audit": {
+    "prerequisite": "Verify entire unchanged original GitHub artifact ZIP and 337280-byte inner JSON SHA, exact nine-case pair order, passed artifact flags/source commit, status, negative provenance, no odd read, no errors. If any mismatch STOP and preserve incomplete.",
+    "retain_every_case": true,
+    "predeclared_existing_output_families": [
+      "full_mock_vs_observed_normalized_fine_rr_relative_l1 by all nine ID/cap pairs",
+      "full_mock_RR_supported_cells and half_A/B vs full normalized RR L1 by case",
+      "all 10 original conditional_window_block_differences 1,3<-0,1,2,3,4 with normalized Frobenius differences over observed odd diagonal",
+      "all six predeclared even radial ramp probes 1,3<-0,2,4, with max abs mock minus observed and both half-vs-full mock shifts",
+      "all five original thresholded LRGxELG sky-grid Jaccard diagnostics by high-z z3, report fixed threshold 15 and all other original 1,5,10,25 WITHOUT selecting cutoff by observed odd",
+      "original cap-specific descriptive ensemble summaries, and source original input file SHA identities"
+    ],
+    "aggregation": "List all 18 cases and per-cap min,median,max across all nine for original frozen scalar metrics; no science cut/threshold/cap preference or p-value.",
+    "excluded": "No observed galaxy row read; original archive contains random-only measured data from earlier frozen workflow. No claim finite mocks are independent inferential covariance; no mask-area inference from thresholded grid."
+  },
+  "stage_E1_synthetic_selection_mismatch_control": {
+    "fixed_mu_edges": "np.linspace(-1 - 1e-7, 1 + 1e-7, 25), same earlier odd estimator",
+    "fixed_s_bins": 6,
+    "epsilon": 0.18,
+    "xi_even": 0.05,
+    "correct_window": "Positive synthetic RR_true(s,mu) proportional to 1+epsilon*mu (normalized matched separately in each of 6 rows); DD=RR_true*(1+xi_even), DR=RD=RR_true, RR=RR_true with independent synthetic catalogue weight normalizations=1.",
+    "mismatched_window": "Keep original DD, DR, RD; use RR_wrong proportional to 1-epsilon*mu, exactly same sum as RR_true. Different tracer selection in denominator is intentionally wrong, never used on actual public data.",
+    "expected_controls": "Correct matched window xi=xi_even in all 6x24 cells with odd ell=1,3 physical [-1,1] integral <=1e-12; wrong RR must create nonzero spurious dipole >1e-3; reversing all four pair grids and changing mu sign still yields xi-mirror residual <=1e-12, demonstrating algebraic parity closure does NOT certify selection window. Synthetic-only numerical control is NOT measured survey leakage.",
+    "quantitative_physical_leakage_estimate_authorized": false
+  },
+  "stage_E2_future_empirical_validation_NOT_YET_EXECUTED": {
+    "prereq": "Freeze separate mock-only selection-systematics and synthetic injection/recovery protocol after E0/E1, with fixed thresholds/tolerances based on noise/systematics budget rather than choosing favorable diagnostic cells.",
+    "include": "Use existing 18 A02 matched-realistic mock galaxy cases and full released tracer-specific RR window(s), independently cross-validated with same-realization mock randoms. Preserve separate NGC/SGC and ELG chunk/imaging depth/n(z), exact pair orientation and weights; quantify finite random and cap-dependent uncertainty, plus even-to-odd leakage under injected known even field. Require independent true mock-galaxy null calibration and adequate A04 covariance before any scientific p-value.",
+    "do_not_reapply": "Never invent historical bits8-11 mask, guessed eboss22 plate radius, common mask or post-release data/random cuts. Do not force observed-vs-mock window agreement with odd statistic or reselect IDs.",
+    "historical_production_mask_certified": false,
+    "full_LRG_ELG_physical_pair_window_certified": false
+  },
+  "existing_A01_A02_complete": true,
+  "observed_galaxy_rows_read": false,
+  "observed_odd_data_vector_read": false,
+  "new_science_selection_applied": false,
+  "new_bulk_mock_downloads_authorized": false,
+  "historical_source_request_to_be_sent": false,
+  "physical_window_certification_now": false,
+  "inference_or_detection_authorized": false,
+  "stage_E0_local_report": "eboss_workspace/a03_empirical_window/a03_existing_nine_mock_random_window_audit.json",
+  "stage_E1_local_report": "eboss_workspace/a03_empirical_window/a03_synthetic_selection_mismatch.json",
+  "failure_policy": "Fail closed; archive error and original data; never silently discard fixed ID/cap, change source hash or observed selection. Keep original 2026-09-26 A03 historical-source gate unchanged, and record user decision as new protocol."
+}

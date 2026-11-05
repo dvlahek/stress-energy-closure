@@ -1,0 +1,114 @@
+{
+  "date": "2026-09-27",
+  "status": "E9_FROZEN_THREE_STATE_CLASS_QUASISTATIC_PHASE_AND_DERIVATIVE_COMPLETED_SOURCE_ONLY_PHYSICAL_GALAXY_STOP",
+  "scope": "Registered after E8c and after fixed-v analytic kinematic redshift derivative, before E9 CLASS run. Source-only CLASS transfer-derived 1sigma R16 coherent LOS-wind model, NOT measured eBOSS halo wind, retarded Einstein-Vlasov galaxy prediction, physical survey window or inference.",
+  "preregistration": {
+    "path": "source_data/eboss_dr16_a03_e9_frozen_class_wind_quasistatic_phase_prereg_2026-09-27.json",
+    "git_blob_sha1": "a31249a6c429fb694aab525d539afd1392adf974"
+  },
+  "provenance": {
+    "three_state_original_CLASS_commit": "e85808324f51fc694d12e3ed7439552a3c3f9540",
+    "frozen_source_distribution_csv_sha256": "bf8f48deb9514c5101d5ce314bfbd397485102a5487da1039f141e3cad6143d0",
+    "run_head_commit": "938f6c21580e771b91fd21cc5d83e85332786bba",
+    "github_CI_run": 36325438404,
+    "github_CI_conclusion": "success",
+    "github_artifact_id": 10933798674,
+    "github_artifact_sha256": "005c4a571b1dd702d948916812b8cdf1cbede1fb0d6af7dc362fa54b77879eb8",
+    "full_CI_report_sha256": "450b35f68a329f545f21bbe7ec02e36941e4c303037ccb7c011830c315d15890",
+    "state_json_sha256": {
+      "FD": "6cd39d3d84fad3fa337fa54528ee0a254708388a6db97e4973d8801681956b5d",
+      "plus": "a729af2093a8d7408cd0084caa0ec60e6cbc983223b4f3ad8958ce9349c1bb2c",
+      "minus": "710e85f00ca0483f99299fbc01a82c2c17d783071f38726d02f51d8c75a14bdc"
+    },
+    "independent_recount": "Local independent source-only audit of all three CI JSONs and SHA, 14 case pairs across two density-derivative steps × 7 z, four phase derivative stencils, source/wind split, no FITS or observed data."
+  },
+  "frozen_assumptions": {
+    "neutrino_mass_eV": 0.06,
+    "matched_initial_redshift": 1100,
+    "deformation_cap": 0.3,
+    "kinematic_approximation": "Quasi-static Eq20 exact FD occupancy. Phase alpha=K/k_phys at the frozen plus-1 sigma LOS rank of truncated CLASS-neutrino-CDM relative v spectrum.",
+    "gauge": "newtonian",
+    "original_filter_R_comoving_Mpc_over_h": 16,
+    "wind_integrated_k_h_per_Mpc": [
+      0.0001,
+      0.1
+    ],
+    "source_KVEL_points": 180,
+    "one_sigma_los_v": "sqrt(integral v_rel(k,z)^2 W(kR)^2 dlnk / 3) from full transfer-derived signed density derivative, coherent +1 rank at all z.",
+    "k_comoving_h_per_Mpc": 0.05,
+    "z_derivative_center": 0.95,
+    "phase_z_steps": [
+      0.01,
+      0.005
+    ],
+    "velocity_transfer_z_steps_relative_to_1plusz": [
+      0.004,
+      0.002
+    ],
+    "mu_1_approximation_used": false,
+    "exact_occupancy_first_published_Eq20": true,
+    "published_mu_normalization_UNRESOLVED": true
+  },
+  "reference_z095": {
+    "z_is_math_midpoint_not_measured_effective_z": true,
+    "fd": {
+      "v_positive_1sigma_LOS_kms": 135.68201583690933,
+      "alpha": 0.00021385370943111795,
+      "dalpha_dln_a": 0.00044316472340708983,
+      "dalpha_dt_SI_per_s": 1.6820352087427324e-21
+    },
+    "plus": {
+      "v_positive_1sigma_LOS_kms": 135.86610262363666,
+      "alpha": 0.00018071080762464427,
+      "dalpha_dln_a": 0.0003600502524622982,
+      "dalpha_dt_SI_per_s": 1.3665735908307043e-21
+    },
+    "minus": {
+      "v_positive_1sigma_LOS_kms": 135.48939940040043,
+      "alpha": 0.0002468592627721421,
+      "dalpha_dln_a": 0.0005258737569639242,
+      "dalpha_dt_SI_per_s": 1.9959579778427917e-21
+    },
+    "delta_plus_minus": {
+      "alpha": -0.00006614845514749782,
+      "dalpha_dln_a": -0.00016582350450162594,
+      "dalpha_dt_SI_per_s": -6.293843870120874e-22
+    },
+    "delta_components": {
+      "alpha_occupation_at_common_FD_wind": -0.0000667193699907435,
+      "alpha_own_CLASS_wind_only_difference": 5.709148432456765e-7,
+      "dalpha_dln_a_occupation_at_common_FD_wind": -0.00016718070025205302,
+      "dalpha_dln_a_own_CLASS_wind_only_difference": 0.0000013571957504271057,
+      "wind_abs_fraction_of_total_dalpha_dln_a": 0.008184580072083798
+    }
+  },
+  "independent_QA": {
+    "cases": 14,
+    "phase_derivative_stencils": 4,
+    "technical_checks": 9,
+    "technical_warnings": 0,
+    "max_reported_relative_numerical_step_gap": 0.000037321236392873366,
+    "max_abs_independent_alpha_recomputation_difference": 4.87890977618477e-19,
+    "max_abs_independent_derivative_recomputation_difference": 0,
+    "not_physical_A03_acceptance": true
+  },
+  "limits": {
+    "finite_wind_truncation_kmax_h_per_Mpc": 0.1,
+    "one_sigma_wind_is_ensemble_proxy_not_true_halo_velocity": true,
+    "perfect_gaussian_rank_correlation_with_z_assumed": true,
+    "quasistatic_not_retarded_wake": true,
+    "halo_potential_time_evolution_not_independently_computed": true,
+    "LRG_ELG_bias_HOD_evolution_magnification_not_calibrated": true,
+    "eBOSS_pair_z_window_not_physically_certified": true,
+    "independent_eBOSS_covariance_absent": true,
+    "original_v1_SGC_reverse_independent_recount_failure_still_unresolved": true,
+    "random_48k_convergence_not_physically_certified": true,
+    "absolute_eBOSS_xi1_xi3_or_signal_significance_calculated": false,
+    "observed_galaxy_rows_read": false,
+    "observed_random_rows_read": false,
+    "observed_odd_data_vector_read": false,
+    "new_catalogue_or_mock_download": false,
+    "new_physical_science_cuts_or_seeds": false,
+    "main_mutation": false
+  }
+}

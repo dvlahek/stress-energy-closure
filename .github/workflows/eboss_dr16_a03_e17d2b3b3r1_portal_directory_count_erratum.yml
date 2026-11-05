@@ -1,0 +1,111 @@
+name: eBOSS E17D2b3b3R1 CORRECT 35 portal directory entries not ASDF counts
+on:
+  push:
+    branches:
+      - audit/eboss-elg-bit8-ra-orientation-20260925
+    paths:
+      - 'scripts/audit_eboss_dr16_a03_e17d2b3b3r1_directory_entry_count_erratum.py'
+      - '.github/workflows/eboss_dr16_a03_e17d2b3b3r1_portal_directory_count_erratum.yml'
+permissions:
+  contents: write
+jobs:
+  immutable-original-source-code-semantics-correction-no-real-halo-file:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    env:
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Preregistered correction gates original archive SHA and AST semantics before upstream Git checkout
+        run: |
+          set -eu
+          python -m py_compile scripts/audit_eboss_dr16_a03_e17d2b3b3r1_directory_entry_count_erratum.py
+          python -u scripts/audit_eboss_dr16_a03_e17d2b3b3r1_directory_entry_count_erratum.py --self-test
+      - name: Sparse checkout exact public upstream source builder and 5.1MB static portal aggregate only, NO halo ASDF
+        uses: actions/checkout@v4
+        with:
+          repository: abacusorg/abacussummit-data-portal
+          ref: f877298344a6988d55f57a7c39f5be14dce63ff3
+          path: official-abacus-portal
+          fetch-depth: 1
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            build_manifest.py
+            web/portal/static/data/simulations.table.json
+      - name: Original source-only ASTM proof of unfiltered fpath.iterdir directory entry counts and four products
+        run: |
+          set -eu
+          cd official-abacus-portal
+          test "$(git rev-parse HEAD)" = f877298344a6988d55f57a7c39f5be14dce63ff3
+          test "$(git hash-object build_manifest.py)" = 88dc7c198c1332d2a0204bb0d3c698fd1dcf28a5
+          test "$(git hash-object web/portal/static/data/simulations.table.json)" = cb235ad72ab2516f872bd4ca79b9447a3f4b30e3
+          cd ..
+          python -u scripts/audit_eboss_dr16_a03_e17d2b3b3r1_directory_entry_count_erratum.py \
+            --upstream-root official-abacus-portal \
+            --output-dir eboss_workspace/a03_physics_source/e17d2b3b3r1_count_semantics
+      - name: Archive immutable separate erratum and SHA manifest on AUDIT only, old report unchanged
+        run: |
+          set -eu
+          dest=source_data/eboss_dr16_a03_e17d2b3b3r1_archived_CI_2026_09_28
+          name=e17d2b3b3r1_corrected_directory_entry_count_not_ASDF_count.json
+          mkdir -p "$dest"
+          cp "eboss_workspace/a03_physics_source/e17d2b3b3r1_count_semantics/$name" "$dest/$name"
+          python - <<'PY'
+          import json,hashlib,os,pathlib
+          d=pathlib.Path("source_data/eboss_dr16_a03_e17d2b3b3r1_archived_CI_2026_09_28")
+          name="e17d2b3b3r1_corrected_directory_entry_count_not_ASDF_count.json"
+          assert sorted(f.name for f in d.glob("*.json"))==[name]
+          raw=(d/name).read_bytes()
+          j=json.loads(raw)
+          q=j["products_CORRECTED_as_directory_entries_NOT_ASDF_file_counts"]
+          assert j["status"]=="E17D2B3B3R1_ERRATUM_ORIGINAL_35_COUNTS_ARE_UNFILTERED_DIRECTORY_ENTRIES_REAL_ASDF_COUNT_UNVERIFIED"
+          assert j["prospective_corrective_protocol_git_blob"]=="534142340197c34160cb970a53cc86d8f7bcf57c"
+          assert j["source_code_proven_directory_entry_semantics"]["source_builder_AST_listcomp_uses_direct_fpath_iterdir_without_extension_filter"] is True
+          assert j["original_immutable_source_report_and_manifest_preserved"] is True
+          assert j["specific_real_ASDF_halo_info_file_count"] is None
+          for p in ["halo_info","halo_pid_A","cleaned_halo_info","cleaned_rvpid"]:
+            assert q[p]["directory_entry_count_in_archived_source_snapshot_NOT_verified_ASDF_file_count"]==35
+            assert q[p]["actual_XX_ASDF_superslab_count"] is None
+          assert j["synthetic_extension_filter_tamper_rejected"] is True
+          assert j["synthetic_35_to_34_source_count_tamper_rejected"] is True
+          assert j["actual_real_halo_file_or_merger_tree_downloaded"] is False
+          assert j["observed_odd_SEALED"] is True
+          assert j["full_physical_finiteK_galaxy_bispectrum"]=="BLOCKED"
+          m={"date":"2026-09-28","CI_run_id":os.getenv("GITHUB_RUN_ID"),
+            "R1_prospective_corrective_prereg_git_blob":"534142340197c34160cb970a53cc86d8f7bcf57c",
+            "original_wrong_labeled_report_SHA_preserved":"39b83642737da1f29e71aade85a2ed7d854dbdb3ff02582b7f1d61d5d92cf340",
+            "upstream_source_builder_unfiltered_directory_iterdir_git_blob":"88dc7c198c1332d2a0204bb0d3c698fd1dcf28a5",
+            "35_is_DIRECTORY_ENTRY_COUNT_not_verified_ASDF_superslab_count":True,
+            "source_inventory_snapshot_NOT_live_provider_listing":True,
+            "no_real_halo_ASDF_Globus_data_transfer":True,
+            "original_E8_E16_and_observed_odd_unchanged":True,
+            "observed_odd_SEALED":True,
+            "full_physical_halo_tracer_bispectrum":"BLOCKED",
+            "main_untouched":True,"PR_remains_draft":True,
+            "files":[{"file":name,"size_bytes":len(raw),"sha256":hashlib.sha256(raw).hexdigest()}]}
+          (d/"archive_manifest.json").write_text(json.dumps(m,indent=2)+"\n")
+          print("E17D2B3B3R1_CORRECTED_DIRECTORY_SEMANTICS_SHA",m["files"][0]["sha256"],flush=True)
+          print("E17D2B3B3R1_35_DIRECTORY_ENTRIES_NO_REAL_ASDF_COUNT_OR_M200C",flush=True)
+          PY
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "$dest"
+          if git diff --cached --quiet; then echo E17D2B3B3R1_ALREADY_ARCHIVED
+          else
+            git commit -m "archive(E17D2b3b3R1): original portal 35 counts are unfiltered directory entries not validated ASDF slabs"
+            git push origin HEAD:refs/heads/audit/eboss-elg-bit8-ra-orientation-20260925
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: E17D2b3b3R1-corrected-portal-directory-count-erratum-NO-ASDF
+          path: eboss_workspace/a03_physics_source/e17d2b3b3r1_count_semantics/*.json
+          if-no-files-found: warn
+          retention-days: 30

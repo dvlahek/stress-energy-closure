@@ -1,0 +1,30 @@
+name: eBOSS DR16 A-03E2 fixed nine-mock galaxy ELG-RANDOM radial stress SOURCE+SYNTHETIC ONLY
+
+on:
+  push:
+    branches:
+      - audit/eboss-elg-bit8-ra-orientation-20260925
+    paths:
+      - 'scripts/audit_eboss_dr16_a03_e2_mock_galaxy_elg_random_radial_weight_stress.py'
+      - 'source_data/eboss_dr16_a03_e2_mock_galaxy_elg_random_radial_weight_stress_protocol_2026-09-26.json'
+      - '.github/workflows/eboss_dr16_a03_e2_mock_galaxy_elg_random_radial_weight_stress.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-only-original-A02-and-synthetic-negatives-NO-FITS-rows:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install numerical dependencies for frozen prior source-only estimator
+        run: python -m pip install 'numpy>=1.24,<2.4' 'astropy>=6,<8' 'scipy>=1.11,<2'
+      - name: Compile the frozen A-03E2 stress runner
+        run: python -m py_compile scripts/audit_eboss_dr16_a03_e2_mock_galaxy_elg_random_radial_weight_stress.py
+      - name: Original A02 SHA and E2 weight-only synthetic negative controls (NO downloaded FITS)
+        run: python -u scripts/audit_eboss_dr16_a03_e2_mock_galaxy_elg_random_radial_weight_stress.py --self-test

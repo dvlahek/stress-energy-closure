@@ -1,0 +1,87 @@
+{
+  "study": "eBOSS DR16 ELG four-family official brickmask filename-list immutable-provenance gate",
+  "registered_on": "2026-09-26",
+  "stage": "Official published directory-index and full per-chunk filename inventory only; no FITS image download or mask application",
+  "original_uploaded_basename": "official_mask_index(1).json",
+  "original_uploaded_report_sha256": "84a3a163ec0b28a5392dadc95aa757e469cb9cb6e94cc731aac2fa2958fc6c18",
+  "original_uploaded_report_bytes": 803716,
+  "original_uploaded_report_git_blob_sha1": "28718ba823f616f7625b6e5201498c6cad231403",
+  "local_source_report": "eboss_workspace/official_mask_inventory/official_mask_index.json",
+  "published_official_source_root": "https://portal.nersc.gov/project/cosmo/data/sdss/dr17/eboss/lss/catalogs/DR16/",
+  "published_elg_directory": "https://portal.nersc.gov/project/cosmo/data/sdss/dr17/eboss/lss/catalogs/DR16/ELGmasks/",
+  "frozen_directory_index_sha256": {
+    "root": "7e09e85c629b84de4879a99ca2db3f6cc84a317cde87d999a11dd8fead94dee7",
+    "elg": "0ebd4d2ad4b9b1849286961617ccf151ce7be7054242498c8d264914b677a8f8",
+    "lrg": "cde2c9e0f9c3ccf2e05c4a3a118dae8624a77f437edfb3a3f25ca2454433070d"
+  },
+  "filename_digest_definition": "SHA256(UTF-8 sorted exact filenames, each followed by one LF, including the last filename); no directory prefixes",
+  "ordered_chunk_families": {
+    "eboss21": {
+      "subsample_id": 0,
+      "count": 2904,
+      "filename_sha256": "93ae831a54451edf81f8e42b6babe62c62e9386bf61c65c950d5aefcee961cf1",
+      "first": "mask-eboss21-3168m010.fits.gz",
+      "middle": "mask-eboss21-3386m005.fits.gz",
+      "last": "mask-eboss21-3598p020.fits.gz"
+    },
+    "eboss22": {
+      "subsample_id": 1,
+      "count": 7315,
+      "filename_sha256": "caf4a1bfeee3e05734612de11f027fbf63d49a1c14d445e4fc909fee2698e1f7",
+      "first": "mask-eboss22-0001m002.fits.gz",
+      "middle": "mask-eboss22-0226m005.fits.gz",
+      "last": "mask-eboss22-0450m050.fits.gz"
+    },
+    "eboss23": {
+      "subsample_id": 2,
+      "count": 6159,
+      "filename_sha256": "a5349c71bf0e9828e9eeed2b9fd38608d7ba7d65fc1c8de3335ae79d09ded01e",
+      "first": "mask-eboss23-1258p280.fits.gz",
+      "middle": "mask-eboss23-1415p232.fits.gz",
+      "last": "mask-eboss23-1571p175.fits.gz"
+    },
+    "eboss25": {
+      "subsample_id": 3,
+      "count": 3003,
+      "filename_sha256": "d40edf32fe50aaabd99c6c06aaa2424335b00d1fde1c5a1b9cc00d5c3a05e1d8",
+      "first": "mask-eboss25-1308p300.fits.gz",
+      "middle": "mask-eboss25-1538p312.fits.gz",
+      "last": "mask-eboss25-1661p292.fits.gz"
+    }
+  },
+  "total_listed_maskbit_fits": 19381,
+  "three_published_extra_polygons_ALREADY_PINNED_IN_SEPARATE_11_FILE_MANIFEST": {
+    "ELG_centerpost.ply": "2a9494725c9265894b9b463d6ccc8616d4979ed2c7bbc213764bf81b94e0b4c9",
+    "ELG_TDSSFES_62arcsec.pix.snap.balk.ply": "ad1e4c135c351008eec316d8ff7e95f749ffd1b1b207fdcbd5ebae2181bcee0c",
+    "ebosselg_badphot.26Aug2019.ply": "80aacd51459be796ccc493bad0450c9f8c26b0de7005dd2e3e5bfaadd0095a8d"
+  },
+  "pinned_upstream_brickmask": {
+    "repository": "cheng-zhao/brickmask",
+    "commit": "b9eb684a579b56ec3dbdb46549224be7e3fa2830",
+    "extra_script": "scripts/eBOSS_ELG_extra.py",
+    "extra_script_blob_sha": "d66c5e6ed6a8260b5e8dcc840795485345392ced",
+    "compile_flag": "-DEBOSS",
+    "chunk_subsample_order": [
+      0,
+      1,
+      2,
+      3
+    ]
+  },
+  "parents": [
+    "source_data/eboss_dr16_official_mask_source_protocol_2026-09-25.json",
+    "source_data/eboss_dr16_eleven_official_polygon_sha_2026-09-25.json"
+  ],
+  "output": "eboss_workspace/official_mask_inventory/elg_maskbit_index_pin.json",
+  "known_limits": [
+    "Directory listing alone proves filenames, not individual FITS file content checksums or image-mask bits",
+    "Additional three veto polygon SHAs are present in prior eleven-file independent manifest, not the uploaded directory index itself",
+    "Full ELG image BRICKMASK exclusion logic, extra bit8 source-to-production chain, published data/random selection and pair window remain uncertified"
+  ],
+  "observed_catalogue_rows_read": false,
+  "observed_random_rows_read": false,
+  "observed_odd_data_vector_read": false,
+  "physical_elg_mask_certified": false,
+  "physical_lrg_elg_pair_window_certified": false,
+  "new_selection_rule_applied": false
+}

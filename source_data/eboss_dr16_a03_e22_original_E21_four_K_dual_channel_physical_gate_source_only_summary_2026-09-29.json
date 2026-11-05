@@ -1,0 +1,73 @@
+{
+  "stage": "A03E22_TWO_PHYSICAL_CHANNELS_CONDITIONAL_HALO_RESPONSE_COMPARISON",
+  "date": "2026-09-29",
+  "status": "FROZEN_E21_ORIGINAL_4K_SOURCE_REPLAY_AND_ANALYTIC_TWO_CHANNEL_PHYSICAL_STOP_NO_GALAXY_PREDICTION",
+  "classification": "Derived transparently AFTER original E20/E21 and after published Okoli model examined; the E22 new synthetic code was registered before E22 run, not a preregistration of the original measurements or the author-paper estimand.",
+  "pinned_protocol_git_blob": "5832921806cdbf4dd5ab3fba06e3ce6903d4f025",
+  "original_E21_git_blob": "cc3312c5313cce60fad4a88c3a56ef3d4e675e38",
+  "original_E20_git_blob": "c736ea3bca7bd0560ab07225294e1dd0930e0561",
+  "original_E17D1_git_blob": "9f7e96b034779d0e20f4f9db61d5a642fda03975",
+  "source_only_E22_CI": {
+    "run_id": 36568450115,
+    "conclusion": "SUCCESS",
+    "final_head": "e82ac8b50a487ce37b0642871dbd10b86d007973",
+    "negative_controls_passed": 7,
+    "GitHub_original_artifact_id": 11033020845,
+    "artifact_zip_not_downloaded_or_byte_rehashed_in_this_analysis": true
+  },
+  "original_e13_four_K_h_per_Mpc": [
+    "0.001",
+    "0.002",
+    "0.003",
+    "0.005"
+  ],
+  "original_E21_physical_velocity_units_ratios": {
+    "0.001": {
+      "Fplus_over_Fminus": 1.0071470411699868,
+      "Fplus_minus_Fminus_over_two_state_mean": 0.007121592014325704,
+      "Fplus_minus_Fminus_over_FD": 0.007113295299825843
+    },
+    "0.002": {
+      "Fplus_over_Fminus": 1.0048202612627104,
+      "Fplus_minus_Fminus_over_two_state_mean": 0.004808671735664115,
+      "Fplus_minus_Fminus_over_FD": 0.004806953029826819
+    },
+    "0.003": {
+      "Fplus_over_Fminus": 1.0018850353811504,
+      "Fplus_minus_Fminus_over_two_state_mean": 0.0018832603749311177,
+      "Fplus_minus_Fminus_over_FD": 0.0018828853691280247
+    },
+    "0.005": {
+      "Fplus_over_Fminus": 1.00182603363572,
+      "Fplus_minus_Fminus_over_two_state_mean": 0.001824367957093278,
+      "Fplus_minus_Fminus_over_FD": 0.0018242459096988498
+    }
+  },
+  "synthetic_only_drag_limit": {
+    "equation": "u'+(Hconformal+gamma)u=gamma*v_rel, u0=0, with constant uncalibrated gamma,H and constant v_rel",
+    "Hconformal_test_units": 2,
+    "gamma_test_units": 1,
+    "test_time": 0.5,
+    "u_over_v": 0.2589566132838567,
+    "physical_gamma_calibrated": false
+  },
+  "two_channel_gates": {
+    "linear": "Physical shared-wake drag modifies halo peculiar velocity. Kaiser -H^-1 partial_LOS u_LOS alone is real/even mu^2; observer number-count Doppler/selection D_a*u_LOS can generate imaginary odd with physical c_{a,F}=D_a beta_{a,F}+direct selection. No beta,D,physical c determined in current repo.",
+    "quadratic": "v_rel*delta response requires B_vdelta_delta and actual time-dependent Gamma_i plus LOS-odd projection; Gaussian linear third moment zero but nonlinear second-order perturbation terms may create B. No original F-state physical B or halo Gamma computed.",
+    "common_wake": "For the SAME shared, point-sampled wake force a_com and pair offset r, delta_a_com(k)=2i sin(k dot r/2) a_com(k), |delta_a|<=|k dot r||a_com|. Only a geometric long-wavelength bound on common-force differential, not on full observed odd; different observed tracer biases or Doppler coefficients can retain cross odd.",
+    "literature_estimator": "Okoli et al. 2017 MNRAS doi:10.1093/mnras/stx560 Eq(A8)/(33) signed conditional phase dot_phi is odd in coherent wind, while Eq(34) forecast uses averaged squared phase amplitude. Their modeled forecast is NOT an actual measured unweighted eBOSS 24D mean and paper FD halo drag coefficient/m_nu^4 scaling cannot simply be imported to original Fplus/Fminus."
+  },
+  "physics_status": {
+    "actual_halo_potential_and_force_history_missing": true,
+    "actual_same_epoch_M200c_and_original_EBOSS_HOD_missing": true,
+    "real_physical_beta_and_Doppler_tracer_c_missing": true,
+    "physical_F_specific_B_vdelta_delta_and_Gamma_missing": true,
+    "real_ABSOLUTE_pre_window_xi_and_released_pair_window_not_available": true,
+    "independent_inferential_A04_covariance_missing": true,
+    "observed_odd_SEALED": true
+  },
+  "no_new_CLASS_Abacus_eBOSS_FITS_WSL": true,
+  "no_new_E8_E16_Fpm_science_cut_seed": true,
+  "no_new_significance_or_survey_forecast": true,
+  "main_unchanged_PR_draft": true
+}

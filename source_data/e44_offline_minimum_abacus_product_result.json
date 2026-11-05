@@ -1,0 +1,55 @@
+{
+  "date": "2026-09-30",
+  "decision": {
+    "best_next_data_target": "cleaned halo/tree auxiliary product, not another raw halo_info column",
+    "do_not_do_now": [
+      "whole-column ASDF read",
+      "fields='all' CompaSOHaloCatalog load",
+      "bulk cleaned-catalog download",
+      "new eBOSS mock/covariance work",
+      "observed odd unblinding"
+    ],
+    "first_gate": "filesystem inventory only; do not open/decompress ASDF arrays",
+    "second_gate_if_present": "YAML/header-only schema probe of exactly one cleaned_halo_info superslab to confirm TimeSliceRedshiftsPrev and field shapes",
+    "third_gate_if_safe": "only then design a bounded targeted extraction strategy"
+  },
+  "official_source_findings": {
+    "abacusutils_cleaned_mainprog_fields": [
+      "N_mainprog",
+      "vcirc_max_L2com_mainprog",
+      "sigmav3d_L2com_mainprog",
+      "haloindex_mainprog",
+      "v_L2com_mainprog"
+    ],
+    "cleaned_catalog_release": "The cleaned halo catalog release is a self-contained data product distinct from raw off-machine halo files.",
+    "cleaned_header_history_fields": [
+      "TimeSliceRedshiftsPrev",
+      "NumTimeSliceRedshiftsPrev"
+    ],
+    "loader_behavior": "Requesting fields='all' includes main-progenitor information and can be slow; narrow field selection is preferable.",
+    "secondary_snapshots": "AbacusSummit secondary redshifts are explicitly intended to support merger-tree construction using persistent subsample PIDs."
+  },
+  "scientific_usefulness": {
+    "N_mainprog": "Provides a multi-epoch L1-particle-count main-progenitor history, useful as a mass proxy only; it is not M200c.",
+    "haloindex_mainprog": "Provides the immediate main-progenitor identity used by the cleaning/tree machinery.",
+    "sigmav3d_L2com_mainprog": "Provides an internal velocity-dispersion proxy over previous timeslices.",
+    "v_L2com_mainprog": "Provides main-progenitor bulk velocity for the immediately previous snapshot.",
+    "vcirc_max_L2com_mainprog": "Provides an internal-potential/structure proxy over previous timeslices.",
+    "what_it_still_does_not_supply": [
+      "full radial profile u(k,t)",
+      "radial second moments through all times",
+      "M200c(t)",
+      "environment/shared wake potential",
+      "incoming neutrino phase-space state",
+      "Born second-order norm bound"
+    ]
+  },
+  "stage": "E44_OFFLINE_MINIMUM_ABACUS_MULTI_EPOCH_PRODUCT_DECISION",
+  "status": "SOURCE_VERIFIED_MINIMUM_PRODUCT_IDENTIFIED_LOCAL_AVAILABILITY_PENDING",
+  "uploaded_E43": {
+    "absolute_total_sign_budget": 1.2599552446650349e-05,
+    "percent_of_abs_FD": 0.6242009713736083,
+    "recommended_next_gate": "small same-object multi-epoch dynamical summary; no whole-column ASDF scan",
+    "status": "PASS_NO_PHYSICAL_SIGN_CERTIFICATE"
+  }
+}

@@ -1,0 +1,95 @@
+{
+  "date": "2026-09-28",
+  "status": "E17D2B3A_IDEALIZED_TWO_POSITIVE_SAME_L1_MASS_RADIUS_PROFILES_DIFFERENT_M200C_CERTIFIED_REAL_ABACUS_DATA_UNREAD",
+  "prospective_protocol_git_blob": "81554b0f7cdefa599f302d828ab3529812bb3a59",
+  "immutable_original_parent_IDs": {
+    "E8_csv_sha256": "bf8f48deb9514c5101d5ce314bfbd397485102a5487da1039f141e3cad6143d0",
+    "E16_full_sha256": "5d81f95a5571175f06eb032b865285ba34804701693f76af392be7fc31fb06db",
+    "E17A_joint_sha256": "094c49cb89d6dd231a5cbc16ecdfe455bcb3938ddec375fd28c81c8098ab2ad9",
+    "E17D2b1_joint_sha256": "19cfd3e3a9382d07b4a978522e437780b79467dcbf8f8adcf45d3804b46ad3b9",
+    "E17D2b2_original_sha256": "b8da4d6c33235ed82e76f548f2eb052e0fcd751a42672f48d8fffff153ac6926",
+    "E17D2b2_independent_sha256": "10c81a9c513b6206beb4cbf1bacdc9ee51946cbe8b62bb534e91d20da88f2d96",
+    "E17D2b2_archive_manifest_blob": "de7c5850d1a776c9cf0f301ba60611808b162169",
+    "E17D2b2_protocol_blob": "c1079b666fa8b91af42a8191dbddf56966ea3221",
+    "E17D2b2_original_runner_blob": "d09c7d5ff2a0178242f439ca6ea7f39ae4bb00f8"
+  },
+  "official_public_documentation_URLs": [
+    "https://abacussummit.readthedocs.io/en/latest/data-products.html",
+    "https://abacussummit.readthedocs.io/en/latest/compaso.html",
+    "https://abacussummit.readthedocs.io/en/latest/cosmologies.html",
+    "https://abacussummit.readthedocs.io/en/latest/data-access.html"
+  ],
+  "source_only_analytic_flat_matterLambda_TOY": {
+    "omega_m0_flat_matterLambda_TOY": 0.3151918679932973,
+    "E2_z_flat_matterLambda_TOY": 3.021916434193503,
+    "omega_m_z_flat_matterLambda_TOY": 0.7733861452097148,
+    "synthetic_200crit_over_total_matter_mean_threshold": 258.6030293389431,
+    "synthetic_L1_SO_threshold_over_total_matter_mean_NOT_ABACUS_HEADER": 200.0,
+    "synthetic_ratio_threshold_200c_to_L1": 1.2930151466947155
+  },
+  "two_predeclared_positive_normalized_radial_profiles": [
+    {
+      "enclosed_mass_exponent_synthetic_ONLY": 1,
+      "normalization_shared_L1_mass": 1.0,
+      "normalization_shared_L1_radius": 1.0,
+      "shared_exact_L1_SO_delta_mean_idealized": 200.0,
+      "mass_profile": "M_p(<r)/M_L1=(r/R_L1)^p for 0<=r<=R_L1, constant outside",
+      "positive_density_at_r_gt_zero": "rho_p(r)=p*M_L1*r^(p-3)/(4*pi*R_L1^p)",
+      "synthetic_QA_radii_normalized": [
+        0.0,
+        0.43971187873700746,
+        0.8794237574740149,
+        1.0
+      ],
+      "positive_monotone_enclosed_mass_at_QA_radii": [
+        0.0,
+        0.43971187873700746,
+        0.8794237574740149,
+        1.0
+      ],
+      "r200c_over_shared_R_L1_TOY": 0.8794237574740149,
+      "M200c_over_shared_M_L1_TOY": 0.8794237574740149,
+      "200critical_mean_density_reclosure_relative": 2.220446049250313e-16
+    },
+    {
+      "enclosed_mass_exponent_synthetic_ONLY": 2,
+      "normalization_shared_L1_mass": 1.0,
+      "normalization_shared_L1_radius": 1.0,
+      "shared_exact_L1_SO_delta_mean_idealized": 200.0,
+      "mass_profile": "M_p(<r)/M_L1=(r/R_L1)^p for 0<=r<=R_L1, constant outside",
+      "positive_density_at_r_gt_zero": "rho_p(r)=p*M_L1*r^(p-3)/(4*pi*R_L1^p)",
+      "synthetic_QA_radii_normalized": [
+        0.0,
+        0.38669307260485747,
+        0.7733861452097149,
+        1.0
+      ],
+      "positive_monotone_enclosed_mass_at_QA_radii": [
+        0.0,
+        0.14953153240058556,
+        0.5981261296023422,
+        1.0
+      ],
+      "r200c_over_shared_R_L1_TOY": 0.7733861452097149,
+      "M200c_over_shared_M_L1_TOY": 0.5981261296023422,
+      "200critical_mean_density_reclosure_relative": 0.0
+    }
+  ],
+  "same_L1_mass_radius_density_and_synthetic_z": true,
+  "distinct_M200c_mass_fraction_absolute_gap_synthetic_only": 0.2812976278716727,
+  "distinct_r200c_over_L1_radius_gap_synthetic_only": 0.10603761226429997,
+  "synthetic_header_directory_z_and_L1_mass_negative_controls": [
+    "synthetic ASDF not accepted as actual provider file",
+    "directory-only z0.95 rejected",
+    "CompaSO L1 N or SO_radius rejected as 200crit"
+  ],
+  "idealized_SO_crossing_is_stronger_than_real_SO_radius_metadata": true,
+  "actual_Abacus_SODensityL1_header_read": false,
+  "actual_Abacus_ASDF_redshift_header_read": false,
+  "actual_Abacus_halo_particle_or_merger_tree_read": false,
+  "any_real_halo_M200c_remeasured": false,
+  "full_physical_finiteK_galaxy_bispectrum": "BLOCKED",
+  "observed_odd_SEALED": true,
+  "new_CLASS_ASDF_FITS_halo_catalogue_mock_download": false,
+  "main_untouched_PR_draft": true
+}

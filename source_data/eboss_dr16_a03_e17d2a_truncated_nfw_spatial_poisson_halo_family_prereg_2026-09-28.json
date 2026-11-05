@@ -1,0 +1,141 @@
+{
+  "date": "2026-09-28",
+  "status": "E17D2A_PROSPECTIVELY_LOCKED_PHYSICAL_NFW_SPATIAL_POISSON_HALO_FAMILY_ONLY_BEFORE_NEW_NUMERICS",
+  "stage": "E17D2A_FINITE_MASS_TRUNCATED_NFW_SPATIAL_DENSITY_POTENTIAL_AND_FROZEN_TWO_LEG_FOURIER_SHAPE_NOT_RETARDED_HALO_TRACER_B",
+  "parent_head_at_registration": "eba51951d5c69179c3569c76164923a5cd885984",
+  "problem": "E17D1 certified that symbolic forcing history changes the restricted retarded response; E17D2a first replaces unphysical arbitrary spatial forcing shapes with an independently published finite-mass spherical NFW Poisson-consistent halo FAMILY. No actual halo mass, concentration, redshift-dependent mass-concentration prior, formation history, LRG/ELG HOD or physical source normalization is inferred.",
+  "physical_literature": [
+    {
+      "work": "Navarro, Frenk and White (1997), A Universal Density Profile from Hierarchical Clustering, Astrophys. J. 490, 493",
+      "doi": "10.1086/304888",
+      "url": "https://arxiv.org/abs/astro-ph/9611107",
+      "role": "Published spherically averaged halo density-profile functional form; NOT an observation of the present eBOSS halos."
+    },
+    {
+      "work": "Cooray and Sheth (2002), Halo Models of Large Scale Structure, Phys. Rep. 372, 1",
+      "arxiv": "astro-ph/0206508",
+      "url": "https://arxiv.org/abs/astro-ph/0206508",
+      "role": "Standard virial-radius-truncated spherical halo Fourier shape and NFW Si/Ci analytic transform; conditional model only."
+    }
+  ],
+  "immutable_parents": {
+    "E8_original_4000q_CSV_sha256": "bf8f48deb9514c5101d5ce314bfbd397485102a5487da1039f141e3cad6143d0",
+    "E16_original_full_sha256": "5d81f95a5571175f06eb032b865285ba34804701693f76af392be7fc31fb06db",
+    "E17D0_original_joint_sha256": "b9c8f21973755c64d8708a4ccb4d86ee56bbc12d448ffaa098b7495eb85661ae",
+    "E17D1_original_joint_sha256": "1e52880db6c60cff1fe3cc1ca0a00e553c63ca08601399334d049e8403e18781",
+    "E17D1_independent_sha256": "b082bdd916e1854a3ba886dcbb5576e704f485e874cc964e65bba089fd161d17",
+    "E17D1_archive_manifest_git_blob": "e5c02cd78ba85dea308f6ad5324d26aebc6627e2",
+    "E17D1_protocol_git_blob": "791502d5385e35b358fb2d2afebf5fac77bd6ad5",
+    "CLASS_original_commit": "e85808324f51fc694d12e3ed7439552a3c3f9540"
+  },
+  "frozen_E16": {
+    "original_short_k_comoving_h_per_Mpc": [
+      0.05,
+      0.075,
+      0.1
+    ],
+    "original_long_K_comoving_h_per_Mpc": [
+      0.001,
+      0.002,
+      0.003,
+      0.005
+    ],
+    "mu_short": [
+      -1,
+      0,
+      0.6,
+      1
+    ],
+    "mu_long": [
+      -1,
+      0,
+      0.5,
+      1
+    ],
+    "phi": [
+      "0",
+      "pi/2",
+      "pi"
+    ],
+    "original_closed_geometries": 576,
+    "both_exact_short_legs_per_geometry": 2,
+    "original_neutrino_states": [
+      "FD",
+      "plus",
+      "minus"
+    ],
+    "tracer_order": [
+      "LRG",
+      "ELG"
+    ],
+    "original_E14_E15_72_source_24_contrasts_UNMODIFIED": true
+  },
+  "physical_model_and_exact_equations": {
+    "profile": "For y=r/r_s>0, concentration c=r_200/r_s>0, A(c)=ln(1+c)-c/(1+c), rho(r)=M_200/[4pi r_s^3 A(c)]/[y(1+y)^2] for y<c and rho=0 for y>c; M_200 is mass enclosed within truncation r_200. This is a conditional truncated NFW family, not selected halo mass or concentration.",
+    "enclosed_mass": "M(<y)/M_200=A(min(y,c))/A(c), A(y)=ln(1+y)-y/(1+y). For y>=c M(<y)=M_200.",
+    "physical_Newtonian_potential": "Phi(r)/(G M_200/r_s)= -[ln(1+y)/y-1/(1+c)]/A(c) for 0<y<=c; -1/y for y>=c; Phi(0) continuous limit -c/[(1+c)A(c)]. Phi(r)->0 as r->infinity. For r<r200, y^2 d(Phi/(GM/r_s))/dy=A(y)/A(c), and exterior y^2 dPhi_norm/dy=1.",
+    "poisson": "In physical static coordinates Laplacian_r Phi=4pi G rho and Phi(r>r200)=-GM200/r. A density jump at cutoff does NOT imply a thin surface delta because potential and first radial derivative agree at cutoff. This is a static model, NOT an evolving Einstein-Vlasov solution.",
+    "normalized_Fourier_density": "u(x,c)=A(c)^-1 integral_0^c dy [y/(1+y)^2] sinc(x y), x=k_phys r_s_phys=k_com r_s_com. u(0,c)=1, |u(x,c)|<=1, u(-x,c)=u(x,c) for this real spherical positive-density profile.",
+    "analytic_Cooray_Sheth_Fourier": "For x>0, u(x,c)=[sin(x)(Si((1+c)x)-Si(x))+cos(x)(Ci((1+c)x)-Ci(x))-sin(cx)/((1+c)x)]/A(c); evaluate scipy.special.sici in original runner, independent stdlib adaptive Simpson radial Fourier integral in separate runner.",
+    "conditional_fourier_Poisson_potential": "For nonzero physical k, Phi_tilde(k_phys)=-4pi G M200 u(k_phys*r_s_phys,c)/k_phys^2. Store only dimensionless Phi_tilde/(4pi G M200 r_s_phys^2)=-u(x,c)/x^2, and original-q-independent u on both actual short legs and long K. Do NOT insert a physical M, r_s, redshift, time or amplitude into the original E17D0/E17D1 source.",
+    "fixed_numeric_QA_only_concentrations": [
+      2,
+      4,
+      8
+    ],
+    "fixed_numeric_QA_only_alpha_k0_rs_comoving": [
+      0.1,
+      1
+    ],
+    "k0_comoving_h_per_Mpc": 0.05,
+    "alpha_definition": "alpha=k0_comoving*r_s_comoving; both original E16 short legs x_i=alpha*|k_i|/k0, long x_L=alpha*K/k0. Values are dimensionless integration QA only; alpha and c have NOT been assigned to an actual eBOSS halo or observed population.",
+    "radial_QA_y_over_c": [
+      0,
+      0.25,
+      0.5,
+      1,
+      2
+    ],
+    "small_x_test": 0.001,
+    "small_x_series": "u(x,c)=1-x^2/(6A(c))*B(c)+O(x^4), B(c)=integral_0^c y^3/(1+y)^2 dy=0.5c^2-2c-1+1/(1+c)+3ln(1+c); test at x=.001 only."
+  },
+  "preregistered_QA": {
+    "all_immutable_original_SHA_and_protocol_git_blob_required": true,
+    "original_E16_576_triangle_closure_abs_h_per_Mpc_max": 1e-13,
+    "A(c)>0_and_monotone_mass_on_test_radii": true,
+    "u0_equals_one_abs_max": 1e-15,
+    "u_Fourier_reversal_abs_max": 1e-13,
+    "u_positive_mass_characteristic_abs_upper_bound": 1.000000000005,
+    "static_potential_at_truncation_continuity_abs_max": 1e-13,
+    "static_radial_force_at_truncation_continuity_abs_max": 1e-13,
+    "static_center_potential_finite": true,
+    "same_halo_profile_short_leg_swap_abs_max": 1e-12,
+    "center_squeezed_geometric_probe_epsilon_K_over_k": 0.00001,
+    "center_squeezed_u_max_abs_difference": 0.0002,
+    "analytic_Si_Ci_vs_independent_stdlib_Simpson_scaled_gap_max": 2e-8,
+    "small_x_second_moment_abs_gap_max": 2e-9,
+    "source-only_parent_unchanged_and_odd_SEALED": true,
+    "no_posthoc_parameter_or_threshold_retuning": true
+  },
+  "output_and_audit": {
+    "original": "For each of 3 numeric c and 2 dimensionless alpha QA choices, full 576 original E16 exact triangles with x1,x2,xL and normalized u1,u2,uL and shape-only normalized Poisson potential for each nonzero mode; independent radial mass/potential/force QA. No neutrino state-dependent response is claimed.",
+    "independent": "Pure stdlib frozen geometry and direct positive-density radial Fourier integral by adaptive even-grid Simpson; verify all original two-leg and long-mode Fourier shapes against SciPy Si/Ci and full report SHA; independent real-space continuity/mass checks; no original NFW runner imports.",
+    "governance": "Archive full original and independent report bytes and SHA manifest in source_data/ on audit branch after SUCCESS. Update draft PR and master plan ONLY after verified CI. Never merge PR or mutate main."
+  },
+  "absolute_STOP": {
+    "physical_M200_and_c_for_eBOSS_LRG_ELG_NOT_selected": true,
+    "no_mass_concentration_or_HOD_assumed": true,
+    "no_halo_formation_or_potential_time_history": true,
+    "no_self_consistent_FRW_Einstein_Vlasov_or_finite_K_response": true,
+    "no_arbitrary_E17D1_time_history_promoted_to_halo": true,
+    "no_physical_second_order_LRG_ELG_two_leg_coupling": true,
+    "no_real_eBOSS_3pt_window_or_independent_3pt_covariance": true,
+    "no_original_E8_E17D1_rewrite": true,
+    "no_new_CLASS_FITS_catalogues_mocks_seeds_or_science_cuts": true,
+    "no_observed_odd_read_unblind_or_author_contact": true,
+    "observed_odd_SEALED": true,
+    "no_galaxy_B_xi_SN_or_significance_claim": true,
+    "main_untouched": true,
+    "PR_remains_draft": true
+  }
+}

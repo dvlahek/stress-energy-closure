@@ -1,0 +1,46 @@
+{
+  "study": "Blinded official eBOSS DR16 ELG four preselected maskbit FITS.gz source-byte SHA report exact uploaded artifact",
+  "registered_on": "2026-09-26",
+  "uploaded_filename": "elg_maskbit_four_sample_raw_sha.json",
+  "uploaded_report_bytes": 4338,
+  "uploaded_report_sha256": "f324da9232a121e72e9d6d35b7d4e7c2e0f7133007a01db8d065d4ba84356665",
+  "uploaded_report_git_blob_sha1": "9c543517be72e1622390a7164b6ab003a1ae7045",
+  "archived_exact_report_path": "source_data/eboss_dr16_elg_four_sample_raw_sha_report_2026-09-26.json",
+  "archived_git_blob_sha1": "9c543517be72e1622390a7164b6ab003a1ae7045",
+  "byte_identical_archive_verified": true,
+  "local_report": "eboss_workspace/official_mask_inventory/elg_maskbit_four_sample_raw_sha.json",
+  "frozen_raw_source_protocol": "source_data/eboss_dr16_elg_maskbit_four_sample_raw_sha_protocol_2026-09-26.json",
+  "frozen_original_inventory_sha256": "84a3a163ec0b28a5392dadc95aa757e469cb9cb6e94cc731aac2fa2958fc6c18",
+  "frozen_previous_local_index_report_sha256": "32104c056ab86637df1d236bdde04263ab18393b66302b690d70ce331102f2b7",
+  "compressed_image_count": 4,
+  "compressed_image_bytes_total": 676165,
+  "sample_sha256_first_seen_not_official_reference": {
+    "eboss21": {
+      "filename": "mask-eboss21-3386m005.fits.gz",
+      "compressed_bytes": 172308,
+      "compressed_sha256": "064e535aba4caa7351f5ec64802421968724c1ea664b7eafc142a018a13049a9"
+    },
+    "eboss22": {
+      "filename": "mask-eboss22-0226m005.fits.gz",
+      "compressed_bytes": 188582,
+      "compressed_sha256": "bec27e6ce17fba5336a48f87682ce491abcd603d1599d914d333dfacc8c2d0d8"
+    },
+    "eboss23": {
+      "filename": "mask-eboss23-1415p232.fits.gz",
+      "compressed_bytes": 139821,
+      "compressed_sha256": "faf180362b182aa9fb56221af4848462ff3ba801a437a4e1ceb2a43cdb2f569e"
+    },
+    "eboss25": {
+      "filename": "mask-eboss25-1538p312.fits.gz",
+      "compressed_bytes": 175454,
+      "compressed_sha256": "ce2b3dc302a3998b1ac4e061989af7916ded6221a80a3643724063e6ed19fc27"
+    }
+  },
+  "method": "Full raw local gzip bytes SHA256 verified and reported by user WSL runner; exact uploaded JSON SHA independently checked and archived as byte-identical Git blob; assistant did not rehash local WSL binary files.",
+  "fits_header_or_pixel_read": false,
+  "observed_catalogue_random_mock_rows_read": false,
+  "observed_odd_data_vector_read": false,
+  "new_mask_or_selection_applied": false,
+  "physical_elg_mask_certified": false,
+  "physical_lrg_elg_pair_window_certified": false
+}

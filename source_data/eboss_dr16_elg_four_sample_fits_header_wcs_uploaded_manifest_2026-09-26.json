@@ -1,0 +1,45 @@
+{
+  "study": "eBOSS DR16 ELG four prespecified compressed-image FITS header/WCS audit exact uploaded report",
+  "record_date": "2026-09-26",
+  "uploaded_filename": "elg_four_sample_fits_header_wcs.json",
+  "local_report": "eboss_workspace/official_mask_inventory/elg_four_sample_fits_header_wcs.json",
+  "uploaded_report_bytes": 5705,
+  "uploaded_report_sha256": "233339946dda20dc7b81f83c70645761dfc728f562396fecd261750e3eec6e04",
+  "uploaded_report_git_blob_sha1": "b0f515d9bdb5bb0c7ccde7b64d982d33c9e10361",
+  "archived_exact_report_path": "source_data/eboss_dr16_elg_four_sample_fits_header_wcs_report_2026-09-26.json",
+  "archived_git_blob_sha1": "b0f515d9bdb5bb0c7ccde7b64d982d33c9e10361",
+  "byte_identical_archive_verified": true,
+  "prior_raw_gzip_report_sha256": "f324da9232a121e72e9d6d35b7d4e7c2e0f7133007a01db8d065d4ba84356665",
+  "prior_raw_gzip_report_path": "source_data/eboss_dr16_elg_four_sample_raw_sha_report_2026-09-26.json",
+  "prior_fits_header_protocol": "source_data/eboss_dr16_elg_four_sample_fits_header_wcs_protocol_2026-09-26.json",
+  "sample_count": 4,
+  "sample_order": [
+    "eboss21",
+    "eboss22",
+    "eboss23",
+    "eboss25"
+  ],
+  "header_bytes_each": 5760,
+  "image_metadata_each": {
+    "BITPIX": 8,
+    "NAXIS": 2,
+    "NAXIS1": 3600,
+    "NAXIS2": 3600,
+    "CTYPE1": "RA---TAN",
+    "CTYPE2": "DEC--TAN"
+  },
+  "complete_header_SHA256_by_chunk": {
+    "eboss21": "66a7e70d47cb86558c83301975e0aedd1791d5641f771a4f01acb3515c6b76da",
+    "eboss22": "a695a1ae5034a9b0cf6f82ca831db94c3b7be87b9e8789deb19416f02dad4db9",
+    "eboss23": "0554a51d5cc3b9d388bb13b68cb062ab8df2e61c3cfe962779f4215d3fb57fc6",
+    "eboss25": "076402d6b3dfe873bda300c859d7276fdf266e1255aa8551da99ac32f19eb1d1"
+  },
+  "gzip_reader_may_buffer_decompress_internally": true,
+  "image_pixel_values_decoded": false,
+  "observed_catalogue_random_mock_rows_read": false,
+  "observed_odd_data_vector_read": false,
+  "new_mask_or_selection_applied": false,
+  "physical_elg_mask_certified": false,
+  "physical_lrg_elg_pair_window_certified": false,
+  "verification_scope": "Uploaded report exact bytes SHA256 checked by independent container; byte-identical Git archive checked; 4 compressed files were verified and opened for header metadata by user WSL, not independently downloaded or FITS-parsed by assistant."
+}

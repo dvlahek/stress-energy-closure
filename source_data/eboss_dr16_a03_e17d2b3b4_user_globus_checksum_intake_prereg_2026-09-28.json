@@ -1,0 +1,72 @@
+{
+  "stage": "E17D2B3B4_USER_SUPPLIED_LIVE_GLOBUS_DIRECTORY_LISTING_AND_CHECKSUM_MANIFEST",
+  "date": "2026-09-28",
+  "status": "PROSPECTIVE_SOURCE_ONLY_PREREG_AFTER_USER_INTAKE_BEFORE_NEW_CHECKSUM_AGGREGATION_OR_AUDIT",
+  "repo": "dvlahek/stress-energy-closure",
+  "allowed_branch": "audit/eboss-elg-bit8-ra-orientation-20260925",
+  "parent_audit_head_before_prereg": "c0e490a54dc15b53ecc135a6cd1bb6a79f877ff5",
+  "main_head_must_remain": "e50549a5c974772eb9576d301df7a5ea6e6d87d2",
+  "source_snapshot": {
+    "portal_repo": "abacusorg/abacussummit-data-portal",
+    "portal_commit": "f877298344a6988d55f57a7c39f5be14dce63ff3",
+    "simulation": "AbacusSummit_base_c000_ph000",
+    "nominal_directory": "halos/z0.950/halo_info",
+    "published_table_git_blob": "cb235ad72ab2516f872bd4ca79b9447a3f4b30e3",
+    "published_table_expected_directory_entries": 35,
+    "published_table_expected_aggregate_bytes": 75722740486,
+    "source_code_builder_git_blob": "88dc7c198c1332d2a0204bb0d3c698fd1dcf28a5",
+    "parent_R1_prereg_git_blob": "534142340197c34160cb970a53cc86d8f7bcf57c"
+  },
+  "user_intake": {
+    "claim": "User pasted Globus File Manager listing under 'AbacusSummit Public Data Access' and separately uploaded checksum manifest as checksums.crc32; these are USER-SUPPLIED, not an independently authenticated Globus API listing or provider signature.",
+    "globus_listing_observed_by_user": "checksums.crc32 and halo_info_000.asdf through halo_info_033.asdf, 35 displayed entries; rounded GB sizes in pasted text; listing path and collection must be verified against source-pinned exact path at later independent access gate.",
+    "supplied_manifest_filename": "checksums.crc32",
+    "supplied_manifest_exact_size_bytes": 1386,
+    "supplied_manifest_sha256": "b1db66f78cf17d9c2620a0be0917547eb5dc17a9e8f10bd02b0b211691fcb6a5",
+    "intake_only_first_record": {
+      "filename": "halo_info_000.asdf",
+      "gnu_posix_cksum_crc": 3502514872,
+      "byte_count": 2223483833
+    },
+    "intake_only_record_count": 34,
+    "provider_origin_independently_attested": false,
+    "real_halo_asdf_supplied_or_read": false
+  },
+  "locked_selected_file": "halo_info_000.asdf",
+  "audit_scope": {
+    "original": "Pure Python stdlib parser on EXACT 1386-byte supplied checksum manifest; enforce pinned SHA, strict GNU/POSIX decimal CRC and file bytes, filenames exactly halo_info_000.asdf to halo_info_033.asdf, 34 unique entries, CRC in uint32 range, positive bytes; sum all listed sizes plus original manifest bytes; check against EXACT 75,722,740,486-byte prior portal aggregate, with no rounding. Generate deterministic original JSON report.",
+    "independent": "A separately structured stdlib parser with independent tokenization and independent subtotal of bytes, exact same input SHA and expected set; compare complete per-file records, aggregate, selected exact CRC and selected bytes against original; generate independent JSON.",
+    "negative_controls": [
+      "Manifest byte flip rejects pinned SHA",
+      "Duplicate selected filename rejects",
+      "Missing halo_info_033.asdf rejects",
+      "Out-of-range CRC rejects",
+      "One altered recorded byte-count rejects archived aggregate cross-check",
+      "Fake 35-asdf claim rejects"
+    ],
+    "require_before_claim": [
+      "Original and independent agree on exact records and source aggregate",
+      "One exact chosen file and its original cksum record frozen",
+      "No other real data consumed",
+      "No transfer invoked"
+    ],
+    "if_aggregate_fails": "FAIL CLOSED; preserve mismatch transparently and do not modify expected source aggregate or original source evidence."
+  },
+  "preservation": {
+    "archived_input_copy_required": "Byte-identical user-uploaded 1386-byte manifest in audit branch source_data, clearly tagged USER_SUPPLIED_ORIGIN_NOT_INDEPENDENTLY_ATTESTED",
+    "report_and_sha_manifest_required": true,
+    "prereg_before_audit": true,
+    "do_not_overwrite_prior_b3_or_R1_archives": true
+  },
+  "absolute_STOP": {
+    "no_Globus_authenticated_API_or_transfer_or_download": true,
+    "no_actual_halo_ASDF_PID_particle_tree_opened": true,
+    "no_claim_checksum_manifest_cryptographically_authenticates_provider": true,
+    "no_M200c_of_real_halo_from_L1_or_directory_metadata": true,
+    "no_Fplus_Fminus_neutrino_wake_or_physical_galactic_bispectrum": true,
+    "no_observed_galaxies_or_original_24D_odd_unseal": true,
+    "no_new_CLASS_mocks_seeds_science_cuts_or_original_F_changes": true,
+    "no_eBOSS_detection_significance": true,
+    "no_main_update_or_PR_merge": true
+  }
+}

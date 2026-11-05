@@ -1,0 +1,28 @@
+name: eBOSS DR16 A-03E4 original odd ell1/ell3 manifest erratum source-only audit
+
+on:
+  push:
+    branches:
+      - audit/eboss-elg-bit8-ra-orientation-20260925
+    paths:
+      - 'scripts/audit_eboss_dr16_a03_e4_odd_erratum_24d_source_only.py'
+      - 'source_data/eboss_dr16_a03_e4_odd_multipole_summary_erratum_and_24d_drift_2026-09-27.json'
+      - '.github/workflows/eboss_dr16_a03_e4_odd_erratum_24d_source_only.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify-original-ell1-ell3-and-descriptive-24d-without-FITS:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Compile standard-library-only odd diagnostic replay
+        run: python -m py_compile scripts/audit_eboss_dr16_a03_e4_odd_erratum_24d_source_only.py
+      - name: Verify original uploads retained, both ell diagnostics and 24D mock-only pilot vector with negative controls
+        run: python -u scripts/audit_eboss_dr16_a03_e4_odd_erratum_24d_source_only.py --self-test

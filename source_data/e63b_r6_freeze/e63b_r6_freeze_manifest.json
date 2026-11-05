@@ -1,0 +1,112 @@
+{
+  "E63B": {
+    "LOS_cutoff_pearson": 0.9934461286000962,
+    "LOS_cutoff_sign_agreement": 0.888671875,
+    "LOS_truth_pearson": 0.34498853228374005,
+    "LOS_truth_sign_agreement": 0.5703125,
+    "gate_pass": false,
+    "result_path": "source_data/e63b_r6_outerrim_buffered_lightcone_truth_transfer_result.json",
+    "result_sha256": "ae6e386fcc438f8c3b7783ac5fb61f34a72c8e86cb979e7822e79d8366777ec3"
+  },
+  "E63C": {
+    "conclusion": "ANISOTROPIC_LIGHTCONE_TRANSFER_FAILURE",
+    "e_Dec_truth_pearson": -0.1522564675125304,
+    "e_RA_truth_pearson": 0.7312789185396915,
+    "radial_truth_pearson": 0.34498853228374005,
+    "result_path": "source_data/e63c_r6_local_basis_failure_diagnostic.json",
+    "result_sha256": "36fa9b76c12aeb57d58b9ad0fcd532ab6158351cc2a4c2563c9d3d39a6997301"
+  },
+  "E63D": {
+    "conclusion": "HIGHER_Z_RADIAL_DEGRADATION_WITHOUT_SINGLE_REDSHIFT_OR_DECLINATION_EXPLANATION",
+    "north_n": 281,
+    "radial_high_minus_low_delta_r": -0.11259407892106002,
+    "result_path": "source_data/e63d_r6_fixed_split_failure_diagnostic.json",
+    "result_sha256": "1fd5214f3b06411f7625391cc2b48beed9349f7cd1ddda76e818ab3fb13ecd9e",
+    "south_n": 231,
+    "z_high_n": 263,
+    "z_low_n": 249
+  },
+  "branch": "audit/eboss-elg-bit8-ra-orientation-20260925",
+  "decision": {
+    "E62_periodic_nbody_truth": "PASS",
+    "E63B_outerrim_lightcone_truth": "FAIL",
+    "E64_authorized": false,
+    "diagnostic_branch_closed": true,
+    "future_lightcone_aware_estimator_requires_new_methodological_branch": true,
+    "observed_eBOSS_authorized": false,
+    "observed_odd_authorized": false
+  },
+  "freeze_record_created": "2026-11-05",
+  "frozen_science": {
+    "NPROBE": 512,
+    "NSEL": 54893,
+    "R_Mpc_over_h": 16,
+    "check_cutoff_Mpc_over_h": 192,
+    "cutoff_pearson_gate": 0.9,
+    "cutoff_sign_gate": 0.9,
+    "primary_cutoff_Mpc_over_h": 256,
+    "probe_seed": 202610630001,
+    "truth_pearson_gate": 0.7,
+    "truth_sign_gate": 0.7
+  },
+  "guardrails": {
+    "estimator_retuned_after_result": false,
+    "new_science_gate_defined": false,
+    "observed_eBOSS_rows_used": false,
+    "observed_odd_used": false,
+    "original_E63B_FAIL_preserved": true,
+    "post_failure_pvalues_computed": false,
+    "probe_sample_changed_after_result": false,
+    "science_threshold_changed_after_result": false
+  },
+  "provenance_files": {
+    "e63b_r6_final_pretruth_lock.json": {
+      "path": "source_data/e63b_r6_freeze/e63b_r6_final_pretruth_lock.json",
+      "sha256": "261e49cd6c7b787e5eff082fe27ff3bb61f4d1e68fef03b3aa5e5679485db919"
+    },
+    "e63b_r6_hybrid_retrieval_meta.json": {
+      "path": "source_data/e63b_r6_freeze/e63b_r6_hybrid_retrieval_meta.json",
+      "sha256": "55711ab7433561b7aa08fb64421be0954166bfacf132a00adfa4224c367980aa"
+    },
+    "e63b_r6_probe_z_boundary_audit.json": {
+      "path": "source_data/e63b_r6_freeze/e63b_r6_probe_z_boundary_audit.json",
+      "sha256": "30bec6bd6a6611a6a44aac655914d9fc02076cac74f417dc6cb163ad0fcecb29"
+    },
+    "e63b_r6_probe_z_membership.csv": {
+      "path": "source_data/e63b_r6_freeze/e63b_r6_probe_z_membership.csv",
+      "sha256": "112836101c35286f803f99954969d2512e55a746c8fbeae84839b486134b1dd6"
+    },
+    "e63b_r6d1_velocity_redshift_convention_audit.json": {
+      "path": "source_data/e63b_r6_freeze/e63b_r6d1_velocity_redshift_convention_audit.json",
+      "sha256": "b01826f4c5c8b6d48fe4a6c6886d21b07be3dac1683f80a6e211fd227d69a565"
+    }
+  },
+  "r6_geometry": {
+    "center_dec_deg": -35.5,
+    "center_ra_deg": 62.5,
+    "minimum_outer_sector_count": 1460,
+    "probe_radius_deg": 2.5,
+    "source_radius_deg": 9.5
+  },
+  "retrieval": {
+    "duplicates_removed": 44213,
+    "exact_cone_unique_centrals": 200493,
+    "large_cache_committed": false,
+    "large_cache_local_path": "eboss_workspace/cosmodc2/e63b_outerrim_central_candidates_R6.csv",
+    "large_cache_sha256": "74d0402bfb2dc87b7ba5f174fb43adb141db4dc21c7f7b1b8acc9a20eefa1f82",
+    "raw_rows": 5339896
+  },
+  "science_decision_date": "2026-10-18",
+  "stage": "E63B_R6_TO_E63D_FROZEN_LIGHTCONE_TRANSFER_CHAIN",
+  "velocity_convention_audit": {
+    "best_signs": [
+      1,
+      1,
+      1
+    ],
+    "conclusion": "NO_VELOCITY_AXIS_OR_SIGN_BUG",
+    "pearson": 0.9999469737846878,
+    "sign_agreement": 1.0,
+    "slope": 0.9997697543221477
+  }
+}

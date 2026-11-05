@@ -1,0 +1,141 @@
+{
+  "stage": "E17D2B3B7_PROSPECTIVE_FIRST_REAL_L1_ID_N_NUMERIC_COLUMN_GATE",
+  "date": "2026-09-29",
+  "status": "PREREG_BEFORE_ANY_REAL_HALO_BINARY_ARRAY_ACCESS",
+  "audit_branch": "audit/eboss-elg-bit8-ra-orientation-20260925",
+  "parents": {
+    "b6_official_schema_prereg_git_blob": "e1f43da1a73aad3ef85c76a114fbffadc76d4761",
+    "b6_real_metadata_report_SHA256_USER_REPORTED": "70820fb64965849ec692a035d4c2d6a1dedf38a8de492f19c88a4082dd42cedd",
+    "b5_real_file_SHA256_USER_REPORTED": "7f3755a469b3c25c869a0394b06192780d4a03717fd918d01c7459b0405724c3",
+    "b6_local_acceptance_repo_path": "source_data/eboss_dr16_a03_e17d2b3b6_user_reported_real_ASDF_YAML_schema_local_acceptance_2026-09-29.json",
+    "official_decoder_git_blob": "8c5e5135736409bb0fab77bff06ad1259951189d",
+    "official_docs_commit": "4b1959c710cb0c49aa305c6213a228aa2a4587ff",
+    "official_abacusutils_commit": "24ab0dda5fea9ae406b1afdacaf4bbf989de9bc6",
+    "master_plan_before_b7": "v1.44",
+    "frozen_main": "e50549a5c974772eb9576d301df7a5ea6e6d87d2"
+  },
+  "identity": {
+    "local_file": "eboss_workspace/AbacusSummit_base_c000_ph000/halos/z0.950/halo_info/halo_info_000.asdf",
+    "manifest_same_directory": "checksums.crc32",
+    "expected_file_bytes": 2223483833,
+    "expected_manifest_SHA256": "b1db66f78cf17d9c2620a0be0917547eb5dc17a9e8f10bd02b0b211691fcb6a5",
+    "expected_yaml_prefix_bytes": 14416,
+    "expected_raw_column_count": 70,
+    "expected_rows": 11676687,
+    "local_b6_report_required_exact_SHA256": "70820fb64965849ec692a035d4c2d6a1dedf38a8de492f19c88a4082dd42cedd",
+    "full_binary_ASDF_SHA256_not_recomputed": true,
+    "provenance_only_user_supplied_manifest": true
+  },
+  "fields_prospectively_locked": {
+    "source_binary_blocks_exact": [
+      0,
+      7
+    ],
+    "allowed_raw_fields_exact": [
+      "id",
+      "N"
+    ],
+    "id": {
+      "shape": [
+        11676687
+      ],
+      "raw_dtype": "uint64",
+      "byteorder": "little",
+      "source": 0
+    },
+    "N": {
+      "shape": [
+        11676687
+      ],
+      "raw_dtype": "uint32",
+      "byteorder": "little",
+      "source": 7
+    },
+    "header_read_only": [
+      "SimName",
+      "Redshift",
+      "ParticleMassHMsun",
+      "SODensityL1"
+    ],
+    "mass_reference_Msun_per_h_per_particle": 2109081520.453063
+  },
+  "selector": {
+    "policy": "NO_VALUE_DEPENDENT_HALO_SELECTION",
+    "superslab": "000 only",
+    "rows_for_individual_reporting": [
+      0,
+      5838343,
+      11676686
+    ],
+    "derivation": "index 0, floor((11676687-1)/2), index 11676687-1",
+    "no_mass_SO_radius_density_id_value_filter": true,
+    "all_N_rows_read_for_fixed_source_diagnostics": true,
+    "all_id_rows_loaded_only_to_avoid_unlocked_array_read_patterns": true,
+    "no_other_superslab": true
+  },
+  "outputs_prospectively_locked": {
+    "aggregate_N": "int64_exclusive_sum_of_all_N_values_in_selected_superslab",
+    "minimum_N": "min over 11676687 assigned-particle counts",
+    "maximum_N": "max over 11676687 assigned-particle counts",
+    "zero_N_count": "number of zero counts, NOT an exclusion cut",
+    "selected_row_fields": [
+      "row_index",
+      "raw_id",
+      "raw_N",
+      "L1_assigned_mass_Msun_h"
+    ],
+    "selected_row_count": 3,
+    "individual_L1_mass_formula": "raw_N * ParticleMassHMsun",
+    "no_full_column_values_in_report": true,
+    "no_population_or_halo_mass_function_claim": true,
+    "no_M200c_or_mass_history_claim": true
+  },
+  "resource_limits": {
+    "process_virtual_memory_bytes": 6442450944,
+    "expected_uncompressed_id_bytes": 93413496,
+    "expected_uncompressed_N_bytes": 46706748,
+    "max_declared_total_two_arrays_bytes": 268435456,
+    "read_sequentially_only_two_named_columns": true,
+    "read_only_existing_local_one_file": true,
+    "never_load_subsamples_or_cleaned": true,
+    "never_call_CompaSOHaloCatalog": true,
+    "no_repeated_full_checksum_scan": true
+  },
+  "test_before_actual": {
+    "source_only_Git_pins": true,
+    "script_syntax_and_repo_integrity_CI": true,
+    "synthetic_two_column_happy_path": true,
+    "negative_wrong_row_count": true,
+    "negative_wrong_dtype": true,
+    "negative_wrong_source_index": true,
+    "negative_b6_report_hash_drift": true,
+    "negative_mass_reference_drift": true,
+    "negative_extra_binary_column_access": true,
+    "negative_output_existing": true,
+    "manual_review_then_user_local_actual_run_only": true
+  },
+  "fail_closed_if": [
+    "audit_branch_or_pinned_source_drift",
+    "local_B6_report_SHA256_or_field_descriptor_drift",
+    "file_path_size_or_manifest_hash_drift",
+    "official_decoder_blob_drift_or_Blosc_registration_failure",
+    "memory_limit_cannot_be_applied",
+    "unexpected_N_or_id_shape_dtype_or_block",
+    "attempt_to_open_SO_radius_or_any_other_real_column",
+    "nonfinite_or_wrong_ParticleMassHMsun",
+    "local_output_file_exists",
+    "any_binary_data_value_read_before_verified_prereg_and_synthetic_CI"
+  ],
+  "absolute_STOP": {
+    "no_200critical_M200c_from_L1_N": true,
+    "no_mass_vs_scale_factor_or_merger_history_from_one_snapshot": true,
+    "no_SO_radius_profile_or_particle_PID_RV_access": true,
+    "no_new_real_data_transfer": true,
+    "no_physical_original_E8_Fplus_Fminus_neutrino_wake_or_real_galaxy_B_claim": true,
+    "no_observed_eBOSS_galaxies_or_24D_odd_unseal": true,
+    "no_detection_significance_or_new_science_cuts_seeds_tuning": true,
+    "no_F0_Fplus_Fminus_E8_E16_48k_revisions": true,
+    "no_main_commit_or_PR_merge": true
+  },
+  "next_after_B7": "Review original user-local ID/N and L1-only engineering QA. Separate prospectively preregistered physical profile/data availability decision is needed before M200c(a), assembly history, neutrino wake or galaxy bispectrum."
+}

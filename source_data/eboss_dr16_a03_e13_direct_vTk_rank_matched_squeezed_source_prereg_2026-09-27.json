@@ -1,0 +1,101 @@
+{
+  "date": "2026-09-27",
+  "status": "PROSPECTIVELY_REGISTERED_AFTER_COMPLETED_E12_NUMERIC_AND_RETROSPECTIVE_E12b_FILTER_ERRATUM_BEFORE_ANY_NEW_E13_CLASS_OR_GAMMA_RESULTS",
+  "study": "E13 physical-rank consistency: replace E9 density-proxy R16 wind by separately evolved original-F± direct CLASS vTk R16 wind at z=.945,.95,.955, recompute Gaussian Gamma_ell in EXACT same direct filtered rank as corrected E12b P_delta_cb,r; multiply only as a strictly labeled Newtonian-gauge fixed-short-k unit-bias Gaussian-local squeezed source. No eBOSS observational bispectrum/likelihood.",
+  "original_parents": {
+    "E8_archive_4000q_csv_sha256": "bf8f48deb9514c5101d5ce314bfbd397485102a5487da1039f141e3cad6143d0",
+    "E9_archive_full_three_CLASS_sha256": "450b35f68a329f545f21bbe7ec02e36941e4c303037ccb7c011830c315d15890",
+    "E11_archive_Gamma_sha256": "cade0959c112ca57e9cd5fd4433a49cbec3be0b74eb1f0a1d6eab9350a756ebd",
+    "E12_archive_manifest_git_blob": "6022a4df6b7f54a4f01bf007d200897769cef680",
+    "E12_FD_report_sha256": "b1c679e8ccdf2e901abbb2ffc200cfcce765bf8ee9492364a280625835d42414",
+    "E12_Fplus_report_sha256": "aedaf4381065ba807adced01b7740ade91db5a83d49113315e7a596ac2652655",
+    "E12_Fminus_report_sha256": "4a12370b578a5482b67cd3d484504bf672396df35d8c252ff5d1150875b04777",
+    "E12b_original_W_filter_erratum_git_blob": "09bac4f72e325578cbed7e790c50114150087e89",
+    "original_E12_script_git_blob": "0f516a1525fc5df44e71c400ea0cfb30664a1ce5",
+    "original_E9_velocity_source_git_blob": "473e6d9b5941d8f67d1ecc1f5f170124d9ef8ea2",
+    "original_CLASS_commit": "e85808324f51fc694d12e3ed7439552a3c3f9540"
+  },
+  "fixed_inputs": {
+    "neutrino_mass_eV": 0.06,
+    "z_match": 1100,
+    "deformation_cap": 0.3,
+    "unchanged_original_F7_source_direction": true,
+    "short_k_COMOVING_h_Mpc": 0.05,
+    "long_K_COMOVING_h_Mpc": [
+      0.001,
+      0.002,
+      0.003,
+      0.005
+    ],
+    "math_midpoint_z_not_survey_z_eff": 0.95,
+    "source_phase_z_nodes": [
+      0.945,
+      0.95,
+      0.955
+    ],
+    "source_phase_center_z_fd_step": 0.005,
+    "velocity_K_GRID": "np.geomspace(1e-4,0.15,180) exact E9/E12",
+    "R16_filter_comoving_Mpc_over_h": 16,
+    "original_velocity_integration_upper_k_h_Mpc": 0.1,
+    "original_CLASS_params_except_psd_output_path": "E9 original newtonian mPk,dTk,vTk, original cosmological params, original CLASS pinned commit, no integration tolerance retune",
+    "physical_short_Pcb": "classy.cosmo.pk_cb_lin(kshort*h,z=.95), Mpc^3 per separately evolved F state"
+  },
+  "exact_direct_wind_phase": {
+    "direct_vLOS_sigma_R16_z": "sqrt(1/3 integral_1e-4^0.1 dlnk |c theta_ncdm-cdm/K|² primordial_DeltaR² W(K R16)²); theta=t_ncdm[0]-t_cdm from CLASS vTk. Preserve each state own direct sigma at all three z, coherent common standardized Gaussian rank r.",
+    "E9_exact_occupancy_preserving_rescale": "alpha_direct_aligned_s(z) = alpha_original_E9_s(z)*[sigma_direct_s(z)/sigma_E9_density_proxy_s(z)]*[f_s(q_direct)/f_s(q_proxy)], q=mnu*sigma/(c*Tnu0*(1+z)); original frozen E8 4000q interpolation and exact FD first Eq20 only.",
+    "angular_Gamma": "For original E10 EqA8, phi_s(z,mu,r)=alpha_direct_aligned_s(z)*r*mu*[f_s(q_direct(z)*abs(r*mu))/f_s(q_direct(z))]; T_ell=(2ell+1)/2 int_-1^1 P_ell(mu) mu²[-(1+z)d(phi)/dz] dmu; Gamma_direct_ell=E_r[r*T_ell(r)].",
+    "Gaussian_rank_same_all_F_and_z": true,
+    "standardized_rank_r_distribution": "N(0,1)",
+    "angular_GL_nodes": [
+      256,
+      512
+    ],
+    "rank_GH_nodes": [
+      48,
+      96
+    ],
+    "Stein_rank_step_sizes": [
+      0.002,
+      0.001
+    ],
+    "odd_ells": [
+      1,
+      3
+    ]
+  },
+  "corrected_long_cross": {
+    "raw_E12_per_state": "P_(delta_cb,r_direct_raw)_over_i_mu(K) = (2pi²/K³) DeltaR²(K) delta_cb_NEWTONIAN(K) c theta_rel(K)/(K sigma_LOS_direct)",
+    "mandatory_E12b_filter": "P_(delta_cb,r_direct_R16)_over_i_mu(K) = W_R16(K) * E12 raw P_delta_cb,r_direct(K); if E13 sigma differs numerically from E12 original sigma, also multiply sigma_E12/sigma_E13 so same direct rank is used.",
+    "independent_CLASS_center_K_validation": "Fresh E13 center t_ncdm-t_cdm and Newtonian delta_cb at all four locked K must match original E12 source to tolerance predeclared as technical 0.1%, else NO modeled long-short product.",
+    "P_long_units": "Mpc^3 for coefficient of +i mu_L for cross <delta_cb(K) r_LOS*(K)>",
+    "source_reduced_bispectrum": "B_src_ell/(i mu_long Delta_b) = Gamma_direct_ell(kshort,z)*P_cb_short_CLASS(kshort,z)*P_delta_cb,r_direct_R16_over_i_mu(K,z), units Mpc^6. This is restricted Gaussian local velocity-conditioned EqA8 source in Newtonian gauge, not full galaxy bispectrum or eBOSS prediction.",
+    "short_cb_P_units": "Mpc^3",
+    "r_is_smoothed_direct_LOS_not_unfiltered_theta": true
+  },
+  "prospective_engineering_QA_only": {
+    "original_E12_center_sigma_relative_tolerance": 0.001,
+    "original_E12_center_direct_theta_deltaCB_perK_relative_tolerance": 0.001,
+    "max_GL256_512_relative_gap": 0.0001,
+    "max_GH48_96_relative_gap": 0.03,
+    "max_Stein_step_Gaussian_identity_relative_gap": 0.02,
+    "mean_intrinsic_unweighted_odd_absolute_tol": 5e-14,
+    "E13_vs_old_E11_Gamma_no_physical_threshold": true,
+    "STOP_if_failed_no_science_parameter_retuning": true
+  },
+  "physical_limits": {
+    "theory_scope": "Locally coherent Gaussian scalar rank and exact EqA8 dipole/octupole short mode, no vector transverse short-long coupling, no full Vlasov halo retardation, no selection-conditioned velocity/hod calibration.",
+    "P_cb_NEWTONIAN_gauge_label_required": true,
+    "E12_metric_phi_prime_unavailable": true,
+    "actual_b_LRG_minus_b_ELG_NOT_calibrated": true,
+    "no_real_eBOSS_short_long_triangles_integral": true,
+    "no_real_eBOSS_LRG_ELG_HOD_magnification_evolution_bias": true,
+    "no_validated_eBOSS_triplet_window_or_covariance": true,
+    "existing_unconditional_24D_odd_mean_unchanged": true,
+    "observed_galaxy_random_odd_sealed": true,
+    "no_new_catalogue_mock_download": true,
+    "no_new_science_seeds_or_cuts": true,
+    "original_E8_to_E12_outputs_not_mutated": true,
+    "main_unchanged": true,
+    "PR_remains_draft": true
+  }
+}

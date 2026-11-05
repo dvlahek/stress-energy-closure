@@ -1,0 +1,58 @@
+{
+  "date": "2026-09-28",
+  "status": "E17D2B3B3R1_ERRATUM_ORIGINAL_35_COUNTS_ARE_UNFILTERED_DIRECTORY_ENTRIES_REAL_ASDF_COUNT_UNVERIFIED",
+  "prospective_corrective_protocol_git_blob": "534142340197c34160cb970a53cc86d8f7bcf57c",
+  "preserved_old_report_sha256": "39b83642737da1f29e71aade85a2ed7d854dbdb3ff02582b7f1d61d5d92cf340",
+  "preserved_old_manifest_git_blob": "4fae0b9418e65e6dba823e22f35fc5d5a9749824",
+  "original_run_id": 36451864487,
+  "upstream_portal_source_commit": "f877298344a6988d55f57a7c39f5be14dce63ff3",
+  "upstream_manifest_git_blob": "cb235ad72ab2516f872bd4ca79b9447a3f4b30e3",
+  "upstream_builder_git_blob": "88dc7c198c1332d2a0204bb0d3c698fd1dcf28a5",
+  "source_code_proven_directory_entry_semantics": {
+    "source_builder_AST_listcomp_uses_direct_fpath_iterdir_without_extension_filter": true,
+    "source_builder_AST_nfile_is_len_all_directory_entries": true,
+    "source_builder_AST_directory_total_bytes_includes_all_entry_sizes": true
+  },
+  "products_CORRECTED_as_directory_entries_NOT_ASDF_file_counts": {
+    "halo_info": {
+      "directory_entry_count_in_archived_source_snapshot_NOT_verified_ASDF_file_count": 35,
+      "directory_total_bytes_including_any_auxiliary_entries": 75722740486,
+      "actual_XX_ASDF_superslab_count": null,
+      "individual_superslab_names_sizes_and_GNU_POSIX_cksum": null,
+      "live_Globus_provider_listing_verified": false
+    },
+    "halo_pid_A": {
+      "directory_entry_count_in_archived_source_snapshot_NOT_verified_ASDF_file_count": 35,
+      "directory_total_bytes_including_any_auxiliary_entries": 7933832501,
+      "actual_XX_ASDF_superslab_count": null,
+      "individual_superslab_names_sizes_and_GNU_POSIX_cksum": null,
+      "live_Globus_provider_listing_verified": false
+    },
+    "cleaned_halo_info": {
+      "directory_entry_count_in_archived_source_snapshot_NOT_verified_ASDF_file_count": 35,
+      "directory_total_bytes_including_any_auxiliary_entries": 18363791798,
+      "actual_XX_ASDF_superslab_count": null,
+      "individual_superslab_names_sizes_and_GNU_POSIX_cksum": null,
+      "live_Globus_provider_listing_verified": false
+    },
+    "cleaned_rvpid": {
+      "directory_entry_count_in_archived_source_snapshot_NOT_verified_ASDF_file_count": 35,
+      "directory_total_bytes_including_any_auxiliary_entries": 488961946,
+      "actual_XX_ASDF_superslab_count": null,
+      "individual_superslab_names_sizes_and_GNU_POSIX_cksum": null,
+      "live_Globus_provider_listing_verified": false
+    }
+  },
+  "specific_real_ASDF_halo_info_file_count": null,
+  "official_checksums_crc32_present_in_each_product_directory_per_docs_not_individually_verified": true,
+  "no_claim_35_or_34_real_ASDFs_without_live_listing": true,
+  "synthetic_extension_filter_tamper_rejected": true,
+  "synthetic_35_to_34_source_count_tamper_rejected": true,
+  "original_immutable_source_report_and_manifest_preserved": true,
+  "external_real_Globus_directory_listing_or_ASDF_header_opened": false,
+  "actual_real_halo_file_or_merger_tree_downloaded": false,
+  "real_M200c_same_halo_mass_history_verified": false,
+  "full_physical_finiteK_galaxy_bispectrum": "BLOCKED",
+  "observed_odd_SEALED": true,
+  "main_untouched_PR_draft": true
+}

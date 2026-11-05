@@ -1,0 +1,102 @@
+name: eBOSS DR16 A03E17D2b2 Abacus c000 official provenance bridge without halo data
+on:
+  push:
+    branches:
+      - audit/eboss-elg-bit8-ra-orientation-20260925
+    paths:
+      - 'scripts/audit_eboss_dr16_a03_e17d2b2_abacus_c000_metadata_bridge.py'
+      - 'scripts/audit_eboss_dr16_a03_e17d2b2_independent_c000_metadata_replay.py'
+      - '.github/workflows/eboss_dr16_a03_e17d2b2_abacus_c000_provenance.yml'
+permissions:
+  contents: write
+jobs:
+  source-only-actual-z-SO-mean-neutrino-wake-stops:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    env:
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: SHA preflight immutable E8 E16 E17A E17D2b1 and frozen original CLASS source
+        run: |
+          python -m py_compile scripts/audit_eboss_dr16_a03_e17d2b2_abacus_c000_metadata_bridge.py scripts/audit_eboss_dr16_a03_e17d2b2_independent_c000_metadata_replay.py
+          python -u scripts/audit_eboss_dr16_a03_e17d2b2_abacus_c000_metadata_bridge.py --self-test
+          python -u scripts/audit_eboss_dr16_a03_e17d2b2_independent_c000_metadata_replay.py --self-test
+      - name: Original documented Abacus c000 six nominal matches but As tau mass and smooth neutrino STOP
+        run: |
+          python -u scripts/audit_eboss_dr16_a03_e17d2b2_abacus_c000_metadata_bridge.py \
+            --output-dir eboss_workspace/a03_physics_source/e17d2b2_c000_metadata
+      - name: Independent stdlib AST Decimal provenance and negative tampered source SHA control
+        run: |
+          python -u scripts/audit_eboss_dr16_a03_e17d2b2_independent_c000_metadata_replay.py \
+            --negative-control --output-dir eboss_workspace/a03_physics_source/e17d2b2_c000_metadata
+          python -u scripts/audit_eboss_dr16_a03_e17d2b2_independent_c000_metadata_replay.py \
+            --output-dir eboss_workspace/a03_physics_source/e17d2b2_c000_metadata
+      - name: Permanently archive tiny original and independent provenance outputs on audit ONLY
+        run: |
+          set -eu
+          src=eboss_workspace/a03_physics_source/e17d2b2_c000_metadata
+          dest=source_data/eboss_dr16_a03_e17d2b2_archived_CI_2026_09_28
+          test -s "$src/e17d2b2_original_abacus_c000_documented_metadata_bridge.json"
+          test -s "$src/e17d2b2_independent_ast_decimal_c000_metadata_replay.json"
+          mkdir -p "$dest"
+          cp "$src"/*.json "$dest/"
+          python - <<'PY'
+          import hashlib,json,os,pathlib
+          d=pathlib.Path("source_data/eboss_dr16_a03_e17d2b2_archived_CI_2026_09_28")
+          expected=["e17d2b2_original_abacus_c000_documented_metadata_bridge.json",
+                    "e17d2b2_independent_ast_decimal_c000_metadata_replay.json"]
+          assert sorted(p.name for p in d.glob("*.json"))==sorted(expected)
+          files=[]
+          for name in sorted(expected):
+              raw=(d/name).read_bytes();j=json.loads(raw)
+              assert len(raw)>1000 and j["observed_odd_SEALED"] is True
+              assert j["full_physical_finiteK_galaxy_bispectrum"]=="BLOCKED"
+              files.append({"file":name,"size_bytes":len(raw),
+                            "sha256":hashlib.sha256(raw).hexdigest()})
+          o=json.loads((d/expected[0]).read_bytes())
+          i=json.loads((d/expected[1]).read_bytes())
+          assert o["nominal_six_matches"]==6
+          assert o["real_ASDF_header_or_halo_or_merger_tree_loaded"] is False
+          assert o["CompaSO_L1_SO_mean_epoch_header_NOT_M200c"] is True
+          assert o["c000_secondary_directory_z095_NOT_verified_ASDF_header_z"] is True
+          assert o["independently_simulated_Fplus_Fminus_wake"] is False
+          assert i["true_ABACUS_ASDF_header_z_and_halo_mass_unread"] is True
+          assert i["original_Fplus_Fminus_nonlinear_neutrino_halo_response_NOT_simulated"] is True
+          assert i["original_source_only_report_sha256"]==files[1]["sha256"]
+          manifest={"date":"2026-09-28","CI_run_id":os.environ.get("GITHUB_RUN_ID"),
+                    "prospective_E17D2b2_protocol_git_blob":"c1079b666fa8b91af42a8191dbddf56966ea3221",
+                    "original_E17D2b1_joint_sha256":"19cfd3e3a9382d07b4a978522e437780b79467dcbf8f8adcf45d3804b46ad3b9",
+                    "official_public_DOCUMENTATION_only_no_real_header_or_catalogue":True,
+                    "nominal_Abacus_c000_six_params_match_but_As_tau_differ":True,
+                    "secondary_z_exact_and_200critical_mass_and_nonlinear_neutrino_UNVERIFIED":True,
+                    "original_Fplus_Fminus_no_Abacus_nonlinear_wake":True,
+                    "full_physical_halo_tracer_bispectrum":"BLOCKED",
+                    "observed_odd_SEALED":True,"no_new_CLASS_FITS_mock_ASDF_catalogue":True,
+                    "main_untouched":True,"PR_remains_draft":True,"files":files}
+          (d/"archive_manifest.json").write_text(json.dumps(manifest,indent=2)+"\n")
+          for f in files:print("E17D2B2_ORIGINAL_INDEPENDENT_DOCUMENTATION_ONLY_ARCHIVE",f["file"],f["sha256"],flush=True)
+          PY
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "$dest"
+          if git diff --cached --quiet; then
+            echo E17D2B2_ALREADY_ARCHIVED
+          else
+            git commit -m "archive(E17D2b2): Abacus c000 public metadata provenance matched nominal CLASS with hard mass/neutrino/actual-z STOP"
+            git push origin HEAD:refs/heads/audit/eboss-elg-bit8-ra-orientation-20260925
+          fi
+          echo E17D2B2_DOCS_ONLY_ORIGINAL_INDEPENDENT_PERMANENT_ON_AUDIT_NO_HALO_DATA
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: eboss-a03-e17d2b2-Abacus-c000-public-documentation-only-NO-ASDF
+          path: eboss_workspace/a03_physics_source/e17d2b2_c000_metadata/*.json
+          if-no-files-found: warn
+          retention-days: 30

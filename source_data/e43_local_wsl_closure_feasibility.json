@@ -1,0 +1,17 @@
+{
+  "absolute_total_sign_budget": 1.2599552446650349e-05,
+  "current_bounded_terms": {
+    "Born": false,
+    "history": false,
+    "incoming": false,
+    "profile": false,
+    "tracer_chi": false
+  },
+  "equal_eight_term_budget": 1.5749440558312936e-06,
+  "equal_four_category_pair_budget": 3.149888111662587e-06,
+  "observed_odd_remains_SEALED": true,
+  "percent_of_abs_FD": 0.6242009713736083,
+  "recommended_next_gate": "small same-object multi-epoch dynamical summary; no whole-column ASDF scan",
+  "stage": "E43_LOCAL_WSL_CLOSURE_FEASIBILITY",
+  "status": "PASS_NO_PHYSICAL_SIGN_CERTIFICATE"
+}

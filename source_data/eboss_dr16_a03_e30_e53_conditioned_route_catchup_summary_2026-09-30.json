@@ -1,0 +1,381 @@
+{
+  "E29_local": {
+    "all_source_mappings_and_arithmetic_checks_pass": true,
+    "displacement_comoving_hinv_mpc_max": 0.36550549909516905,
+    "displacement_comoving_hinv_mpc_median": 0.23110637833994851,
+    "displacement_comoving_hinv_mpc_min": 0.13845236528305602,
+    "finite_difference_centre_speed_proxy_km_s_max": 865.8816064706276,
+    "finite_difference_centre_speed_proxy_km_s_median": 547.4904280181545,
+    "global_progenitor_certified": 0,
+    "median_late_PID_overlap": 0.9090909090909091,
+    "median_relative_N_change": 0.030907859009039067,
+    "min_shared_PIDs": 5,
+    "pairs": 20,
+    "spatial_radius_000_pairs": 3,
+    "window_100k_pairs": 17
+  },
+  "E45": {
+    "cap_summary": {
+      "NGC": {
+        "baseline_MAD": 0.024729452308027682,
+        "baseline_mean": 0.007131044594958133,
+        "baseline_median": -0.006145577953705385,
+        "baseline_sample_sd": 0.09494840136069545,
+        "injected_abs_amplitude": 0.02,
+        "injection_to_baseline_scatter_ratio": 0.21064072394460703,
+        "max_abs_minus_shift_error": 6.591949208711867e-17,
+        "max_abs_plus_shift_error": 4.5102810375396984e-17,
+        "mean_centered_minus_negative_fraction": 0.6666666666666666,
+        "mean_centered_plus_positive_fraction": 0.5555555555555556,
+        "n": 9,
+        "raw_minus_negative_fraction": 0.6666666666666666,
+        "raw_plus_positive_fraction": 0.5555555555555556
+      },
+      "SGC": {
+        "baseline_MAD": 0.04281979540075062,
+        "baseline_mean": 0.0011621479671816938,
+        "baseline_median": -0.010054890245336604,
+        "baseline_sample_sd": 0.06423697377572395,
+        "injected_abs_amplitude": 0.02,
+        "injection_to_baseline_scatter_ratio": 0.3113471700866189,
+        "max_abs_minus_shift_error": 5.204170427930421e-17,
+        "max_abs_plus_shift_error": 5.204170427930421e-17,
+        "mean_centered_minus_negative_fraction": 0.5555555555555556,
+        "mean_centered_plus_positive_fraction": 0.5555555555555556,
+        "n": 9,
+        "raw_minus_negative_fraction": 0.5555555555555556,
+        "raw_plus_positive_fraction": 0.6666666666666666
+      }
+    },
+    "status": "PASS_DESCRIPTIVE_NOT_PHYSICAL_WAKE_NOT_INFERENCE"
+  },
+  "E46": {
+    "science_decision": {
+      "can_now_compare_E28_delta_a_directly_to_A_0p02": false,
+      "can_now_quote_A_EV_physical": false,
+      "next_shortest_path": "construct one prospective physical 12D y_phys from an explicitly frozen response model, then compute A_phys by the exact E45 projection above",
+      "observed_odd_remains_sealed": true,
+      "two_routes": [
+        "unconditioned 2pt: requires physical wind-sign-averaged LRG/ELG response and absolute xi_L(s,z)",
+        "velocity-conditioned route: requires external/reconstructed neutrino-CDM direction and its own conditioned window/mock validation"
+      ]
+    },
+    "status": "PHYSICAL_SCALAR_AMPLITUDE_NOT_IDENTIFIED; EXACT_REQUIRED_BRIDGE_DEFINED"
+  },
+  "E47R1": {
+    "cap_summary": {
+      "NGC": {
+        "actual_discrete_g0_83pct_recovery": 0.8333333333333334,
+        "actual_discrete_g0_94pct_recovery": null,
+        "actual_discrete_g2_83pct_recovery": 0.8333333333333334,
+        "actual_discrete_g2_94pct_recovery": null,
+        "alpha_g0_median": 7.513442805061017e-08,
+        "alpha_g0_minmax": [
+          5.076764453533445e-08,
+          8.611092211641972e-08
+        ],
+        "beta_g2_median": 4.392176191524925e-08,
+        "beta_g2_minmax": [
+          2.9787148759610873e-08,
+          5.0981047611154226e-08
+        ],
+        "n": 9,
+        "required_abs_g0_for_83pct_symmetric_sign_recovery": 554625.7129579105,
+        "required_abs_g0_for_94pct_symmetric_sign_recovery": null,
+        "required_abs_g2_for_83pct_symmetric_sign_recovery": 961612.2783836658,
+        "required_abs_g2_for_94pct_symmetric_sign_recovery": null
+      },
+      "SGC": {
+        "actual_discrete_g0_83pct_recovery": 0.8333333333333334,
+        "actual_discrete_g0_94pct_recovery": 0.9444444444444444,
+        "actual_discrete_g2_83pct_recovery": null,
+        "actual_discrete_g2_94pct_recovery": null,
+        "alpha_g0_median": 7.054603742704469e-08,
+        "alpha_g0_minmax": [
+          6.0659296960091e-08,
+          9.204103356425445e-08
+        ],
+        "beta_g2_median": 4.306758637673853e-08,
+        "beta_g2_minmax": [
+          3.682654081952597e-08,
+          5.577481734992675e-08
+        ],
+        "n": 9,
+        "required_abs_g0_for_83pct_symmetric_sign_recovery": 664507.6729077792,
+        "required_abs_g0_for_94pct_symmetric_sign_recovery": 988553.0946569411,
+        "required_abs_g2_for_83pct_symmetric_sign_recovery": null,
+        "required_abs_g2_for_94pct_symmetric_sign_recovery": null
+      }
+    },
+    "replay": {
+      "Fminus_E21_at_four_K": [
+        4297706.359606009,
+        11550362.01464318,
+        19824645.207705196,
+        33268689.17565132
+      ],
+      "Fplus_E21_at_four_K": [
+        4328422.243894629,
+        11606037.77723264,
+        19862015.36534048,
+        33329438.92110237
+      ],
+      "max_relative_gap_Fminus": 3.359275995630492e-16,
+      "max_relative_gap_Fplus": 3.2097864662906314e-16
+    },
+    "status": "PASS_PARAMETERIZED_PHYSICAL_RESPONSE_BASIS_NOT_CALIBRATED_GALAXY_MODEL"
+  },
+  "E48": {
+    "decision": {
+      "absolute_universal_no_go_claim": false,
+      "observed_odd_remains_sealed": true,
+      "reason": "The response D required to overcome the nine-mock E45 background makes d_a*(v_rel/c) tens to hundreds at one sigma in the reference geometry.",
+      "recommended_next_route": "velocity-conditioned E19-style estimator, while retaining E47 as a documented negative result for the original unconditioned linear channel",
+      "restricted_linear_unconditioned_channel_with_order_unity_tracer_geometry": "PRACTICALLY_SELF_INCONSISTENT_AT_E45_SENSITIVITY"
+    },
+    "reference_geometry": {
+      "b_E": 1.0,
+      "b_L": 2.0,
+      "calibrated_high_z_eBOSS_bias_model": false,
+      "cap_results": {
+        "NGC": {
+          "100pct": {
+            "one_sigma_linear_response_amplitude_D_sigma_over_c": 249.17471044585633,
+            "optimal_unit_direction_dL_dE": [
+              1.0,
+              -1.0
+            ],
+            "required_D_max_abs_d": 549827.4880501729,
+            "symmetric_recovery_fraction": 1.0
+          },
+          "83pct": {
+            "one_sigma_linear_response_amplitude_D_sigma_over_c": 60.49760006907016,
+            "optimal_unit_direction_dL_dE": [
+              1.0,
+              -1.0
+            ],
+            "required_D_max_abs_d": 133493.6576008128,
+            "symmetric_recovery_fraction": 0.8333333333333333
+          },
+          "94pct": {
+            "one_sigma_linear_response_amplitude_D_sigma_over_c": 243.76922132936838,
+            "optimal_unit_direction_dL_dE": [
+              1.0,
+              -1.0
+            ],
+            "required_D_max_abs_d": 537899.7667445755,
+            "symmetric_recovery_fraction": 0.9444444444444444
+          }
+        },
+        "SGC": {
+          "100pct": {
+            "one_sigma_linear_response_amplitude_D_sigma_over_c": 167.79416113395482,
+            "optimal_unit_direction_dL_dE": [
+              1.0,
+              -1.0
+            ],
+            "required_D_max_abs_d": 370253.6343302593,
+            "symmetric_recovery_fraction": 1.0
+          },
+          "83pct": {
+            "one_sigma_linear_response_amplitude_D_sigma_over_c": 71.43550113933617,
+            "optimal_unit_direction_dL_dE": [
+              1.0,
+              -1.0
+            ],
+            "required_D_max_abs_d": 157629.16741737758,
+            "symmetric_recovery_fraction": 0.8333333333333333
+          },
+          "94pct": {
+            "one_sigma_linear_response_amplitude_D_sigma_over_c": 106.27650529581997,
+            "optimal_unit_direction_dL_dE": [
+              1.0,
+              -1.0
+            ],
+            "required_D_max_abs_d": 234509.1275153655,
+            "symmetric_recovery_fraction": 0.9444444444444444
+          }
+        }
+      },
+      "growth_f": 1.0,
+      "optimized_over": "all response directions with max(|d_L|,|d_E|)=D",
+      "purpose": "Order-unity reference only. Values are not asserted as measured eBOSS LRG/ELG biases."
+    },
+    "status": "REFERENCE_ORDER_UNITY_TRACER_GEOMETRY_FAILS_LINEAR_PERTURBATIVITY_BY_ORDERS_OF_MAGNITUDE"
+  },
+  "E49": {
+    "status": "PASS_SOURCE_ONLY_ALIGNMENT_SCREEN",
+    "summary": {
+      "interpretation_gate": {
+        "intermediate": "0.4 <= min |r_rel,b| < 0.7 -> conditioned route possible but tag noise is a major loss",
+        "strong": "min |r_rel,b| >= 0.7 -> external baryon velocity is a promising direction tag; proceed to conditioned estimator mock design",
+        "weak": "min |r_rel,b| < 0.4 -> baryon/kSZ sign tag is a poor proxy; do not build survey estimator around it"
+      },
+      "max_abs_r_rel_baryon_across_F_states": 0.922131858933702,
+      "median_abs_ideal_sign_factor_across_F_states": 0.7467196338052317,
+      "median_abs_r_rel_baryon_across_F_states": 0.921895389921887,
+      "min_abs_ideal_sign_factor_across_F_states": 0.7463186174018767,
+      "min_abs_r_rel_baryon_across_F_states": 0.9216511534354308
+    }
+  },
+  "E50": {
+    "E19_Fourier_vectors": {
+      "Fminus": [
+        0.0003147616400323981,
+        0.00021061456076441418
+      ],
+      "Fplus": [
+        0.00022278876746842203,
+        0.00014150296987877026
+      ],
+      "T3_over_T1_minus": 0.6691239782037476,
+      "T3_over_T1_plus": 0.6351440940523486,
+      "absolute_vector_difference_norm": 0.00011504530100101439,
+      "angle_deg": 1.3659989658738938,
+      "angle_rad": 0.023841179533337108,
+      "difference_over_mean_norm": 0.358031919493895,
+      "difference_over_plus_norm": 0.4358967357669079,
+      "ratio_fractional_difference_relative_plus": 0.05349948849339114,
+      "sin_angle": 0.023838921035799564,
+      "vector_norm_minus": 0.0003787260002189869,
+      "vector_norm_plus": 0.00026392787915377713
+    },
+    "interpretation": {
+      "amplitude_calibrated": "If conditional amplitude is independently fixed (bias/Pcb/tag normalization), the F+/F- vector difference is ~43.6% of the F+ norm. A 3-sigma pair discrimination needs only order 7 tagged-signal SNR before tag dilution, ~13 underlying conditional SNR for r_rec=0.8.",
+      "amplitude_free": "If an arbitrary overall amplitude is marginalized, only the ~1.366 degree shape rotation remains. Then 3-sigma shape-only discrimination needs tagged SNR ~126 and ~238 underlying conditional SNR for r_rec=0.8.",
+      "survey_decision": "Proceed to a conditioned mock estimator, but pre-register two inference modes: amplitude-calibrated and amplitude-free shape-only. Do not mix them post hoc."
+    },
+    "status": "CONDITIONED_ROUTE_RETAINS_FINGERPRINT; AMPLITUDE_CALIBRATION_IS_DECISIVE"
+  },
+  "E51": {
+    "geometry": {
+      "NGC": {
+        "angle_max": 0.02465115249218731,
+        "angle_median": 0.021788663786328977,
+        "angle_min": 0.019001560000781115
+      },
+      "SGC": {
+        "angle_max": 0.0295899317672937,
+        "angle_median": 0.0234451542149123,
+        "angle_min": 0.021782228304988847
+      }
+    },
+    "observed_odd_used": false,
+    "status": "PASS_MOCK_ONLY_CONDITIONED_ESTIMATOR_BACKGROUND_AND_E19_INJECTION_BASIS"
+  },
+  "E52": {
+    "amplitude_calibrated_83pct_thresholds": {
+      "NGC": {
+        "A": 0.4991413018128023,
+        "B": 0.4136884049780697,
+        "C": 0.38074859390721155,
+        "D": 0.3348138386012631
+      },
+      "SGC": {
+        "A": 0.09410034341497582,
+        "B": 0.09326148058926043,
+        "C": 0.27560569931038115,
+        "D": 0.21142916269043857
+      }
+    },
+    "interpretation": {
+      "E49_rrec0p8_note": "Dividing thresholds by the E49 sign-retention factor is only an optimistic signal-only degradation. A real reconstructed velocity field can also change the estimator background and must eventually be tested directly.",
+      "fingerprint_window_survival": "The post-window F+/F- angle remains close to the E19 source angle in both caps; the relative amplitude separation also stays near 43.5%.",
+      "next": "Do not unblind. Next test should scale the exact same marked estimator to full eligible mock galaxies and denser frozen randoms to determine how much of the E51/E52 background is subsampling shot noise.",
+      "shape_only": "The shape-only residual is much smaller than the amplitude difference and therefore has multi-unit background thresholds; this confirms the E50 warning that shape-only inference is much harder.",
+      "small_sample_background": "With only the A02 600D/1200R subsamples, the amplitude-calibrated F-state difference coordinate has descriptive 83% thresholds from ~0.33-0.50 in NGC and ~0.09-0.28 in SGC depending on the fixed synthetic tag field."
+    },
+    "status": "PASS_FINGERPRINT_SURVIVES_WINDOW;_600D1200R_BACKGROUND_LIMITS_SMALL_LAMBDA"
+  },
+  "E53_stage1": {
+    "observed_odd_used": false,
+    "status": "PASS_FULLD_4800_CONDITIONED_SAMPLE_SCALING_STAGE1",
+    "summary": {
+      "NGC": {
+        "difference_norm_over_plus_norm": 0.43433173593929536,
+        "full_eligible_rows": {
+          "eBOSS_ELG_dat": 17149,
+          "eBOSS_ELG_ran": 522515,
+          "eBOSS_LRG_dat": 7537,
+          "eBOSS_LRG_ran": 163089
+        },
+        "postwindow_angle_rad": 0.024985552118889406,
+        "tag_fields": {
+          "A": {
+            "baseline_L2_abs_ratio_fullD4800_over_600D1200R": 0.08209787910429359,
+            "calibrated_diff_abs_ratio": 0.029050022254562293,
+            "calibrated_diff_fullD4800": 0.02186912116072911,
+            "calibrated_diff_small": 0.7528091018000709
+          },
+          "B": {
+            "baseline_L2_abs_ratio_fullD4800_over_600D1200R": 0.07004690618069227,
+            "calibrated_diff_abs_ratio": 0.03670800943590569,
+            "calibrated_diff_fullD4800": -0.013476495747628396,
+            "calibrated_diff_small": 0.3671268465580826
+          },
+          "C": {
+            "baseline_L2_abs_ratio_fullD4800_over_600D1200R": 0.11558335225960796,
+            "calibrated_diff_abs_ratio": 0.19615156790195595,
+            "calibrated_diff_fullD4800": -0.06250765577352473,
+            "calibrated_diff_small": 0.31867018164630956
+          },
+          "D": {
+            "baseline_L2_abs_ratio_fullD4800_over_600D1200R": 0.14713220337632515,
+            "calibrated_diff_abs_ratio": 1.6832891517637638,
+            "calibrated_diff_fullD4800": -0.02826275451351211,
+            "calibrated_diff_small": -0.016790195840030317
+          }
+        }
+      },
+      "SGC": {
+        "difference_norm_over_plus_norm": 0.4348933596853224,
+        "full_eligible_rows": {
+          "eBOSS_ELG_dat": 15860,
+          "eBOSS_ELG_ran": 472662,
+          "eBOSS_LRG_dat": 4159,
+          "eBOSS_LRG_ran": 93220
+        },
+        "postwindow_angle_rad": 0.02418335819066804,
+        "tag_fields": {
+          "A": {
+            "baseline_L2_abs_ratio_fullD4800_over_600D1200R": 0.33466057739229094,
+            "calibrated_diff_abs_ratio": 0.5626211291289985,
+            "calibrated_diff_fullD4800": 0.04840295966426307,
+            "calibrated_diff_small": 0.08603118005752175
+          },
+          "B": {
+            "baseline_L2_abs_ratio_fullD4800_over_600D1200R": 0.11161916550678803,
+            "calibrated_diff_abs_ratio": 0.9113197166989614,
+            "calibrated_diff_fullD4800": 0.01742485056479124,
+            "calibrated_diff_small": -0.019120458216254348
+          },
+          "C": {
+            "baseline_L2_abs_ratio_fullD4800_over_600D1200R": 0.14027354207173034,
+            "calibrated_diff_abs_ratio": 0.22388320033409367,
+            "calibrated_diff_fullD4800": 0.061703485991924045,
+            "calibrated_diff_small": 0.27560569931038115
+          },
+          "D": {
+            "baseline_L2_abs_ratio_fullD4800_over_600D1200R": 0.08959176349411781,
+            "calibrated_diff_abs_ratio": 0.03818418485750753,
+            "calibrated_diff_fullD4800": -0.008073250232439742,
+            "calibrated_diff_small": -0.21142916269043857
+          }
+        }
+      }
+    }
+  },
+  "date": "2026-09-30",
+  "decision": {
+    "A03": "PHYSICAL_UNCERTIFIED for an absolute observed eBOSS prediction",
+    "A04": "BLOCKED for robust inference; 9 mocks do not support unrestricted 12D/24D inverse covariance",
+    "PR1": "DRAFT; DO NOT MERGE",
+    "conditioned_E19_route": "active empirical route",
+    "main": "DO NOT MODIFY",
+    "next": "E53 Stage2 full-D/48000R on mock0001 NGC+SGC; if stable, expand same frozen estimator to all 9 mocks before any observed-data access",
+    "observed_odd": "SEALED",
+    "unconditioned_linear_E21_E47": "retain as negative/limitation result; ordinary order-unity tracer response is practically self-inconsistent at E45 sensitivity"
+  },
+  "stage": "E30_E53_GITHUB_CATCHUP_SUMMARY",
+  "status": "CATCHUP_READY; E53_STAGE1_PASS; OBSERVED_ODD_SEALED"
+}

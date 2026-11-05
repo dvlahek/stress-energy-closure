@@ -1,0 +1,52 @@
+name: eBOSS DR16 A03E14 independent original E13 CLASS multi-k source replay
+on:
+  push:
+    branches:
+      - audit/eboss-elg-bit8-ra-orientation-20260925
+    paths:
+      - 'scripts/audit_eboss_dr16_a03_e14_independent_multik_product_replay.py'
+      - '.github/workflows/eboss_dr16_a03_e14_independent_multik_product_replay.yml'
+permissions:
+  contents: write
+jobs:
+  independent-original-multik:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    env:
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Strict SHA, reproduce all 72 original state/kshort/Klong/ell source products and 24 contrasts
+        run: |
+          python -m py_compile scripts/audit_eboss_dr16_a03_e14_independent_multik_product_replay.py
+          python -u scripts/audit_eboss_dr16_a03_e14_independent_multik_product_replay.py
+      - name: Permanently save independent original-source certificate on draft PR branch
+        run: |
+          set -eu
+          src=eboss_workspace/a03_physics_source/e14_independent_multik_replay.json
+          dest=source_data/eboss_dr16_a03_e14_independent_original_source_replay_2026_09_27.json
+          test -s "$src"
+          cp "$src" "$dest"
+          sha256sum "$dest"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "$dest"
+          if git diff --cached --quiet; then
+            echo E14_INDEPENDENT_CERTIFICATE_ALREADY_PERMANENT
+          else
+            git commit -m "audit(E14): independent 72 full source-only multik products and 24 frozen Fplus-minus contrast replays"
+            git push origin HEAD:refs/heads/audit/eboss-elg-bit8-ra-orientation-20260925
+          fi
+          echo E14_INDEPENDENT_REPLAY_CERTIFICATE_PERMANENT_GITHUB
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: eboss-a03-e14-independent-original-72-source-multik-products
+          path: eboss_workspace/a03_physics_source/e14_independent_multik_replay.json
+          if-no-files-found: warn
+          retention-days: 30

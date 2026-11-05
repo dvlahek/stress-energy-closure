@@ -1,0 +1,139 @@
+{
+  "absolute_EV_amplitude_calibrated": false,
+  "date": "2026-10-14",
+  "decision": {
+    "buffered_lightcone_truth_gate_pass": false,
+    "important_limit": "E63B tests snapshot-to-lightcone transfer at the frozen E62 tracer density using central halos. It does not test eBOSS angular/radial selection, ELG HOD/photometric targeting, absolute Einstein-Vlasov amplitude, or observed significance.",
+    "interpretation": "OUTERRIM_BUFFERED_LIGHTCONE_TRUTH_TRANSFER_FAIL; DO_NOT_ADD_SURVEY_MASK_OR_OBSERVED_TAG"
+  },
+  "frozen_pretruth_lock": {
+    "path": "eboss_workspace/cosmodc2/e63b_r6_final_pretruth_lock.json",
+    "sha256": "261e49cd6c7b787e5eff082fe27ff3bb61f4d1e68fef03b3aa5e5679485db919"
+  },
+  "gates": {
+    "LOS_cutoff_pearson_min": 0.9,
+    "LOS_cutoff_sign_agreement_min": 0.9,
+    "LOS_truth_pearson_min": 0.7,
+    "LOS_truth_sign_agreement_min": 0.7
+  },
+  "geometry": {
+    "center_dec_deg": -35.5,
+    "center_ra_deg": 62.5,
+    "coverage_min": 1460,
+    "median_position_radius_over_chi_Mpc": 1.000005619908463,
+    "outer_annulus_24_sector_counts": [
+      1586,
+      1764,
+      1551,
+      1695,
+      1888,
+      1790,
+      1694,
+      1691,
+      1720,
+      1630,
+      1777,
+      1970,
+      1851,
+      2144,
+      1490,
+      1547,
+      1645,
+      1505,
+      1974,
+      1727,
+      1649,
+      2213,
+      1460,
+      1492
+    ],
+    "outer_geometric_volume_Mpc_over_h_cubed": 332470717.996267,
+    "outer_radius_deg": 9.5,
+    "position_sky_direction_dot_median": 0.9999999999999931,
+    "position_sky_direction_dot_min": 0.9999999999999639,
+    "position_unit_mode": "IRSA_GCR_Mpc_to_Mpc_over_h"
+  },
+  "metrics": {
+    "LOS": {
+      "cutoff_192_vs_256_pearson": 0.9934461286000962,
+      "cutoff_192_vs_256_sign_agreement": 0.888671875,
+      "gate_pass": false,
+      "truth_pearson": 0.34498853228374005,
+      "truth_sign_agreement": 0.5703125
+    },
+    "cartesian": {
+      "x": {
+        "cutoff_192_vs_256_pearson": 0.9940088182052579,
+        "cutoff_192_vs_256_sign_agreement": 0.947265625,
+        "truth_pearson": 0.7731325873273963,
+        "truth_sign_agreement": 0.8046875
+      },
+      "y": {
+        "cutoff_192_vs_256_pearson": 0.9938642149509516,
+        "cutoff_192_vs_256_sign_agreement": 0.94921875,
+        "truth_pearson": 0.7132134833493671,
+        "truth_sign_agreement": 0.735812133072407
+      },
+      "z": {
+        "cutoff_192_vs_256_pearson": 0.9869505361120937,
+        "cutoff_192_vs_256_sign_agreement": 0.896484375,
+        "truth_pearson": -0.6751748543956078,
+        "truth_sign_agreement": 0.2622309197651663
+      }
+    },
+    "vector_cosine": {
+      "max": 0.999531047496439,
+      "mean": 0.2785979307375592,
+      "median": 0.4390434863593883,
+      "min": -0.9960353723804811
+    }
+  },
+  "observed_eBOSS_rows_used": false,
+  "observed_odd_used": false,
+  "probes": {
+    "boundary_membership_sha256": "112836101c35286f803f99954969d2512e55a746c8fbeae84839b486134b1dd6",
+    "count": 512,
+    "eligible_selected_inner_count": 1013,
+    "inner_radius_deg": 2.5,
+    "minimum_angular_boundary_distance_Mpc_over_h": 265.76800208193526,
+    "minimum_lower_radial_boundary_distance_Mpc_over_h": 293.96639584139893,
+    "minimum_upper_radial_boundary_distance_Mpc_over_h": 271.73402427568953,
+    "probe_galaxy_id_sha256": "e9414b79fa1b51cbacb345d3cad6361f0cff6b301b7f77793e5ed8263a381113",
+    "redshift_true": [
+      0.9,
+      1.0
+    ],
+    "seed": 202610630001,
+    "selected_boundary_count": 3,
+    "selected_boundary_excluded": 1,
+    "selected_boundary_inside": 2
+  },
+  "pvalue_or_detection_sigma": false,
+  "reconstruction": {
+    "check_cutoff_Mpc_over_h": 192.0,
+    "chunk": 1,
+    "primary_cutoff_Mpc_over_h": 256.0,
+    "random_subtraction_used": false,
+    "same_kernel_as_E59_E62": true,
+    "smoothing_R_Mpc_over_h": 16.0,
+    "workers": 1
+  },
+  "source": {
+    "cache": "eboss_workspace/cosmodc2/e63b_outerrim_central_candidates_R6.csv",
+    "cache_sha256": "74d0402bfb2dc87b7ba5f174fb43adb141db4dc21c7f7b1b8acc9a20eefa1f82",
+    "candidate_rows": 200493,
+    "selected_count": 54893,
+    "selected_galaxy_id_sha256": "050e96027ebe97f3b924efae2d3300022966978f302e99a935d9e39b30d1fb8f"
+  },
+  "stage": "E63B_R6_OUTERRIM_BUFFERED_LIGHTCONE_TRUTH_TRANSFER",
+  "status": "FAIL_BUFFERED_LIGHTCONE_TRUTH_TRANSFER_QUANTIFIED",
+  "tracer": {
+    "achieved_number_density_h3_Mpc3": 0.00016510626960121143,
+    "central_only": true,
+    "maximum_selected_halo_mass_Msun": 1330000000000000.0,
+    "minimum_selected_halo_mass_Msun": 13500000000000.0,
+    "selected_count": 54893,
+    "target_number_density_h3_Mpc3": 0.000165107,
+    "unit_number_weights": true
+  }
+}

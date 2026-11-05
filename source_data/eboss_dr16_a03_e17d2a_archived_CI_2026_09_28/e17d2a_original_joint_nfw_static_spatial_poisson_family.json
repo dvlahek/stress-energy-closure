@@ -1,0 +1,230 @@
+{
+  "date": "2026-09-28",
+  "status": "E17D2A_THREE_C_TWO_ALPHA_PUBLISHED_STATIC_NFW_POISSON_SPATIAL_FAMILY_ORIGINAL_DONE_PHYSICAL_HALO_TIME_AND_B_BLOCKED",
+  "prospective_protocol_git_blob": "e7e0281f0b6b205214db5faf03a7c364521b3f2c",
+  "immutable_parents": {
+    "E8_original_4000q_CSV_sha256": "bf8f48deb9514c5101d5ce314bfbd397485102a5487da1039f141e3cad6143d0",
+    "E16_original_full_sha256": "5d81f95a5571175f06eb032b865285ba34804701693f76af392be7fc31fb06db",
+    "E17D0_original_joint_sha256": "b9c8f21973755c64d8708a4ccb4d86ee56bbc12d448ffaa098b7495eb85661ae",
+    "E17D1_original_joint_sha256": "1e52880db6c60cff1fe3cc1ca0a00e553c63ca08601399334d049e8403e18781",
+    "E17D1_independent_sha256": "b082bdd916e1854a3ba886dcbb5576e704f485e874cc964e65bba089fd161d17",
+    "E17D1_archive_manifest_git_blob": "e5c02cd78ba85dea308f6ad5324d26aebc6627e2",
+    "E17D1_protocol_git_blob": "791502d5385e35b358fb2d2afebf5fac77bd6ad5",
+    "CLASS_original_commit": "e85808324f51fc694d12e3ed7439552a3c3f9540"
+  },
+  "original_numerical_QA_cases": 6,
+  "original_E16_geometries_per_case": 576,
+  "actual_short_legs_plus_long_per_geometry": 3,
+  "original_case_reports": {
+    "e17d2a_original_nfw_c2_alpha0p1.json": {
+      "sha256": "90db1f5e07d73c475195b201691271b98ff2721708bd0eb1f291bb75cf6121aa",
+      "size_bytes": 563226,
+      "QA": {
+        "max_abs_normalized_NFW_Fourier": 0.9999990289365609,
+        "max_Fourier_reversal_abs": 0.0,
+        "max_short_leg_exchange_abs": 1.3322676295501878e-15,
+        "max_original_triangle_closure_h_Mpc": 1.2643861424099487e-17,
+        "max_center_squeezed_u_abs_gap": 9.61885839867449e-08
+      },
+      "radial": {
+        "c_QA_only": 2,
+        "A_c": 0.43194562200144293,
+        "mass_fractions_at_QA_radii": [
+          0.0,
+          0.16699272107587215,
+          0.4471562407901893,
+          1.0,
+          1.0
+        ],
+        "radial_y_QA_only": [
+          0.0,
+          0.5,
+          1.0,
+          2,
+          4
+        ],
+        "center_Phi_over_GM_div_rs": -1.5434041525357554,
+        "max_boundary_Phi_continuity_abs": 0.0,
+        "max_boundary_gravitational_gradient_continuity_abs": 0.0,
+        "B_c_second_radial_moment": 0.6291701993376622,
+        "small_x_second_moment_abs_gap": 2.853273173286652e-14
+      }
+    },
+    "e17d2a_original_nfw_c2_alpha1p0.json": {
+      "sha256": "f81a3d13ac6b0b70a5fc0f1bf4a0ed0aec8164f0a7861d4688e6256466d002c2",
+      "size_bytes": 565311,
+      "QA": {
+        "max_abs_normalized_NFW_Fourier": 0.9999028982188393,
+        "max_Fourier_reversal_abs": 0.0,
+        "max_short_leg_exchange_abs": 1.887379141862766e-15,
+        "max_original_triangle_closure_h_Mpc": 1.2643861424099487e-17,
+        "max_center_squeezed_u_abs_gap": 3.4796039745654816e-06
+      },
+      "radial": {
+        "c_QA_only": 2,
+        "A_c": 0.43194562200144293,
+        "mass_fractions_at_QA_radii": [
+          0.0,
+          0.16699272107587215,
+          0.4471562407901893,
+          1.0,
+          1.0
+        ],
+        "radial_y_QA_only": [
+          0.0,
+          0.5,
+          1.0,
+          2,
+          4
+        ],
+        "center_Phi_over_GM_div_rs": -1.5434041525357554,
+        "max_boundary_Phi_continuity_abs": 0.0,
+        "max_boundary_gravitational_gradient_continuity_abs": 0.0,
+        "B_c_second_radial_moment": 0.6291701993376622,
+        "small_x_second_moment_abs_gap": 2.853273173286652e-14
+      }
+    },
+    "e17d2a_original_nfw_c4_alpha0p1.json": {
+      "sha256": "5ccc9dea6269d09ffb72cc9c51bcd9630dd11f0baaceb2c2d50cb28149b6598e",
+      "size_bytes": 562859,
+      "QA": {
+        "max_abs_normalized_NFW_Fourier": 0.9999966822191391,
+        "max_Fourier_reversal_abs": 0.0,
+        "max_short_leg_exchange_abs": 7.771561172376096e-16,
+        "max_original_triangle_closure_h_Mpc": 1.2643861424099487e-17,
+        "max_center_squeezed_u_abs_gap": 3.199175475643301e-07
+      },
+      "radial": {
+        "c_QA_only": 4,
+        "A_c": 0.8094379124341002,
+        "mass_fractions_at_QA_radii": [
+          0.0,
+          0.23861889540004738,
+          0.5336365091950267,
+          1.0,
+          1.0
+        ],
+        "radial_y_QA_only": [
+          0.0,
+          1.0,
+          2.0,
+          4,
+          8
+        ],
+        "center_Phi_over_GM_div_rs": -0.9883401650835467,
+        "max_boundary_Phi_continuity_abs": 0.0,
+        "max_boundary_gravitational_gradient_continuity_abs": 0.0,
+        "B_c_second_radial_moment": 4.028313737302301,
+        "small_x_second_moment_abs_gap": 3.7636560534792807e-13
+      }
+    },
+    "e17d2a_original_nfw_c4_alpha1p0.json": {
+      "sha256": "d0412994aa2572957aa1ee8ceb0409ddefdbd956a5de75d0be5d01a655cbc28a",
+      "size_bytes": 566890,
+      "QA": {
+        "max_abs_normalized_NFW_Fourier": 0.9996682815616171,
+        "max_Fourier_reversal_abs": 0.0,
+        "max_short_leg_exchange_abs": 5.828670879282072e-16,
+        "max_original_triangle_closure_h_Mpc": 1.2643861424099487e-17,
+        "max_center_squeezed_u_abs_gap": 3.16274949846429e-06
+      },
+      "radial": {
+        "c_QA_only": 4,
+        "A_c": 0.8094379124341002,
+        "mass_fractions_at_QA_radii": [
+          0.0,
+          0.23861889540004738,
+          0.5336365091950267,
+          1.0,
+          1.0
+        ],
+        "radial_y_QA_only": [
+          0.0,
+          1.0,
+          2.0,
+          4,
+          8
+        ],
+        "center_Phi_over_GM_div_rs": -0.9883401650835467,
+        "max_boundary_Phi_continuity_abs": 0.0,
+        "max_boundary_gravitational_gradient_continuity_abs": 0.0,
+        "B_c_second_radial_moment": 4.028313737302301,
+        "small_x_second_moment_abs_gap": 3.7636560534792807e-13
+      }
+    },
+    "e17d2a_original_nfw_c8_alpha0p1.json": {
+      "sha256": "728cd5cc55a2da04177304bee6224e58c0d2ed27417609fdebc2c9bd8d6248d6",
+      "size_bytes": 563158,
+      "QA": {
+        "max_abs_normalized_NFW_Fourier": 0.9999889413531589,
+        "max_Fourier_reversal_abs": 0.0,
+        "max_short_leg_exchange_abs": 7.771561172376096e-16,
+        "max_original_triangle_closure_h_Mpc": 1.2643861424099487e-17,
+        "max_center_squeezed_u_abs_gap": 9.609285167577752e-07
+      },
+      "radial": {
+        "c_QA_only": 8,
+        "A_c": 1.3083356884473307,
+        "mass_fractions_at_QA_radii": [
+          0.0,
+          0.3301489257042701,
+          0.6186775455118112,
+          1.0,
+          1.0
+        ],
+        "radial_y_QA_only": [
+          0.0,
+          2.0,
+          4.0,
+          8,
+          16
+        ],
+        "center_Phi_over_GM_div_rs": -0.6794042971829187,
+        "max_boundary_Phi_continuity_abs": 0.0,
+        "max_boundary_gravitational_gradient_continuity_abs": 0.0,
+        "B_c_second_radial_moment": 21.70278484311977,
+        "small_x_second_moment_abs_gap": 4.820255306015042e-12
+      }
+    },
+    "e17d2a_original_nfw_c8_alpha1p0.json": {
+      "sha256": "3c20d2481980d15619a58dac88ead5eb6355e727bc32d3102b71f6f0f16ddb49",
+      "size_bytes": 566621,
+      "QA": {
+        "max_abs_normalized_NFW_Fourier": 0.9988948985055575,
+        "max_Fourier_reversal_abs": 0.0,
+        "max_short_leg_exchange_abs": 3.608224830031759e-16,
+        "max_original_triangle_closure_h_Mpc": 1.2643861424099487e-17,
+        "max_center_squeezed_u_abs_gap": 1.1641285661279088e-06
+      },
+      "radial": {
+        "c_QA_only": 8,
+        "A_c": 1.3083356884473307,
+        "mass_fractions_at_QA_radii": [
+          0.0,
+          0.3301489257042701,
+          0.6186775455118112,
+          1.0,
+          1.0
+        ],
+        "radial_y_QA_only": [
+          0.0,
+          2.0,
+          4.0,
+          8,
+          16
+        ],
+        "center_Phi_over_GM_div_rs": -0.6794042971829187,
+        "max_boundary_Phi_continuity_abs": 0.0,
+        "max_boundary_gravitational_gradient_continuity_abs": 0.0,
+        "B_c_second_radial_moment": 21.70278484311977,
+        "small_x_second_moment_abs_gap": 4.820255306015042e-12
+      }
+    }
+  },
+  "actual_M200_c_rs_eBOSS_halo_formation_or_HOD_calibrated": false,
+  "time_dependent_retarded_Einstein_Vlasov_response_calculated": false,
+  "full_physical_finiteK_galaxy_bispectrum": "BLOCKED",
+  "observed_odd_SEALED": true,
+  "new_CLASS_FITS_mock": false,
+  "main_untouched_PR_draft": true
+}

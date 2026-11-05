@@ -1,0 +1,64 @@
+{
+  "date": "2026-09-27",
+  "status": "E17D0_THREE_STATE_UNIT_EXTERNAL_POTENTIAL_VLASOV_SOURCE_SUSCEPTIBILITY_COMPLETE_PHYSICAL_FINITEK_B_BLOCKED",
+  "prospective_protocol_git_blob": "66df071f0750201e792ed2b3ffc81e28b13dfce6",
+  "original_parents_sha256": {
+    "E8_original_4000q_CSV_sha256": "bf8f48deb9514c5101d5ce314bfbd397485102a5487da1039f141e3cad6143d0",
+    "E16_original_full_sha256": "5d81f95a5571175f06eb032b865285ba34804701693f76af392be7fc31fb06db",
+    "E17A_original_joint_sha256": "094c49cb89d6dd231a5cbc16ecdfe455bcb3938ddec375fd28c81c8098ab2ad9",
+    "E17B_original_joint_sha256": "156763dfb81e2a8c5c9e3615f5022749fa681f458a2753fbfa5f46b462e20658",
+    "E17C_original_joint_sha256": "ad655ada4f64e5033fe900d5821f58847e3c96e72e081cd1a92eadcf9a7236f4",
+    "E17C_independent_sha256": "3dacec420697c5989db7e043fccf09b59bf6017951c9a24dfe20f87aa5dcd841",
+    "E17C_archive_manifest_git_blob": "341b2bf174920254aa867d433b383bf3df6cbd5a",
+    "E17C_protocol_git_blob": "33defef2020f2931756e3ef7a3959d905d539165",
+    "CLASS_original_git_commit": "e85808324f51fc694d12e3ed7439552a3c3f9540"
+  },
+  "original_E16_geometries": 576,
+  "three_state_leg_phase_samples": 10368,
+  "original_state_reports": {
+    "FD": {
+      "sha256": "b6076e8af029c2f51aeb9cc38c455abaca569e7bcead1cb04c60940a6f277670",
+      "bytes": 1049175,
+      "QA": {
+        "max_zero_lag_abs": 0.0,
+        "max_odd_s_gap": 0.0,
+        "max_triangle_closure_h_Mpc": 1.2643861424099487e-17,
+        "max_short_leg_exchange_abs": 2.7755575615628914e-17,
+        "max_squeezed_H_abs_gap": 1.412582006615759e-06,
+        "small_s_limit_relative_gap": 2.156411860188001e-08
+      }
+    },
+    "plus": {
+      "sha256": "d19b8c0e83ba443844b6c8cf0ef84e6ece94b63691fa6707aeed240012935a42",
+      "bytes": 1049571,
+      "QA": {
+        "max_zero_lag_abs": 0.0,
+        "max_odd_s_gap": 0.0,
+        "max_triangle_closure_h_Mpc": 1.2643861424099487e-17,
+        "max_short_leg_exchange_abs": 2.7755575615628914e-17,
+        "max_squeezed_H_abs_gap": 1.6696170588859083e-06,
+        "small_s_limit_relative_gap": 2.1718355225353037e-08
+      }
+    },
+    "minus": {
+      "sha256": "0cb02c8cad6db999ddae5cab55b7eb2fadb8fcb04be0e5be58e100dfd86cb5d0",
+      "bytes": 1049077,
+      "QA": {
+        "max_zero_lag_abs": 0.0,
+        "max_odd_s_gap": 0.0,
+        "max_triangle_closure_h_Mpc": 1.2643861424099487e-17,
+        "max_short_leg_exchange_abs": 2.7755575615628914e-17,
+        "max_squeezed_H_abs_gap": 1.5133225747809842e-06,
+        "small_s_limit_relative_gap": 2.1409881867384684e-08
+      }
+    }
+  },
+  "max_Fplus_minus_unnormalized_gravitational_source_pair_average_scaled_gap": 8.673617379884035e-19,
+  "physically_specified_halo_force_potential_history": false,
+  "evolving_FRW_self_consistent_Vlasov_solution": false,
+  "galactic_short_long_tracer_coupling_calibrated": false,
+  "full_physical_finiteK_bispectrum": "BLOCKED",
+  "observed_odd_SEALED": true,
+  "new_CLASS_FITS_mock": false,
+  "main_untouched_PR_draft": true
+}

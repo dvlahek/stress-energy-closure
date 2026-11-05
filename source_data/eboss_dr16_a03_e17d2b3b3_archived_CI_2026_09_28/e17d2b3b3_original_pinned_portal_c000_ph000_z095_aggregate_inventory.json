@@ -1,0 +1,75 @@
+{
+  "date": "2026-09-28",
+  "status": "E17D2B3B3_PINNED_PUBLIC_PORTAL_SNAPSHOT_C000_PH000_Z095_35_HALO_INFO_ARCHIVED_NO_LIVE_FILE_ATTESTATION",
+  "prospective_protocol_git_blob": "42dab76d5e4fb7c8325ece9ea4465775b384da21",
+  "upstream_source_commit": "f877298344a6988d55f57a7c39f5be14dce63ff3",
+  "upstream_commit_date_UTC": "2026-08-27T04:33:27Z",
+  "exact_pinned_portal_source_file_git_blobs_and_SHA256": {
+    "web/portal/static/data/simulations.table.json": {
+      "git_blob": "cb235ad72ab2516f872bd4ca79b9447a3f4b30e3",
+      "size_bytes": 5097824,
+      "sha256": "47dc0f2a2e263c371ac509b14814c77c3bf5c868130eec27c28867fdc70207a2"
+    },
+    "build_manifest.py": {
+      "git_blob": "88dc7c198c1332d2a0204bb0d3c698fd1dcf28a5",
+      "size_bytes": 7751,
+      "sha256": "aee9251b9c41c3115af4e5f3a805fd33d958a55edd4b8f291e378e70a59d4b3b"
+    },
+    "web/portal/portal.conf": {
+      "git_blob": "8ae1eaa5a56ddc72dc5313e9fe52ff4233968286",
+      "size_bytes": 1497,
+      "sha256": "f8f653a1cb673ad0e2781c654a1d1ddb7fa5572e65432d6f9386e282b404e9cc"
+    },
+    "web/portal/views.py": {
+      "git_blob": "8c85c76a22746b43b8db2f5e1748a8defbc35f6f",
+      "size_bytes": 17981,
+      "sha256": "9b55049859cd966583008fff5c30d047a793e5bfa3007b07ab7be1ba71a78e15"
+    }
+  },
+  "selection": {
+    "simname": "AbacusSummit_base_c000_ph000",
+    "manifest_row_id": 0,
+    "manifest_epoch_key": "0.95",
+    "directory_label_ONLY": "z0.950",
+    "actual_source_COPY_z_from_prior_not_real_halo_ASDF": 0.952838237036305
+  },
+  "archived_provider_portal_source_inventory_not_live": {
+    "halo_info": {
+      "file_count_in_archived_snapshot": 35,
+      "total_bytes_for_all_files_in_archived_snapshot": 75722740486,
+      "NOTE": "NOT per-file byte size; NOT current live Globus item listing"
+    },
+    "halo_pid_A": {
+      "file_count_in_archived_snapshot": 35,
+      "total_bytes_for_all_files_in_archived_snapshot": 7933832501,
+      "NOTE": "NOT per-file byte size; NOT current live Globus item listing"
+    },
+    "cleaned_halo_info": {
+      "file_count_in_archived_snapshot": 35,
+      "total_bytes_for_all_files_in_archived_snapshot": 18363791798,
+      "NOTE": "NOT per-file byte size; NOT current live Globus item listing"
+    },
+    "cleaned_rvpid": {
+      "file_count_in_archived_snapshot": 35,
+      "total_bytes_for_all_files_in_archived_snapshot": 488961946,
+      "NOTE": "NOT per-file byte size; NOT current live Globus item listing"
+    }
+  },
+  "official_source_code_browse_links_NOT_tested_with_live_Globus": {
+    "official_portal_pinned_Globus_collection_UUID": "ffc65d7a-0bf9-11ec-90b4-41052087bc27",
+    "official_source_raw_halo_info_directory": "/AbacusSummit_base_c000_ph000/halos/z0.950/halo_info/",
+    "official_source_cleaned_halo_info_directory": "/cleaning/AbacusSummit_base_c000_ph000/z0.950/cleaned_halo_info/",
+    "browse_raw_halo_info_Globus_URL": "https://app.globus.org/file-manager?origin_id=ffc65d7a-0bf9-11ec-90b4-41052087bc27&origin_path=%2FAbacusSummit_base_c000_ph000%2Fhalos%2Fz0.950%2Fhalo_info%2F",
+    "browse_cleaned_halo_info_Globus_URL": "https://app.globus.org/file-manager?origin_id=ffc65d7a-0bf9-11ec-90b4-41052087bc27&origin_path=%2Fcleaning%2FAbacusSummit_base_c000_ph000%2Fz0.950%2Fcleaned_halo_info%2F",
+    "source_URL_is_browse_ONLY_and_live_collection_availability_UNVERIFIED": true
+  },
+  "four_tampered_manifest_and_endpoint_negative_controls_REJECTED": true,
+  "single_real_halo_info_file_or_supplied_cksum_selected": false,
+  "actual_Globus_source_file_per_item_size_sha_POSIX_cksum_or_live_status_read": false,
+  "actual_halo_ASDF_provider_file_or_tree_particle_data_downloaded": false,
+  "real_M200c_same_halo_mass_history_verified": false,
+  "original_Fplus_Fminus_nonlinear_neutrino_wake_from_Abacus": false,
+  "full_physical_finiteK_galaxy_bispectrum": "BLOCKED",
+  "observed_odd_SEALED": true,
+  "main_untouched_PR_draft": true
+}

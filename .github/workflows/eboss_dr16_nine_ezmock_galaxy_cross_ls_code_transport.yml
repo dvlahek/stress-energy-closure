@@ -1,0 +1,32 @@
+name: eBOSS DR16 9-ID real mock galaxy cross-LS A-02 synthetic and immutable-source preflight
+
+on:
+  push:
+    branches:
+      - audit/eboss-elg-bit8-ra-orientation-20260925
+    paths:
+      - 'scripts/audit_eboss_dr16_nine_ezmock_galaxy_cross_ls_code_transport.py'
+      - 'source_data/eboss_dr16_nine_ezmock_galaxy_cross_ls_code_transport_protocol_2026-09-26.json'
+      - 'source_data/eboss_dr16_nine_ezmock_matched_random_sha_report_2026-09-26.json'
+      - 'source_data/eboss_dr16_nine_ezmock_matched_random_sha_uploaded_manifest_2026-09-26.json'
+      - '.github/workflows/eboss_dr16_nine_ezmock_galaxy_cross_ls_code_transport.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  synthetic-and-archived-72-sources-only-NO-FITS-rows:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install minimal numerical dependencies for prior synthetic cross-LS
+        run: python -m pip install 'numpy>=1.24,<2.4' 'astropy>=6,<8' 'scipy>=1.11,<2'
+      - name: Compile preregistered nine-ID galaxy code-transport runner
+        run: python -m py_compile scripts/audit_eboss_dr16_nine_ezmock_galaxy_cross_ls_code_transport.py
+      - name: Check both archived completed 36-source reports, 72 fixed SHA mappings and synthetic tampered prior SHA negative control
+        run: python -u scripts/audit_eboss_dr16_nine_ezmock_galaxy_cross_ls_code_transport.py --self-test

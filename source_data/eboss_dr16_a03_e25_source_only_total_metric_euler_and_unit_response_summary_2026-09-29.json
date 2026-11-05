@@ -1,0 +1,66 @@
+{
+  "stage": "A03E25_TOTAL_METRIC_VS_EULER_RESIDUAL_FOR_LINEAR_NEUTRINO_LOS_TRACER_RESPONSE",
+  "date": "2026-09-29",
+  "status": "E25_SOURCE_ONLY_EXACT_TOTAL_METRIC_EULER_AND_VELOCITY_UNIT_MATH_PASS_NO_PHYSICAL_HALO_RESPONSE",
+  "registration_timing": "Posthoc physics derivation after E24 and direct published number-count equation; before newly run E25 exact numeric/synthetic QA only.",
+  "protocol_git_blob": "01c8449bf7388b2391b53dd5c7ba069a23c2186c",
+  "pinned_original_parents": {
+    "E24_note": "b3a87f1ed42133e164b440e89f45dcbf6f79dc8a",
+    "E24_report": "ccb64f189941ed0b89efe1462cf8ca86590b17fc",
+    "E22_note": "d2d08ec43cd2604e9a6207f40a5ac1732699ad8e",
+    "E23_note": "8fedf17c15d97d49ca45289dc1c0d6cb87b74727",
+    "E17D1_note": "3a536aa384eec1a202e77c532beb3a55c7333cb2",
+    "E21_Cv": "cc3312c5313cce60fad4a88c3a56ef3d4e675e38"
+  },
+  "source_only_CI": {
+    "run_id": 36594651403,
+    "conclusion": "SUCCESS",
+    "ten_negative_controls_passed": true,
+    "original_three_F_four_E21_K_verified": true,
+    "artifact_id": 11045481632,
+    "artifact_zip_not_materialized_or_byte_hashed_here": true
+  },
+  "analytic_identities": {
+    "B": "1-Hcalprime/Hcal²+(5*s_mag-2)/(r*Hcal)-5*s_mag+f_evo in cited 2023 number-count convention",
+    "E_total": "Vprime+Hcal*V+partial_LOS(Psi_bg+Psi_nuwake)",
+    "Delta_local": "B*V+(Vprime+partial_LOS(Psi_total))/Hcal=(B-1)*V+E_total/Hcal",
+    "E_background": "E_total-partial_LOS(Psi_nuwake); must not be added independently if the full metric potential is also used",
+    "physical_neutrino_relative_velocity": "U=v_relative_in_km_per_s/299792.458",
+    "d_a": "(B_a-1)*beta_a + epsilon_a + s_wind_selection_a, with epsilon_a U=delta(E_total_a)/Hcal; all physical coefficients unmeasured",
+    "E21_km_s_c_a": "d_a/299792.458 in (km/s)^-1",
+    "Im_P_LE": "mu*(A_L*d_E-A_E*d_L)*(original_E21_Cv_km_s_Mpc3/299792.458)",
+    "Kaiser": "Standard -partial_LOS(V)/Hcal is second i*k*mu and produces real even mu² in linear plane-parallel source contrast.",
+    "geodesic_total_metric": "E_total=0 does not imply delta V or other metric-related observed terms vanish, but forbids a separately assigned epsilon from the same gravitational wake gradient."
+  },
+  "exact_rational_toy": {
+    "Hcal": "2",
+    "B": "1/2",
+    "V": "1/100",
+    "partial_Psi_background": "3/100",
+    "partial_Psi_nuwake": "1/50",
+    "Vprime_geodesic": "-7/100",
+    "E_total_geodesic": "0",
+    "E_background_geodesic": "-1/50",
+    "Delta_local_geodesic": "-1/200",
+    "incorrect_background_only_Delta": "-3/200",
+    "additional_effective_Euler_residual_toy": "3/1000",
+    "Delta_local_with_residual": "-7/2000",
+    "synthetic_two_tracer_dimensionless_d_L": "-4/5",
+    "synthetic_two_tracer_dimensionless_d_E": "5/4",
+    "synthetic_chi_dimensionless": "49/10",
+    "physical_tracer_coefficients_measured": false
+  },
+  "physical_closure_missing": {
+    "original_F_halo_plus_environment_metric_history": true,
+    "same_high_z_LRG_ELG_halo_velocity_transfer_beta": true,
+    "finite_size_or_other_effective_Euler_residual_epsilon": true,
+    "specific_LRG_ELG_evolution_magnification_wind_selection": true,
+    "same_cosmology_and_gauge_full_number_count_projection": true,
+    "full_k_z_original_24D_pair_window_and_inference_covariance": true
+  },
+  "observed_odd_SEALED": true,
+  "no_new_physical_24D_prediction_or_significance": true,
+  "no_new_CLASS_FITS_ASDF_Abacus_mock_or_WSL": true,
+  "original_sources_unchanged": true,
+  "main_untouched_PR1_draft": true
+}

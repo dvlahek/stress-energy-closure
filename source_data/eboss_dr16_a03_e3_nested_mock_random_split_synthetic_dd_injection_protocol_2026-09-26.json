@@ -1,0 +1,165 @@
+{
+  "study": "EinsteinVlasovNP A-03E3 preregistered fixed-nine realistic EZmock MOCK-ONLY nested matched-RANDOM density, independent 600-half split, and controlled synthetic signed-DD-pair odd injection/recovery diagnostic",
+  "registered_on": "2026-09-26",
+  "registration_before": "Any first A03E3 mock FITS header or row, any A03E3 random subset or odd injection result",
+  "user_decision": "EMPIRICAL_ONLY_DO_NOT_CONTACT_AUTHORS",
+  "archived_user_decision": "source_data/eboss_dr16_a03_empirical_only_user_decision_2026-09-26.json",
+  "parent_A02_report": "source_data/eboss_dr16_nine_ezmock_galaxy_cross_ls_code_transport_report_2026-09-26.json",
+  "parent_A02_full_sha256": "15f7668fd483d8e1329fbb9684bbdf07cb49d1974d264f9ceebd85e0156daa27",
+  "parent_A02_source_protocol": "source_data/eboss_dr16_nine_ezmock_galaxy_cross_ls_code_transport_protocol_2026-09-26.json",
+  "parent_A02_implementation_git_blob": "eb30a454d854b55dd489a87306c2e2802b570deb",
+  "parent_0001_sampler_git_blob": "a12bb47b16cb879b56f8c9554f62abf4cfff37f7",
+  "parent_A03E2_report": "source_data/eboss_dr16_a03_e2_mock_galaxy_elg_random_radial_weight_stress_report_2026-09-26.json",
+  "parent_A03E2_report_bytes": 413189,
+  "parent_A03E2_report_sha256": "6ef86f904bb0cdc407adabe2e125146ce4d0671ea1ac932e13d11fc481cd596a",
+  "parent_A03E2_report_git_blob": "8596d7322f2ec7ef164e89641958c3912f687722",
+  "parent_A03E2_manifest": "source_data/eboss_dr16_a03_e2_mock_galaxy_elg_random_radial_weight_stress_uploaded_manifest_2026-09-26.json",
+  "parent_A03E2_manifest_git_blob": "7ec2536429604227b2428637ae227b53b7d42cb4",
+  "parent_A03E2_source_protocol": "source_data/eboss_dr16_a03_e2_mock_galaxy_elg_random_radial_weight_stress_protocol_2026-09-26.json",
+  "parent_A03E2_runner_git_blob": "878bdaca84667bcf23c23f1a1aef0dc24909fafe",
+  "parent_odd_projection_helper_git_blob": "5d1831570639abd4610eec76044ac0c6f04912a5",
+  "fixed_nine_ids": [
+    1,
+    125,
+    250,
+    375,
+    500,
+    625,
+    750,
+    875,
+    1000
+  ],
+  "caps": [
+    "NGC",
+    "SGC"
+  ],
+  "tracers": [
+    "eBOSS_LRG",
+    "eBOSS_ELG"
+  ],
+  "roles": [
+    "dat",
+    "ran"
+  ],
+  "number_of_cases": 18,
+  "source_gate": "Before ANY E3 FITS header or row: original A02 archived+local source reports exact byte SHA, full rehash of ALL 72 prior-pinned official full gzip galaxy and same-ID/cap/tracer randoms, exact byte sha of full A02 and E2 archived reports and E2 manifest, prior E2 immutable code and protocol, empirical-only user decision. No download or repin.",
+  "fixed_galaxy_samples": "A02 EXACT unchanged 600D per tracer/cap/id, [0.9,1.0), original seed root 93127 and original four-factor weights, no new mask/cut or resampling. Read only already approved full mock sources; same original selected 1200R per tracer/cap/id and parent source and chunk diagnostics and 8 original fwd/rev weighted-pair histogram SHA must reproduce before any E3 downsample/injection.",
+  "fixed_geometry": "A02 original midpoint signed LOS, theta_min_deg=0.05, s edges 20,40,60,80,100,120,140 h^-1 Mpc, 24 signed mu bins np.linspace(-1-1e-7,1+1e-7,25), published_multitracer fiducial, 4 individually normalized cross LS terms in both tracer orientations.",
+  "nested_random_design": {
+    "original_1200R_each_tracer_cap_id": "A02 unchanged approved source-sha verified deterministic selected 1200 original randoms. No new FITS random selection; use only fixed 1200.",
+    "permutation_rng": "numpy.random.default_rng(seed).permutation(1200) with PCG64, indices sorted back to original A02 row order before computing pairs.",
+    "permutation_seed_formula": "20402026 + 100000*mock_ID + 1000*cap_index + 100*tracer_index, cap_index NGC=0 SGC=1, tracer_index LRG=0 ELG=1",
+    "levels_in_order": [
+      "half_A_600",
+      "half_B_600",
+      "three_quarter_A_900",
+      "full_1200"
+    ],
+    "half_A_600": "sorted permutation positions [0:600]",
+    "half_B_600": "sorted permutation positions [600:1200]; disjoint complement of A for each tracer separately",
+    "three_quarter_A_900": "sorted permutation positions [0:900], nested with half_A_600",
+    "full_1200": "all 1200 originally sampled random rows unchanged, original order exactly, original E2 SHA fingerprints",
+    "LRG_and_ELG_randoms_subsampled_independently_but_same_frozen_level": true,
+    "galaxy_sample_never_subsampled": true,
+    "no_outcome_dependent_subset_or_seed_changes": true,
+    "limits": "600/900/1200 is finite original-1200 subset stability and disjoint half scatter only. NOT convergence toward infinite random density or a physical survey window; additional 2400/4800 from original FITS requires separate future prereg."
+  },
+  "E2_weight_stress_replay": {
+    "scenarios": [
+      "baseline_original",
+      "plus_5pct_ELG_R_z_ramp",
+      "minus_5pct_ELG_R_z_ramp"
+    ],
+    "levels_stressed": [
+      "half_A_600",
+      "half_B_600",
+      "full_1200"
+    ],
+    "level_unstressed_only": "three_quarter_A_900",
+    "formula": "u(z)=2*(z-0.9)/0.1-1; ONLY selected ELG RANDOM weight w'(z)=w(z)*(1±0.05*u(z)); unchanged rows/positions/chunks and LRG randoms and both DATA. Recompute all four independent pair normalizations for each scenario.",
+    "full_1200_must_reproduce_all_three_original_E2_XI_and_all_24_forward_reverse_weighted_histogram_SHA": true,
+    "all_other_geometric_accepted_pair_counts_unchanged_within_each_fixed_level": true
+  },
+  "synthetic_pair_histogram_injection": {
+    "scope": "MOCK-ONLY post-pair-binning DD-histogram synthetic odd probe, NOT physically realized galaxy wake or injection into observed data; does not change any galaxy/random input.",
+    "amplitudes": [
+      0.02,
+      -0.02
+    ],
+    "rule_forward": "h_D_LD_E^inj(s,mu_bin)=h_D_LD_E(s,mu_bin)*(1+amplitude*mu_bin_center) on the same already computed DD pair hist; leave original full-data DD norm and all DR/RD/RR h and norms unchanged",
+    "rule_reverse": "For opposite ELG->LRG orientation apply opposite amplitude to reversed DD histogram, so an LRG->ELG signed dipole remains parity-consistent under tracer swap.",
+    "mu_bin_center": "0.5*(mu_edges[:-1]+mu_edges[1:]); all centers lie in physical [-1,1].",
+    "injected_DD_histogram_factor_bounds": [
+      0.98,
+      1.02
+    ],
+    "analytic_estimator_increment_on_positive_RR": "delta_xi_inj(s,mu)=amplitude*mu_bin_center * [h_DD(s,mu)/N_DD]/[h_RR(s,mu)/N_RR], evaluated only on original positive-RR-supported cells.",
+    "numerical_increment_residual_absolute_threshold": 1e-11,
+    "reverse_reflection_max_abs_threshold": 1e-8,
+    "validation": "Full 144 RR cells required to project ell0/1/2/3 physical signed-mu multipoles, otherwise report only directly supported cellwise injection increment and sparse masks; no fill or projection of incomplete cells. Injected pair-level perturbation cannot certify physical galaxy source/window recovery.",
+    "no_inferred_physical_wake_amplitude": true
+  },
+  "support_and_reporting": {
+    "baseline_full_parent_E2_requires_144_RR_cells": true,
+    "reduced_levels_missing_RR_cells_are_valid_descriptive_sparse_results": true,
+    "no_RR_zero_fill": true,
+    "xi_only_on_positive_RR": true,
+    "common_support_vs_full": "Report count and max/median absolute xi baseline difference on cell intersection only. Explicitly exclude absent RR cells; do not present as full window convergence.",
+    "full_multipoles_only_if_all_144_cells_supported": true,
+    "all_18_id_cap_cases_preserved": true,
+    "per_case_fields": [
+      "original sample/ELG chunk SHA verified",
+      "full_1200 three E2 scenario pair and xi SHA exact replay",
+      "both tracer random permutation seeds and subset index/selected-array SHA, half disjointness, A nested within 900",
+      "each level every-scenario RR support count/explicit absent cell indices, signed mu pair reversal and independent four-term normalizations",
+      "per-level baseline xi-on-common-positive-RR differences vs full; half A vs half B on common support",
+      "per-level ±5% E2 stress delta ell1/ell3 only for full 144 support, else supported-cell delta and skip complete multipole",
+      "per-level ±0.02 bin-center synthetic DD pair injection exact analytic delta and opposite-orientation mirror residual only on supported cells, complete multipole only when RR full"
+    ],
+    "ensemble_summaries": "All 18 cases in fixed order and separate caps; no ranking, no outcome-dependent choosing of subset, seed, cap, s-bin, tracer or plus/minus."
+  },
+  "acceptance": {
+    "all_72_full_pinned_compressed_sha_before_any_FITS": true,
+    "all_18_parent_A02_E2_case_fingerprints_before_subsample_case": true,
+    "no_observed_catalogue_or_odd_rows": true,
+    "no_extra_downloads": true,
+    "no_post_result_reselection": true,
+    "full_random_level_A03E2_SHA_exact": true,
+    "random_disjoint_A_B_and_nested_A_900": true,
+    "mirror_max_abs_lt": 1e-8,
+    "support_never_zero_filled": true,
+    "full_1200_all_144_RR_positive": true,
+    "reduced_missing_RR_allowed_but_explicitly_recorded": true,
+    "pair_hist_synthetic_injection_exact_increment_lt": 1e-11,
+    "synthetic_negative_controls": [
+      "Tamper original uploaded E2 SHA: source-only preflight rejects",
+      "Disjoint-half overlap or nonnested 900 selection: reject",
+      "Incorrect original 1200 subset or accepted-pair/source SHA: reject",
+      "Tampered separately normalized cross-LS random term: synthetic constant global random scale must not alter xi; unnormalized does",
+      "Synthetic DD-injection applied without reverse sign flip: reflected xi fails on positive support",
+      "Any unsupported RR cell is never given xi or projected multipoles",
+      "No binary FITS available in CI means no real E3 completion claim"
+    ]
+  },
+  "excluded": [
+    "Observed galaxy/random FITS rows and observed odd data vector",
+    "Historical source-request or contacting authors",
+    "New hard mask/selection cut or shifted tracer/redshift/LOS geometry",
+    "New random FITS source files, replacing original SHA, new official release or downloads",
+    "Using nine mocks as a full 18D inference covariance",
+    "p-value, sigma, physical wake detection or model exclusion",
+    "Converting artificial ±5% or DD-pair injection into a measured real selection bias or realistic wake amplitude"
+  ],
+  "local_output": "eboss_workspace/a03_empirical_window/a03_e3_mock_galaxy_nested_random_split_and_synthetic_dd_odd_injection.json",
+  "failure_policy": "First missing pinned input SHA before FITS stops whole run. Original 0001 parent replay failure stops before other IDs. Case error records exact original ID/cap and preserves checkpoint without dropping case or changing seed/size. Full COMPLETE means all 18 fixed cases finished, even if documented lower-density RR holes preclude projections; failure of 1200 baseline 144/144 support blocks that case.",
+  "synthetic_CI_scope": "Read only archived JSON/protocol/source data; check deterministic synthetic subset nesting, disjointness, finite-RR support policy, 4-term independently normalized LS, signed odd injected DD parity and exact increment. CI never reads local realistic FITS and must not claim actual nine-ID E3 success.",
+  "observed_galaxy_rows_read": false,
+  "observed_random_rows_read": false,
+  "observed_odd_data_vector_read": false,
+  "physical_empirical_pair_window_certified": false,
+  "physical_wake_injection_recovery_certified": false,
+  "real_selection_systematic_measured": false,
+  "inferential_18D_covariance_computed": false,
+  "author_contact_permitted": false,
+  "main_mutation_permitted": false
+}

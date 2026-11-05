@@ -1,0 +1,38 @@
+{
+  "date": "2026-09-30",
+  "engineering_gate": {
+    "calibrated_difference_coordinate_definition": "adding lambda*(q_minus-q_plus) shifts the coordinate by exactly lambda",
+    "difference_norm_ratio_range_max": 0.01,
+    "max_field_sample_sd": 0.02,
+    "meaning": "engineering random-integration gate relative to unit technical lambda only; not a physical detection threshold",
+    "median_sample_sd_across_fields_max": 0.01,
+    "postwindow_angle_range_max_rad": 0.002
+  },
+  "fixed": {
+    "caps": ["NGC","SGC"],
+    "fresh_replicas": ["R1","R2","R3","R4"],
+    "galaxies": "same full source-eligible mock0001 galaxies",
+    "injection": "same E19 F+/F- basis",
+    "mock_id": 1,
+    "random_size_per_tracer": 48000,
+    "sampling": "each cap/tracer/replica is a deterministic without-replacement draw from the same frozen source-eligible random pool; replicas may overlap and overlap is reported",
+    "seed_root": 202609305400,
+    "tag_fields": "same four E51 technical sign fields A-D"
+  },
+  "frozen_before_local_result": true,
+  "guardrails": {
+    "covariance_inverse": false,
+    "main_mutation": false,
+    "new_science_cuts": false,
+    "observed_galaxy_rows": false,
+    "observed_odd_vector": false,
+    "physical_velocity_reconstruction": false,
+    "pvalues": false,
+    "retune_E19_or_tag_fields": false
+  },
+  "parent": "E53 Stage2 PASS full-D/4800R/48000R",
+  "scientific_question": "At fixed mock0001 full galaxies, how much of the remaining conditioned-estimator background is finite-random Monte-Carlo noise at 48k randoms per tracer?",
+  "stage": "E54_CONDITIONED_MOCK0001_48K_RANDOM_REPLICA_FLOOR_PROTOCOL",
+  "local_script_sha256": "658e91ad7d3434385844f149762d88f336566fd0928dfe248236b7d9b33b7f87",
+  "local_package_sha256": "fa091a20df15989fc6ac7efb10f2029f58faaeeb1843802a539358a88429df73"
+}

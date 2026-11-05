@@ -1,0 +1,28 @@
+name: eBOSS DR16 ELG four SHA-pinned image FITS header/WCS synthetic gate
+
+on:
+  push:
+    branches:
+      - audit/eboss-elg-bit8-ra-orientation-20260925
+    paths:
+      - 'scripts/audit_eboss_dr16_elg_four_sample_fits_header_wcs.py'
+      - 'source_data/eboss_dr16_elg_four_sample_fits_header_wcs_protocol_2026-09-26.json'
+      - '.github/workflows/eboss_dr16_elg_four_sample_fits_header_wcs.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  synthetic-no-observed-data:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Compile bounded gzip FITS header-only auditor
+        run: python -m py_compile scripts/audit_eboss_dr16_elg_four_sample_fits_header_wcs.py
+      - name: Validate FITS 2880-byte header contract and WCS failures on synthetic images only
+        run: python -u scripts/audit_eboss_dr16_elg_four_sample_fits_header_wcs.py --self-test

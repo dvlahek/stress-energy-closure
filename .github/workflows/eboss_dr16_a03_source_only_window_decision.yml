@@ -1,0 +1,31 @@
+name: eBOSS DR16 A-03 source-only selection/window provenance stop gate
+
+on:
+  push:
+    branches:
+      - audit/eboss-elg-bit8-ra-orientation-20260925
+    paths:
+      - 'scripts/audit_eboss_dr16_a03_source_only_window_decision.py'
+      - 'source_data/eboss_dr16_a03_selection_window_provenance_decision_2026-09-26.json'
+      - 'source_data/eboss_dr16_nine_ezmock_galaxy_cross_ls_code_transport_report_2026-09-26.json'
+      - 'source_data/eboss_dr16_nine_ezmock_galaxy_cross_ls_code_transport_uploaded_manifest_2026-09-26.json'
+      - 'source_data/eboss_dr16_elg_production_lineage_gate_2026-09-26.json'
+      - '.github/workflows/eboss_dr16_a03_source_only_window_decision.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  archived-source-and-synthetic-negative-controls-no-FITS:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Compile source-only A-03 guard
+        run: python -m py_compile scripts/audit_eboss_dr16_a03_source_only_window_decision.py
+      - name: Verify full 18-case A-02 archive, historical source blockers and reject premature mask/window certification
+        run: python -u scripts/audit_eboss_dr16_a03_source_only_window_decision.py --self-test

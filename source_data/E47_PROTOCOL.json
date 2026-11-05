@@ -1,0 +1,19 @@
+{
+  "E45_metric": "case-specific archived E3 +0.02 analytic unit-response q, ell1 six bins then ell3 six bins",
+  "FITS_ASDF_read": false,
+  "frozen_before_local_run": true,
+  "inference_performed": false,
+  "main_mutation": false,
+  "new_observed_rows_read": false,
+  "observed_odd_data_vector_read": false,
+  "parameters": {
+    "g0": "b_L*d_E-b_E*d_L",
+    "g2": "f*(d_E-d_L)"
+  },
+  "physical_g0_g2_values_assumed": false,
+  "required_source_replay": "four frozen E21 C_v points per F state within 2e-5 relative",
+  "response_model": "restricted E25 local linear response, state-independent d_L,d_E",
+  "source_state_contrast": "Fminus-Fplus",
+  "stage": "E47_PROSPECTIVE_LOCAL_PHYSICAL_RESPONSE_TO_E45_BRIDGE",
+  "window": "exact original E0/E1 250104-byte NPZ SHA 4f63e04ce4c5cfdb9404e5a56dee44907cb9a28cc015c6ed27ac718195feae6b"
+}

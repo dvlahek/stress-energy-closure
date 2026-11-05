@@ -1,0 +1,33 @@
+{
+  "registration": "Post-SGC-4800R, pre-SGC-48000R computational resource/change-control only. No scientific threshold, sample cut or random seed is revised.",
+  "date": "2026-09-27",
+  "source_branch": "audit/eboss-elg-bit8-ra-orientation-20260925",
+  "original_v2_runner_git_blob_sha1": "808b253c4998335b67a4117bac28facc170892e1",
+  "original_v2_4800_stage_uploaded_sha256": "d3f298a9550981c0ece7d6c9e7aee0d3fb5cebaf0d80cdd39805cda3bb08e238",
+  "original_v2_4800_status": "EBOSS_FULL_ELIGIBLE_MOCK0001_SGC_4800_ONLY_STAGED_STOP",
+  "source_v2_parent_failed_v1_sha256": "6731e0aa1f18a192b8067bcd44fda5aae8ffdb5164f64a86eab55d2b3e585f5c",
+  "scope": {
+    "mock_id": 1,
+    "cap": "SGC",
+    "level": "nested_48000",
+    "first_catalogue_chunk_rows": 4000,
+    "terms": [
+      "D1R2",
+      "R1D2",
+      "R1R2"
+    ],
+    "DD": "Reuse exact original 4800 full-galaxy DD",
+    "random_catalogues": "Identical frozen per-tracer 48000R from v1 E4 4800R + 43200 deterministic same-source complement",
+    "pair_kernel": "Unchanged original cKDTree physical s, signed mu, theta, geometric LOS, original weights and primary fiducial",
+    "merge": "Sum each disjoint first-catalogue pair slice in fixed increasing row order, use independently recomputed full first/second weight sums for exact original whole-pair LS normalization",
+    "checkpoint": "Every 4000-first-row slice saved atomically with SHA256, accepted counts, candidate counts, slice row bounds and source signatures, and reused unchanged across WSL restarts",
+    "unchanged_4800_checkpoint": true,
+    "unchanged_original_v1_parent": true,
+    "full_count_independent_reverse": false,
+    "observed_odd_data_read": false,
+    "new_download": false,
+    "new_science_selection": false,
+    "main_change": false
+  },
+  "interpretation": "Different floating accumulation order can change last bits of weighted histograms. Geometry, accepted pair sets and original normalized LS estimator remain unchanged. Synthetic whole-versus-sliced pair closure is mandatory. SGC 48000R still pending."
+}

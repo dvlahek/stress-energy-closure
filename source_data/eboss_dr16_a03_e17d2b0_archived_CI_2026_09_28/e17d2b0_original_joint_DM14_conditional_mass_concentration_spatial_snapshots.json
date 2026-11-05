@@ -1,0 +1,327 @@
+{
+  "date": "2026-09-28",
+  "status": "E17D2B0_PUBLISHED_DM14_POPULATION_C200C_MASS_RADIUS_CONDITIONAL_18_SNAPSHOTS_DONE_FULL_PHYSICAL_HALO_HISTORY_B_BLOCKED",
+  "prospective_protocol_git_blob": "8faaf167403e09f321a6c62f452120f8b96898a2",
+  "immutable_original_parent_identifiers": {
+    "E8_original_4000q_CSV_sha256": "bf8f48deb9514c5101d5ce314bfbd397485102a5487da1039f141e3cad6143d0",
+    "E16_original_full_sha256": "5d81f95a5571175f06eb032b865285ba34804701693f76af392be7fc31fb06db",
+    "E17A_original_joint_sha256": "094c49cb89d6dd231a5cbc16ecdfe455bcb3938ddec375fd28c81c8098ab2ad9",
+    "E17D1_original_joint_sha256": "1e52880db6c60cff1fe3cc1ca0a00e553c63ca08601399334d049e8403e18781",
+    "E17D2a_original_joint_sha256": "040c9711bfdfee6682acda4b48bc578b64e88c11d143d35a9a9ae46ff4c74a31",
+    "E17D2a_independent_sha256": "436d689762582e74fda83e3df0f1752fe2bbdf595b2c189f13aabce018ef2287",
+    "E17D2a_archive_manifest_git_blob": "ccb17f155211d88b943306bf5d31a35ffb4811f3",
+    "E17D2a_protocol_git_blob": "e7e0281f0b6b205214db5faf03a7c364521b3f2c",
+    "E17D2a_final_original_runner_git_blob": "5d7248095273f8ab0dc74cb9f95e7f78200044fa",
+    "E17A_protocol_git_blob": "f4bd3ea2a0519c4091ea94d0600ac62e57b3a2d4",
+    "E17A_manifest_git_blob": "a8f4e2d0e19c2deacae375449951d1b85766b3d2"
+  },
+  "published_DM14_planck2013_cosmology": {
+    "Omega_m": 0.3175,
+    "Omega_Lambda_flat": 0.6825,
+    "h": 0.671
+  },
+  "original_CLASS_h": 0.6736,
+  "cosmology_h_fractional_label_mismatch": 0.003874813710879277,
+  "number_of_frozen_conditional_halo_snapshots": 18,
+  "original_E16_geometry_per_snapshot": 576,
+  "two_actual_short_and_one_long_mode_per_geometry": 3,
+  "total_conditional_spatial_Fourier_modes": 31104,
+  "maximum_conditional_point_mass_spatial_u_deficit_in_declared_mass_QA_only_cases": 0.00012605532853371404,
+  "all_original_case_SHA": {
+    "e17d2b0_original_DM14_conditional_snapshot_00.json": {
+      "sha256": "601054f3202dbde226f3e4651a897da54536ce810ac9f32945a5adf88e9ae41d",
+      "size_bytes": 1047584,
+      "M_hinv_Msun_QA_only": 1000000000000.0,
+      "z_math_only": 0.945,
+      "dex_sensitivity_only": -0.11,
+      "c": 4.23044486889214,
+      "r_s_comoving_Mpc_DM14": 0.07710095786840242,
+      "QA": {
+        "max_original_triangle_closure_h_per_Mpc": 1.2643861424099487e-17,
+        "max_abs_normalized_positive_NFW_u": 0.999999997532367,
+        "max_reverse_abs": 0.0,
+        "max_conditional_static_point_mass_shape_deficit_report_only": 2.5925182211894438e-05,
+        "critical_mass_reclosure_rel": 4.440892098500626e-16
+      }
+    },
+    "e17d2b0_original_DM14_conditional_snapshot_01.json": {
+      "sha256": "0ec0ac4151c2513345f682c139d78c2c8e6db8c520c52c3bdd10468ea9758c75",
+      "size_bytes": 1047865,
+      "M_hinv_Msun_QA_only": 1000000000000.0,
+      "z_math_only": 0.945,
+      "dex_sensitivity_only": 0.0,
+      "c": 5.449868705812818,
+      "r_s_comoving_Mpc_DM14": 0.05984939623465762,
+      "QA": {
+        "max_original_triangle_closure_h_per_Mpc": 1.2643861424099487e-17,
+        "max_abs_normalized_positive_NFW_u": 0.9999999976880646,
+        "max_reverse_abs": 0.0,
+        "max_conditional_static_point_mass_shape_deficit_report_only": 2.4289403323995984e-05,
+        "critical_mass_reclosure_rel": 4.440892098500626e-16
+      }
+    },
+    "e17d2b0_original_DM14_conditional_snapshot_02.json": {
+      "sha256": "69b6d9a99803b6da40002419ca4034d52829f68ef2f3ce0c4a1b71a32a087583",
+      "size_bytes": 1048132,
+      "M_hinv_Msun_QA_only": 1000000000000.0,
+      "z_math_only": 0.945,
+      "dex_sensitivity_only": 0.11,
+      "c": 7.020790917049804,
+      "r_s_comoving_Mpc_DM14": 0.04645792125912105,
+      "QA": {
+        "max_original_triangle_closure_h_per_Mpc": 1.2643861424099487e-17,
+        "max_abs_normalized_positive_NFW_u": 0.9999999978392318,
+        "max_reverse_abs": 0.0,
+        "max_conditional_static_point_mass_shape_deficit_report_only": 2.270125477688012e-05,
+        "critical_mass_reclosure_rel": 4.440892098500626e-16
+      }
+    },
+    "e17d2b0_original_DM14_conditional_snapshot_03.json": {
+      "sha256": "3bf2715797190b11213b2e65a52f3bb6600da14bb4528e7f3b9df085e4ecc9ba",
+      "size_bytes": 1048353,
+      "M_hinv_Msun_QA_only": 1000000000000.0,
+      "z_math_only": 0.95,
+      "dex_sensitivity_only": -0.11,
+      "c": 4.222686805370602,
+      "r_s_comoving_Mpc_DM14": 0.07728732703053462,
+      "QA": {
+        "max_original_triangle_closure_h_per_Mpc": 1.2643861424099487e-17,
+        "max_abs_normalized_positive_NFW_u": 0.9999999975283672,
+        "max_reverse_abs": 0.0,
+        "max_conditional_static_point_mass_shape_deficit_report_only": 2.5967190473541457e-05,
+        "critical_mass_reclosure_rel": 6.661338147750939e-16
+      }
+    },
+    "e17d2b0_original_DM14_conditional_snapshot_04.json": {
+      "sha256": "f3ccd2327b16d305f6ef87255088df60f85a99335145064bc3aed21e82773378",
+      "size_bytes": 1048306,
+      "M_hinv_Msun_QA_only": 1000000000000.0,
+      "z_math_only": 0.95,
+      "dex_sensitivity_only": 0.0,
+      "c": 5.439874383959189,
+      "r_s_comoving_Mpc_DM14": 0.05999406475939125,
+      "QA": {
+        "max_original_triangle_closure_h_per_Mpc": 1.2643861424099487e-17,
+        "max_abs_normalized_positive_NFW_u": 0.9999999976842737,
+        "max_reverse_abs": 0.0,
+        "max_conditional_static_point_mass_shape_deficit_report_only": 2.43292582162713e-05,
+        "critical_mass_reclosure_rel": 6.661338147750939e-16
+      }
+    },
+    "e17d2b0_original_DM14_conditional_snapshot_05.json": {
+      "sha256": "64090b826296f8d4897e59d60a4eacd7b47a583ad53b9dbad4101aef90ac90fb",
+      "size_bytes": 1048789,
+      "M_hinv_Msun_QA_only": 1000000000000.0,
+      "z_math_only": 0.95,
+      "dex_sensitivity_only": 0.11,
+      "c": 7.007915736402389,
+      "r_s_comoving_Mpc_DM14": 0.046570219784312465,
+      "QA": {
+        "max_original_triangle_closure_h_per_Mpc": 1.2643861424099487e-17,
+        "max_abs_normalized_positive_NFW_u": 0.9999999978356539,
+        "max_reverse_abs": 0.0,
+        "max_conditional_static_point_mass_shape_deficit_report_only": 2.2738845707470645e-05,
+        "critical_mass_reclosure_rel": 6.661338147750939e-16
+      }
+    },
+    "e17d2b0_original_DM14_conditional_snapshot_06.json": {
+      "sha256": "d911fd1f539cdca820fa4d97bc5bd2390a854d22da6969b8da6b179c14a403d9",
+      "size_bytes": 1047641,
+      "M_hinv_Msun_QA_only": 1000000000000.0,
+      "z_math_only": 0.955,
+      "dex_sensitivity_only": -0.11,
+      "c": 4.214962962708484,
+      "r_s_comoving_Mpc_DM14": 0.07747339845947648,
+      "QA": {
+        "max_original_triangle_closure_h_per_Mpc": 1.2643861424099487e-17,
+        "max_abs_normalized_positive_NFW_u": 0.9999999975243918,
+        "max_reverse_abs": 0.0,
+        "max_conditional_static_point_mass_shape_deficit_report_only": 2.6008975809843626e-05,
+        "critical_mass_reclosure_rel": 2.220446049250313e-16
+      }
+    },
+    "e17d2b0_original_DM14_conditional_snapshot_07.json": {
+      "sha256": "ae093f2c4ab9bf65d03aac6e62f06804944157987e14f863dd5d6a499fd4e3af",
+      "size_bytes": 1048032,
+      "M_hinv_Msun_QA_only": 1000000000000.0,
+      "z_math_only": 0.955,
+      "dex_sensitivity_only": 0.0,
+      "c": 5.429924147112369,
+      "r_s_comoving_Mpc_DM14": 0.06013850216959434,
+      "QA": {
+        "max_original_triangle_closure_h_per_Mpc": 1.2643861424099487e-17,
+        "max_abs_normalized_positive_NFW_u": 0.9999999976804987,
+        "max_reverse_abs": 0.0,
+        "max_conditional_static_point_mass_shape_deficit_report_only": 2.4368905512939243e-05,
+        "critical_mass_reclosure_rel": 2.220446049250313e-16
+      }
+    },
+    "e17d2b0_original_DM14_conditional_snapshot_08.json": {
+      "sha256": "50933f8e378ff9a93e61ae4ea1f144fc43ed08a4e973f9590b49bb85c068ed24",
+      "size_bytes": 1047890,
+      "M_hinv_Msun_QA_only": 1000000000000.0,
+      "z_math_only": 0.955,
+      "dex_sensitivity_only": 0.11,
+      "c": 6.995097348245233,
+      "r_s_comoving_Mpc_DM14": 0.046682338907515934,
+      "QA": {
+        "max_original_triangle_closure_h_per_Mpc": 1.2643861424099487e-17,
+        "max_abs_normalized_positive_NFW_u": 0.9999999978320937,
+        "max_reverse_abs": 0.0,
+        "max_conditional_static_point_mass_shape_deficit_report_only": 2.277624373725473e-05,
+        "critical_mass_reclosure_rel": 2.220446049250313e-16
+      }
+    },
+    "e17d2b0_original_DM14_conditional_snapshot_09.json": {
+      "sha256": "a12462e73ac5f8d55344d2be22fef47ee94555c7f515ad863db1b172b0d59c51",
+      "size_bytes": 1047558,
+      "M_hinv_Msun_QA_only": 10000000000000.0,
+      "z_math_only": 0.945,
+      "dex_sensitivity_only": -0.11,
+      "c": 3.547774760149511,
+      "r_s_comoving_Mpc_DM14": 0.19807200915829257,
+      "QA": {
+        "max_original_triangle_closure_h_per_Mpc": 1.2643861424099487e-17,
+        "max_abs_normalized_positive_NFW_u": 0.9999999880375727,
+        "max_reverse_abs": 0.0,
+        "max_conditional_static_point_mass_shape_deficit_report_only": 0.00012567176973210525,
+        "critical_mass_reclosure_rel": 4.440892098500626e-16
+      }
+    },
+    "e17d2b0_original_DM14_conditional_snapshot_10.json": {
+      "sha256": "b9b67bb9c17ceafe3f3920a03ed0254ecddb16e1c76939a932819f9a74128217",
+      "size_bytes": 1047545,
+      "M_hinv_Msun_QA_only": 10000000000000.0,
+      "z_math_only": 0.945,
+      "dex_sensitivity_only": 0.0,
+      "c": 4.570419244270823,
+      "r_s_comoving_Mpc_DM14": 0.15375282599397644,
+      "QA": {
+        "max_original_triangle_closure_h_per_Mpc": 1.2643861424099487e-17,
+        "max_abs_normalized_positive_NFW_u": 0.9999999887684226,
+        "max_reverse_abs": 0.0,
+        "max_conditional_static_point_mass_shape_deficit_report_only": 0.00011799393980704842,
+        "critical_mass_reclosure_rel": 4.440892098500626e-16
+      }
+    },
+    "e17d2b0_original_DM14_conditional_snapshot_11.json": {
+      "sha256": "c316733be5a4e992e4b54d5e5d18ea260ea38862e767ca05de3d4e640bcfd9ba",
+      "size_bytes": 1047696,
+      "M_hinv_Msun_QA_only": 10000000000000.0,
+      "z_math_only": 0.945,
+      "dex_sensitivity_only": 0.11,
+      "c": 5.887840542481561,
+      "r_s_comoving_Mpc_DM14": 0.11935018785133715,
+      "QA": {
+        "max_original_triangle_closure_h_per_Mpc": 1.2643861424099487e-17,
+        "max_abs_normalized_positive_NFW_u": 0.9999999894857733,
+        "max_reverse_abs": 0.0,
+        "max_conditional_static_point_mass_shape_deficit_report_only": 0.00011045786708807626,
+        "critical_mass_reclosure_rel": 4.440892098500626e-16
+      }
+    },
+    "e17d2b0_original_DM14_conditional_snapshot_12.json": {
+      "sha256": "20ac4da930384e8e6a7019e63cc078317ebe08753572ea5e004aa5f69cf0afc7",
+      "size_bytes": 1046774,
+      "M_hinv_Msun_QA_only": 10000000000000.0,
+      "z_math_only": 0.95,
+      "dex_sensitivity_only": -0.11,
+      "c": 3.5423288093161727,
+      "r_s_comoving_Mpc_DM14": 0.1984913661684914,
+      "QA": {
+        "max_original_triangle_closure_h_per_Mpc": 1.2643861424099487e-17,
+        "max_abs_normalized_positive_NFW_u": 0.9999999880192648,
+        "max_reverse_abs": 0.0,
+        "max_conditional_static_point_mass_shape_deficit_report_only": 0.00012586410224579847,
+        "critical_mass_reclosure_rel": 0.0
+      }
+    },
+    "e17d2b0_original_DM14_conditional_snapshot_13.json": {
+      "sha256": "1364d92179e5d203e24ccfead18f14a1aff28c85885b141a416f9f9d39e519be",
+      "size_bytes": 1047562,
+      "M_hinv_Msun_QA_only": 10000000000000.0,
+      "z_math_only": 0.95,
+      "dex_sensitivity_only": 0.0,
+      "c": 4.563403500551233,
+      "r_s_comoving_Mpc_DM14": 0.1540783506639813,
+      "QA": {
+        "max_original_triangle_closure_h_per_Mpc": 1.2643861424099487e-17,
+        "max_abs_normalized_positive_NFW_u": 0.9999999887510067,
+        "max_reverse_abs": 0.0,
+        "max_conditional_static_point_mass_shape_deficit_report_only": 0.00011817690358140176,
+        "critical_mass_reclosure_rel": 0.0
+      }
+    },
+    "e17d2b0_original_DM14_conditional_snapshot_14.json": {
+      "sha256": "1059fc9e6413d6ee89f686ec06b49bc971d9d23c06ea26e0f4d5a04118260815",
+      "size_bytes": 1047895,
+      "M_hinv_Msun_QA_only": 10000000000000.0,
+      "z_math_only": 0.95,
+      "dex_sensitivity_only": 0.11,
+      "c": 5.878802513780004,
+      "r_s_comoving_Mpc_DM14": 0.11960287543781994,
+      "QA": {
+        "max_original_triangle_closure_h_per_Mpc": 1.2643861424099487e-17,
+        "max_abs_normalized_positive_NFW_u": 0.999999989469304,
+        "max_reverse_abs": 0.0,
+        "max_conditional_static_point_mass_shape_deficit_report_only": 0.00011063088546925393,
+        "critical_mass_reclosure_rel": 0.0
+      }
+    },
+    "e17d2b0_original_DM14_conditional_snapshot_15.json": {
+      "sha256": "ed6512e5501a1c8c932603bd6ad982424cfb51463a145541704f85ea8f91100d",
+      "size_bytes": 1047329,
+      "M_hinv_Msun_QA_only": 10000000000000.0,
+      "z_math_only": 0.955,
+      "dex_sensitivity_only": -0.11,
+      "c": 3.5369079954721925,
+      "r_s_comoving_Mpc_DM14": 0.19890968999912179,
+      "QA": {
+        "max_original_triangle_closure_h_per_Mpc": 1.2643861424099487e-17,
+        "max_abs_normalized_positive_NFW_u": 0.9999999880010624,
+        "max_reverse_abs": 0.0,
+        "max_conditional_static_point_mass_shape_deficit_report_only": 0.00012605532853371404,
+        "critical_mass_reclosure_rel": 0.0
+      }
+    },
+    "e17d2b0_original_DM14_conditional_snapshot_16.json": {
+      "sha256": "fe154d509e2fb26052d0a347b7fb6ee0d06567d0fa53288ec8ef8ac9dd3c49e3",
+      "size_bytes": 1047151,
+      "M_hinv_Msun_QA_only": 10000000000000.0,
+      "z_math_only": 0.955,
+      "dex_sensitivity_only": 0.0,
+      "c": 4.556420139546913,
+      "r_s_comoving_Mpc_DM14": 0.1544030733313252,
+      "QA": {
+        "max_original_triangle_closure_h_per_Mpc": 1.2643861424099487e-17,
+        "max_abs_normalized_positive_NFW_u": 0.9999999887336866,
+        "max_reverse_abs": 0.0,
+        "max_conditional_static_point_mass_shape_deficit_report_only": 0.00011835883169519779,
+        "critical_mass_reclosure_rel": 0.0
+      }
+    },
+    "e17d2b0_original_DM14_conditional_snapshot_17.json": {
+      "sha256": "92db6fc8427202e74681cd038cc71e62a150a30d8fae2693e7b95d1e76b15c4c",
+      "size_bytes": 1047733,
+      "M_hinv_Msun_QA_only": 10000000000000.0,
+      "z_math_only": 0.955,
+      "dex_sensitivity_only": 0.11,
+      "c": 5.8698062020968775,
+      "r_s_comoving_Mpc_DM14": 0.11985494047204963,
+      "QA": {
+        "max_original_triangle_closure_h_per_Mpc": 1.2643861424099487e-17,
+        "max_abs_normalized_positive_NFW_u": 0.9999999894529269,
+        "max_reverse_abs": 0.0,
+        "max_conditional_static_point_mass_shape_deficit_report_only": 0.00011080293735887814,
+        "critical_mass_reclosure_rel": 0.0
+      }
+    }
+  },
+  "cross_redshift_same_mass_snapshots_NOT_single_halo_assembly": true,
+  "individual_LRG_ELG_halo_M_HOD_time_history_known": false,
+  "physically_consistent_neutrino_CLASS_plus_DM14_halo_combination": "BLOCKED",
+  "full_physical_finiteK_galaxy_bispectrum": "BLOCKED",
+  "observed_odd_SEALED": true,
+  "new_CLASS_FITS_mock": false,
+  "main_untouched_PR_draft": true
+}

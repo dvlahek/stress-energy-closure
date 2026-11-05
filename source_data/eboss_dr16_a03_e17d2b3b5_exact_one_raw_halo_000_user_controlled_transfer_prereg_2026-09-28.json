@@ -1,0 +1,63 @@
+{
+  "date": "2026-09-28",
+  "stage": "E17D2B3B5_EXACT_ONE_REAL_RAW_HALO_ASDF_USER_CONTROLLED_TRANSFER_ACCESS_PROTOCOL",
+  "status": "PROSPECTIVE_REGISTERED_BEFORE_ANY_REAL_HALO_TRANSFER_NO_TRANSFER_PERFORMED",
+  "reason": "E17D2b3b4 independently reproduced all 34 user-supplied directory checksum records and exact 35-entry published portal aggregate. Only a real source-identified single halo_info ASDF byte stream can test the existing R1 real-file checksum/header gate; full directory (~75.7GB), particles, cleaning and tree products are unnecessary for this first input integrity gate.",
+  "parents": {
+    "E17D2b3b4_prereg_git_blob": "a6ad151ff116d8b20208bebe76d4423db589b76f",
+    "E17D2b3b4_source_input_git_blob": "0bca2fd0a28c9e163ad6198f67616da4355f4c81",
+    "E17D2b3b4_source_input_sha256": "b1db66f78cf17d9c2620a0be0917547eb5dc17a9e8f10bd02b0b211691fcb6a5",
+    "E17D2b3b4_original_report_sha256": "086da6da6958af67bfbb02ff59fe6b9dc4a81b71497b76671644f4bf4d883de8",
+    "E17D2b3b4_independent_report_sha256": "0aac5757798a4aaf3c6351f72ef41e68c093ea297dfd74b79ccfec296ff21d67",
+    "E17D2b3b4_CI_SUCCESS_run_id": 36463523548,
+    "existing_E17D2b3b2R1_local_ASDF_verifier_git_blob": "48282f55e332aeace6dcac1deba6cd4e6625f274",
+    "upstream_portal_commit": "f877298344a6988d55f57a7c39f5be14dce63ff3"
+  },
+  "official_source_access": {
+    "provider": "AbacusSummit Public Data Access",
+    "transport": "user-authenticated Globus File Manager OR user-authorized same-source transfer; NO automatic downloader",
+    "collection_uuid_from_prior_pinned_official_portal": "ffc65d7a-0bf9-11ec-90b4-41052087bc27",
+    "exact_remote_directory": "/AbacusSummit_base_c000_ph000/halos/z0.950/halo_info/",
+    "exact_raw_file_to_transfer": "halo_info_000.asdf",
+    "optional_same_directory_manifest": "checksums.crc32",
+    "require_user_to_verify_collection_uuid_directory_filename_and_exact_2223483833_byte_file_size_before_transfer": true,
+    "confirmed_authenticated_directory_and_provider_manifest_independently_attested_by_connector": false
+  },
+  "exact_selected_file": {
+    "filename": "halo_info_000.asdf",
+    "expected_POSIX_cksum_crc_from_user_supplied_manifest": 3502514872,
+    "expected_uncompressed_transfer_file_bytes": 2223483833,
+    "independent_provider_signed_SHA256_available": false,
+    "do_not_claim_manifest_is_cryptographic_proof_of_provider_origin": true,
+    "if_filename_size_or_cksum_mismatch": "FAIL CLOSED, no replacement superslab, no revised file selection without new prospective protocol"
+  },
+  "data_access_scope": {
+    "only_one_real_ASDF": true,
+    "never_transfer_entire_halo_info_folder": true,
+    "never_transfer_particle_PID_cleaning_or_tree_products_under_this_protocol": true,
+    "no_extra_real_ASDF_or_second_epoch": true,
+    "user_controls_destination_access_and_any_manual_Globus_transfer": true,
+    "no_request_for_Globus_tokens_or_credentials": true,
+    "no_upload_multi_GB_ASDF_to_chat_required": true
+  },
+  "local_acceptance_after_user_transfer": {
+    "store_checksum_manifest_in_same_local_halo_info_directory_as_single_ASDF": true,
+    "compute_local_file_full_SHA256_and_GNU_POSIX_cksum_and_exact_byte_count": true,
+    "compare_to_locked_user_manifest_entry": true,
+    "run_existing_E17D2b3b2R1_verifier_against_same_file_and_official_pinned_ASDF_Blosc_extension": true,
+    "verify_real_ASDF_header_only_before_any_halo_array_or_profile_analysis": true,
+    "archive_small_verifier_JSON_and_local_logs_without_updating_original_input_proof": true,
+    "successful_crc_header_check_is_not_independent_provider_attestation_or_M200c": true,
+    "no_same_object_M200c_a_without_separately_pre_registered_actual_profile_and_merger_history_protocol": true
+  },
+  "stop_conditions": {
+    "no_current_transfer_or_actual_ASDF_read": true,
+    "no_observed_DR16_galaxies_or_24D_odd_unseal": true,
+    "no_detection_significance_or_SNR": true,
+    "no_original_F0_Fplus_Fminus_E8_4000q_E16_576_E16_72_source_24_contrast_or_48k_changes": true,
+    "no_new_science_cuts_seeds_CLASS_or_mocks": true,
+    "no_halo_L1_mass_to_physical_M200c_shortcut": true,
+    "no_claim_of_self_consistent_neutrino_wake_or_physical_galactic_B": true,
+    "no_main_commit_or_PR_merge": true
+  }
+}

@@ -1,0 +1,84 @@
+{
+  "study": "eBOSS DR16 ELG four preselected official FITS.gz image metadata-only inspection",
+  "registered_on": "2026-09-26",
+  "registered_after_full_raw_compressed_file_sha256_first_seen_but_before_ANY_FITS_decompression_or_header_read": true,
+  "parent_raw_gzip_sample_protocol": "source_data/eboss_dr16_elg_maskbit_four_sample_raw_sha_protocol_2026-09-26.json",
+  "parent_exact_uploaded_gzip_report_archive": "source_data/eboss_dr16_elg_four_sample_raw_sha_report_2026-09-26.json",
+  "parent_exact_uploaded_gzip_report_manifest": "source_data/eboss_dr16_elg_four_sample_raw_sha_uploaded_manifest_2026-09-26.json",
+  "parent_local_gzip_report": "eboss_workspace/official_mask_inventory/elg_maskbit_four_sample_raw_sha.json",
+  "parent_local_gzip_report_sha256": "f324da9232a121e72e9d6d35b7d4e7c2e0f7133007a01db8d065d4ba84356665",
+  "parent_local_gzip_report_git_blob_sha1": "9c543517be72e1622390a7164b6ab003a1ae7045",
+  "parent_index_report_sha256": "32104c056ab86637df1d236bdde04263ab18393b66302b690d70ce331102f2b7",
+  "expected_family_order": [
+    "eboss21",
+    "eboss22",
+    "eboss23",
+    "eboss25"
+  ],
+  "four_predeclared_compressed_source_fingerprints": {
+    "eboss21": {
+      "filename": "mask-eboss21-3386m005.fits.gz",
+      "bytes": 172308,
+      "sha256": "064e535aba4caa7351f5ec64802421968724c1ea664b7eafc142a018a13049a9"
+    },
+    "eboss22": {
+      "filename": "mask-eboss22-0226m005.fits.gz",
+      "bytes": 188582,
+      "sha256": "bec27e6ce17fba5336a48f87682ce491abcd603d1599d914d333dfacc8c2d0d8"
+    },
+    "eboss23": {
+      "filename": "mask-eboss23-1415p232.fits.gz",
+      "bytes": 139821,
+      "sha256": "faf180362b182aa9fb56221af4848462ff3ba801a437a4e1ceb2a43cdb2f569e"
+    },
+    "eboss25": {
+      "filename": "mask-eboss25-1538p312.fits.gz",
+      "bytes": 175454,
+      "sha256": "ce2b3dc302a3998b1ac4e061989af7916ded6221a80a3643724063e6ed19fc27"
+    }
+  },
+  "total_sample_compressed_bytes": 676165,
+  "upstream_reference": "cheng-zhao/brickmask at commit b9eb684a579b56ec3dbdb46549224be7e3fa2830, io/read_fits.c read_mask requires IMAGE_HDU, NAXIS==2 and CTYPE1=RA---TAN, CTYPE2=DEC--TAN, and read_wcs requires CRVAL1/2, CRPIX1/2, CD1_1, CD1_2, CD2_1, CD2_2",
+  "fits_hdu_policy": "Accept either nonempty two-dimensional SIMPLE=T primary image, or empty SIMPLE=T primary NAXIS=0 immediately followed by first XTENSION=IMAGE two-dimensional image; do not scan any data-bearing HDU to find an image.",
+  "exact_required_image_header_keys": [
+    "BITPIX",
+    "NAXIS",
+    "NAXIS1",
+    "NAXIS2",
+    "CTYPE1",
+    "CTYPE2",
+    "CRVAL1",
+    "CRVAL2",
+    "CRPIX1",
+    "CRPIX2",
+    "CD1_1",
+    "CD1_2",
+    "CD2_1",
+    "CD2_2"
+  ],
+  "allowed_BITPIX_values": [
+    8,
+    16,
+    32,
+    64
+  ],
+  "expected_NAXIS": 2,
+  "expected_CTYPE1": "RA---TAN",
+  "expected_CTYPE2": "DEC--TAN",
+  "header_validation": "Only FITS 80-byte ASCII cards grouped in 2880-byte blocks; parse until END card; max 57600 decompressed header bytes per selected sample combined across at most two headers; test all required numeric WCS values finite, image dimensions positive and bounded by 100000000 pixels, matrix determinant nonzero; report header-block SHA256 and fixed image dimensions/WCS only.",
+  "max_fits_header_bytes_per_image": 57600,
+  "max_image_pixel_count_declared_header_only": 100000000,
+  "gzip_integrity_scope": "Rehash and verify complete original compressed bytes before any gzip opening; gzip reader is asked only for FITS header blocks. It may buffer/decompress additional bytes internally; no pixel byte is returned to application, interpreted or output. No full gzip CRC verification is claimed without reading data payload.",
+  "no_new_http_requests": true,
+  "gzip_may_buffer_data_internally": true,
+  "image_pixel_bytes_returned_to_audit": false,
+  "image_pixel_values_decoded": false,
+  "observed_catalogue_or_random_rows_read": false,
+  "observed_odd_data_vector_read": false,
+  "new_mask_or_selection_applied": false,
+  "full_elg_image_cohort_certified": false,
+  "physical_elg_mask_certified": false,
+  "physical_lrg_elg_pair_window_certified": false,
+  "report_output": "eboss_workspace/official_mask_inventory/elg_four_sample_fits_header_wcs.json",
+  "next_gate": "After exact local report SHA archive, independently verify complete production code maskbit truth table and per-chunk published ELG data/random contract before expanding image inspection beyond these four samples."
+}

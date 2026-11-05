@@ -1,0 +1,29 @@
+name: eBOSS DR16 fixed nine-ID realistic EZmock GALAXY raw source SHA gate
+
+on:
+  push:
+    branches:
+      - audit/eboss-elg-bit8-ra-orientation-20260925
+    paths:
+      - 'scripts/audit_eboss_dr16_nine_ezmock_galaxy_raw_sha.py'
+      - 'source_data/eboss_dr16_nine_ezmock_galaxy_source_sha_protocol_2026-09-26.json'
+      - 'source_data/eboss_dr16_ezmock0001_galaxy_odd_projection_uploaded_manifest_2026-09-26.json'
+      - '.github/workflows/eboss_dr16_nine_ezmock_galaxy_raw_sha.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-only-synthetic-no-galaxy-random-or-observed-rows:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Compile fixed nine-ID raw source auditor
+        run: python -m py_compile scripts/audit_eboss_dr16_nine_ezmock_galaxy_raw_sha.py
+      - name: Verify frozen nine-ID parent, exact uploaded successful 0001 source/odd report and synthetic corrupt gzip transfers
+        run: python -u scripts/audit_eboss_dr16_nine_ezmock_galaxy_raw_sha.py --self-test

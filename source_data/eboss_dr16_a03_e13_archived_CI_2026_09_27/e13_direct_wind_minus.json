@@ -1,0 +1,70 @@
+{
+  "status": "E13_DIRECT_CLASS_VTK_R16_WIND_THREE_REDSHIFT_NODES_AND_FILTERED_LONG_CROSS_COMPLETE",
+  "state": "minus",
+  "CLASS_commit": "e85808324f51fc694d12e3ed7439552a3c3f9540",
+  "preregistration_git_blob_sha1": "3c0e2031a14b5bb07e41dce29005e07dc1439deb",
+  "original_4000q_E8_csv_sha256": "bf8f48deb9514c5101d5ce314bfbd397485102a5487da1039f141e3cad6143d0",
+  "original_E9_three_CLASS_sha256": "450b35f68a329f545f21bbe7ec02e36941e4c303037ccb7c011830c315d15890",
+  "original_E12_per_state_sha256": "4a12370b578a5482b67cd3d484504bf672396df35d8c252ff5d1150875b04777",
+  "original_E12b_filter_erratum_git_blob": "09bac4f72e325578cbed7e790c50114150087e89",
+  "reconstructed_PSD_from_original_archived_E8_SHA256": "4f5b1cfab08c1a3b3be5108111d590fd48c0007980cfea65748c4866b708b33d",
+  "direct_R16_sigma_LOS_kms_three_fixed_z": {
+    "0.945": 135.5271485311792,
+    "0.95": 135.48537162977118,
+    "0.955": 135.44329407634257
+  },
+  "CLASS_pk_cb_short_Mpc3_at_kcom_0p05_z0p95": 15525.999592040673,
+  "sigma_center_vs_original_E12_relative_gap": 0.0,
+  "fresh_direct_filtered_Plong_over_i_mu_fixed_long_K": {
+    "0.001": {
+      "k_com_h_Mpc": 0.001,
+      "W_R16_original_locked_top_hat": 0.9999744002355421,
+      "E13_delta_cb_Newtonian_transfer_per_R": -6.833354652998337,
+      "E13_theta_rel_direct_per_R_Mpc_inv": -8.962360906291834e-06,
+      "P_delta_cb_rDIRECT_R16_filtered_over_i_mu_Mpc3": 31720.814637833886,
+      "old_E12_raw_P_delta_cb_r_over_i_mu_Mpc3": 31721.6267040059,
+      "filter_and_sigma_corrected_original_E12_comparison": 31720.814637834053,
+      "fresh_theta_vs_E12_relative_gap": 5.670601459441256e-15,
+      "fresh_dcb_vs_E12_relative_gap": 1.2997692419058195e-16,
+      "corrected_Plong_relative_closure_gap": 5.2756219232346145e-15
+    },
+    "0.002": {
+      "k_com_h_Mpc": 0.002,
+      "W_R16_original_locked_top_hat": 0.9998976037447751,
+      "E13_delta_cb_Newtonian_transfer_per_R": -23.046689562777686,
+      "E13_theta_rel_direct_per_R_Mpc_inv": -0.00011709171986883961,
+      "P_delta_cb_rDIRECT_R16_filtered_over_i_mu_Mpc3": 85251.72773785368,
+      "old_E12_raw_P_delta_cb_r_over_i_mu_Mpc3": 85260.45808948082,
+      "filter_and_sigma_corrected_original_E12_comparison": 85251.7277378537,
+      "fresh_theta_vs_E12_relative_gap": 0.0,
+      "fresh_dcb_vs_E12_relative_gap": 1.5415288469622238e-16,
+      "corrected_Plong_relative_closure_gap": 1.7069349342823316e-16
+    },
+    "0.003": {
+      "k_com_h_Mpc": 0.003,
+      "W_R16_original_locked_top_hat": 0.9997696189579166,
+      "E13_delta_cb_Newtonian_transfer_per_R": -49.290711526823635,
+      "E13_theta_rel_direct_per_R_Mpc_inv": -0.0004825928785108607,
+      "P_delta_cb_rDIRECT_R16_filtered_over_i_mu_Mpc3": 146323.1415261438,
+      "old_E12_raw_P_delta_cb_r_over_i_mu_Mpc3": 146356.85937192227,
+      "filter_and_sigma_corrected_original_E12_comparison": 146323.1415261441,
+      "fresh_theta_vs_E12_relative_gap": 2.134287739677135e-15,
+      "fresh_dcb_vs_E12_relative_gap": 1.441534751174018e-16,
+      "corrected_Plong_relative_closure_gap": 2.1879118482900376e-15
+    },
+    "0.005": {
+      "k_com_h_Mpc": 0.005,
+      "W_R16_original_locked_top_hat": 0.9993601462683934,
+      "E13_delta_cb_Newtonian_transfer_per_R": -127.24630493912352,
+      "E13_theta_rel_direct_per_R_Mpc_inv": -0.0024654198078461597,
+      "P_delta_cb_rDIRECT_R16_filtered_over_i_mu_Mpc3": 245551.89077210266,
+      "old_E12_raw_P_delta_cb_r_over_i_mu_Mpc3": 245709.10866216998,
+      "filter_and_sigma_corrected_original_E12_comparison": 245551.89077210275,
+      "fresh_theta_vs_E12_relative_gap": 7.036219431903953e-16,
+      "fresh_dcb_vs_E12_relative_gap": 2.233598016382587e-16,
+      "corrected_Plong_relative_closure_gap": 3.5557246615231765e-16
+    }
+  },
+  "observed_galaxy_random_or_odd_read": false,
+  "actual_complete_eBOSS_LRG_ELG_bispectrum_calculated": false
+}

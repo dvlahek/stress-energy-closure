@@ -1,0 +1,102 @@
+{
+  "stage": "E28_CONDITIONAL_FINITE_BAND_3D_GRAVITATIONAL_HALO_RECOIL_AND_POSTHOC_FPM_RESOLUTION",
+  "date": "2026-09-29",
+  "status": "FINITE_K_BAND_ACCELERATION_NUMERICALLY_CONVERGED_WITHIN_REGISTERED_MODEL; ALL_K_TOTAL_FORCE_AND_PHYSICAL_HALO_RESPONSE_UNCERTIFIED",
+  "pre_run_E28_protocol_git_blob": "e8feedc4d09965a24d8eb60c16454d6e03b2fbff",
+  "E28_first_protocol_internal_pre_execution_fix": "Corrected frozen physical-r_s text to fixed comoving radial profile before ANY first E28 execution; original blob a818d07f9c42baa61ffe0520c9ec6245e32569e3 retained in Git history.",
+  "E28_original_code_blob": "c02dc66f4c235427d6f3e7dac85b5d617ed7717e",
+  "E28_original_CI": {
+    "id": 36601783674,
+    "conclusion": "SUCCESS",
+    "source_only_original_inputs_no_new_CLASS_or_WSL": true,
+    "artifact_id": 11048519691,
+    "original_numeric_JSON_not_downloaded_or_byte_rehashed_in_this_report": true
+  },
+  "original_E28_first_grid": {
+    "lnk_Simpson_intervals_per_segment": 12,
+    "z_nodes": 129,
+    "refined_intervals": 24,
+    "refined_z_nodes": 257,
+    "first_FD_lowmass_alpha04_band_accel_km2_s2_per_Mpc": -0.002018508621961,
+    "first_plus_lowmass_alpha04_band_accel": -0.002012235275115,
+    "first_minus_lowmass_alpha04_band_accel": -0.00202478197853,
+    "unresolved_Fminus_minus_Fplus_signed_relative_gap": [
+      0.13518,
+      0.136487,
+      0.0173675,
+      0.0171007
+    ],
+    "signed_differences_NOT_certified_in_first_run": true
+  },
+  "E28R1_protocol_git_blob": "5d0a0ac96364916e95328c0f9ef6d30fb528c229",
+  "E28R1_first_failed_CI": {
+    "id": 36602177580,
+    "conclusion": "FAILURE",
+    "technical_issue": "Original E28 helper correctly rejected E28R1 48-per-segment grid; only new E28R1 helper repaired before successful scientific R1 computation, original E28 unchanged."
+  },
+  "E28R1_final_CI": {
+    "id": 36602291554,
+    "conclusion": "SUCCESS",
+    "artifact_id": 11050535270,
+    "original_numeric_JSON_not_downloaded_or_byte_rehashed_in_this_report": true
+  },
+  "registered_model": {
+    "F_states": [
+      "FD",
+      "plus",
+      "minus"
+    ],
+    "original_halo_mass_anchors_physical_Msun": [
+      1490312965722.8018,
+      14903129657228.018
+    ],
+    "original_E17D2B1_alpha": [
+      0.4,
+      0.8
+    ],
+    "z_observation": 0.95,
+    "z_initial_zero_wake": 1,
+    "halo_relative_wind_km_s": 200,
+    "k_comoving_Mpc_inverse_bands": [
+      0.01,
+      0.1,
+      1,
+      8
+    ],
+    "halo_profile": "Truncated original median DM14 NFW at z=.95, fixed comoving profile shape from z1 to .95, mass normalization original conditional Wechsler-like history; mixed original CLASS and DM14 cosmology, not a real LRG/ELG host.",
+    "neutrino_source": "Original F0/F+/Fminus 4000q finite-support, state-specific E9 CLASS H(z), E17D0 normalized derivative kernel and E27 short physical-conformal-time Born history.",
+    "rho_nu_rest_FD_Msun_per_Mpc3_at_z095": 1325594558.34,
+    "averaged_gravity_force": "a_parallel from neutrino wake metric Psi_nuwake only; do not also inject independently in E25 Euler residual."
+  },
+  "R1_original_lowmass_alpha04_fine_band_accel_km2_s2_per_Mpc": {
+    "FD": -0.00201850894575251,
+    "plus": -0.00201220917438763,
+    "minus": -0.00202480872683428
+  },
+  "R1_finite_band_signed_Fminus_minus_Fplus_over_FD_by_mass_alpha": {
+    "low_alpha04": 0.00624200971374,
+    "low_alpha08": 0.00615896924124,
+    "high_alpha04": -0.00344890812632,
+    "high_alpha08": -0.00347543685402
+  },
+  "R1_24_vs_48_grid_gap_over_SIGNED_difference": {
+    "low_alpha04": 0.00419451654,
+    "low_alpha08": 0.00423842705,
+    "high_alpha04": 0.000814347825,
+    "high_alpha08": 0.000801424736
+  },
+  "R1_all_four_SIGNED_differences_resolved_in_original_conditional_MODEL_only": true,
+  "E28R1_UV_gate": {
+    "FD_lowmass_alpha04_fraction_of_full_finite_band_force_from_k1_to_8_Mpc_inverse": 0.9422589,
+    "total_force_k_beyond8_calculated": false,
+    "physical_shortscale_Born_halo_profile_validity_certified": false,
+    "physical_Fpm_contrast_sign_across_halo_sample_or_kcut_robust": false
+  },
+  "NO_PHYSICAL_F_STATES_REAL_HALO_CALIBRATION": true,
+  "no_actual_highz_LRG_ELG_selection_or_HOD": true,
+  "physical_beta_epsilon_chi_not_computed": true,
+  "observed_odd_24D_SEALED": true,
+  "no_significance_or_inference": true,
+  "no_new_CLASS_ABACUS_FITS_mock_or_WSL": true,
+  "no_main_mutation_PR1_draft": true
+}

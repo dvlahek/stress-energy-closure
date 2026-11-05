@@ -1,0 +1,95 @@
+{
+  "stage": "A03E24_EVEN_SECTOR_VS_LINEAR_LOS_NEUTRINO_RESPONSE_SIGN_IDENTIFIABILITY",
+  "date": "2026-09-29",
+  "status": "EXACT_RATIONAL_RESTRICTED_LINEAR_EVEN_SECTOR_GLOBAL_SIGN_DUALITY_AND_PINNED_E21_SOURCE_QA_PASS",
+  "posthoc_science_before_protocol": true,
+  "protocol_before_new_exact_synthetic_tests": true,
+  "protocol_git_blob": "3fd79b8cfa116b05c5ab55a248f0f95f2ec7a45b",
+  "original_E21_git_blob": "cc3312c5313cce60fad4a88c3a56ef3d4e675e38",
+  "original_E22_git_blob": "a7473fb8b052f37d65e13456d04ad3a885920684",
+  "original_E23_git_blob": "8fedf17c15d97d49ca45289dc1c0d6cb87b74727",
+  "final_original_E24_CI": {
+    "id": 36583153519,
+    "conclusion": "SUCCESS",
+    "synthetic_negative_controls_passed": 9,
+    "artifact_id": 11040452239,
+    "artifact_original_zip_not_downloaded_or_byte_hashed": true
+  },
+  "preceding_E24_fail": {
+    "id": 36583036306,
+    "conclusion": "FAILURE",
+    "narrow_issue": "Reader ASCII keyword M200c did not match source E23 TeX M_{200c}; corrected source-reader only, no original source or physics changed."
+  },
+  "original_F_count": 3,
+  "original_long_K_count": 4,
+  "symbolic_restricted_theorem": {
+    "P_LL": "A_L^2 P_dd+c_L^2 P_vv",
+    "P_EE": "A_E^2 P_dd+c_E^2 P_vv",
+    "Re_P_LE": "A_L A_E P_dd+c_L c_E P_vv",
+    "Im_P_LE": "mu (A_L c_E-A_E c_L) C_v",
+    "original_E12_P_delta_v": "i mu C_v",
+    "global_simultaneous_c_sign_flip": "All autos and real cross unchanged exactly to full c^2 order in deterministic two-field model; imaginary LE odd reverses.",
+    "first_order_even": "All first derivatives of real auto and real LE cross with respect to c_a vanish at (c_L,c_E)=(0,0).",
+    "odd_only_rank": "Single chi=A_L c_E-A_E c_L, invariant under (c_L,c_E)+t(A_L,A_E). This does NOT preserve even terms at O(c^2) generally.",
+    "out_of_scope": "Any other correlated fields, original relativistic Doppler/gravitational/wide-angle/magnification, stochastic or wind-conditioned selection. No real eBOSS physical c measured."
+  },
+  "exact_rational_synthetic_case": {
+    "A_L": "2",
+    "A_E": "3",
+    "c_L": "1/10",
+    "c_E": "1/5",
+    "mu": "1/2",
+    "P_dd": "11",
+    "P_vv": "5",
+    "C_v": "7",
+    "baseline": {
+      "P_LL_even": "881/20",
+      "P_EE_even": "496/5",
+      "Re_P_LE_even": "661/10",
+      "Im_P_LE_odd": "7/20"
+    },
+    "simultaneous_sign_flipped": {
+      "P_LL_even": "881/20",
+      "P_EE_even": "496/5",
+      "Re_P_LE_even": "661/10",
+      "Im_P_LE_odd": "-7/20"
+    },
+    "c_zero": {
+      "P_LL_even": "44",
+      "P_EE_even": "99",
+      "Re_P_LE_even": "66",
+      "Im_P_LE_odd": "0"
+    },
+    "only_c_E_one_tenth": {
+      "P_LL_even": "44",
+      "P_EE_even": "1981/20",
+      "Re_P_LE_even": "66",
+      "Im_P_LE_odd": "7/10"
+    }
+  },
+  "toy_joint_occupation_same_marginals": {
+    "LRG_marginal": [
+      "1/2",
+      "1/2"
+    ],
+    "ELG_marginal": [
+      "1/2",
+      "1/2"
+    ],
+    "fully_matched_pair_correlation": "+1",
+    "fully_antimatched_pair_correlation": "-1",
+    "not_a_real_eBOSS_HOD_or_even_cross_model": true
+  },
+  "source_Cv_original_long_K_h_per_Mpc": [
+    "0.001",
+    "0.002",
+    "0.003",
+    "0.005"
+  ],
+  "physical_neutrino_to_galaxy_c_calibrated": false,
+  "physical_highz_HOD_and_wind_conditional_pair_response_calibrated": false,
+  "absolute_eBOSS_24D_even_or_odd_predicted": false,
+  "observed_galaxy_odd_access": false,
+  "new_CLASS_FITS_Abacus_mock_WSL": false,
+  "main_untouched_PR_draft": true
+}

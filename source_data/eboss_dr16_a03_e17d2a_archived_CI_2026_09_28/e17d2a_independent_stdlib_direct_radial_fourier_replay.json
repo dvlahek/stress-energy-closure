@@ -1,0 +1,55 @@
+{
+  "date": "2026-09-28",
+  "status": "E17D2A_INDEPENDENT_STDLIB_ALL_FROZEN_NFW_SPATIAL_POISSON_SHAPES_PASS_PHYSICAL_TIME_B_BLOCKED",
+  "prospective_protocol_git_blob": "e7e0281f0b6b205214db5faf03a7c364521b3f2c",
+  "original_joint_sha256": "040c9711bfdfee6682acda4b48bc578b64e88c11d143d35a9a9ae46ff4c74a31",
+  "original_E16_full_sha256": "5d81f95a5571175f06eb032b865285ba34804701693f76af392be7fc31fb06db",
+  "original_case_SHA_and_replay_counts": {
+    "e17d2a_original_nfw_c2_alpha0p1.json": {
+      "original_sha256": "90db1f5e07d73c475195b201691271b98ff2721708bd0eb1f291bb75cf6121aa",
+      "replayed_original_geometries": 576,
+      "replayed_two_short_plus_long_modes": 1728,
+      "independent_unique_radial_Fourier_integrals": 208
+    },
+    "e17d2a_original_nfw_c2_alpha1p0.json": {
+      "original_sha256": "f81a3d13ac6b0b70a5fc0f1bf4a0ed0aec8164f0a7861d4688e6256466d002c2",
+      "replayed_original_geometries": 576,
+      "replayed_two_short_plus_long_modes": 1728,
+      "independent_unique_radial_Fourier_integrals": 208
+    },
+    "e17d2a_original_nfw_c4_alpha0p1.json": {
+      "original_sha256": "5ccc9dea6269d09ffb72cc9c51bcd9630dd11f0baaceb2c2d50cb28149b6598e",
+      "replayed_original_geometries": 576,
+      "replayed_two_short_plus_long_modes": 1728,
+      "independent_unique_radial_Fourier_integrals": 208
+    },
+    "e17d2a_original_nfw_c4_alpha1p0.json": {
+      "original_sha256": "d0412994aa2572957aa1ee8ceb0409ddefdbd956a5de75d0be5d01a655cbc28a",
+      "replayed_original_geometries": 576,
+      "replayed_two_short_plus_long_modes": 1728,
+      "independent_unique_radial_Fourier_integrals": 208
+    },
+    "e17d2a_original_nfw_c8_alpha0p1.json": {
+      "original_sha256": "728cd5cc55a2da04177304bee6224e58c0d2ed27417609fdebc2c9bd8d6248d6",
+      "replayed_original_geometries": 576,
+      "replayed_two_short_plus_long_modes": 1728,
+      "independent_unique_radial_Fourier_integrals": 208
+    },
+    "e17d2a_original_nfw_c8_alpha1p0.json": {
+      "original_sha256": "3c20d2481980d15619a58dac88ead5eb6355e727bc32d3102b71f6f0f16ddb49",
+      "replayed_original_geometries": 576,
+      "replayed_two_short_plus_long_modes": 1728,
+      "independent_unique_radial_Fourier_integrals": 208
+    }
+  },
+  "original_E16_geometries_per_case": 576,
+  "preregistered_c_alpha_QA_cases": 6,
+  "independently_replayed_actual_two_short_plus_long_modes": 10368,
+  "max_scaled_analytic_SiCi_vs_direct_radial_Simpson_gap": 1.2443794644456727e-12,
+  "method": "Independent pure-stdlib frozen E16 analytic triangle and 4096-panel mass-weighted direct radial Simpson against original analytic SciPy Si/Ci NFW transform, independently verified radial mass and potential/force boundary. No original NFW runner, SciPy, NumPy, halo mass/HOD or observed eBOSS input.",
+  "real_halo_M200_c_rs_time_or_HOD_calibrated": false,
+  "full_physical_finiteK_galaxy_bispectrum": "BLOCKED",
+  "observed_odd_SEALED": true,
+  "new_CLASS_FITS_mock": false,
+  "main_untouched_PR_draft": true
+}

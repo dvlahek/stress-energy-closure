@@ -1,0 +1,46 @@
+{
+  "date": "2026-09-27",
+  "status": "POSTHOC_MOCK0001_SOURCE_ONLY_NUMERICAL_MECHANISM_ONLY_A03_PHYSICAL_STOP",
+  "parent_uploaded_full_json_sha256": "187e21e206cdb6ded1108887a2b6670113d50b752e438d28212cfc3d187572da",
+  "parent_complete_archive_git_blob_sha1": "aa080ec8a3f5faab1731396bed1b048c7dfa991c",
+  "local_detailed_independent_analysis_sha256": "73a62d80ea9493fd68fc4c094c92caad5d63e0b8ce5cbade148e3abc69e7572b",
+  "method": "Exact posthoc three-input Shapley average of all six DR/RD/RR replacement permutations with full-galaxy DD identical. Local cancellation ratio is sum of absolute four normalized LS components divided by absolute signed four-component sum; not an inferential condition number.",
+  "caps": {
+    "NGC": {
+      "xi_change_relative_L1": 1.6749929559624868,
+      "xi_change_mean_abs": 0.0442259,
+      "xi_48000_mean_abs": 0.0264036,
+      "local_cancellation_ratio_median": 242.21,
+      "local_cancellation_ratio_p90": 980.41,
+      "normalized_histogram_L1_DR": 0.024341581839132334,
+      "normalized_histogram_L1_RD": 0.041733304882136724,
+      "normalized_histogram_L1_RR": 0.043457412615250504,
+      "max_abs_ell1_change": 0.02546494963895583,
+      "max_abs_ell3_change": 0.039177327151613435
+    },
+    "SGC": {
+      "xi_change_relative_L1": 1.4602876804431133,
+      "xi_change_mean_abs": 0.0358211,
+      "xi_48000_mean_abs": 0.0245302,
+      "local_cancellation_ratio_median": 237.35,
+      "local_cancellation_ratio_p90": 1166.37,
+      "normalized_histogram_L1_DR": 0.017659831389457988,
+      "normalized_histogram_L1_RD": 0.01204980642915224,
+      "normalized_histogram_L1_RR": 0.020922318632974345,
+      "max_abs_ell1_change": 0.05195803327406882,
+      "max_abs_ell3_change": 0.0472679804839392
+    }
+  },
+  "source_only_self_test_CI": "36306590429",
+  "relative_xi_change_does_not_establish_48000R_nonconvergence": true,
+  "4800R_unreliable_reference_in_this_single_mock": true,
+  "48k_independent_random_precision_estimate": "NOT_AVAILABLE",
+  "absolute_eBOSS_EV_wake_template": "NOT_AVAILABLE",
+  "physically_calibrated_redshift_conditional_eBOSS_window": "NOT_AVAILABLE",
+  "independent_eBOSS_inference_covariance": "NOT_AVAILABLE",
+  "original_v1_independent_SGC_reverse_failure": "STILL_UNRESOLVED",
+  "no_new_FITS_or_download": true,
+  "observed_odd_sealed": true,
+  "main_unchanged": true,
+  "scientific_status": "A03_PHYSICAL_UNCERTIFIED_A04_BLOCKED_NO_DETECTION_OR_EXCLUSION"
+}

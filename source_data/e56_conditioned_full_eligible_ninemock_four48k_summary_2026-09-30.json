@@ -1,0 +1,73 @@
+{
+  "stage": "E56_CONDITIONED_FULL_ELIGIBLE_NINEMOCK_FOUR48K_SUMMARY",
+  "date": "2026-09-30",
+  "status": "PASS_NINEMOCK_FULL_ELIGIBLE_FOUR48K_BACKGROUND_QUANTIFIED",
+  "decision": {
+    "fourrep_random_mean_subdominant_all_caps": false,
+    "interpretation": "FOURREP_RANDOM_INTEGRATION_STILL_MATERIAL; USE_HIGHER_REPLICA_OR_DETERMINISTIC_RANDOM_INTEGRATION",
+    "important_limit": "Conditional random-subset integration precision only; no physical velocity tag, absolute signal calibration, finite-pool common-bias certification, or significance."
+  },
+  "NGC": {
+    "geometry": {
+      "difference_norm_over_plus_mean": 0.4348332463026942,
+      "difference_norm_over_plus_sd": 0.00021004460690502612,
+      "postwindow_angle_mean": 0.024202329960698696,
+      "postwindow_angle_sd": 0.0003746981355235721
+    },
+    "gate": {
+      "median_ratio": 0.28935226307743306,
+      "max_ratio": 0.4429075033315168,
+      "median_max_allowed": 0.25,
+      "field_max_allowed": 0.5,
+      "pass": false
+    },
+    "ratios": {
+      "A": 0.23241022348836646,
+      "B": 0.185509932349098,
+      "C": 0.4429075033315168,
+      "D": 0.3462943026664997
+    }
+  },
+  "SGC": {
+    "geometry": {
+      "difference_norm_over_plus_mean": 0.4349522254808606,
+      "difference_norm_over_plus_sd": 0.00010661441806130906,
+      "postwindow_angle_mean": 0.0240501835708962,
+      "postwindow_angle_sd": 0.00015204222191728405
+    },
+    "gate": {
+      "median_ratio": 0.2886521521383264,
+      "max_ratio": 0.4239910843029281,
+      "median_max_allowed": 0.25,
+      "field_max_allowed": 0.5,
+      "pass": false
+    },
+    "ratios": {
+      "A": 0.14949440761051258,
+      "B": 0.22399647469974443,
+      "C": 0.4239910843029281,
+      "D": 0.3533078295769084
+    }
+  },
+  "projected_standard_MC_scaling": {
+    "R5": {
+      "NGC_median": 0.25880453187381713,
+      "SGC_median": 0.25817833361316367
+    },
+    "R6": {
+      "NGC_median": 0.23625513348642402,
+      "NGC_max": 0.3616324621374189,
+      "SGC_median": 0.23568349529837335,
+      "SGC_max": 0.34618727067718
+    },
+    "note": "Projection only; E57 will measure, not assume, these values."
+  },
+  "guardrails": {
+    "observed_galaxy_rows_used": false,
+    "observed_odd_used": false,
+    "physical_velocity_reconstruction_used": false,
+    "covariance_inverse_used": false,
+    "pvalue_or_detection_sigma": false
+  },
+  "next": "E57 adds R5/R6, reuses E56 R1-R4, and keeps the E56 final-mean gate fixed at median<=0.25 and max<=0.50 in each cap."
+}

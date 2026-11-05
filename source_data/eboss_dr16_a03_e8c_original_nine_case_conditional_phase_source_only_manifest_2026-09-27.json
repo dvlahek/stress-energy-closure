@@ -1,0 +1,31 @@
+{
+  "date": "2026-09-27",
+  "status": "SOURCE_ONLY_NINE_ORIGINAL_E8_E8B_ILLUSTRATIVE_CASES_VERIFIED_CONDITIONAL_PHASE_ONLY",
+  "independent_local_report": {
+    "filename": "eboss_dr16_a03_e8c_nine_case_phase_source_only_2026-09-27.json",
+    "bytes": 10109,
+    "sha256": "58cbb49e1d910d1dd102644dbcec2845c04987ac2fb87cb10ef19a4d10db0f79",
+    "cases": 9
+  },
+  "input_sha256": {
+    "frozen_4000q_csv": "bf8f48deb9514c5101d5ce314bfbd397485102a5487da1039f141e3cad6143d0",
+    "frozen_resonant_source_json": "d82bcf4df279ddb8d7fca89f07f8e3d711ed74285cd5ac6ce055fcc88c32ae14",
+    "frozen_static_SI_green_json": "f001ee510aeeb4449c464aede9a3ae9b00b93f6c3f2a9e384751fb1e8bbb4126"
+  },
+  "per_case_validation": "9/9 q_res, exact FD occupation, F±/FD and ΔF/FD ratios, independent SI first-Eq20 coefficient and exact a²/k_com² dimensionless alpha closure with physical k",
+  "source_only_CI": "36315647049",
+  "CI_original_fixed_example_alpha_FD": 0.0011741803783003515,
+  "CI_original_fixed_example_delta_alpha": -0.00043492205904690075,
+  "CI_original_same_numeric_0p05_comoving_FD_alpha": 0.0003087916839711642,
+  "source_verified_paper_DOI": "10.1093/mnras/stx560",
+  "original_E8_protocol_DOI_typo_still_frozen": "10.1093/mnras/stx539",
+  "published_exact_FD_occupation_at_z0p95_v200": 0.4695260669151108,
+  "published_mu1_vs_exact_FD_example_ratio": 2.1298072044651732,
+  "printed_mu_range_not_identical_to_exact_FD": true,
+  "observed_odd_remains_sealed": true,
+  "random_48000_convergence_certified": false,
+  "physical_eBOSS_xi1_xi3_or_SN_calculated": false,
+  "independent_eBOSS_covariance_available": false,
+  "no_new_FITS_CLASS_mock_download_seed_or_science_cut": true,
+  "main_untouched": true
+}

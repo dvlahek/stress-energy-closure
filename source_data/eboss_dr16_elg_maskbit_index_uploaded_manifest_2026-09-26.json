@@ -1,0 +1,18 @@
+{
+  "study": "eBOSS DR16 ELG maskbit four-family offline index-pin exact uploaded local report",
+  "record_date": "2026-09-26",
+  "local_report": "eboss_workspace/official_mask_inventory/elg_maskbit_index_pin.json",
+  "exact_user_uploaded_filename": "elg_maskbit_index_pin.json",
+  "report_bytes": 2789,
+  "report_sha256": "32104c056ab86637df1d236bdde04263ab18393b66302b690d70ce331102f2b7",
+  "report_git_blob_sha1": "ca9555978b4198515ebd3f907cfbc72f859f5aa1",
+  "archived_exact_report": "source_data/eboss_dr16_elg_maskbit_index_local_report_2026-09-26.json",
+  "archive_git_blob_verified_equal": true,
+  "parent_index_protocol": "source_data/eboss_dr16_elg_maskbit_index_pin_2026-09-26.json",
+  "original_official_inventory_sha256": "84a3a163ec0b28a5392dadc95aa757e469cb9cb6e94cc731aac2fa2958fc6c18",
+  "total_listed_maskbit_images": 19381,
+  "each_image_gzip_SHA256_not_yet_known": true,
+  "observed_odd_data_vector_read": false,
+  "physical_elg_mask_certified": false,
+  "next_gate": "Sample one preregistered middle filename from each of four official families; SHA stream compressed raw FITS.gz bytes only, first-seen file SHA to be frozen separately before any FITS header/pixel decoding."
+}

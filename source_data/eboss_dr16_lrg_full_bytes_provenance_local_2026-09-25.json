@@ -1,0 +1,21 @@
+{
+  "status": "OFFICIAL_LRG_FULL_BYTES_SHA_PINNED_ONLY",
+  "official_source_url": "https://portal.nersc.gov/project/cosmo/data/sdss/dr17/eboss/lss/catalogs/DR16/eBOSS_LRG_full_ALLdata-vDR16.fits",
+  "local_file_path": "/home/dino/stress-energy-closure/eboss_workspace/quarantine_official_lrg_sector/eBOSS_LRG_full_ALLdata-vDR16.fits",
+  "acquisition_mode": "official_http_full_bytes_SHA_pinned",
+  "file_bytes": 196485120,
+  "full_file_sha256": "39b831801adec04fe6dc5d6ab76a4b303aa58bfd303548cb7fddfae7d7f9331d",
+  "verified_parent_header_report_sha256": "901c5486e817da57a162d9bec74171a0fbc09f4e0901d72b87d7f4495ff51308",
+  "verified_first_header_sha256": "a48b0d1055b5f7638dc77a86eb5ff5c861b629d19ff75cd8ae8122caa7e9014b",
+  "full_source_sha256_frozen_in_repository": false,
+  "published_completeness_selection_applied": false,
+  "official_lrg_sector_semantics_certified": false,
+  "official_lrg_polygon_composition_certified": false,
+  "observed_galaxy_rows_parsed": false,
+  "observed_sector_columns_parsed": false,
+  "observed_random_or_mock_rows_parsed": false,
+  "observed_odd_data_vector_read": false,
+  "physical_lrg_elg_pair_window_certified": false,
+  "note": "Complete official LRG FITS bytes SHA-hashed only. No FITS table column decoded. Freeze this first-seen SHA256 in a separate pre-row inspection protocol; it is not an SDSS-published checksum.",
+  "errors": []
+}

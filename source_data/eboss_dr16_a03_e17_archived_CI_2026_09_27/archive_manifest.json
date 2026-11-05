@@ -1,0 +1,43 @@
+{
+  "date": "2026-09-27",
+  "CI_run_id": "36340288916",
+  "E17_prospective_protocol_git_blob": "f4bd3ea2a0519c4091ea94d0600ac62e57b3a2d4",
+  "E17_original_runner_git_blob": "e27cb05c8a4e4159ff3a133e5ecba6ed1ec9f377",
+  "E17_independent_runner_git_blob": "8759e13216a4ead7f2cf486c29765d5b714a2adc",
+  "original_CLASS_commit": "e85808324f51fc694d12e3ed7439552a3c3f9540",
+  "E16_full_original_SHA256": "5d81f95a5571175f06eb032b865285ba34804701693f76af392be7fc31fb06db",
+  "same_three_original_frozen_F_states": true,
+  "linear_CLASS_both_leg_replay_NOT_independent_retarded_halo": true,
+  "physical_finite_K_bispectrum": "BLOCKED",
+  "observed_odd_SEALED": true,
+  "new_catalogue_or_mock_download": false,
+  "main_unchanged": true,
+  "PR_remains_draft": true,
+  "files": [
+    {
+      "file": "e17_independent_fresh_CLASS_scalar_replay.json",
+      "size_bytes": 2294,
+      "sha256": "816570daa6acf3f81fffed75f4b3f5b3ba7e446630cfb93a28a1b7d1fdd974f6"
+    },
+    {
+      "file": "e17_original_both_legs_FD.json",
+      "size_bytes": 2237046,
+      "sha256": "cd89f798899e12d267fedd1b01d3ef1ddf8b1d8dbe5d14845b5e25d6c9c9af34"
+    },
+    {
+      "file": "e17_original_both_legs_minus.json",
+      "size_bytes": 2236815,
+      "sha256": "9ed7a5f219367570c37d01ba4b19031152b1930e551a2f77033fa9fa50b9ba52"
+    },
+    {
+      "file": "e17_original_both_legs_plus.json",
+      "size_bytes": 2236590,
+      "sha256": "4c95de74fd7ea03388cecb94bbe9fd06180865b045c5d68b925b69a3f2b3ba10"
+    },
+    {
+      "file": "e17_original_joint_three_state_CLASS_both_short_legs_source_only.json",
+      "size_bytes": 2913,
+      "sha256": "094c49cb89d6dd231a5cbc16ecdfe455bcb3938ddec375fd28c81c8098ab2ad9"
+    }
+  ]
+}

@@ -1,0 +1,230 @@
+{
+  "a03": "PHYSICAL_UNCERTIFIED",
+  "a04": "BLOCKED",
+  "classification": "E35_OFFLINE_POSITIVE_SPHERICAL_LOW_K_SECOND_MOMENT_BOUND",
+  "dimensionless_k_grid": [
+    {
+      "actual_abs_product_minus_point": 0.0,
+      "clipped_bound": 0.0,
+      "k_dimensionless": 0.0,
+      "second_moment_bound": 0.0,
+      "u_source": 1.0,
+      "u_test": 1.0
+    },
+    {
+      "actual_abs_product_minus_point": 0.00041367312659612576,
+      "clipped_bound": 0.00041375000000000006,
+      "k_dimensionless": 0.05,
+      "second_moment_bound": 0.00041375000000000006,
+      "u_source": 0.9997341930413716,
+      "u_test": 0.9998520945177259
+    },
+    {
+      "actual_abs_product_minus_point": 0.0016537704436835332,
+      "clipped_bound": 0.0016550000000000002,
+      "k_dimensionless": 0.1,
+      "second_moment_bound": 0.0016550000000000002,
+      "u_source": 0.9989370885977849,
+      "u_test": 0.9994085122594679
+    },
+    {
+      "actual_abs_product_minus_point": 0.0049422457543466525,
+      "clipped_bound": 0.0049532495,
+      "k_dimensionless": 0.173,
+      "second_moment_bound": 0.0049532495,
+      "u_source": 0.9968213275671467,
+      "u_test": 0.9982308029807132
+    },
+    {
+      "actual_abs_product_minus_point": 0.04061482582609466,
+      "clipped_bound": 0.041375,
+      "k_dimensionless": 0.5,
+      "second_moment_bound": 0.041375,
+      "u_source": 0.9736790943464673,
+      "u_test": 0.9853196805235344
+    },
+    {
+      "actual_abs_product_minus_point": 0.15373954834685166,
+      "clipped_bound": 0.1655,
+      "k_dimensionless": 1.0,
+      "second_moment_bound": 0.1655,
+      "u_source": 0.8978023233621304,
+      "u_test": 0.9425910689159661
+    },
+    {
+      "actual_abs_product_minus_point": 0.9641774488752112,
+      "clipped_bound": 2.0,
+      "k_dimensionless": 4.0,
+      "second_moment_bound": 2.648,
+      "u_source": 0.0894587006025504,
+      "u_test": 0.4004367477227541
+    },
+    {
+      "actual_abs_product_minus_point": 0.9979193373124956,
+      "clipped_bound": 2.0,
+      "k_dimensionless": 8.0,
+      "second_moment_bound": 10.592,
+      "u_source": 0.1024949392565842,
+      "u_test": 0.020300150452264895
+    }
+  ],
+  "endpoint_only_counterexample": {
+    "actual_midpoint_abs_product_minus_point": 0.3374942757782765,
+    "endpoints_r": [
+      1.0,
+      1.0
+    ],
+    "interpretation": "Endpoint mass profiles alone do not supply uniform temporal second moments.",
+    "invalid_bound_from_endpoint_moments": 0.0075,
+    "k_dimensionless": 0.15,
+    "transient_midpoint_r": 10.0,
+    "valid_bound_from_midpoint_moment": 0.37875
+  },
+  "observed_odd_read": false,
+  "physical_total_halo_drag_certified": false,
+  "qa_checks_passed": 85,
+  "retarded_history_toy": {
+    "inward": [
+      {
+        "actual_absolute_replacement_error": 0.0,
+        "k_dimensionless": 0.0,
+        "point_mass_retarded": 0.6321205588285578,
+        "proven_integral_bound": 0.0,
+        "retarded_product": 0.6321205588285578
+      },
+      {
+        "actual_absolute_replacement_error": 0.002005595785592451,
+        "k_dimensionless": 0.1,
+        "point_mass_retarded": 0.6321205588285578,
+        "proven_integral_bound": 0.0020081467142945234,
+        "retarded_product": 0.6301149630429653
+      },
+      {
+        "actual_absolute_replacement_error": 0.04863515987640232,
+        "k_dimensionless": 0.5,
+        "point_mass_retarded": 0.6321205588285578,
+        "proven_integral_bound": 0.05020366785736308,
+        "retarded_product": 0.5834853989521555
+      },
+      {
+        "actual_absolute_replacement_error": 0.1769567254864785,
+        "k_dimensionless": 1.0,
+        "point_mass_retarded": 0.6321205588285578,
+        "proven_integral_bound": 0.2008146714294523,
+        "retarded_product": 0.45516383334207927
+      },
+      {
+        "actual_absolute_replacement_error": 0.48932160671318325,
+        "k_dimensionless": 2.0,
+        "point_mass_retarded": 0.6321205588285578,
+        "proven_integral_bound": 0.8032586857178092,
+        "retarded_product": 0.14279895211537455
+      },
+      {
+        "actual_absolute_replacement_error": 0.6130638640318817,
+        "k_dimensionless": 4.0,
+        "point_mass_retarded": 0.6321205588285578,
+        "proven_integral_bound": 3.213034742871237,
+        "retarded_product": 0.019056694796676096
+      },
+      {
+        "actual_absolute_replacement_error": 0.622562125695995,
+        "k_dimensionless": 8.0,
+        "point_mass_retarded": 0.6321205588285578,
+        "proven_integral_bound": 12.852138971484948,
+        "retarded_product": 0.00955843313256282
+      }
+    ],
+    "outward": [
+      {
+        "actual_absolute_replacement_error": 0.0,
+        "k_dimensionless": 0.0,
+        "point_mass_retarded": 0.6321205588285578,
+        "proven_integral_bound": 0.0,
+        "retarded_product": 0.6321205588285578
+      },
+      {
+        "actual_absolute_replacement_error": 0.00221054854010605,
+        "k_dimensionless": 0.1,
+        "point_mass_retarded": 0.6321205588285578,
+        "proven_integral_bound": 0.002213648154935884,
+        "retarded_product": 0.6299100102884517
+      },
+      {
+        "actual_absolute_replacement_error": 0.053438492841972995,
+        "k_dimensionless": 0.5,
+        "point_mass_retarded": 0.6321205588285578,
+        "proven_integral_bound": 0.05534120387339709,
+        "retarded_product": 0.5786820659865848
+      },
+      {
+        "actual_absolute_replacement_error": 0.1925709874542238,
+        "k_dimensionless": 1.0,
+        "point_mass_retarded": 0.6321205588285578,
+        "proven_integral_bound": 0.22136481549358836,
+        "retarded_product": 0.439549571374334
+      },
+      {
+        "actual_absolute_replacement_error": 0.5136746020600526,
+        "k_dimensionless": 2.0,
+        "point_mass_retarded": 0.6321205588285578,
+        "proven_integral_bound": 0.8854592619743534,
+        "retarded_product": 0.11844595676850518
+      },
+      {
+        "actual_absolute_replacement_error": 0.6076297050423061,
+        "k_dimensionless": 4.0,
+        "point_mass_retarded": 0.6321205588285578,
+        "proven_integral_bound": 3.5418370478974137,
+        "retarded_product": 0.02449085378625174
+      },
+      {
+        "actual_absolute_replacement_error": 0.624374542476292,
+        "k_dimensionless": 8.0,
+        "point_mass_retarded": 0.6321205588285578,
+        "proven_integral_bound": 14.167348191589655,
+        "retarded_product": 0.007746016352265756
+      }
+    ]
+  },
+  "source_files_sha256": {
+    "E32_OFFLINE_RADIAL_PROFILE_ENCLOSURE.md": "3c43498856b7905bd6f5c9ccbc7745f75613c11f36f82c9fba09127585b07a8b",
+    "E33_OFFLINE_M200C_PSEUDOEVOLUTION.md": "a4c43f77705a6a89857000af86adee77aa7bc4c0a540bf4bb14c1aebeb6c1e07",
+    "E34_E35_OFFLINE_PROTOCOL.md": "4b8bdc0a95ffec5ff3057eb65ae90835055232714312258e91cf4607493adb33",
+    "e29_20_halo_two_epoch_pair_catalog.json": "424954175ff97226f6d4be1dd82c008388b0a18abf5ce128f5cd7df45206b77e",
+    "e34_offline_causal_history_result.json": "8e75d12b05d97af9c370f93ba7f4954051785c31cd7e370bba8bbc67384f54d7"
+  },
+  "source_second_moment": 0.638,
+  "test_second_moment": 0.355,
+  "theorem": {
+    "essential_condition": "A valid bound on the source second moment at every contributing time, not endpoints alone; positive m(t).",
+    "no_claim": "Not the E28 actual force, F+/F- contrast, UV convergence, anisotropic full-profile bound, or higher-order Born bound.",
+    "retarded": "|A_profile(k)-A_point(k)| <= k^2/6 * integral dt |K(k,t)| m(t) [<r^2>src(t)+<r^2>test(T)]",
+    "single_profile": "0<=1-u(k)<=k^2 * <r^2>/6 and |u(k)|<=1 for positive spherical normalized mass",
+    "source_test": "|1-u_src(k,t)*u_test(k,T)|<=k^2*(<r^2>src(t)+<r^2>test(T))/6, also <=2"
+  },
+  "toy_source_shells": [
+    {
+      "radius": 0.3,
+      "weight": 0.2
+    },
+    {
+      "radius": 0.8,
+      "weight": 0.5
+    },
+    {
+      "radius": 1.0,
+      "weight": 0.3
+    }
+  ],
+  "toy_test_shells": [
+    {
+      "radius": 0.4,
+      "weight": 0.7
+    },
+    {
+      "radius": 0.9,
+      "weight": 0.3
+    }
+  ]
+}

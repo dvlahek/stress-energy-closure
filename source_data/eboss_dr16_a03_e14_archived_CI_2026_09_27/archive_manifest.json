@@ -1,0 +1,32 @@
+{
+  "date": "2026-09-27",
+  "run_id": "36336824859",
+  "preregistered_E14_git_blob_sha1": "688c56b5486395911ff39ff6f862b405c1f446d7",
+  "original_E13_full_sha256": "537365b2e758ec215810bb687557771440851cf2869d02578569b1d47d4ec98d",
+  "original_Fplus_Fminus_unchanged": true,
+  "observed_odd_sealed": true,
+  "not_actual_eBOSS_galaxy_bispectrum": true,
+  "main_unchanged": true,
+  "files": [
+    {
+      "file": "e14_frozen_multik_direct_rank_unitbias_source_only.json",
+      "size_bytes": 32819,
+      "sha256": "0f1efb45593cd51d9ffa1818157bdd52baba525a8fc4bb9cc30c12d98ba91fd8"
+    },
+    {
+      "file": "e14_short_Pcb_FD.json",
+      "size_bytes": 1018,
+      "sha256": "639eb2346f074bdcdf87aecaeee1f0e3f497ee065272b1373c8a804cb32582f4"
+    },
+    {
+      "file": "e14_short_Pcb_minus.json",
+      "size_bytes": 1021,
+      "sha256": "6d7c5b657aef2c9d7d05d7e028dd83b053649123192866312c0835aa81e67d32"
+    },
+    {
+      "file": "e14_short_Pcb_plus.json",
+      "size_bytes": 1020,
+      "sha256": "01dd19c93551ad846505980d673c454ad6dc36d9d0f03c7dda79f9c9388c9a30"
+    }
+  ]
+}

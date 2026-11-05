@@ -1,0 +1,43 @@
+name: eBOSS A03 E24 original E21 even-sector wind sign identifiability
+on:
+  push:
+    branches:
+      - audit/eboss-elg-bit8-ra-orientation-20260925
+    paths:
+      - 'source_data/eboss_dr16_a03_e24_*'
+      - 'scripts/audit_eboss_dr16_a03_e24_even_sector_wind_sign_identifiability.py'
+      - '.github/workflows/eboss_dr16_a03_e24_even_sector_wind_sign_identifiability.yml'
+      - 'EINSTEIN_VLASOV_NP_MASTER_PLAN.md'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  exact-source-and-rational-sign-gate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Verify prospective E24 protocol and exact frozen E21 E22 E23 source blobs
+        run: |
+          set -euo pipefail
+          test "$(git hash-object source_data/eboss_dr16_a03_e24_even_sector_linear_wind_response_sign_identifiability_protocol_2026-09-29.json)" = 3fd79b8cfa116b05c5ab55a248f0f95f2ec7a45b
+          test "$(git hash-object source_data/eboss_dr16_a03_e21_archived_F0_Fpm_linear_LOS_velocity_cross_unit_response_2026-09-29.json)" = cc3312c5313cce60fad4a88c3a56ef3d4e675e38
+          test "$(git hash-object source_data/eboss_dr16_a03_e22_original_E21_four_K_dual_channel_physical_gate_source_only_summary_2026-09-29.json)" = a7473fb8b052f37d65e13456d04ad3a885920684
+          test "$(git hash-object docs/EBOSS_DR16_A03_E23_HIGHZ_PAIR_REDSHIFT_AND_PUBLISHED_HOD_TRANSPORT_GATE_2026-09-29.md)" = 8fedf17c15d97d49ca45289dc1c0d6cb87b74727
+          echo E24_FOUR_ORIGINAL_SHA_PINS_PASS
+      - name: Original E21 four-K and exact rational even odd sign duality
+        env:
+          PYTHONUNBUFFERED: '1'
+        run: |
+          set -euo pipefail
+          python3 -m py_compile scripts/audit_eboss_dr16_a03_e24_even_sector_wind_sign_identifiability.py
+          python3 -u scripts/audit_eboss_dr16_a03_e24_even_sector_wind_sign_identifiability.py \
+            --out "$RUNNER_TEMP/e24_restricted_two_tracer_even_sign_QA.json"
+          echo E24_ORIGINAL_E21_REPLAY_EXACT_RATIONAL_QA_SUCCESS
+      - uses: actions/upload-artifact@v4
+        with:
+          name: E24_source_only_exact_even_sign_duality
+          path: ${{ runner.temp }}/e24_restricted_two_tracer_even_sign_QA.json
+          if-no-files-found: error

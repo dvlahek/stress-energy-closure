@@ -1,0 +1,73 @@
+{
+  "stage": "E17D2B3B9_PROSPECTIVE_PINNED_OFFICIAL_SAME_EPOCH_200CRITICAL_PRODUCT_AVAILABILITY_GATE",
+  "date": "2026-09-29",
+  "status": "SOURCE_ONLY_PREREG_BEFORE_B9_CI_NO_REAL_HALO_IO",
+  "repo": "dvlahek/stress-energy-closure",
+  "branch": "audit/eboss-elg-bit8-ra-orientation-20260925",
+  "original_goal": "For same AbacusSummit_base_c000_ph000 same exact z=0.952838237036305 source halo, determine whether a *documented official* public source explicitly supplies independent M200critical or same-epoch full spatial enclosed-mass data. No substitution of neighboring primary snapshot or cleaned L1 mass.",
+  "parent_pins": {
+    "b8_source_only_final_report_git_blob": "1c1de601c657af7c20590a86945d2cb39abe72e9",
+    "b8_source_only_original_prereg_git_blob": "40abc1616ea85d96ec9cb2ba2ca26dc6a8d6fe22",
+    "b7_user_uploaded_real_id_N_small_report_audit_git_blob": "f27ed284c95e48548e50336da04c1a1d4b137186",
+    "b7_original_field_prereg_git_blob": "296bc22e3d38a414017cc018e1f8ba8658899278",
+    "master_plan_before_b9": "v1.48",
+    "main_untouched": "e50549a5c974772eb9576d301df7a5ea6e6d87d2"
+  },
+  "source_pins": {
+    "repository": "abacusorg/AbacusSummit",
+    "commit": "4b1959c710cb0c49aa305c6213a228aa2a4587ff",
+    "simulations_doc_path": "docs/simulations.rst",
+    "simulations_doc_git_blob": "b5291009d2bb84dfae0c95da2a9734300841f84f",
+    "data_access_path": "docs/data-access.rst",
+    "data_access_git_blob": "6aad7833ab4482ebdd7cd2a23a3011f25e16e329",
+    "data_products_path": "docs/data-products.rst",
+    "data_products_git_blob": "f7c847b174365744b23cb6d1ebaeb010a5bd6ca7",
+    "simulation_table_path": "Simulations/simulations.csv",
+    "simulation_table_git_blob": "53d32e3fbec68ab64da1d52a3bf904fc3eb06c97",
+    "loader_repository": "abacusorg/abacusutils",
+    "loader_commit": "24ab0dda5fea9ae406b1afdacaf4bbf989de9bc6",
+    "loader_path": "abacusnbody/data/compaso_halo_catalog.py",
+    "loader_git_blob": "adb16aee1cbac863db5301c6e380938ee7f76547"
+  },
+  "exact_fixed_checks": [
+    "c000 ph000 CSV identifies Full output timeslices, exact 12 Full epochs given in frozen docs, z0.950 absent",
+    "secondary z0.950 has halo_info and 10pct stable particle PIDs/density/sticky tags, not same-epoch halo RV or field positions",
+    "pin data-access statement NERSC disk subset excludes 100pct timeslice output; access documentation is availability advice, not independent live exact file listing",
+    "cleaned halo DOI includes corrected halo catalog and subsample; loader's N_total, N_mainprog/progenitor index are membership/tree fields, not independently measured M200critical",
+    "search and assert explicit M200c absent only across *these pinned official standard catalog field schema and docs*, not universal all third-party products",
+    "explicitly distinguish future scientific goal M200c(a) from L1 N(a) and conditional modeling",
+    "source-only report lists primary z1.1/z0.8 as noninterchangeable with exact z0.952838237 and archive volume/permissions as access constraints"
+  ],
+  "scope_limits": {
+    "public_metadata_text_only": true,
+    "not_a_live_Globus_detailed_manifest_check": true,
+    "no_FTP_Globus_tape_transfer": true,
+    "no_binary_halo_or_particle_or_tree_download": true,
+    "no_run_on_user_WSL": true,
+    "no_interaction_with_observed_eBOSS_catalog": true,
+    "not_claim_that_no_other_provider_or_private_catalogue_exists": true,
+    "not_create_new_science_cut": true,
+    "no_nearby_epoch_interpolation": true
+  },
+  "qa_negative_controls": [
+    "same-epoch z0.950 fabricated into full output list",
+    "wrong c000 ph000 simulation row or Full designation",
+    "subsample PID mistaken for same-epoch Eulerian RV",
+    "cleaned N_total mistakenly asserted to be M200critical",
+    "neighbor z1.1 full snapshot mislabeled exact secondary z0.952838",
+    "100pct full snapshots falsely reported in standard disk subset",
+    "unpinned official source Git blob",
+    "original source-only no-real-data stop changed"
+  ],
+  "next_gate_if_no_documented_source": "Publish source-only availability conclusion; leave individual M200c(a) BLOCKED and no new user data gate. Future option requires separate actual official product identifier and verified physics/epoch provenance or an explicitly differently scoped L1-only study; no retroactive relabeling.",
+  "absolute_STOP": {
+    "no_user_WSL_replay": true,
+    "no_additional_real_ASDF_PID_RV_cleaned_tree_or_full_particle_download": true,
+    "no_new_M200c_from_N_SO_radius_or_percentiles": true,
+    "no_eBOSS_observed_odd_unseal": true,
+    "no_real_odd_significance_or_galaxy_B_claim": true,
+    "no_original_E8_F0_Fplus_Fminus_E16_48k_retuning": true,
+    "no_new_science_cuts_or_seeds": true,
+    "no_main_commit_or_PR_merge": true
+  }
+}

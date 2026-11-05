@@ -1,0 +1,30 @@
+{
+  "date": "2026-09-30",
+  "stage": "E59_MOCK_VELOCITY_TAG_REPEATABILITY_PACKAGE_V2",
+  "frozen_before_E59_result": true,
+  "local_package": {
+    "name": "EinsteinVlasovNP_E59_offline_package_v2.zip",
+    "sha256": "63eb570f036a54d04c3bd8c834bb18056f63dadcc6d5a1daa034455986d314d6"
+  },
+  "files": {
+    "e59_mock_velocity_tag_repeatability.py": {
+      "bytes": 21935,
+      "sha256": "ee9b76d6c37e4822a6077397886d984ef6f592e4cc21f84b6e522f3a75ea3505",
+      "git_blob_sha1": "facb7318894bf3a034f3f34dd3ddea50fe0c672b"
+    },
+    "E59_PROTOCOL.json": {
+      "bytes": 2116,
+      "sha256": "fb60f7e449e8a9ad0ff23f16722bbb31686505281de532c2a555ca358fee1520"
+    },
+    "E59_MOCK_VELOCITY_TAG_REPEATABILITY.md": {
+      "bytes": 1224,
+      "sha256": "847d12607cbec4610c0c8ad6cb3b7b1a0bfc40691eaa40190c3f938792ed5926"
+    },
+    "E59_LOCAL_RUNBOOK.md": {
+      "bytes": 733,
+      "sha256": "fc44f552cb4510f9219bdf442eebc648723908bc57f82b433f155f6b84a06561"
+    }
+  },
+  "github_script_exact_blob_match": true,
+  "observed_data_unsealed": false
+}

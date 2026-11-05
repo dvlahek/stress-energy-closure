@@ -1,0 +1,46 @@
+{
+  "study": "eBOSS DR16 LRG Ross Table 2 sequential sector tally, exact uploaded-report fingerprint",
+  "record_date": "2026-09-25",
+  "classification": "SOURCE_INFORMED_POST_AGGREGATE_CONSISTENCY_CHECK; NOT INDEPENDENT_PRODUCTION_CERTIFICATION",
+  "uploaded_original_name": "lrg_ross_table2_sector_count_replay.json",
+  "local_report_path": "eboss_workspace/official_mask_inventory/lrg_ross_table2_sector_count_replay.json",
+  "uploaded_report_bytes": 1504,
+  "uploaded_report_sha256": "d4346389c0f6ec31ad0f18edb05b9d7d9772191c0c5e9a4d365a7aa1d081929b",
+  "uploaded_report_git_blob_sha1": "5dc3cb01855f0354567bfe26873e967061d2ca1f",
+  "archived_exact_report_path": "source_data/eboss_dr16_lrg_ross_table2_sector_count_replay_2026-09-25.json",
+  "archived_report_git_blob_sha1": "5dc3cb01855f0354567bfe26873e967061d2ca1f",
+  "archived_byte_identical": true,
+  "frozen_source_full_fits_sha256": "39b831801adec04fe6dc5d6ab76a4b303aa58bfd303548cb7fddfae7d7f9331d",
+  "frozen_prior_sector_report_sha256": "ead2ff920592af381bc65478a8393ed9c0238f0e150a343e50287168f8f0442c",
+  "frozen_protocol": "source_data/eboss_dr16_lrg_ross_table2_sector_replay_protocol_2026-09-25.json",
+  "source_script": "scripts/audit_eboss_dr16_lrg_ross_table2_sector_counts.py",
+  "reference": "Ross et al., MNRAS 498 (2020) 2354, Table 2",
+  "paper_derived_target_counts": {
+    "postveto_full": 311848,
+    "first_stage_reject": 58575,
+    "second_stage_additional_reject": 53,
+    "final_retained": 253220
+  },
+  "observed_aggregate_replay": {
+    "first_field": "COMP_BOSS",
+    "first_rejected": 58575,
+    "first_retained": 253273,
+    "second_field_candidates": {
+      "sector_SSR": {
+        "additional_rejected": 53,
+        "final_retained": 253220
+      },
+      "sector_TSR": {
+        "additional_rejected": 675,
+        "final_retained": 252598
+      }
+    }
+  },
+  "interpretation": "Exact paper-count match for COMP_BOSS first and sector_SSR second in this fixed source-informed replay; sector_TSR second disagrees by 622 target rows. This supports a catalogue-field mapping for the two sequential published count cuts but is not a validation of historical production executable or continuous mask.",
+  "odd_data_read": false,
+  "science_selection_changed": false,
+  "independent_production_chain_authenticated": false,
+  "physical_lrg_mask_certified": false,
+  "physical_lrg_elg_pair_window_certified": false,
+  "verification_scope": "Exact uploaded JSON SHA256 computed independently and archived Git blob matched. Official 196MB file was rehashed/read by user local code, not independently rerun by assistant."
+}

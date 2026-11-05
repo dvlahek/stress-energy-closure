@@ -1,0 +1,138 @@
+{
+  "stage": "E59_MOCK_VELOCITY_TAG_REPEATABILITY",
+  "date": "2026-09-30",
+  "status": "PASS_MOCK_VELOCITY_TAG_REPEATABILITY_QUANTIFIED",
+  "parent_E58_gate_closed": true,
+  "selected_tracer": "eBOSS_ELG",
+  "candidate_reconstructions": {
+    "eBOSS_ELG": {
+      "minimum_cap_median_cutoff_pearson": 0.9992018650910827,
+      "minimum_cap_median_cutoff_sign_agreement": 0.96875,
+      "minimum_cap_median_split_half_pearson": 0.4556611964471438,
+      "minimum_cap_median_split_half_sign_agreement": 0.66796875,
+      "repeatability_screen_pass": true
+    },
+    "eBOSS_LRG": {
+      "minimum_cap_median_cutoff_pearson": 0.9993151500581983,
+      "minimum_cap_median_cutoff_sign_agreement": 0.982421875,
+      "minimum_cap_median_split_half_pearson": 0.1760412197353063,
+      "minimum_cap_median_split_half_sign_agreement": 0.564453125,
+      "repeatability_screen_pass": false
+    }
+  },
+  "aggregate": {
+    "NGC": {
+      "eBOSS_ELG": {
+        "split_half_pearson": {
+          "median": 0.4870835919175054,
+          "min": 0.42297299099006336,
+          "max": 0.5710436730193161
+        },
+        "split_half_sign_agreement": {
+          "median": 0.67578125,
+          "min": 0.5859375,
+          "max": 0.71484375
+        },
+        "cutoff_192_vs_256_pearson": {
+          "median": 0.9992018650910827,
+          "min": 0.9990438875189851
+        },
+        "cutoff_192_vs_256_sign_agreement": {
+          "median": 0.96875,
+          "min": 0.958984375
+        },
+        "implied_full_vs_latent_r_DIAGNOSTIC_ONLY": {
+          "median": 0.809373641759089,
+          "min": 0.7710330379570113
+        }
+      },
+      "eBOSS_LRG": {
+        "split_half_pearson": {
+          "median": 0.1760412197353063,
+          "min": 0.04639824629679362,
+          "max": 0.26606142242351494
+        },
+        "split_half_sign_agreement": {
+          "median": 0.5703125,
+          "min": 0.515625,
+          "max": 0.603515625
+        }
+      },
+      "LRG_vs_ELG_full_primary_pearson": {
+        "median": 0.20798507756819865,
+        "min": 0.12009018046090585,
+        "max": 0.27752808509463656
+      }
+    },
+    "SGC": {
+      "eBOSS_ELG": {
+        "split_half_pearson": {
+          "median": 0.4556611964471438,
+          "min": 0.370829123060608,
+          "max": 0.5286014692904571
+        },
+        "split_half_sign_agreement": {
+          "median": 0.66796875,
+          "min": 0.62890625,
+          "max": 0.703125
+        },
+        "cutoff_192_vs_256_pearson": {
+          "median": 0.9993075679165838,
+          "min": 0.9991658010198503
+        },
+        "cutoff_192_vs_256_sign_agreement": {
+          "median": 0.98046875,
+          "min": 0.970703125
+        },
+        "implied_full_vs_latent_r_DIAGNOSTIC_ONLY": {
+          "median": 0.791235689498484,
+          "min": 0.735546703940882
+        }
+      },
+      "eBOSS_LRG": {
+        "split_half_pearson": {
+          "median": 0.18046981524445713,
+          "min": 0.08428263242609187,
+          "max": 0.28251678096261496
+        },
+        "split_half_sign_agreement": {
+          "median": 0.564453125,
+          "min": 0.533203125,
+          "max": 0.5859375
+        }
+      },
+      "LRG_vs_ELG_full_primary_pearson": {
+        "median": 0.26263288565785575,
+        "min": 0.19716595390205713,
+        "max": 0.35781707556511594
+      }
+    }
+  },
+  "screen": {
+    "cutoff_pearson_min": 0.9,
+    "cutoff_sign_agreement_min": 0.9,
+    "split_half_pearson_min": 0.3245033112582781,
+    "split_half_sign_agreement_min": 0.6,
+    "selection_rule": "among passing tracer reconstructions choose largest minimum-cap median split-half Pearson"
+  },
+  "decision": {
+    "repeatability_screen_any_tracer_pass": true,
+    "selected_tracer_reconstruction_for_truth_calibration": "eBOSS_ELG",
+    "interpretation": "MOCK_INTERNAL_RECONSTRUCTION_REPEATABILITY_PASS; NEXT_REQUIRE_TRUE_VELOCITY_CALIBRATION",
+    "important_limit": "Split-half repeatability is conditional on one fixed E58 R1 random selection field and is not correlation with true baryon/halo velocity. Shared survey geometry and large-scale modes can make it optimistic. A truth-labelled N-body/lightcone calibration, including reconstruction-mask robustness, is required before observations."
+  },
+  "guardrails": {
+    "observed_galaxy_rows_used": false,
+    "observed_odd_used": false,
+    "physical_velocity_truth_correlation_calibrated": false,
+    "absolute_EV_amplitude_calibrated": false,
+    "covariance_inverse_used": false,
+    "pvalue_or_detection_sigma": false,
+    "true_velocity_available": false
+  },
+  "interpretation_notes": {
+    "ELG_individual_case_gate_count": "17/18; the sole individual miss is mock0125/NGC sign agreement 0.5859375, while the preregistered gate is cap-median based and therefore passes.",
+    "LRG_individual_case_gate_count": "0/18",
+    "E49_connection": "The equal-independent-noise diagnostic gives median implied full-vs-latent r=0.809374 NGC and 0.791236 SGC for ELG, close to the previously screened E49 r_rec=0.8 point; this is diagnostic only, not truth correlation."
+  }
+}

@@ -1,0 +1,97 @@
+name: eBOSS A03 E17D2b3b0 OFFLINE Abacus c000 real-data accession dry-run (NO ASDF)
+on:
+  push:
+    branches:
+      - audit/eboss-elg-bit8-ra-orientation-20260925
+    paths:
+      - 'scripts/audit_eboss_dr16_a03_e17d2b3b0_access_contract.py'
+      - 'source_data/eboss_dr16_a03_e17d2b3b0_abacus_access_candidate_BLOCKED_template_2026-09-28.json'
+      - '.github/workflows/eboss_dr16_a03_e17d2b3b0_offline_access_contract.yml'
+permissions:
+  contents: write
+jobs:
+  no-download-no-real-header-no-galaxy-B:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    env:
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Immutable original science, exact candidate template, negative controls before any report
+        run: |
+          set -eu
+          python -m py_compile scripts/audit_eboss_dr16_a03_e17d2b3b0_access_contract.py
+          python -u scripts/audit_eboss_dr16_a03_e17d2b3b0_access_contract.py --self-test
+      - name: Source-only official DOI and narrow superslab inventory report, actual Abacus data ALWAYS BLOCKED
+        run: |
+          set -eu
+          python -u scripts/audit_eboss_dr16_a03_e17d2b3b0_access_contract.py \
+            --report --output-dir eboss_workspace/a03_physics_source/e17d2b3b0_abacus_access_dryrun
+      - name: Permanently archive exact access BLOCKED report SHA on audit branch ONLY
+        run: |
+          set -eu
+          src=eboss_workspace/a03_physics_source/e17d2b3b0_abacus_access_dryrun
+          dest=source_data/eboss_dr16_a03_e17d2b3b0_archived_CI_2026_09_28
+          file=e17d2b3b0_offline_real_abacus_access_contract_BLOCKED.json
+          test -s "$src/$file"
+          mkdir -p "$dest"
+          cp "$src/$file" "$dest/$file"
+          python - <<'PY'
+          import hashlib,json,os,pathlib
+          d=pathlib.Path("source_data/eboss_dr16_a03_e17d2b3b0_archived_CI_2026_09_28")
+          name="e17d2b3b0_offline_real_abacus_access_contract_BLOCKED.json"
+          assert sorted(x.name for x in d.glob("*.json"))==[name]
+          raw=(d/name).read_bytes()
+          j=json.loads(raw)
+          x=j["offline_decision"]
+          assert x["decision"]=="BLOCKED_DOCUMENTATION_ONLY_NO_REAL_ABACUS_DATA"
+          assert x["real_ABACUS_data_ready"] is False
+          assert x["actual_halo_M200c_branch_accepted"] is False
+          assert x["blocker_count"]>=18
+          assert "NO_ACTUAL_ASDF_BYTES_HEADER_POSIX_CKSUM_M200C_VERIFIER_IN_THIS_STAGE" in x["blockers"]
+          assert j["no_actual_ASDF_halo_or_tree_downloaded"] is True
+          assert j["observed_odd_SEALED"] is True
+          assert j["full_physical_finiteK_galaxy_bispectrum"]=="BLOCKED"
+          assert j["all_negatives_passed"] is True
+          assert j["prospective_protocol_git_blob"]=="49df0cd9c110b3ef9db02a3ad0cb9a4ff20554e1"
+          pre=pathlib.Path("source_data/eboss_dr16_a03_e17d2b3b0_abacus_access_candidate_BLOCKED_template_2026-09-28.json")
+          assert hashlib.sha256(pre.read_bytes()).hexdigest()==j["exact_preregistered_candidate_template_sha256"]
+          o={"date":"2026-09-28",
+             "CI_run_id":os.environ.get("GITHUB_RUN_ID"),
+             "prospective_E17D2b3b0_protocol_git_blob":"49df0cd9c110b3ef9db02a3ad0cb9a4ff20554e1",
+             "original_science_E17D2b3a_sha256":"0b098291122eb51cbd3e113e7edd2276ba7c9b7c38669008486f0f73f897277e",
+             "provider_inventory_only_no_actual_ASDF_byte_verification":True,
+             "candidate_box_phase_raw_cleaned_product_not_selected":True,
+             "no_halo_particle_merger_tree_observed_galaxy_or_mock_download":True,
+             "no_real_M200c_and_no_neutrino_wake":True,
+             "full_physical_halo_tracer_bispectrum":"BLOCKED",
+             "observed_odd_SEALED":True,
+             "main_untouched":True,"PR_remains_draft":True,
+             "files":[{"file":name,"size_bytes":len(raw),"sha256":hashlib.sha256(raw).hexdigest()}]}
+          (d/"archive_manifest.json").write_text(json.dumps(o,indent=2)+"\n")
+          print("E17D2B3B0_PROVIDER_ACCESS_DRYRUN_REPORT_ARCHIVED",o["files"][0]["sha256"],flush=True)
+          print("E17D2B3B0_REAL_ABACUS_HALO_M200C_NOT_READY",x["blocker_count"],flush=True)
+          PY
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "$dest"
+          if git diff --cached --quiet; then
+            echo E17D2B3B0_ALREADY_ARCHIVED
+          else
+            git commit -m "archive(E17D2b3b0): no-download Abacus c000 exact data-access inventory and fail-closed REAL_ASDF BLOCKED"
+            git push origin HEAD:refs/heads/audit/eboss-elg-bit8-ra-orientation-20260925
+          fi
+          echo E17D2B3B0_NO_ABACUS_DATA_DOWNLOAD_OR_REAL_M200C_ON_AUDIT_ONLY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: eboss-E17D2b3b0-offline-abacus-access-NO-ASDF-BLOCKED
+          path: eboss_workspace/a03_physics_source/e17d2b3b0_abacus_access_dryrun/*.json
+          if-no-files-found: warn
+          retention-days: 30

@@ -1,0 +1,36 @@
+{
+  "limits": [
+    "dimensionless toy",
+    "not a halo-history measurement",
+    "not an E28 kernel run",
+    "no observed eBOSS access"
+  ],
+  "qa_checks": 409,
+  "qa_pass": true,
+  "stage": "E37_OFFLINE_SHARP_TWO_ENDPOINT_LIPSCHITZ_RETARDED_HISTORY_BOUND",
+  "status": "ANALYTIC_BOUND_AND_TOY_QA_PASS_NOT_PHYSICAL_E28_CALIBRATION",
+  "theorem": {
+    "E29_interpretation": "For each k, two snapshots become quantitatively useful only after an externally justified L_k=sup|partial_t u(k,t)|.",
+    "assumptions": "f is L-Lipschitz on [0,T], endpoints f0,f1 fixed, d=(f1-f0)/T, |d|<=L",
+    "linear_interpolant": "ell(t)=f0+d t",
+    "lower_deviation": "ell-f <= min((L+d)t,(L-d)(T-t))",
+    "retarded_integral": "|integral W(f-ell)| <= integral |W| B(t) <= Bmax integral |W|",
+    "sharp_global_max": "(L^2-d^2)T/(2L) for L>0",
+    "upper_deviation": "f-ell <= min((L-d)t,(L+d)(T-t))"
+  },
+  "toy": {
+    "Bmax": 0.37500000000000006,
+    "L": 0.8,
+    "T": 1.0,
+    "d": 0.19999999999999996,
+    "f0": 1.0,
+    "f1": 1.2,
+    "lower_switch_t": 0.37500000000000006,
+    "upper_switch_t": 0.625,
+    "weight_L1": 0.4323323587419706,
+    "weighted_linear_integral": 0.4890991230231624,
+    "weighted_lower_integral": 0.41986722101577845,
+    "weighted_pointwise_bound": 0.09064911324456303,
+    "weighted_upper_integral": 0.5704527943444537
+  }
+}

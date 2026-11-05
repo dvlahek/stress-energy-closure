@@ -1,0 +1,61 @@
+{
+  "status": "OFFICIAL_ELG_FULL_BIT8_LABELS_PRESENT_GEOMETRY_AUDITED_ONLY",
+  "catalogue_header_declared_and_read_rows": 269178,
+  "bit8_positive_catalogue_rows": 15,
+  "published_removed_targets_diagnostic_only": 15,
+  "bit8_count_equals_published_removed_targets_DIAGNOSTIC_ONLY": true,
+  "candidate_confusion_counts": {
+    "literal_upstream": {
+      "label_positive_and_candidate_positive_TP": 0,
+      "label_negative_and_candidate_positive_FP": 0,
+      "label_positive_and_candidate_negative_FN": 15,
+      "label_negative_and_candidate_negative_TN": 269163,
+      "candidate_positive_total": 0
+    },
+    "units_only_reflected_RA": {
+      "label_positive_and_candidate_positive_TP": 0,
+      "label_negative_and_candidate_positive_FP": 5,
+      "label_positive_and_candidate_negative_FN": 15,
+      "label_negative_and_candidate_negative_TN": 269158,
+      "candidate_positive_total": 5
+    },
+    "native_RA_radians": {
+      "label_positive_and_candidate_positive_TP": 15,
+      "label_negative_and_candidate_positive_FP": 0,
+      "label_positive_and_candidate_negative_FN": 0,
+      "label_negative_and_candidate_negative_TN": 269163,
+      "candidate_positive_total": 15
+    },
+    "native_RA_degrees": {
+      "label_positive_and_candidate_positive_TP": 15,
+      "label_negative_and_candidate_positive_FP": 0,
+      "label_positive_and_candidate_negative_FN": 0,
+      "label_negative_and_candidate_negative_TN": 269163,
+      "candidate_positive_total": 15
+    }
+  },
+  "native_radians_degrees_identical_all_rows": true,
+  "published_source_pixel_count": 37,
+  "positive_labels_present": true,
+  "independent_official_production_chain_authenticated": false,
+  "official_bit8_production_coordinate_convention_certified": false,
+  "official_mask_applied_to_science_selection": false,
+  "physical_LRG_ELG_pair_window_certified": false,
+  "observed_row_columns_decoded": [
+    "RA",
+    "DEC",
+    "mskbit"
+  ],
+  "observed_redshift_or_weight_values_decoded": false,
+  "observed_target_identifiers_decoded": false,
+  "observed_random_or_mock_rows_decoded": false,
+  "observed_odd_data_vector_read": false,
+  "note": "Only aggregate agreement of the published full-catalogue bit8 labels against four predeclared published-source geometries. Even perfect agreement identifies the catalogue mapping at its sampled targets, NOT an independently authenticated production pipeline, a full continuous angular mask, a tracer-pair window or an odd-sector detection.",
+  "full_file_sha256_reverified": "8806699e14422904ef91efb6f1632184171fb740c2e074456c0534b7d2dc28b3",
+  "first_header_sha256_reverified": "138e9ef0ba23b0cc934c087e44564229822944579903223d41d3823cb737657f",
+  "upstream_git_blob_sha": "d66c5e6ed6a8260b5e8dcc840795485345392ced",
+  "nside": 1024,
+  "ordering": "RING",
+  "healpy_version": "1.20.0",
+  "errors": []
+}

@@ -1,0 +1,67 @@
+{
+  "date": "2026-09-30",
+  "decision_logic": {
+    "galaxy_level": "After halo closure, external chi calibration is still required.",
+    "halo_acceleration_level": "For E28-like direct acceleration chi=1, the sum of state-differential init/history/profile/Born bounds across F+ and F- must be below |delta_ref| to guarantee sign.",
+    "survey_level": "Only after a physical galaxy template exists should A03 window propagation and A04 covariance resume."
+  },
+  "limits": [
+    "No observed eBOSS galaxy or odd-vector access",
+    "No ASDF/FITS/CLASS/mock access",
+    "No physical Born norm q measured",
+    "No physical halo-history derivative bound measured",
+    "No physical chi_F measured",
+    "No significance, p-value, or covariance inference"
+  ],
+  "operator_decomposition": {
+    "contrast_error": "|D-Dhat| <= B_Y,- + B_Y,+",
+    "observable_state": "Y_F = (chi_hat_F + dchi_F) * S_F",
+    "per_state_product_error": "|Y_F-Yhat_F| <= |chi_hat_F| B_S,F + |S_hat_F| B_chi,F + B_chi,F B_S,F",
+    "sign_certificate": "B_Y,- + B_Y,+ < |Dhat| is sufficient to preserve the benchmark contrast sign",
+    "source_error_bound": "B_S,F = B_init,F + B_hist,F + B_prof,F + B_Born,F",
+    "source_state": "S_F = S_hat_F + dS_init_F + dS_hist_F + dS_prof_F + dS_Born_F"
+  },
+  "physical_terms": {
+    "Born_remainder": {
+      "form": "If ||f_(n+1)|| <= q_F ||f_n|| with q_F<1, remainder beyond first order <= q_F/(1-q_F) times the first-order norm",
+      "illustrative_if_entire_relative_FD_contrast_budget_were_Born_only_q_less_than": 0.006203288725255926,
+      "status": "NO_PHYSICAL_q_F_BOUND"
+    },
+    "finite_size_profile": {
+      "form": "Use E35/E38 moment bound delta(k)<=min(2,k^2<r^2>/6) together with the time-history envelope",
+      "status": "FORMULA_AVAILABLE_PHYSICAL_MOMENT_HISTORY_MISSING"
+    },
+    "halo_history": {
+      "form": "Use E37 endpoint+Lipschitz retarded bound once a physical L_k=sup|partial_t u_src(k,t)| is available",
+      "status": "FORMULA_AVAILABLE_INPUT_BOUND_MISSING"
+    },
+    "incoming_kinetic_state": {
+      "form": "B_init,F >= || G_F U_F(t,t_i) delta f_i,F || in the same final observable norm",
+      "status": "UNBOUNDED: E27 set incoming wake to zero as benchmark; E36 showed low moments do not identify hidden phase-space structure"
+    },
+    "tracer_response": {
+      "E21_source_only_all4_nonoverlap_requires_symmetric_fractional_response_uncertainty_below": 0.000912183978546639,
+      "form": "Requires external chi_hat_F and B_chi,F. Without them E40 response reparameterization makes F non-identifiable in the linear source channel.",
+      "status": "STRUCTURAL_BLOCKER_AT_GALAXY_LEVEL"
+    }
+  },
+  "qa_checks": 20,
+  "qa_pass": true,
+  "reference": {
+    "E28R1_lowmass_alpha04": {
+      "FD_fraction_from_k_gt_1": 0.9422589,
+      "a_FD_km2_s2_per_Mpc": -0.00201850894575251,
+      "a_Fminus": -0.00202480872683428,
+      "a_Fplus": -0.00201220917438763,
+      "abs_contrast_fraction_of_FD": 0.006242009713736083,
+      "delta_Fminus_minus_Fplus": -1.2599552446650349e-05,
+      "sufficient_state_differential_highk_fraction_for_sign_robustness": 0.006624516588525811
+    },
+    "E41_source_response": {
+      "E19_conditional_ratio_symmetric_uncertainty_threshold": 0.02605283750649608,
+      "E21_all_four_component_symmetric_response_uncertainty_threshold": 0.000912183978546639
+    }
+  },
+  "stage": "E42_OFFLINE_OPERATOR_LEVEL_PHYSICAL_CLOSURE_BUDGET",
+  "status": "ANALYTIC_CLOSURE_CERTIFICATE_AND_FROZEN_E28_E41_NUMERIC_GATES_NO_NEW_PHYSICS_RUN"
+}

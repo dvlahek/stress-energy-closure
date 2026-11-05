@@ -1,0 +1,38 @@
+{
+  "stage": "E58_CONDITIONED_FULL_ELIGIBLE_NINEMOCK_SEVEN48K_PROTOCOL",
+  "date": "2026-09-30",
+  "frozen_before_result": true,
+  "parent": {
+    "status": "PASS_NINEMOCK_FULL_ELIGIBLE_SIX48K_BACKGROUND_QUANTIFIED",
+    "NGC_median": 0.2514132726578298,
+    "NGC_max": 0.31412999889324256,
+    "SGC_median": 0.24525869913987625,
+    "SGC_max": 0.29960326810211635
+  },
+  "why_R7": "minimum integer ceil(6*(0.2514132726578298/0.25)^2)=7 under standard 1/sqrt(R) scaling",
+  "scope": {
+    "replicas": ["R1","R2","R3","R4","R5","R6","R7"],
+    "new_only": ["R7"],
+    "random_size_per_tracer": 48000,
+    "reuse": "R1-R6 and D1D2 from E57",
+    "tag_fields": "unchanged E51 A-D",
+    "injection": "unchanged E19 F+/F-"
+  },
+  "gate_carried_forward_unchanged": {
+    "median_max": 0.25,
+    "field_max": 0.50,
+    "must_pass_each_cap": true
+  },
+  "anti_chasing_rule": "If E58 fails, do not continue adding one replica at a time. Switch to a deterministic/high-density random-integration closure.",
+  "forbidden": [
+    "observed galaxy rows",
+    "observed odd vector",
+    "physical velocity reconstruction",
+    "covariance inverse",
+    "p-values/detection sigma",
+    "new science cuts",
+    "retuning E19/E51",
+    "changing gate",
+    "main mutation"
+  ]
+}

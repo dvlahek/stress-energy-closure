@@ -1,0 +1,201 @@
+{
+  "stage": "E17D2B3B4_USER_SUPPLIED_LIVE_GLOBUS_DIRECTORY_LISTING_AND_CHECKSUM_MANIFEST",
+  "source": "user-uploaded Globus checksum manifest, NOT independent provider attestation",
+  "prospective_prereg_git_blob": "a6ad151ff116d8b20208bebe76d4423db589b76f",
+  "archived_user_manifest_git_blob": "0bca2fd0a28c9e163ad6198f67616da4355f4c81",
+  "archived_user_manifest_sha256": "b1db66f78cf17d9c2620a0be0917547eb5dc17a9e8f10bd02b0b211691fcb6a5",
+  "archived_user_manifest_bytes": 1386,
+  "source_pinned_portal_commit": "f877298344a6988d55f57a7c39f5be14dce63ff3",
+  "source_pinned_portal_table_git_blob": "cb235ad72ab2516f872bd4ca79b9447a3f4b30e3",
+  "simname": "AbacusSummit_base_c000_ph000",
+  "nominal_directory": "halos/z0.950/halo_info",
+  "actual_halo_ASDF_read": false,
+  "independent_provider_manifest_attestation": false,
+  "observed_odd_SEALED": true,
+  "physical_M200c_a_or_neutrino_wake_or_B": "NOT_EVALUATED",
+  "audit": "original_strict_regex",
+  "confirmed_user_supplied_asdf_record_count": 34,
+  "additional_user_supplied_checksum_manifest_entry_count": 1,
+  "full_record_ledger": [
+    {
+      "filename": "halo_info_000.asdf",
+      "GNU_POSIX_cksum_crc32": 3502514872,
+      "byte_count": 2223483833
+    },
+    {
+      "filename": "halo_info_001.asdf",
+      "GNU_POSIX_cksum_crc32": 1619039191,
+      "byte_count": 2217693626
+    },
+    {
+      "filename": "halo_info_002.asdf",
+      "GNU_POSIX_cksum_crc32": 1943260918,
+      "byte_count": 2201761958
+    },
+    {
+      "filename": "halo_info_003.asdf",
+      "GNU_POSIX_cksum_crc32": 2091346933,
+      "byte_count": 2205318488
+    },
+    {
+      "filename": "halo_info_004.asdf",
+      "GNU_POSIX_cksum_crc32": 1679064073,
+      "byte_count": 2231544908
+    },
+    {
+      "filename": "halo_info_005.asdf",
+      "GNU_POSIX_cksum_crc32": 465842999,
+      "byte_count": 2233822523
+    },
+    {
+      "filename": "halo_info_006.asdf",
+      "GNU_POSIX_cksum_crc32": 3736876598,
+      "byte_count": 2209713867
+    },
+    {
+      "filename": "halo_info_007.asdf",
+      "GNU_POSIX_cksum_crc32": 3748706796,
+      "byte_count": 2219105468
+    },
+    {
+      "filename": "halo_info_008.asdf",
+      "GNU_POSIX_cksum_crc32": 4177502008,
+      "byte_count": 2228240063
+    },
+    {
+      "filename": "halo_info_009.asdf",
+      "GNU_POSIX_cksum_crc32": 1312316787,
+      "byte_count": 2242107218
+    },
+    {
+      "filename": "halo_info_010.asdf",
+      "GNU_POSIX_cksum_crc32": 517388327,
+      "byte_count": 2216566533
+    },
+    {
+      "filename": "halo_info_011.asdf",
+      "GNU_POSIX_cksum_crc32": 2258530402,
+      "byte_count": 2226428631
+    },
+    {
+      "filename": "halo_info_012.asdf",
+      "GNU_POSIX_cksum_crc32": 2760734426,
+      "byte_count": 2216835797
+    },
+    {
+      "filename": "halo_info_013.asdf",
+      "GNU_POSIX_cksum_crc32": 517611008,
+      "byte_count": 2235742255
+    },
+    {
+      "filename": "halo_info_014.asdf",
+      "GNU_POSIX_cksum_crc32": 1036986224,
+      "byte_count": 2241220881
+    },
+    {
+      "filename": "halo_info_015.asdf",
+      "GNU_POSIX_cksum_crc32": 2690427238,
+      "byte_count": 2245560596
+    },
+    {
+      "filename": "halo_info_016.asdf",
+      "GNU_POSIX_cksum_crc32": 3640581988,
+      "byte_count": 2243764592
+    },
+    {
+      "filename": "halo_info_017.asdf",
+      "GNU_POSIX_cksum_crc32": 2865942301,
+      "byte_count": 2253655534
+    },
+    {
+      "filename": "halo_info_018.asdf",
+      "GNU_POSIX_cksum_crc32": 3802838676,
+      "byte_count": 2264309868
+    },
+    {
+      "filename": "halo_info_019.asdf",
+      "GNU_POSIX_cksum_crc32": 1514597682,
+      "byte_count": 2238393919
+    },
+    {
+      "filename": "halo_info_020.asdf",
+      "GNU_POSIX_cksum_crc32": 134035924,
+      "byte_count": 2233389410
+    },
+    {
+      "filename": "halo_info_021.asdf",
+      "GNU_POSIX_cksum_crc32": 68092681,
+      "byte_count": 2230288755
+    },
+    {
+      "filename": "halo_info_022.asdf",
+      "GNU_POSIX_cksum_crc32": 2485071817,
+      "byte_count": 2226684382
+    },
+    {
+      "filename": "halo_info_023.asdf",
+      "GNU_POSIX_cksum_crc32": 3896690681,
+      "byte_count": 2211816059
+    },
+    {
+      "filename": "halo_info_024.asdf",
+      "GNU_POSIX_cksum_crc32": 1878445651,
+      "byte_count": 2218714936
+    },
+    {
+      "filename": "halo_info_025.asdf",
+      "GNU_POSIX_cksum_crc32": 3395768279,
+      "byte_count": 2230361764
+    },
+    {
+      "filename": "halo_info_026.asdf",
+      "GNU_POSIX_cksum_crc32": 2051245713,
+      "byte_count": 2217869099
+    },
+    {
+      "filename": "halo_info_027.asdf",
+      "GNU_POSIX_cksum_crc32": 2195700613,
+      "byte_count": 2213548293
+    },
+    {
+      "filename": "halo_info_028.asdf",
+      "GNU_POSIX_cksum_crc32": 4100880287,
+      "byte_count": 2201813692
+    },
+    {
+      "filename": "halo_info_029.asdf",
+      "GNU_POSIX_cksum_crc32": 3521191629,
+      "byte_count": 2219815159
+    },
+    {
+      "filename": "halo_info_030.asdf",
+      "GNU_POSIX_cksum_crc32": 2389098688,
+      "byte_count": 2201780837
+    },
+    {
+      "filename": "halo_info_031.asdf",
+      "GNU_POSIX_cksum_crc32": 832225523,
+      "byte_count": 2231449849
+    },
+    {
+      "filename": "halo_info_032.asdf",
+      "GNU_POSIX_cksum_crc32": 246769719,
+      "byte_count": 2234645635
+    },
+    {
+      "filename": "halo_info_033.asdf",
+      "GNU_POSIX_cksum_crc32": 3279223760,
+      "byte_count": 2255290672
+    }
+  ],
+  "asdf_byte_sum": 75722739100,
+  "checksum_manifest_bytes": 1386,
+  "total_directory_bytes_with_manifest": 75722740486,
+  "prior_published_portal_directory_bytes_exact_match": true,
+  "chosen_file": {
+    "filename": "halo_info_000.asdf",
+    "GNU_POSIX_cksum_crc32": 3502514872,
+    "byte_count": 2223483833,
+    "real_file_bytes_NOT_obtained": true
+  }
+}

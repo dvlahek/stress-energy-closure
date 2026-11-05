@@ -1,0 +1,45 @@
+{
+  "stage": "E63B_R6_PROBE_Z_SERIALIZATION_BOUNDARY_AUDIT",
+  "r6_cache_sha256": "74d0402bfb2dc87b7ba5f174fb43adb141db4dc21c7f7b1b8acc9a20eefa1f82",
+  "geometry": {
+    "center_ra_deg": 62.5,
+    "center_dec_deg": -35.5,
+    "inner_radius_deg": 2.5
+  },
+  "probe_redshift_server_contract": {
+    "redshift_true_lower": 0.9,
+    "lower_inclusive": true,
+    "redshift_true_upper": 1.0,
+    "upper_inclusive": false
+  },
+  "boundary_candidate_total": 4,
+  "serialized_0p9000": {
+    "total": 0,
+    "server_inside": 0,
+    "server_excluded": 0
+  },
+  "serialized_1p0000": {
+    "total": 4,
+    "server_inside": 2,
+    "server_excluded": 2
+  },
+  "combined": {
+    "server_inside": 2,
+    "server_excluded": 2
+  },
+  "membership_csv": "eboss_workspace/cosmodc2/e63b_r6_probe_z_boundary/e63b_r6_probe_z_membership.csv",
+  "membership_sha256": "112836101c35286f803f99954969d2512e55a746c8fbeae84839b486134b1dd6",
+  "queries": [
+    {
+      "chunk": 0,
+      "candidate_count": 4,
+      "returned_inside_count": 2,
+      "adql_sha256": "0b70591d391cd741dd475d3958d8f804049c7b76cd1938a8bb0df4c39e43ac41",
+      "state": "eboss_workspace/cosmodc2/e63b_r6_probe_z_boundary/chunk_000_tap_job.json"
+    }
+  ],
+  "velocity_truth_used": false,
+  "science_metrics_computed": false,
+  "observed_eBOSS_rows_used": false,
+  "observed_odd_used": false
+}

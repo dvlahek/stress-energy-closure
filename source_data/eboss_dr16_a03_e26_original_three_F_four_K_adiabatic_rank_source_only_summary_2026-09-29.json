@@ -1,0 +1,40 @@
+{
+  "stage": "E26_SINGLE_ADIABATIC_SOURCE_RANK",
+  "date": "2026-09-29",
+  "status": "ORIGINAL_E12_E13_E21_LINEAR_SOURCE_RANK_ONE_VERIFIED_NO_GALAXY_PREDICTION",
+  "registration": "Physics derived before E26 protocol; only E26 new original-source numeric test prospectively registered.",
+  "original_protocol_git_blob": "4b09681d188bd324b9d9f3ba459bd5608ba41195",
+  "source_only_CI": {
+    "run_id": 36596911178,
+    "conclusion": "SUCCESS",
+    "negative_controls_passed": 8,
+    "artifact_id": 11045309624,
+    "original_artifact_zip_not_downloaded_or_byte_rehashed_in_this_summary": true
+  },
+  "original_states": [
+    "FD",
+    "plus",
+    "minus"
+  ],
+  "original_K_h_per_Mpc": [
+    0.001,
+    0.002,
+    0.003,
+    0.005
+  ],
+  "original_z_mathematical": 0.95,
+  "original_source_evidence": "Independent E12 primordial Delta2 and E13 direct D,theta_rel,R16 W reconstruct Pdd and Pvv; original E21 C_v independently validates signed cross; not Pvv:=Cv²/Pdd.",
+  "max_relative_determinant_residual_by_original_state": {
+    "FD": 6.988414963062396e-16,
+    "plus": 2.3199683601096716e-16,
+    "minus": 8.198357900668836e-16
+  },
+  "theorem_scope": "One common adiabatic primordial curvature mode at fixed k,z,F gives rank-one linear delta_cb and relative LOS velocity covariance; reconstruction from same density adds no independent primordial phase.",
+  "important_nonimplication": "Rank one at one k does NOT imply standard Doppler and neutrino templates proportional over the survey k,z and window; independent nonlinear, multi-mode or externally measured velocities may add information.",
+  "archived_CDM_gap": "Original E12 CLASS runner read t_cdm but four-K archived E12 only retains theta_ncdm-theta_cdm; cannot compute actual standard galaxy Doppler vs neutrino shape rank from these archived JSON alone.",
+  "physical_halo_and_galaxy_beta_and_chi_calibrated": false,
+  "original_full_24D_physical_template_or_inference": false,
+  "observed_odd_SEALED": true,
+  "no_new_CLASS_Abacus_FITS_mock_WSL": true,
+  "main_untouched_PR_draft": true
+}

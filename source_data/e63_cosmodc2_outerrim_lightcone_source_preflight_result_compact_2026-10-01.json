@@ -1,0 +1,52 @@
+{
+  "stage": "E63_COSMODC2_OUTERRIM_LIGHTCONE_SOURCE_PREFLIGHT",
+  "date": "2026-10-01",
+  "status": "PASS_PUBLIC_OUTERRIM_LIGHTCONE_SOURCE_AVAILABLE",
+  "table": "cosmodc2mockv1",
+  "tap_endpoint": "https://irsa.ipac.caltech.edu/TAP",
+  "schema_column_count": 301,
+  "bounded_probe": {
+    "center_ra_deg": 55,
+    "center_dec_deg": -41,
+    "radius_deg": 2,
+    "redshift_true_range": [
+      0.9,
+      1
+    ],
+    "rows_returned": 4097,
+    "top_limit": 4097
+  },
+  "sample_diagnostics": {
+    "central_fraction": 0.9382474981693922,
+    "halo_mass_median": 17900000000,
+    "position_radius_median": 3091.777131521611,
+    "position_radius_min": 3070.9821222315836,
+    "position_radius_max": 3327.598073789712,
+    "redshift_true_min": 0.9,
+    "redshift_true_max": 0.9997,
+    "velocity_norm_median_km_s": 181.94814836100971,
+    "velocity_norm_min_km_s": 10.242765544519704,
+    "velocity_norm_max_km_s": 1711.8465082042258
+  },
+  "required_columns": [
+    "galaxy_id",
+    "ra_true",
+    "dec_true",
+    "redshift_true",
+    "position_x",
+    "position_y",
+    "position_z",
+    "velocity_x",
+    "velocity_y",
+    "velocity_z",
+    "halo_mass",
+    "is_central"
+  ],
+  "decision": {
+    "source_preflight_pass": true,
+    "interpretation": "PUBLIC_OUTERRIM_LIGHTCONE_WITH_VELOCITY_TRUTH_AVAILABLE; NEXT_PREREGISTER_E63_SCIENCE_TRANSFER_TEST",
+    "important_limit": "Bounded source/schema preflight only; not the final lightcone tracer or geometry."
+  },
+  "observed_eBOSS_rows_used": false,
+  "observed_odd_used": false
+}

@@ -1,0 +1,157 @@
+{
+  "simulation": "AbacusSummit_base_c000_ph000",
+  "epoch_directory": "z0.950",
+  "superslab": 0,
+  "row_window": [
+    0,
+    256
+  ],
+  "selection": {
+    "min_N": 100,
+    "min_npoutA": 5,
+    "max_halos": 20
+  },
+  "selected_halos": [
+    {
+      "row": 2,
+      "halo_id": 26000000,
+      "N": 603,
+      "npstartA": 6,
+      "npoutA": 14
+    },
+    {
+      "row": 6,
+      "halo_id": 32000000,
+      "N": 157,
+      "npstartA": 26,
+      "npoutA": 5
+    },
+    {
+      "row": 17,
+      "halo_id": 177005000,
+      "N": 303,
+      "npstartA": 52,
+      "npoutA": 13
+    },
+    {
+      "row": 22,
+      "halo_id": 206000000,
+      "N": 482,
+      "npstartA": 74,
+      "npoutA": 16
+    },
+    {
+      "row": 27,
+      "halo_id": 261000000,
+      "N": 1438,
+      "npstartA": 104,
+      "npoutA": 44
+    },
+    {
+      "row": 29,
+      "halo_id": 261001000,
+      "N": 356,
+      "npstartA": 151,
+      "npoutA": 10
+    },
+    {
+      "row": 30,
+      "halo_id": 264000000,
+      "N": 899,
+      "npstartA": 161,
+      "npoutA": 26
+    },
+    {
+      "row": 32,
+      "halo_id": 283000000,
+      "N": 2925,
+      "npstartA": 192,
+      "npoutA": 89
+    },
+    {
+      "row": 33,
+      "halo_id": 283000001,
+      "N": 1257,
+      "npstartA": 281,
+      "npoutA": 39
+    },
+    {
+      "row": 37,
+      "halo_id": 286001000,
+      "N": 1010,
+      "npstartA": 330,
+      "npoutA": 26
+    },
+    {
+      "row": 38,
+      "halo_id": 286001001,
+      "N": 343,
+      "npstartA": 356,
+      "npoutA": 10
+    },
+    {
+      "row": 39,
+      "halo_id": 289000000,
+      "N": 1547,
+      "npstartA": 366,
+      "npoutA": 49
+    },
+    {
+      "row": 41,
+      "halo_id": 290003000,
+      "N": 410,
+      "npstartA": 418,
+      "npoutA": 11
+    },
+    {
+      "row": 43,
+      "halo_id": 293000000,
+      "N": 157,
+      "npstartA": 430,
+      "npoutA": 11
+    },
+    {
+      "row": 46,
+      "halo_id": 304001000,
+      "N": 381,
+      "npstartA": 449,
+      "npoutA": 11
+    },
+    {
+      "row": 47,
+      "halo_id": 305003000,
+      "N": 245,
+      "npstartA": 460,
+      "npoutA": 19
+    },
+    {
+      "row": 50,
+      "halo_id": 327000000,
+      "N": 917,
+      "npstartA": 483,
+      "npoutA": 25
+    },
+    {
+      "row": 52,
+      "halo_id": 328000000,
+      "N": 220,
+      "npstartA": 510,
+      "npoutA": 7
+    },
+    {
+      "row": 60,
+      "halo_id": 373000000,
+      "N": 352,
+      "npstartA": 536,
+      "npoutA": 15
+    },
+    {
+      "row": 61,
+      "halo_id": 375000000,
+      "N": 504,
+      "npstartA": 551,
+      "npoutA": 18
+    }
+  ],
+  "status": "SELECTION_ONLY_NO_PID_MATCHING"
+}

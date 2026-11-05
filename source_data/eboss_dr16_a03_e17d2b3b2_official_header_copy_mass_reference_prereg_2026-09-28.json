@@ -1,0 +1,98 @@
+{
+  "date": "2026-09-28",
+  "status": "E17D2B3B2_PROSPECTIVE_OFFICIAL_EMBEDDED_COPY_REAL_L1_THRESHOLD_AND_PARTICLE_MASS_BEFORE_ANY_NEW_NUMERIC_DECODE",
+  "stage": "E17D2B3B2_ABACUS_C000_PH000_Z0P950_BUNDLED_HEADER_COPY_MASS_REFERENCE_DIAGNOSTIC",
+  "parent_head_at_registration": "366f66b70e518bc29c3bee3b0cbe6d4297c4396a",
+  "question": "Extract exact Redshift, ScaleFactor, OmegaNow_m, SODensityL1, ParticleMassHMsun, ParticleMassMsun from the Git-pinned upstream AbacusSummit_base_c000_ph000 state z0.950 header-derived COPY, not from an assumed directory or actual halo_info file. Quantify the published L1 threshold versus 200critical density in this copied background, explicitly without estimating any individual halo M200c. Prepare separate real-file checksum/header acceptance diagnostic to be run only when an authentic provider file is present.",
+  "prior_immutable": {
+    "E8_csv_sha256": "bf8f48deb9514c5101d5ce314bfbd397485102a5487da1039f141e3cad6143d0",
+    "E16_geometry_sha256": "5d81f95a5571175f06eb032b865285ba34804701693f76af392be7fc31fb06db",
+    "E17A_joint_sha256": "094c49cb89d6dd231a5cbc16ecdfe455bcb3938ddec375fd28c81c8098ab2ad9",
+    "E17D2b3b1_source_copy_original_sha256": "aacd9b4f6e3dd63fb353c72488669e7eb01e365d48c220664a0dfda8dc9e0673",
+    "E17D2b3b1_manifest_git_blob": "4eb928e90a98dd35add7d4b8ebe7aedbcf14e0dc",
+    "E17D2b3b1_amended_prereg_git_blob": "36c2bcda723b95565e604723e651beef08aad992",
+    "E17D2b3b1_code_git_blob": "3ac6755e10fce8262253003055d322d0667cfddb",
+    "E17D2b3b0_report_sha256": "3917ce7da42b9064bdaece35e7ed1ef63dc880bf8fb48a5143a38f3882d4c4fe",
+    "canonical_master_plan_v138_git_blob": "eae09b9a540487d60339234cbe9d78519c9d128b",
+    "main_unchanged_sha": "e50549a5c974772eb9576d301df7a5ea6e6d87d2"
+  },
+  "official_upstream": {
+    "commit": "24ab0dda5fea9ae406b1afdacaf4bbf989de9bc6",
+    "simname": "AbacusSummit_base_c000_ph000",
+    "state_key": "z0.950",
+    "metadata_path": "abacusnbody/metadata/abacussummit_headers_compressed.asdf",
+    "metadata_git_blob": "0065029cdd515ffa76c61a27b81e9f16b2656f38",
+    "metadata_exact_bytes": 9486279,
+    "metadata_sha256": "1c8b690acedd2a61a6a033be3173f79bb7e8cadbcb4a9e97e5db10ee4f10308e",
+    "pinned_upstream_decoder_path": "abacusnbody/metadata/abacussummit.py",
+    "decoder_git_blob": "0a374324dc5199241473a0a476a94a6b37831473",
+    "pinned_blosc_source_path": "abacusnbody/data/asdf.py",
+    "blosc_source_git_blob": "8c5e5135736409bb0fab77bff06ad1259951189d"
+  },
+  "source_science_documentation": [
+    {
+      "url": "https://abacussummit.readthedocs.io/en/latest/data-products.html",
+      "fact": "SODensityL1 official CompaSO header is epoch-dependent SO threshold relative to mean cosmic density; N is primary L1 mass, ParticleMassHMsun converts N to Msun/h, SO_radius is furthest particle or a constant on no crossing; secondary z0.950 halo_info plus PID-only, no RV/field particles; true header redshift not directory."
+    },
+    {
+      "url": "https://abacussummit.readthedocs.io/en/latest/data-access.html",
+      "fact": "Actual c000 halo_info superslab file/provider checksums and tree availability must be checked by access to provider. NERSC/Globus portal not established for concrete item in this stage."
+    }
+  ],
+  "frozen_source_copy_inputs": {
+    "state_key": "z0.950",
+    "simname": "AbacusSummit_base_c000_ph000",
+    "expected_previous_copy_redshift": 0.952838237036305,
+    "expected_previous_copy_scale_factor": 0.5120751842291016,
+    "expected_previous_copy_omega_now_m": 0.774150059509772,
+    "require_scalar_fields": [
+      "Redshift",
+      "ScaleFactor",
+      "OmegaNow_m",
+      "SODensityL1",
+      "ParticleMassHMsun",
+      "ParticleMassMsun"
+    ],
+    "delta_200critical": "200 in units of critical density at true source-copy epoch",
+    "delta_200critical_divided_by_mean": "200/OmegaNow_m from source-copy state",
+    "L1_vs_200critical": "ratio (SODensityL1*OmegaNow_m)/200 is comparison of SO thresholds only under official mean cosmic density convention. This ratio is NOT a mass conversion or enclosed halo profile.",
+    "exact_field_values_other_than_frozen_redshift_scale_Omega": "UNKNOWN_AT_PREREG_DO_NOT_GUESS",
+    "if_source_field_missing_or_nonfinite": "FAIL_CLOSED_DO_NOT_GUESS"
+  },
+  "external_real_halo_file_assessment": {
+    "real_file_bytes_accessed_during_this_stage": false,
+    "official_provider_checksums_crc32_not_downloaded": true,
+    "predeclared_candidate_template": "provider listed exact halo_info_XXX.asdf in AbacusSummit_base_c000_ph000/halos/z0.950/halo_info and checksums.crc32 from corresponding verified directory; no guessed XXX, path or byte size",
+    "real_file_acceptance": "Only after separate data-access stage and exact provider path/item, verify same file's full bytes by local SHA256 and provider GNU/POSIX cksum including byte count, then extract per-file ASDF header z/ScaleFactor/SODensityL1/ParticleMassHMsun and compare to pinned source-copy. A copied header alone never counts as actual provider file verification.",
+    "mass_history_acceptance": "Per-file header success still does not provide validated per-halo M200c, full field particle data, or a consistent raw/cleaned merger tree."
+  },
+  "prereg_QA": {
+    "exact_git_parent_and_SHA_and_original_seal": true,
+    "official_bundle_size_and_Git_blob_SHA_and_checksum": true,
+    "state_exact_source_copy_only": true,
+    "redshift_scale_consistency_abs_tolerance": 1e-10,
+    "copied_redshift_prior_absolute_diff_tolerance": 1e-12,
+    "copied_scale_factor_prior_absolute_diff_tolerance": 1e-12,
+    "copied_Omega_now_m_prior_absolute_diff_tolerance": 1e-12,
+    "six_required_positive_finite_source_fields_except_z": true,
+    "SODensityL1_positive_and_particle_mass_positive": true,
+    "threshold_ratio_positive_and_finite": true,
+    "second_independent_named_field_decode_same_bundle_identical": true,
+    "deliberately_false_SODensityL1_and_fake_copy_redshift_negative_tests": true,
+    "no_posthoc_snapshot_or_science_threshold_tuning": true
+  },
+  "absolute_STOP": {
+    "no_actual_halo_info_ASDF_Globus_download_or_read": true,
+    "no_halo_particle_PID_tree_mock_FITS_or_new_CLASS_run": true,
+    "no_observed_galaxy_or_odd_unseal": true,
+    "no_new_science_redshift_cut_or_seed": true,
+    "no_automatic_L1_mass_or_SO_radius_as_M200c": true,
+    "no_claim_that_copied_header_is_concrete_halo_file_header": true,
+    "no_Abacus_smooth_neutrino_tree_as_E8_Fplus_Fminus_wake": true,
+    "no_real_LRG_ELG_HOD_or_eBOSS_3pt_covariance_estimator": true,
+    "no_full_physical_finiteK_galaxy_B_SNR_detection": true,
+    "original_E8_E16_72_sources_24_contrasts_frozen": true,
+    "observed_odd_SEALED": true,
+    "main_untouched_PR_draft": true
+  }
+}

@@ -1,0 +1,2577 @@
+{
+  "status": "EBOSS_A03_EMPIRICAL_RANDOM_CONDITIONAL_WINDOW_PROBE_DESCRIPTIVE_ONLY",
+  "protocol_SHA256": "385f4beaabffa8678960aac78a49733d63abc2b90528df8cd894744218ab11c9",
+  "immutable_original_artifact_run": 36017670812,
+  "immutable_original_artifact_id": 10815013322,
+  "input_original_JSON_member_SHA256": "8702adaf1284068c26e79555feb76c7a709df9a265f9e2194409cc4161602e01",
+  "input_original_NPZ_member_SHA256": "4f63e04ce4c5cfdb9404e5a56dee44907cb9a28cc015c6ed27ac718195feae6b",
+  "source_A02_18_case_manifest": "source_data/eboss_dr16_nine_ezmock_galaxy_cross_ls_code_transport_uploaded_manifest_2026-09-26.json",
+  "source_A03_empirical_only_user_decision": "source_data/eboss_dr16_a03_empirical_only_user_decision_2026-09-26.json",
+  "cases": {
+    "0001/NGC": {
+      "status": "closed_empirical_random_only_finite_bin_probe",
+      "mock_id": 1,
+      "cap": "NGC",
+      "original_full_RR_supported_cells": 28800,
+      "original_mock_vs_observed_fine_RR_normalized_L1": 0.013288676252354406,
+      "original_random_half_even_ramp_probe_max_abs_shifts": {
+        "1<-0": {
+          "half_A_vs_full_mock_max_abs_original_random_only": 0.0003247136831970032,
+          "half_B_vs_full_mock_max_abs_original_random_only": 0.00048800904514735696
+        },
+        "1<-2": {
+          "half_A_vs_full_mock_max_abs_original_random_only": 0.00031264212420640267,
+          "half_B_vs_full_mock_max_abs_original_random_only": 0.0002460047221641091
+        },
+        "1<-4": {
+          "half_A_vs_full_mock_max_abs_original_random_only": 0.00023429692834574549,
+          "half_B_vs_full_mock_max_abs_original_random_only": 0.00017671555077481335
+        },
+        "3<-0": {
+          "half_A_vs_full_mock_max_abs_original_random_only": 0.0007107203091629123,
+          "half_B_vs_full_mock_max_abs_original_random_only": 0.0004901546398083747
+        },
+        "3<-2": {
+          "half_A_vs_full_mock_max_abs_original_random_only": 0.000582196888419637,
+          "half_B_vs_full_mock_max_abs_original_random_only": 0.0003992150383543792
+        },
+        "3<-4": {
+          "half_A_vs_full_mock_max_abs_original_random_only": 0.000405960241548525,
+          "half_B_vs_full_mock_max_abs_original_random_only": 0.0003411735562957013
+        }
+      },
+      "prior_independent_20260924_operator_matrix_summary_max_abs_replay_error": 0.0,
+      "prior_independent_20260924_ramp_summary_max_abs_replay_error": 1.0842021724855044e-18,
+      "predeclared_unitless_synthetic_probes": {
+        "constant_even": {
+          "1": [
+            2.139266411585461e-17,
+            1.810956441229694e-18,
+            4.225593263967528e-17,
+            1.3435636609347712e-17,
+            6.328564313763142e-17,
+            -3.329178295888302e-17
+          ],
+          "3": [
+            -5.1567365828841805e-18,
+            -2.9666481944634615e-17,
+            -3.550762114890027e-18,
+            1.6401945990632272e-17,
+            2.1026745882640752e-17,
+            1.0584523708889737e-17
+          ]
+        },
+        "even_radial_ramp": {
+          "1": [
+            0.0040049975741433975,
+            0.004957333179093869,
+            0.005183900496712682,
+            0.005099365956780109,
+            0.005343493904043,
+            0.00419747614780656
+          ],
+          "3": [
+            0.0010966401575918912,
+            0.0011088350298529392,
+            0.0009212604666787753,
+            0.0007488061171253122,
+            0.0015104657149858861,
+            -0.0007242862386866692
+          ]
+        },
+        "odd_injection": {
+          "1": [
+            0.209846812942047,
+            0.20542863103126308,
+            0.20344626691817141,
+            0.20230557930124343,
+            0.20138423222977708,
+            0.20044274673636892
+          ],
+          "3": [
+            -0.07139151440219675,
+            -0.07335431811682797,
+            -0.0741458708617011,
+            -0.07465288241383705,
+            -0.07522534315054075,
+            -0.07604973128811368
+          ]
+        }
+      },
+      "mock_minus_observed_RANDOM_operator_synthetic_by_fixed_s": {
+        "even_radial_ramp": {
+          "1": [
+            -0.0005015213007249913,
+            0.0001136892417779008,
+            0.00014831603737990636,
+            -0.0006059222292590129,
+            4.274487392337892e-05,
+            -0.000967338610081258
+          ],
+          "3": [
+            0.00019987367244260446,
+            0.00034790584861551046,
+            0.00021839554350610516,
+            -0.0008868318400347724,
+            0.0008737612771102944,
+            -0.0015015251706743246
+          ]
+        },
+        "odd_injection": {
+          "1": [
+            -6.654942420361576e-05,
+            -3.8994915058016e-05,
+            -1.2155574124095292e-05,
+            0.00010486548673338536,
+            0.00012123777385641965,
+            0.0001700789515345913
+          ],
+          "3": [
+            -7.881880008719921e-05,
+            1.4467348612434705e-05,
+            1.5378332928764338e-05,
+            0.00017980473786576023,
+            0.00013287410586482196,
+            0.0002019806361232418
+          ]
+        }
+      },
+      "max_abs_mock_minus_observed_RANDOM_operator_by_probe": {
+        "even_radial_ramp": 0.0015015251706743246,
+        "odd_injection": 0.0002019806361232418
+      },
+      "max_abs_constant_even_to_odd_residual": 6.328564313763142e-17,
+      "max_abs_linear_superposition_residual": 1.3877787807814457e-17
+    },
+    "0125/NGC": {
+      "status": "closed_empirical_random_only_finite_bin_probe",
+      "mock_id": 125,
+      "cap": "NGC",
+      "original_full_RR_supported_cells": 28800,
+      "original_mock_vs_observed_fine_RR_normalized_L1": 0.01393466007662823,
+      "original_random_half_even_ramp_probe_max_abs_shifts": {
+        "1<-0": {
+          "half_A_vs_full_mock_max_abs_original_random_only": 0.0005535652482782515,
+          "half_B_vs_full_mock_max_abs_original_random_only": 0.0005264197218708905
+        },
+        "1<-2": {
+          "half_A_vs_full_mock_max_abs_original_random_only": 0.0003415156383356551,
+          "half_B_vs_full_mock_max_abs_original_random_only": 0.00031011992812447656
+        },
+        "1<-4": {
+          "half_A_vs_full_mock_max_abs_original_random_only": 0.00016398257588268303,
+          "half_B_vs_full_mock_max_abs_original_random_only": 0.0001516143318994824
+        },
+        "3<-0": {
+          "half_A_vs_full_mock_max_abs_original_random_only": 0.0004670148739835708,
+          "half_B_vs_full_mock_max_abs_original_random_only": 0.00043701802147052627
+        },
+        "3<-2": {
+          "half_A_vs_full_mock_max_abs_original_random_only": 0.0004878601278291302,
+          "half_B_vs_full_mock_max_abs_original_random_only": 0.00040819252659403307
+        },
+        "3<-4": {
+          "half_A_vs_full_mock_max_abs_original_random_only": 0.0004008095202423581,
+          "half_B_vs_full_mock_max_abs_original_random_only": 0.00031824602462456053
+        }
+      },
+      "prior_independent_20260924_operator_matrix_summary_max_abs_replay_error": 0.0,
+      "prior_independent_20260924_ramp_summary_max_abs_replay_error": 1.0842021724855044e-18,
+      "predeclared_unitless_synthetic_probes": {
+        "constant_even": {
+          "1": [
+            5.057125508287075e-17,
+            1.4720585590332486e-17,
+            1.1722935989999517e-18,
+            1.11190014986072e-17,
+            -2.4377608221978764e-18,
+            2.0559183695756378e-17
+          ],
+          "3": [
+            1.9542744159051217e-17,
+            3.2729353081906165e-17,
+            -4.3381639426576246e-17,
+            3.952594545067467e-17,
+            -1.8140057598398096e-17,
+            -3.995285005609084e-17
+          ]
+        },
+        "even_radial_ramp": {
+          "1": [
+            0.004689223424150319,
+            0.005934160035711621,
+            0.006663282984619493,
+            0.006673421428102803,
+            0.005610295980825391,
+            0.004187414446174181
+          ],
+          "3": [
+            0.002462906354089332,
+            0.001557216599134252,
+            0.0021706875144074165,
+            0.001378995201049142,
+            -0.0005007956113097097,
+            -0.0018222512447741053
+          ]
+        },
+        "odd_injection": {
+          "1": [
+            0.20988608838594075,
+            0.2054749919136556,
+            0.2034086865160019,
+            0.20216226253482553,
+            0.20119707967047576,
+            0.20035680594307362
+          ],
+          "3": [
+            -0.07140121138863093,
+            -0.07334875161962792,
+            -0.07425198003740968,
+            -0.07482267558827617,
+            -0.07542912575608801,
+            -0.0760287263731679
+          ]
+        }
+      },
+      "mock_minus_observed_RANDOM_operator_synthetic_by_fixed_s": {
+        "even_radial_ramp": {
+          "1": [
+            0.00018270454928193038,
+            0.0010905160983956533,
+            0.0016276985252867172,
+            0.0009681332420636811,
+            0.00030954695070577014,
+            -0.0009774003117136365
+          ],
+          "3": [
+            0.0015661398689400452,
+            0.0007962874178968232,
+            0.0014678225912347464,
+            -0.0002566427561109426,
+            -0.0011375000491853015,
+            -0.002599490176761761
+          ]
+        },
+        "odd_injection": {
+          "1": [
+            -2.7273980309855395e-05,
+            7.365967334499457e-06,
+            -4.973597629359672e-05,
+            -3.8451279684520445e-05,
+            -6.591478544490381e-05,
+            8.413815823929416e-05
+          ],
+          "3": [
+            -8.851578652137315e-05,
+            2.0033845812478246e-05,
+            -9.073084277981536e-05,
+            1.0011563426642889e-05,
+            -7.090849968244273e-05,
+            0.00022298555106901874
+          ]
+        }
+      },
+      "max_abs_mock_minus_observed_RANDOM_operator_by_probe": {
+        "even_radial_ramp": 0.002599490176761761,
+        "odd_injection": 0.00022298555106901874
+      },
+      "max_abs_constant_even_to_odd_residual": 5.057125508287075e-17,
+      "max_abs_linear_superposition_residual": 2.7755575615628914e-17
+    },
+    "0250/NGC": {
+      "status": "closed_empirical_random_only_finite_bin_probe",
+      "mock_id": 250,
+      "cap": "NGC",
+      "original_full_RR_supported_cells": 28800,
+      "original_mock_vs_observed_fine_RR_normalized_L1": 0.012318930196128416,
+      "original_random_half_even_ramp_probe_max_abs_shifts": {
+        "1<-0": {
+          "half_A_vs_full_mock_max_abs_original_random_only": 0.00036183304000638686,
+          "half_B_vs_full_mock_max_abs_original_random_only": 0.00021484351003006347
+        },
+        "1<-2": {
+          "half_A_vs_full_mock_max_abs_original_random_only": 0.0002150106959215119,
+          "half_B_vs_full_mock_max_abs_original_random_only": 0.000170157159320877
+        },
+        "1<-4": {
+          "half_A_vs_full_mock_max_abs_original_random_only": 8.717007775034432e-05,
+          "half_B_vs_full_mock_max_abs_original_random_only": 8.807601045835405e-05
+        },
+        "3<-0": {
+          "half_A_vs_full_mock_max_abs_original_random_only": 0.0002733013107959336,
+          "half_B_vs_full_mock_max_abs_original_random_only": 0.0003275212706455753
+        },
+        "3<-2": {
+          "half_A_vs_full_mock_max_abs_original_random_only": 0.0003169193239119963,
+          "half_B_vs_full_mock_max_abs_original_random_only": 0.00022174281723805027
+        },
+        "3<-4": {
+          "half_A_vs_full_mock_max_abs_original_random_only": 0.00023390982969539965,
+          "half_B_vs_full_mock_max_abs_original_random_only": 0.00012610320226637793
+        }
+      },
+      "prior_independent_20260924_operator_matrix_summary_max_abs_replay_error": 0.0,
+      "prior_independent_20260924_ramp_summary_max_abs_replay_error": 1.1655173354219173e-18,
+      "predeclared_unitless_synthetic_probes": {
+        "constant_even": {
+          "1": [
+            -2.7655625727852906e-17,
+            -4.340620338204662e-17,
+            2.7202463101071855e-18,
+            -1.204353796053527e-17,
+            3.6946730126285326e-17,
+            3.8672136239842336e-17
+          ],
+          "3": [
+            -4.353749348887104e-18,
+            -1.5395670849294163e-17,
+            1.5998758307739225e-17,
+            -1.3078188705606397e-17,
+            1.706940795306866e-17,
+            2.9036289431877416e-17
+          ]
+        },
+        "even_radial_ramp": {
+          "1": [
+            0.004418785973391448,
+            0.006040588254210012,
+            0.005321245598859712,
+            0.005466438691457636,
+            0.005932153512927372,
+            0.0049107803813984805
+          ],
+          "3": [
+            0.0014377418384063669,
+            0.0018729288375113002,
+            0.0004431096420838464,
+            0.0009715370010992871,
+            0.0016696998443342557,
+            -0.000616134306812766
+          ]
+        },
+        "odd_injection": {
+          "1": [
+            0.20989507747926467,
+            0.20548646625778474,
+            0.2034749966615582,
+            0.2022099452748453,
+            0.20122390005991997,
+            0.20035991496635236
+          ],
+          "3": [
+            -0.07137171798787786,
+            -0.0733264604956417,
+            -0.07416219256104291,
+            -0.07484691679796551,
+            -0.07542935990404279,
+            -0.0760723249312386
+          ]
+        }
+      },
+      "mock_minus_observed_RANDOM_operator_synthetic_by_fixed_s": {
+        "even_radial_ramp": {
+          "1": [
+            -8.773290147694093e-05,
+            0.0011969443168940441,
+            0.00028566113952693643,
+            -0.0002388494945814862,
+            0.0006314044828077516,
+            -0.0002540343764893373
+          ],
+          "3": [
+            0.0005409753532570801,
+            0.0011119996562738714,
+            -0.00025975528108882374,
+            -0.0006641009560607975,
+            0.001032995406458664,
+            -0.0013933732388004215
+          ]
+        },
+        "odd_injection": {
+          "1": [
+            -1.8284886985936444e-05,
+            1.8840311463652615e-05,
+            1.657416926267863e-05,
+            9.231460335240582e-06,
+            -3.9094396000693976e-05,
+            8.724718151803534e-05
+          ],
+          "3": [
+            -5.902238576831198e-05,
+            4.2324969798696044e-05,
+            -9.43366413042046e-07,
+            -1.4229646262700624e-05,
+            -7.114264763721789e-05,
+            0.00017938699299832606
+          ]
+        }
+      },
+      "max_abs_mock_minus_observed_RANDOM_operator_by_probe": {
+        "even_radial_ramp": 0.0013933732388004215,
+        "odd_injection": 0.00017938699299832606
+      },
+      "max_abs_constant_even_to_odd_residual": 4.340620338204662e-17,
+      "max_abs_linear_superposition_residual": 1.3877787807814457e-17
+    },
+    "0375/NGC": {
+      "status": "closed_empirical_random_only_finite_bin_probe",
+      "mock_id": 375,
+      "cap": "NGC",
+      "original_full_RR_supported_cells": 28800,
+      "original_mock_vs_observed_fine_RR_normalized_L1": 0.015657866567706093,
+      "original_random_half_even_ramp_probe_max_abs_shifts": {
+        "1<-0": {
+          "half_A_vs_full_mock_max_abs_original_random_only": 0.0005087286467282421,
+          "half_B_vs_full_mock_max_abs_original_random_only": 0.0005730486324283671
+        },
+        "1<-2": {
+          "half_A_vs_full_mock_max_abs_original_random_only": 0.0003631723886950596,
+          "half_B_vs_full_mock_max_abs_original_random_only": 0.0003950528538949306
+        },
+        "1<-4": {
+          "half_A_vs_full_mock_max_abs_original_random_only": 0.00017473620990926986,
+          "half_B_vs_full_mock_max_abs_original_random_only": 0.00022499621871312854
+        },
+        "3<-0": {
+          "half_A_vs_full_mock_max_abs_original_random_only": 0.000620981394459062,
+          "half_B_vs_full_mock_max_abs_original_random_only": 0.0006449076702583943
+        },
+        "3<-2": {
+          "half_A_vs_full_mock_max_abs_original_random_only": 0.000583740305631584,
+          "half_B_vs_full_mock_max_abs_original_random_only": 0.0007201178831394591
+        },
+        "3<-4": {
+          "half_A_vs_full_mock_max_abs_original_random_only": 0.0004094743075853534,
+          "half_B_vs_full_mock_max_abs_original_random_only": 0.000527018660425975
+        }
+      },
+      "prior_independent_20260924_operator_matrix_summary_max_abs_replay_error": 0.0,
+      "prior_independent_20260924_ramp_summary_max_abs_replay_error": 1.1248597539537109e-18,
+      "predeclared_unitless_synthetic_probes": {
+        "constant_even": {
+          "1": [
+            1.514494909690689e-17,
+            4.8309677113701766e-17,
+            1.129698429664901e-17,
+            4.3901400018835166e-17,
+            -1.502297635250227e-17,
+            2.7547205510604356e-17
+          ],
+          "3": [
+            4.3659466233275657e-17,
+            3.4799501604995675e-17,
+            1.938350196496741e-17,
+            5.112690869626957e-17,
+            -3.152317816501604e-17,
+            -2.066760391300493e-18
+          ]
+        },
+        "even_radial_ramp": {
+          "1": [
+            0.003555473574129763,
+            0.004828896385949598,
+            0.004488695720855105,
+            0.00505048041537932,
+            0.005619032885382633,
+            0.005221821810309981
+          ],
+          "3": [
+            0.0009900051178863094,
+            0.0005116398268328669,
+            0.0008847924482636225,
+            0.0010462337609343769,
+            0.0020504511253300324,
+            0.0005956516393854741
+          ]
+        },
+        "odd_injection": {
+          "1": [
+            0.20994849640224766,
+            0.20546195735558173,
+            0.2034621271878777,
+            0.20223309962951028,
+            0.20116790921747882,
+            0.20026125621400384
+          ],
+          "3": [
+            -0.07136098755299831,
+            -0.07334118792103923,
+            -0.07420727939137611,
+            -0.07475129504556013,
+            -0.07551912003499334,
+            -0.07622776727032289
+          ]
+        }
+      },
+      "mock_minus_observed_RANDOM_operator_synthetic_by_fixed_s": {
+        "even_radial_ramp": {
+          "1": [
+            -0.000951045300738626,
+            -1.4747551366369946e-05,
+            -0.0005468887384776711,
+            -0.0006548077706598019,
+            0.00031828385526301226,
+            5.7007052422163376e-05
+          ],
+          "3": [
+            9.323863273702265e-05,
+            -0.0002492893544045619,
+            0.0001819275250909524,
+            -0.0005894041962257077,
+            0.0014137466874544406,
+            -0.0001815872926021814
+          ]
+        },
+        "odd_injection": {
+          "1": [
+            3.5134035997058666e-05,
+            -5.668590739360546e-06,
+            3.7046955821962158e-06,
+            3.2385815000229856e-05,
+            -9.508523844184436e-05,
+            -1.1411570830482942e-05
+          ],
+          "3": [
+            -4.829195088876248e-05,
+            2.759754440116724e-05,
+            -4.6030196746246754e-05,
+            8.139210614267756e-05,
+            -0.00016090277858776814,
+            2.3944653914032e-05
+          ]
+        }
+      },
+      "max_abs_mock_minus_observed_RANDOM_operator_by_probe": {
+        "even_radial_ramp": 0.0014137466874544406,
+        "odd_injection": 0.00016090277858776814
+      },
+      "max_abs_constant_even_to_odd_residual": 5.112690869626957e-17,
+      "max_abs_linear_superposition_residual": 2.7755575615628914e-17
+    },
+    "0500/NGC": {
+      "status": "closed_empirical_random_only_finite_bin_probe",
+      "mock_id": 500,
+      "cap": "NGC",
+      "original_full_RR_supported_cells": 28800,
+      "original_mock_vs_observed_fine_RR_normalized_L1": 0.011092055606446036,
+      "original_random_half_even_ramp_probe_max_abs_shifts": {
+        "1<-0": {
+          "half_A_vs_full_mock_max_abs_original_random_only": 0.00024124385791736858,
+          "half_B_vs_full_mock_max_abs_original_random_only": 0.0002901062444914653
+        },
+        "1<-2": {
+          "half_A_vs_full_mock_max_abs_original_random_only": 0.0001999645267291919,
+          "half_B_vs_full_mock_max_abs_original_random_only": 0.00023479651929247535
+        },
+        "1<-4": {
+          "half_A_vs_full_mock_max_abs_original_random_only": 0.00016048467799542815,
+          "half_B_vs_full_mock_max_abs_original_random_only": 0.00013247377560243723
+        },
+        "3<-0": {
+          "half_A_vs_full_mock_max_abs_original_random_only": 0.0005415682303437873,
+          "half_B_vs_full_mock_max_abs_original_random_only": 0.0004807326296546752
+        },
+        "3<-2": {
+          "half_A_vs_full_mock_max_abs_original_random_only": 0.00029653895433673404,
+          "half_B_vs_full_mock_max_abs_original_random_only": 0.00039973098523024553
+        },
+        "3<-4": {
+          "half_A_vs_full_mock_max_abs_original_random_only": 0.00021495479634621277,
+          "half_B_vs_full_mock_max_abs_original_random_only": 0.0001835048913299375
+        }
+      },
+      "prior_independent_20260924_operator_matrix_summary_max_abs_replay_error": 0.0,
+      "prior_independent_20260924_ramp_summary_max_abs_replay_error": 6.505213034913027e-19,
+      "predeclared_unitless_synthetic_probes": {
+        "constant_even": {
+          "1": [
+            2.6898378273007562e-17,
+            -9.065793634462777e-18,
+            3.5236570605778894e-17,
+            -2.310155308694016e-17,
+            -8.670229248095018e-18,
+            -3.8346875588096685e-17
+          ],
+          "3": [
+            2.519414798313191e-17,
+            -2.1216481262825715e-17,
+            2.2754693095039524e-17,
+            -8.070529921438974e-18,
+            -2.5898879395247487e-17,
+            -4.119968255444917e-17
+          ]
+        },
+        "even_radial_ramp": {
+          "1": [
+            0.003967647437184779,
+            0.005341568760427398,
+            0.005762086300786115,
+            0.0060975309734535915,
+            0.004994607083828788,
+            0.004777664211043611
+          ],
+          "3": [
+            0.0012711829925639746,
+            0.0015740942201282102,
+            0.0013044565797483993,
+            0.0014853379411952088,
+            -0.0005802223679346497,
+            -5.996555336130674e-05
+          ]
+        },
+        "odd_injection": {
+          "1": [
+            0.2099121033439627,
+            0.20546352365965317,
+            0.20340515224582875,
+            0.20221421574980672,
+            0.2013266232736987,
+            0.2002679398191555
+          ],
+          "3": [
+            -0.07131803553706333,
+            -0.07335627253068275,
+            -0.07423205394162617,
+            -0.074751476428142,
+            -0.07527946787509739,
+            -0.07630499493754284
+          ]
+        }
+      },
+      "mock_minus_observed_RANDOM_operator_synthetic_by_fixed_s": {
+        "even_radial_ramp": {
+          "1": [
+            -0.0005388714376836096,
+            0.00049792482311143,
+            0.0007265018414533394,
+            0.0003922427874144697,
+            -0.0003061419462908324,
+            -0.00038715054684420724
+          ],
+          "3": [
+            0.0003744165074146879,
+            0.0008131650388907815,
+            0.0006015916565757292,
+            -0.00015030001596487582,
+            -0.0012169268058102416,
+            -0.0008372044853489622
+          ]
+        },
+        "odd_injection": {
+          "1": [
+            -1.2590222878972046e-06,
+            -4.102286667917454e-06,
+            -5.327024646675782e-05,
+            1.350193529667254e-05,
+            6.362881777804974e-05,
+            -4.727965678824608e-06
+          ],
+          "3": [
+            -5.339934953774161e-06,
+            1.2512934757652472e-05,
+            -7.080474699630579e-05,
+            8.121072356080672e-05,
+            7.874938130818243e-05,
+            -5.328301330591312e-05
+          ]
+        }
+      },
+      "max_abs_mock_minus_observed_RANDOM_operator_by_probe": {
+        "even_radial_ramp": 0.0012169268058102416,
+        "odd_injection": 8.121072356080672e-05
+      },
+      "max_abs_constant_even_to_odd_residual": 4.119968255444917e-17,
+      "max_abs_linear_superposition_residual": 2.7755575615628914e-17
+    },
+    "0625/NGC": {
+      "status": "closed_empirical_random_only_finite_bin_probe",
+      "mock_id": 625,
+      "cap": "NGC",
+      "original_full_RR_supported_cells": 28800,
+      "original_mock_vs_observed_fine_RR_normalized_L1": 0.023307915550060464,
+      "original_random_half_even_ramp_probe_max_abs_shifts": {
+        "1<-0": {
+          "half_A_vs_full_mock_max_abs_original_random_only": 0.0004584795775632623,
+          "half_B_vs_full_mock_max_abs_original_random_only": 0.00038138765555520687
+        },
+        "1<-2": {
+          "half_A_vs_full_mock_max_abs_original_random_only": 0.00043922095322691465,
+          "half_B_vs_full_mock_max_abs_original_random_only": 0.000396523586736674
+        },
+        "1<-4": {
+          "half_A_vs_full_mock_max_abs_original_random_only": 0.00039216875080270324,
+          "half_B_vs_full_mock_max_abs_original_random_only": 0.00035486467192768085
+        },
+        "3<-0": {
+          "half_A_vs_full_mock_max_abs_original_random_only": 0.0009948910307840506,
+          "half_B_vs_full_mock_max_abs_original_random_only": 0.0009487664842234348
+        },
+        "3<-2": {
+          "half_A_vs_full_mock_max_abs_original_random_only": 0.000799509029941311,
+          "half_B_vs_full_mock_max_abs_original_random_only": 0.0007968631200194606
+        },
+        "3<-4": {
+          "half_A_vs_full_mock_max_abs_original_random_only": 0.0006353837037086363,
+          "half_B_vs_full_mock_max_abs_original_random_only": 0.0006198134292101432
+        }
+      },
+      "prior_independent_20260924_operator_matrix_summary_max_abs_replay_error": 0.0,
+      "prior_independent_20260924_ramp_summary_max_abs_replay_error": 7.047314121155779e-19,
+      "predeclared_unitless_synthetic_probes": {
+        "constant_even": {
+          "1": [
+            -3.97089045672816e-18,
+            -3.877716832530187e-18,
+            7.539863779984154e-18,
+            2.185345003916095e-18,
+            -2.8697476252975695e-18,
+            -2.0903079072341624e-17
+          ],
+          "3": [
+            4.285309086748956e-17,
+            4.2053491765281503e-17,
+            -3.503328269843786e-18,
+            -3.0974300815195255e-17,
+            -2.6095391039010485e-17,
+            2.5621052588548077e-17
+          ]
+        },
+        "even_radial_ramp": {
+          "1": [
+            0.004348679807019816,
+            0.004631362166268398,
+            0.005301860174558547,
+            0.005836320617076962,
+            0.004699618755060081,
+            0.003773582492867996
+          ],
+          "3": [
+            0.0012172273034392678,
+            0.0007954899520371623,
+            0.0014106307878182978,
+            0.0016642335390791535,
+            -0.00028423988229658235,
+            -0.0012476299486685958
+          ]
+        },
+        "odd_injection": {
+          "1": [
+            0.2099062515757991,
+            0.20550751947170645,
+            0.2034980764391782,
+            0.20221841776262492,
+            0.20126433086620762,
+            0.20036945414840654
+          ],
+          "3": [
+            -0.0713527458191286,
+            -0.07326526799697969,
+            -0.074126486346251,
+            -0.07481695488096772,
+            -0.07537607537629892,
+            -0.07610628770080399
+          ]
+        }
+      },
+      "mock_minus_observed_RANDOM_operator_synthetic_by_fixed_s": {
+        "even_radial_ramp": {
+          "1": [
+            -0.000157839067848573,
+            -0.00021228177104756947,
+            0.0002662757152257708,
+            0.0001310324310378405,
+            -0.0006011302750595394,
+            -0.0013912322650198217
+          ],
+          "3": [
+            0.0003204608182899811,
+            3.4560770799733605e-05,
+            0.0007077658646456276,
+            2.8595581919068887e-05,
+            -0.0009209443201721741,
+            -0.0020248688806562515
+          ]
+        },
+        "odd_injection": {
+          "1": [
+            -7.110790451514415e-06,
+            3.9893525385359396e-05,
+            3.965394688268398e-05,
+            1.7703948114872192e-05,
+            1.3364102869617422e-06,
+            9.678636357221548e-05
+          ],
+          "3": [
+            -4.0050217019041434e-05,
+            0.00010351746846071208,
+            3.47628483788609e-05,
+            1.5732270735091536e-05,
+            -1.785811989335473e-05,
+            0.00014542422343293004
+          ]
+        }
+      },
+      "max_abs_mock_minus_observed_RANDOM_operator_by_probe": {
+        "even_radial_ramp": 0.0020248688806562515,
+        "odd_injection": 0.00014542422343293004
+      },
+      "max_abs_constant_even_to_odd_residual": 4.285309086748956e-17,
+      "max_abs_linear_superposition_residual": 1.3877787807814457e-17
+    },
+    "0750/NGC": {
+      "status": "closed_empirical_random_only_finite_bin_probe",
+      "mock_id": 750,
+      "cap": "NGC",
+      "original_full_RR_supported_cells": 28800,
+      "original_mock_vs_observed_fine_RR_normalized_L1": 0.009751695916688381,
+      "original_random_half_even_ramp_probe_max_abs_shifts": {
+        "1<-0": {
+          "half_A_vs_full_mock_max_abs_original_random_only": 0.0003505042241273336,
+          "half_B_vs_full_mock_max_abs_original_random_only": 0.00038201856205250916
+        },
+        "1<-2": {
+          "half_A_vs_full_mock_max_abs_original_random_only": 0.00022452229405111267,
+          "half_B_vs_full_mock_max_abs_original_random_only": 0.00021954923553703246
+        },
+        "1<-4": {
+          "half_A_vs_full_mock_max_abs_original_random_only": 9.790404696512637e-05,
+          "half_B_vs_full_mock_max_abs_original_random_only": 5.843229232101904e-05
+        },
+        "3<-0": {
+          "half_A_vs_full_mock_max_abs_original_random_only": 0.0003732161546920373,
+          "half_B_vs_full_mock_max_abs_original_random_only": 0.0002595514861178789
+        },
+        "3<-2": {
+          "half_A_vs_full_mock_max_abs_original_random_only": 0.0003459834576608964,
+          "half_B_vs_full_mock_max_abs_original_random_only": 0.00023613906305517546
+        },
+        "3<-4": {
+          "half_A_vs_full_mock_max_abs_original_random_only": 0.00021476228784674716,
+          "half_B_vs_full_mock_max_abs_original_random_only": 0.00020765578563945513
+        }
+      },
+      "prior_independent_20260924_operator_matrix_summary_max_abs_replay_error": 0.0,
+      "prior_independent_20260924_ramp_summary_max_abs_replay_error": 9.75781955236954e-19,
+      "predeclared_unitless_synthetic_probes": {
+        "constant_even": {
+          "1": [
+            1.8258006936303257e-17,
+            1.357709111153918e-17,
+            -5.571782727038788e-18,
+            -1.8283206166484073e-17,
+            4.6807464181746264e-17,
+            -7.272624885125423e-18
+          ],
+          "3": [
+            8.436448154652831e-18,
+            1.44774871344705e-17,
+            8.318202355216131e-17,
+            -1.622237500581436e-17,
+            -5.6785088783928295e-18,
+            4.1009947174264205e-17
+          ]
+        },
+        "even_radial_ramp": {
+          "1": [
+            0.004505453298321153,
+            0.004827342590994677,
+            0.00496179666696226,
+            0.005310190274887668,
+            0.004715048255679285,
+            0.004909466957326387
+          ],
+          "3": [
+            0.0012633433619741899,
+            0.0009147968352280614,
+            0.0012136454923189627,
+            0.0010577506201717185,
+            0.00023035442431889192,
+            0.0010344321507840001
+          ]
+        },
+        "odd_injection": {
+          "1": [
+            0.20992511933455707,
+            0.20545420919965918,
+            0.20344664134257778,
+            0.20220844995640652,
+            0.20126163944257544,
+            0.20031701648370942
+          ],
+          "3": [
+            -0.07138298513422506,
+            -0.07339500541274162,
+            -0.07418950420684062,
+            -0.07479147427639131,
+            -0.07535685033823979,
+            -0.07619307632607387
+          ]
+        }
+      },
+      "mock_minus_observed_RANDOM_operator_synthetic_by_fixed_s": {
+        "even_radial_ramp": {
+          "1": [
+            -1.065576547235915e-06,
+            -1.6301346321290905e-05,
+            -7.378779237051606e-05,
+            -0.0003950979111514534,
+            -0.0005857007744403354,
+            -0.0002553478005614309
+          ],
+          "3": [
+            0.0003665768768249031,
+            0.0001538676539906326,
+            0.0005107805691462926,
+            -0.000577887336988366,
+            -0.00040635001355669985,
+            0.0002571932187963446
+          ]
+        },
+        "odd_injection": {
+          "1": [
+            1.1756968306464444e-05,
+            -1.3416746661915058e-05,
+            -1.1781149717726702e-05,
+            7.73614189647498e-06,
+            -1.3550133452222557e-06,
+            4.434869887509629e-05
+          ],
+          "3": [
+            -7.028953211550559e-05,
+            -2.6219947301217572e-05,
+            -2.8255012210751107e-05,
+            4.121287531150264e-05,
+            1.3669181657821605e-06,
+            5.86355981630482e-05
+          ]
+        }
+      },
+      "max_abs_mock_minus_observed_RANDOM_operator_by_probe": {
+        "even_radial_ramp": 0.0005857007744403354,
+        "odd_injection": 7.028953211550559e-05
+      },
+      "max_abs_constant_even_to_odd_residual": 8.318202355216131e-17,
+      "max_abs_linear_superposition_residual": 2.7755575615628914e-17
+    },
+    "0875/NGC": {
+      "status": "closed_empirical_random_only_finite_bin_probe",
+      "mock_id": 875,
+      "cap": "NGC",
+      "original_full_RR_supported_cells": 28800,
+      "original_mock_vs_observed_fine_RR_normalized_L1": 0.015510842072956157,
+      "original_random_half_even_ramp_probe_max_abs_shifts": {
+        "1<-0": {
+          "half_A_vs_full_mock_max_abs_original_random_only": 0.00037478054540435787,
+          "half_B_vs_full_mock_max_abs_original_random_only": 0.0004137213850580893
+        },
+        "1<-2": {
+          "half_A_vs_full_mock_max_abs_original_random_only": 0.0004387825313963141,
+          "half_B_vs_full_mock_max_abs_original_random_only": 0.0003842367353329593
+        },
+        "1<-4": {
+          "half_A_vs_full_mock_max_abs_original_random_only": 0.0002745936849424875,
+          "half_B_vs_full_mock_max_abs_original_random_only": 0.00023236809191428954
+        },
+        "3<-0": {
+          "half_A_vs_full_mock_max_abs_original_random_only": 0.0011424119500784277,
+          "half_B_vs_full_mock_max_abs_original_random_only": 0.0008506873717600692
+        },
+        "3<-2": {
+          "half_A_vs_full_mock_max_abs_original_random_only": 0.0006361551919402343,
+          "half_B_vs_full_mock_max_abs_original_random_only": 0.0005662970589130983
+        },
+        "3<-4": {
+          "half_A_vs_full_mock_max_abs_original_random_only": 0.00035379874840491465,
+          "half_B_vs_full_mock_max_abs_original_random_only": 0.0002870352647622778
+        }
+      },
+      "prior_independent_20260924_operator_matrix_summary_max_abs_replay_error": 0.0,
+      "prior_independent_20260924_ramp_summary_max_abs_replay_error": 8.673617379884035e-19,
+      "predeclared_unitless_synthetic_probes": {
+        "constant_even": {
+          "1": [
+            -8.955679351319717e-18,
+            3.236767001342858e-17,
+            4.755242965885642e-18,
+            9.118309677192543e-18,
+            -3.209280782204456e-17,
+            1.76284496982565e-17
+          ],
+          "3": [
+            2.867714746224159e-17,
+            5.1906179007743525e-18,
+            4.081343553050121e-17,
+            -1.2095630486791409e-17,
+            -4.454038049842013e-17,
+            1.853308088592409e-17
+          ]
+        },
+        "even_radial_ramp": {
+          "1": [
+            0.004699561702068731,
+            0.005439796774901232,
+            0.005525580376248381,
+            0.005879490701790753,
+            0.005751863390503385,
+            0.0051984206747748745
+          ],
+          "3": [
+            0.0005579275782641713,
+            0.0012596376574456453,
+            0.001067964411963716,
+            0.0013231477722535421,
+            0.0011941652909713105,
+            0.00022301544256980987
+          ]
+        },
+        "odd_injection": {
+          "1": [
+            0.20985429054450014,
+            0.20552475053445413,
+            0.2034661578235023,
+            0.20220215684193493,
+            0.20126018124292738,
+            0.2002628949466474
+          ],
+          "3": [
+            -0.07141607319149654,
+            -0.07325697129452666,
+            -0.07417237236123843,
+            -0.07481661777994701,
+            -0.07538007369408263,
+            -0.07623475225472902
+          ]
+        }
+      },
+      "mock_minus_observed_RANDOM_operator_synthetic_by_fixed_s": {
+        "even_radial_ramp": {
+          "1": [
+            0.00019304282720034212,
+            0.0005961528375852641,
+            0.0004899959169156051,
+            0.00017420251575163154,
+            0.00045111436038376435,
+            3.360591688705665e-05
+          ],
+          "3": [
+            -0.00033883890688511545,
+            0.0004987084762082166,
+            0.00036509948879104586,
+            -0.00031249018490654245,
+            0.0005574608530957187,
+            -0.0005542234894178456
+          ]
+        },
+        "odd_injection": {
+          "1": [
+            -5.90718217504671e-05,
+            5.7124588133034004e-05,
+            7.735331206792928e-06,
+            1.4430274248855568e-06,
+            -2.8132129932800787e-06,
+            -9.772838186927757e-06
+          ],
+          "3": [
+            -0.00010337758938698538,
+            0.00011181417091374324,
+            -1.1123166608562052e-05,
+            1.6069371755800255e-05,
+            -2.1856437677061913e-05,
+            1.6959669507904396e-05
+          ]
+        }
+      },
+      "max_abs_mock_minus_observed_RANDOM_operator_by_probe": {
+        "even_radial_ramp": 0.0005961528375852641,
+        "odd_injection": 0.00011181417091374324
+      },
+      "max_abs_constant_even_to_odd_residual": 4.454038049842013e-17,
+      "max_abs_linear_superposition_residual": 2.7755575615628914e-17
+    },
+    "1000/NGC": {
+      "status": "closed_empirical_random_only_finite_bin_probe",
+      "mock_id": 1000,
+      "cap": "NGC",
+      "original_full_RR_supported_cells": 28800,
+      "original_mock_vs_observed_fine_RR_normalized_L1": 0.014744069377021026,
+      "original_random_half_even_ramp_probe_max_abs_shifts": {
+        "1<-0": {
+          "half_A_vs_full_mock_max_abs_original_random_only": 0.0005605823636192142,
+          "half_B_vs_full_mock_max_abs_original_random_only": 0.00041775533473975557
+        },
+        "1<-2": {
+          "half_A_vs_full_mock_max_abs_original_random_only": 0.0003162108675772784,
+          "half_B_vs_full_mock_max_abs_original_random_only": 0.0002702820259490382
+        },
+        "1<-4": {
+          "half_A_vs_full_mock_max_abs_original_random_only": 0.00013886957350829217,
+          "half_B_vs_full_mock_max_abs_original_random_only": 0.00023149152547687147
+        },
+        "3<-0": {
+          "half_A_vs_full_mock_max_abs_original_random_only": 0.0008066422026157303,
+          "half_B_vs_full_mock_max_abs_original_random_only": 0.0007159305793680473
+        },
+        "3<-2": {
+          "half_A_vs_full_mock_max_abs_original_random_only": 0.0005732094886860633,
+          "half_B_vs_full_mock_max_abs_original_random_only": 0.0005582437012528921
+        },
+        "3<-4": {
+          "half_A_vs_full_mock_max_abs_original_random_only": 0.00038243892020733234,
+          "half_B_vs_full_mock_max_abs_original_random_only": 0.00040859125276734333
+        }
+      },
+      "prior_independent_20260924_operator_matrix_summary_max_abs_replay_error": 0.0,
+      "prior_independent_20260924_ramp_summary_max_abs_replay_error": 8.673617379884035e-19,
+      "predeclared_unitless_synthetic_probes": {
+        "constant_even": {
+          "1": [
+            3.076254257838168e-17,
+            -1.3188302988749456e-17,
+            -1.1684819507373073e-17,
+            -3.753202989283805e-18,
+            -2.8981232290305886e-18,
+            1.5139866899223364e-17
+          ],
+          "3": [
+            1.576158908250802e-17,
+            -8.070529921438974e-18,
+            -2.7647155398380363e-18,
+            3.3999902502787616e-17,
+            -2.3351004289906552e-17,
+            -1.0015317568334847e-17
+          ]
+        },
+        "even_radial_ramp": {
+          "1": [
+            0.0056292697457057785,
+            0.005570536844697634,
+            0.0051064276930001444,
+            0.005314378698397116,
+            0.00559268369622202,
+            0.0067408343139182675
+          ],
+          "3": [
+            0.0014449633112269262,
+            0.0003458948736156369,
+            0.0005606659241458815,
+            0.0011506687176395585,
+            0.0016753421231476178,
+            0.0031242366216916897
+          ]
+        },
+        "odd_injection": {
+          "1": [
+            0.2099061739269655,
+            0.20552549129040323,
+            0.20348826047003674,
+            0.20221914583297418,
+            0.2012152029498471,
+            0.20019056812984096
+          ],
+          "3": [
+            -0.07134180474684211,
+            -0.07329565975623648,
+            -0.07415198019494565,
+            -0.07480612431821629,
+            -0.07548134053592374,
+            -0.07633576566724418
+          ]
+        }
+      },
+      "mock_minus_observed_RANDOM_operator_synthetic_by_fixed_s": {
+        "even_radial_ramp": {
+          "1": [
+            0.0011227508708373897,
+            0.0007268929073816661,
+            7.084323366736856e-05,
+            -0.0003909094876420058,
+            0.00029193466610239957,
+            0.0015760195560304497
+          ],
+          "3": [
+            0.0005481968260776395,
+            -0.00041503430762179186,
+            -0.00014219899902678866,
+            -0.00048496923952052605,
+            0.001038637685272026,
+            0.0023469976897040343
+          ]
+        },
+        "odd_injection": {
+          "1": [
+            -7.1884392850996015e-06,
+            5.7865344082141945e-05,
+            2.9837977741226096e-05,
+            1.8432018464131783e-05,
+            -4.779150607356342e-05,
+            -8.209965499336724e-05
+          ],
+          "3": [
+            -2.9109144732558656e-05,
+            7.312570920392503e-05,
+            9.268999684217127e-06,
+            2.6562833486523663e-05,
+            -0.00012312327951817525,
+            -8.405374300725355e-05
+          ]
+        }
+      },
+      "max_abs_mock_minus_observed_RANDOM_operator_by_probe": {
+        "even_radial_ramp": 0.0023469976897040343,
+        "odd_injection": 0.00012312327951817525
+      },
+      "max_abs_constant_even_to_odd_residual": 3.3999902502787616e-17,
+      "max_abs_linear_superposition_residual": 2.7755575615628914e-17
+    },
+    "0001/SGC": {
+      "status": "closed_empirical_random_only_finite_bin_probe",
+      "mock_id": 1,
+      "cap": "SGC",
+      "original_full_RR_supported_cells": 28800,
+      "original_mock_vs_observed_fine_RR_normalized_L1": 0.009020499012614034,
+      "original_random_half_even_ramp_probe_max_abs_shifts": {
+        "1<-0": {
+          "half_A_vs_full_mock_max_abs_original_random_only": 0.00010309809436825825,
+          "half_B_vs_full_mock_max_abs_original_random_only": 0.00014931235707893627
+        },
+        "1<-2": {
+          "half_A_vs_full_mock_max_abs_original_random_only": 7.897824653822078e-05,
+          "half_B_vs_full_mock_max_abs_original_random_only": 0.00012856330375890534
+        },
+        "1<-4": {
+          "half_A_vs_full_mock_max_abs_original_random_only": 0.00012954812132080198,
+          "half_B_vs_full_mock_max_abs_original_random_only": 0.00012025871814373243
+        },
+        "3<-0": {
+          "half_A_vs_full_mock_max_abs_original_random_only": 0.0004610714264118615,
+          "half_B_vs_full_mock_max_abs_original_random_only": 0.0005094704838147088
+        },
+        "3<-2": {
+          "half_A_vs_full_mock_max_abs_original_random_only": 0.00018169945568514458,
+          "half_B_vs_full_mock_max_abs_original_random_only": 0.00017862715001846921
+        },
+        "3<-4": {
+          "half_A_vs_full_mock_max_abs_original_random_only": 0.0001412804412273044,
+          "half_B_vs_full_mock_max_abs_original_random_only": 0.00030192023452593275
+        }
+      },
+      "prior_independent_20260924_operator_matrix_summary_max_abs_replay_error": 0.0,
+      "prior_independent_20260924_ramp_summary_max_abs_replay_error": 1.6263032587282567e-18,
+      "predeclared_unitless_synthetic_probes": {
+        "constant_even": {
+          "1": [
+            6.847414345603764e-18,
+            -3.822998504137559e-17,
+            -2.4602918985948408e-17,
+            1.958255470757217e-17,
+            3.409180557756471e-17,
+            3.4304834363799164e-17
+          ],
+          "3": [
+            -1.1712771594632465e-17,
+            2.827734791113756e-17,
+            -2.9761349634727097e-17,
+            -8.985325504473618e-18,
+            -1.5490538539386645e-17,
+            -2.7210086397597144e-17
+          ]
+        },
+        "even_radial_ramp": {
+          "1": [
+            0.003850420022932244,
+            0.005163331335387927,
+            0.004132548069251227,
+            0.004644415805737459,
+            0.005119270690794931,
+            0.004007780826841712
+          ],
+          "3": [
+            0.0005699595514146383,
+            0.001524739482508632,
+            -0.0004851651553610233,
+            0.0011163153409782332,
+            0.0014968193980551122,
+            -0.0009774569881877697
+          ]
+        },
+        "odd_injection": {
+          "1": [
+            0.20981388163898615,
+            0.205368655337142,
+            0.2033617886870695,
+            0.20211029977906605,
+            0.20113732495425574,
+            0.20023432041727307
+          ],
+          "3": [
+            -0.071389119334989,
+            -0.07328231678216936,
+            -0.07412067557149347,
+            -0.0747365599995589,
+            -0.07529605314292699,
+            -0.07602473677792632
+          ]
+        }
+      },
+      "mock_minus_observed_RANDOM_operator_synthetic_by_fixed_s": {
+        "even_radial_ramp": {
+          "1": [
+            0.00012400191288332958,
+            9.71219560026047e-05,
+            -0.00033837986939126534,
+            0.0003859172219716749,
+            -0.0002483885779622913,
+            -0.0006257176414956505
+          ],
+          "3": [
+            0.0010745933238799714,
+            -0.00018434357474082287,
+            -0.0007442301093207168,
+            0.0006010467112528884,
+            -0.0005737129703244324,
+            -0.0007705056330513274
+          ]
+        },
+        "odd_injection": {
+          "1": [
+            -3.593549408265062e-06,
+            2.5771399845775367e-05,
+            2.0643063270237016e-05,
+            -1.417898872885237e-05,
+            1.1804902393830474e-05,
+            5.632174953879021e-05
+          ],
+          "3": [
+            -7.253649623008285e-05,
+            9.62916342461817e-06,
+            1.728418336607862e-05,
+            -1.671346529523443e-05,
+            3.261764858010496e-05,
+            8.395171067536455e-05
+          ]
+        }
+      },
+      "max_abs_mock_minus_observed_RANDOM_operator_by_probe": {
+        "even_radial_ramp": 0.0010745933238799714,
+        "odd_injection": 8.395171067536455e-05
+      },
+      "max_abs_constant_even_to_odd_residual": 3.822998504137559e-17,
+      "max_abs_linear_superposition_residual": 2.7755575615628914e-17
+    },
+    "0125/SGC": {
+      "status": "closed_empirical_random_only_finite_bin_probe",
+      "mock_id": 125,
+      "cap": "SGC",
+      "original_full_RR_supported_cells": 28800,
+      "original_mock_vs_observed_fine_RR_normalized_L1": 0.013865150749481902,
+      "original_random_half_even_ramp_probe_max_abs_shifts": {
+        "1<-0": {
+          "half_A_vs_full_mock_max_abs_original_random_only": 0.0001269619866522539,
+          "half_B_vs_full_mock_max_abs_original_random_only": 0.00015800813821303114
+        },
+        "1<-2": {
+          "half_A_vs_full_mock_max_abs_original_random_only": 0.00010194481477211726,
+          "half_B_vs_full_mock_max_abs_original_random_only": 0.00010147002519035738
+        },
+        "1<-4": {
+          "half_A_vs_full_mock_max_abs_original_random_only": 9.485414980166804e-05,
+          "half_B_vs_full_mock_max_abs_original_random_only": 8.46960979286584e-05
+        },
+        "3<-0": {
+          "half_A_vs_full_mock_max_abs_original_random_only": 0.00034206409039833725,
+          "half_B_vs_full_mock_max_abs_original_random_only": 0.0003391367346063655
+        },
+        "3<-2": {
+          "half_A_vs_full_mock_max_abs_original_random_only": 0.0001715934765623402,
+          "half_B_vs_full_mock_max_abs_original_random_only": 0.00021751593773219522
+        },
+        "3<-4": {
+          "half_A_vs_full_mock_max_abs_original_random_only": 0.00014731908846954498,
+          "half_B_vs_full_mock_max_abs_original_random_only": 0.00015822822734684258
+        }
+      },
+      "prior_independent_20260924_operator_matrix_summary_max_abs_replay_error": 0.0,
+      "prior_independent_20260924_ramp_summary_max_abs_replay_error": 1.1384122811097797e-18,
+      "predeclared_unitless_synthetic_probes": {
+        "constant_even": {
+          "1": [
+            -4.233640076966444e-17,
+            3.043135269600525e-17,
+            3.007729292405295e-17,
+            -7.540710812931409e-18,
+            2.7985968577282083e-18,
+            -3.3103741644592566e-17
+          ],
+          "3": [
+            -1.6771252355635147e-17,
+            -5.488773498207866e-18,
+            2.6169929938368863e-17,
+            6.434062267343665e-18,
+            3.094041949730508e-17,
+            2.2497195079074217e-17
+          ]
+        },
+        "even_radial_ramp": {
+          "1": [
+            0.0038930239500099824,
+            0.004280078666769283,
+            0.0038908978819062095,
+            0.003840618058140112,
+            0.0047356478309499095,
+            0.0043004729559678245
+          ],
+          "3": [
+            0.0012800469969876465,
+            0.000720816350352193,
+            8.86424985394653e-05,
+            0.0006744784832460759,
+            0.0018041588745236249,
+            0.0003498264242782302
+          ]
+        },
+        "odd_injection": {
+          "1": [
+            0.20975225295985617,
+            0.2054285904718505,
+            0.2033902451081698,
+            0.20217192289106672,
+            0.20115443883690498,
+            0.2002921827533061
+          ],
+          "3": [
+            -0.0714304290747488,
+            -0.07314456159860776,
+            -0.07414262579915779,
+            -0.0746787928679514,
+            -0.07533342556022958,
+            -0.07593267599886748
+          ]
+        }
+      },
+      "mock_minus_observed_RANDOM_operator_synthetic_by_fixed_s": {
+        "even_radial_ramp": {
+          "1": [
+            0.00016660583996106794,
+            -0.0007861307126160394,
+            -0.0005800300567362828,
+            -0.00041788052562567214,
+            -0.000632011437807313,
+            -0.0003330255123695381
+          ],
+          "3": [
+            0.0017846807694529797,
+            -0.0009882667068972619,
+            -0.00017042245542022826,
+            0.0001592098535207312,
+            -0.0002663734938559198,
+            0.0005567777794146724
+          ]
+        },
+        "odd_injection": {
+          "1": [
+            -6.522222853824755e-05,
+            8.570653455428068e-05,
+            4.909948437054057e-05,
+            4.744412327181702e-05,
+            2.891878504307499e-05,
+            0.00011418408557181681
+          ],
+          "3": [
+            -0.0001138462359898812,
+            0.00014738434698621794,
+            -4.6660442982321415e-06,
+            4.105366631226848e-05,
+            -4.754768722484148e-06,
+            0.0001760124897342008
+          ]
+        }
+      },
+      "max_abs_mock_minus_observed_RANDOM_operator_by_probe": {
+        "even_radial_ramp": 0.0017846807694529797,
+        "odd_injection": 0.0001760124897342008
+      },
+      "max_abs_constant_even_to_odd_residual": 4.233640076966444e-17,
+      "max_abs_linear_superposition_residual": 2.7755575615628914e-17
+    },
+    "0250/SGC": {
+      "status": "closed_empirical_random_only_finite_bin_probe",
+      "mock_id": 250,
+      "cap": "SGC",
+      "original_full_RR_supported_cells": 28800,
+      "original_mock_vs_observed_fine_RR_normalized_L1": 0.017090075493832502,
+      "original_random_half_even_ramp_probe_max_abs_shifts": {
+        "1<-0": {
+          "half_A_vs_full_mock_max_abs_original_random_only": 0.0003851739369673665,
+          "half_B_vs_full_mock_max_abs_original_random_only": 0.0004725458764378819
+        },
+        "1<-2": {
+          "half_A_vs_full_mock_max_abs_original_random_only": 0.00021910780251847319,
+          "half_B_vs_full_mock_max_abs_original_random_only": 0.0002416533891908578
+        },
+        "1<-4": {
+          "half_A_vs_full_mock_max_abs_original_random_only": 7.6382550158321e-05,
+          "half_B_vs_full_mock_max_abs_original_random_only": 6.422326409545218e-05
+        },
+        "3<-0": {
+          "half_A_vs_full_mock_max_abs_original_random_only": 0.0004547191687711246,
+          "half_B_vs_full_mock_max_abs_original_random_only": 0.000204691816838869
+        },
+        "3<-2": {
+          "half_A_vs_full_mock_max_abs_original_random_only": 0.0003031193423452235,
+          "half_B_vs_full_mock_max_abs_original_random_only": 0.0003473157216599297
+        },
+        "3<-4": {
+          "half_A_vs_full_mock_max_abs_original_random_only": 0.0002678041889905018,
+          "half_B_vs_full_mock_max_abs_original_random_only": 0.0003931885292822869
+        }
+      },
+      "prior_independent_20260924_operator_matrix_summary_max_abs_replay_error": 0.0,
+      "prior_independent_20260924_ramp_summary_max_abs_replay_error": 1.1926223897340549e-18,
+      "predeclared_unitless_synthetic_probes": {
+        "constant_even": {
+          "1": [
+            -2.970121029547204e-17,
+            -6.760678171804924e-17,
+            -9.50370966819325e-18,
+            -3.109966169138889e-17,
+            4.4658118078088477e-17,
+            -2.5529573030244612e-17
+          ],
+          "3": [
+            8.151845084375386e-18,
+            3.329517109067204e-17,
+            1.148915489655733e-17,
+            3.8285889215894375e-18,
+            4.092863201132779e-17,
+            -1.5717543369250797e-17
+          ]
+        },
+        "even_radial_ramp": {
+          "1": [
+            0.004290768430460339,
+            0.006122130151854172,
+            0.0055509838663491936,
+            0.004872147134907344,
+            0.005966323755468275,
+            0.0037070912649391093
+          ],
+          "3": [
+            0.0004459464195281032,
+            0.00275277515195811,
+            0.0003630354968278088,
+            3.9514966799689014e-05,
+            0.0021517117900682462,
+            -0.002574823515614365
+          ]
+        },
+        "odd_injection": {
+          "1": [
+            0.2097739253055532,
+            0.20532478530431233,
+            0.20327970346439717,
+            0.202175812769448,
+            0.20113999533472496,
+            0.200265702555837
+          ],
+          "3": [
+            -0.07136380123181535,
+            -0.07336069371271715,
+            -0.07421369685251197,
+            -0.07457593102162682,
+            -0.07535694826414104,
+            -0.07597774930841092
+          ]
+        }
+      },
+      "mock_minus_observed_RANDOM_operator_synthetic_by_fixed_s": {
+        "even_radial_ramp": {
+          "1": [
+            0.0005643503204114243,
+            0.0010559207724688503,
+            0.0010800559277067013,
+            0.00061364855114156,
+            0.0005986644867110522,
+            -0.0009264072033982533
+          ],
+          "3": [
+            0.0009505801919934365,
+            0.0010436920947086551,
+            0.00010397054286811526,
+            -0.0004757536629256557,
+            8.117942168870155e-05,
+            -0.0023678721604779226
+          ]
+        },
+        "odd_injection": {
+          "1": [
+            -4.354988284122063e-05,
+            -1.8098632983881702e-05,
+            -6.144215940209752e-05,
+            5.133400165308055e-05,
+            1.447528286305233e-05,
+            8.770388810272478e-05
+          ],
+          "3": [
+            -4.721839305643627e-05,
+            -6.874776712317843e-05,
+            -7.57370976524202e-05,
+            0.0001439155126368441,
+            -2.8277472633939094e-05,
+            0.00013093918019076167
+          ]
+        }
+      },
+      "max_abs_mock_minus_observed_RANDOM_operator_by_probe": {
+        "even_radial_ramp": 0.0023678721604779226,
+        "odd_injection": 0.0001439155126368441
+      },
+      "max_abs_constant_even_to_odd_residual": 6.760678171804924e-17,
+      "max_abs_linear_superposition_residual": 2.7755575615628914e-17
+    },
+    "0375/SGC": {
+      "status": "closed_empirical_random_only_finite_bin_probe",
+      "mock_id": 375,
+      "cap": "SGC",
+      "original_full_RR_supported_cells": 28800,
+      "original_mock_vs_observed_fine_RR_normalized_L1": 0.010525179331490872,
+      "original_random_half_even_ramp_probe_max_abs_shifts": {
+        "1<-0": {
+          "half_A_vs_full_mock_max_abs_original_random_only": 0.0005282085089905564,
+          "half_B_vs_full_mock_max_abs_original_random_only": 0.0006231382534916817
+        },
+        "1<-2": {
+          "half_A_vs_full_mock_max_abs_original_random_only": 0.0002842429213914745,
+          "half_B_vs_full_mock_max_abs_original_random_only": 0.000267435771531649
+        },
+        "1<-4": {
+          "half_A_vs_full_mock_max_abs_original_random_only": 0.00015723767878978237,
+          "half_B_vs_full_mock_max_abs_original_random_only": 0.0001525611667168615
+        },
+        "3<-0": {
+          "half_A_vs_full_mock_max_abs_original_random_only": 0.00039729264613806,
+          "half_B_vs_full_mock_max_abs_original_random_only": 0.0005396410301003124
+        },
+        "3<-2": {
+          "half_A_vs_full_mock_max_abs_original_random_only": 0.00047224077682392427,
+          "half_B_vs_full_mock_max_abs_original_random_only": 0.00038151612318605395
+        },
+        "3<-4": {
+          "half_A_vs_full_mock_max_abs_original_random_only": 0.0003909168015700931,
+          "half_B_vs_full_mock_max_abs_original_random_only": 0.0002407743554662849
+        }
+      },
+      "prior_independent_20260924_operator_matrix_summary_max_abs_replay_error": 0.0,
+      "prior_independent_20260924_ramp_summary_max_abs_replay_error": 7.860465750519907e-19,
+      "predeclared_unitless_synthetic_probes": {
+        "constant_even": {
+          "1": [
+            -1.2156616858993718e-17,
+            2.7629367706488023e-17,
+            -1.8145139796081622e-17,
+            2.1190223241460832e-17,
+            1.448087526625952e-17,
+            5.704936306347164e-17
+          ],
+          "3": [
+            3.300040362502754e-18,
+            2.7138935630027783e-17,
+            2.1616280813929745e-18,
+            -1.2095630486791409e-18,
+            -1.0855574252011113e-17,
+            1.9159885266892274e-17
+          ]
+        },
+        "even_radial_ramp": {
+          "1": [
+            0.003914415281664479,
+            0.005218770825084852,
+            0.0043574565431504465,
+            0.0038543319043389947,
+            0.005287103569807092,
+            0.0036081602018399462
+          ],
+          "3": [
+            0.0007247043080368411,
+            0.0021617681444803982,
+            -0.0002857756445290784,
+            2.5812562773899154e-06,
+            0.0025051170361172163,
+            -0.0014331287153904338
+          ]
+        },
+        "odd_injection": {
+          "1": [
+            0.20975479263645735,
+            0.20531360562872825,
+            0.20336236110818556,
+            0.20219907570261705,
+            0.20113577302222985,
+            0.2002611929094819
+          ],
+          "3": [
+            -0.0713630909775139,
+            -0.07333042644970582,
+            -0.07410287166325182,
+            -0.07456347816608973,
+            -0.07535470287225879,
+            -0.07600680942905715
+          ]
+        }
+      },
+      "mock_minus_observed_RANDOM_operator_synthetic_by_fixed_s": {
+        "even_radial_ramp": {
+          "1": [
+            0.00018799717161556472,
+            0.00015256144569953008,
+            -0.00011347139549204577,
+            -0.00040416667942678964,
+            -8.05556989501308e-05,
+            -0.0010253382664974164
+          ],
+          "3": [
+            0.0012293380805021743,
+            0.00045268508723094337,
+            -0.000544840598488772,
+            -0.0005126873734479548,
+            0.0004345846677376716,
+            -0.0012261773602539915
+          ]
+        },
+        "odd_injection": {
+          "1": [
+            -6.268255193705996e-05,
+            -2.9278308567970424e-05,
+            2.1215484386299943e-05,
+            7.459693482214647e-05,
+            1.0252970367941039e-05,
+            8.319424174763057e-05
+          ],
+          "3": [
+            -4.650813875498039e-05,
+            -3.8480504111843006e-05,
+            3.508809160773785e-05,
+            0.00015636836817393973,
+            -2.6032080751692277e-05,
+            0.00010187905954453513
+          ]
+        }
+      },
+      "max_abs_mock_minus_observed_RANDOM_operator_by_probe": {
+        "even_radial_ramp": 0.0012293380805021743,
+        "odd_injection": 0.00015636836817393973
+      },
+      "max_abs_constant_even_to_odd_residual": 5.704936306347164e-17,
+      "max_abs_linear_superposition_residual": 2.7755575615628914e-17
+    },
+    "0500/SGC": {
+      "status": "closed_empirical_random_only_finite_bin_probe",
+      "mock_id": 500,
+      "cap": "SGC",
+      "original_full_RR_supported_cells": 28800,
+      "original_mock_vs_observed_fine_RR_normalized_L1": 0.01156014485060601,
+      "original_random_half_even_ramp_probe_max_abs_shifts": {
+        "1<-0": {
+          "half_A_vs_full_mock_max_abs_original_random_only": 0.00012215108731561224,
+          "half_B_vs_full_mock_max_abs_original_random_only": 0.0001474187700819746
+        },
+        "1<-2": {
+          "half_A_vs_full_mock_max_abs_original_random_only": 0.00011792252864414638,
+          "half_B_vs_full_mock_max_abs_original_random_only": 0.00012849485061886554
+        },
+        "1<-4": {
+          "half_A_vs_full_mock_max_abs_original_random_only": 0.0001050283167737601,
+          "half_B_vs_full_mock_max_abs_original_random_only": 0.00011447123915228058
+        },
+        "3<-0": {
+          "half_A_vs_full_mock_max_abs_original_random_only": 0.0002703740823287511,
+          "half_B_vs_full_mock_max_abs_original_random_only": 0.00031333786867626147
+        },
+        "3<-2": {
+          "half_A_vs_full_mock_max_abs_original_random_only": 0.0002385131203783532,
+          "half_B_vs_full_mock_max_abs_original_random_only": 0.00020531350630578803
+        },
+        "3<-4": {
+          "half_A_vs_full_mock_max_abs_original_random_only": 0.0001987028558574894,
+          "half_B_vs_full_mock_max_abs_original_random_only": 0.00014669343228690228
+        }
+      },
+      "prior_independent_20260924_operator_matrix_summary_max_abs_replay_error": 0.0,
+      "prior_independent_20260924_ramp_summary_max_abs_replay_error": 7.589415207398531e-19,
+      "predeclared_unitless_synthetic_probes": {
+        "constant_even": {
+          "1": [
+            2.06843328137132e-17,
+            5.825638501330901e-17,
+            -5.146063967748776e-17,
+            2.0167007441177637e-17,
+            2.8590750101621654e-17,
+            -4.0149361699853836e-18
+          ],
+          "3": [
+            5.09261618877703e-17,
+            1.519238294195313e-17,
+            1.0176253828313164e-17,
+            -1.5707378973883745e-17,
+            2.9083723276923656e-17,
+            -2.231084783067827e-18
+          ]
+        },
+        "even_radial_ramp": {
+          "1": [
+            0.003244246411325517,
+            0.004505561393301529,
+            0.00399130890450754,
+            0.003494805382601452,
+            0.005769213188383592,
+            0.0038269796112733773
+          ],
+          "3": [
+            -0.00035028408639384235,
+            0.0019271153701335148,
+            -0.0006142941388156528,
+            0.0001805861317233417,
+            0.003832289713618895,
+            -0.0010780124409437509
+          ]
+        },
+        "odd_injection": {
+          "1": [
+            0.20978045485760835,
+            0.2053880436905621,
+            0.20336963323156337,
+            0.20216984545349043,
+            0.20110509135190935,
+            0.20017453375214678
+          ],
+          "3": [
+            -0.07135876229787234,
+            -0.0733110935745014,
+            -0.07409825376718514,
+            -0.0746878098537701,
+            -0.07542002560080886,
+            -0.07612490217030243
+          ]
+        }
+      },
+      "mock_minus_observed_RANDOM_operator_synthetic_by_fixed_s": {
+        "even_radial_ramp": {
+          "1": [
+            -0.00048217169872339727,
+            -0.0005606479860837928,
+            -0.0004796190341349524,
+            -0.0007636932011643323,
+            0.00040155391962636965,
+            -0.0008065188570639853
+          ],
+          "3": [
+            0.00015434968607149087,
+            0.00021803231288405997,
+            -0.0008733590927753464,
+            -0.000334682498002003,
+            0.0017617573452393502,
+            -0.0008710610858073085
+          ]
+        },
+        "odd_injection": {
+          "1": [
+            -3.7020330786063926e-05,
+            4.5159753265883174e-05,
+            2.8487607764110523e-05,
+            4.536668569551927e-05,
+            -2.042869995255714e-05,
+            -3.464915587503281e-06
+          ],
+          "3": [
+            -4.217945911343113e-05,
+            -1.9147628907423275e-05,
+            3.9705987674415466e-05,
+            3.203668049356345e-05,
+            -9.135480930176632e-05,
+            -1.6213681700752436e-05
+          ]
+        }
+      },
+      "max_abs_mock_minus_observed_RANDOM_operator_by_probe": {
+        "even_radial_ramp": 0.0017617573452393502,
+        "odd_injection": 9.135480930176632e-05
+      },
+      "max_abs_constant_even_to_odd_residual": 5.825638501330901e-17,
+      "max_abs_linear_superposition_residual": 2.7755575615628914e-17
+    },
+    "0625/SGC": {
+      "status": "closed_empirical_random_only_finite_bin_probe",
+      "mock_id": 625,
+      "cap": "SGC",
+      "original_full_RR_supported_cells": 28800,
+      "original_mock_vs_observed_fine_RR_normalized_L1": 0.016881839679496795,
+      "original_random_half_even_ramp_probe_max_abs_shifts": {
+        "1<-0": {
+          "half_A_vs_full_mock_max_abs_original_random_only": 0.0005961011858047552,
+          "half_B_vs_full_mock_max_abs_original_random_only": 0.0006018418159767277
+        },
+        "1<-2": {
+          "half_A_vs_full_mock_max_abs_original_random_only": 0.0003568135867406813,
+          "half_B_vs_full_mock_max_abs_original_random_only": 0.00036430902050381886
+        },
+        "1<-4": {
+          "half_A_vs_full_mock_max_abs_original_random_only": 0.0001943702650901674,
+          "half_B_vs_full_mock_max_abs_original_random_only": 0.00020029026779272343
+        },
+        "3<-0": {
+          "half_A_vs_full_mock_max_abs_original_random_only": 0.0006832352606427422,
+          "half_B_vs_full_mock_max_abs_original_random_only": 0.0008136835524241427
+        },
+        "3<-2": {
+          "half_A_vs_full_mock_max_abs_original_random_only": 0.0003789703813286134,
+          "half_B_vs_full_mock_max_abs_original_random_only": 0.0004522566320144079
+        },
+        "3<-4": {
+          "half_A_vs_full_mock_max_abs_original_random_only": 0.0002572303028908758,
+          "half_B_vs_full_mock_max_abs_original_random_only": 0.0002604281508218336
+        }
+      },
+      "prior_independent_20260924_operator_matrix_summary_max_abs_replay_error": 0.0,
+      "prior_independent_20260924_ramp_summary_max_abs_replay_error": 9.75781955236954e-19,
+      "predeclared_unitless_synthetic_probes": {
+        "constant_even": {
+          "1": [
+            5.3769651491702986e-18,
+            1.9973036896256402e-18,
+            3.7886089664790346e-17,
+            1.7647931456043348e-18,
+            -1.4868816356101988e-17,
+            2.1204622801564155e-17
+          ],
+          "3": [
+            3.034749643422707e-17,
+            -1.2586909596198903e-17,
+            -4.702049296798072e-17,
+            -1.765216662077962e-17,
+            -2.9436088982981445e-17,
+            -3.1340219048409113e-18
+          ]
+        },
+        "even_radial_ramp": {
+          "1": [
+            0.0035400654999230776,
+            0.004905465442400255,
+            0.003937446961278983,
+            0.004115268887814743,
+            0.005391944321438562,
+            0.005198462873933539
+          ],
+          "3": [
+            0.0006326144188317114,
+            0.0013153551545169945,
+            -0.00045017022211206654,
+            0.0007197938836641443,
+            0.0026832749869873064,
+            0.0009072372081436518
+          ]
+        },
+        "odd_injection": {
+          "1": [
+            0.20980220491800886,
+            0.2053955018143167,
+            0.20332854176708684,
+            0.20207003359604384,
+            0.20098667898868403,
+            0.20009522959429077
+          ],
+          "3": [
+            -0.07139032267486786,
+            -0.073243698412914,
+            -0.07420186284055996,
+            -0.07475247292827797,
+            -0.0755351893713862,
+            -0.07613475940874215
+          ]
+        }
+      },
+      "mock_minus_observed_RANDOM_operator_synthetic_by_fixed_s": {
+        "even_radial_ramp": {
+          "1": [
+            -0.00018635261012583688,
+            -0.0001607439369850673,
+            -0.0005334809773635089,
+            -0.0001432296959510415,
+            2.4285052681339084e-05,
+            0.0005649644055961767
+          ],
+          "3": [
+            0.0011372481912970446,
+            -0.00039372790273246036,
+            -0.0007092351760717602,
+            0.00020452525393879956,
+            0.0006127426186077617,
+            0.0011141885632800941
+          ]
+        },
+        "odd_injection": {
+          "1": [
+            -1.527027038555895e-05,
+            5.261787702048881e-05,
+            -1.2603856712423145e-05,
+            -5.4445171751071886e-05,
+            -0.00013884106317788025,
+            -8.276907344351159e-05
+          ],
+          "3": [
+            -7.373983610894919e-05,
+            4.824753267997084e-05,
+            -6.390308570040915e-05,
+            -3.262639401430123e-05,
+            -0.00020651857987910582,
+            -2.6070920140466858e-05
+          ]
+        }
+      },
+      "max_abs_mock_minus_observed_RANDOM_operator_by_probe": {
+        "even_radial_ramp": 0.0011372481912970446,
+        "odd_injection": 0.00020651857987910582
+      },
+      "max_abs_constant_even_to_odd_residual": 4.702049296798072e-17,
+      "max_abs_linear_superposition_residual": 2.7755575615628914e-17
+    },
+    "0750/SGC": {
+      "status": "closed_empirical_random_only_finite_bin_probe",
+      "mock_id": 750,
+      "cap": "SGC",
+      "original_full_RR_supported_cells": 28800,
+      "original_mock_vs_observed_fine_RR_normalized_L1": 0.015437310131337065,
+      "original_random_half_even_ramp_probe_max_abs_shifts": {
+        "1<-0": {
+          "half_A_vs_full_mock_max_abs_original_random_only": 0.0004157167301893196,
+          "half_B_vs_full_mock_max_abs_original_random_only": 0.000345675392157057
+        },
+        "1<-2": {
+          "half_A_vs_full_mock_max_abs_original_random_only": 0.0002572005710651281,
+          "half_B_vs_full_mock_max_abs_original_random_only": 0.000221512803549381
+        },
+        "1<-4": {
+          "half_A_vs_full_mock_max_abs_original_random_only": 8.161702320313494e-05,
+          "half_B_vs_full_mock_max_abs_original_random_only": 0.0001395025321783797
+        },
+        "3<-0": {
+          "half_A_vs_full_mock_max_abs_original_random_only": 0.000503705205219975,
+          "half_B_vs_full_mock_max_abs_original_random_only": 0.00045441763652625947
+        },
+        "3<-2": {
+          "half_A_vs_full_mock_max_abs_original_random_only": 0.0002721841387247372,
+          "half_B_vs_full_mock_max_abs_original_random_only": 0.00038239710316717926
+        },
+        "3<-4": {
+          "half_A_vs_full_mock_max_abs_original_random_only": 0.00018472335767589793,
+          "half_B_vs_full_mock_max_abs_original_random_only": 0.00027008111370701053
+        }
+      },
+      "prior_independent_20260924_operator_matrix_summary_max_abs_replay_error": 0.0,
+      "prior_independent_20260924_ramp_summary_max_abs_replay_error": 1.5178830414797062e-18,
+      "predeclared_unitless_synthetic_probes": {
+        "constant_even": {
+          "1": [
+            -3.126737421494524e-17,
+            3.766289648318884e-17,
+            -3.60056765218858e-17,
+            3.90101023857968e-18,
+            7.186989854158013e-17,
+            8.531315844745313e-18
+          ],
+          "3": [
+            -1.6872896309305663e-17,
+            5.336307567702092e-18,
+            7.982438494924526e-18,
+            -6.098637220230962e-19,
+            -9.486769009248164e-18,
+            3.750661890442042e-18
+          ]
+        },
+        "even_radial_ramp": {
+          "1": [
+            0.003417914818787518,
+            0.004568414674438171,
+            0.0040359902648186485,
+            0.0039595255892301,
+            0.004880669624750933,
+            0.004545805196189795
+          ],
+          "3": [
+            0.00018578017179770006,
+            0.001991118050478566,
+            0.00026052566266469477,
+            0.0003905693316316951,
+            0.0018328722185529662,
+            6.503732989791203e-05
+          ]
+        },
+        "odd_injection": {
+          "1": [
+            0.20982471147635587,
+            0.2054101181783062,
+            0.20328789101034248,
+            0.20213869391826553,
+            0.20111581569220746,
+            0.2001244012740064
+          ],
+          "3": [
+            -0.07135556338441265,
+            -0.07321779076338641,
+            -0.07423056340019622,
+            -0.07465844468596611,
+            -0.07536558862416927,
+            -0.07615584889138978
+          ]
+        }
+      },
+      "mock_minus_observed_RANDOM_operator_synthetic_by_fixed_s": {
+        "even_radial_ramp": {
+          "1": [
+            -0.0003085032912613964,
+            -0.0004977947049471512,
+            -0.00043493767382384377,
+            -0.0002989729945356845,
+            -0.00048698964400628944,
+            -8.76932721475673e-05
+          ],
+          "3": [
+            0.0006904139442630333,
+            0.00028203499322911095,
+            1.4607087050012087e-06,
+            -0.00012469929809364962,
+            -0.00023766014982657844,
+            0.0002719886850343543
+          ]
+        },
+        "odd_injection": {
+          "1": [
+            7.236287961454035e-06,
+            6.723424100998909e-05,
+            -5.325461345678795e-05,
+            1.4215150470620053e-05,
+            -9.704359654444383e-06,
+            -5.35973937278722e-05
+          ],
+          "3": [
+            -3.898054565373843e-05,
+            7.41551822075609e-05,
+            -9.260364533666965e-05,
+            6.140184829755979e-05,
+            -3.6917832662172745e-05,
+            -4.7160402788098965e-05
+          ]
+        }
+      },
+      "max_abs_mock_minus_observed_RANDOM_operator_by_probe": {
+        "even_radial_ramp": 0.0006904139442630333,
+        "odd_injection": 9.260364533666965e-05
+      },
+      "max_abs_constant_even_to_odd_residual": 7.186989854158013e-17,
+      "max_abs_linear_superposition_residual": 2.7755575615628914e-17
+    },
+    "0875/SGC": {
+      "status": "closed_empirical_random_only_finite_bin_probe",
+      "mock_id": 875,
+      "cap": "SGC",
+      "original_full_RR_supported_cells": 28800,
+      "original_mock_vs_observed_fine_RR_normalized_L1": 0.024031795505835247,
+      "original_random_half_even_ramp_probe_max_abs_shifts": {
+        "1<-0": {
+          "half_A_vs_full_mock_max_abs_original_random_only": 0.00029635599664548564,
+          "half_B_vs_full_mock_max_abs_original_random_only": 0.0003856055100993983
+        },
+        "1<-2": {
+          "half_A_vs_full_mock_max_abs_original_random_only": 0.00020481167558230847,
+          "half_B_vs_full_mock_max_abs_original_random_only": 0.0002691602817061051
+        },
+        "1<-4": {
+          "half_A_vs_full_mock_max_abs_original_random_only": 0.00010994816470073649,
+          "half_B_vs_full_mock_max_abs_original_random_only": 0.0001407384036676316
+        },
+        "3<-0": {
+          "half_A_vs_full_mock_max_abs_original_random_only": 0.00033549163248270357,
+          "half_B_vs_full_mock_max_abs_original_random_only": 0.00044690363536913275
+        },
+        "3<-2": {
+          "half_A_vs_full_mock_max_abs_original_random_only": 0.00035936802653359617,
+          "half_B_vs_full_mock_max_abs_original_random_only": 0.0004617654122098572
+        },
+        "3<-4": {
+          "half_A_vs_full_mock_max_abs_original_random_only": 0.0003497410612043417,
+          "half_B_vs_full_mock_max_abs_original_random_only": 0.00032420559756386703
+        }
+      },
+      "prior_independent_20260924_operator_matrix_summary_max_abs_replay_error": 0.0,
+      "prior_independent_20260924_ramp_summary_max_abs_replay_error": 1.179069862577986e-18,
+      "predeclared_unitless_synthetic_probes": {
+        "constant_even": {
+          "1": [
+            1.1684395990899446e-17,
+            5.988522937087903e-19,
+            2.8760156691072514e-17,
+            1.5172901184166282e-17,
+            -3.141602849718837e-17,
+            1.961050679483156e-17
+          ],
+          "3": [
+            1.5409223376450232e-17,
+            5.590417451878382e-18,
+            6.390016554086442e-18,
+            -3.695774155459963e-17,
+            -1.3857459017080354e-17,
+            -2.3832119003946994e-17
+          ]
+        },
+        "even_radial_ramp": {
+          "1": [
+            0.004482849074201449,
+            0.006225578135072204,
+            0.005751445903269762,
+            0.005525069258419287,
+            0.0061821434283853335,
+            0.004472864088445906
+          ],
+          "3": [
+            0.00042708016006373715,
+            0.0018734137766306994,
+            0.00044038950009947747,
+            0.0007476377908167,
+            0.001835693200494937,
+            -0.0017486284701041153
+          ]
+        },
+        "odd_injection": {
+          "1": [
+            0.20977743354822317,
+            0.20537988549731004,
+            0.2032614957475104,
+            0.20211813685295052,
+            0.201091966297426,
+            0.20014910173064618
+          ],
+          "3": [
+            -0.07131188151294915,
+            -0.07325114385610931,
+            -0.07423804762894401,
+            -0.0746810667813473,
+            -0.07540971191409442,
+            -0.07611056275458897
+          ]
+        }
+      },
+      "mock_minus_observed_RANDOM_operator_synthetic_by_fixed_s": {
+        "even_radial_ramp": {
+          "1": [
+            0.0007564309641525349,
+            0.001159368755686882,
+            0.0012805179646272697,
+            0.001266570674653503,
+            0.0008144841596281109,
+            -0.0001606343798914566
+          ],
+          "3": [
+            0.0009317139325290704,
+            0.00016433071938124454,
+            0.0001813245461397839,
+            0.00023236916109135527,
+            -0.00023483916788460762,
+            -0.001541677114967673
+          ]
+        },
+        "odd_injection": {
+          "1": [
+            -4.004164017124001e-05,
+            3.700156001382182e-05,
+            -7.9649876288862e-05,
+            -6.3419148443877305e-06,
+            -3.355375443589437e-05,
+            -2.8896937088102037e-05
+          ],
+          "3": [
+            4.701325809763901e-06,
+            4.080208948466224e-05,
+            -0.0001000878740844563,
+            3.877975291637081e-05,
+            -8.104112258731921e-05,
+            -1.874265987286683e-06
+          ]
+        }
+      },
+      "max_abs_mock_minus_observed_RANDOM_operator_by_probe": {
+        "even_radial_ramp": 0.001541677114967673,
+        "odd_injection": 0.0001000878740844563
+      },
+      "max_abs_constant_even_to_odd_residual": 3.695774155459963e-17,
+      "max_abs_linear_superposition_residual": 2.7755575615628914e-17
+    },
+    "1000/SGC": {
+      "status": "closed_empirical_random_only_finite_bin_probe",
+      "mock_id": 1000,
+      "cap": "SGC",
+      "original_full_RR_supported_cells": 28800,
+      "original_mock_vs_observed_fine_RR_normalized_L1": 0.014385226907435579,
+      "original_random_half_even_ramp_probe_max_abs_shifts": {
+        "1<-0": {
+          "half_A_vs_full_mock_max_abs_original_random_only": 0.00033664361913354757,
+          "half_B_vs_full_mock_max_abs_original_random_only": 0.0004936963592505035
+        },
+        "1<-2": {
+          "half_A_vs_full_mock_max_abs_original_random_only": 0.00019739857405317728,
+          "half_B_vs_full_mock_max_abs_original_random_only": 0.00022909905925483842
+        },
+        "1<-4": {
+          "half_A_vs_full_mock_max_abs_original_random_only": 5.98673897790407e-05,
+          "half_B_vs_full_mock_max_abs_original_random_only": 9.256623082707206e-05
+        },
+        "3<-0": {
+          "half_A_vs_full_mock_max_abs_original_random_only": 0.0003744989935938665,
+          "half_B_vs_full_mock_max_abs_original_random_only": 0.0002217588985559322
+        },
+        "3<-2": {
+          "half_A_vs_full_mock_max_abs_original_random_only": 0.00028504810635120994,
+          "half_B_vs_full_mock_max_abs_original_random_only": 0.0004217606033867678
+        },
+        "3<-4": {
+          "half_A_vs_full_mock_max_abs_original_random_only": 0.0001517593974823654,
+          "half_B_vs_full_mock_max_abs_original_random_only": 0.00022139159851157974
+        }
+      },
+      "prior_independent_20260924_operator_matrix_summary_max_abs_replay_error": 0.0,
+      "prior_independent_20260924_ramp_summary_max_abs_replay_error": 1.0842021724855044e-18,
+      "predeclared_unitless_synthetic_probes": {
+        "constant_even": {
+          "1": [
+            2.5563454348134784e-18,
+            -2.774879935205088e-18,
+            -1.857797363212857e-17,
+            -2.1879284544052205e-17,
+            -1.302567266287663e-17,
+            3.2815750442526104e-17
+          ],
+          "3": [
+            -1.870248747537495e-18,
+            -3.57109090562413e-18,
+            3.400329063457663e-17,
+            7.860465750519907e-19,
+            2.8731357570865868e-18,
+            2.5573618743501836e-17
+          ]
+        },
+        "even_radial_ramp": {
+          "1": [
+            0.0041335289074251914,
+            0.004970056815937632,
+            0.0042603698053703615,
+            0.0038941182667704037,
+            0.005584785534788398,
+            0.005648800663703172
+          ],
+          "3": [
+            0.0005653941872215682,
+            0.0009829359038388298,
+            -0.00022797654111377086,
+            0.00034807286222014196,
+            0.002983375884229025,
+            0.0016000399252099411
+          ]
+        },
+        "odd_injection": {
+          "1": [
+            0.20984523368379174,
+            0.20536953819535245,
+            0.20334009867191347,
+            0.20210437595290318,
+            0.20105961701468647,
+            0.20005160397422173
+          ],
+          "3": [
+            -0.07131214707583748,
+            -0.07333974536508847,
+            -0.07414955908483153,
+            -0.07474916703490349,
+            -0.0754354620519986,
+            -0.07625657257670992
+          ]
+        }
+      },
+      "mock_minus_observed_RANDOM_operator_synthetic_by_fixed_s": {
+        "even_radial_ramp": {
+          "1": [
+            0.000407110797376277,
+            -9.615256344768994e-05,
+            -0.00021055813327213076,
+            -0.00036438031699538055,
+            0.00021712626603117516,
+            0.0010153021953658095
+          ],
+          "3": [
+            0.0010700279596869014,
+            -0.000726147153410625,
+            -0.00048704149507346444,
+            -0.00016719576750520276,
+            0.0009128435158494803,
+            0.0018069912803463835
+          ]
+        },
+        "odd_injection": {
+          "1": [
+            2.7758495397323113e-05,
+            2.6654258056230118e-05,
+            -1.046951885796954e-06,
+            -2.010281489173149e-05,
+            -6.590303717543544e-05,
+            -0.00012639469351255483
+          ],
+          "3": [
+            4.435762921431441e-06,
+            -4.779941949449584e-05,
+            -1.159932997198132e-05,
+            -2.9320500639820612e-05,
+            -0.00010679126049149834,
+            -0.00014788408810824383
+          ]
+        }
+      },
+      "max_abs_mock_minus_observed_RANDOM_operator_by_probe": {
+        "even_radial_ramp": 0.0018069912803463835,
+        "odd_injection": 0.00014788408810824383
+      },
+      "max_abs_constant_even_to_odd_residual": 3.400329063457663e-17,
+      "max_abs_linear_superposition_residual": 2.7755575615628914e-17
+    }
+  },
+  "observed_RANDOM_operator_by_cap": {
+    "NGC": {
+      "predeclared_unitless_synthetic_probes": {
+        "constant_even": {
+          "1": [
+            6.810144895924575e-18,
+            -1.5721990292223882e-17,
+            -3.6378265139559284e-17,
+            1.925983515466828e-17,
+            -2.563968731338767e-18,
+            -1.947836965505989e-17
+          ],
+          "3": [
+            1.5263533709522492e-17,
+            1.5951324462692984e-17,
+            1.547020974865254e-17,
+            3.2715800554750096e-17,
+            7.962109704190423e-18,
+            -5.197394164352387e-18
+          ]
+        },
+        "even_radial_ramp": {
+          "1": [
+            0.004506518874868389,
+            0.004843643937315968,
+            0.005035584459332776,
+            0.005705288186039122,
+            0.005300749030119621,
+            0.005164814757887818
+          ],
+          "3": [
+            0.0008967664851492868,
+            0.0007609291812374287,
+            0.0007028649231726701,
+            0.0016356379571600846,
+            0.0006367044378755918,
+            0.0007772389319876555
+          ]
+        },
+        "odd_injection": {
+          "1": [
+            0.2099133623662506,
+            0.2054676259463211,
+            0.2034584224922955,
+            0.20220071381451005,
+            0.20126299445592066,
+            0.20027266778483432
+          ],
+          "3": [
+            -0.07131269560210955,
+            -0.0733687854654404,
+            -0.07416124919462987,
+            -0.07483268715170281,
+            -0.07535821725640557,
+            -0.07625171192423692
+          ]
+        }
+      },
+      "max_abs_constant_even_to_odd_residual": 3.6378265139559284e-17,
+      "max_abs_linear_superposition_residual": 2.7755575615628914e-17,
+      "this_is_observed_RANDOM_not_observed_galaxy_odd": true
+    },
+    "SGC": {
+      "predeclared_unitless_synthetic_probes": {
+        "constant_even": {
+          "1": [
+            -2.898080877383226e-17,
+            3.963733028323861e-17,
+            -3.677817056978172e-17,
+            4.791570091411011e-17,
+            -3.5621123563832346e-17,
+            -5.4337163566363367e-17
+          ],
+          "3": [
+            -4.7206840216376666e-17,
+            9.61992258855654e-17,
+            2.985621732481958e-17,
+            3.757438154020076e-17,
+            -2.4536850416062572e-17,
+            -3.400329063457663e-17
+          ]
+        },
+        "even_radial_ramp": {
+          "1": [
+            0.0037264181100489144,
+            0.005066209379385322,
+            0.004470927938642492,
+            0.004258498583765784,
+            0.0053676592687572225,
+            0.004633498468337363
+          ],
+          "3": [
+            -0.0005046337724653332,
+            0.0017090830572494549,
+            0.00025906495395969356,
+            0.0005152686297253447,
+            0.0020705323683795447,
+            -0.00020695135513644226
+          ]
+        },
+        "odd_injection": {
+          "1": [
+            0.20981747518839441,
+            0.20534288393729622,
+            0.20334114562379926,
+            0.2021244787677949,
+            0.2011255200518619,
+            0.20017799866773428
+          ],
+          "3": [
+            -0.07131658283875891,
+            -0.07329194594559398,
+            -0.07413795975485955,
+            -0.07471984653426367,
+            -0.0753286707915071,
+            -0.07610868848860168
+          ]
+        }
+      },
+      "max_abs_constant_even_to_odd_residual": 9.61992258855654e-17,
+      "max_abs_linear_superposition_residual": 2.7755575615628914e-17,
+      "this_is_observed_RANDOM_not_observed_galaxy_odd": true
+    }
+  },
+  "errors": [],
+  "observed_galaxy_rows_read": false,
+  "observed_odd_data_vector_read": false,
+  "new_catalogue_selection_or_veto_applied": false,
+  "historical_physical_mask_certified": false,
+  "physical_pair_window_certified": false,
+  "full_18D_inferential_covariance_computed": false,
+  "wake_detection_or_exclusion_test_computed": false,
+  "synthetic_input_is_not_a_physical_wake_model": true,
+  "completed_cases": 18,
+  "scope_note": "Source-authenticated empirical random-only conditional finite-bin operator and fixed unitless even/odd synthetic injection replay. Not a physical galaxy-based null, complete source/veto mask, full survey window, inferential covariance, significance, detection, or exclusion."
+}

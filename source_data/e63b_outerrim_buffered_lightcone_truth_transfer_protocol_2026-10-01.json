@@ -1,0 +1,229 @@
+{
+  "stage": "E63B_OUTERRIM_BUFFERED_LIGHTCONE_TRUTH_TRANSFER_PROTOCOL",
+  "date": "2026-10-01",
+  "frozen_before_result": true,
+  "parent_preflight_status": "PASS_PUBLIC_OUTERRIM_LIGHTCONE_SOURCE_AVAILABLE",
+  "parent_E62_status": "PASS_TRUTH_CALIBRATION_QUANTIFIED",
+  "purpose": "Test transfer of the unchanged E59/E62 density-to-velocity reconstruction from an ideal periodic snapshot to a non-periodic OuterRim lightcone with known peculiar-velocity truth, while explicitly buffering probes from source boundaries. This isolates lightcone geometry/evolution before adding a survey mask/HOD stage.",
+  "source": {
+    "service": "IRSA TAP",
+    "table": "cosmodc2mockv1",
+    "center_ra_deg": 55,
+    "center_dec_deg": -41,
+    "outer_radius_deg": 9.5,
+    "source_redshift_true": [
+      0.75,
+      1.16
+    ],
+    "candidate_retrieval_halo_mass_floor_Msun": 5000000000000,
+    "candidate_TOP_cap": 600000,
+    "central_only_science_tracer": true,
+    "server_side_candidate_filter": "is_central='True'",
+    "candidate_cache": "eboss_workspace/cosmodc2/e63b_outerrim_central_candidates.csv",
+    "legacy_capped_all_galaxy_cache": "eboss_workspace/cosmodc2/e63b_outerrim_candidates.csv",
+    "tap_resume_state": "eboss_workspace/cosmodc2/e63b_outerrim_central_candidates_tap_job_R3.json"
+  },
+  "outerrim_cosmology": {
+    "Omega_m": 0.2648,
+    "Omega_Lambda": 0.7352,
+    "h": 0.71
+  },
+  "tracer": {
+    "target_number_density_h3_Mpc3": 0.000165107,
+    "origin": "exact E62 tracer density = 165107 halos / (1000 Mpc/h)^3",
+    "rule": "Among central galaxies above the retrieval floor in the outer cone/shell, sort by halo_mass descending then galaxy_id ascending and retain exactly round(n_target*geometric_outer_volume).",
+    "unit_number_weights": true,
+    "retrieval_floor_guard": "minimum selected halo_mass must exceed 1.10 times the retrieval floor",
+    "reason": "Match E62 tracer sparsity prospectively so E63B isolates periodic-box to lightcone transfer rather than changing tracer density."
+  },
+  "probes": {
+    "inner_radius_deg": 2.5,
+    "redshift_true": [
+      0.9,
+      1
+    ],
+    "count": 512,
+    "seed": 202610630001,
+    "requirement": "selected tracer members only"
+  },
+  "buffer_guards": {
+    "angular_gap_deg": 7,
+    "minimum_3D_angular_boundary_distance_Mpc_over_h": 256,
+    "minimum_radial_boundary_distance_Mpc_over_h": 256,
+    "candidate_outer_annulus_deg": [
+      8.5,
+      9.5
+    ],
+    "azimuth_sectors": 24,
+    "minimum_central_candidates_per_outer_sector": 50
+  },
+  "reconstruction": {
+    "smoothing_R_Mpc_over_h": 16,
+    "primary_cutoff_Mpc_over_h": 256,
+    "cutoff_check_Mpc_over_h": 192,
+    "same_real_space_kernel_as_E59_E62": true,
+    "random_subtraction": false,
+    "reason": "Every probe is required to have the full 256 Mpc/h kernel support inside the complete source cone/shell; this stage isolates lightcone transfer, not survey-mask subtraction."
+  },
+  "position_unit_guard": {
+    "policy": "Compare |position| with OuterRim comoving distance. Accept either IRSA Mpc convention (ratio~1, then multiply positions by h) or native Mpc/h convention (ratio~h, no conversion); otherwise fail."
+  },
+  "primary_truth_gate": {
+    "observable": "line-of-sight peculiar velocity at the 512 buffered lightcone probes",
+    "truth_pearson_min": 0.7,
+    "truth_sign_agreement_min": 0.7,
+    "cutoff_192_256_pearson_min": 0.9,
+    "cutoff_192_256_sign_agreement_min": 0.9
+  },
+  "secondary_diagnostics": [
+    "Cartesian x/y/z truth Pearson and sign agreement",
+    "3D reconstruction-truth vector cosine",
+    "selected halo-mass threshold",
+    "source/probe geometry checks"
+  ],
+  "if_pass": "Advance to E64 cut-sky/radial-selection/HOD truth transfer. Observed eBOSS remains sealed.",
+  "if_fail": "Do not introduce survey masks or observed tags; diagnose lightcone transfer without changing frozen E63B tracer density, kernel or truth thresholds.",
+  "forbidden": [
+    "observed eBOSS galaxy rows",
+    "observed 24D odd vector",
+    "post-result tracer-density tuning",
+    "post-result R=16 or cutoff tuning",
+    "absolute EV amplitude calibration",
+    "p-values/detection significance"
+  ],
+  "retrieval_repair": {
+    "id": "E63B_R1_CENTRAL_ONLY_RETRIEVAL",
+    "frozen_before_any_truth_metric": true,
+    "trigger": "Initial all-galaxy candidate retrieval returned exactly TOP 600000 rows; capped cache contained 39729 centrals, below the frozen target count 54893, so candidate completeness was not established and truth evaluation stopped.",
+    "change": "Apply the already-frozen central-only science-tracer condition at TAP retrieval time (is_central=1) and write to a new cache. Keep the same 5e12 Msun retrieval floor and TOP 600000 cap. Continue to fail closed if the central-only retrieval itself hits TOP.",
+    "unchanged": [
+      "IRSA table and source cone/shell",
+      "halo-mass retrieval floor 5e12 Msun",
+      "TOP cap 600000",
+      "target tracer density 1.65107e-4 h^3 Mpc^-3",
+      "mass-descending plus galaxy_id tie-break science selection",
+      "512 probe rule and seed",
+      "R=16 Mpc/h smoothing and 256/192 Mpc/h cutoffs",
+      "LOS truth and cutoff gates",
+      "observed-data sealing"
+    ],
+    "prior_cache_use": "provenance/diagnostic only; never accepted for E63B truth evaluation"
+  },
+  "retrieval_repair_r3": {
+    "id": "E63B_R3_IRSA_BOOLEAN_LITERAL_FIX",
+    "frozen_before_any_truth_metric": true,
+    "trigger": "R2 central-only async job 23976432 failed at IRSA with ORA-01722 invalid number before any candidate cache or truth metric. Earlier E63 returned is_central as CSV boolean text True/False.",
+    "change": "Represent the already-frozen central-only predicate as the IRSA-compatible text literal is_central='True'. Use a fresh R3 async-job checkpoint file so the known ERROR R2 job is preserved as provenance and cannot be resumed.",
+    "unchanged": [
+      "central-only science-tracer definition",
+      "IRSA table and source cone/shell",
+      "halo-mass retrieval floor 5e12 Msun",
+      "TOP cap 600000",
+      "target tracer density 1.65107e-4 h^3 Mpc^-3",
+      "mass-descending plus galaxy_id tie-break science selection",
+      "512 probe rule and seed",
+      "R=16 Mpc/h smoothing and 256/192 Mpc/h cutoffs",
+      "LOS truth and cutoff gates",
+      "observed-data sealing"
+    ],
+    "classification": "query/schema representation fix only; no science selection change"
+  },
+  "retrieval_repair_r4": {
+    "id": "E63B_R4_PARTITIONED_RECTANGULAR_SUPERSET_RETRIEVAL",
+    "frozen_before_any_truth_metric": true,
+    "trigger": "The schema-confirmed monolithic R3 central-only TAP job remained EXECUTING for many hours. No E63B truth metric or merged central cache was produced.",
+    "scientific_equivalence": "Retrieve a deterministic superset in eight disjoint redshift intervals using a fixed RA/Dec rectangle that provably contains the frozen 9.5-degree cone, then apply the exact frozen spherical cone locally before any science selection.",
+    "z_edges": [
+      0.75,
+      0.8,
+      0.85,
+      0.9,
+      0.95,
+      1,
+      1.05,
+      1.1,
+      1.16
+    ],
+    "rectangular_superset_deg": {
+      "ra": [
+        42,
+        68
+      ],
+      "dec": [
+        -50.6,
+        -31.4
+      ]
+    },
+    "exact_local_cut": "angular separation from RA=55 deg, Dec=-41 deg <= 9.5 deg",
+    "per_chunk_TOP_cap": 600000,
+    "per_chunk_resume_and_cache": true,
+    "fail_closed": "Any chunk reaching TOP 600000, leaking outside its z/box/central/mass guards, or producing duplicate merged galaxy_id values aborts before truth evaluation.",
+    "unchanged": [
+      "CosmoDC2 table",
+      "central-only science tracer",
+      "source shell 0.75<=z_true<1.16",
+      "exact 9.5-degree science cone",
+      "halo-mass retrieval floor 5e12 Msun",
+      "target density 1.65107e-4 h^3 Mpc^-3",
+      "mass ranking and galaxy_id tie break",
+      "512 probes and seed",
+      "R=16 Mpc/h kernel",
+      "256/192 Mpc/h cutoffs",
+      "LOS truth thresholds",
+      "observed-data sealing"
+    ]
+  },
+  "retrieval_repair_r5": {
+    "id": "E63B_R5_SPATIAL_BOX_TILING_LOCAL_CENTRAL_FILTER",
+    "frozen_before_any_truth_metric": true,
+    "trigger": "R4 tile-0 equivalent rectangular-SQL retrieval remained EXECUTING for roughly a day; no R4 tile cache or E63B truth metric was produced.",
+    "rationale": "IRSA TAP documentation exposes BOX as a native geometric constraint. R5 restores the spatial-indexable geometry path and removes the unindexed/slow char is_central server predicate.",
+    "server_partition": {
+      "geometry": "4x4 BOX tiling",
+      "bounding_superset_deg": {
+        "ra": [
+          42,
+          68
+        ],
+        "dec": [
+          -50.6,
+          -31.4
+        ]
+      },
+      "tile_count": 16,
+      "redshift_true": [
+        0.75,
+        1.16
+      ],
+      "halo_mass_floor_Msun": 5000000000000,
+      "server_side_central_filter": false,
+      "per_tile_TOP_cap": 600000
+    },
+    "local_equivalence": {
+      "deduplicate": "galaxy_id",
+      "central_filter": "parse is_central and retain True only",
+      "exact_geometry": "angular separation from RA=55 deg, Dec=-41 deg <= 9.5 deg",
+      "ordering": "all local filtering precedes mass ranking, probe choice, reconstruction and truth metrics"
+    },
+    "fail_closed": [
+      "any tile reaches TOP 600000",
+      "redshift or mass guard leakage",
+      "duplicate galaxy_id after final merge",
+      "empty exact-cone central set"
+    ],
+    "unchanged": [
+      "CosmoDC2 table",
+      "exact source shell 0.75<=z_true<1.16",
+      "exact 9.5-degree science cone",
+      "central-only science tracer",
+      "5e12 Msun retrieval floor",
+      "target density 1.65107e-4 h^3 Mpc^-3",
+      "mass ranking and galaxy_id tie break",
+      "512 probes and seed",
+      "R=16 Mpc/h kernel",
+      "256/192 Mpc/h cutoffs",
+      "LOS truth thresholds",
+      "observed-data sealing"
+    ]
+  }
+}

@@ -1,0 +1,101 @@
+{
+  "date": "2026-09-27",
+  "status": "PROSPECTIVELY_REGISTERED_BEFORE_ANY_NEW_E12_CLASS_EXECUTION",
+  "scientific_question": "Does the original E9 Newtonian-gauge d(delta_ncdm-delta_cdm)/dz reconstructed relative-wind proxy agree in magnitude/sign and R16 normalization with pinned CLASS vTk theta_ncdm-theta_cdm for frozen FD Fplus Fminus? Construct the direct-transfer long cb density-LOS relative-wind cross kernel, but DO NOT combine with E11 Gamma absent wind-rank compatibility.",
+  "original_sha_parents": {
+    "repo_original_frozen_E8_4000q_CSV": "bf8f48deb9514c5101d5ce314bfbd397485102a5487da1039f141e3cad6143d0",
+    "E9_original_full_three_CLASS_JSON": "450b35f68a329f545f21bbe7ec02e36941e4c303037ccb7c011830c315d15890",
+    "E11_original_full_Gamma_JSON": "cade0959c112ca57e9cd5fd4433a49cbec3be0b74eb1f0a1d6eab9350a756ebd",
+    "archive_manifest_git_blob_sha1": "83748b452f26b31da34a51c2c5de509d6b7ae3af",
+    "original_velocity_model_source_git_blob_sha1": "473e6d9b5941d8f67d1ecc1f5f170124d9ef8ea2",
+    "original_CLASS_source_commit": "e85808324f51fc694d12e3ed7439552a3c3f9540",
+    "original_frozen_F_distribution_mass_eV": 0.06,
+    "z_match": 1100,
+    "pointwise_cap": 0.3
+  },
+  "CLASS_conventions": {
+    "source": "https://github.com/lesgourg/class_public/blob/e85808324f51fc694d12e3ed7439552a3c3f9540/source/perturbations.c",
+    "output_format": "class",
+    "output": "mPk,dTk,vTk",
+    "gauge": "newtonian",
+    "velocity_source_cols": [
+      "t_cdm",
+      "t_ncdm[0]"
+    ],
+    "density_cols": [
+      "d_cdm",
+      "d_ncdm[0]",
+      "d_b"
+    ],
+    "metric_optional": "phi_prime",
+    "raw_transfer_normalization": "unit primordial curvature R; t species are theta divergence transfer raw, units 1/Mpc in c=1 conventions, NOT km/s",
+    "theta_relative": "t_ncdm[0]-t_cdm",
+    "K_Mpc": "K_hMpc*h",
+    "v_relative_per_primordial_curvature_transfer_kms": "-c_kms*(t_ncdm[0]-t_cdm)/K_Mpc. Sign is a fixed definition and is reported, not selected by results.",
+    "density_proxy_v_transfer_kms": "-c_kms*H_CLASS(z)/K_Mpc*d(d_ncdm[0]-d_cdm)/dz; original E9 sign convention.",
+    "CLASS_curvature_dimensionless_Delta2": "A_s*(K_Mpc/0.05 Mpc^-1)^(n_s-1)",
+    "P_curvature_3D_Mpc3": "2*pi^2/K_Mpc^3*CLASS_curvature_dimensionless_Delta2",
+    "delta_cb_transfer": "(omega_b*d_b+omega_cdm*d_cdm)/(omega_b+omega_cdm), Newtonian gauge, not directly galaxy bias",
+    "signed_P_cb_r_over_i_mu_long_Mpc3": "[c_kms/K_Mpc]*P_R_3D*delta_cb*theta_relative/sigma_LOS_direct for <delta_cb v_LOS^*>, where v_LOS=-i*mu*c_kms*theta_rel/K_Mpc*R. Report sign with this exact Fourier convention. P_Dr(K,mu)=i*mu*reported_real_coefficient.",
+    "CLASS_metric_CDM_continuity": "theta_cdm=H_CLASS(z)*d(d_cdm)/dz+3*phi_prime under Newtonian convention IF metric phi_prime is returned in the same CLASS transfer output; otherwise report metric unavailable and do not claim closure. Full ncdm continuity has extra pressure/metric terms; theta_rel may differ from density derivative."
+  },
+  "locked_E12_geometry": {
+    "redshift_center": 0.95,
+    "redshift_density_derivative_relative_steps": [
+      0.004,
+      0.002
+    ],
+    "K_LONG_COMOVING_hMpc": [
+      0.001,
+      0.002,
+      0.003,
+      0.005
+    ],
+    "original_E9_KVEL": "np.geomspace(1e-4,0.15,180)",
+    "original_R16_comoving_Mpc_over_h": 16,
+    "integrated_K_upper_hMpc": 0.1,
+    "original_E9_common_reference_redshift_record": 0.95,
+    "original_E9_CLASS_params": "Use code/wake_two_tracer_fisher.class_params with original frozen q distribution, base.ZBINS=[0.9,1.0], output=mPk,dTk,vTk, no precision changes",
+    "long_short_ratio_to_E11_original_kshort_hMpc": [
+      50,
+      25,
+      16.666666666666668,
+      10
+    ],
+    "interpolation": "np.interp only if CLASS k-grid covers both KVEL and K_LONG, fail closed on extrapolation",
+    "CDM_check": "Print normalized residual theta_cdm-H*d(delta_cdm)/dz-3phi_prime when metric available, no after-the-fact sign selection or k² renormalization",
+    "E9_proxy_reproduction": "At z=.95 reconstruct E9 direct baseline density-derived sigma on original KVEL, compare archived state vLOS with original .004 step. Report both levels .004 and .002.",
+    "direct_sigma": "R16 top-hat original filter and trapezoidal dlnK integral original 180 grid, original kUpper=.1, sigma_LOS_direct=sqrt(integral (c*theta_rel/K)^2 primordialDelta² W² dlnK /3)",
+    "output": "Separate unrounded signed direct theta and E9 density-proxy transfer arrays at four preregistered K_LONG, direct/proxy R16 sigma for all 3 states, optional phi_prime CDM continuity residual and 3 original-source direct P_(delta_cb,r)_over_i_mu real coefficients [Mpc³] in Newtonian gauge."
+  },
+  "mathematical_negatives": {
+    "all_three_original_state_psd_SHA_verify_if_exact": true,
+    "zero_theta_relative_implies_P_Dr_zero": true,
+    "zero_cb_density_implies_P_Dr_zero": true,
+    "reverse_LOS_mu_flips_P_Dr_sign": true,
+    "swap_cross_order_complex_conjugates": true,
+    "changing_baseline_R16_sigma_changes_definition_of_E11_rank": true
+  },
+  "technical_quality_only": {
+    "source_original_E9_sigma_relative_replay_warn": 0.005,
+    "small_z_step_proxy_sigma_relative_warn": 0.01,
+    "CDM_continuity_residual_relative_warn_when_metric_present": 0.01,
+    "near_zero_denom_floor": 1e-12,
+    "direct_vs_proxy_difference_no_predeclared_physical_acceptance_threshold": true,
+    "do_not_tune_or_drop_any_K_or_state_if_fails": true
+  },
+  "scientific_STOP": {
+    "original_E11_Gamma_uses_density_proxy_sigma_not_direct": true,
+    "do_not_multiply_E11_Gamma_by_new_direct_P_Dr_until_same_rank_sigma_compatible_or_Gamma_recomputed": true,
+    "full_retarded_neutrino_halo_response_not_solved": true,
+    "gauge_independent_galaxy_long_density_not_constructed": true,
+    "independent_eBOSS_tracer_bias_HOD_and_standard_bispectrum_missing": true,
+    "real_survey_triple_window_and_independent_bispectrum_covariance_missing": true,
+    "no_claim_eBOSS_xi_or_bispectrum_SNR": true,
+    "observed_galaxy_random_or_odd_read": false,
+    "new_catalogue_mock_download": false,
+    "new_physical_cut_seed": false,
+    "main_untouched": true,
+    "PR_1_remains_draft": true
+  }
+}

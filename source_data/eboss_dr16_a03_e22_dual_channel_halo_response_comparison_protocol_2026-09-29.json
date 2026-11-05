@@ -1,0 +1,73 @@
+{
+  "stage": "A03E22_TWO_PHYSICAL_CHANNELS_CONDITIONAL_HALO_RESPONSE_COMPARISON",
+  "date": "2026-09-29",
+  "scientific_status": "NEW_PROBLEM_FIRST_ANALYTIC_DERIVATION_AND_EXACT_SYNTHETIC_LIMITING_CASES_NOT_FULL_PHYSICAL_EINSTEIN_VLASOV_HALO_PREDICTION",
+  "registration_honesty": "Original E10/E13/E17D1/E20/E21 and 2017 published halo drag results were inspected before this protocol. Prospective only for NEW E22 explicit toy limiting-case arithmetic and source-closure QA; never preregistration of underlying earlier science or of user eBOSS observed odds.",
+  "frozen_parent_head": "008bdb4ce5954fdcfbb8eef5c1ac2e8b40e7a224",
+  "pinned_sources": {
+    "E17D1_real_physical_halo_history_STOP": {
+      "path": "docs/EBOSS_DR16_A03_E17D1_RESTRICTED_CAUSAL_SOURCE_HISTORY_NONIDENTIFIABILITY_2026-09-27.md",
+      "blob": "3a536aa384eec1a202e77c532beb3a55c7333cb2"
+    },
+    "E17D1_original_joint": {
+      "path": "source_data/eboss_dr16_a03_e17d1_archived_CI_2026_09_27/e17d1_original_joint_causal_history_nonidentifiability.json",
+      "blob": "9f7e96b034779d0e20f4f9db61d5a642fda03975"
+    },
+    "E20_source_only_result": {
+      "path": "source_data/eboss_dr16_a03_e20_archived_exact_moment_and_cross_power_structural_QA_2026-09-29.json",
+      "blob": "c736ea3bca7bd0560ab07225294e1dd0930e0561"
+    },
+    "E21_source_only_result": {
+      "path": "source_data/eboss_dr16_a03_e21_archived_F0_Fpm_linear_LOS_velocity_cross_unit_response_2026-09-29.json",
+      "blob": "cc3312c5313cce60fad4a88c3a56ef3d4e675e38"
+    },
+    "E21_interpretation_and_Kaiser": {
+      "path": "docs/EBOSS_DR16_A03_E21_ORIGINAL_E13_LINEAR_LOS_CHANNEL_AND_NORMALIZATION_2026-09-29.md",
+      "blob": "f418e2bd1546f01b2b1f140fb5a7b9e1bf427c43"
+    }
+  },
+  "external_public_context": [
+    {
+      "title": "Okoli, Scrimgeour, Afshordi and Hudson, Dynamical friction in the primordial neutrino sea, MNRAS 468 (2017) 2164–2175",
+      "doi": "10.1093/mnras/stx560",
+      "role": "Published halo-model drag calculation, includes one- and two-halo terms and shared-wake warning. Its FD/steady-state numerical fit NOT transferrable to original F± high-z eBOSS."
+    },
+    {
+      "title": "Bonvin et al., A case study for measuring the relativistic dipole of a galaxy cross-correlation with DESI, MNRAS 525 (2023) 4611–4627",
+      "url": "https://academic.oup.com/mnras/article/525/3/4611/7251503",
+      "role": "Relativistic observed number counts: Kaiser spatial derivative, nondifferentiated Doppler, magnification/evolution, gravitational terms and wide-angle. Not calibration of our c_nu."
+    },
+    {
+      "title": "Zhu and Castorina, Measuring dark matter-neutrino relative velocity on cosmological scales, PRD 101, 023525 (2020)",
+      "doi": "10.1103/PhysRevD.101.023525",
+      "role": "Different parity-odd bispectrum estimand, not our galaxy 24D two-point observable."
+    }
+  ],
+  "two_models": {
+    "shared_retarded_vlasov_functional": "deltaf_nu[F, Phi_h(t'), X_h(t'), Phi_environment(t'), initial conditions] through causal E17D0/D1 kernel; same functional can feed halo force, selection response and mixed B. E17D1 explicitly does not determine actual Phi_h(t').",
+    "linear_drag_velocity": "u_a' + (Hconformal + gamma_a) u_a = gamma_a v_rel,R16 in a MARKOV/ISOTROPIC TOY only, u_a=v_halo,a-v_cb. For non-Markov physical response replace gamma by causal kernel. If gamma=0 and u_initial=0 then u=0; for constant gamma,H,v_rel, u/v=gamma/(H+gamma)*(1-exp(-(H+gamma)*DeltaTau)); shared gamma may give u_L=u_E without forcing all two-tracer Doppler odd to zero when biases/selection coefficients differ.",
+    "Kaiser_vs_Doppler": "Galaxy number counts have -Hconformal^-1 partial_parallel u_parallel (even in mu after cross with delta) AND nondifferentiated D_a u_parallel (may be imaginary odd). Real relativistic number counts include time derivative and gravitational potential terms. Physical c_a cannot be read from u alone without sample selection and gauge-consistent observed number-count model.",
+    "linear_response_observable": "With original E12 P_delta,v=+i mu C_v,F, purely illustrative linear 2pt Im P_LE=mu(A_L c_E-A_E c_L) C_v,F. c_a may be zero; per-K two tracer odd identifies only the contrast, not c_L,c_E independently. E21 K only .001 .002 .003 .005 mathematical z=.95; no extrapolation.",
+    "quadratic_response_observable": "S(k)=integral Gamma_i(k,q)v_i(q)delta(k-q), Q=P_Sdelta=integral Gamma_i B_v_i delta delta; Im P_LE=(lambda_L b_E-b_L lambda_E) Im Q to O(lambda). For jointly centered Gaussian linear fields B=0, so restricted first-order Q=0. Even with B≠0, isotropic scalar parity-even Gamma with no LOS yields real Q, so no odd. Physically nonlinear B and LOS-odd Gamma require halo/galaxy history and selection.",
+    "relation": "Both can result from same wake/halo functional at different response orders/projections; cannot sum arbitrary E21 c and E20 lambda as independent physical components without specifying and preventing double-count of common halo wake."
+  },
+  "new_E22_QA_before_execution": [
+    "Require exact Git blob hashes/status and observed seals of pinned E17D1 joint, E20, E21; source-only otherwise abort.",
+    "Reproduce all 4 E21 long-K Fplus/Fminus physical-velocity fractional contrasts in same physical units from unchanged original E21 values. No new transfer or interpolation.",
+    "Check closed-form causal constant-coefficient illustrative relative halo drag solution at 0, positive elapsed time, and gamma=0 vs gamma>0. State gamma not calibrated and no adopted physical numeric mass/velocity.",
+    "Check shared gamma yields same u_L-u_E=0 but for unequal A_L,A_E and nonzero common c, linear Doppler-like cross can remain nonzero. Thus shared halo wake is not universal odd null.",
+    "Check L/E reversal and mu reversal; demonstrate 2-tracer c response null direction (c_L,c_E)=s*(A_L,A_E) and nonzero contrast for other c.",
+    "Check quadratic centered Gaussian B=0 -> Q=0, and B≠0 parity-even scalar Q purely real -> odd=0; separate explicit imaginary LOS-selected toy Q gives nonzero if tracer response contrast nonzero.",
+    "Six synthetic negative controls for source integrity, drag zero limit, wrong shared wake inference, opposite tracer orientation, false B sufficiency and false universal linear Gaussian null."
+  ],
+  "STOP": {
+    "no_real_new_halo_or_M200c_profile_data": true,
+    "no_new_CLASS_E8_F0_Fplus_Fminus_E16_or_transfer_interp": true,
+    "no_new_eBOSS_FITS_random_mock_ASDF_or_WSL": true,
+    "no_unsealed_observed_galaxy_or_odd": true,
+    "no_survey_signal_significance_physical_amplitude_or_C_inverse": true,
+    "no_new_science_cuts_seeds_or_tracer_redefinition": true,
+    "no_author_contact": true,
+    "no_main_mutation_or_PR_merge": true
+  }
+}

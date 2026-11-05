@@ -1,0 +1,111 @@
+{
+  "date": "2026-09-28",
+  "status": "E17D2B1_PROSPECTIVE_WECHSLER_TYPE_CONDITIONAL_ASSEMBLY_RATE_AND_EXTERIOR_MONOPOLE_PREREG_BEFORE_NUMERICS",
+  "stage": "E17D2B1_PUBLISHED_FUNCTIONAL_FORM_TWO_UNCALIBRATED_RATE_ANCHORS_SAME_DM14_C200C_REFERENCE_NOT_A_PHYSICAL_HALO_HISTORY_OR_GALAXY_B",
+  "parent_head_at_registration": "2bb8bbfb57efc5147faaefb3e3299e7aca8898db",
+  "scientific_question": "Do two externally literature-motivated smooth monotonic halo mass-growth histories anchored at exactly the same immutable E17D2b0 reference mass at z0=.95 yield distinct past/future M(z) and EXTERIOR Newtonian monopole time derivatives while leaving the published E17D2b0 conditional c200c(M0,z0) reference identical? This tests history dependence of the external source; it does NOT infer true eBOSS LRG/ELG halo formation, replace self-consistent Vlasov dynamics or claim physical finite-K B.",
+  "published_theory": {
+    "author": "Wechsler, Bullock, Primack, Kravtsov, Dekel (2002), Concentrations of Dark Halos from Their Assembly Histories, Astrophys J 568 52, DOI 10.1086/338765",
+    "url": "https://arxiv.org/abs/astro-ph/0108151",
+    "published_functional_form": "M(a)=M(a0) exp[-2 a_c (a0/a -1)] is a one-parameter FITTING FORM for simulation halo assembly, not a deterministic inference from a single median c200c population value.",
+    "strict_mass_convention_caveat": "Wechsler original fits and c-assembly relation use virial halo M_vir/c_vir; E17D2b0 anchors are M200c/c200c DM14. Using the exponential mass-history SHAPE for conditional M200c is an additional test ansatz NOT validated by the source, and no cvir<->c200c conversion, concentration-formation fit or statistical calibration is asserted.",
+    "scatter_and_cosmology_caveat": "Wechsler fit source simulation and DM14 2014 Planck2013 DM-only are NOT identical to each other or to original frozen CLASS m_nu=.06 eV/h=.6736. The a_c values below are deterministic QA anchors, not measured formation epochs or credible brackets."
+  },
+  "immutable_parents": {
+    "E8_original_4000q_CSV_sha256": "bf8f48deb9514c5101d5ce314bfbd397485102a5487da1039f141e3cad6143d0",
+    "E16_original_full_sha256": "5d81f95a5571175f06eb032b865285ba34804701693f76af392be7fc31fb06db",
+    "E17D1_original_joint_sha256": "1e52880db6c60cff1fe3cc1ca0a00e553c63ca08601399334d049e8403e18781",
+    "E17D2a_original_joint_sha256": "040c9711bfdfee6682acda4b48bc578b64e88c11d143d35a9a9ae46ff4c74a31",
+    "E17D2b0_original_joint_sha256": "848d3377830724593d75a02972f209085cb9913d03e8b73789f9b6478e6c11e6",
+    "E17D2b0_independent_sha256": "61370c5db6a2075da130b0399f374acc0dc8b0cff65ba2e6f380e916d0818b59",
+    "E17D2b0_archive_manifest_git_blob": "81ed26202502d1539c3c128b17f5b61ba2530929",
+    "E17D2b0_protocol_git_blob": "8faaf167403e09f321a6c62f452120f8b96898a2",
+    "E17D2b0_original_runner_git_blob": "b9beb5663fb26456d9955b9e32e823465aef66e4",
+    "E17D2b0_anchor_mass_1e12_z095_original_SHA": "f3ccd2327b16d305f6ef87255088df60f85a99335145064bc3aed21e82773378",
+    "E17D2b0_anchor_mass_1e13_z095_original_SHA": "1364d92179e5d203e24ccfead18f14a1aff28c85885b141a416f9f9d39e519be"
+  },
+  "frozen": {
+    "original_mass_reference_hDM_inverse_Msun": [
+      1000000000000,
+      10000000000000
+    ],
+    "original_DM14_anchor_case_indices": [
+      4,
+      13
+    ],
+    "z0_anchor_only": 0.95,
+    "fixed_original_E17A_z_math_nodes_NOT_real_halo_formation_samples": [
+      0.945,
+      0.95,
+      0.955
+    ],
+    "a0": 0.5128205128205129,
+    "Wechsler_shape_alpha_equals_2_a_c_QA_only": [
+      0.4,
+      0.8
+    ],
+    "physical_exterior_test_radius_ratio_to_anchor_r200c": 3,
+    "DM14_h": 0.671,
+    "DM14_Omega_m": 0.3175,
+    "DM14_Omega_lambda": 0.6825,
+    "original_CLASS_h": 0.6736,
+    "G_Mpc_km2_s2_Msun": 4.30091e-9,
+    "fixed_E16_geometries_and_72_24_originals_UNCHANGED": true,
+    "original_F0_Fplus_Fminus_UNCHANGED": true,
+    "original_tracer_order": [
+      "LRG",
+      "ELG"
+    ]
+  },
+  "exact_conditional_math": {
+    "mass_history": "M_alpha(z)=M0 exp[-alpha*((1+z)/(1+z0)-1)] = M0 exp[-alpha*(z-z0)/(1+z0)], alpha=2a_c QA only. This is a time-parameterized conditional functional ansatz with original Wechsler virial-to-M200c mismatch flagged.",
+    "dimensionless_growth_rate": "d ln M/d ln a = alpha (1+z)/(1+z0), and at z=z0 equals alpha. d ln M/dz = -alpha/(1+z0), exact.",
+    "background": "Only original DM14 flat matter+Lambda conditional snapshot H(z)=100 hDM sqrt[Omega_m(1+z)^3+OmegaLambda] in km/s/Mpc; rho_crit=3H^2/(8 pi G). This is not a fresh CLASS run and not a self-consistent original CLASS+halo background.",
+    "radius": "r200c_phys(z)=[3 M_alpha(z)/(4 pi 200 rho_crit_DM14(z))]^(1/3). For each mass choose Rphys=3*r200c(z0), verify Rphys>r200c(z) for both alpha histories at all frozen z nodes. This is a synthetic EXTERIOR test radius, not observed halo location.",
+    "Newtonian_exterior": "For a spherically symmetric isolated halo exterior R>r200(z), physical instantaneous Phi_ext(R,z)=-G M_alpha(z)/R and g_r=-G M_alpha(z)/R^2; exact Newtonian shell theorem at fixed R. Do NOT call this full FRW gauge potential, a Fourier halo perturbation, retarded neutrino response or long-short B.",
+    "time_derivative": "At fixed physical exterior R, d ln |Phi_ext| / d ln a = alpha (1+z)/(1+z0). d ln|Phi_ext|/dz=-alpha/(1+z0). Under DM14 background only, physical cosmic-time d ln M/dt=alpha*(1+z)/(1+z0)*H_DM14(z) where H must be converted from km/s/Mpc to seconds^-1 using 3.0856775814913673e19 km/Mpc. Do not use E17D1 dimensionless u as physical time.",
+    "independent_finite_difference": "At z0=.95 use original +/- .005 nodes to calculate (ln M(.955)-ln M(.945))/.01 and central mass finite difference; compare exact -alpha/(1+z0) with explicit two-sided derivative tolerance. Original three-node samples are only QA, not fitted formation history.",
+    "common_anchor": "For both alpha values at each mass, M(z0) identical to exactly SHA-gated original E17D2b0 median c200c(M0,z0), r200c(z0) and r_s(z0). No evolution or fit of c200c(z) outside the anchor: cvir vs c200c MUST NOT be identified.",
+    "histories_are": "Literature-motivated smooth positive monotone parameterizations with TWO SELECTED math QA alpha values; NOT an empirically validated distribution of M200c assembly at z~.95, individual merger tree, HOD or physically unique halo history.",
+    "proof_scope": "Same anchored M0, c200c(z0) and exterior Phi_ext(z0) yield two different analytic dlnM/dlna at z0 (.4 vs .8). This demonstrates underdetermination within the conditional ansatz, not nonuniqueness of an initial-value solution or a detection."
+  },
+  "original_scoped_outputs": {
+    "exact_four_trajectory_reports": "Two original immutable E17D2b0 mass anchors x two Wechsler alpha QA values; three fixed z snapshots per report with M200c, r200c, fixed-R exterior Phi/g, growth rate and exact/finite-difference derivatives; four original reports, original joint, independent pure-stdlib certificate and SHA manifest.",
+    "independent": "Do not import original E17D2b1 worker/NumPy/SciPy/CLASS. Re-derive source DM14 anchor from original SHA-gated E17D2b0 median case, Wechsler exponential M(z), physical critical radius/field and finite-difference identity independently. SHA tamper negative control.",
+    "no_artificial_original_E16_grid_duplication": "E17D2b1 is a spherical far-exterior time-history QA only; no duplicate 576 angular modes, no fabricated long-short coupling, and E16 original geometry is gated without adding science samples."
+  },
+  "prospectively_locked_QA": {
+    "prereg_and_all_original_parent_SHA_and_git_blobs_required": true,
+    "fixed_four_histories_3_nodes_each": true,
+    "exact_anchor_mass_and_reference_r200c_relative_max": 1e-12,
+    "distinct_alpha_fixed_anchor_at_z095_zero_mass_gap_max": 1e-12,
+    "distinct_alpha_growth_rate_gap_at_z095_min": 0.399999999999,
+    "positive_monotone_mass_vs_scale_factor": true,
+    "positive_finite_r200c_from_200rho_critical": true,
+    "all_exterior_test_radii_strictly_outside_halo": true,
+    "negative_physical_exterior_potential_and_inward_acceleration": true,
+    "mass_radius_200critical_reclosure_relative_max": 1e-12,
+    "exterior_Phi_force_mass_reclosure_relative_max": 1e-12,
+    "exact_analytic_log_derivative_vs_two_sided_original_z_fd_abs_max": 1e-11,
+    "exact_analytic_mass_derivative_vs_two_sided_original_z_fd_relative_max": 0.000002,
+    "full_independent_stdlib_four_trajectories_max_scaled_gap": 2e-11,
+    "independent_tampered_sha_rejected": true,
+    "no_posthoc_parameter_QA_or_scope_changes": true
+  },
+  "absolute_STOP": {
+    "no_original_E8_E17D2b0_mutation": true,
+    "no_new_CLASS_FITS_catalogues_mocks_observed_galaxies": true,
+    "no_new_seed_cut_or_mock_download": true,
+    "observed_odd_SEALED": true,
+    "no_galaxy_odd_unblind_or_signal_significance": true,
+    "no_inference_of_true_LRG_ELG_halo_M_HOD_or_individual_history": true,
+    "no_Wechsler_cvir_equal_DM14_c200c": true,
+    "no_class_dm14_cosmology_equivalence_claim": true,
+    "no_frozen_original_E17D1_dimensionless_u_as_cosmic_time": true,
+    "no_halo_time_history_promoted_to_self_consistent_Einstein_Vlasov": true,
+    "no_fourier_or_bispectrum_from_exterior_monopole_only": true,
+    "no_real_eBOSS_3pt_window_covariance_claim": true,
+    "no_merge_or_main_mutation": true,
+    "PR_remains_draft": true
+  }
+}

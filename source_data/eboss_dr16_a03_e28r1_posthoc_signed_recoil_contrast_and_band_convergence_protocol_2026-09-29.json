@@ -1,0 +1,36 @@
+{
+  "stage": "E28R1_POSTHOC_FINER_SIGNED_RECOIL_AND_FINITE_K_BAND_RESOLUTION",
+  "date": "2026-09-29",
+  "registration": "AFTER original E28 CI 36601783674 reported Fminus-minus-Fplus signed contrast unresolved: original coarse/fine gaps 13.5%,13.6%,1.74%,1.71% against prereg 1% limit. BEFORE all E28R1 numerical runs. All E28 physics, 3 original states, 4 halo mass/alpha cases, z window and k-band held fixed.",
+  "original_E28_run_id": 36601783674,
+  "original_E28_code_blob": "c02dc66f4c235427d6f3e7dac85b5d617ed7717e",
+  "original_E28_protocol_blob": "e8feedc4d09965a24d8eb60c16454d6e03b2fbff",
+  "E28_original_3F_source": "Original original 4000q F, E9 H(z), E17D0 finite-q Vlasov H, original E17D2B1 alpha and E17D2B0 conditional fixed-comoving-size median NFW; no source/data change.",
+  "new_grid": {
+    "k_segments_Mpc_inverse": [
+      0.01,
+      0.1,
+      1,
+      8
+    ],
+    "coarse_Simpson_intervals_PER_segment": 24,
+    "fine_Simpson_intervals_PER_segment": 48,
+    "coarse_z_nodes": 257,
+    "fine_z_nodes": 513,
+    "nfw_Gauss64_unchanged": true,
+    "original_E28_grid_12_24_and_z129_257_kept_as_prior_record": true
+  },
+  "acceptance": {
+    "signed_Fminus_minus_Fplus_at_full_band": "Only if same nonzero sign and |fine-coarse|/|fine| < .01 for EACH reported halo case may label numerically resolved; report all gaps including failures and do not alter grid/tolerance posthoc.",
+    "physical_FD_each_band": "Report 0.01-0.1, 0.01-1, 0.01-8 cumulative acceleration, individual band contributions and coarse/fine gaps. Last band fraction is sensitivity to finite UV cutoff, never certify all-k force.",
+    "effort": "Run source-only GitHub CI, not user's WSL; no new CLASS/ASDF/FITS/Abacus/mocks."
+  },
+  "guards": {
+    "all_original_E8_E9_E17_E27_E28_F0_Fplus_Fminus_unchanged": true,
+    "observed_odd_SEALED": true,
+    "no_real_halo_or_eBOSS_galaxy_data": true,
+    "not_total_3D_k_force_or_beta": true,
+    "no_new_science_cuts_seeds": true,
+    "main_untouched_PR1_draft": true
+  }
+}

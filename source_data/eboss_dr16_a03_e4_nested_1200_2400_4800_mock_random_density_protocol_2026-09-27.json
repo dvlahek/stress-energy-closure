@@ -1,0 +1,121 @@
+{
+  "study": "EinsteinVlasovNP A-03E4 prospective MOCK-ONLY nested 1200/2400/4800 matched random density extension for fixed 9x2 A-02/E3 mock cases; finite-RR convergence descriptive only",
+  "registered_on": "2026-09-27",
+  "registered_before": "Any first E4 FITS header, row or E4 extra random index draw; E3 original 18/18 completed and exact uploaded archive independently audited",
+  "user_decision": "EMPIRICAL_ONLY_DO_NOT_CONTACT_AUTHORS",
+  "branch": "audit/eboss-elg-bit8-ra-orientation-20260925",
+  "main_mutation_permitted": false,
+  "parent_E3_report": "source_data/eboss_dr16_a03_e3_mock_galaxy_nested_random_split_and_synthetic_dd_odd_injection_report_2026-09-26.json",
+  "parent_E3_report_exact_bytes": 1848217,
+  "parent_E3_report_sha256": "1e52f95be973aa6616337c2427fde60725a0df31ce7d3a818e99d1dd1fb0fb35",
+  "parent_E3_report_git_blob_sha1": "fa32a0f1546307e7bcdfe3a7911e613b83bb4f53",
+  "parent_E3_stdout": "source_data/eboss_dr16_a03_e3_local_stdout_2026-09-26.log",
+  "parent_E3_stdout_sha256": "869d46781871f6d88b5f487618e6d1e0c823b9f35d72c0edf98b673f9684e1d6",
+  "parent_E3_uploaded_manifest": "source_data/eboss_dr16_a03_e3_mock_galaxy_nested_random_split_synthetic_dd_uploaded_manifest_2026-09-26.json",
+  "parent_E3_uploaded_manifest_git_blob_sha1": "3674a0345e22391143fd7b3c10a83a871e0b72cf",
+  "parent_E3_protocol": "source_data/eboss_dr16_a03_e3_nested_mock_random_split_synthetic_dd_injection_protocol_2026-09-26.json",
+  "parent_E3_protocol_sha256": "bb4cd60ff84a167a09d91324f8a2fce8948f15b86766ae82f4bed121df384a0d",
+  "parent_E3_protocol_git_blob_sha1": "03b2eb73f13e63d91c683d2b37fd5faf030c5c59",
+  "parent_A02_report": "source_data/eboss_dr16_nine_ezmock_galaxy_cross_ls_code_transport_report_2026-09-26.json",
+  "parent_A02_report_sha256": "15f7668fd483d8e1329fbb9684bbdf07cb49d1974d264f9ceebd85e0156daa27",
+  "parent_A02_implementation_git_blob_sha1": "eb30a454d854b55dd489a87306c2e2802b570deb",
+  "parent_A02_sampler_git_blob_sha1": "a12bb47b16cb879b56f8c9554f62abf4cfff37f7",
+  "parent_E3_runner_git_blob_sha1": "c1d5811f583c0ac6d6eae28d8462802bef08bf88",
+  "parent_A03E2_report": "source_data/eboss_dr16_a03_e2_mock_galaxy_elg_random_radial_weight_stress_report_2026-09-26.json",
+  "parent_A03E2_report_sha256": "6ef86f904bb0cdc407adabe2e125146ce4d0671ea1ac932e13d11fc481cd596a",
+  "original_72_source_gate": "Before ANY new E4 FITS header/row, local prior SHA reports exact parent-byte checks, all 72 original full compressed same-ID matched galaxy/random gzip SHA and bytes reverified locally; require same approved local caches; never download, repin or replace any missing source. Source-only GitHub CI cannot independently reread user's local gzip.",
+  "same_fixed_mock_ids": [
+    1,
+    125,
+    250,
+    375,
+    500,
+    625,
+    750,
+    875,
+    1000
+  ],
+  "caps": [
+    "NGC",
+    "SGC"
+  ],
+  "tracers": [
+    "eBOSS_LRG",
+    "eBOSS_ELG"
+  ],
+  "roles": [
+    "dat",
+    "ran"
+  ],
+  "fixed_cases": 18,
+  "fixed_galaxies": "Exact unchanged A-02 600D for both tracers per fixed ID/cap, [0.9,1.0) redshift, original A02 seed root=93127, four original multiplicative positive weight factors, original 6x24 geometry. Exact metadata and four-vector SHA must equal original archived A02 per case.",
+  "random_extension": {
+    "levels_in_order": [
+      "full_1200_original",
+      "nested_2400",
+      "nested_4800"
+    ],
+    "original_selection": "Exactly original A-02 sample_catalogue: apply original validated_weight_product on original [0.9,1.0) eligible high-z original full FITS rows, use original seed root 93127+10000*capIndex+100*tracerIndex+1, sort original choice of size=1200, verify all original A02 metadata and E3 full-1200 sample SHA before extra sample.",
+    "supplement_seed_formula": "20502027+100000*mockID+1000*capIndex+100*tracerIndex; numpy.random.default_rng(seed).choice(len(eligible_complement),size=3600,replace=False)",
+    "supplement_fixed_order": "Preserve raw RNG choice output order for the 3600 supplement positions: first 1200 extra define nested_2400, all 3600 extra define nested_4800. For pair estimator sort selected indices in original eligible-row order within each level; independently draw LRG/ELG complements with fixed seeds and their own eligible tables.",
+    "original_1200_never_reselected": true,
+    "supplement_without_replacement": true,
+    "strict_1200_subset_2400_subset_4800": true,
+    "no_new_mock_ids_seeds_or_candidate_redshift_after_registration": true,
+    "no_chunk_stratification_or_new_veto": true,
+    "if_eligible_complement_lt_3600": "STOP and preserve exact failure for that frozen case, do not change levels, IDs, cuts, seeds or count.",
+    "source_dependency": "Only same already SHA-pinned 36 original mock random FITS gzip and original 36 corresponding galaxy FITS gzip from A02/E3; no network access or additional data.",
+    "what_this_tests": "Convergence conditional on already released realistic mock random catalogues within fixed mock selection and same galaxy subsample; no independent cosmic realizations added, NOT continuous production random limit."
+  },
+  "geometry": {
+    "s_edges_mpc_h": [
+      20,
+      40,
+      60,
+      80,
+      100,
+      120,
+      140
+    ],
+    "mu_edges": "np.linspace(-1-1e-7,1+1e-7,25) 24 signed bins",
+    "line_of_sight": "midpoint",
+    "theta_min_deg": 0.05,
+    "fiducial": "published_multitracer",
+    "weights": "WEIGHT_SYSTOT*WEIGHT_CP*WEIGHT_NOZ*WEIGHT_FKP",
+    "estimand": "LRG->ELG signed 6x24 cross-Landy-Szalay, four independently normalized pair terms; reverse ELG->LRG independently evaluated and mirrored."
+  },
+  "scenario": "baseline_original only for 1200,2400,4800. Parent E2 +/-5% archived but NOT rerun at enlarged sizes; this study isolates random sampling density before any new stress design.",
+  "parent_replay": "At 1200 rerun full four-term baseline original A02/E2/E3 xi and all 8 forward/reverse weighted hist SHA/count/norm fingerprints. 2400 and 4800: same 600D, exact original eligible and fixed extended random indices; verify D1D2 weighted histogram SHA/count unchanged versus 1200, all pair mirror/residual/normalization checks and masked RR positivity.",
+  "RR_policy": "Never require all 144 at 2400/4800 as an acceptance selection cut: always report exact 6x24 positive-RR count and explicit missing indices. Fail only on no positive RR, nonfinite supported xi, forward/reverse mask or normalization mismatch. Never fill missing cells with zero, never project any complete ell0/1/2/3 six-bin multipoles unless all 144 positive RR. Compare xi only on pairwise common RR support and label support coverage. Report all 18 cases even if descriptive sparse.",
+  "reporting": {
+    "per_case": [
+      "A02/E2/E3 original sample/source exact replay",
+      "original A02 1200 index and catalogue SHA; enlarged exact 2400/4800 eligible indices and four-vector SHA, independently frozen supplemental PCG64 seeds, strict nestedness and original ELG chunk counts",
+      "baseline xi and all four independent LS pair hist/count/norm SHA in both orientations per density",
+      "RR supported cells, missing indices and support mask SHA, mirror residual, six-bin ell0/1/2/3 only if full RR",
+      "on common positive-RR cells max, median and relative L1 xi differences 1200->2400, 2400->4800 and 1200->4800; never compare unsupported cells",
+      "per-cap all nine fixed-ID min,median,max of predeclared diagnostics and completeness counts"
+    ],
+    "forbidden": [
+      "No outcome-driven cherry-picking of favorable cap, ID, bin or extra seed",
+      "No physical selection mask reconstruction or measured survey selection systematic",
+      "No wake physical injection/recovery, physical odd null, significance or p-value",
+      "No observed catalogue or random rows and no observed odd vector",
+      "No new bulk downloads or author contact"
+    ]
+  },
+  "acceptance": "Original 18/18 A02 and E3 parent byte fingerprints, source preflight all 72 SHA before any E4 FITS row, 36 original random 1200 samples SHA identical, fixed 36 extra seeds and two nested extensions without replacement, baseline original E2 18/18 1200 pair/xi SHA, all enlarged cases reported without support-based selection, forward/reverse tolerance 1e-8, 4 term norms residual <1e-12, original observed odd untouched. No requirement that 2400/4800 100% complete or 4800 differences monotonic.",
+  "source_only_synthetic_CI": "Check protocol, source blobs, archived original report hashes, parent 18 fixed records, pure NumPy 1200+3600 complement/nesting/reproducibility and negative controls. CI never reads mock FITS or observed rows and cannot certify future local E4 result.",
+  "local_output": "eboss_workspace/a03_empirical_window/a03_e4_nested_random_density_1200_2400_4800.json",
+  "local_stdout": "eboss_workspace/a03_empirical_window/a03_e4_local_stdout_2026-09-27.log",
+  "checkpoint_failure_policy": "Atomic per-case checkpoints; never overwrite any existing failed STOP with errors. Rehash all 72 before local resume; verify SHA of every existing successful case before proceeding. Fail closed and preserve original failed JSON and stdout; no post-hoc rerun/reselect.",
+  "observed_galaxy_rows_read": false,
+  "observed_random_rows_read": false,
+  "observed_odd_data_vector_read": false,
+  "new_science_selection_applied": false,
+  "author_contact_permitted": false,
+  "new_downloads_permitted": false,
+  "physical_empirical_pair_window_certified": false,
+  "inferential_18D_covariance_computed": false,
+  "not_a_detection_or_exclusion": true
+}

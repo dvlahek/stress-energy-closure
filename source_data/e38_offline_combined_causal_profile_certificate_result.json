@@ -1,0 +1,33 @@
+{
+  "certificate": {
+    "bound": "|A-A_point| <= integral |W|[B_time(t)+delta_test+(1-s)delta0+s delta1]dt",
+    "delta_definition": "delta_i=min(2,k^2<r^2>_i/6)",
+    "exact_model": "A(k)=u_test(k)*integral W(k,t)u_src(k,t)dt",
+    "meaning": "Sufficient absolute certificate; no cancellation is used.",
+    "reference": "A_point(k)=integral W(k,t)dt",
+    "spatial_input": "independent second-moment bounds R2_0,R2_1,R2_test",
+    "temporal_input": "endpoint u0,u1 plus independent L_k"
+  },
+  "limits": [
+    "requires physical L_k",
+    "requires physically meaningful radial moments",
+    "not UV convergence",
+    "not a physical kmax"
+  ],
+  "qa_checks": 205,
+  "qa_pass": true,
+  "stage": "E38_OFFLINE_COMBINED_TEMPORAL_SPATIAL_CAUSAL_PROFILE_CERTIFICATE",
+  "status": "SUFFICIENT_ERROR_BOUND_DERIVED_TOY_QA_PASS_NOT_E28_PHYSICAL_CERTIFICATE",
+  "toy": {
+    "R2_0": 0.2,
+    "R2_1": 0.32,
+    "R2_test": 0.18,
+    "combined_component": 0.10254989453800285,
+    "delta0": 0.011999999999999999,
+    "delta1": 0.0192,
+    "delta_test": 0.010799999999999999,
+    "k": 0.6,
+    "spatial_component": 0.011900781293439827,
+    "temporal_component": 0.09064911324456303
+  }
+}

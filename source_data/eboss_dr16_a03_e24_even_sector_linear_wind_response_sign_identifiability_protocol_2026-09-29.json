@@ -1,0 +1,57 @@
+{
+  "stage": "A03E24_EVEN_SECTOR_VS_LINEAR_LOS_NEUTRINO_RESPONSE_SIGN_IDENTIFIABILITY",
+  "date": "2026-09-29",
+  "research_boundary": "Original E21 linear LOS response and E23 original high-z sample were examined BEFORE E24; the algebraic even-sector sign degeneracy was also derived before E24 registration. This registration applies only to the NEW exact-arithmetic E24 tests and source-integrity controls, not a preregistered original scientific prediction.",
+  "original_audit_head": "c57fc17fe1752f5372cb099c680099dd2dc4fb2a",
+  "frozen_parents": {
+    "E21_original_velocity_cross": {
+      "path": "source_data/eboss_dr16_a03_e21_archived_F0_Fpm_linear_LOS_velocity_cross_unit_response_2026-09-29.json",
+      "git_blob": "cc3312c5313cce60fad4a88c3a56ef3d4e675e38"
+    },
+    "E22_dual_channel_limit": {
+      "path": "source_data/eboss_dr16_a03_e22_original_E21_four_K_dual_channel_physical_gate_source_only_summary_2026-09-29.json",
+      "git_blob": "a7473fb8b052f37d65e13456d04ad3a885920684"
+    },
+    "E23_high_z_support": {
+      "path": "docs/EBOSS_DR16_A03_E23_HIGHZ_PAIR_REDSHIFT_AND_PUBLISHED_HOD_TRANSPORT_GATE_2026-09-29.md",
+      "git_blob": "8fedf17c15d97d49ca45289dc1c0d6cb87b74727"
+    }
+  },
+  "external_HOD_evidence": {
+    "Alam_2020": "https://doi.org/10.1093/mnras/staa1956, broader z=0.7-1.1 multitracer FoF host/HOD, not same high-z .9-1.0 mass/selection.",
+    "Avila_2020": "https://doi.org/10.1093/mnras/staa2951, ELG satellite velocity-dispersion bias and infall; not a neutrino-CDM wind-response beta.",
+    "AbacusHOD_2022": "https://doi.org/10.1093/mnras/stab3355, eBOSS multitracer HOD fitted on z=.7-1.1, central/satellite halo-relative velocity-scatter parameters; not calibrated neutrino-specific c."
+  },
+  "analytic_model": {
+    "field": "delta_a^s=A_a(k,mu,z) delta_cb + c_{a,F}(k,z) v_nucdm_parallel,R16,F + epsilon_a, a=L,E",
+    "allowed": "A_a real even in mu; c_a real, mu-even and unknown; P_delta,v=+i mu C_v,F from original E12/E13, P_dd and P_vv real even; illustrative deterministic component epsilon omitted from analytic equations, not asserted physically uncorrelated in eBOSS.",
+    "cross": "P_LE = A_L A_E P_dd + c_L c_E P_vv + i mu (A_L c_E-A_E c_L) C_v",
+    "auto": "P_aa=A_a^2 P_dd+c_a^2 P_vv, when delta-v cross purely imaginary",
+    "all_order_even_sign": "Simultaneously replacing (c_L,c_E) by (-c_L,-c_E) leaves BOTH auto power and real LE cross invariant exactly within this deterministic two-field model at all orders in c; imaginary odd reverses sign. No universal claim with other coupled fields, nuisance cross or beyond linear response.",
+    "first_order_even_null": "The derivative of auto power and real cross power wrt each c evaluated at c_L=c_E=0 is exactly zero; odd cross derivative is nonzero if mu C_v and tracer-contrast coefficients nonzero.",
+    "odd_rank": "At fixed (k,mu,z,F), odd LE provides only chi_F=A_L c_E-A_E c_L; (c_L,c_E)->(c_L,c_E)+t(A_L,A_E) leaves chi invariant. Even spectra at O(c^2) can add constraints but not simultaneous global c sign in this restricted model.",
+    "original_4K": "Use all original E21 four K and original FD,Fplus,Fminus physical C_v (km/s)Mpc^3 at mathematical z=.95; no interpolation or eBOSS 24D xi conversion.",
+    "survey_limit": "Only source-level k-space projection, no calibrated c_L,c_E, physical high-z HOD/host histories, Doppler/evolution/magnification selection, signed full redshift pair operator, extra relativistic terms, or measured odd. Published HOD mass/velocity scatter does not measure c_nucdm."
+  },
+  "new_QA_before_execution": [
+    "Exact Git blob check for all three pinned source files and originally sealed E21/E22.",
+    "All 3 original F states and 4 original E21 physical-unit long K are parsed, positive, original signed + versus - contrast unchanged.",
+    "Exact rational complex spectral formula for auto and cross validates Hermiticity under LE/EL exchange and odd mu reversal.",
+    "At c=0, first-order even derivatives zero; nonzero odd linear response if chi and mu C_v nonzero; quadratic c^2 even correction explicitly present.",
+    "Simultaneous sign reversal of c_L and c_E leaves exact auto and Re(P_LE) unchanged, flips Im(P_LE) even at finite rational c.",
+    "Rank-null transformation (c_L,c_E)+t(A_L,A_E) preserves chi and hence odd but may change even c^2, so do not assert full-data null.",
+    "Independent two-state halo occupation marginal counterexample same one-tracer marginals different pair-environment correlation; explicitly toy/not actual high-z HOD.",
+    "At least seven deliberately tampered negative controls including false even-linear, fake odd sign invariance, mistaken EL reversal, false HOD mass-mean identifiability, absent parent source and invalid original K."
+  ],
+  "STOP": {
+    "no_observed_LRG_ELG_galaxies_or_24D_odd": true,
+    "no_real_random_row_or_RR_NPZ_open": true,
+    "no_new_CLASS_FITS_ASDF_Abacus_mock_or_WSL": true,
+    "no_original_E8_E10_E13_E16_Fpm_48k_mutation": true,
+    "no_science_cut_seed_optimization": true,
+    "no_physical_c_a_or_HOD_relabeling_from_published_velocity_scatter": true,
+    "no_significance_covariance_or_eBOSS_detection_claim": true,
+    "no_author_contact": true,
+    "no_main_mutation_or_merge_PR1": true
+  }
+}

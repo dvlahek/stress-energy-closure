@@ -1,0 +1,88 @@
+name: eBOSS A03 E17D2b3b6 official raw schema source-only and synthetic metadata QA
+on:
+  push:
+    branches:
+      - audit/eboss-elg-bit8-ra-orientation-20260925
+    paths:
+      - 'source_data/eboss_dr16_a03_e17d2b3b6_*'
+      - 'scripts/audit_eboss_dr16_a03_e17d2b3b6_bounded_real_ASDF_YAML_schema_metadata.py'
+      - '.github/workflows/eboss_a03_e17d2b3b6_official_schema_metadata_only.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  official-source-only-no-actual-asdf:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    env:
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - name: Audit branch checkout - no actual halo bytes
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Checkout EXACT Git-pinned official AbacusSummit docs only
+        uses: actions/checkout@v4
+        with:
+          repository: abacusorg/AbacusSummit
+          ref: 4b1959c710cb0c49aa305c6213a228aa2a4587ff
+          path: official-abacussummit
+          fetch-depth: 1
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            docs/data-products.rst
+            docs/compaso.rst
+      - name: Checkout EXACT Git-pinned official abacusutils code only
+        uses: actions/checkout@v4
+        with:
+          repository: abacusorg/abacusutils
+          ref: 24ab0dda5fea9ae406b1afdacaf4bbf989de9bc6
+          path: official-abacusutils
+          fetch-depth: 1
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            abacusnbody/data/compaso_halo_catalog.py
+            abacusnbody/data/asdf.py
+      - name: Original exact-source blobs and independently indexed official semantics
+        run: |
+          set -euo pipefail
+          test "$(git -C official-abacussummit rev-parse HEAD)" = 4b1959c710cb0c49aa305c6213a228aa2a4587ff
+          test "$(git -C official-abacusutils rev-parse HEAD)" = 24ab0dda5fea9ae406b1afdacaf4bbf989de9bc6
+          test "$(git hash-object official-abacussummit/docs/data-products.rst)" = f7c847b174365744b23cb6d1ebaeb010a5bd6ca7
+          test "$(git hash-object official-abacussummit/docs/compaso.rst)" = a5170574467501e0b9adb4a71e8e432a32843dbf
+          test "$(git hash-object official-abacusutils/abacusnbody/data/compaso_halo_catalog.py)" = adb16aee1cbac863db5301c6e380938ee7f76547
+          test "$(git hash-object official-abacusutils/abacusnbody/data/asdf.py)" = 8c5e5135736409bb0fab77bff06ad1259951189d
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          docs=Path("official-abacussummit/docs/data-products.rst").read_text()
+          compaso=Path("official-abacussummit/docs/compaso.rst").read_text()
+          loader=Path("official-abacusutils/abacusnbody/data/compaso_halo_catalog.py").read_text()
+          tests={
+            "OFFICIAL_34_FILES": "Each set of files is split into 34 files" in docs,
+            "SECONDARY_HALO_PID_ONLY": bool(re.search(r"For the 21 secondary redshifts, we output the halo catalogs and the halo\s+subsample particle IDs",docs)),
+            "ONE_BINARY_BLOCK_PER_HALO_COLUMN": "where every column of the table is a separate block" in docs,
+            "RAW_RADIUS_UNIT_BOX": "In the raw ``halo_info`` files on disk" in docs,
+            "N_L1_COUNT": "The primary halo mass field is ``N``" in docs,
+            "SO_RADIUS_SPECIAL": "SO_radius special value" in docs,
+            "L1_SO_MEAN_DENSITY": "relative to the mean cosmic density" in docs,
+            "L0_PARTICLES_ONLY": "all L1/L2 finding and all halo statistics are based" in compaso,
+            "EXACT_SODENSITYL1_HEADER": "SODensityL1" in compaso,
+            "LOADER_CLEANED_TRUE_DEFAULT": "cleaned=True" in loader,
+            "LOADER_SELECT_FIELDS": "Selecting a small" in loader,
+            "LOADER_SO_RAW_BOX_SCALE": "r'SO(?:_L2max)?(?:_central_particle|_radius)'" in loader,
+          }
+          for name,passed in tests.items():
+            print("OFFICIAL_SOURCE_SEMANTIC",name,"PASS" if passed else "FAIL",flush=True)
+          assert all(tests.values()),"E17D2B3B6_OFFICIAL_SEMANTIC_FAIL_CLOSED"
+          print("E17D2B3B6_PINNED_OFFICIAL_SCHEMA_SOURCE_ONLY_PASS",flush=True)
+          PY
+      - name: Synthetic YAML metadata parser and 6 negative controls; NO real ASDF
+        run: |
+          set -euo pipefail
+          python3 -m pip install --disable-pip-version-check 'PyYAML==6.0.2'
+          python3 -m py_compile scripts/audit_eboss_dr16_a03_e17d2b3b6_bounded_real_ASDF_YAML_schema_metadata.py
+          python3 -u scripts/audit_eboss_dr16_a03_e17d2b3b6_bounded_real_ASDF_YAML_schema_metadata.py --self-test
+          echo E17D2B3B6_SOURCE_ONLY_CI_PASS_NO_ACTUAL_HALO_BYTES_NO_OBSERVED_ODD

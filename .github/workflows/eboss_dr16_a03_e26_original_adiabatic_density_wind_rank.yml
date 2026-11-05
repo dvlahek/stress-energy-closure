@@ -1,0 +1,41 @@
+name: eBOSS A03 E26 original E12 E13 E21 adiabatic source rank
+on:
+  push:
+    branches:
+      - audit/eboss-elg-bit8-ra-orientation-20260925
+    paths:
+      - 'scripts/audit_eboss_dr16_a03_e26_original_adiabatic_density_wind_rank.py'
+      - 'source_data/eboss_dr16_a03_e26_*'
+      - '.github/workflows/eboss_dr16_a03_e26_original_adiabatic_density_wind_rank.yml'
+      - 'EINSTEIN_VLASOV_NP_MASTER_PLAN.md'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-E12-E13-E21-covariance-rank:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Verify prospectively pinned original source manifests
+        run: |
+          set -euo pipefail
+          test "$(git hash-object source_data/eboss_dr16_a03_e26_original_linear_source_rank_protocol_2026-09-29.json)" = 4b09681d188bd324b9d9f3ba459bd5608ba41195
+          test "$(git hash-object scripts/audit_eboss_dr16_a03_e12_direct_class_vTk_long_cross.py)" = 0f516a1525fc5df44e71c400ea0cfb30664a1ce5
+          test "$(git hash-object source_data/eboss_dr16_a03_e21_archived_F0_Fpm_linear_LOS_velocity_cross_unit_response_2026-09-29.json)" = cc3312c5313cce60fad4a88c3a56ef3d4e675e38
+          echo E26_PREEXECUTION_ORIGINAL_SOURCE_PINS_PASS
+      - name: Independently reconstruct original 3 states 4 K covariance
+        env:
+          PYTHONUNBUFFERED: '1'
+        run: |
+          set -euo pipefail
+          python3 -m py_compile scripts/audit_eboss_dr16_a03_e26_original_adiabatic_density_wind_rank.py
+          python3 -u scripts/audit_eboss_dr16_a03_e26_original_adiabatic_density_wind_rank.py --out "$RUNNER_TEMP/e26_original_source_rank.json"
+          echo E26_ORIGINAL_SOURCE_RANK_CI_SUCCESS
+      - uses: actions/upload-artifact@v4
+        with:
+          name: E26_original_E12_E13_E21_source_rank
+          path: ${{ runner.temp }}/e26_original_source_rank.json
+          if-no-files-found: error

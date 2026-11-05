@@ -1,0 +1,20 @@
+{
+  "date": "2026-09-28",
+  "CI_run_id": "36447312957",
+  "preregistered_E17D2b3b2_protocol_git_blob": "324e722200997b21a0fa97d965b8ef096e1587e6",
+  "upstream_abacusutils_commit": "24ab0dda5fea9ae406b1afdacaf4bbf989de9bc6",
+  "source_bundled_header_copy_SHA256": "1c8b690acedd2a61a6a033be3173f79bb7e8cadbcb4a9e97e5db10ee4f10308e",
+  "source_copy_derived_SO_threshold_NOT_real_halo_200c_mass": true,
+  "NO_actual_provider_halo_ASDF_checksum_or_tree": true,
+  "observed_odd_SEALED": true,
+  "full_physical_halo_tracer_bispectrum": "BLOCKED",
+  "main_untouched": true,
+  "PR_remains_draft": true,
+  "files": [
+    {
+      "file": "e17d2b3b2_pinned_header_copy_l1_threshold_vs_200crit.json",
+      "size_bytes": 2054,
+      "sha256": "efa1878250ca395ab65207f485f214854b817188613acaae1ce668f58af78a38"
+    }
+  ]
+}

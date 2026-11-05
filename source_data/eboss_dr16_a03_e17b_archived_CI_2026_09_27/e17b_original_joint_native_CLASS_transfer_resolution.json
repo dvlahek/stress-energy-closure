@@ -1,0 +1,104 @@
+{
+  "date": "2026-09-27",
+  "status": "E17B_THREE_STATE_NATIVE_TRANSFER_K_REFINEMENT_DIAGNOSTIC_COMPLETE_PHYSICAL_B_BLOCKED",
+  "prospective_protocol_git_blob": "d0389e336de9e9964cade589fc17594a595f2e17",
+  "original_E17A_joint_sha256": "094c49cb89d6dd231a5cbc16ecdfe455bcb3938ddec375fd28c81c8098ab2ad9",
+  "state_reports": {
+    "FD": {
+      "sha256": "ff9411b6a1bdf7c3d2b989f61b7741254389faa05bf61e0c8487b77eddb4ce2d",
+      "size_bytes": 1039885,
+      "QA": {
+        "grid_refinement": {
+          "baseline": 81,
+          "tier_high": 238,
+          "tier_ultra": 475
+        },
+        "max_original_anchor_Pcb_relative_gap": 1.3452757763162723e-05,
+        "baseline_ultra_transfer_candidate": true,
+        "high_ultra_transfer_candidate": true,
+        "CLASS_Pcb_anchor_candidate": true,
+        "engineering_candidate_not_physical_certification": true
+      },
+      "diagnostics": {
+        "Pcb": {
+          "baseline_vs_ultra": 1.5070636903056048e-05,
+          "high_vs_ultra": 1.8116202781324667e-06
+        },
+        "theta": {
+          "baseline_vs_ultra": 0.0010827866311553423,
+          "high_vs_ultra": 0.0001571656968902814
+        },
+        "dcb": {
+          "baseline_vs_ultra": 0.0008990670834020336,
+          "high_vs_ultra": 0.00011192498932133736
+        }
+      }
+    },
+    "plus": {
+      "sha256": "66b6a344906621f6655bed09ad72dd0eabbae35bd3c47be483b558cdeb593d48",
+      "size_bytes": 1039746,
+      "QA": {
+        "grid_refinement": {
+          "baseline": 81,
+          "tier_high": 238,
+          "tier_ultra": 475
+        },
+        "max_original_anchor_Pcb_relative_gap": 1.259354309972454e-05,
+        "baseline_ultra_transfer_candidate": true,
+        "high_ultra_transfer_candidate": true,
+        "CLASS_Pcb_anchor_candidate": true,
+        "engineering_candidate_not_physical_certification": true
+      },
+      "diagnostics": {
+        "Pcb": {
+          "baseline_vs_ultra": 1.4745121242176374e-05,
+          "high_vs_ultra": 1.3576727744935232e-06
+        },
+        "theta": {
+          "baseline_vs_ultra": 0.0010750066224439283,
+          "high_vs_ultra": 0.00015585509163382194
+        },
+        "dcb": {
+          "baseline_vs_ultra": 0.000898731384945095,
+          "high_vs_ultra": 0.00011172073675154238
+        }
+      }
+    },
+    "minus": {
+      "sha256": "1dba5ba3ff8f3790a8ef3231e5da02380163e4672b81c1a40a122e5dd92b711d",
+      "size_bytes": 1039908,
+      "QA": {
+        "grid_refinement": {
+          "baseline": 81,
+          "tier_high": 238,
+          "tier_ultra": 475
+        },
+        "max_original_anchor_Pcb_relative_gap": 1.2849318211614317e-05,
+        "baseline_ultra_transfer_candidate": true,
+        "high_ultra_transfer_candidate": true,
+        "CLASS_Pcb_anchor_candidate": true,
+        "engineering_candidate_not_physical_certification": true
+      },
+      "diagnostics": {
+        "Pcb": {
+          "baseline_vs_ultra": 1.4618261872138443e-05,
+          "high_vs_ultra": 1.777481086309705e-06
+        },
+        "theta": {
+          "baseline_vs_ultra": 0.001090973461718911,
+          "high_vs_ultra": 0.00015852462142367223
+        },
+        "dcb": {
+          "baseline_vs_ultra": 0.0008988820358718004,
+          "high_vs_ultra": 0.0001118599099405076
+        }
+      }
+    }
+  },
+  "all_three_state_qa_candidate": true,
+  "interpretation": "Resolution stability is a conditional engineering check, not certified transfer interpolation truncation bound or retarded physical three-point halo coupling.",
+  "E14_E15_original_72_24_unmodified": true,
+  "observed_odd_read": false,
+  "physical_finite_K_bispectrum": "BLOCKED",
+  "main_untouched_PR_draft": true
+}

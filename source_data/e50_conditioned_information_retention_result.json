@@ -1,0 +1,85 @@
+{
+  "E19_Fourier_vectors": {
+    "Fminus": [
+      0.0003147616400323981,
+      0.00021061456076441418
+    ],
+    "Fplus": [
+      0.00022278876746842203,
+      0.00014150296987877026
+    ],
+    "T3_over_T1_minus": 0.6691239782037476,
+    "T3_over_T1_plus": 0.6351440940523486,
+    "absolute_vector_difference_norm": 0.00011504530100101439,
+    "angle_deg": 1.3659989658738938,
+    "angle_rad": 0.023841179533337108,
+    "difference_over_mean_norm": 0.358031919493895,
+    "difference_over_plus_norm": 0.4358967357669079,
+    "ratio_fractional_difference_relative_plus": 0.05349948849339114,
+    "sin_angle": 0.023838921035799564,
+    "vector_norm_minus": 0.0003787260002189869,
+    "vector_norm_plus": 0.00026392787915377713
+  },
+  "date": "2026-09-30",
+  "guardrails": {
+    "FITS_ASDF_used": false,
+    "actual_velocity_reconstruction_used": false,
+    "detection_significance_claimed": false,
+    "observed_galaxy_rows_used": false,
+    "observed_odd_used": false,
+    "survey_covariance_computed": false
+  },
+  "interpretation": {
+    "amplitude_calibrated": "If conditional amplitude is independently fixed (bias/Pcb/tag normalization), the F+/F- vector difference is ~43.6% of the F+ norm. A 3-sigma pair discrimination needs only order 7 tagged-signal SNR before tag dilution, ~13 underlying conditional SNR for r_rec=0.8.",
+    "amplitude_free": "If an arbitrary overall amplitude is marginalized, only the ~1.366 degree shape rotation remains. Then 3-sigma shape-only discrimination needs tagged SNR ~126 and ~238 underlying conditional SNR for r_rec=0.8.",
+    "survey_decision": "Proceed to a conditioned mock estimator, but pre-register two inference modes: amplitude-calibrated and amplitude-free shape-only. Do not mix them post hoc."
+  },
+  "parents": {
+    "E19_source": "frozen E10/E19 k=0.05 h/Mpc, z=.95 conditional T1,T3",
+    "E49_min_abs_r_rel_baryon": 0.9216511534354308,
+    "E49_status": "PASS_SOURCE_ONLY_ALIGNMENT_SCREEN"
+  },
+  "screening_scenarios": {
+    "0.50": {
+      "amplitude_calibrated_underlying_conditional_SNR_for_3sigma_Fpm": 22.5730277568697,
+      "amplitude_free_shape_only_underlying_conditional_SNR_for_3sigma_Fpm": 412.74976752593153,
+      "max_sign_correlation_factor_across_F_states": 0.30506568217081526,
+      "min_correct_sign_probability": 0.6524466294383068,
+      "min_sign_correlation_factor_across_F_states": 0.3048932588766136
+    },
+    "0.70": {
+      "amplitude_calibrated_underlying_conditional_SNR_for_3sigma_Fpm": 15.416960810875162,
+      "amplitude_free_shape_only_underlying_conditional_SNR_for_3sigma_Fpm": 281.900463649966,
+      "max_sign_correlation_factor_across_F_states": 0.44669551740495594,
+      "min_correct_sign_probability": 0.7232075465434609,
+      "min_sign_correlation_factor_across_F_states": 0.4464150930869216
+    },
+    "0.80": {
+      "amplitude_calibrated_underlying_conditional_SNR_for_3sigma_Fpm": 13.039253870615935,
+      "amplitude_free_shape_only_underlying_conditional_SNR_for_3sigma_Fpm": 238.42388632027576,
+      "max_sign_correlation_factor_across_F_states": 0.5281813705267018,
+      "min_correct_sign_probability": 0.7639094254853693,
+      "min_sign_correlation_factor_across_F_states": 0.5278188509707386
+    },
+    "0.90": {
+      "amplitude_calibrated_underlying_conditional_SNR_for_3sigma_Fpm": 11.051868189652236,
+      "amplitude_free_shape_only_underlying_conditional_SNR_for_3sigma_Fpm": 202.08436702151928,
+      "max_sign_correlation_factor_across_F_states": 0.6232264962787142,
+      "min_correct_sign_probability": 0.8113665435291815,
+      "min_sign_correlation_factor_across_F_states": 0.6227330870583629
+    },
+    "1.00": {
+      "amplitude_calibrated_underlying_conditional_SNR_for_3sigma_Fpm": 9.221750382515584,
+      "amplitude_free_shape_only_underlying_conditional_SNR_for_3sigma_Fpm": 168.62050441625428,
+      "max_sign_correlation_factor_across_F_states": 0.7471084701766362,
+      "min_correct_sign_probability": 0.8731593087009384,
+      "min_sign_correlation_factor_across_F_states": 0.7463186174018767
+    }
+  },
+  "stage": "E50_CONDITIONED_FPM_INFORMATION_RETENTION_SCREEN",
+  "status": "CONDITIONED_ROUTE_RETAINS_FINGERPRINT; AMPLITUDE_CALIBRATION_IS_DECISIVE",
+  "tag_noise_invariance": {
+    "state_dependence_note": "E49 attenuation differs negligibly across F states at this screening level.",
+    "statement": "A scalar sign-tag attenuation multiplies both ell=1 and ell=3 of a given F state equally, so T3/T1 and the normalized F+/F- angle are unchanged. Only total SNR is reduced."
+  }
+}

@@ -1,0 +1,144 @@
+{
+  "status": "E8_SOURCE_PHYSICAL_FPLUS_FMINUS_RESONANT_COEFFICIENT_READY_GALAXY_AMPLITUDE_NOT_IDENTIFIED",
+  "scope": "Physical CLASS-normalized isotropic source F(q), conditional FD-relative halo linear-response resonant factor; no CLASS transfer or galaxy observable",
+  "source_protocol_git_blob_sha1": "2856c190b58fde9b39e2cb3f0d0006a77fe9b70c",
+  "frozen_COEFF": [
+    0.10329109892348824,
+    -0.060769580477018574,
+    0.1691538145152833,
+    0.4893798069085714,
+    0.6861292155954458,
+    0.4790989989937372,
+    0.13123736993120932
+  ],
+  "CLASS_kinetic_distribution_prefactor": "2/(2*pi)^3",
+  "mass_eV": 0.06,
+  "source_matching_z": 1100.0,
+  "maximum_fractional_distortion": 0.3,
+  "source_null_direction_max_relative_before_unit_pointwise_normalization": 0.3572971718515753,
+  "min_Fplus": 1.6618841653994948e-11,
+  "min_Fminus": 1.6618841790592595e-11,
+  "maximum_relative_moment_mismatch": 3.579686991212226e-16,
+  "FD_moments_n_rho_P": [
+    0.014538060005542775,
+    0.04615391672747155,
+    0.04548870366974025
+  ],
+  "plus_moments_n_rho_P": [
+    0.014538060005542771,
+    0.04615391672747155,
+    0.045488703669740255
+  ],
+  "minus_moments_n_rho_P": [
+    0.014538060005542777,
+    0.04615391672747155,
+    0.04548870366974024
+  ],
+  "resonant_source_ratios": [
+    {
+      "z_illustrative_not_measured_effective_z": 0.9,
+      "v_parallel_abs_kms_illustrative_not_measured_eBOSS": 100.0,
+      "q_res": 0.06262938293892882,
+      "f_plus_over_FD": 0.8584669173873438,
+      "f_minus_over_FD": 1.1415330826126562,
+      "f_plus_minus_f_minus_over_FD": -0.2830661652253123,
+      "pair_mean_over_FD": 1.0,
+      "not_absolute_galaxy_xi": true
+    },
+    {
+      "z_illustrative_not_measured_effective_z": 0.9,
+      "v_parallel_abs_kms_illustrative_not_measured_eBOSS": 200.0,
+      "q_res": 0.12525876587785764,
+      "f_plus_over_FD": 0.8123733992048674,
+      "f_minus_over_FD": 1.1876266007951326,
+      "f_plus_minus_f_minus_over_FD": -0.3752532015902651,
+      "pair_mean_over_FD": 1.0,
+      "not_absolute_galaxy_xi": true
+    },
+    {
+      "z_illustrative_not_measured_effective_z": 0.9,
+      "v_parallel_abs_kms_illustrative_not_measured_eBOSS": 400.0,
+      "q_res": 0.2505175317557153,
+      "f_plus_over_FD": 0.7268065753818566,
+      "f_minus_over_FD": 1.2731934246181436,
+      "f_plus_minus_f_minus_over_FD": -0.5463868492362869,
+      "pair_mean_over_FD": 1.0,
+      "not_absolute_galaxy_xi": true
+    },
+    {
+      "z_illustrative_not_measured_effective_z": 0.95,
+      "v_parallel_abs_kms_illustrative_not_measured_eBOSS": 100.0,
+      "q_res": 0.061023501325110134,
+      "f_plus_over_FD": 0.8595964252770574,
+      "f_minus_over_FD": 1.1404035747229426,
+      "f_plus_minus_f_minus_over_FD": -0.28080714944588525,
+      "pair_mean_over_FD": 1.0,
+      "not_absolute_galaxy_xi": true
+    },
+    {
+      "z_illustrative_not_measured_effective_z": 0.95,
+      "v_parallel_abs_kms_illustrative_not_measured_eBOSS": 200.0,
+      "q_res": 0.12204700265022027,
+      "f_plus_over_FD": 0.8147975953760791,
+      "f_minus_over_FD": 1.1852024046239211,
+      "f_plus_minus_f_minus_over_FD": -0.3704048092478419,
+      "pair_mean_over_FD": 1.0000000000000002,
+      "not_absolute_galaxy_xi": true
+    },
+    {
+      "z_illustrative_not_measured_effective_z": 0.95,
+      "v_parallel_abs_kms_illustrative_not_measured_eBOSS": 400.0,
+      "q_res": 0.24409400530044054,
+      "f_plus_over_FD": 0.7302627285742536,
+      "f_minus_over_FD": 1.2697372714257462,
+      "f_plus_minus_f_minus_over_FD": -0.5394745428514928,
+      "pair_mean_over_FD": 1.0,
+      "not_absolute_galaxy_xi": true
+    },
+    {
+      "z_illustrative_not_measured_effective_z": 1.0,
+      "v_parallel_abs_kms_illustrative_not_measured_eBOSS": 100.0,
+      "q_res": 0.05949791379198238,
+      "f_plus_over_FD": 0.8606658824079371,
+      "f_minus_over_FD": 1.1393341175920628,
+      "f_plus_minus_f_minus_over_FD": -0.27866823518412565,
+      "pair_mean_over_FD": 0.9999999999999998,
+      "not_absolute_galaxy_xi": true
+    },
+    {
+      "z_illustrative_not_measured_effective_z": 1.0,
+      "v_parallel_abs_kms_illustrative_not_measured_eBOSS": 200.0,
+      "q_res": 0.11899582758396476,
+      "f_plus_over_FD": 0.8170965688700382,
+      "f_minus_over_FD": 1.182903431129962,
+      "f_plus_minus_f_minus_over_FD": -0.36580686225992376,
+      "pair_mean_over_FD": 1.0,
+      "not_absolute_galaxy_xi": true
+    },
+    {
+      "z_illustrative_not_measured_effective_z": 1.0,
+      "v_parallel_abs_kms_illustrative_not_measured_eBOSS": 400.0,
+      "q_res": 0.23799165516792953,
+      "f_plus_over_FD": 0.7336911190219922,
+      "f_minus_over_FD": 1.266308880978008,
+      "f_plus_minus_f_minus_over_FD": -0.5326177619560158,
+      "pair_mean_over_FD": 1.0000000000000002,
+      "not_absolute_galaxy_xi": true
+    }
+  ],
+  "resonant_ratio_reference": "Conditional linear-response Eq.(14)-(19) in Okoli et al. MNRAS 468 (2017) 2164-2175; ratio only at equal halo potential, relative line-of-sight speed, source mass and phase-space convention.",
+  "redshift_midpoint_z_0p95_is_not_eBOSS_measured_z_eff": true,
+  "velocity_values_are_not_eBOSS_measured_relative_velocity": true,
+  "raw_CLASS_transfer_and_absolute_wake_phase_not_computed": true,
+  "eBOSS_LRG_ELG_absolute_xi_ell_not_computed": true,
+  "physical_eBOSS_tracer_coupling_not_calibrated": true,
+  "A03_pair_redshift_conditional_window_not_certified": true,
+  "A04_eBOSS_covariance_not_available": true,
+  "observed_galaxy_rows_read": false,
+  "observed_random_rows_read": false,
+  "observed_odd_data_vector_read": false,
+  "science_acceptance_or_detection": false,
+  "no_download_or_new_seeds_or_cuts": true,
+  "frozen_source_csv_sha256": "bf8f48deb9514c5101d5ce314bfbd397485102a5487da1039f141e3cad6143d0",
+  "frozen_source_csv_rows": 4000
+}

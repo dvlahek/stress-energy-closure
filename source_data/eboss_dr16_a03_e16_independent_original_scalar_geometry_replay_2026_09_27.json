@@ -1,0 +1,189 @@
+{
+  "date": "2026-09-27",
+  "status": "E16_INDEPENDENT_STANDARD_LIBRARY_ORIGINAL_E14_E15_E16_EXACT_SCALAR_GEOMETRY_AND_72_24_REPLAY_PASS",
+  "original_full_SHA256": {
+    "E14": "0f1efb45593cd51d9ffa1818157bdd52baba525a8fc4bb9cc30c12d98ba91fd8",
+    "E15": "6062aed4b581f2db89192bd1c1cf2639a74b6a313db9e10dca9e53041a95d983",
+    "E16": "5d81f95a5571175f06eb032b865285ba34804701693f76af392be7fc31fb06db"
+  },
+  "method": "Completely separate source-only scalar-triangle and SHA-gated original 72/24 replay, no E16 original code import, NumPy, CLASS, FITS or survey data.",
+  "original_short_long_pairs": 12,
+  "independent_scalar_orientation_probes_per_pair": 48,
+  "original_state_source_cases": 72,
+  "original_plus_minus_contrasts": 24,
+  "independent_numeric_checks": 144,
+  "max_scaled_replay_gap": 2.220446049250313e-16,
+  "pairs_with_unavailable_original_Pcb_short_leg_support": [
+    [
+      0.05,
+      0.001
+    ],
+    [
+      0.05,
+      0.002
+    ],
+    [
+      0.05,
+      0.003
+    ],
+    [
+      0.05,
+      0.005
+    ],
+    [
+      0.1,
+      0.001
+    ],
+    [
+      0.1,
+      0.002
+    ],
+    [
+      0.1,
+      0.003
+    ],
+    [
+      0.1,
+      0.005
+    ]
+  ],
+  "each_case": [
+    {
+      "k_short_h_Mpc": 0.05,
+      "K_long_h_Mpc": 0.001,
+      "ratio": 0.02,
+      "fractional_single_leg_static_inverse_k2_envelope": [
+        0.9802960494069208,
+        1.0203040506070808
+      ],
+      "sample_48": true,
+      "outside_original_three_CLASS_k_support": true
+    },
+    {
+      "k_short_h_Mpc": 0.05,
+      "K_long_h_Mpc": 0.002,
+      "ratio": 0.04,
+      "fractional_single_leg_static_inverse_k2_envelope": [
+        0.9611687812379854,
+        1.0412328196584757
+      ],
+      "sample_48": true,
+      "outside_original_three_CLASS_k_support": true
+    },
+    {
+      "k_short_h_Mpc": 0.05,
+      "K_long_h_Mpc": 0.003,
+      "ratio": 0.06,
+      "fractional_single_leg_static_inverse_k2_envelope": [
+        0.9425959091337544,
+        1.0628122010840686
+      ],
+      "sample_48": true,
+      "outside_original_three_CLASS_k_support": true
+    },
+    {
+      "k_short_h_Mpc": 0.05,
+      "K_long_h_Mpc": 0.005,
+      "ratio": 0.09999999999999999,
+      "fractional_single_leg_static_inverse_k2_envelope": [
+        0.9070294784580498,
+        1.10803324099723
+      ],
+      "sample_48": true,
+      "outside_original_three_CLASS_k_support": true
+    },
+    {
+      "k_short_h_Mpc": 0.075,
+      "K_long_h_Mpc": 0.001,
+      "ratio": 0.013333333333333334,
+      "fractional_single_leg_static_inverse_k2_envelope": [
+        0.9867988246129556,
+        1.0134678618080268
+      ],
+      "sample_48": true,
+      "outside_original_three_CLASS_k_support": false
+    },
+    {
+      "k_short_h_Mpc": 0.075,
+      "K_long_h_Mpc": 0.002,
+      "ratio": 0.02666666666666667,
+      "fractional_single_leg_static_inverse_k2_envelope": [
+        0.9738573407202213,
+        1.027209642074507
+      ],
+      "sample_48": true,
+      "outside_original_three_CLASS_k_support": false
+    },
+    {
+      "k_short_h_Mpc": 0.075,
+      "K_long_h_Mpc": 0.003,
+      "ratio": 0.04,
+      "fractional_single_leg_static_inverse_k2_envelope": [
+        0.9611687812379854,
+        1.0412328196584757
+      ],
+      "sample_48": true,
+      "outside_original_three_CLASS_k_support": false
+    },
+    {
+      "k_short_h_Mpc": 0.075,
+      "K_long_h_Mpc": 0.005,
+      "ratio": 0.06666666666666667,
+      "fractional_single_leg_static_inverse_k2_envelope": [
+        0.9365244536940686,
+        1.070154577883472
+      ],
+      "sample_48": true,
+      "outside_original_three_CLASS_k_support": false
+    },
+    {
+      "k_short_h_Mpc": 0.1,
+      "K_long_h_Mpc": 0.001,
+      "ratio": 0.01,
+      "fractional_single_leg_static_inverse_k2_envelope": [
+        0.990074503106359,
+        1.01007550314386
+      ],
+      "sample_48": true,
+      "outside_original_three_CLASS_k_support": true
+    },
+    {
+      "k_short_h_Mpc": 0.1,
+      "K_long_h_Mpc": 0.002,
+      "ratio": 0.02,
+      "fractional_single_leg_static_inverse_k2_envelope": [
+        0.9802960494069208,
+        1.0203040506070808
+      ],
+      "sample_48": true,
+      "outside_original_three_CLASS_k_support": true
+    },
+    {
+      "k_short_h_Mpc": 0.1,
+      "K_long_h_Mpc": 0.003,
+      "ratio": 0.03,
+      "fractional_single_leg_static_inverse_k2_envelope": [
+        0.9706617486471405,
+        1.0306887577623747
+      ],
+      "sample_48": true,
+      "outside_original_three_CLASS_k_support": true
+    },
+    {
+      "k_short_h_Mpc": 0.1,
+      "K_long_h_Mpc": 0.005,
+      "ratio": 0.049999999999999996,
+      "fractional_single_leg_static_inverse_k2_envelope": [
+        0.9518143961927424,
+        1.051939513477975
+      ],
+      "sample_48": true,
+      "outside_original_three_CLASS_k_support": true
+    }
+  ],
+  "geometrical_fractional_inverse_k2_prefactor_is_NOT_actual_bispectrum_uncertainty": true,
+  "finite_K_physical_three_point_source_calibrated": false,
+  "observed_odd_sealed": true,
+  "new_mock_catalogue_DOWNLOAD": false,
+  "main_untouched": true
+}

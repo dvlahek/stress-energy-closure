@@ -1,0 +1,103 @@
+name: eBOSS DR16 A03E17B frozen two-leg CLASS native transfer k-resolution audit
+on:
+  push:
+    branches:
+      - audit/eboss-elg-bit8-ra-orientation-20260925
+    paths:
+      - 'source_data/eboss_dr16_a03_e17b_native_transfer_k_resolution_prereg_2026-09-27.json'
+      - 'scripts/audit_eboss_dr16_a03_e17b_native_transfer_k_resolution.py'
+      - 'scripts/audit_eboss_dr16_a03_e17b_independent_native_array_scalar_replay.py'
+      - '.github/workflows/eboss_dr16_a03_e17b_native_transfer_k_resolution.yml'
+permissions:
+  contents: write
+jobs:
+  pinned-native-transfer-k-resolution:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    env:
+      PYTHONUNBUFFERED: '1'
+      OMP_NUM_THREADS: '1'
+      OPENBLAS_NUM_THREADS: '1'
+      MKL_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install original frozen E17A numerical backend
+        run: python -m pip install --upgrade pip setuptools wheel 'numpy==1.26.4' scipy cython
+      - name: Reject changed E8-E17A source or missing 576 frozen original triangles BEFORE CLASS
+        run: |
+          python -m py_compile scripts/audit_eboss_dr16_a03_e17b_native_transfer_k_resolution.py scripts/audit_eboss_dr16_a03_e17b_independent_native_array_scalar_replay.py
+          python -u scripts/audit_eboss_dr16_a03_e17b_native_transfer_k_resolution.py --self-test
+      - name: Fetch exact original CLASS commit only; no survey catalogue or mock downloads
+        run: |
+          git init class_public
+          git -C class_public remote add origin https://github.com/lesgourg/class_public.git
+          git -C class_public fetch --depth 1 origin e85808324f51fc694d12e3ed7439552a3c3f9540
+          git -C class_public checkout --detach FETCH_HEAD
+          test "$(git -C class_public rev-parse HEAD)" = "e85808324f51fc694d12e3ed7439552a3c3f9540"
+      - name: Install exact original CLASS Python backend
+        run: python -m pip install ./class_public
+      - name: Independently refine only native CLASS k sampling at 40/140 and 80/280 for each original F state
+        run: |
+          set -eu
+          for s in FD plus minus; do
+            python -u scripts/audit_eboss_dr16_a03_e17b_native_transfer_k_resolution.py --state "$s"
+          done
+      - name: Aggregate complete preregistered original full 576 by 2 by three-z CLASS field comparisons
+        run: python -u scripts/audit_eboss_dr16_a03_e17b_native_transfer_k_resolution.py --aggregate
+      - name: Separate pure-standard-library native-array interpolation and original E14 anchor replay
+        run: python -u scripts/audit_eboss_dr16_a03_e17b_independent_native_array_scalar_replay.py
+      - name: Permanently commit exact original three-state, joint and independent reports with SHA manifest to existing draft PR audit branch
+        run: |
+          set -eu
+          src=eboss_workspace/a03_physics_source/e17b_native_transfer
+          dst=source_data/eboss_dr16_a03_e17b_archived_CI_2026_09_27
+          mkdir -p "$dst"
+          for f in e17b_refined_native_CLASS_FD.json e17b_refined_native_CLASS_plus.json e17b_refined_native_CLASS_minus.json e17b_original_joint_native_CLASS_transfer_resolution.json e17b_independent_native_array_scalar_replay.json; do
+            test -s "$src/$f"
+            cp "$src/$f" "$dst/$f"
+          done
+          python - <<'PY'
+          import hashlib,json,os,pathlib
+          d=pathlib.Path("source_data/eboss_dr16_a03_e17b_archived_CI_2026_09_27")
+          f=[]
+          for x in sorted(d.glob("*.json")):
+              if x.name=="archive_manifest.json":continue
+              raw=x.read_bytes()
+              f.append({"file":x.name,"size_bytes":len(raw),"sha256":hashlib.sha256(raw).hexdigest()})
+          assert len(f)==5 and min(r["size_bytes"] for r in f)>300
+          obj={"date":"2026-09-27","CI_run_id":os.environ.get("GITHUB_RUN_ID"),
+               "E17B_prospective_protocol_git_blob":"d0389e336de9e9964cade589fc17594a595f2e17",
+               "E17A_original_joint_sha256":"094c49cb89d6dd231a5cbc16ecdfe455bcb3938ddec375fd28c81c8098ab2ad9",
+               "original_CLASS_commit":"e85808324f51fc694d12e3ed7439552a3c3f9540",
+               "new_survey_catalogue_mock_download":False,"observed_odd_SEALED":True,
+               "physical_halo_tracer_B":"BLOCKED","main_untouched":True,
+               "PR_remains_draft":True,"files":f}
+          (d/"archive_manifest.json").write_text(json.dumps(obj,indent=2)+"\n")
+          for row in f:print("E17B_PERMANENT_FULL_SOURCE",row["file"],row["sha256"],flush=True)
+          PY
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "$dst"
+          if git diff --cached --quiet; then
+            echo E17B_SOURCE_ALREADY_COMMITTED
+          else
+            git commit -m "archive(E17B): original refined native CLASS both-leg vTk grids and independent SHA replay"
+            git pull --rebase origin audit/eboss-elg-bit8-ra-orientation-20260925
+            git push origin HEAD:refs/heads/audit/eboss-elg-bit8-ra-orientation-20260925
+          fi
+          echo E17B_ORIGINAL_AND_INDEPENDENT_REPORTS_PERMANENT_GITHUB_AUDIT_BRANCH
+      - name: Evaluate prospectively frozen engineering-candidate thresholds AFTER archiving even failed numerical diagnostic
+        run: python -u scripts/audit_eboss_dr16_a03_e17b_native_transfer_k_resolution.py --check
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: eboss-a03-e17b-refined-native-CLASS-transfer-source-only
+          path: eboss_workspace/a03_physics_source/e17b_native_transfer/*.json
+          if-no-files-found: warn
+          retention-days: 30

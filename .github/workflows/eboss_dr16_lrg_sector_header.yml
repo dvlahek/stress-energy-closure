@@ -1,0 +1,26 @@
+name: eBOSS DR16 LRG full FITS sector-header source-only test
+
+on:
+  push:
+    branches:
+      - audit/eboss-elg-bit8-ra-orientation-20260925
+    paths:
+      - 'scripts/audit_eboss_dr16_lrg_full_sector_header.py'
+      - 'source_data/eboss_dr16_lrg_sector_header_protocol_2026-09-25.json'
+      - '.github/workflows/eboss_dr16_lrg_sector_header.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  synthetic-header-no-data-rows:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Test SHA-pinned LRG veto manifest and bounded FITS header without catalogue rows
+        run: python -u scripts/audit_eboss_dr16_lrg_full_sector_header.py --self-test

@@ -1,0 +1,59 @@
+{
+  "stage": "A03E19_RETROSPECTIVE_CONDITIONAL_FOURIER_SHAPE_AND_MARGINAL_RR_NONIDENTIFIABILITY",
+  "date": "2026-09-29",
+  "status": "FROZEN_E10_SOURCE_DERIVED_MATHEMATICAL_RESULT_NO_REAL_NEW_DATA",
+  "classification": "EXPLICITLY_POSTHOC_MATH_DERIVATION_FROM_ALREADY_SEEN_E10_VALUES_NO_PRIOR_PHYSICAL_ACCEPTANCE_THRESHOLD",
+  "original_E10_summary_path": "source_data/eboss_dr16_a03_e10_frozen_conditional_angular_wind_parity_summary_2026-09-27.json",
+  "original_E10_summary_git_blob": "a9e0f49a58b9fd5e0ad975d4d14ba6521a648c28",
+  "original_E10_protocol_git_blob": "d9de48012103eaa07d531e11bca9cef285e62545",
+  "original_E6_mathematical_protocol_git_blob": "4df20872cff5b3d8aa09831ab50b22fa5f8b6581",
+  "scope": "Only conditional E10 Fourier ell1/ell3 at one k,z, unit deltaBias Pcb; no physical galaxy xi window, selection sign, data likelihood or sensitivity forecast.",
+  "source_node": {
+    "z_midpoint_not_measured_zeff": 0.95,
+    "k_h_per_Mpc": 0.05,
+    "wind": "frozen_E9_positive_one_sigma_LOS_not_per_halo_velocity"
+  },
+  "conditional_per_unit_deltaBias_Pcb": {
+    "FD": {
+      "T1": 0.00026888572322902307,
+      "T3": 0.00017614445289763344,
+      "T3_over_T1": 0.6550903885201916
+    },
+    "Fplus": {
+      "T1": 0.00022278876746842203,
+      "T3": 0.00014150296987877026,
+      "T3_over_T1": 0.6351440940523486
+    },
+    "Fminus": {
+      "T1": 0.0003147616400323981,
+      "T3": 0.00021061456076441418,
+      "T3_over_T1": 0.6691239782037476
+    }
+  },
+  "conditional_shape_algebra": {
+    "determinant_Fplus_Fminus_T1_T3": 2.382851535110157e-9,
+    "angle_between_conditional_2D_vectors_radians": 0.023841179533334908,
+    "absolute_ratio_difference_Fminus_minus_Fplus": 0.033979884151398965,
+    "relative_ratio_difference_over_Fplus": 0.05349948849339114,
+    "non_collinear_at_this_node": true,
+    "quadrature_256_vs_512_max_relative_gap_from_frozen_E10": 0.0000016155759955262566,
+    "not_eBOSS_measurable_shape_or_sigma": true
+  },
+  "marginal_RR_identifiability_theorem": {
+    "latent_sign_prior": "p_plus=p_minus=1/2",
+    "source_sign": "T_plus=t_F; T_minus=-t_F",
+    "observable_marginal_RR_at_each_pair_coordinate": "R(x)=[W_plus(x)+W_minus(x)]/2",
+    "same_marginal_RR_constructive_family": "W_plus(x)=R(x)*(1+eta(x)), W_minus(x)=R(x)*(1-eta(x)), -1<=eta(x)<=1",
+    "weighted_selected_conditional_mean": "[W_plus*T_plus+W_minus*T_minus]/[W_plus+W_minus]=eta(x)*t_F(x) when total weight is positive",
+    "inference": "R(x) alone does not identify eta(x) or the EV intrinsic unconditioned mean; same positive R is consistent with eta=0 and eta!=0; original released tracer-specific randoms are not tagged with latent neutrino-CDM wind sign.",
+    "common_sign_independent_linear_window": "A fixed linear operator M applied to symmetric mean T_plus+T_minus=0 returns 0 for the EV intrinsic term; standard even-to-odd leakage is separate.",
+    "generality_limits": "Two-state locally uniform wind toy, fixed equal magnitude and paired coordinates. No universal claim for nonlinear galaxy bias, genuine velocity-density correlations, relativistic terms, full survey window, or actual eBOSS odd mean.",
+    "bounded_mean_only_if_fixed_t_F_and_nonnegative_weights": "-abs(t_F)<=eta*t_F<=abs(t_F); this is only a toy conditional-source bound, not a bound on full galaxy EV or systematic terms."
+  },
+  "science_decision": "Original unweighted eBOSS 24D cannot be assigned a nonzero EV mean from original E10 conditional source and marginal released RR alone. Conditional angular noncollinearity is a theoretical fingerprint only; a genuine external halo/tracer sign response or independently velocity-conditioned estimator must be supplied before physical inference.",
+  "original_E4_E8_E10_E16_E18_unchanged": true,
+  "no_new_class_fits_mock_ASDF_or_WSL": true,
+  "no_observed_odd_access": true,
+  "no_covariance_inverse_or_snr": true,
+  "main_unchanged_draft_PR_only": true
+}

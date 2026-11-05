@@ -1,0 +1,36 @@
+{
+  "study": "Blinded eBOSS DR16 ELG bit8 official production-reference filename discovery",
+  "registered_on": "2026-09-25",
+  "parent_source_audit": "source_data/eboss_dr16_elg_bit8_ra_orientation_protocol_2026-09-25.json",
+  "official_root": "https://portal.nersc.gov/project/cosmo/data/sdss/dr17/eboss/lss/catalogs/DR16/",
+  "root_listing_sha256": "7e09e85c629b84de4879a99ca2db3f6cc84a317cde87d999a11dd8fead94dee7",
+  "method": "Retrieve/read ONLY the official root directory HTML listing, pin and compare exact SHA256 to previous independently audited official root index, then list release filename candidates without opening FITS, target/random coordinates or bit flags. No recursive scan, FITS download or mask application.",
+  "byte_cap": 16777216,
+  "candidate_name_tokens": [
+    "elg",
+    "mask",
+    "veto",
+    "bit",
+    "full",
+    "target"
+  ],
+  "known_nonreference_globs": [
+    "eBOSS_ELG_clustering_data-*",
+    "eBOSS_ELG_clustering_random-*"
+  ],
+  "rejected_evidence": [
+    "Filenames alone do not establish a reference bitmap, pre-veto production output, pipeline origin or bit-8 semantics",
+    "Post-veto clustering random absence cannot decide which mapping generated bit8",
+    "SDSS EBOSS_TARGET1 ELG1_NGC/SGC target bits are unrelated to brickmask ELG extra bit8",
+    "Root index SHA change must be reported, not silently repinned"
+  ],
+  "positive_reference_gate": "Require independently authenticated official bit-coded pre-veto catalog or production mask bitmap with exact release/version and source SHA256, both positive and negative bit8 positions, full declared RA/DEC coordinate contract, and comparison against literal, units-only reflected, and native RA candidates.",
+  "official_reference_found": false,
+  "official_bit8_applied": false,
+  "physical_mask_certified": false,
+  "observed_galaxy_data_read": false,
+  "mock_galaxy_data_read": false,
+  "observed_random_positions_read": false,
+  "mock_random_positions_read": false,
+  "observed_odd_data_vector_read": false
+}

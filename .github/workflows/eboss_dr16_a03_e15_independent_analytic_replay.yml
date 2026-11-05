@@ -1,0 +1,52 @@
+name: eBOSS DR16 A03E15 independent original 72-case angular parity replay
+on:
+  push:
+    branches:
+      - audit/eboss-elg-bit8-ra-orientation-20260925
+    paths:
+      - 'scripts/audit_eboss_dr16_a03_e15_independent_analytic_parity_replay.py'
+      - '.github/workflows/eboss_dr16_a03_e15_independent_analytic_replay.yml'
+permissions:
+  contents: write
+jobs:
+  independent-original-analytic-replay:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    env:
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Independent original archived E14/E15 source SHA, 72 x angular identity and 24 Fplus minus contrasts
+        run: |
+          python -m py_compile scripts/audit_eboss_dr16_a03_e15_independent_analytic_parity_replay.py
+          python -u scripts/audit_eboss_dr16_a03_e15_independent_analytic_parity_replay.py
+      - name: Permanently save independent retrospective original-source E15 analytic audit to draft branch
+        run: |
+          set -eu
+          src=eboss_workspace/a03_physics_source/e15_independent_analytic_replay.json
+          dest=source_data/eboss_dr16_a03_e15_independent_original_72_angular_replay_2026_09_27.json
+          test -s "$src"
+          cp "$src" "$dest"
+          sha256sum "$dest"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "$dest"
+          if git diff --cached --quiet; then
+            echo E15_INDEPENDENT_REPLAY_ALREADY_PERMANENT
+          else
+            git commit -m "audit(E15): independent 72 original long LOS parity cases and 24 Fplus-minus toy selection contrasts"
+            git push origin HEAD:refs/heads/audit/eboss-elg-bit8-ra-orientation-20260925
+          fi
+          echo E15_INDEPENDENT_ANALYTIC_CERTIFICATE_PERMANENT_GITHUB
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: eboss-a03-e15-independent-original-72-analytic-angular-parity
+          path: eboss_workspace/a03_physics_source/e15_independent_analytic_replay.json
+          if-no-files-found: warn
+          retention-days: 30

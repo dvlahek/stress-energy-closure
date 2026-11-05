@@ -1,0 +1,116 @@
+{
+  "date": "2026-09-28",
+  "status": "E17D2B3B0_PROSPECTIVE_OFFICIAL_ABACUS_C000_ACCESS_INVENTORY_CONTRACT_BEFORE_NEW_CI_OR_ACTUAL_DATA",
+  "stage": "E17D2B3B0_NO_DOWNLOAD_DRY_RUN_AND_LOCALLY_ACTIONABLE_SMALL_SUPERSLAB_TRANSFER_ACCEPTANCE",
+  "parent_audit_head_at_registration": "b76ec040e8cc7e74822eda98644e5dc9bf19ab5f",
+  "aim": "Replace speculative local bulk downloads with a tested fail-closed metadata-only accession and validation contract. No actual halo files, observed galaxies or numerical wake data. Produce a ready-to-use stub and a noisy WSL dry-run command; real downloading, reading ASDF header and building a physical halo history require a NEW separately preregistered future stage.",
+  "immutable_science_parents": {
+    "E8_frozen_4000q_sha256": "bf8f48deb9514c5101d5ce314bfbd397485102a5487da1039f141e3cad6143d0",
+    "E16_frozen_576_triangle_sha256": "5d81f95a5571175f06eb032b865285ba34804701693f76af392be7fc31fb06db",
+    "E17A_CLASS_original_joint_sha256": "094c49cb89d6dd231a5cbc16ecdfe455bcb3938ddec375fd28c81c8098ab2ad9",
+    "E17D2b2_official_metadata_original_sha256": "b8da4d6c33235ed82e76f548f2eb052e0fcd751a42672f48d8fffff153ac6926",
+    "E17D2b3a_original_l1_m200c_proof_sha256": "0b098291122eb51cbd3e113e7edd2276ba7c9b7c38669008486f0f73f897277e",
+    "E17D2b3a_independent_proof_sha256": "401a3a6aa8773d165029a5dfa9b2b2123edf24eff8193b64979208c8f4308e9f",
+    "E17D2b3a_SHA_archive_manifest_git_blob": "a5557fc2ae5ec49704fbd70a8efc980d279e5555",
+    "E17D2b3a_prereg_git_blob": "81554b0f7cdefa599f302d828ab3529812bb3a59",
+    "current_master_plan_v136_git_blob": "fade17c44dedb8e47fb6c2cc12fbb52a33d9427e",
+    "main_stable_sha": "e50549a5c974772eb9576d301df7a5ea6e6d87d2"
+  },
+  "primary_documented_official_sources": [
+    {
+      "url": "https://abacussummit.readthedocs.io/en/latest/data-access.html",
+      "facts": "Raw first-release DOI 10.13139/OLCF/1811689 vs cleaned halo DOI 10.13139/OLCF/1828535. NERSC public 750TB subset can select small files, Constellation tape may bundle full base halos 6.6TB; trees may require browsing via Globus. Neither release DOI alone proves that exact merger tree of candidate box/phase is accessible."
+    },
+    {
+      "url": "https://abacussummit.readthedocs.io/en/latest/data-products.html",
+      "facts": "At secondary z~.950 halo_info plus PID subsample only, actual z in ASDF header not directory; halo_info CompaSO L1 N and SO_radius, SODensityL1 epoch-specific relative cosmic mean, provider checksums.crc32 must be compared with GNU/POSIX cksum."
+    },
+    {
+      "url": "https://abacussummit.readthedocs.io/en/latest/disk-space.html",
+      "facts": "Example base box secondary z0.950 halo_info total 75755 MB; full secondary z0.950 products 101105 MB. These are published indicative totals, NOT actual selected superslab bytes or local free-space measurements."
+    },
+    {
+      "url": "https://abacusutils.readthedocs.io/en/latest/compaso.html",
+      "facts": "A single superslab halo_info_XXX.asdf and selected fields can be read to reduce IO; cleaned=True automatically reads auxiliary cleaning data and requires consistent tree product, no downloaded file exists yet. Full fields='all' can load additional progenitor data and is not an IO-free metadata operation."
+    }
+  ],
+  "candidate_not_a_science_sample": {
+    "prospective_simulation_name": "AbacusSummit_base_c000_ph000",
+    "candidate_only_not_selected_phase_for_science": true,
+    "directory_label_for_ACCESS_INVENTORY_only": "z0.950",
+    "actual_header_z": "UNREAD_AND_UNVERIFIED",
+    "prefer_narrow_1_superslab_halo_info_metadata_when_provider_file_exists": true,
+    "exact_superslab_number": "UNSELECTED_REQUIRES_PROVIDER_INVENTORY",
+    "exact_merger_tree_filename_and_cleaning_product": "UNVERIFIED_REQUIRES_PROVIDER_INVENTORY",
+    "no_mandated_original_E17A_redshift_rebin_or_new_science_cuts": true,
+    "cannot_validate_real_200critical_halo_mass_from_1_halo_info_superslab_alone": true
+  },
+  "prospective_locked_dry_run_candidate_template": {
+    "schema": "E17D2b3b0_ABACUS_C000_CANDIDATE_ACCESS_INVENTORY_ONLY",
+    "real_data_access_authorized": false,
+    "simulation_candidate": "AbacusSummit_base_c000_ph000",
+    "phase_and_box_independently_verified": false,
+    "release_selection": "UNSELECTED_RAW_OR_CLEANED",
+    "raw_official_release_doi": "10.13139/OLCF/1811689",
+    "cleaned_official_release_doi": "10.13139/OLCF/1828535",
+    "exact_provider_item_or_globus_path": null,
+    "selected_products_inventory": [],
+    "selected_transfer_bytes_verified": null,
+    "local_storage_bytes_verified": null,
+    "actual_halo_ASDF_header_read": false,
+    "actual_ASDF_redshift": null,
+    "directory_redshift_label_only": "z0.950",
+    "local_file_sha256_verified": false,
+    "provider_POSIX_cksum_verified": false,
+    "true_particle_mass_and_units_from_header_verified": false,
+    "actual_SODensityL1_reference_species_and_units_verified": false,
+    "source_mass_definition": "COMPASO_L1_NOT_M200C",
+    "exact_real_M200c_200critical_provider_or_full_particle_remeasurement_verified": false,
+    "full_particle_inventory_including_field_and_padding_verified": false,
+    "tree_product_actual_availability_and_branch_verified": false,
+    "raw_cleaned_tree_mass_definition_and_epochs_consistent": false,
+    "original_CLASS_As_tau_and_Fplus_Fminus_neutrino_response_consistent": false,
+    "actual_LRG_ELG_HOD_selection_verified": false,
+    "observed_odd_SEALED": true,
+    "any_real_ASDF_or_halo_catalogue_or_merger_tree_downloaded_in_this_stage": false,
+    "full_physical_finiteK_galaxy_bispectrum": "BLOCKED"
+  },
+  "prospective_acceptance_sequence": [
+    "1 official provider: select raw or cleaned accession and verify actual candidate c000 box/phase+release version, actual data item URI, exact superslab/epoch and merge-tree product availability; do not invent item paths.",
+    "2 BEFORE transfer: provider item size and available local space with margin recorded, permissions/Globus access established; do not transfer 6.6TB tar or ~75GB total halo_info by default.",
+    "3 ONLY after separate approved new stage: fetch just provider-listed necessary file(s), store exact size, GNU/POSIX cksum from official per-directory checksums.crc32 and local SHA256, no fake zlib checksum equivalence.",
+    "4 extract ACTUAL redshift, h, cosmology, particle mass/units, SO density reference species and threshold and any SO-radius sentinel flag from real ASDF header. Directory z0.950 is not actual z.",
+    "5 select raw or cleaned consistently for every tree node and verify original halo ID, progenitor/descendant across actual headers; raw DOI and cleaned DOI cannot be silently mixed.",
+    "6 validated provider-defined M200c at each actual epoch or properly supported full-particle incl field+periodic-padding remeasurement at 200rho_crit; L1 N*particle_mass, SO_radius, 10percent RV and secondary PID-only do not suffice.",
+    "7 independent cosmology As/tau and original F+/F- nonlinear neutrino wake comparison plus actual high-z LRG/ELG HOD/selection; halo merger tree alone cannot generate a physical galaxy finite-K bispectrum."
+  ],
+  "negative_controls_precommitted": [
+    "template with no true ASDF header is always BLOCKED",
+    "fake actual ASDF z copied from directory z0.950 is BLOCKED",
+    "release chosen but no exact provider file path/verified item size is BLOCKED",
+    "raw vs cleaned tree inconsistent is BLOCKED",
+    "zlib CRC32 claimed as official GNU POSIX cksum is BLOCKED",
+    "single superslab halo_info L1 renamed M200c is BLOCKED",
+    "10 percent positions or PID-only claimed full halo/field mass is BLOCKED",
+    "file path or SHA typed into JSON without verified source bytes is BLOCKED",
+    "all JSON flags force-set true remains BLOCKED because no real-file verifier exists in THIS version",
+    "observed odd unsealed must FAIL-CLOSED",
+    "original immutable E8/E16/E17A/E17D2b2/E17D2b3a hash mutation must FAIL-CLOSED"
+  ],
+  "success_definition": "GitHub CI success certifies only immutable parent sources, a deterministic file-free template and a blocked dry-run decision with explicit missing conditions. It NEVER reports real data READY. An actual Abacus ASDF/header/tree/M200c requires a new separate prereg/authorized data stage and real SHA+POSIX checksum verification.",
+  "artifacts": "template JSON, original deterministic blocked dry-run report, source-only job CI artifact and SHA manifest committed to audit branch only after PASS. Short docs and master plan update after PASS. No need for local WSL today.",
+  "absolute_STOP": {
+    "no_actual_Abacus_ASDF_header_or_halo_particle_tree_data_read_or_download": true,
+    "no_new_halo_catalogue_or_mock_or_FITS_or_CLASS_execution": true,
+    "no_observed_galaxy_or_odd_read_or_unblind": true,
+    "no_new_science_cuts_or_seeds": true,
+    "no_invented_merger_tree_or_ASDF_file_provider_path": true,
+    "no_synthetic_manifest_claimed_real_data_ready": true,
+    "no_L1_SO_radius_equal_M200c_without_real_validation": true,
+    "no_secondary_directory_redshift_claimed_actual_header_redshift": true,
+    "no_Abacus_smooth_neutrino_halo_tree_claimed_E8_Fplus_Fminus_wake": true,
+    "no_finiteK_galaxy_bispectrum_eBOSS_3pt_window_or_significance": true,
+    "observed_odd_SEALED": true,
+    "main_untouched_PR_draft": true
+  }
+}

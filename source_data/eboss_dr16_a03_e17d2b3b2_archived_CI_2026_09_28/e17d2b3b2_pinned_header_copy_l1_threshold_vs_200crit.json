@@ -1,0 +1,37 @@
+{
+  "date": "2026-09-28",
+  "status": "E17D2B3B2_PINNED_OFFICIAL_EMBEDDED_HEADER_COPY_L1_THRESHOLD_AND_PARTICLE_MASS_MATCH_ORIGINAL_SOURCE_NO_ACTUAL_HALO_ASDF",
+  "prospective_protocol_git_blob": "324e722200997b21a0fa97d965b8ef096e1587e6",
+  "original_E17D2b3b1_source_copy_sha256": "aacd9b4f6e3dd63fb353c72488669e7eb01e365d48c220664a0dfda8dc9e0673",
+  "official_commit": "24ab0dda5fea9ae406b1afdacaf4bbf989de9bc6",
+  "official_metadata_git_blob": "0065029cdd515ffa76c61a27b81e9f16b2656f38",
+  "official_metadata_sha256": "1c8b690acedd2a61a6a033be3173f79bb7e8cadbcb4a9e97e5db10ee4f10308e",
+  "official_metadata_bytes": 9486279,
+  "simname": "AbacusSummit_base_c000_ph000",
+  "state_key": "z0.950",
+  "official_source_copy_six_exact_numeric_fields": {
+    "Redshift": 0.952838237036305,
+    "ScaleFactor": 0.5120751842291016,
+    "OmegaNow_m": 0.774150059509772,
+    "SODensityL1": 228.52306365966797,
+    "ParticleMassHMsun": 2109081520.453063,
+    "ParticleMassMsun": 3131059264.330557
+  },
+  "copy_delta_200critical_in_mean_cosmic_density_units": 258.3478455412757,
+  "copy_L1_SO_threshold_over_200critical_SO_threshold": 0.8845557166574369,
+  "ratio_interpretation": "ONLY threshold-density comparison using official mean cosmic density and source-copy OmegaNow_m; NOT an individual halo mass, radius conversion, neutrino wake or measured LRG/ELG quantity.",
+  "Decimal_40digit_independent_copy_threshold_ratio_gap": 1.1102230246251565e-16,
+  "Decimal_40digit_independent_copy_target_gap": 0.0,
+  "two_same_pinned_official_copy_decodes_agree": true,
+  "synthetic_tampered_copy_field_negative_tests_rejected": [
+    "ZERO_L1_THRESHOLD",
+    "FABRICATED_DIRECTORY_REDSHIFT"
+  ],
+  "actual_halo_info_ASDF_byte_checksum_header_verified": false,
+  "actual_provider_halo_file_GNU_cksum_or_merger_tree_read": false,
+  "same_object_true_M200c_200critical_remeasured": false,
+  "original_frozen_E8_E16_and_observed_odd_unchanged": true,
+  "full_physical_finiteK_galaxy_bispectrum": "BLOCKED",
+  "observed_odd_SEALED": true,
+  "main_untouched_PR_draft": true
+}

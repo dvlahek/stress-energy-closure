@@ -1,0 +1,89 @@
+{
+  "stage": "A03E20_QUADRATIC_WIND_DENSITY_RESPONSE_MIXED_BISPECTRUM_STRUCTURAL_GATE",
+  "date": "2026-09-29",
+  "status": "SOURCE_ONLY_ORIGINAL_SOURCE_PINNED_EXACT_MOMENT_SYNTHETIC_CROSS_POWER_PASS_NO_PHYSICAL_BISPECTRUM",
+  "registration": "Prospective for E20 exact synthetic QA after E19 outcome known; no prospective E8/E19 physical significance claim",
+  "prospective_protocol": {
+    "path": "source_data/eboss_dr16_a03_e20_quadratic_wake_mixed_bispectrum_structural_protocol_2026-09-29.json",
+    "git_blob": "300f73be14306ccf45342592e842e30bda63b8c6"
+  },
+  "source_runner": {
+    "path": "scripts/audit_eboss_dr16_a03_e20_quadratic_wake_mixed_bispectrum.py",
+    "git_blob": "4168f3cd6c1c6ed8a38e0b2f87bcfac16e8fb7bf"
+  },
+  "parent_originals": {
+    "E10_source_only_git_blob": "a9e0f49a58b9fd5e0ad975d4d14ba6521a648c28",
+    "E19_math_git_blob": "fc5044684b84ff3de86c236988617ead79d8e7e6",
+    "E6_source_only_protocol_git_blob": "4df20872cff5b3d8aa09831ab50b22fa5f8b6581",
+    "E17D1_external_history_doc_git_blob": "3a536aa384eec1a202e77c532beb3a55c7333cb2"
+  },
+  "CI": {
+    "final_math_only_run_id": 36563347448,
+    "final_math_only_run_commit": "435c3df3d0936be6056e3a2fc35942c2bde6d01c",
+    "final_math_only_conclusion": "SUCCESS",
+    "negative_controls_passed": 5,
+    "small_original_CI_artifact_id": 11030683184,
+    "small_original_CI_artifact_name": "E20_source_only_quadratic_wake_structural_moment_QA",
+    "original_artifact_bytes_not_materialized_or_rehashed_here": true,
+    "preceding_reader_schema_failure_run_id": 36563041019,
+    "preceding_failure_reason": "Reader requested E19 observed_odd_SEALED, actual immutable E19 source uses no_observed_odd_access; only reader field lookup corrected in commit 9f11d382caf02309e3c5a3e15d4e5e240a7f154c",
+    "final_reader_output_label_fix_commit": "435c3df3d0936be6056e3a2fc35942c2bde6d01c"
+  },
+  "model_only_first_order_equations": {
+    "response": "delta_a(k)=b_a delta(k)+lambda_a S(k); S(k)=integral_q Gamma_i(k,q;n,z) v_i(q) delta(k-q), with real-field Gamma_i(-k,-q)=Gamma_i(k,q)*",
+    "first_order_cross": "P_LE=b_L b_E P_delta+lambda_L b_E Q+b_L lambda_E Q*+O(lambda^2); Q=P_Sdelta",
+    "imaginary_odd": "Im P_LE^(1)=(lambda_L b_E-b_L lambda_E) Im Q for real coefficients and a common S",
+    "mixed_three_point": "Q(k)=integral_q Gamma_i(k,q) B_{v_i delta delta}(q,k-q,-k), with momentum delta removed",
+    "gaussian_null": "jointly centered Gaussian linear v,delta have B_vdelta_delta=0 even with nonzero P_vdelta; no first-order signal from this quadratic S",
+    "additional_spatial_parity_gate": "A real-space scalar S=v dot grad(delta) and scalar delta in homogeneous isotropic parity-invariant ensemble have real P_Sdelta; nonzero mixed B alone does not imply Im Q. An actual LOS-dependent response/selection or different observable is required.",
+    "limitations": "This does not exclude physically allowed linear-in-v observable/tracer response, standard relativistic Doppler, wind-conditioned estimator, higher-order O(lambda^2), or a physical bispectrum from nonlinear evolution."
+  },
+  "exact_four_state_synthetic_witnesses": {
+    "joint_sign_symmetric_nonzero_two_point": {
+      "definition": "V=X,D1=X,D2=X+Y; X,Y independent fair signs",
+      "means": [
+        "0",
+        "0",
+        "0"
+      ],
+      "pair_cross_moments": [
+        "1",
+        "1",
+        "1"
+      ],
+      "mixed_third_moment": "0",
+      "not_a_Gaussian_sample": true
+    },
+    "non_centrosymmetric_connected_third": {
+      "definition": "V=X,D1=Y,D2=XY; X,Y independent fair signs",
+      "means": [
+        "0",
+        "0",
+        "0"
+      ],
+      "pair_cross_moments": [
+        "0",
+        "0",
+        "0"
+      ],
+      "mixed_third_moment": "1",
+      "not_a_spatial_bispectrum_or_galaxy_simulation": true
+    },
+    "synthetic_complex_Q": {
+      "Q_real": 0.25,
+      "Q_imag": 0.125,
+      "LE_Im_bL2_bE3_lL1_lE1": 0.125,
+      "EL_Im_reverse": -0.125,
+      "equal_b_equal_lambda_Im": 0,
+      "equal_b_different_lambda_Im": -0.25,
+      "not_from_actual_mixed_B": true
+    }
+  },
+  "science_decision": "A genuinely nonzero unweighted 2pt EV intrinsic odd contribution from the restricted quadratic wake response requires a physically computed mixed B_vdelta_delta with LOS-odd response projection and validated b_L,b_E,lambda_L,lambda_E; if jointly centered Gaussian and linear, this first-order contribution vanishes. E17D1 missing halo force history prevents computing Gamma; existing E10 single-k positive-wind conditional T not a substitution.",
+  "no_new_real_data_or_source_download": true,
+  "no_observed_odd_access": true,
+  "no_WSL": true,
+  "no_E8_E16_original_frozen_change": true,
+  "no_eBOSS_covariance_or_snr": true,
+  "main_untouched_PR_draft": true
+}

@@ -1,0 +1,77 @@
+{
+  "status": "OFFICIAL_ELG_FOUR_SAMPLE_RAW_GZIP_SHA_FIRST_SEEN_ONLY",
+  "source_offline_index_report_sha256": "32104c056ab86637df1d236bdde04263ab18393b66302b690d70ce331102f2b7",
+  "official_inventory_sha256": "84a3a163ec0b28a5392dadc95aa757e469cb9cb6e94cc731aac2fa2958fc6c18",
+  "sampling_rule": "For each of the four official lexicographically sorted SHA-pinned lists, choose names[len(names)//2], exactly one filename per chunk. No resampling or substitutions if a file fails.",
+  "selected_filename_by_chunk": {
+    "eboss21": "mask-eboss21-3386m005.fits.gz",
+    "eboss22": "mask-eboss22-0226m005.fits.gz",
+    "eboss23": "mask-eboss23-1415p232.fits.gz",
+    "eboss25": "mask-eboss25-1538p312.fits.gz"
+  },
+  "samples": {
+    "eboss21": {
+      "source_url": "https://portal.nersc.gov/project/cosmo/data/sdss/dr17/eboss/lss/catalogs/DR16/ELGmasks/mask-eboss21-3386m005.fits.gz",
+      "local_path": "/home/dino/stress-energy-closure/eboss_workspace/quarantine_official_elg_sample_maskbits/eboss21/mask-eboss21-3386m005.fits.gz",
+      "compressed_file_bytes": 172308,
+      "full_compressed_file_sha256_first_seen": "064e535aba4caa7351f5ec64802421968724c1ea664b7eafc142a018a13049a9",
+      "http_status": 200,
+      "http_content_length": 172308,
+      "http_etag_if_available": "\"2a114-58d7cf84fe540\"",
+      "http_last_modified_if_available": "Fri, 12 Jul 2019 14:46:05 GMT",
+      "raw_gzip_magic_verified": true,
+      "gzip_decompressed": false,
+      "fits_header_or_pixels_read": false
+    },
+    "eboss22": {
+      "source_url": "https://portal.nersc.gov/project/cosmo/data/sdss/dr17/eboss/lss/catalogs/DR16/ELGmasks/mask-eboss22-0226m005.fits.gz",
+      "local_path": "/home/dino/stress-energy-closure/eboss_workspace/quarantine_official_elg_sample_maskbits/eboss22/mask-eboss22-0226m005.fits.gz",
+      "compressed_file_bytes": 188582,
+      "full_compressed_file_sha256_first_seen": "bec27e6ce17fba5336a48f87682ce491abcd603d1599d914d333dfacc8c2d0d8",
+      "http_status": 200,
+      "http_content_length": 188582,
+      "http_etag_if_available": "\"2e0a6-58d7cfe08bd40\"",
+      "http_last_modified_if_available": "Fri, 12 Jul 2019 14:47:41 GMT",
+      "raw_gzip_magic_verified": true,
+      "gzip_decompressed": false,
+      "fits_header_or_pixels_read": false
+    },
+    "eboss23": {
+      "source_url": "https://portal.nersc.gov/project/cosmo/data/sdss/dr17/eboss/lss/catalogs/DR16/ELGmasks/mask-eboss23-1415p232.fits.gz",
+      "local_path": "/home/dino/stress-energy-closure/eboss_workspace/quarantine_official_elg_sample_maskbits/eboss23/mask-eboss23-1415p232.fits.gz",
+      "compressed_file_bytes": 139821,
+      "full_compressed_file_sha256_first_seen": "faf180362b182aa9fb56221af4848462ff3ba801a437a4e1ceb2a43cdb2f569e",
+      "http_status": 200,
+      "http_content_length": 139821,
+      "http_etag_if_available": "\"2222d-58d7d05e6e640\"",
+      "http_last_modified_if_available": "Fri, 12 Jul 2019 14:49:53 GMT",
+      "raw_gzip_magic_verified": true,
+      "gzip_decompressed": false,
+      "fits_header_or_pixels_read": false
+    },
+    "eboss25": {
+      "source_url": "https://portal.nersc.gov/project/cosmo/data/sdss/dr17/eboss/lss/catalogs/DR16/ELGmasks/mask-eboss25-1538p312.fits.gz",
+      "local_path": "/home/dino/stress-energy-closure/eboss_workspace/quarantine_official_elg_sample_maskbits/eboss25/mask-eboss25-1538p312.fits.gz",
+      "compressed_file_bytes": 175454,
+      "full_compressed_file_sha256_first_seen": "ce2b3dc302a3998b1ac4e061989af7916ded6221a80a3643724063e6ed19fc27",
+      "http_status": 200,
+      "http_content_length": 175454,
+      "http_etag_if_available": "\"2ad5e-58d7d0ad96100\"",
+      "http_last_modified_if_available": "Fri, 12 Jul 2019 14:51:16 GMT",
+      "raw_gzip_magic_verified": true,
+      "gzip_decompressed": false,
+      "fits_header_or_pixels_read": false
+    }
+  },
+  "sample_gzip_bytes_downloaded_or_verified": true,
+  "gzip_or_fits_headers_parsed": false,
+  "fits_image_pixels_read": false,
+  "observed_catalogue_random_mock_rows_read": false,
+  "observed_odd_data_vector_read": false,
+  "new_mask_or_selection_applied": false,
+  "physical_elg_mask_certified": false,
+  "physical_lrg_elg_pair_window_certified": false,
+  "first_seen_gzip_sha256_NOT_OFFICIAL_PUBLISHED_REFERENCE": true,
+  "errors": [],
+  "total_four_sample_compressed_bytes": 676165
+}

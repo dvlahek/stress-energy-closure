@@ -1,0 +1,22 @@
+{
+  "date": "2026-09-28",
+  "CI_run_id": "36452295024",
+  "R1_prospective_corrective_prereg_git_blob": "534142340197c34160cb970a53cc86d8f7bcf57c",
+  "original_wrong_labeled_report_SHA_preserved": "39b83642737da1f29e71aade85a2ed7d854dbdb3ff02582b7f1d61d5d92cf340",
+  "upstream_source_builder_unfiltered_directory_iterdir_git_blob": "88dc7c198c1332d2a0204bb0d3c698fd1dcf28a5",
+  "35_is_DIRECTORY_ENTRY_COUNT_not_verified_ASDF_superslab_count": true,
+  "source_inventory_snapshot_NOT_live_provider_listing": true,
+  "no_real_halo_ASDF_Globus_data_transfer": true,
+  "original_E8_E16_and_observed_odd_unchanged": true,
+  "observed_odd_SEALED": true,
+  "full_physical_halo_tracer_bispectrum": "BLOCKED",
+  "main_untouched": true,
+  "PR_remains_draft": true,
+  "files": [
+    {
+      "file": "e17d2b3b3r1_corrected_directory_entry_count_not_ASDF_count.json",
+      "size_bytes": 3204,
+      "sha256": "08255cd1e30e9b88a05693e44997b701ce5ac4fdaa8d17853e41e254bf72f4ab"
+    }
+  ]
+}

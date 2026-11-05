@@ -1,0 +1,100 @@
+{
+  "date": "2026-09-27",
+  "status": "REGISTERED_AFTER_E14_ORIGINAL_72_STATE_SOURCE_AND_24_CONTRAST_REPLAY_BEFORE_E15_ANGULAR_CALCULATION",
+  "problem": "E14 stores reduced source S=B_source/(i mu_long DeltaBias) with incomplete triangle LOS orientation. Test exact long-LOS angular parity, null angle-averaged monopole, retained imaginary long dipole, and synthetic angular selection leakage before any eBOSS interpretation.",
+  "source_pins": {
+    "E14_original_full_json_path": "source_data/eboss_dr16_a03_e14_archived_CI_2026_09_27/e14_frozen_multik_direct_rank_unitbias_source_only.json",
+    "E14_original_full_json_sha256": "0f1efb45593cd51d9ffa1818157bdd52baba525a8fc4bb9cc30c12d98ba91fd8",
+    "E14_original_full_git_blob": "6ef0b2c3268a5bae9564b58abdd914328e861cba",
+    "E14_original_manifest_git_blob": "ba747f413988693278a6322bffe2da69d4c52d68",
+    "E14_independent_72_replay_git_blob": "02a8aed04da1cc692a5ac36982b63a10013e3594",
+    "E14_preregister_git_blob": "688c56b5486395911ff39ff6f862b405c1f446d7",
+    "E14_original_CLASS_commit": "e85808324f51fc694d12e3ed7439552a3c3f9540",
+    "E14_original_sha_pinned_E8": "bf8f48deb9514c5101d5ce314bfbd397485102a5487da1039f141e3cad6143d0",
+    "E13_original_full_json_sha256": "537365b2e758ec215810bb687557771440851cf2869d02578569b1d47d4ec98d"
+  },
+  "fixed_original_axes": {
+    "states": [
+      "FD",
+      "plus",
+      "minus"
+    ],
+    "k_short_comoving_h_per_Mpc": [
+      0.05,
+      0.075,
+      0.1
+    ],
+    "K_long_comoving_h_per_Mpc": [
+      0.001,
+      0.002,
+      0.003,
+      0.005
+    ],
+    "short_source_ell": [
+      1,
+      3
+    ],
+    "long_los_multipole_L": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "n_original_reduced_state_source": 72,
+    "n_original_Fplus_minus_Fminus_contrasts": 24,
+    "z_illustrative_not_measured_z_eff": 0.95
+  },
+  "angular_model": {
+    "mu_long": "dot(Khat,LOS_n) in [-1,1]",
+    "convention": "E14 exact archived real S_s,ell(k,K)=Bsource_s,ell/(i mu_long DeltaBias), units Mpc^6. Restore only Bsource/(DeltaBias)=i mu_long S. No k3=-k-K closure, triangle azimuth, short-long mode-coupling corrections, tracer selection or survey window is derived.",
+    "GL_nodes": [
+      32,
+      64
+    ],
+    "long_multipoles": "Imaginary coefficient b_L=(2L+1)/2 ∫ P_L(mu_long)*mu_long*S dmu_long.",
+    "predicted_necessary_null": "b_0=b_2=b_3=b_4=0; b_1=S by Legendre orthogonality in THIS deliberately separable E14 source model. Does not imply real galaxy bispectrum or anisotropic estimator has identical multipoles.",
+    "reality": "B(-K)=conjugate(B(K)) for i mu S real S; tracer swap changes sign of imaginary cross-tracer antisymmetric coefficient.",
+    "unnormalized_prototype": "Do not mix short ell1/3 labels with long-LOS L. Short-axis projection was already made in E13/E14 and the true triangle internal-angle geometry remains unavailable."
+  },
+  "selection_negative_controls": {
+    "epsilon_synthetic": 0.1,
+    "W_even": "1+epsilon*P2(mu_long)",
+    "W_odd": "1+epsilon*P1(mu_long)",
+    "norm": "weighted long-mode angular mean sum(w W ImB)/sum(w W), not real released eBOSS RR",
+    "expected_even_weighted_monopole_zero": true,
+    "expected_odd_weighted_monopole_over_i_unitbias": "epsilon*S/3 in the toy odd weight; completely synthetic, not measured eBOSS leakage",
+    "expected_even_window_long_dipole": "S*(1+2*epsilon/5)",
+    "expected_odd_window_long_dipole": "S",
+    "no_empirical_leakage_tolerance_from_toy": true
+  },
+  "numeric_QA": {
+    "source_SHAs_strict": true,
+    "compare_32_vs_64_relative_tolerance": 1e-12,
+    "legendre_null_absolute_over_max_1_absS_tolerance": 1e-12,
+    "analytic_iS_dipole_relative_tolerance": 1e-12,
+    "original_72_case_replay_exact_original_numeric_bits": true,
+    "original_24_contrast_replay_strict": true,
+    "nonzero_window_toy_epsilon_frozen_prior": true,
+    "never_retune_on_failure": true
+  },
+  "prohibitions": {
+    "no_original_Fplus_minus_change": true,
+    "no_new_CLASS_execution": true,
+    "no_FITS_mock_download": true,
+    "no_new_survey_selection_cuts_or_science_seed": true,
+    "no_observed_galaxies_or_random_rows": true,
+    "no_observed_odd_vector_unsealing": true,
+    "no_24D_unconditional_two_point_to_bispectrum_relabel": true,
+    "no_reported_eBOSS_detection_or_exclusion": true,
+    "no_main_mutation": true,
+    "PR_draft": true
+  },
+  "deliverables": [
+    "E15 explicit 72 state-wise long-multipole source results and all 24 plus-minus contrasts under fixed LOS geometry",
+    "Pure short-ell and long-L separation of labels and complete parity/tracer reversal null report",
+    "32/64 Gauss-Legendre original-source checksum-gated test and fixed 0.1 synthetic odd selection leakage only",
+    "Original exact E15 output and audit SHA permanently archived in source_data on draft branch"
+  ],
+  "next_physical_gate": "Actual triangle closure, physical oriented short/long 3D wavevectors, true K-short corrections and halo response, eBOSS redshift-dependent LRG/ELG tracer bias/HOD/relativistic nuisance, actual cap/chunk/depth triple selection and independent eBOSS bispectrum mocks/covariance before any observable or significance."
+}

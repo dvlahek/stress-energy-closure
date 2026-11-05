@@ -1,0 +1,60 @@
+name: eBOSS DR16 A03E9 frozen three-state CLASS conditional quasi-static phase
+on:
+  push:
+    branches:
+      - audit/eboss-elg-bit8-ra-orientation-20260925
+    paths:
+      - 'scripts/build_eboss_dr16_a03_e9_frozen_class_wind_quasistatic_phase.py'
+      - 'source_data/eboss_dr16_a03_e9_frozen_class_wind_quasistatic_phase_prereg_2026-09-27.json'
+      - '.github/workflows/eboss_dr16_a03_e9_frozen_CLASS_quasistatic_phase.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  frozen-CLASS-wind:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    env:
+      PYTHONUNBUFFERED: '1'
+      OMP_NUM_THREADS: '1'
+      OPENBLAS_NUM_THREADS: '1'
+      MKL_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install original numerical dependencies
+        run: python -m pip install --upgrade pip setuptools wheel 'numpy>=1.24,<2.4' scipy cython
+      - name: Verify prospective source-only gates and physics algebra before CLASS
+        run: |
+          python -m py_compile scripts/build_eboss_dr16_a03_e9_frozen_class_wind_quasistatic_phase.py
+          python -u scripts/build_eboss_dr16_a03_e9_frozen_class_wind_quasistatic_phase.py --self-test
+      - name: Fetch and verify original pinned CLASS commit
+        run: |
+          git init class_public
+          git -C class_public remote add origin https://github.com/lesgourg/class_public.git
+          git -C class_public fetch --depth 1 origin e85808324f51fc694d12e3ed7439552a3c3f9540
+          git -C class_public checkout --detach FETCH_HEAD
+          test "$(git -C class_public rev-parse HEAD)" = "e85808324f51fc694d12e3ed7439552a3c3f9540"
+      - name: Install pinned CLASS Python interface
+        run: python -m pip install ./class_public
+      - name: Run original three states in distinct Python processes to release native CLASS memory
+        run: |
+          for s in FD plus minus; do
+            python -u scripts/build_eboss_dr16_a03_e9_frozen_class_wind_quasistatic_phase.py --state "$s" --output-dir eboss_workspace/a03_physics_source/e9_class_quasistatic_phase
+          done
+      - name: Freeze two fixed derivative stencils and exact source-versus-velocity algebraic split
+        run: python -u scripts/build_eboss_dr16_a03_e9_frozen_class_wind_quasistatic_phase.py --aggregate --output-dir eboss_workspace/a03_physics_source/e9_class_quasistatic_phase
+      - name: Archive original full QA including failures without observed data
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: eboss-a03-e9-frozen-three-state-class-conditional-phase
+          if-no-files-found: warn
+          retention-days: 30
+          path: |
+            eboss_workspace/a03_physics_source/e9_class_quasistatic_phase/class_R16_wind_FD.json
+            eboss_workspace/a03_physics_source/e9_class_quasistatic_phase/class_R16_wind_plus.json
+            eboss_workspace/a03_physics_source/e9_class_quasistatic_phase/class_R16_wind_minus.json
+            eboss_workspace/a03_physics_source/e9_class_quasistatic_phase/quasistatic_alpha_dln_a_source_only_plus_CLASS.json

@@ -1,0 +1,11 @@
+{
+  "status": "EZMOCK0001_MOCK_GALAXY_ODD_PROJECTION_INCOMPLETE_STOP",
+  "errors": [
+    "'pair_normalization'"
+  ],
+  "mock_galaxy_or_random_rows_may_have_been_read": true,
+  "observed_galaxy_rows_read": false,
+  "observed_odd_data_vector_read": false,
+  "new_science_selection_applied": false,
+  "mock_covariance_computed": false
+}

@@ -1,0 +1,233 @@
+{
+  "study": "Completed fixed nine-realization 36 same-realization realistic EZmock RANDOM full compressed source SHA-only gate, archived exact upload before any new mock-galaxy rows",
+  "record_date": "2026-09-26",
+  "local_uploaded_report_name": "ezmock_nine_matched_random_source_sha(2).json",
+  "actual_local_checkpoint": "eboss_workspace/official_mask_inventory/ezmock_nine_matched_random_source_sha.json",
+  "archive_path": "source_data/eboss_dr16_nine_ezmock_matched_random_sha_report_2026-09-26.json",
+  "uploaded_exact_bytes": 45653,
+  "uploaded_exact_SHA256": "229a107a44fa1e8665c39acc9050982f8a0fcc39d15cc35e5bbc9bc272116c47",
+  "uploaded_git_blob_SHA1": "315b6344d9ea2a2d5f6b877fd8cc9299e9b6e24c",
+  "archived_git_blob_SHA1": "315b6344d9ea2a2d5f6b877fd8cc9299e9b6e24c",
+  "archive_byte_identical_verified": true,
+  "source_protocol": "source_data/eboss_dr16_nine_ezmock_matched_random_sha_protocol_2026-09-26.json",
+  "source_protocol_sha256": "9635fd26a5fd07d692f8fe612b3f93885b33c2bd68f5c09db799b2ef7626cb9b",
+  "prior_20260924_random_SHA_reference": "source_data/eboss_dr16_nine_ezmock_random_reference_sha_from_20260924_artifact.json",
+  "prior_20260924_reference_git_blob_SHA1": "25c98505cfe48023d6e3b8d24ac193730c44c14d",
+  "prior_20260924_original_ensemble_JSON_SHA256": "8702adaf1284068c26e79555feb76c7a709df9a265f9e2194409cc4161602e01",
+  "completed_36_mock_galaxy_source_uploaded_manifest": "source_data/eboss_dr16_nine_ezmock_galaxy_source_sha_uploaded_manifest_2026-09-26.json",
+  "completed_36_mock_galaxy_source_archive": "source_data/eboss_dr16_nine_ezmock_galaxy_source_sha_report_2026-09-26.json",
+  "completed_36_mock_galaxy_source_report_sha256": "2c6b55bf5611dc71449ecbbfc2dedf545f2d22250147ed08f6a072536b50f06c",
+  "predeclared_ids": [
+    1,
+    125,
+    250,
+    375,
+    500,
+    625,
+    750,
+    875,
+    1000
+  ],
+  "caps": [
+    "NGC",
+    "SGC"
+  ],
+  "tracers": [
+    "eBOSS_LRG",
+    "eBOSS_ELG"
+  ],
+  "verified_random_sources_by_id_cap_tracer": {
+    "0001/NGC/eBOSS_LRG": {
+      "compressed_bytes": 58463577,
+      "previously_pinned_sha256": "2f7966ab7de195353cf4d0b14f0fe4d14e4633cef5d156722e8a822518893dca",
+      "source_mode": "verified_existing_cache"
+    },
+    "0001/NGC/eBOSS_ELG": {
+      "compressed_bytes": 48498305,
+      "previously_pinned_sha256": "c36c4ad26ee62696c0df99c6106c895a6931bdc56e84164e0a52b55f0e88c1c9",
+      "source_mode": "verified_existing_cache"
+    },
+    "0001/SGC/eBOSS_LRG": {
+      "compressed_bytes": 39067667,
+      "previously_pinned_sha256": "94c8940734f3c647a2b883124392cd39855034a212ce9c6a05a6bd052bba8efe",
+      "source_mode": "verified_existing_cache"
+    },
+    "0001/SGC/eBOSS_ELG": {
+      "compressed_bytes": 52878654,
+      "previously_pinned_sha256": "1af8f7f95f6d477049c80302300e97ed2c0aa7f584a0595d61f78dea80057e38",
+      "source_mode": "verified_existing_cache"
+    },
+    "0125/NGC/eBOSS_LRG": {
+      "compressed_bytes": 58671425,
+      "previously_pinned_sha256": "46f3bb0777838c202ed17b70dd86ab29ce15dcacc0fab9c2512a56e382e3e4e2",
+      "source_mode": "downloaded_same_prior_pinned_URL"
+    },
+    "0125/NGC/eBOSS_ELG": {
+      "compressed_bytes": 48224042,
+      "previously_pinned_sha256": "4fb7258b3698c5d68b184a15e6574c9352f2d097df99c969c39b7607d0f69540",
+      "source_mode": "downloaded_same_prior_pinned_URL"
+    },
+    "0125/SGC/eBOSS_LRG": {
+      "compressed_bytes": 38782817,
+      "previously_pinned_sha256": "382eba6695c68ecba683fea55cf8d6c4ace81c252ff8359ada763bcd27259acf",
+      "source_mode": "downloaded_same_prior_pinned_URL"
+    },
+    "0125/SGC/eBOSS_ELG": {
+      "compressed_bytes": 52412515,
+      "previously_pinned_sha256": "5ea9b4af30fd9defea1ea0b827d7faa319f63280d9b93f99513e1b89ed32282b",
+      "source_mode": "downloaded_same_prior_pinned_URL"
+    },
+    "0250/NGC/eBOSS_LRG": {
+      "compressed_bytes": 57958715,
+      "previously_pinned_sha256": "faa9ac202b97bff52b4208155d26e6d5defb6fd5168d18594a557d7d7124c566",
+      "source_mode": "downloaded_same_prior_pinned_URL"
+    },
+    "0250/NGC/eBOSS_ELG": {
+      "compressed_bytes": 48442775,
+      "previously_pinned_sha256": "d591e19127a2e516c58532b36330dbaee636f32e2ceea9d3fda831bc30d898fd",
+      "source_mode": "downloaded_same_prior_pinned_URL"
+    },
+    "0250/SGC/eBOSS_LRG": {
+      "compressed_bytes": 39359569,
+      "previously_pinned_sha256": "290969f625985b89b5fde74db64eb8033235c4f15f9ce561a91568514e4df457",
+      "source_mode": "downloaded_same_prior_pinned_URL"
+    },
+    "0250/SGC/eBOSS_ELG": {
+      "compressed_bytes": 52790542,
+      "previously_pinned_sha256": "1c62a0a59243fc38055dfefbc47acc0ac39303b4652ec4005db02fa20a0dd883",
+      "source_mode": "downloaded_same_prior_pinned_URL"
+    },
+    "0375/NGC/eBOSS_LRG": {
+      "compressed_bytes": 58122434,
+      "previously_pinned_sha256": "decacf296c3da987b7a0a7b3e23f1539d3d22d616dc1a718b48f1d4a84e5bf8f",
+      "source_mode": "downloaded_same_prior_pinned_URL"
+    },
+    "0375/NGC/eBOSS_ELG": {
+      "compressed_bytes": 48551902,
+      "previously_pinned_sha256": "8ad4a88b245913cb282f2e9564e61dea3ceec941d2539fda285861b7248a19f6",
+      "source_mode": "downloaded_same_prior_pinned_URL"
+    },
+    "0375/SGC/eBOSS_LRG": {
+      "compressed_bytes": 39079761,
+      "previously_pinned_sha256": "effa9afce9a9bd9c5a1fa7255eb51a9e517329fedc547a862e0f173c0224e7de",
+      "source_mode": "downloaded_same_prior_pinned_URL"
+    },
+    "0375/SGC/eBOSS_ELG": {
+      "compressed_bytes": 52962973,
+      "previously_pinned_sha256": "c0206e25e97ca2dadaa76d265e400673f117cf737aa5b2ba0c0b4b7d7c8801ad",
+      "source_mode": "downloaded_same_prior_pinned_URL"
+    },
+    "0500/NGC/eBOSS_LRG": {
+      "compressed_bytes": 58101243,
+      "previously_pinned_sha256": "61b0be17647b2f120013a0ada648b6fb73267a2c66fc9337970c8ed837fa4338",
+      "source_mode": "downloaded_same_prior_pinned_URL"
+    },
+    "0500/NGC/eBOSS_ELG": {
+      "compressed_bytes": 48865986,
+      "previously_pinned_sha256": "3eefa2d8ebb2c06db105aee8638c44db9506af83b847e397c4d9361d26503af1",
+      "source_mode": "downloaded_same_prior_pinned_URL"
+    },
+    "0500/SGC/eBOSS_LRG": {
+      "compressed_bytes": 39023583,
+      "previously_pinned_sha256": "a61d04e7e3e3d8bbb4c5d881a7b868db2457a1d4a45dbbe0fb61ecd5bf817130",
+      "source_mode": "downloaded_same_prior_pinned_URL"
+    },
+    "0500/SGC/eBOSS_ELG": {
+      "compressed_bytes": 53148300,
+      "previously_pinned_sha256": "7796d2dcffa4323178f15099a8f787f954de1383b603c853891d3c3198722bce",
+      "source_mode": "downloaded_same_prior_pinned_URL"
+    },
+    "0625/NGC/eBOSS_LRG": {
+      "compressed_bytes": 57918421,
+      "previously_pinned_sha256": "5aff234a0d2b761d8845d8f198ead88e7802feee62f1b0027b39342ae63a03d7",
+      "source_mode": "downloaded_same_prior_pinned_URL"
+    },
+    "0625/NGC/eBOSS_ELG": {
+      "compressed_bytes": 48332073,
+      "previously_pinned_sha256": "f0ca2b2c1f2bac030fe519008efd989e57ed5bba241e7c2b5dee5a6b2d11ec51",
+      "source_mode": "downloaded_same_prior_pinned_URL"
+    },
+    "0625/SGC/eBOSS_LRG": {
+      "compressed_bytes": 39120936,
+      "previously_pinned_sha256": "9d9d6715530c3d36c6940b7717d5974fedafd2c457c7936c99154f7d38b6d01c",
+      "source_mode": "downloaded_same_prior_pinned_URL"
+    },
+    "0625/SGC/eBOSS_ELG": {
+      "compressed_bytes": 52544763,
+      "previously_pinned_sha256": "e1fb6cdb6d905b99fce37b3f24a8223e60ede03e214c23342fd46db3dd53c8c0",
+      "source_mode": "downloaded_same_prior_pinned_URL"
+    },
+    "0750/NGC/eBOSS_LRG": {
+      "compressed_bytes": 58329713,
+      "previously_pinned_sha256": "2257336187151b34233e9610878f6aedf258fa9da1845c7dd4d1c03ae61779a0",
+      "source_mode": "downloaded_same_prior_pinned_URL"
+    },
+    "0750/NGC/eBOSS_ELG": {
+      "compressed_bytes": 48160357,
+      "previously_pinned_sha256": "05705658d7b72053c28e68d7b1296136185fee05f40d73205a5c3f47567a83a1",
+      "source_mode": "downloaded_same_prior_pinned_URL"
+    },
+    "0750/SGC/eBOSS_LRG": {
+      "compressed_bytes": 39201500,
+      "previously_pinned_sha256": "d7e3f739f20367944c4713aebc0e58f5c19a251e2be5461b6f247eed76f7c5ef",
+      "source_mode": "downloaded_same_prior_pinned_URL"
+    },
+    "0750/SGC/eBOSS_ELG": {
+      "compressed_bytes": 52585652,
+      "previously_pinned_sha256": "0d54d1a32a4230c7377c56bc84923ee8e604ae61b9ca619d947ca7809c847751",
+      "source_mode": "downloaded_same_prior_pinned_URL"
+    },
+    "0875/NGC/eBOSS_LRG": {
+      "compressed_bytes": 58510161,
+      "previously_pinned_sha256": "1556a3146944728ed19e06b16bd95f99690b9c1c1bd18ae9667bc7c8122461b4",
+      "source_mode": "downloaded_same_prior_pinned_URL"
+    },
+    "0875/NGC/eBOSS_ELG": {
+      "compressed_bytes": 48578735,
+      "previously_pinned_sha256": "988d11cb0603070ea34bdf9b71477cfc8e608c536b3fc2ca4074a41b13b08c5f",
+      "source_mode": "downloaded_same_prior_pinned_URL"
+    },
+    "0875/SGC/eBOSS_LRG": {
+      "compressed_bytes": 39038031,
+      "previously_pinned_sha256": "df9a3e985c8b710ca02d0e00808b2a21a7933ede116bb40dba3da8bede94c431",
+      "source_mode": "downloaded_same_prior_pinned_URL"
+    },
+    "0875/SGC/eBOSS_ELG": {
+      "compressed_bytes": 52936484,
+      "previously_pinned_sha256": "07d7adb17dd7f6099a1670e4efc38179d632b7ef96b736c7db4fa01fff28db99",
+      "source_mode": "downloaded_same_prior_pinned_URL"
+    },
+    "1000/NGC/eBOSS_LRG": {
+      "compressed_bytes": 57773021,
+      "previously_pinned_sha256": "b2e8e4a21728cf80152a2e2062eb1d3f8e7bef67478ef4c294d2c064949b8862",
+      "source_mode": "downloaded_same_prior_pinned_URL"
+    },
+    "1000/NGC/eBOSS_ELG": {
+      "compressed_bytes": 48586239,
+      "previously_pinned_sha256": "5697b34ea1a86b695d1064cb25a26b054760add8df79eb19006ec09068a99b78",
+      "source_mode": "downloaded_same_prior_pinned_URL"
+    },
+    "1000/SGC/eBOSS_LRG": {
+      "compressed_bytes": 38830024,
+      "previously_pinned_sha256": "cf7e2349babe984803b317ef88479ecf055a3ac3df3591cf23324b986041f465",
+      "source_mode": "downloaded_same_prior_pinned_URL"
+    },
+    "1000/SGC/eBOSS_ELG": {
+      "compressed_bytes": 53100254,
+      "previously_pinned_sha256": "5e49c5b8f53f7c6b5c61383ea9124cd0546556edfca6a8b7510ae1ed220708ae",
+      "source_mode": "downloaded_same_prior_pinned_URL"
+    }
+  },
+  "complete_random_source_count": 36,
+  "reused_existing_cache_count": 4,
+  "newly_downloaded_prior_pinned_URL_count": 32,
+  "total_full_compressed_random_bytes": 1786953149,
+  "completed_72_galaxy_plus_random_source_names_frozen": true,
+  "no_mock_galaxy_random_or_observed_rows_read": true,
+  "observed_odd_data_vector_read": false,
+  "new_science_selection_applied": false,
+  "mock_pairs_computed": false,
+  "joint_mock_covariance_computed": false,
+  "physical_LRG_ELG_pair_window_certified": false,
+  "next_gate": "Separately preregister nine-ID matched realistic mock-galaxy four-term LS code-transport. Rehash ALL 72 complete gzip files before opening ANY new mock galaxy/random FITS row; record RR unsupported cells/failures for all fixed IDs; not a scientific 18D covariance or detection."
+}

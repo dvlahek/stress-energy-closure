@@ -1,0 +1,145 @@
+{
+  "study": "A-03E2 prospective nine-ID REAL MOCK GALAXY cross-LS radial mismatch stress against own matched ELG RANDOM weight only; descriptive selection sensitivity, never observed odd or physical wake inference",
+  "registered_on": "2026-09-26",
+  "registered_before": "First new A-03E2 mock FITS row read or A-03E2 mock-galaxy stress output",
+  "user_decision": "EMPIRICAL_ONLY_DO_NOT_CONTACT_AUTHORS",
+  "user_decision_source": "source_data/eboss_dr16_a03_empirical_only_user_decision_2026-09-26.json",
+  "parent_A02_report": "source_data/eboss_dr16_nine_ezmock_galaxy_cross_ls_code_transport_report_2026-09-26.json",
+  "parent_A02_report_full_sha256": "15f7668fd483d8e1329fbb9684bbdf07cb49d1974d264f9ceebd85e0156daa27",
+  "parent_A02_report_bytes": 151892,
+  "parent_A02_report_git_blob_sha1": "ffd5d801840f90dacded291a7cfaeb1ae70593f6",
+  "parent_A02_protocol": "source_data/eboss_dr16_nine_ezmock_galaxy_cross_ls_code_transport_protocol_2026-09-26.json",
+  "parent_A02_protocol_git_blob_sha1": "e31d009767c7fe95cb1726b8d7222a36535a2718",
+  "parent_A02_implementation": "scripts/audit_eboss_dr16_nine_ezmock_galaxy_cross_ls_code_transport.py",
+  "parent_A02_implementation_git_blob_sha1": "eb30a454d854b55dd489a87306c2e2802b570deb",
+  "parent_0001_sampling_implementation": "scripts/audit_eboss_dr16_ezmock0001_galaxy_cross_ls_pilot.py",
+  "parent_0001_sampling_implementation_git_blob_sha1": "a12bb47b16cb879b56f8c9554f62abf4cfff37f7",
+  "A03E0E1_original_finished_report": "source_data/eboss_dr16_a03_empirical_rr_window_injection_report_2026-09-26.json",
+  "A03E0E1_original_report_sha256": "e6b8db10d31bc297426cb8fe6bf9a19c9a97ab6f938da2da9d4a9710cfa420e7",
+  "A03E0E1_scope": "Published observed-RANDOM-only conditional finite-bin operator and fixed synthetic probes; not mock galaxy selection null nor physical observable. E2 does not use the observed-RANDOM file or any observed galaxy row.",
+  "input_source_gate": "Before any A03E2 FITS header or row, run the archived A02 sha_bytes/preflight(require_local=True), rehash exactly all 72 original complete gzip sources from the unchanged successful A02 source protocol and verify exact original A02 report bytes, 18 keys, source/weight/sample/pair fingerprints; no new sources/downloads.",
+  "ids": [
+    1,
+    125,
+    250,
+    375,
+    500,
+    625,
+    750,
+    875,
+    1000
+  ],
+  "caps": [
+    "NGC",
+    "SGC"
+  ],
+  "tracers": [
+    "eBOSS_LRG",
+    "eBOSS_ELG"
+  ],
+  "roles": [
+    "dat",
+    "ran"
+  ],
+  "n_cases": 18,
+  "sampling": "Replay EXACT A02 deterministic 600 mock galaxy D and 1200 same-ID own tracer random R per cap/tracer; identical seeds, exact highz eligibility [0.9,1.0), coordinates and original four-factor weights. Compare every original selected_array_SHA256, ELG original chunk diagnostics and 8 forward/reverse four-term pair histogram SHA per ID/cap; stop a case before perturbing if original replay fails.",
+  "geometry": "Reuse A02 exact s=[20,40,60,80,100,120,140] Mpc/h, 24 signed mu edges np.linspace(-1-1e-7,1+1e-7,25), midpoint LOS, theta_min_deg=0.05, published_multitracer fiducial, four separately normalized weighted LS terms.",
+  "scenarios": [
+    "baseline_original",
+    "plus_5pct_ELG_R_z_ramp",
+    "minus_5pct_ELG_R_z_ramp"
+  ],
+  "stress_input": {
+    "role": "eBOSS_ELG/ran only",
+    "formula": "u(z)=2*(z-0.9)/(1.0-0.9)-1; w_E,R^(a)=w_E,R* (1+a*0.05*u(z)), a=+1 or -1; baseline a=0. u in [-1,1) on fixed eligible highz rows.",
+    "max_absolute_relative_weight_shift": 0.05,
+    "normalization": "Recompute sum(w_first)*sum(w_second) independently per orientation and each four LS pair term in each scenario, DO NOT reuse original normalizations for perturbed weights.",
+    "no_resampling_or_cut": true,
+    "changes_only_selected_ELG_RANDOM_weight_vector": true,
+    "unchanged_arrays": [
+      "LRG DATA coordinates,redshifts,weights",
+      "ELG DATA coordinates,redshifts,weights",
+      "LRG RANDOM coordinates,redshifts,weights",
+      "ELG RANDOM coordinates,redshifts,chunk labels and row selection"
+    ],
+    "pair_terms_affected_forward": [
+      "D1R2",
+      "R1R2"
+    ],
+    "pair_terms_unchanged_forward": [
+      "D1D2",
+      "R1D2"
+    ],
+    "pair_terms_affected_reverse": [
+      "R1D2",
+      "R1R2"
+    ],
+    "pair_terms_unchanged_reverse": [
+      "D1D2",
+      "D1R2"
+    ],
+    "interpretation": "Artificial diagnostic of mis-modeled published random radial weights, not an alternative official selection, not reweighting observed data, and not a physical ±5% prior on any instrument or survey."
+  },
+  "diagnostics": {
+    "ell": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "physical_mu_integral_clip": [
+      -1,
+      1
+    ],
+    "projection_source": "Reuse unmodified exact A02 6x24 xi and existing original mock0001 Legendre physical-domain integration_weights and project helper; require complete 144/144 RR support for all three scenarios in each ID/cap, otherwise record failure no zero fill.",
+    "reported_per_case": [
+      "Original A02 all 8 weighted hist SHA and four selected array SHA exact replay flags",
+      "Original A02 baseline xi hash exact replay",
+      "Baseline/± signed 6-by-24 xi grid SHA and true reverse orientation xi-mirror max abs residual",
+      "Baseline/± original independent four pair weights and accepted-pair counts",
+      "Baseline and ± ell0/1/2/3 full six-bin descriptive values",
+      "Signed plus-minus delta ell1/ell3 six-bin vectors and absolute max across six bins for each scenario",
+      "Nonnegative selected ELG random weight factors min,max; original selected sample SHA and derived perturbed ELG RANDOM weighted-array SHA"
+    ],
+    "ensemble_aggregation": "Report all 18 ID/cap cases in fixed order, and by cap descriptive min/median/max of max_abs_delta_ell1 and ell3 separately for plus and minus. Do not select scenario/sign, cap, ID or s bin based on outcome."
+  },
+  "acceptance": {
+    "no_E2_odd_observed_access": true,
+    "all_72_full_SHA_gate_before_any_FITS_read": true,
+    "all_18_parent_case_fingerprints_exact_before_any_perturbation_per_case": true,
+    "all_18_fixed_case_status_complete_for_global_COMPLETE": true,
+    "all_case_RR_support_144_in_all_3_scenarios": true,
+    "baseline_A02_forward_xi_SHA_exact": true,
+    "unperturbed_DD_RD_for_forward_and_DD_DR_for_reverse_sha_exact_in_stress": true,
+    "weight_factors_bounded_by_0p95_and_1p05": true,
+    "positive_original_and_modified_weights": true,
+    "xi_tracer_reversal_max_abs_lt": 1e-8,
+    "synthetic_negative_controls": [
+      "Only ELG random weight modified; wrong modifications of ELG DATA or LRG RANDOM reject",
+      "One modified selected original SHA or original A02 weighted pair fingerprint rejects",
+      "A synthetic normalized global ELG random rescale cancels exactly in LS; unnormalized DR/RR terms do not",
+      "A synthetic spatially varying ELG random weight creates a nonzero LS shift even if reversed orientation mirror closes",
+      "Unsupported RR cell is never zero-filled or projected",
+      "Counterfactual W_E,R factors outside [0.95,1.05] reject"
+    ],
+    "stress_amplitude_has_no_minimum_or_maximum_acceptance_gate": true
+  },
+  "excluded": [
+    "NO new observed galaxy/random rows",
+    "NO observed odd vectors",
+    "NO official mask reconstruction or reinterpretation of historical plate geometry",
+    "NO new galaxy cuts, source re-pin, source transfer, discarded IDs or mock-dependent tuning",
+    "NO 18D sample covariance inversion, p-value, sigma, detection or exclusion"
+  ],
+  "local_output": "eboss_workspace/a03_empirical_window/a03_e2_mock_galaxy_elg_random_radial_weight_stress.json",
+  "local_stdout": "A03E2_CROSS_LS_CASE plus/minus by fixed ID/cap and final COMPLETE/INCOMPLETE_STOP",
+  "source_only_CI": "Only check archived inputs, registered formulas and pure-synthetic negative controls. CI cannot see full 72 realistic FITS sources or claim 18/18 E2 success.",
+  "failure_policy": "On first bad SHA, STOP before any FITS row. On case failure, retain exact ID/cap and checkpoint; do not replace/resample. Complete status requires all 18 fixed cases; if baseline 0001 fails STOP before other IDs. Preserve errors and no observed odd access.",
+  "physical_selection_systematics_certified": false,
+  "physical_LRG_ELG_pair_window_certified": false,
+  "mock_null_significance_computed": false,
+  "observed_galaxy_rows_read": false,
+  "observed_odd_data_vector_read": false,
+  "author_contact_permitted": false,
+  "main_branch_mutation_permitted": false
+}

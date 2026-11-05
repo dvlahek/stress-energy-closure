@@ -1,0 +1,87 @@
+{
+  "provenance": "Retrospective source-only audit of user-uploaded V2 4800R stage, derived from original uploaded JSON+log, not independent WSL FITS recount",
+  "date": "2026-09-27",
+  "uploaded_v2_report_bytes": 193920,
+  "uploaded_v2_report_sha256": "d3f298a9550981c0ece7d6c9e7aee0d3fb5cebaf0d80cdd39805cda3bb08e238",
+  "uploaded_v2_log_bytes": 9692,
+  "uploaded_v2_log_sha256": "bad556ba41190aa8414255e3e82f81b679a7e08f7d4c690d454128461a3014a9",
+  "original_parent_v1_json_sha256": "6731e0aa1f18a192b8067bcd44fda5aae8ffdb5164f64a86eab55d2b3e585f5c",
+  "original_parent_v1_NGC_canonical_sha256": "27f31f62663122bbd59b1d0cfa0ef40b784be7f8332d26bcb432e5d29a147cfe",
+  "v2_postfailure_protocol_git_blob_sha1": "c2ff44c037979c4695523dcc4027072928bf57d4",
+  "status": "EBOSS_FULL_ELIGIBLE_MOCK0001_SGC_4800_ONLY_STAGED_STOP",
+  "status_interpretation": "Expected success of first explicitly bounded 4800R stage, not a scientific A03/A04 PASS or a failed computation",
+  "errors": [],
+  "error_history": [],
+  "source_local_log_claims": {
+    "all_72_original_gzip_rehashed_before_fits": true,
+    "total_compressed_bytes": 1860198719,
+    "source_input_SGC_galaxy_eligible_LRG": 4159,
+    "source_input_SGC_galaxy_eligible_ELG": 15860,
+    "source_input_SGC_random_eligible_LRG": 93220,
+    "source_input_SGC_random_eligible_ELG": 472662
+  },
+  "independent_user_uploaded_json_internal_audit": {
+    "passed": true,
+    "verified_24_forward_and_reverse_weighted_histogram_SHA256": true,
+    "verified_three_6x24_LS_xi_SHA256_and_exact_four_term_algebra": true,
+    "verified_twelve_ell0_ell1_ell2_ell3_six_bin_projections_with_exact_frozen_physical_clipped_mu_edges": true,
+    "verified_old_NGC_canonical_SHA256": true,
+    "verified_RR_all_144_cells_for_all_three_completed_levels": true,
+    "distinct_full_size_SGC_reverse_independently_recounted": false,
+    "all_72_original_gzip_independently_rehashed_by_this_source_only_audit": false
+  },
+  "SGC_original_4800": {
+    "forward_accepted_pairs": {
+      "D1D2": 1006690,
+      "D1R2": 304094,
+      "R1D2": 1064361,
+      "R1R2": 323373
+    },
+    "RR_supported_s_mu_cells": 144,
+    "xi_6x24_SHA256": "a197d0b88fe2675e55a26b8cf3d6c0664ab91f736344e8736bda33f66a4fd54c",
+    "dipole_ell1_six_bins": [
+      -0.06029660693838492,
+      -0.013644471027320925,
+      -0.04312168819701989,
+      0.007873811901226806,
+      -0.011783404596843901,
+      -0.0006684162809659864
+    ],
+    "octupole_ell3_six_bins": [
+      -0.0024885470293299107,
+      0.03888708660461369,
+      0.012054489766696139,
+      -0.003182487859855784,
+      0.011407514080546173,
+      -0.008962139403627471
+    ],
+    "original_E4_same_4800R_RR_count_and_sum_reproduced": true,
+    "large_pair_reverse_method": "GEOMETRIC_MIRROR_NOT_INDEPENDENT_RECOUNT",
+    "SGC_nested_48000_pending": true
+  },
+  "inherited_NGC_full_galaxy": {
+    "original_4800_xi_SHA256": "5898c5a70b748b31f0c2abe1610889b8d5d644ee157dcc77190f0348e1d63094",
+    "nested_48000_xi_SHA256": "f90ec9d647a2593623aac160e3c98ff0b7ba9a76e8106159f8a669d8890e7cad",
+    "relative_xi_L1_4800_to_48000": 1.6749929559624868,
+    "full_DD_accepted_at_both_levels": 735451,
+    "not_convergence_certified": true
+  },
+  "unresolved": {
+    "original_v1_independent_SGC_R1D2_reverse_failure_cause": true,
+    "SGC_4800_to_48000_random_density_drift": true,
+    "A03_physical_window_certification": true,
+    "A04_independent_eboss_covariance": true,
+    "absolute_EV_wake_template_calibration": true,
+    "observed_odd_sealed": true
+  },
+  "scope_guards": {
+    "new_download": false,
+    "observed_galaxy_rows_read": false,
+    "observed_random_rows_read": false,
+    "observed_odd_data_vector_read": false,
+    "new_science_selection": false,
+    "new_physics_significance": false,
+    "author_contact": false,
+    "main_change": false
+  }
+}

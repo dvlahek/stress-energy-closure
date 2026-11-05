@@ -1,0 +1,102 @@
+{
+  "study": "eBOSS DR16 ELG published angular-veto implementation lineage and remaining production reference gates",
+  "registered_on": "2026-09-26",
+  "classification": "Post-audit source-and-literature reconciliation; no new pixel/galaxy/random or odd estimator reads",
+  "frozen_release": "eBOSS DR16 LSS ELG, four exact chunks eboss21 eboss22 eboss23 eboss25",
+  "primary_paper": {
+    "title": "Raichoor et al., MNRAS 500 (2021) 3254-3274",
+    "doi": "10.1093/mnras/staa3336",
+    "url": "https://academic.oup.com/mnras/article/500/3/3254/5942664",
+    "evidence": "Sec. 3.1-3.2, Table 5, Data Availability",
+    "paper_cuts": "angular veto bits 1-5 already at targeting, other angular vetoes in LSS analysis; separately exclude two low-quality eboss22 plates",
+    "paper_mask_bit_range": [
+      1,
+      11
+    ],
+    "paper_nonbitcoded_plate_exception": true,
+    "paper_reproducibility_statement": "bits 1-7 via publicly released brickmask; bits 8-11 and two eboss22 low-quality plates require custom Python lines available on request",
+    "table5_reference_counts_for_source_interpretation_only": {
+      "bit2_xybug_removed_targets": 0,
+      "bit8_imprecise_mskbit3_removed_targets": 15,
+      "bit9_centerpost_removed_targets": 166,
+      "bit10_TDSS_FES_removed_targets": 308,
+      "bit11_bad_phot_calibration_removed_targets": 16325,
+      "eboss22_two_badplates_removed_targets": 3123
+    },
+    "count_comparison_prohibited": "No individual-row/pixel histogram count is directly equivalent to Table5 target removals or survey area, including overlapping vetoes"
+  },
+  "public_upstream": {
+    "repository": "cheng-zhao/brickmask",
+    "commit": "b9eb684a579b56ec3dbdb46549224be7e3fa2830",
+    "vendored_extra_source_path": "scripts/eBOSS_ELG_extra.py",
+    "vendored_extra_source_git_blob_sha1": "d66c5e6ed6a8260b5e8dcc840795485345392ced",
+    "eboss_compile_flag": "-DEBOSS",
+    "bitcode_source_path": "src/bit_code.c",
+    "bitcode_source_git_blob_sha1": "0ab07730c491324fac3222ebac1ae1c763efe980",
+    "define_source_path": "src/define.h",
+    "define_source_git_blob_sha1": "a6b85bfbc7745388a076fba822a0dc27d52d9809",
+    "upstream_pixel_validity_bit0": 1,
+    "upstream_XYBUG_bit2": 4,
+    "extra_bit8_value": 256,
+    "extra_polygon_map": {
+      "ELG_centerpost.ply": 9,
+      "ELG_TDSSFES_62arcsec.pix.snap.balk.ply": 10,
+      "ebosselg_badphot.26Aug2019.ply": 11
+    },
+    "polygon_sources_previously_SHA256_pinned_in": "source_data/eboss_dr16_eleven_official_polygon_sha_2026-09-25.json",
+    "bit8_source_pixel_count": 37,
+    "source_bit8_call": "hp.pixelfunc.ang2pix(1024, radians(90-dec), radians(360-ra), nest=False, lonlat=True)",
+    "bit8_contract_note": "The public vendored call has independently documented radians/degree and reflected-RA issues. Do not edit vendor source to match released labels."
+  },
+  "existing_catalogue_only_bit8_evidence": {
+    "archive": "source_data/eboss_dr16_elg_full_bit8_label_geometry_audit_2026-09-25.json",
+    "manifest": "source_data/eboss_dr16_elg_full_bit8_label_uploaded_report_manifest_2026-09-25.json",
+    "archive_report_sha256": "950fc1edb1c84d5d57545bb9b7617e632859f31953f9a9102547d5832d188751",
+    "full_official_FITS_sha256": "8806699e14422904ef91efb6f1632184171fb740c2e074456c0534b7d2dc28b3",
+    "full_catalogue_rows_checked": 269178,
+    "bit8_label_positives": 15,
+    "native_RA_candidate_counts": {
+      "TP": 15,
+      "FP": 0,
+      "FN": 0,
+      "TN": 269163
+    },
+    "literal_upstream_candidate_counts": {
+      "TP": 0,
+      "FP": 0,
+      "FN": 15,
+      "TN": 269163
+    },
+    "evidence_status": "reproduces published bit8 labels at exact released full catalogue positions, NOT historical source executable, production coordinate contract between objects, or released random bitmask production"
+  },
+  "already_checked_polygon_random_sample": {
+    "archive": "source_data/eboss_dr16_elg_extra_paired_random_pilots_2026-09-25.json",
+    "fixed_stratified_sample_rows": 80000,
+    "inside_any_three_extra_polygons": 0,
+    "scope": "observed and mock0001 random-only 2-cap sample, not exhaustive full random sample or bit8/brickmask test"
+  },
+  "prior_four_image_pixel_histogram": {
+    "archive": "source_data/eboss_dr16_elg_four_sample_pixel_bitcode_aggregates_2026-09-26.json",
+    "report_manifest": "source_data/eboss_dr16_elg_four_sample_pixel_bitcode_uploaded_manifest_2026-09-26.json",
+    "source_sample_count": 4,
+    "all_19381_source_images_certified": false,
+    "no_coordinate_to_pixel_lookup": true
+  },
+  "remaining_blockers": [
+    "Obtain authenticated DR16 production invocation/config and full truth table for target/random angular acceptance; upstream library documentation alone does not identify historical full release pipeline.",
+    "Obtain exact historical bits8-11 supplemental Python source/version and explicit provenance of native-RA bit8 implementation; public vendored helper is source evidence but not automatically identical to execution.",
+    "Obtain exact region geometry or plate-veto implementation for two low-quality eboss22 plates and verify it was applied to both relevant data and randoms.",
+    "Validate how released clustering randoms encode four chunk geometries, completeness/SSR and imaging-depth-conditioned shuffled redshifts, without reapplying vetoes.",
+    "Validate LRG separately authenticated MANGLE veto composition and LRG x ELG pair random window, estimator closure and mock-galaxy covariance before opening observed odd sector."
+  ],
+  "guardrails": {
+    "no_new_veto_or_cut": true,
+    "no_new_common_hard_mask": true,
+    "no_observed_odd_sector_data_read": true,
+    "no_new_observed_galaxy_or_random_rows_read": true,
+    "physical_elg_mask_certified": false,
+    "physical_lrg_elg_pair_window_certified": false,
+    "inference_protocol_unblinding_authorized": false
+  },
+  "next_bounded_action": "Offline parse-only AST source contract of exact pinned public helper with synthetic negative controls, then document missing historical bits8-11/eboss22 plate production files as external provenance blockers. Do not run any catalogue or image again for this source task."
+}

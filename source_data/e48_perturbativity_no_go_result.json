@@ -1,0 +1,131 @@
+{
+  "best_case_bias_requirement": {
+    "assumptions": "positive b_L,b_E, f=1, maximally favorable anti-aligned responses d_L=+D,d_E=-D",
+    "cap_results": {
+      "NGC": {
+        "100pct": {
+          "min_bL_plus_bE_if_f_eq_1_and_D_sigma_over_c_le_0p1": 10344.826008503887,
+          "min_bL_plus_bE_if_f_eq_1_and_D_sigma_over_c_le_1": 1033.445712672945
+        },
+        "83pct": {
+          "min_bL_plus_bE_if_f_eq_1_and_D_sigma_over_c_le_0p1": 2511.4473407303967,
+          "min_bL_plus_bE_if_f_eq_1_and_D_sigma_over_c_le_1": 250.10683289141062
+        },
+        "94pct": {
+          "min_bL_plus_bE_if_f_eq_1_and_D_sigma_over_c_le_0p1": 10331.42396233364,
+          "min_bL_plus_bE_if_f_eq_1_and_D_sigma_over_c_le_1": 1032.027560073349
+        }
+      },
+      "SGC": {
+        "100pct": {
+          "min_bL_plus_bE_if_f_eq_1_and_D_sigma_over_c_le_0p1": 7022.837902953616,
+          "min_bL_plus_bE_if_f_eq_1_and_D_sigma_over_c_le_1": 701.2163042541445
+        },
+        "83pct": {
+          "min_bL_plus_bE_if_f_eq_1_and_D_sigma_over_c_le_0p1": 3009.48546405311,
+          "min_bL_plus_bE_if_f_eq_1_and_D_sigma_over_c_le_1": 299.83697909278834
+        },
+        "94pct": {
+          "min_bL_plus_bE_if_f_eq_1_and_D_sigma_over_c_le_0p1": 4475.107129666673,
+          "min_bL_plus_bE_if_f_eq_1_and_D_sigma_over_c_le_1": 446.41995303773
+        }
+      }
+    },
+    "interpretation": "Even allowing the one-sigma local response to reach order unity, the bias sum required for 83% recovery is hundreds. Requiring a 10% perturbation raises it to thousands."
+  },
+  "date": "2026-09-30",
+  "decision": {
+    "absolute_universal_no_go_claim": false,
+    "observed_odd_remains_sealed": true,
+    "reason": "The response D required to overcome the nine-mock E45 background makes d_a*(v_rel/c) tens to hundreds at one sigma in the reference geometry.",
+    "recommended_next_route": "velocity-conditioned E19-style estimator, while retaining E47 as a documented negative result for the original unconditioned linear channel",
+    "restricted_linear_unconditioned_channel_with_order_unity_tracer_geometry": "PRACTICALLY_SELF_INCONSISTENT_AT_E45_SENSITIVITY"
+  },
+  "diagnostic_reference_geometry": {
+    "b_E": 1.0,
+    "b_L": 2.0,
+    "calibrated_high_z_eBOSS_bias_model": false,
+    "cap_results": {
+      "NGC": {
+        "100pct": {
+          "one_sigma_linear_response_amplitude_D_sigma_over_c": 249.17471044585633,
+          "optimal_unit_direction_dL_dE": [
+            1.0,
+            -1.0
+          ],
+          "required_D_max_abs_d": 549827.4880501729,
+          "symmetric_recovery_fraction": 1.0
+        },
+        "83pct": {
+          "one_sigma_linear_response_amplitude_D_sigma_over_c": 60.49760006907016,
+          "optimal_unit_direction_dL_dE": [
+            1.0,
+            -1.0
+          ],
+          "required_D_max_abs_d": 133493.6576008128,
+          "symmetric_recovery_fraction": 0.8333333333333333
+        },
+        "94pct": {
+          "one_sigma_linear_response_amplitude_D_sigma_over_c": 243.76922132936838,
+          "optimal_unit_direction_dL_dE": [
+            1.0,
+            -1.0
+          ],
+          "required_D_max_abs_d": 537899.7667445755,
+          "symmetric_recovery_fraction": 0.9444444444444444
+        }
+      },
+      "SGC": {
+        "100pct": {
+          "one_sigma_linear_response_amplitude_D_sigma_over_c": 167.79416113395482,
+          "optimal_unit_direction_dL_dE": [
+            1.0,
+            -1.0
+          ],
+          "required_D_max_abs_d": 370253.6343302593,
+          "symmetric_recovery_fraction": 1.0
+        },
+        "83pct": {
+          "one_sigma_linear_response_amplitude_D_sigma_over_c": 71.43550113933617,
+          "optimal_unit_direction_dL_dE": [
+            1.0,
+            -1.0
+          ],
+          "required_D_max_abs_d": 157629.16741737758,
+          "symmetric_recovery_fraction": 0.8333333333333333
+        },
+        "94pct": {
+          "one_sigma_linear_response_amplitude_D_sigma_over_c": 106.27650529581997,
+          "optimal_unit_direction_dL_dE": [
+            1.0,
+            -1.0
+          ],
+          "required_D_max_abs_d": 234509.1275153655,
+          "symmetric_recovery_fraction": 0.9444444444444444
+        }
+      }
+    },
+    "growth_f": 1.0,
+    "optimized_over": "all response directions with max(|d_L|,|d_E|)=D",
+    "purpose": "Order-unity reference only. Values are not asserted as measured eBOSS LRG/ELG biases."
+  },
+  "linear_response_self_consistency": {
+    "D_definition": "D=max(|d_L|,|d_E|)",
+    "E25_E47_local_term": "delta_Delta_a = d_a * U_nuCDM_LOS, with U=v_rel/c",
+    "meaning": "If D*sigma/c >> 1, the linear local response used to derive E47 is outside its own perturbative regime at one-sigma relative velocity.",
+    "one_sigma_U": 0.00045318707387564917,
+    "permissive_order_unity_limit_D": 2206.594269002456,
+    "sigma_R16_LOS_km_s_reference": 135.86206681100845,
+    "ten_percent_limit_D": 220.6594269002456
+  },
+  "parent": {
+    "E47_file": "/mnt/data/e47_local_physical_response_basis_to_e45.json",
+    "E47_replay_max_relative_gap_minus": 3.359275995630492e-16,
+    "E47_replay_max_relative_gap_plus": 3.2097864662906314e-16,
+    "E47_status": "PASS_PARAMETERIZED_PHYSICAL_RESPONSE_BASIS_NOT_CALIBRATED_GALAXY_MODEL"
+  },
+  "qa_checks": 8,
+  "qa_pass": true,
+  "stage": "E48_PERTURBATIVITY_SELF_CONSISTENCY_TEST_OF_E47_LINEAR_CHANNEL",
+  "status": "REFERENCE_ORDER_UNITY_TRACER_GEOMETRY_FAILS_LINEAR_PERTURBATIVITY_BY_ORDERS_OF_MAGNITUDE"
+}

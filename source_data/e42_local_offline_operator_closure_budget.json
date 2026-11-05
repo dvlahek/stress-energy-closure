@@ -1,0 +1,22 @@
+{
+  "E41": {
+    "E19_ratio_fraction": 0.02605283750649608,
+    "E21_all4_response_fraction": 0.000912183978546639
+  },
+  "born_only_illustrative_q_certificate": 0.006203288725255926,
+  "frozen_E28": {
+    "a_FD": -0.00201850894575251,
+    "a_Fminus": -0.00202480872683428,
+    "a_Fplus": -0.00201220917438763,
+    "abs_contrast_fraction_of_FD": 0.006242009713736083,
+    "delta_Fminus_minus_Fplus": -1.2599552446650349e-05,
+    "fraction_FD_force_k_gt_1": 0.9422589,
+    "highk_state_differential_fraction_sign_certificate": 0.006624516588525811
+  },
+  "no_ASDF_FITS_CLASS_mock_or_observed_odd": true,
+  "operator_certificate": "For each F: B_Y <= |chi_hat| B_S + |S_hat| B_chi + B_S B_chi; for D=Yminus-Yplus, B_D<=B_Yminus+B_Yplus; B_D<|Dhat| preserves sign.",
+  "qa_checks": 19,
+  "qa_pass": true,
+  "stage": "E42_LOCAL_WSL_OPERATOR_LEVEL_PHYSICAL_CLOSURE_BUDGET",
+  "status": "PURE_STDLIB_OFFLINE_QA_PASS"
+}

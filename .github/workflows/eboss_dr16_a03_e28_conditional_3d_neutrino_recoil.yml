@@ -1,0 +1,50 @@
+name: eBOSS A03 E28 conditional finite-band 3D neutrino halo recoil
+on:
+  push:
+    branches:
+      - audit/eboss-elg-bit8-ra-orientation-20260925
+    paths:
+      - 'scripts/audit_eboss_dr16_a03_e28_conditional_3d_finite_band_neutrino_recoil.py'
+      - 'source_data/eboss_dr16_a03_e28_*'
+      - '.github/workflows/eboss_dr16_a03_e28_conditional_3d_neutrino_recoil.yml'
+      - 'EINSTEIN_VLASOV_NP_MASTER_PLAN.md'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  physical-units-conditional-finite-band:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install original E17D0 E27 numerical dependency
+        run: python -m pip install 'numpy==1.26.4'
+      - name: Verify new preregistration and archived physical source byte pins
+        run: |
+          set -euo pipefail
+          test "$(git hash-object source_data/eboss_dr16_a03_e28_conditional_finite_band_3d_wake_recoil_protocol_2026-09-29.json)" = e8feedc4d09965a24d8eb60c16454d6e03b2fbff
+          test "$(git hash-object scripts/audit_eboss_dr16_a03_e27_conditional_physical_time_born_wake.py)" = 851df1faf5897464665ba79f4534c4b6de234eca
+          test "$(git hash-object source_data/eboss_dr16_a03_e27_archived_conditional_physical_time_born_report_2026-09-29.json)" = 87380ff6bdcb7cda3e244b0b4a716c84df0c4034
+          test "$(git hash-object source_data/eboss_dr16_a03_e17d2b0_archived_CI_2026_09_28/e17d2b0_original_DM14_conditional_snapshot_04.json)" = 776322703b3f93071e7c53f2cb803a667048c870
+          test "$(git hash-object source_data/eboss_dr16_a03_e17d2b0_archived_CI_2026_09_28/e17d2b0_original_DM14_conditional_snapshot_13.json)" = f6fc9e34b0382e6f8d596a2a5c3721adc9dcd5f8
+          echo E28_FIVE_FROZEN_GIT_PINS_PASS
+      - name: Calculate finite-k 3D wake gravitational recoil with registered quadratures
+        env:
+          PYTHONUNBUFFERED: '1'
+          OPENBLAS_NUM_THREADS: '1'
+          OMP_NUM_THREADS: '1'
+        run: |
+          set -euo pipefail
+          python -m py_compile scripts/audit_eboss_dr16_a03_e28_conditional_3d_finite_band_neutrino_recoil.py
+          python -u scripts/audit_eboss_dr16_a03_e28_conditional_3d_finite_band_neutrino_recoil.py --out "$RUNNER_TEMP/e28_conditional_finite_k_3D_halo_recoil.json"
+          echo E28_NEW_CONDITIONAL_3D_FINITE_BAND_RECOIL_PASS
+      - uses: actions/upload-artifact@v4
+        with:
+          name: E28_original_conditional_3D_finite_k_recoil
+          path: ${{ runner.temp }}/e28_conditional_finite_k_3D_halo_recoil.json
+          if-no-files-found: error

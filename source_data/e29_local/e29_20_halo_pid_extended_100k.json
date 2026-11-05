@@ -1,0 +1,352 @@
+{
+  "simulation": "AbacusSummit_base_c000_ph000",
+  "late_epoch": "z0.950",
+  "early_epoch": "z1.025",
+  "superslab": 0,
+  "early_row_window": [
+    0,
+    100000
+  ],
+  "min_early_N": 50,
+  "min_shared_pids": 5,
+  "scope": "EXTENDED_BOUNDED_SUPERSLAB_SEARCH_NOT_GLOBAL_PROGENITOR_CERTIFICATION",
+  "eligible_early_halos": 25868,
+  "decoded_early_pids": 495468,
+  "summary": {
+    "single": 17,
+    "multiple": 0,
+    "none": 3
+  },
+  "matches": [
+    {
+      "late_halo_id": 26000000,
+      "late_N": 603,
+      "late_unique_pid_count": 14,
+      "status": "SINGLE_QUALIFYING_CANDIDATE_IN_100K_WINDOW",
+      "qualifying_candidate_count": 1,
+      "candidates": [
+        {
+          "early_row": 3,
+          "early_halo_id": 26003000,
+          "early_N": 578,
+          "early_unique_pid_count": 15,
+          "shared_pid_count": 12,
+          "late_overlap_fraction": 0.8571428571428571,
+          "early_overlap_fraction": 0.8
+        }
+      ]
+    },
+    {
+      "late_halo_id": 32000000,
+      "late_N": 157,
+      "late_unique_pid_count": 5,
+      "status": "SINGLE_QUALIFYING_CANDIDATE_IN_100K_WINDOW",
+      "qualifying_candidate_count": 1,
+      "candidates": [
+        {
+          "early_row": 7,
+          "early_halo_id": 32000000,
+          "early_N": 159,
+          "early_unique_pid_count": 6,
+          "shared_pid_count": 5,
+          "late_overlap_fraction": 1.0,
+          "early_overlap_fraction": 0.8333333333333334
+        }
+      ]
+    },
+    {
+      "late_halo_id": 177005000,
+      "late_N": 303,
+      "late_unique_pid_count": 13,
+      "status": "SINGLE_QUALIFYING_CANDIDATE_IN_100K_WINDOW",
+      "qualifying_candidate_count": 1,
+      "candidates": [
+        {
+          "early_row": 207,
+          "early_halo_id": 10177000000,
+          "early_N": 260,
+          "early_unique_pid_count": 9,
+          "shared_pid_count": 9,
+          "late_overlap_fraction": 0.6923076923076923,
+          "early_overlap_fraction": 1.0
+        }
+      ]
+    },
+    {
+      "late_halo_id": 206000000,
+      "late_N": 482,
+      "late_unique_pid_count": 16,
+      "status": "SINGLE_QUALIFYING_CANDIDATE_IN_100K_WINDOW",
+      "qualifying_candidate_count": 1,
+      "candidates": [
+        {
+          "early_row": 22,
+          "early_halo_id": 206000000,
+          "early_N": 478,
+          "early_unique_pid_count": 15,
+          "shared_pid_count": 15,
+          "late_overlap_fraction": 0.9375,
+          "early_overlap_fraction": 1.0
+        }
+      ]
+    },
+    {
+      "late_halo_id": 261000000,
+      "late_N": 1438,
+      "late_unique_pid_count": 44,
+      "status": "NO_QUALIFYING_CANDIDATE_IN_100K_WINDOW",
+      "qualifying_candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "late_halo_id": 261001000,
+      "late_N": 356,
+      "late_unique_pid_count": 10,
+      "status": "SINGLE_QUALIFYING_CANDIDATE_IN_100K_WINDOW",
+      "qualifying_candidate_count": 1,
+      "candidates": [
+        {
+          "early_row": 215,
+          "early_halo_id": 10261000000,
+          "early_N": 358,
+          "early_unique_pid_count": 9,
+          "shared_pid_count": 9,
+          "late_overlap_fraction": 0.9,
+          "early_overlap_fraction": 1.0
+        }
+      ]
+    },
+    {
+      "late_halo_id": 264000000,
+      "late_N": 899,
+      "late_unique_pid_count": 26,
+      "status": "SINGLE_QUALIFYING_CANDIDATE_IN_100K_WINDOW",
+      "qualifying_candidate_count": 1,
+      "candidates": [
+        {
+          "early_row": 26,
+          "early_halo_id": 264000000,
+          "early_N": 882,
+          "early_unique_pid_count": 29,
+          "shared_pid_count": 25,
+          "late_overlap_fraction": 0.9615384615384616,
+          "early_overlap_fraction": 0.8620689655172413
+        }
+      ]
+    },
+    {
+      "late_halo_id": 283000000,
+      "late_N": 2925,
+      "late_unique_pid_count": 89,
+      "status": "SINGLE_QUALIFYING_CANDIDATE_IN_100K_WINDOW",
+      "qualifying_candidate_count": 1,
+      "candidates": [
+        {
+          "early_row": 29,
+          "early_halo_id": 283000000,
+          "early_N": 2930,
+          "early_unique_pid_count": 86,
+          "shared_pid_count": 77,
+          "late_overlap_fraction": 0.8651685393258427,
+          "early_overlap_fraction": 0.8953488372093024
+        }
+      ]
+    },
+    {
+      "late_halo_id": 283000001,
+      "late_N": 1257,
+      "late_unique_pid_count": 39,
+      "status": "NO_QUALIFYING_CANDIDATE_IN_100K_WINDOW",
+      "qualifying_candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "late_halo_id": 286001000,
+      "late_N": 1010,
+      "late_unique_pid_count": 26,
+      "status": "NO_QUALIFYING_CANDIDATE_IN_100K_WINDOW",
+      "qualifying_candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "late_halo_id": 286001001,
+      "late_N": 343,
+      "late_unique_pid_count": 10,
+      "status": "SINGLE_QUALIFYING_CANDIDATE_IN_100K_WINDOW",
+      "qualifying_candidate_count": 1,
+      "candidates": [
+        {
+          "early_row": 34,
+          "early_halo_id": 285004000,
+          "early_N": 317,
+          "early_unique_pid_count": 8,
+          "shared_pid_count": 8,
+          "late_overlap_fraction": 0.8,
+          "early_overlap_fraction": 1.0
+        }
+      ]
+    },
+    {
+      "late_halo_id": 289000000,
+      "late_N": 1547,
+      "late_unique_pid_count": 49,
+      "status": "SINGLE_QUALIFYING_CANDIDATE_IN_100K_WINDOW",
+      "qualifying_candidate_count": 1,
+      "candidates": [
+        {
+          "early_row": 37,
+          "early_halo_id": 289003000,
+          "early_N": 1591,
+          "early_unique_pid_count": 51,
+          "shared_pid_count": 43,
+          "late_overlap_fraction": 0.8775510204081632,
+          "early_overlap_fraction": 0.8431372549019608
+        }
+      ]
+    },
+    {
+      "late_halo_id": 290003000,
+      "late_N": 410,
+      "late_unique_pid_count": 11,
+      "status": "SINGLE_QUALIFYING_CANDIDATE_IN_100K_WINDOW",
+      "qualifying_candidate_count": 1,
+      "candidates": [
+        {
+          "early_row": 36,
+          "early_halo_id": 289000000,
+          "early_N": 398,
+          "early_unique_pid_count": 13,
+          "shared_pid_count": 11,
+          "late_overlap_fraction": 1.0,
+          "early_overlap_fraction": 0.8461538461538461
+        }
+      ]
+    },
+    {
+      "late_halo_id": 293000000,
+      "late_N": 157,
+      "late_unique_pid_count": 11,
+      "status": "SINGLE_QUALIFYING_CANDIDATE_IN_100K_WINDOW",
+      "qualifying_candidate_count": 1,
+      "candidates": [
+        {
+          "early_row": 40,
+          "early_halo_id": 293000000,
+          "early_N": 149,
+          "early_unique_pid_count": 10,
+          "shared_pid_count": 10,
+          "late_overlap_fraction": 0.9090909090909091,
+          "early_overlap_fraction": 1.0
+        }
+      ]
+    },
+    {
+      "late_halo_id": 304001000,
+      "late_N": 381,
+      "late_unique_pid_count": 11,
+      "status": "SINGLE_QUALIFYING_CANDIDATE_IN_100K_WINDOW",
+      "qualifying_candidate_count": 1,
+      "candidates": [
+        {
+          "early_row": 45,
+          "early_halo_id": 304002000,
+          "early_N": 356,
+          "early_unique_pid_count": 10,
+          "shared_pid_count": 10,
+          "late_overlap_fraction": 0.9090909090909091,
+          "early_overlap_fraction": 1.0
+        }
+      ]
+    },
+    {
+      "late_halo_id": 305003000,
+      "late_N": 245,
+      "late_unique_pid_count": 19,
+      "status": "SINGLE_QUALIFYING_CANDIDATE_IN_100K_WINDOW",
+      "qualifying_candidate_count": 1,
+      "candidates": [
+        {
+          "early_row": 47,
+          "early_halo_id": 305001000,
+          "early_N": 226,
+          "early_unique_pid_count": 17,
+          "shared_pid_count": 17,
+          "late_overlap_fraction": 0.8947368421052632,
+          "early_overlap_fraction": 1.0
+        }
+      ]
+    },
+    {
+      "late_halo_id": 327000000,
+      "late_N": 917,
+      "late_unique_pid_count": 25,
+      "status": "SINGLE_QUALIFYING_CANDIDATE_IN_100K_WINDOW",
+      "qualifying_candidate_count": 1,
+      "candidates": [
+        {
+          "early_row": 49,
+          "early_halo_id": 327000000,
+          "early_N": 923,
+          "early_unique_pid_count": 25,
+          "shared_pid_count": 24,
+          "late_overlap_fraction": 0.96,
+          "early_overlap_fraction": 0.96
+        }
+      ]
+    },
+    {
+      "late_halo_id": 328000000,
+      "late_N": 220,
+      "late_unique_pid_count": 7,
+      "status": "SINGLE_QUALIFYING_CANDIDATE_IN_100K_WINDOW",
+      "qualifying_candidate_count": 1,
+      "candidates": [
+        {
+          "early_row": 51,
+          "early_halo_id": 328000000,
+          "early_N": 206,
+          "early_unique_pid_count": 7,
+          "shared_pid_count": 7,
+          "late_overlap_fraction": 1.0,
+          "early_overlap_fraction": 1.0
+        }
+      ]
+    },
+    {
+      "late_halo_id": 373000000,
+      "late_N": 352,
+      "late_unique_pid_count": 15,
+      "status": "SINGLE_QUALIFYING_CANDIDATE_IN_100K_WINDOW",
+      "qualifying_candidate_count": 1,
+      "candidates": [
+        {
+          "early_row": 58,
+          "early_halo_id": 373004000,
+          "early_N": 345,
+          "early_unique_pid_count": 16,
+          "shared_pid_count": 15,
+          "late_overlap_fraction": 1.0,
+          "early_overlap_fraction": 0.9375
+        }
+      ]
+    },
+    {
+      "late_halo_id": 375000000,
+      "late_N": 504,
+      "late_unique_pid_count": 18,
+      "status": "SINGLE_QUALIFYING_CANDIDATE_IN_100K_WINDOW",
+      "qualifying_candidate_count": 1,
+      "candidates": [
+        {
+          "early_row": 59,
+          "early_halo_id": 375001000,
+          "early_N": 485,
+          "early_unique_pid_count": 17,
+          "shared_pid_count": 17,
+          "late_overlap_fraction": 0.9444444444444444,
+          "early_overlap_fraction": 1.0
+        }
+      ]
+    }
+  ]
+}

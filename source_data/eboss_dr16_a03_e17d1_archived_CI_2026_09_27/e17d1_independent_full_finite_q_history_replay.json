@@ -1,0 +1,34 @@
+{
+  "date": "2026-09-27",
+  "status": "E17D1_INDEPENDENT_STDLIB_FULL_FINITE_Q_CAUSAL_HISTORY_REPLAY_PASS_PHYSICAL_HALO_B_BLOCKED",
+  "prospective_E17D1_protocol_git_blob": "791502d5385e35b358fb2d2afebf5fac77bd6ad5",
+  "original_joint_sha256": "1e52880db6c60cff1fe3cc1ca0a00e553c63ca08601399334d049e8403e18781",
+  "original_E8_CSV_sha256": "bf8f48deb9514c5101d5ce314bfbd397485102a5487da1039f141e3cad6143d0",
+  "state_original_SHA_and_samples": {
+    "FD": {
+      "original_sha256": "ff787d0fae74c4541a62486da3d0b2dd260d6e4f676d387ba1499da4bc9a10b3",
+      "replayed_original_state_leg_phase_samples": 3456,
+      "finite_q_normalization": 0.014538083303726078
+    },
+    "plus": {
+      "original_sha256": "4246ebd3910612362dcf3b569e7071879a3c7aa8c32d12239b1788fd9d7085f7",
+      "replayed_original_state_leg_phase_samples": 3456,
+      "finite_q_normalization": 0.01453808202034689
+    },
+    "minus": {
+      "original_sha256": "3bfadf65ef5a14d439e7593edd79ee3114587fb9dfd12b554f22027039fd3067",
+      "replayed_original_state_leg_phase_samples": 3456,
+      "finite_q_normalization": 0.014538084587105265
+    }
+  },
+  "original_E16_geometries": 576,
+  "replayed_state_leg_phase_samples": 10368,
+  "replayed_two_unit_area_symbolic_histories_per_sample": true,
+  "maximum_scaled_independent_finite_q_IBP_history_gap": 5.244277234695005e-13,
+  "independent_method": "Pure stdlib, independently reconstructed E16 analytic leg moduli and original 4000q piecewise-linear F; derivative-free q integration by parts with full original qmin/qmax boundary, exact top-hat time integral; no original E17D1 runner import, NumPy, CLASS or eBOSS observed inputs.",
+  "physical_halo_time_history_supplied": false,
+  "full_physical_finiteK_bispectrum": "BLOCKED",
+  "observed_odd_SEALED": true,
+  "new_CLASS_FITS_mock": false,
+  "main_untouched_PR_draft": true
+}

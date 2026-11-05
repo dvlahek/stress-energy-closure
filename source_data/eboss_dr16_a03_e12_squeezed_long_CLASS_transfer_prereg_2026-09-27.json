@@ -1,0 +1,89 @@
+{
+  "date": "2026-09-27",
+  "study": "E12 source-only pinned original three CLASS F0/F± LONG relative-velocity-CDM-density spectrum at fixed squeezed K, multiplied by already frozen Gaussian-rank E11 Gamma, not eBOSS measured bispectrum or 24D odd mean.",
+  "preregistration": "Registered after full E11 E8/E9/E10 SHA-complete CI 36329666591 but before any additional E12 CLASS long-wave extraction. No selections tuned from E11 numerical gamma values.",
+  "fixed_parents": {
+    "E8_CSV_sha256": "bf8f48deb9514c5101d5ce314bfbd397485102a5487da1039f141e3cad6143d0",
+    "E9_three_state_JSON_sha256": "450b35f68a329f545f21bbe7ec02e36941e4c303037ccb7c011830c315d15890",
+    "E10_angular_JSON_sha256": "cc55a914a8be0174eb7c1e49e0e1968537cedfcf4a429d52ad66ab86cb44a488",
+    "E11_Gaussian_Gamma_JSON_sha256": "fffdd6fac67256631e5981182e1b8ba6f48eb05ad14ddbec48e6d8eaa98b45eb",
+    "E11_original_run": 36329666591,
+    "E11_original_artifact_id": 10935455742,
+    "E9_original_class_commit": "e85808324f51fc694d12e3ed7439552a3c3f9540",
+    "E9_frozen_class_script_blob": "700a80d9ea9bc45454925b9a06fec2106203c506",
+    "original_E8_SOURCE_mnu_eV": 0.06,
+    "original_E8_SOURCE_zmatch": 1100,
+    "original_E8_SOURCE_deformation_cap": 0.3
+  },
+  "fixed_source_k_and_z": {
+    "long_K_h_per_Mpc": [
+      0.003,
+      0.005,
+      0.01
+    ],
+    "short_k_h_per_Mpc": 0.05,
+    "squeezed_K_over_k": [
+      0.06,
+      0.1,
+      0.2
+    ],
+    "center_z": 0.95,
+    "redshift_derivative_relative_z_steps": [
+      0.004,
+      0.002
+    ],
+    "original_velocity_integration_grid": "np.geomspace(1e-4,.15,180)",
+    "original_R_filter_comoving_Mpc_per_h": 16,
+    "original_sigma_R16_truncation_K_upper_h_per_Mpc": 0.1,
+    "CLASS_perturbation_gauge": "newtonian",
+    "CLASS_output": "mPk,dTk,vTk",
+    "CLASS_z_max_pk_at_least": 1.05,
+    "CLASS_state_source": "Original exact E8 CSV q f_FD f_plus f_minus, independently in original unmodified CLASS commit",
+    "CLASS_three_distinct_states": [
+      "FD",
+      "plus",
+      "minus"
+    ]
+  },
+  "transfer_and_power_conventions": {
+    "Fourier": "f(x)=integral d^3K/(2pi)^3 exp(i K dot x) f(K)",
+    "initial_curvature_dimensionless_power": "Delta_R^2(K)=A_s*(K_Mpc/0.05Mpc^-1)^(n_s-1), same cro.A_S and wake_two_tracer_fisher.NS=.9649",
+    "signed_original_E9_velocity_transfer": "Vrel_signed_s(K,z)=-c*H_CLASS(z)/K_Mpc * d(d_ncdm0-d_cdm)/dz *sqrt(Delta_R^2(K)) [km/s]; original E9 signed scalar (its integral uses V²).",
+    "CDM_long_scalar": "Dcdm_s(K,z)=d_cdm_s(K,z)*sqrt(Delta_R^2(K)) at the same redshift/primordial Gaussian mode",
+    "physical_vector": "v_rel(K)=-i Khat Vrel_signed_s(K,z) zeta_unit(K), fixed Fourier convention. One LOS component filtered by original W(K R16).",
+    "original_same_state_LOS_sigma": "sigma_los_s=sqrt(original E9 R16 cumulative Vrel² W² to K=.10 /3), must also independently recompute with same 180 KVEL grid and compare original E9 at fixed z.",
+    "long_density_wind_cross_per_logK": "Define real signed C_s(K)=Dcdm_s(K)*Vrel_signed_s(K)*W(KR16)/sigma_LOS_s, so Delta^2_{delta_c,r_s}(K) = +i (Khat dot n) C_s(K) for cross <delta_c(K)r_s(-K)> under the stated Fourier convention. Observable galaxy long bias remains unknown.",
+    "squeezed_Gamma_product": "Define Bhat_ell,s(K;kshort=.05,z=.95)=Gamma_ell,s * C_s(K), per unit [DeltaBias*Pcb(short)] and per unit long CDM-density dimensionless covariance, before the +i cos(K,LOS) geometry and physical 2pi²/K³. The actual squeezed bispectrum also requires proper momentum triangle, halo/tracer kernels, finite-window and nuisance modeling.",
+    "two_point_odd_mean": "Still zero under original symmetric Gaussian velocity model. Nonzero Bhat is NOT a nonzero unconditional eBOSS xi."
+  },
+  "preregistered_technical_QA": {
+    "E9_sigma_replay_vs_original_max_relative": 0.005,
+    "original_long_v_density_delta_stencil_0p004_vs_0p002_rel_warn": 0.05,
+    "CLASS_k_coverage_exact_no_extrapolation": true,
+    "no_change_to_original_E9_CLASS_hierarchy": true,
+    "all_three_states_required": true,
+    "negative_controls": [
+      "zero relativistic long covariance => Bhat zero",
+      "equal LRG ELG bias => wake Bhat zero",
+      "exchange tracer conjugation => odd short sign reversal",
+      "reversing long K LOS flips i geometry",
+      "symmetric Gaussian r => unconditional 2point odd mean zero",
+      "E11 Gamma input SHA pinned"
+    ],
+    "engineering_failures_not_science_selection": true
+  },
+  "physical_limits": {
+    "new_CDM_LONG_not_actual_eBOSS_LRG_or_ELG_tracer": true,
+    "no_survey_tracer_bias_or_magnification_or_evolution_calibrated": true,
+    "local_uniform_wind_and_Gaussian_separate_background_approximation": true,
+    "no_full_short_k_z_or_all_squeezed_triangles": true,
+    "no_full_nonlocal_retarded_Einstein_Vlasov_halo_solution": true,
+    "original_published_mu_1_vs_FD_occ_normalization_unresolved": true,
+    "original_SGC_independent_reverse_and_RR_48k_convergence_open": true,
+    "independent_3point_eBOSS_covariance_missing": true,
+    "no_new_catalogue_or_mock_download": true,
+    "observed_galaxies_or_randoms_or_odd_read": false,
+    "original_PR_remains_draft": true,
+    "main_mutation": false
+  }
+}

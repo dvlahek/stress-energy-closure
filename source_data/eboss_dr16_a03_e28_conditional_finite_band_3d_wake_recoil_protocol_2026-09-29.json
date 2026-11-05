@@ -1,0 +1,62 @@
+{
+  "stage": "E28_CONDITIONAL_FINITE_BAND_3D_NEUTRINO_WAKE_HALO_RECOIL",
+  "date": "2026-09-29",
+  "registration": "E27 physical-time source and original DM14 conditional halo references inspected BEFORE registration; ONLY new E28 finite-band 3D reciprocal-force numerical experiment fixed here. Not a registered galaxy prediction.",
+  "parent_head": "c1ed83b1c00c16b2c698b297ad84e56b2317e932",
+  "pins": {
+    "E27_runner": "851df1faf5897464665ba79f4534c4b6de234eca",
+    "E27_report": "87380ff6bdcb7cda3e244b0b4a716c84df0c4034",
+    "E27_protocol": "d9c9a71841d00cd04db1016ceb2ce1adb5cfc7d5",
+    "E8_4000q": "52d614041551a5067edda01eca94741241831913",
+    "E17D0_kernel": "f8ed0cfcea70251c005a1dd1bb7be403984e9854",
+    "DM14_z095_case04": "776322703b3f93071e7c53f2cb803a667048c870",
+    "DM14_z095_case13": "f6fc9e34b0382e6f8d596a2a5c3721adc9dcd5f8"
+  },
+  "frozen_physical_benchmark": {
+    "states": [
+      "FD",
+      "plus",
+      "minus"
+    ],
+    "halo_mass_cases": "Exact E27/E17D2B1 conditional 1e12 and 1e13 h_DM14^-1 Msun physical anchors, alpha=.4/.8",
+    "halo_form": "Original E17D2B0 DM14 median c200c and r_s physical at z=.95. Fix the COMOVING radial NFW shape u_h(k) at its z=.95 size throughout z=1 to .95, while normalization follows original E17D2B1 M_alpha(z). Physical scale evolves proportionally to a: ADDITIONAL uncalibrated profile-history ansatz and DM14/CLASS background mixing, not a measured same-object halo.",
+    "incoming_wake": "Zero at z=1, same original short historical window as E27.",
+    "halo_velocity_km_s": 200,
+    "z_obs": 0.95,
+    "z_init": 1,
+    "k_comoving_Mpc_inverse_band": [
+      0.01,
+      0.1,
+      1,
+      8
+    ],
+    "k_quadrature": "Composite Simpson in ln(k): 12 vs 24 intervals PER predeclared band, common exact boundaries.",
+    "z_quadrature_nodes": [
+      129,
+      257
+    ],
+    "nfw_radial_quadrature": "Gauss-Legendre 64 points on y=r/r_s in [0,c], normalized by ln(1+c)-c/(1+c).",
+    "angular_integral": "Exact integral of i mu exp(i k mu dx) dmu over -1..1 equals 2 sinc_prime(k dx). No artificial LOS-angle sampling.",
+    "rho_neutrino": "Direct rest-mass density for one massive nu+anti species from original CLASS-normalized 4000q F0/Fplus/Fminus, mnu=.06 eV and Tnu0=.71611*2.7255 K. Newtonian nonrel approximation at z=.95; use SI hbar c, eV, Msun and Mpc constants.",
+    "force": "Physical halo-averaged acceleration from total neutrino wake potential only, a_parallel=(G*a*rho_nu/PI) integral_{kband} dk k u_h(k)^2 pref_E27(k) integral_z dz [M(z)/M0 * H_F(s)/H_CLASS(z)*2 sinc_prime(k dx(z))], in (km/s)^2/Mpc. Each halo profile factor appears once in source and once in mass-averaged force.",
+    "negative_controls": "v=0 implies force=0; v reversal flips sign; imaginary density sign and real force consistent; density mass dimension and finite NFW radial normalization; source original pinned and E27 single k closure; no pseudo M200c measurement, no double-counted epsilon Euler term."
+  },
+  "acceptance": {
+    "FD_coarse_fine_full_band_relative_gap_at_most": 0.02,
+    "signed_Fpm_contrast_status": "Only claim sign if 12/24 by 129/257 resolution relative difference <1% OF THE SIGNED DIFFERENCE; otherwise report unresolved with exact gap and NEVER change grid posthoc.",
+    "finite_band_convergence": "Report 0.01-0.1, 0.01-1, 0.01-8 separately, NO extrapolation to k=infinity, no numerical total drag inference."
+  },
+  "limits": {
+    "not_calibrated_real_halo_history": true,
+    "no_real_eBOSS_HOD": true,
+    "no_coupled_EV_selfgravity": true,
+    "no_full_previous_wake_before_z1": true,
+    "no_true_all_k_total_force_or_delta_v": true,
+    "no_physical_galaxy_beta_epsilon_or_chi": true,
+    "original_observed_odd_SEALED": true,
+    "no_new_CLASS_ASDF_FITS_Abacus_mock_WSL": true,
+    "no_new_science_cuts_or_seed": true,
+    "main_unchanged_PR_draft": true
+  },
+  "protocol_clarification_before_any_E28_execution": "First protocol text mistakenly said physical r_s fixed while its predeclared force equation used u_h(k)^2 constant in z; corrected this internal inconsistency to comoving r_s fixed BEFORE any E28 scientific run, no grid or source change. Earlier Git blob a818d07f9c42baa61ffe0520c9ec6245e32569e3 preserved in Git history."
+}

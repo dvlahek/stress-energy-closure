@@ -1,0 +1,83 @@
+{
+  "stage": "E17D2B3B9_EXACT_PINNED_OFFICIAL_TEXT_STANDARD_PRODUCT_AVAILABILITY_RESULT",
+  "date": "2026-09-29",
+  "status": "SOURCE_ONLY_FIVE_EXACT_OFFICIAL_TEXT_SOURCES_AND_EIGHT_NEGATIVES_PASS_NO_INDEPENDENT_SAME_EPOCH_M200C_FOUND_IN_THESE_SOURCES",
+  "parent_prospective_B9_prereg_git_blob": "8ed61aa3927a4ab89cf423c424aa9c24563637a9",
+  "parent_B8_source_only_scientific_QA_git_blob": "1c1de601c657af7c20590a86945d2cb39abe72e9",
+  "parent_user_uploaded_B7R1_audit_git_blob": "f27ed284c95e48548e50336da04c1a1d4b137186",
+  "source_only_reader_git_blob": "813520b4b88c8b82198f228a39c4a21a9b38de02",
+  "official_source_pins": {
+    "AbacusSummit_repo": "abacusorg/AbacusSummit",
+    "AbacusSummit_commit": "4b1959c710cb0c49aa305c6213a228aa2a4587ff",
+    "simulations_rst_blob": "b5291009d2bb84dfae0c95da2a9734300841f84f",
+    "data_access_rst_blob": "6aad7833ab4482ebdd7cd2a23a3011f25e16e329",
+    "data_products_rst_blob": "f7c847b174365744b23cb6d1ebaeb010a5bd6ca7",
+    "simulation_csv_blob": "53d32e3fbec68ab64da1d52a3bf904fc3eb06c97",
+    "abacusutils_repo": "abacusorg/abacusutils",
+    "abacusutils_commit": "24ab0dda5fea9ae406b1afdacaf4bbf989de9bc6",
+    "compaso_halo_loader_blob": "adb16aee1cbac863db5301c6e380938ee7f76547"
+  },
+  "CI": {
+    "pinned_source_only_run_id": 36530544466,
+    "pinned_source_only_conclusion": "SUCCESS",
+    "synthetic_negatives": 8,
+    "repository_integrity_run_id": 36530548054,
+    "repository_integrity_conclusion": "SUCCESS",
+    "verified_commit": "2818155a8137eb5bbe402e9ac28f66bdb6edc7b9"
+  },
+  "fixed_simulation": "AbacusSummit_base_c000_ph000",
+  "fixed_halo_file_already_user_local": "halos/z0.950/halo_info/halo_info_000.asdf",
+  "actual_redshift_original_source_header": 0.952838237036305,
+  "source_only_findings": {
+    "source_csv_c000_ph000_Full_status": "Full",
+    "official_full_particle_epochs_z": [
+      3,
+      2.5,
+      2,
+      1.7,
+      1.4,
+      1.1,
+      0.8,
+      0.5,
+      0.4,
+      0.3,
+      0.2,
+      0.1
+    ],
+    "exact_secondary_z0p952838_full_snapshot_in_standard_Full_list": false,
+    "neighboring_primary_full_epochs": [
+      1.1,
+      0.8
+    ],
+    "neighboring_epoch_products_are_same_halo_same_epoch_M200c": false,
+    "official_secondary_standard_products": "CompaSO L1 halo catalogue plus selected 10-percent halo subsample PID with density/tag; no secondary epoch halo RV or field RV",
+    "official_cleaned_catalogues_exist_as_separate_DOI": "10.13139/OLCF/1828535",
+    "cleaned_loader_fields_relevant": [
+      "N_total",
+      "N_merge",
+      "N_mainprog",
+      "haloindex",
+      "haloindex_mainprog",
+      "is_merged_to"
+    ],
+    "official_standard_loader_user_and_cleaned_schema_has_direct_M200c_field": false,
+    "cleaned_membership_N_total_is_independently_measured_M200critical": false,
+    "standard_NERSC_disk_subset_lists_100pct_time_slice_outputs_as_excluded": true,
+    "OLCF_Constellation_original_data_tape_DOI": "10.13139/OLCF/1811689",
+    "no_live_Globus_or_Tape_specific_file_listing_checked": true
+  },
+  "specific_decision": "No independent true same-epoch M200critical for the exact selected c000 ph000 z0.952838 objects is identified in the five pinned standard official sources. Retain M200c(a) BLOCKED; do not relabel L1 N*m_particle, cleaned N_total, SO_radius, or primary z1.1/z0.8 as that same-epoch measurement. Future extension requires separately identified official or independently verifiable same-epoch product with exact mass definition and per-halo match.",
+  "evidence_limits": {
+    "complete_provider_dataset_search_performed": false,
+    "third_party_or_special_derived_M200c_excluded": false,
+    "live_portal_exact_items_browsed": false,
+    "real_ASDF_or_PID_RV_or_cleaned_tree_or_full_snapshot_downloaded": false,
+    "actual_user_WSL_run": false,
+    "observed_galaxy_or_24D_odd_opened": false,
+    "full_34_superslab_l1_mass_function_measured": false,
+    "full_physical_Fplus_Fminus_neutrino_wake_or_galaxy_B_measured": false
+  },
+  "observed_odd_SEALED": true,
+  "original_E8_E16_48k_unchanged": true,
+  "main_untouched_PR_draft": true
+}

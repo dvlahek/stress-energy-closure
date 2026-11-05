@@ -1,0 +1,39 @@
+{
+  "date": "2026-09-27",
+  "CI_run_id": "36344909227",
+  "E17B_prospective_protocol_git_blob": "d0389e336de9e9964cade589fc17594a595f2e17",
+  "E17A_original_joint_sha256": "094c49cb89d6dd231a5cbc16ecdfe455bcb3938ddec375fd28c81c8098ab2ad9",
+  "original_CLASS_commit": "e85808324f51fc694d12e3ed7439552a3c3f9540",
+  "new_survey_catalogue_mock_download": false,
+  "observed_odd_SEALED": true,
+  "physical_halo_tracer_B": "BLOCKED",
+  "main_untouched": true,
+  "PR_remains_draft": true,
+  "files": [
+    {
+      "file": "e17b_independent_native_array_scalar_replay.json",
+      "size_bytes": 1545,
+      "sha256": "6b1e99a6d695378453dd47127e642c0d286d08dd75187b1cf0e00c3005d4ea4e"
+    },
+    {
+      "file": "e17b_original_joint_native_CLASS_transfer_resolution.json",
+      "size_bytes": 3662,
+      "sha256": "156763dfb81e2a8c5c9e3615f5022749fa681f458a2753fbfa5f46b462e20658"
+    },
+    {
+      "file": "e17b_refined_native_CLASS_FD.json",
+      "size_bytes": 1039885,
+      "sha256": "ff9411b6a1bdf7c3d2b989f61b7741254389faa05bf61e0c8487b77eddb4ce2d"
+    },
+    {
+      "file": "e17b_refined_native_CLASS_minus.json",
+      "size_bytes": 1039908,
+      "sha256": "1dba5ba3ff8f3790a8ef3231e5da02380163e4672b81c1a40a122e5dd92b711d"
+    },
+    {
+      "file": "e17b_refined_native_CLASS_plus.json",
+      "size_bytes": 1039746,
+      "sha256": "66b6a344906621f6655bed09ad72dd0eabbae35bd3c47be483b558cdeb593d48"
+    }
+  ]
+}

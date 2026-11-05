@@ -1,0 +1,26 @@
+name: eBOSS DR16 ELG four-chunk maskbit filename index SHA gate
+
+on:
+  push:
+    branches:
+      - audit/eboss-elg-bit8-ra-orientation-20260925
+    paths:
+      - 'scripts/audit_eboss_dr16_elg_maskbit_index.py'
+      - 'source_data/eboss_dr16_elg_maskbit_index_pin_2026-09-26.json'
+      - '.github/workflows/eboss_dr16_elg_maskbit_index.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  synthetic-index-no-real-fits:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Verify four-family synthetic file-list SHA and fail-closed tampering
+        run: python -u scripts/audit_eboss_dr16_elg_maskbit_index.py --self-test

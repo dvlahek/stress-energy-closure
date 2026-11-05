@@ -1,0 +1,363 @@
+{
+  "date": "2026-09-27",
+  "status": "E13_RANK_MATCHED_DIRECT_VTK_GAUSSIAN_WICK_FIXED_K_SOURCE_ONLY_BISPECTRUM_KERNEL_COMPLETE_NOT_EBOSS_OBSERVABLE",
+  "prospectively_registered_E13_protocol_git_blob": "3c0e2031a14b5bb07e41dce29005e07dc1439deb",
+  "original_E12b_R16_long_mode_filter_erratum_git_blob": "09bac4f72e325578cbed7e790c50114150087e89",
+  "original_E8_CSV_SHA256": "bf8f48deb9514c5101d5ce314bfbd397485102a5487da1039f141e3cad6143d0",
+  "original_E9_three_CLASS_SHA256": "450b35f68a329f545f21bbe7ec02e36941e4c303037ccb7c011830c315d15890",
+  "original_E12_per_state_original_sha256": {
+    "FD": "b1c679e8ccdf2e901abbb2ffc200cfcce765bf8ee9492364a280625835d42414",
+    "plus": "aedaf4381065ba807adced01b7740ade91db5a83d49113315e7a596ac2652655",
+    "minus": "4a12370b578a5482b67cd3d484504bf672396df35d8c252ff5d1150875b04777"
+  },
+  "fresh_E13_direct_vTk_per_state_source_sha256": {
+    "FD": "f32527307024480e031e3d7952caf681b577f528d70b86fae1efa4ee7828bfde",
+    "plus": "40d0da5e772ee99dce809a48179064a964ae20f46876dacde8d529158a8c7dd2",
+    "minus": "bf94d3b701867492f91768b182839b149de68cce147de2d5b21a813c2d907a7a"
+  },
+  "original_E11_Gamma_IS_NOT_USED_IN_FINAL_Bsource": true,
+  "original_E11_Gamma_shown_only_as_density_proxy_comparison": true,
+  "original_short_k_COMOVING_h_Mpc": 0.05,
+  "original_long_K_COMOVING_h_Mpc": [
+    0.001,
+    0.002,
+    0.003,
+    0.005
+  ],
+  "math_midpoint_z_not_eBOSS_measured_z_eff": 0.95,
+  "model": "Gaussian r~N(0,1) from R16-filtered DIRECT CLASS vTk LOS wind; exact frozen F\u00b1 Eq20 occupation; same rank in original EqA8 angular Gaussian Gamma and in corrected long P_delta_cb,r with SAME W_R16(K); separate CLASS P_cb_short for each frozen F state, unit DeltaBias=1. Units Mpc^6, coefficient of +i mu_long.",
+  "all_predeclared_four_quadrature_combinations_Gamma": {
+    "GL_256_GH_48": {
+      "FD": {
+        "1": {
+          "Gamma_direct_R16_rank": 0.00026009743973645275,
+          "unconditional_intrinsic_mean_odd_symmetric_rank": 0.0,
+          "conditional_source_rms": 0.0002602901693913906
+        },
+        "3": {
+          "Gamma_direct_R16_rank": 0.00016845610434008203,
+          "unconditional_intrinsic_mean_odd_symmetric_rank": 0.0,
+          "conditional_source_rms": 0.0001686827095418508
+        }
+      },
+      "plus": {
+        "1": {
+          "Gamma_direct_R16_rank": 0.0002038167803450193,
+          "unconditional_intrinsic_mean_odd_symmetric_rank": 0.0,
+          "conditional_source_rms": 0.00020487947643765326
+        },
+        "3": {
+          "Gamma_direct_R16_rank": 0.0001254772751793177,
+          "unconditional_intrinsic_mean_odd_symmetric_rank": 0.0,
+          "conditional_source_rms": 0.00012667477867863084
+        }
+      },
+      "minus": {
+        "1": {
+          "Gamma_direct_R16_rank": 0.00031610911705725757,
+          "unconditional_intrinsic_mean_odd_symmetric_rank": 0.0,
+          "conditional_source_rms": 0.00031611517959098076
+        },
+        "3": {
+          "Gamma_direct_R16_rank": 0.0002112314583383405,
+          "unconditional_intrinsic_mean_odd_symmetric_rank": 0.0,
+          "conditional_source_rms": 0.00021124546440362234
+        }
+      }
+    },
+    "GL_256_GH_96": {
+      "FD": {
+        "1": {
+          "Gamma_direct_R16_rank": 0.0002600945665656452,
+          "unconditional_intrinsic_mean_odd_symmetric_rank": 3.3881317890172014e-21,
+          "conditional_source_rms": 0.00026028703540992976
+        },
+        "3": {
+          "Gamma_direct_R16_rank": 0.00016845359023507427,
+          "unconditional_intrinsic_mean_odd_symmetric_rank": 3.3881317890172014e-21,
+          "conditional_source_rms": 0.00016867988846221081
+        }
+      },
+      "plus": {
+        "1": {
+          "Gamma_direct_R16_rank": 0.00020381071144524713,
+          "unconditional_intrinsic_mean_odd_symmetric_rank": 3.3881317890172014e-21,
+          "conditional_source_rms": 0.00020487191409792818
+        },
+        "3": {
+          "Gamma_direct_R16_rank": 0.00012547196521401764,
+          "unconditional_intrinsic_mean_odd_symmetric_rank": 0.0,
+          "conditional_source_rms": 0.00012666767687457214
+        }
+      },
+      "minus": {
+        "1": {
+          "Gamma_direct_R16_rank": 0.0003161093338381267,
+          "unconditional_intrinsic_mean_odd_symmetric_rank": 0.0,
+          "conditional_source_rms": 0.0003161153941309917
+        },
+        "3": {
+          "Gamma_direct_R16_rank": 0.00021123153731571854,
+          "unconditional_intrinsic_mean_odd_symmetric_rank": 0.0,
+          "conditional_source_rms": 0.00021124554141319153
+        }
+      }
+    },
+    "GL_512_GH_48": {
+      "FD": {
+        "1": {
+          "Gamma_direct_R16_rank": 0.00026009743973645925,
+          "unconditional_intrinsic_mean_odd_symmetric_rank": 0.0,
+          "conditional_source_rms": 0.0002602901693913971
+        },
+        "3": {
+          "Gamma_direct_R16_rank": 0.0001684561043400884,
+          "unconditional_intrinsic_mean_odd_symmetric_rank": -6.776263578034403e-21,
+          "conditional_source_rms": 0.0001686827095418573
+        }
+      },
+      "plus": {
+        "1": {
+          "Gamma_direct_R16_rank": 0.0002038165999646884,
+          "unconditional_intrinsic_mean_odd_symmetric_rank": 0.0,
+          "conditional_source_rms": 0.0002048793176332708
+        },
+        "3": {
+          "Gamma_direct_R16_rank": 0.0001254771748978697,
+          "unconditional_intrinsic_mean_odd_symmetric_rank": 0.0,
+          "conditional_source_rms": 0.00012667470437168765
+        }
+      },
+      "minus": {
+        "1": {
+          "Gamma_direct_R16_rank": 0.00031610899241202685,
+          "unconditional_intrinsic_mean_odd_symmetric_rank": 0.0,
+          "conditional_source_rms": 0.0003161150544761338
+        },
+        "3": {
+          "Gamma_direct_R16_rank": 0.00021123131619609119,
+          "unconditional_intrinsic_mean_odd_symmetric_rank": 0.0,
+          "conditional_source_rms": 0.00021124532330166193
+        }
+      }
+    },
+    "GL_512_GH_96": {
+      "FD": {
+        "1": {
+          "Gamma_direct_R16_rank": 0.00026009456656565094,
+          "unconditional_intrinsic_mean_odd_symmetric_rank": 0.0,
+          "conditional_source_rms": 0.00026028703540993545
+        },
+        "3": {
+          "Gamma_direct_R16_rank": 0.0001684535902350796,
+          "unconditional_intrinsic_mean_odd_symmetric_rank": 0.0,
+          "conditional_source_rms": 0.00016867988846221626
+        }
+      },
+      "plus": {
+        "1": {
+          "Gamma_direct_R16_rank": 0.00020381060038082482,
+          "unconditional_intrinsic_mean_odd_symmetric_rank": -3.3881317890172014e-21,
+          "conditional_source_rms": 0.0002048718220834104
+        },
+        "3": {
+          "Gamma_direct_R16_rank": 0.00012547192157002086,
+          "unconditional_intrinsic_mean_odd_symmetric_rank": -3.3881317890172014e-21,
+          "conditional_source_rms": 0.0001266676277506107
+        }
+      },
+      "minus": {
+        "1": {
+          "Gamma_direct_R16_rank": 0.00031610927644218085,
+          "unconditional_intrinsic_mean_odd_symmetric_rank": 6.776263578034403e-21,
+          "conditional_source_rms": 0.0003161153353462265
+        },
+        "3": {
+          "Gamma_direct_R16_rank": 0.00021123163567242896,
+          "unconditional_intrinsic_mean_odd_symmetric_rank": 0.0,
+          "conditional_source_rms": 0.0002112456396868526
+        }
+      }
+    }
+  },
+  "rank_match_and_technical_QA": {
+    "FD_ell1_GH48_96": 1.1046517071540721e-05,
+    "FD_ell1_GL256_512": 2.209300867007057e-14,
+    "FD_ell3_GH48_96": 1.4924392432286258e-05,
+    "FD_ell3_GL256_512": 3.169831935335709e-14,
+    "plus_ell1_GH48_96": 2.943618853718309e-05,
+    "plus_ell1_GL256_512": 5.449390835245226e-07,
+    "plus_ell3_GH48_96": 4.1866800500763585e-05,
+    "plus_ell3_GL256_512": 3.478386323831377e-07,
+    "minus_ell1_GH48_96": 8.985188830705111e-07,
+    "minus_ell1_GL256_512": 1.8156991808844578e-07,
+    "minus_ell3_GH48_96": 1.5124455044612181e-06,
+    "minus_ell3_GL256_512": 4.6563437386734067e-07,
+    "Stein_FD_ell1_step0.002": 0.00039858998994051376,
+    "Stein_FD_ell1_step0.001": 0.00039859038896984667,
+    "Stein_FD_ell3_step0.002": 0.0005385042070377784,
+    "Stein_FD_ell3_step0.001": 0.0005385049237750743,
+    "Stein_plus_ell1_step0.002": 0.0010155522964187156,
+    "Stein_plus_ell1_step0.001": 0.0009553268482655692,
+    "Stein_plus_ell3_step0.002": 0.001369468024611227,
+    "Stein_plus_ell3_step0.001": 0.0012597282530420037,
+    "Stein_minus_ell1_step0.002": 3.034620707540714e-05,
+    "Stein_minus_ell1_step0.001": 5.324953687700571e-05,
+    "Stein_minus_ell3_step0.002": 0.00010174911141478894,
+    "Stein_minus_ell3_step0.001": 0.0001128584058400515
+  },
+  "technical_QA_warnings": [],
+  "conditional_Bsource_unit_DeltaBias_per_E8_state": {
+    "FD": {
+      "Gamma_direct_ell1": 0.00026009456656565094,
+      "Gamma_direct_ell3": 0.0001684535902350796,
+      "old_E11_density_proxy_Gamma_ell1": 0.0002600278965058659,
+      "old_E11_density_proxy_Gamma_ell3": 0.0001684107348834053,
+      "Pcb_short_Mpc3": 15522.753135897803,
+      "long_K_fixed": {
+        "0.001": {
+          "K_comoving_h_per_Mpc": 0.001,
+          "P_delta_cb_rdirect_R16_filtered_over_i_mu_Mpc3": 31826.055140450495,
+          "P_cb_short_CLASS_Mpc3": 15522.753135897803,
+          "ell1_Bsource_reduced_over_i_muLong_unit_DeltaBias_Mpc6": 128493.9978120518,
+          "ell3_Bsource_reduced_over_i_muLong_unit_DeltaBias_Mpc6": 83220.78981082856,
+          "full_eBOSS_galaxy_bispectrum_inferred": false
+        },
+        "0.002": {
+          "K_comoving_h_per_Mpc": 0.002,
+          "P_delta_cb_rdirect_R16_filtered_over_i_mu_Mpc3": 85366.39114064851,
+          "P_cb_short_CLASS_Mpc3": 15522.753135897803,
+          "ell1_Bsource_reduced_over_i_muLong_unit_DeltaBias_Mpc6": 344656.88028384355,
+          "ell3_Bsource_reduced_over_i_muLong_unit_DeltaBias_Mpc6": 223221.45998532718,
+          "full_eBOSS_galaxy_bispectrum_inferred": false
+        },
+        "0.003": {
+          "K_comoving_h_per_Mpc": 0.003,
+          "P_delta_cb_rdirect_R16_filtered_over_i_mu_Mpc3": 146282.26468977306,
+          "P_cb_short_CLASS_Mpc3": 15522.753135897803,
+          "ell1_Bsource_reduced_over_i_muLong_unit_DeltaBias_Mpc6": 590597.6381942391,
+          "ell3_Bsource_reduced_over_i_muLong_unit_DeltaBias_Mpc6": 382508.154060443,
+          "full_eBOSS_galaxy_bispectrum_inferred": false
+        },
+        "0.005": {
+          "K_comoving_h_per_Mpc": 0.005,
+          "P_delta_cb_rdirect_R16_filtered_over_i_mu_Mpc3": 245443.5974086523,
+          "P_cb_short_CLASS_Mpc3": 15522.753135897803,
+          "ell1_Bsource_reduced_over_i_muLong_unit_DeltaBias_Mpc6": 990949.9914214966,
+          "ell3_Bsource_reduced_over_i_muLong_unit_DeltaBias_Mpc6": 641801.5032091705,
+          "full_eBOSS_galaxy_bispectrum_inferred": false
+        }
+      }
+    },
+    "plus": {
+      "Gamma_direct_ell1": 0.00020381060038082482,
+      "Gamma_direct_ell3": 0.00012547192157002086,
+      "old_E11_density_proxy_Gamma_ell1": 0.0002037604735313876,
+      "old_E11_density_proxy_Gamma_ell3": 0.00012544186994843285,
+      "Pcb_short_Mpc3": 15518.062199769942,
+      "long_K_fixed": {
+        "0.001": {
+          "K_comoving_h_per_Mpc": 0.001,
+          "P_delta_cb_rdirect_R16_filtered_over_i_mu_Mpc3": 31858.94595520691,
+          "P_cb_short_CLASS_Mpc3": 15518.062199769942,
+          "ell1_Bsource_reduced_over_i_muLong_unit_DeltaBias_Mpc6": 100761.74030200775,
+          "ell3_Bsource_reduced_over_i_muLong_unit_DeltaBias_Mpc6": 62031.95100161139,
+          "full_eBOSS_galaxy_bispectrum_inferred": false
+        },
+        "0.002": {
+          "K_comoving_h_per_Mpc": 0.002,
+          "P_delta_cb_rdirect_R16_filtered_over_i_mu_Mpc3": 85425.15250689712,
+          "P_cb_short_CLASS_Mpc3": 15518.062199769942,
+          "ell1_Bsource_reduced_over_i_muLong_unit_DeltaBias_Mpc6": 270178.02297230676,
+          "ell3_Bsource_reduced_over_i_muLong_unit_DeltaBias_Mpc6": 166329.69847977534,
+          "full_eBOSS_galaxy_bispectrum_inferred": false
+        },
+        "0.003": {
+          "K_comoving_h_per_Mpc": 0.003,
+          "P_delta_cb_rdirect_R16_filtered_over_i_mu_Mpc3": 146192.50120027707,
+          "P_cb_short_CLASS_Mpc3": 15518.062199769942,
+          "ell1_Bsource_reduced_over_i_muLong_unit_DeltaBias_Mpc6": 462369.6860766907,
+          "ell3_Bsource_reduced_over_i_muLong_unit_DeltaBias_Mpc6": 284648.653599805,
+          "full_eBOSS_galaxy_bispectrum_inferred": false
+        },
+        "0.005": {
+          "K_comoving_h_per_Mpc": 0.005,
+          "P_delta_cb_rdirect_R16_filtered_over_i_mu_Mpc3": 245318.20914711562,
+          "P_cb_short_CLASS_Mpc3": 15518.062199769942,
+          "ell1_Bsource_reduced_over_i_muLong_unit_DeltaBias_Mpc6": 775879.0801236584,
+          "ell3_Bsource_reduced_over_i_muLong_unit_DeltaBias_Mpc6": 477654.4444066841,
+          "full_eBOSS_galaxy_bispectrum_inferred": false
+        }
+      }
+    },
+    "minus": {
+      "Gamma_direct_ell1": 0.00031610927644218085,
+      "Gamma_direct_ell3": 0.00021123163567242896,
+      "old_E11_density_proxy_Gamma_ell1": 0.0003160261251109056,
+      "old_E11_density_proxy_Gamma_ell3": 0.00021117602154044362,
+      "Pcb_short_Mpc3": 15525.999592040673,
+      "long_K_fixed": {
+        "0.001": {
+          "K_comoving_h_per_Mpc": 0.001,
+          "P_delta_cb_rdirect_R16_filtered_over_i_mu_Mpc3": 31720.814637833886,
+          "P_cb_short_CLASS_Mpc3": 15525.999592040673,
+          "ell1_Bsource_reduced_over_i_muLong_unit_DeltaBias_Mpc6": 155682.982578633,
+          "ell3_Bsource_reduced_over_i_muLong_unit_DeltaBias_Mpc6": 104031.02188765375,
+          "full_eBOSS_galaxy_bispectrum_inferred": false
+        },
+        "0.002": {
+          "K_comoving_h_per_Mpc": 0.002,
+          "P_delta_cb_rdirect_R16_filtered_over_i_mu_Mpc3": 85251.72773785368,
+          "P_cb_short_CLASS_Mpc3": 15525.999592040673,
+          "ell1_Bsource_reduced_over_i_muLong_unit_DeltaBias_Mpc6": 418408.01996240776,
+          "ell3_Bsource_reduced_over_i_muLong_unit_DeltaBias_Mpc6": 279590.0564192629,
+          "full_eBOSS_galaxy_bispectrum_inferred": false
+        },
+        "0.003": {
+          "K_comoving_h_per_Mpc": 0.003,
+          "P_delta_cb_rdirect_R16_filtered_over_i_mu_Mpc3": 146323.1415261438,
+          "P_cb_short_CLASS_Mpc3": 15525.999592040673,
+          "ell1_Bsource_reduced_over_i_muLong_unit_DeltaBias_Mpc6": 718141.1749083967,
+          "ell3_Bsource_reduced_over_i_muLong_unit_DeltaBias_Mpc6": 479878.7834603984,
+          "full_eBOSS_galaxy_bispectrum_inferred": false
+        },
+        "0.005": {
+          "K_comoving_h_per_Mpc": 0.005,
+          "P_delta_cb_rdirect_R16_filtered_over_i_mu_Mpc3": 245551.89077210266,
+          "P_cb_short_CLASS_Mpc3": 15525.999592040673,
+          "ell1_Bsource_reduced_over_i_muLong_unit_DeltaBias_Mpc6": 1205147.1934024119,
+          "ell3_Bsource_reduced_over_i_muLong_unit_DeltaBias_Mpc6": 805307.6320744759,
+          "full_eBOSS_galaxy_bispectrum_inferred": false
+        }
+      }
+    }
+  },
+  "conditional_Fplus_minus_Fminus_Bsource_unit_DeltaBias": {
+    "0.001": {
+      "delta_ell1_unit_DeltaBias_Bsource_over_i_muLong_Mpc6": -54921.24227662526,
+      "delta_ell3_unit_DeltaBias_Bsource_over_i_muLong_Mpc6": -41999.07088604236
+    },
+    "0.002": {
+      "delta_ell1_unit_DeltaBias_Bsource_over_i_muLong_Mpc6": -148229.996990101,
+      "delta_ell3_unit_DeltaBias_Bsource_over_i_muLong_Mpc6": -113260.35793948756
+    },
+    "0.003": {
+      "delta_ell1_unit_DeltaBias_Bsource_over_i_muLong_Mpc6": -255771.488831706,
+      "delta_ell3_unit_DeltaBias_Bsource_over_i_muLong_Mpc6": -195230.12986059336
+    },
+    "0.005": {
+      "delta_ell1_unit_DeltaBias_Bsource_over_i_muLong_Mpc6": -429268.1132787535,
+      "delta_ell3_unit_DeltaBias_Bsource_over_i_muLong_Mpc6": -327653.1876677918
+    }
+  },
+  "physical_limits": [
+    "Not Zhu-Castorina exact 3point estimator or full Einstein-Vlasov retarded halo wake",
+    "Only fixed short mode k=.05, 4 fixed long modes and redshift z=.95, Newtonian cb density. No full squeezed triangle angular orientation, unequal-time, gauge-invariant observed galaxy model or full-k/z integration.",
+    "Published Eq20 exact FD occupancy versus approximate mu=1 normalization remains unresolved; no physical eBOSS LRG/ELG DeltaBias, HOD, magnification/evolution selection, or full GR bispectrum nuisance.",
+    "No validated eBOSS triple window, independent bispectrum covariance or 24D odd observation. Conditional source kernel is NOT survey detection or exclusion."
+  ],
+  "observed_galaxy_random_or_odd_read": false,
+  "new_catalogue_or_mock_download_or_science_cut_seed": false,
+  "main_untouched": true,
+  "PR_remains_draft": true
+}

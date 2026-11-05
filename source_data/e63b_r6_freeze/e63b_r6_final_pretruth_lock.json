@@ -1,0 +1,50 @@
+{
+  "stage": "E63B_R6_FINAL_PRETRUTH_LOCK",
+  "center_ra_deg": 62.5,
+  "center_dec_deg": -35.5,
+  "retrieval": {
+    "exact_cone_unique_centrals": 200493,
+    "coverage_min_sector_count": 1460,
+    "coverage_gate_minimum": 50,
+    "coverage_pass": true,
+    "cache": "eboss_workspace/cosmodc2/e63b_outerrim_central_candidates_R6.csv",
+    "cache_sha256": "74d0402bfb2dc87b7ba5f174fb43adb141db4dc21c7f7b1b8acc9a20eefa1f82"
+  },
+  "probe_boundary": {
+    "serialized_boundary_candidates": 4,
+    "serialized_0p9000_total": 0,
+    "serialized_1p0000_total": 4,
+    "server_inside": 2,
+    "server_excluded": 2,
+    "membership": "eboss_workspace/cosmodc2/e63b_r6_probe_z_boundary/e63b_r6_probe_z_membership.csv",
+    "membership_sha256": "112836101c35286f803f99954969d2512e55a746c8fbeae84839b486134b1dd6"
+  },
+  "frozen_science": {
+    "source_z": [
+      0.75,
+      1.16
+    ],
+    "probe_z": [
+      0.9,
+      1.0
+    ],
+    "outer_radius_deg": 9.5,
+    "inner_radius_deg": 2.5,
+    "mass_floor_Msun": 5000000000000.0,
+    "NSEL": 54893,
+    "NPROBE": 512,
+    "probe_seed": 202610630001,
+    "R_smooth_Mpc_over_h": 16.0,
+    "primary_cutoff_Mpc_over_h": 256.0,
+    "check_cutoff_Mpc_over_h": 192.0,
+    "truth_pearson_min": 0.7,
+    "truth_sign_min": 0.7,
+    "cutoff_pearson_min": 0.9,
+    "cutoff_sign_min": 0.9
+  },
+  "truth_velocity_used_before_lock": false,
+  "science_metrics_computed_before_lock": false,
+  "observed_eBOSS_rows_used": false,
+  "observed_odd_used": false,
+  "next": "PATCH_AND_VALIDATE_R6_TRUTH_RUNNER_THEN_EXECUTE_FROZEN_512_PROBE_TRUTH_TRANSFER"
+}

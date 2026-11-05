@@ -1,0 +1,32 @@
+name: eBOSS DR16 paper-cited brickmask v1.0 historical-source reconciliation
+
+on:
+  push:
+    branches:
+      - audit/eboss-elg-bit8-ra-orientation-20260925
+    paths:
+      - 'scripts/audit_eboss_dr16_elg_brickmask_v1_0_source.py'
+      - 'source_data/eboss_dr16_elg_brickmask_v1_0_source_comparison_protocol_2026-09-26.json'
+      - 'source_data/upstream/brickmask_v1_0/**'
+      - 'source_data/upstream/brickmask_b9eb684/**'
+      - '.github/workflows/eboss_dr16_elg_brickmask_v1_0_source.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-only-no-data:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Compile offline source auditor
+        run: python -m py_compile scripts/audit_eboss_dr16_elg_brickmask_v1_0_source.py
+      - name: Verify 2020 and later exact Git blobs plus synthetic tamper and 65536 byte-pair contract
+        run: python -u scripts/audit_eboss_dr16_elg_brickmask_v1_0_source.py --self-test
+      - name: Produce aggregate source-only result without any FITS access
+        run: python -u scripts/audit_eboss_dr16_elg_brickmask_v1_0_source.py --out /tmp/eboss_dr16_elg_v1_0_source_reconciliation.json

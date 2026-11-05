@@ -1,0 +1,48 @@
+{
+  "status": "E12_DIRECT_CLASS_VTK_VS_DENSITY_PROXY_LONG_CROSS_ALL_THREE_F_STATES_COMPLETE_CONDITIONAL_SOURCE_ONLY",
+  "original_E8_CSV_SHA256": "bf8f48deb9514c5101d5ce314bfbd397485102a5487da1039f141e3cad6143d0",
+  "original_E9_full_SHA256": "450b35f68a329f545f21bbe7ec02e36941e4c303037ccb7c011830c315d15890",
+  "original_E11_full_SHA256": "cade0959c112ca57e9cd5fd4433a49cbec3be0b74eb1f0a1d6eab9350a756ebd",
+  "preregistered_E12_protocol_git_blob": "4805ce5f70d0908ccbf26ccc0a3ec5812f4ce757",
+  "per_state_output_SHA256": {
+    "FD": "b1c679e8ccdf2e901abbb2ffc200cfcce765bf8ee9492364a280625835d42414",
+    "plus": "aedaf4381065ba807adced01b7740ade91db5a83d49113315e7a596ac2652655",
+    "minus": "4a12370b578a5482b67cd3d484504bf672396df35d8c252ff5d1150875b04777"
+  },
+  "matched_original_model_direct_vs_E9_density_proxy": {
+    "FD": {
+      "direct_sigma_LOS_kms": 135.67798143801986,
+      "frozen_E9_proxy_sigma_LOS_kms": 135.68201583690933,
+      "proxy_to_direct": 1.0000297351040024,
+      "fractional_direct_minus_proxy_over_proxy": -2.973421985235154e-05,
+      "n_tech_warnings": 0
+    },
+    "plus": {
+      "direct_sigma_LOS_kms": 135.86206681100845,
+      "frozen_E9_proxy_sigma_LOS_kms": 135.86610262363666,
+      "proxy_to_direct": 1.0000298007846145,
+      "fractional_direct_minus_proxy_over_proxy": -2.9799896554219652e-05,
+      "n_tech_warnings": 0
+    },
+    "minus": {
+      "direct_sigma_LOS_kms": 135.48537162977118,
+      "frozen_E9_proxy_sigma_LOS_kms": 135.48939940040043,
+      "proxy_to_direct": 1.0000296521302439,
+      "fractional_direct_minus_proxy_over_proxy": -2.965125102102007e-05,
+      "n_tech_warnings": 0
+    }
+  },
+  "original_fixed_K_LONG_comoving_h_Mpc": [
+    0.001,
+    0.002,
+    0.003,
+    0.005
+  ],
+  "all_per_state_full_records_included": false,
+  "long_signed_Newtonian_cb_density_to_LOS_relative_wind_cross_tables_available_each_state": true,
+  "CDM_continuity_metric_if_available_required_before_interpretation": true,
+  "strict_E11_direct_rank_compatibility_not_assumed": true,
+  "actual_full_eBOSS_bispectrum_or_covariance_calculated": false,
+  "observed_odd_data_sealed": true,
+  "main_untouched": true
+}

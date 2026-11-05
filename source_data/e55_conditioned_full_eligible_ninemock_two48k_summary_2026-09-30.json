@@ -1,0 +1,107 @@
+{
+  "stage": "E55_NINEMOCK_FULL_ELIGIBLE_TWO48K_SUMMARY",
+  "date": "2026-09-30",
+  "status": "PASS_NINEMOCK_FULL_ELIGIBLE_TWO48K_BACKGROUND_QUANTIFIED",
+  "decision": {
+    "random_integration_subdominant_all_caps": false,
+    "interpretation": "RANDOM_INTEGRATION_NOT_SUBDOMINANT; INCREASE_REPLICA_AVERAGING_BEFORE_PHYSICAL_TAG_GATE",
+    "important_limit": "Nine mocks give descriptive 1D background only; no robust tail probability, detection or exclusion."
+  },
+  "geometry": {
+    "NGC": {
+      "angle_mean": 0.024214105451364678,
+      "angle_sd": 0.00035798187748906237,
+      "diff_over_plus_mean": 0.43483092230893244,
+      "diff_over_plus_sd": 0.00020311094370344275
+    },
+    "SGC": {
+      "angle_mean": 0.024045120418680274,
+      "angle_sd": 0.00013682967511697278,
+      "diff_over_plus_mean": 0.43495330644873725,
+      "diff_over_plus_sd": 0.00012279513123825337
+    }
+  },
+  "NGC": {
+    "gate": {
+      "median_ratio": 0.6140894146346914,
+      "max_ratio": 1.0642942715884096,
+      "pass": false
+    },
+    "ratios": {
+      "A": 0.522184734718796,
+      "B": 0.29115158819428033,
+      "C": 1.0642942715884096,
+      "D": 0.7059940945505867
+    },
+    "between_mock_sd": {
+      "A": 0.029368176436711593,
+      "B": 0.026990757509438478,
+      "C": 0.012083257315920855,
+      "D": 0.01564787925947559
+    },
+    "single_rep_random_scale": {
+      "A": 0.015335613421779038,
+      "B": 0.007858401915439711,
+      "C": 0.01286014154346331,
+      "D": 0.011047310349430375
+    },
+    "descriptive_A83": {
+      "A": 0.020096867975010632,
+      "B": 0.01173917157713306,
+      "C": 0.011108862361400285,
+      "D": 0.015344470249580985
+    },
+    "descriptive_A94": {
+      "A": 0.040901541029940154,
+      "B": 0.04454233685258277,
+      "C": 0.016926630546206516,
+      "D": 0.021899179469711087
+    }
+  },
+  "SGC": {
+    "gate": {
+      "median_ratio": 0.46454033562953667,
+      "max_ratio": 0.9363979877734929,
+      "pass": true
+    },
+    "ratios": {
+      "A": 0.24386677155014053,
+      "B": 0.4203023685383767,
+      "C": 0.9363979877734929,
+      "D": 0.5087783027206967
+    },
+    "between_mock_sd": {
+      "A": 0.02848415168922682,
+      "B": 0.01074683718229641,
+      "C": 0.013160387429224634,
+      "D": 0.01321911673487425
+    },
+    "single_rep_random_scale": {
+      "A": 0.006946338112796226,
+      "B": 0.004516921122015475,
+      "C": 0.01232336030704552,
+      "D": 0.006725599775836078
+    },
+    "descriptive_A83": {
+      "A": 0.027915540457458754,
+      "B": 0.009019266752255634,
+      "C": 0.01235134296935967,
+      "D": 0.011405271255281065
+    },
+    "descriptive_A94": {
+      "A": 0.0414315545497734,
+      "B": 0.016371356363451793,
+      "C": 0.02021976931045707,
+      "D": 0.020186049323024535
+    }
+  },
+  "methodological_correction": "Independent subset draws are independent conditional on the fixed eligible pool despite realized overlap; overlap does not itself invalidate replica averaging. Replica averaging does not diagnose common finite-pool discretization bias.",
+  "guardrails": {
+    "observed_galaxy_rows_used": false,
+    "observed_odd_used": false,
+    "physical_velocity_reconstruction_used": false,
+    "covariance_inverse_used": false,
+    "pvalue_or_detection_sigma": false
+  },
+  "next": "E56 add R3/R4, four-rep mean; effective random SE/between-mock ratio gate median<=0.25 and max<=0.50."
+}

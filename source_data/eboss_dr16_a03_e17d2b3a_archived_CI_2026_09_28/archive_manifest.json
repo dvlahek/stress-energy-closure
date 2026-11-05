@@ -1,0 +1,26 @@
+{
+  "date": "2026-09-28",
+  "CI_run_id": "36421065060",
+  "E17D2b3a_prospective_protocol_git_blob": "81554b0f7cdefa599f302d828ab3529812bb3a59",
+  "immutable_E17D2b2_source_only_report_sha256": "b8da4d6c33235ed82e76f548f2eb052e0fcd751a42672f48d8fffff153ac6926",
+  "two_profiles_are_MATHEMATICAL_NOT_real_Abacus_halos": true,
+  "same_idealized_L1_M_R_not_unique_M200c": true,
+  "real_ASDF_or_Abacus_halo_PID_tree_downloaded": false,
+  "no_relabel_L1_SO_radius_as_M200c": true,
+  "full_physical_halo_tracer_bispectrum": "BLOCKED",
+  "observed_odd_SEALED": true,
+  "main_untouched": true,
+  "PR_remains_draft": true,
+  "files": [
+    {
+      "file": "e17d2b3a_independent_decimal_bisection_200critical_replay.json",
+      "size_bytes": 2081,
+      "sha256": "401a3a6aa8773d165029a5dfa9b2b2123edf24eff8193b64979208c8f4308e9f"
+    },
+    {
+      "file": "e17d2b3a_original_l1_200critical_nonidentifiability.json",
+      "size_bytes": 4453,
+      "sha256": "0b098291122eb51cbd3e113e7edd2276ba7c9b7c38669008486f0f73f897277e"
+    }
+  ]
+}

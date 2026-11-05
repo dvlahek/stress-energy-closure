@@ -1,0 +1,40 @@
+{
+  "date": "2026-09-27",
+  "CI_run_id": "36349740207",
+  "prospective_E17D1_protocol_git_blob": "791502d5385e35b358fb2d2afebf5fac77bd6ad5",
+  "immutable_E17D0_original_joint_sha256": "b9c8f21973755c64d8708a4ccb4d86ee56bbc12d448ffaa098b7495eb85661ae",
+  "test_histories_are_equal_area_symbolic_NOT_physical_halo_potentials": true,
+  "original_Fplus_minus_unchanged": true,
+  "full_physical_halo_tracer_bispectrum": "BLOCKED",
+  "observed_odd_SEALED": true,
+  "new_CLASS_FITS_mock": false,
+  "main_untouched": true,
+  "PR_remains_draft": true,
+  "files": [
+    {
+      "file": "e17d1_causal_history_FD.json",
+      "size_bytes": 1053605,
+      "sha256": "ff787d0fae74c4541a62486da3d0b2dd260d6e4f676d387ba1499da4bc9a10b3"
+    },
+    {
+      "file": "e17d1_causal_history_minus.json",
+      "size_bytes": 1053581,
+      "sha256": "3bfadf65ef5a14d439e7593edd79ee3114587fb9dfd12b554f22027039fd3067"
+    },
+    {
+      "file": "e17d1_causal_history_plus.json",
+      "size_bytes": 1053814,
+      "sha256": "4246ebd3910612362dcf3b569e7071879a3c7aa8c32d12239b1788fd9d7085f7"
+    },
+    {
+      "file": "e17d1_independent_full_finite_q_history_replay.json",
+      "size_bytes": 1848,
+      "sha256": "b082bdd916e1854a3ba886dcbb5576e704f485e874cc964e65bba089fd161d17"
+    },
+    {
+      "file": "e17d1_original_joint_causal_history_nonidentifiability.json",
+      "size_bytes": 3161,
+      "sha256": "1e52880db6c60cff1fe3cc1ca0a00e553c63ca08601399334d049e8403e18781"
+    }
+  ]
+}

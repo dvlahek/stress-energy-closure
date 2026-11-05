@@ -1,0 +1,51 @@
+{
+  "E21_four_long_K": {
+    "C_v_Fminus": [
+      4297706.35960601,
+      11550362.014643177,
+      19824645.207705196,
+      33268689.17565131
+    ],
+    "C_v_Fplus": [
+      4328422.243894628,
+      11606037.777232643,
+      19862015.365340475,
+      33329438.921102364
+    ],
+    "K_h_per_Mpc": [
+      0.001,
+      0.002,
+      0.003,
+      0.005
+    ],
+    "amplitude_marginalized_residual_norm_fraction": 0.0009685545445880128,
+    "angle_Fplus_Fminus_rad": 0.0009685546961346029,
+    "best_scalar_amplitude_Fminus_to_Fplus": 1.0021414241948372,
+    "componentwise_Fplus_minus_Fminus_over_mean": [
+      0.007121592014325704,
+      0.004808671735664115,
+      0.0018832603749311177,
+      0.001824367957093278
+    ]
+  },
+  "identifiability": {
+    "common_scalar_response": "If the same unknown scalar response multiplies all four K, the source vectors are non-collinear but nearly parallel.",
+    "conditional_E19_angle_rad": 0.023841179533334908,
+    "conditional_E19_vs_E21_sin_angle_ratio": 24.61288439170704,
+    "free_state_specific_response": "For y_j=chi_F,j*C_F,j and unconstrained chi_F,j, any target y is exactly reproduced under either F state by chi_F,j=y_j/C_F,j."
+  },
+  "limits": [
+    "no covariance metric",
+    "no physical chi_F calibration",
+    "no 24D window",
+    "no significance"
+  ],
+  "parent_git_blobs": {
+    "E19_result": "fc5044684b84ff3de86c236988617ead79d8e7e6",
+    "E21_result": "cc3312c5313cce60fad4a88c3a56ef3d4e675e38"
+  },
+  "qa_checks": 15,
+  "qa_pass": true,
+  "stage": "E40_OFFLINE_F_STATE_SOURCE_GEOMETRY_AND_TRACER_RESPONSE_IDENTIFIABILITY",
+  "status": "POSTHOC_GEOMETRY_FROM_FROZEN_E21_AND_E19_VALUES_NO_GALAXY_INFERENCE"
+}

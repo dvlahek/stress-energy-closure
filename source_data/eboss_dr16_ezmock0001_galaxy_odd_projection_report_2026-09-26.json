@@ -1,0 +1,259 @@
+{
+  "status": "EZMOCK0001_MOCK_GALAXY_ODD_PROJECTION_DESCRIPTIVE_ONLY",
+  "original_pilot_report_exact_sha256": "b8ea4545d433900c1364d1c12e2638a2d2288e35f0a327c22b8ad1ec9ae8510c",
+  "original_sample_counts": {
+    "galaxy_D": 600,
+    "matched_random_R": 1200
+  },
+  "fixed_s_edges_mpc_h": [
+    20,
+    40,
+    60,
+    80,
+    100,
+    120,
+    140
+  ],
+  "fixed_signed_mu_edge_definition": "np.linspace(-1 - 1e-7, 1 + 1e-7, 25)",
+  "legendre_orders": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "source_compressed_SHA_and_prior_pair_histograms_reverified": true,
+  "caps": {
+    "NGC": {
+      "RR_supported_s_mu_cells": 144,
+      "RR_total_s_mu_cells": 144,
+      "xi_grid_SHA256": "dfba2b778f24e11564c447e49d966a8fe50e821d7a07f57b11f25b269b7784dd",
+      "mock_galaxy_xi_multipoles_forward": {
+        "0": {
+          "values_by_fixed_s_bin": [
+            0.02575057467757294,
+            0.04900476761699346,
+            -0.0731647942642461,
+            -0.08687039175244338,
+            -0.062194520339626504,
+            -0.12834683547262876
+          ],
+          "integration_weight_array_sha256": "85cd1fcfc74e233625a92e1b0733ea98b13bce11d3dfaf19386c1153020bd173"
+        },
+        "1": {
+          "values_by_fixed_s_bin": [
+            0.42460724478109463,
+            0.10580986728595597,
+            0.019017670896689792,
+            0.09290162008153786,
+            -0.12113650050414802,
+            0.012018316481179687
+          ],
+          "integration_weight_array_sha256": "fa13c6d1ae6130f6246fbb77d448f7348b05a2b63c96da77eb93a4c3965871f2"
+        },
+        "2": {
+          "values_by_fixed_s_bin": [
+            -0.27898829496171906,
+            0.33058741584505014,
+            -0.05065025659964001,
+            0.14845250765874043,
+            0.09514315774499452,
+            -0.0068239505864614025
+          ],
+          "integration_weight_array_sha256": "f2a782389ac6a1ee07c935f86f869bd87d23820547bfc544578684a9185a4b4e"
+        },
+        "3": {
+          "values_by_fixed_s_bin": [
+            0.5888369397917503,
+            0.322615013719746,
+            0.3216419426723644,
+            0.10965711933058056,
+            -0.08826686437083302,
+            -0.02833130415442063
+          ],
+          "integration_weight_array_sha256": "5da67f95e5aed53fec2c3347a67313856af0297fe895f09278c6fe50e0d95e4a"
+        }
+      },
+      "mock_galaxy_xi_multipoles_reverse": {
+        "0": {
+          "values_by_fixed_s_bin": [
+            0.025750574677572677,
+            0.04900476761699351,
+            -0.07316479426424602,
+            -0.08687039175244332,
+            -0.06219452033962667,
+            -0.12834683547262854
+          ],
+          "integration_weight_array_sha256": "85cd1fcfc74e233625a92e1b0733ea98b13bce11d3dfaf19386c1153020bd173"
+        },
+        "1": {
+          "values_by_fixed_s_bin": [
+            -0.4246072447810946,
+            -0.10580986728595565,
+            -0.019017670896689834,
+            -0.09290162008153802,
+            0.1211365005041481,
+            -0.01201831648117975
+          ],
+          "integration_weight_array_sha256": "fa13c6d1ae6130f6246fbb77d448f7348b05a2b63c96da77eb93a4c3965871f2"
+        },
+        "2": {
+          "values_by_fixed_s_bin": [
+            -0.27898829496171834,
+            0.33058741584505047,
+            -0.05065025659963969,
+            0.1484525076587402,
+            0.09514315774499452,
+            -0.006823950586461243
+          ],
+          "integration_weight_array_sha256": "f2a782389ac6a1ee07c935f86f869bd87d23820547bfc544578684a9185a4b4e"
+        },
+        "3": {
+          "values_by_fixed_s_bin": [
+            -0.5888369397917493,
+            -0.3226150137197457,
+            -0.3216419426723647,
+            -0.10965711933058102,
+            0.088266864370833,
+            0.028331304154420298
+          ],
+          "integration_weight_array_sha256": "5da67f95e5aed53fec2c3347a67313856af0297fe895f09278c6fe50e0d95e4a"
+        }
+      },
+      "forward_reverse_projection_parity": {
+        "0": {
+          "forward_reverse_max_abs_parity_residual": 2.636779683484747e-16
+        },
+        "1": {
+          "forward_reverse_max_abs_parity_residual": 3.191891195797325e-16
+        },
+        "2": {
+          "forward_reverse_max_abs_parity_residual": 7.216449660063518e-16
+        },
+        "3": {
+          "forward_reverse_max_abs_parity_residual": 9.992007221626409e-16
+        }
+      },
+      "single_fixed_mock_and_finite_sample_NOT_inference": true
+    },
+    "SGC": {
+      "RR_supported_s_mu_cells": 144,
+      "RR_total_s_mu_cells": 144,
+      "xi_grid_SHA256": "71a1bd0c59f61fb6edc5f77ec30066d418fdf63744718918505881539a7a5c6b",
+      "mock_galaxy_xi_multipoles_forward": {
+        "0": {
+          "values_by_fixed_s_bin": [
+            -0.21516003295645614,
+            -0.1364217877922797,
+            -0.08145077779781688,
+            0.001255655621848057,
+            0.02765472410500601,
+            -0.07201241642144204
+          ],
+          "integration_weight_array_sha256": "85cd1fcfc74e233625a92e1b0733ea98b13bce11d3dfaf19386c1153020bd173"
+        },
+        "1": {
+          "values_by_fixed_s_bin": [
+            0.3431104851431689,
+            0.08511189103759553,
+            0.07902798015880338,
+            0.15666195538458677,
+            -0.043591148174943216,
+            -0.06995999572868072
+          ],
+          "integration_weight_array_sha256": "fa13c6d1ae6130f6246fbb77d448f7348b05a2b63c96da77eb93a4c3965871f2"
+        },
+        "2": {
+          "values_by_fixed_s_bin": [
+            -0.11092100626864454,
+            -0.09356557111348168,
+            -0.3287297569136366,
+            -0.06293751103629172,
+            -0.15257789924593093,
+            -0.1668264559877642
+          ],
+          "integration_weight_array_sha256": "f2a782389ac6a1ee07c935f86f869bd87d23820547bfc544578684a9185a4b4e"
+        },
+        "3": {
+          "values_by_fixed_s_bin": [
+            0.4109635954637549,
+            0.11428757787060985,
+            0.21892017074082346,
+            -0.06411455182785364,
+            0.1218869785156451,
+            0.11190282402067403
+          ],
+          "integration_weight_array_sha256": "5da67f95e5aed53fec2c3347a67313856af0297fe895f09278c6fe50e0d95e4a"
+        }
+      },
+      "mock_galaxy_xi_multipoles_reverse": {
+        "0": {
+          "values_by_fixed_s_bin": [
+            -0.21516003295645636,
+            -0.13642178779227984,
+            -0.08145077779781684,
+            0.0012556556218479183,
+            0.02765472410500589,
+            -0.07201241642144206
+          ],
+          "integration_weight_array_sha256": "85cd1fcfc74e233625a92e1b0733ea98b13bce11d3dfaf19386c1153020bd173"
+        },
+        "1": {
+          "values_by_fixed_s_bin": [
+            -0.3431104851431693,
+            -0.08511189103759548,
+            -0.07902798015880344,
+            -0.15666195538458702,
+            0.043591148174943126,
+            0.06995999572868108
+          ],
+          "integration_weight_array_sha256": "fa13c6d1ae6130f6246fbb77d448f7348b05a2b63c96da77eb93a4c3965871f2"
+        },
+        "2": {
+          "values_by_fixed_s_bin": [
+            -0.11092100626864515,
+            -0.09356557111348178,
+            -0.3287297569136364,
+            -0.06293751103629203,
+            -0.15257789924593082,
+            -0.16682645598776422
+          ],
+          "integration_weight_array_sha256": "f2a782389ac6a1ee07c935f86f869bd87d23820547bfc544578684a9185a4b4e"
+        },
+        "3": {
+          "values_by_fixed_s_bin": [
+            -0.4109635954637558,
+            -0.11428757787060911,
+            -0.21892017074082373,
+            0.06411455182785372,
+            -0.12188697851564495,
+            -0.11190282402067304
+          ],
+          "integration_weight_array_sha256": "5da67f95e5aed53fec2c3347a67313856af0297fe895f09278c6fe50e0d95e4a"
+        }
+      },
+      "forward_reverse_projection_parity": {
+        "0": {
+          "forward_reverse_max_abs_parity_residual": 2.220446049250313e-16
+        },
+        "1": {
+          "forward_reverse_max_abs_parity_residual": 3.885780586188048e-16
+        },
+        "2": {
+          "forward_reverse_max_abs_parity_residual": 6.106226635438361e-16
+        },
+        "3": {
+          "forward_reverse_max_abs_parity_residual": 9.853229343548264e-16
+        }
+      },
+      "single_fixed_mock_and_finite_sample_NOT_inference": true
+    }
+  },
+  "mock_galaxy_and_matched_random_rows_read": true,
+  "observed_galaxy_rows_read": false,
+  "observed_odd_data_vector_read": false,
+  "new_science_selection_applied": false,
+  "not_a_physical_odd_null_or_detection": true,
+  "not_a_mock_covariance": true,
+  "full_physical_LRG_ELG_mask_or_window_certified": false,
+  "errors": []
+}

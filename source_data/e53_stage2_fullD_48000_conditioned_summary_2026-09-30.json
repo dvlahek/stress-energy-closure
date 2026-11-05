@@ -1,0 +1,130 @@
+{
+  "stage": "E53_STAGE2_FULLD_48000_CONDITIONED_SAMPLE_SCALING_SUMMARY",
+  "date": "2026-09-30",
+  "parent_stage1_path": "source_data/e53_conditioned_mock0001_sample_scaling.json",
+  "full_stage2_local_artifact": "e53_conditioned_mock0001_sample_scaling(1).json",
+  "status": "PASS_FULLD_4800_AND_48000_CONDITIONED_SAMPLE_SCALING",
+  "mock_id": 1,
+  "levels": [
+    "original_4800",
+    "nested_48000"
+  ],
+  "observed_galaxy_rows_used": false,
+  "observed_odd_used": false,
+  "physical_velocity_reconstruction_used": false,
+  "pvalue_or_detection_sigma": false,
+  "NGC": {
+    "nested_48000": {
+      "postwindow_angle_rad": 0.024500126170431503,
+      "difference_norm_over_plus_norm": 0.4346960083303679,
+      "shape_residual_norm_over_plus_norm": 0.03512244068257295,
+      "rho_minus_on_plus": 1.4332747786553637,
+      "by_tag_field": {
+        "A": {
+          "baseline_L2": 0.03802198847552141,
+          "calibrated_diff": 0.010106274561260488,
+          "plus_lambda": 0.004768643390999596,
+          "minus_lambda": 0.0032489896519900803,
+          "shape_only": -0.12682133758260483
+        },
+        "B": {
+          "baseline_L2": 0.03589867136262506,
+          "calibrated_diff": -0.007935971896679408,
+          "plus_lambda": -0.0038250280781608687,
+          "minus_lambda": -0.0025904100621871023,
+          "shape_only": 0.12784033480124832
+        },
+        "C": {
+          "baseline_L2": 0.05487325668966627,
+          "calibrated_diff": -0.032044119783552,
+          "plus_lambda": -0.013540310212359748,
+          "minus_lambda": -0.009533101398680664,
+          "shape_only": -0.15272696434133057
+        },
+        "D": {
+          "baseline_L2": 0.03974531385308816,
+          "calibrated_diff": -0.01606893294195773,
+          "plus_lambda": -0.006649726958457166,
+          "minus_lambda": -0.004712271723558459,
+          "shape_only": -0.12584170873716513
+        }
+      }
+    },
+    "ratios_48000_over_4800": {
+      "baseline_L2": {
+        "A": 0.351798281416637,
+        "B": 0.4431969786711336,
+        "C": 0.32781942301311034,
+        "D": 0.3507878499787675,
+        "median": 0.35129306569770224
+      },
+      "calibrated_diff": {
+        "A": 0.46212531756459246,
+        "B": 0.5888750343779826,
+        "C": 0.5126431216626166,
+        "D": 0.5685550902080458,
+        "median": 0.5405991059353312
+      }
+    }
+  },
+  "SGC": {
+    "nested_48000": {
+      "postwindow_angle_rad": 0.024090187876396503,
+      "difference_norm_over_plus_norm": 0.43508457468972356,
+      "shape_residual_norm_over_plus_norm": 0.03454505006568993,
+      "rho_minus_on_plus": 1.4337109943832373,
+      "by_tag_field": {
+        "A": {
+          "baseline_L2": 0.03405283206915737,
+          "calibrated_diff": 0.018205886864885786,
+          "plus_lambda": 0.0075920271711822866,
+          "minus_lambda": 0.0053669788504839295,
+          "shape_only": 0.1287146753065097
+        },
+        "B": {
+          "baseline_L2": 0.04023023644464711,
+          "calibrated_diff": 0.007255405245948938,
+          "plus_lambda": 0.002712109392656865,
+          "minus_lambda": 0.0019864377313409606,
+          "shape_only": 0.1652193978319571
+        },
+        "C": {
+          "baseline_L2": 0.03811543061044147,
+          "calibrated_diff": 0.011008466695629075,
+          "plus_lambda": 0.0038951674801712306,
+          "minus_lambda": 0.002907081663020339,
+          "shape_only": 0.3305876440054021
+        },
+        "D": {
+          "baseline_L2": 0.04055848543881538,
+          "calibrated_diff": 0.001491149170525812,
+          "plus_lambda": 0.00008078816145407239,
+          "minus_lambda": 0.0001765240241641918,
+          "shape_only": 0.20717437911899994
+        }
+      }
+    },
+    "ratios_48000_over_4800": {
+      "baseline_L2": {
+        "A": 0.2941169785807863,
+        "B": 0.535971475121567,
+        "C": 0.4482476395407607,
+        "D": 0.7982657687644289,
+        "median": 0.4921095573311638
+      },
+      "calibrated_diff": {
+        "A": 0.37613168680525083,
+        "B": 0.41638263805884534,
+        "C": 0.1784091533672814,
+        "D": 0.1847024590584486,
+        "median": 0.2804170729318497
+      }
+    }
+  },
+  "interpretation": {
+    "fingerprint_geometry_stable": true,
+    "finite_random_noise_still_material": true,
+    "immediate_nine_mock_expansion_gate_passed": false,
+    "next": "E54 preregistered finite-random floor test on mock0001 full galaxies using independent high-density random replicates or deterministic/infinite-random evaluation"
+  }
+}

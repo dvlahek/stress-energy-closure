@@ -1,0 +1,53 @@
+name: eBOSS DR16 A03E11 frozen Gaussian wind squeezed three-point source response
+on:
+  push:
+    branches:
+      - audit/eboss-elg-bit8-ra-orientation-20260925
+    paths:
+      - 'scripts/audit_eboss_dr16_a03_e11_gaussian_wind_squeezed_response.py'
+      - 'source_data/eboss_dr16_a03_e11_gaussian_wind_squeezed_response_prereg_2026-09-27.json'
+      - '.github/workflows/eboss_dr16_a03_e11_gaussian_squeezed_response.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  existing-sources-only:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 18
+    env:
+      GH_TOKEN: ${{ github.token }}
+      PYTHONUNBUFFERED: '1'
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install numerical dependency; no CLASS or survey data required
+        run: python -m pip install 'numpy>=1.24,<2.4'
+      - name: Retrieve EXACT original E8 E9 E10 successful CI artifacts only
+        run: |
+          mkdir -p eboss_workspace/a03_e11_original_E8 eboss_workspace/a03_e11_original_E9 eboss_workspace/a03_e11_original_E10
+          gh run download 36307484339 --repo dvlahek/stress-energy-closure --name eboss-a03-e8-frozen-source-only-kinetic-and-conditional-resonance --dir eboss_workspace/a03_e11_original_E8
+          gh run download 36325438404 --repo dvlahek/stress-energy-closure --name eboss-a03-e9-frozen-three-state-class-conditional-phase --dir eboss_workspace/a03_e11_original_E9
+          gh run download 36328824782 --repo dvlahek/stress-energy-closure --name eboss-a03-e10-original-E8-E9-conditional-odd-wind-parity --dir eboss_workspace/a03_e11_original_E10
+          echo 'bf8f48deb9514c5101d5ce314bfbd397485102a5487da1039f141e3cad6143d0  eboss_workspace/a03_e11_original_E8/frozen_matched_distributions_4000q.csv' | sha256sum --check
+          echo '450b35f68a329f545f21bbe7ec02e36941e4c303037ccb7c011830c315d15890  eboss_workspace/a03_e11_original_E9/quasistatic_alpha_dln_a_source_only_plus_CLASS.json' | sha256sum --check
+          echo 'cc55a914a8be0174eb7c1e49e0e1968537cedfcf4a429d52ad66ab86cb44a488  eboss_workspace/a03_e11_original_E10/a03_e10_angular_parity_report.json' | sha256sum --check
+      - name: Gaussian-Wick squeezed relative-wind short response and rigorous zero mean parity controls
+        run: |
+          python -m py_compile scripts/audit_eboss_dr16_a03_e11_gaussian_wind_squeezed_response.py
+          python -u scripts/audit_eboss_dr16_a03_e11_gaussian_wind_squeezed_response.py \
+            --e8-csv eboss_workspace/a03_e11_original_E8/frozen_matched_distributions_4000q.csv \
+            --e9-json eboss_workspace/a03_e11_original_E9/quasistatic_alpha_dln_a_source_only_plus_CLASS.json \
+            --e10-json eboss_workspace/a03_e11_original_E10/a03_e10_angular_parity_report.json \
+            --output eboss_workspace/a03_e11_gaussian_wind_squeezed_response.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: eboss-a03-e11-frozen-Gaussian-Wick-squeezed-response-source-only
+          if-no-files-found: warn
+          retention-days: 30
+          path: eboss_workspace/a03_e11_gaussian_wind_squeezed_response.json

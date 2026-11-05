@@ -1,0 +1,100 @@
+{
+  "date": "2026-09-28",
+  "status": "E17D2B1_TWO_WECHSLER_TYPE_CONDITIONAL_HALO_MASS_GROWTH_AND_EXTERIOR_POISSON_HISTORY_QA_CERTIFIED_FULL_PHYSICAL_B_BLOCKED",
+  "prospective_protocol_git_blob": "28e33fad09db24b8b19739f50322169180442988",
+  "all_immutable_parents": {
+    "E8_original_4000q_CSV_sha256": "bf8f48deb9514c5101d5ce314bfbd397485102a5487da1039f141e3cad6143d0",
+    "E16_original_full_sha256": "5d81f95a5571175f06eb032b865285ba34804701693f76af392be7fc31fb06db",
+    "E17D1_original_joint_sha256": "1e52880db6c60cff1fe3cc1ca0a00e553c63ca08601399334d049e8403e18781",
+    "E17D2a_original_joint_sha256": "040c9711bfdfee6682acda4b48bc578b64e88c11d143d35a9a9ae46ff4c74a31",
+    "E17D2b0_original_joint_sha256": "848d3377830724593d75a02972f209085cb9913d03e8b73789f9b6478e6c11e6",
+    "E17D2b0_independent_sha256": "61370c5db6a2075da130b0399f374acc0dc8b0cff65ba2e6f380e916d0818b59",
+    "E17D2b0_archive_manifest_git_blob": "81ed26202502d1539c3c128b17f5b61ba2530929",
+    "E17D2b0_protocol_git_blob": "8faaf167403e09f321a6c62f452120f8b96898a2",
+    "E17D2b0_original_runner_git_blob": "b9beb5663fb26456d9955b9e32e823465aef66e4",
+    "E17D2b0_anchor_mass_1e12_z095_original_SHA": "f3ccd2327b16d305f6ef87255088df60f85a99335145064bc3aed21e82773378",
+    "E17D2b0_anchor_mass_1e13_z095_original_SHA": "1364d92179e5d203e24ccfead18f14a1aff28c85885b141a416f9f9d39e519be"
+  },
+  "original_four_trajectories_3_math_nodes_each": {
+    "e17d2b1_original_conditional_wechsler_exterior_00.json": {
+      "sha256": "486b1b4e532f0661895878bdcc211fa6af52c1bde3facda6fa92187fa206489b",
+      "bytes": 4684,
+      "mass_anchor_hDM_Msun": 1000000000000,
+      "alpha_shape_only": 0.4,
+      "QA": {
+        "max_mass_radius_and_exterior_reclosure_relative": 6.661338147750939e-16,
+        "fd_3node_logmass_derivative_abs_gap": 2.1410651029896144e-13,
+        "fd_3node_mass_derivative_relative_gap": 1.753232017842865e-07,
+        "min_exterior_radius_margin_R_over_r200c": 2.993016546349809
+      }
+    },
+    "e17d2b1_original_conditional_wechsler_exterior_01.json": {
+      "sha256": "a8490ad1f81b404dbb0e442c1caafe2324f0f2e15e2b6b40f1756b3b8f18d5ef",
+      "bytes": 4656,
+      "mass_anchor_hDM_Msun": 1000000000000,
+      "alpha_shape_only": 0.8,
+      "QA": {
+        "max_mass_radius_and_exterior_reclosure_relative": 6.661338147750939e-16,
+        "fd_3node_logmass_derivative_abs_gap": 7.294165271787278e-14,
+        "fd_3node_mass_derivative_relative_gap": 7.012931485448456e-07,
+        "min_exterior_radius_margin_R_over_r200c": 2.991993467724889
+      }
+    },
+    "e17d2b1_original_conditional_wechsler_exterior_02.json": {
+      "sha256": "5fe3ec25ddb8abd1bf27414795fe0b909db2d7154d5100082fd3eacc9315187c",
+      "bytes": 4625,
+      "mass_anchor_hDM_Msun": 10000000000000,
+      "alpha_shape_only": 0.4,
+      "QA": {
+        "max_mass_radius_and_exterior_reclosure_relative": 1.1102230246251565e-16,
+        "fd_3node_logmass_derivative_abs_gap": 2.1410651029896144e-13,
+        "fd_3node_mass_derivative_relative_gap": 1.7532321751699218e-07,
+        "min_exterior_radius_margin_R_over_r200c": 2.993016546349809
+      }
+    },
+    "e17d2b1_original_conditional_wechsler_exterior_03.json": {
+      "sha256": "95a3d98df5e9dd0308f2a2f85fe080651331a9136bf06a958f8444e5bd208adb",
+      "bytes": 4637,
+      "mass_anchor_hDM_Msun": 10000000000000,
+      "alpha_shape_only": 0.8,
+      "QA": {
+        "max_mass_radius_and_exterior_reclosure_relative": 2.220446049250313e-16,
+        "fd_3node_logmass_derivative_abs_gap": 7.294165271787278e-14,
+        "fd_3node_mass_derivative_relative_gap": 7.012931243468261e-07,
+        "min_exterior_radius_margin_R_over_r200c": 2.991993467724889
+      }
+    }
+  },
+  "conditional_mass_references": [
+    1000000000000,
+    10000000000000
+  ],
+  "mathematical_rate_parameters_NOT_empirically_fitted": [
+    0.4,
+    0.8
+  ],
+  "same_exact_anchor_two_distinct_exterior_growth_rate_witnesses": {
+    "1000000000000": {
+      "same_z095_M_c200c_and_exterior_Phi_anchor_gap_max": 0.0,
+      "dlnM_dln_a_at_z095_difference_abs": 0.4,
+      "rate_alpha_frozen_choices": [
+        0.4,
+        0.8
+      ]
+    },
+    "10000000000000": {
+      "same_z095_M_c200c_and_exterior_Phi_anchor_gap_max": 0.0,
+      "dlnM_dln_a_at_z095_difference_abs": 0.4,
+      "rate_alpha_frozen_choices": [
+        0.4,
+        0.8
+      ]
+    }
+  },
+  "individual_halo_M200c_and_cvir_ac_relation_NOT_calibrated": true,
+  "actual_neutrino_halo_tracer_dynamics_calculated": false,
+  "full_physical_finiteK_galaxy_bispectrum": "BLOCKED",
+  "observed_odd_SEALED": true,
+  "new_CLASS_FITS_mock": false,
+  "main_untouched_PR_draft": true
+}

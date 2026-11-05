@@ -1,0 +1,68 @@
+{
+  "date": "2026-09-27",
+  "status": "SOURCE_ONLY_CLASS_NORMALIZED_FROZEN_FPLUS_FMINUS_AND_CONDITIONAL_STATIC_SI_NEUTRINO_KERNEL_COMPLETE_EBOSS_GALAXY_AMPLITUDE_STOP",
+  "source_provenance": {
+    "original_frozen_phase7_direction_git_blob": "63b291fdbbf1bf76df82583583c22ddf7bdc68a7",
+    "original_kinetic_constructor_git_blob": "44956e353dbb238537d60da687d1a2a26fa13ee6",
+    "E8_protocol_git_blob": "2856c190b58fde9b39e2cb3f0d0006a77fe9b70c",
+    "E8b_protocol_git_blob": "7865f059d312a0a97753f7c13b6faa5bb07a0e16",
+    "E8_runner_git_blob": "3db381a2942832b6500a60291ac864eff929b200",
+    "E8b_runner_git_blob": "dbbc574a8da2c176827d160455b9be46f24977fa",
+    "frozen_distribution_4000q_csv_sha256": "bf8f48deb9514c5101d5ce314bfbd397485102a5487da1039f141e3cad6143d0",
+    "E8_CI_pass": "36307484339",
+    "E8b_CI_pass": "36307751800",
+    "E8b_CI_output_JSON_SHA256": "6b8f2b7688a746331ba2ae2776f5ac70ebdbc2b1a4e3dcc6472593a7ef745020"
+  },
+  "fixed_physics": {
+    "mass_eV": 0.06,
+    "z_match": 1100,
+    "pointwise_deformation_cap": 0.3,
+    "q_grid": [
+      0,
+      20,
+      4000
+    ],
+    "CLASS_FD_source_normalization": "2/(2*pi)^3",
+    "maximum_relative_three_moment_mismatch": 3.579686991212226e-16,
+    "positivity_both": true,
+    "massive_neutrino_species_in_static_green": 1
+  },
+  "example_conditional": {
+    "z_midpoint_not_measured_effective_z": 0.95,
+    "v_parallel_abs_illustrative_kms": 200,
+    "k_physical_illustrative_h_per_Mpc": 0.05,
+    "k_physical_SI_per_m": 1.0914944646848623e-24,
+    "neutrino_mass_kg": 1.06959715297674e-37,
+    "q_res": 0.12204700265022027,
+    "FD_occupation": 0.4695260669151108,
+    "Fplus_over_FD": 0.8147975953760791,
+    "Fminus_over_FD": 1.1852024046239211,
+    "Fplus_minus_Fminus_over_FD": -0.3704048092478419,
+    "absolute_conditional_static_gravitational_green_per_unit_Phi_SI_per_m": {
+      "FD": 1.2816113834564112e-27,
+      "Fplus": 1.0442538734468939e-27,
+      "Fminus": 1.518968893465929e-27,
+      "Fplus_minus_Fminus": -4.74715020019035e-28
+    }
+  },
+  "physical_basis": "Okoli et al. 2017 MNRAS 468 2164 Eq14-20; original exact FD resonant occupancy replaced by F± at same physical halo k,v,Phi under the isotropic linear collisionless approximation. Public reference https://academic.oup.com/mnras/article/468/2/2164/3063204.",
+  "limitations": [
+    "Physical-k SI conditional static halo Green coefficient per unit potential is not an evolving cosmological field nor the galaxy-space odd xi.",
+    "Even with exact dimensionful neutrino source, eBOSS LRG and ELG halo occupation, bias, magnification/evolution response, relative-velocity field and pair-z/window are not calibrated here.",
+    "z=.95 and v=200 km/s are illustrative and NOT measured eBOSS z_eff/vrel; k=.05 h/Mpc is PHYSICAL not a claim about E6 comoving k.",
+    "Earlier low-z DESI literature-calibrated Fisher coefficient and shape-only max-normalized template cannot be reused as absolute high-z eBOSS wake xi.",
+    "Neither 9 independent mock ID sample nor DESI DR1 120-mock covariance supplies a valid joint eBOSS A04 C.",
+    "Original independent SGC reverse failure unresolved; 48000R convergence not certified."
+  ],
+  "next_step": "Physical field-to-tracer map and independently calibrated eBOSS LRG×ELG bias/selection at original high-z interval and genuinely redshift-conditioned released-tracer RR window, then A04 independent covariance. Until then no xi1/xi3 amplitude or significance.",
+  "guards": {
+    "observed_galaxy_read": false,
+    "observed_random_read": false,
+    "observed_odd_read": false,
+    "new_catalogue_or_mock_download": false,
+    "new_seeds_or_cuts": false,
+    "new_CLASS_transfer_run": false,
+    "main_unchanged": true,
+    "inference_or_detection": false
+  }
+}

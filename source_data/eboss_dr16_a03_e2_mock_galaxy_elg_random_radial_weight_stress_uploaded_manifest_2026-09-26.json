@@ -1,0 +1,1678 @@
+{
+  "study": "Exact original uploaded A-03E2 nine-ID mock galaxy ELG RANDOM radial ±5% stress result, algorithmic and descriptive QA ONLY",
+  "record_date": "2026-09-26",
+  "exact_report_path": "source_data/eboss_dr16_a03_e2_mock_galaxy_elg_random_radial_weight_stress_report_2026-09-26.json",
+  "original_local_output": "eboss_workspace/a03_empirical_window/a03_e2_mock_galaxy_elg_random_radial_weight_stress.json",
+  "original_upload_filename": "a03_e2_mock_galaxy_elg_random_radial_weight_stress.json",
+  "exact_original_uploaded_bytes": 413189,
+  "exact_original_uploaded_SHA256": "6ef86f904bb0cdc407adabe2e125146ce4d0671ea1ac932e13d11fc481cd596a",
+  "exact_original_uploaded_git_blob_sha1": "8596d7322f2ec7ef164e89641958c3912f687722",
+  "archived_git_blob_sha1": "8596d7322f2ec7ef164e89641958c3912f687722",
+  "archive_byte_identical_to_uploaded_source": true,
+  "registered_protocol": "source_data/eboss_dr16_a03_e2_mock_galaxy_elg_random_radial_weight_stress_protocol_2026-09-26.json",
+  "registered_protocol_sha256": "eb83baa966e267fdc66fa0b5896aef8df04ff366a1a645ec19d87918809fd80c",
+  "exact_parent_A02_report_sha256": "15f7668fd483d8e1329fbb9684bbdf07cb49d1974d264f9ceebd85e0156daa27",
+  "exact_parent_E0E1_report_sha256": "e6b8db10d31bc297426cb8fe6bf9a19c9a97ab6f938da2da9d4a9710cfa420e7",
+  "full_72_original_gzip_sha_before_first_E2_FITS_row": true,
+  "full_72_original_compressed_bytes": 1860198719,
+  "original_mock_ID_order": [
+    1,
+    125,
+    250,
+    375,
+    500,
+    625,
+    750,
+    875,
+    1000
+  ],
+  "caps": [
+    "NGC",
+    "SGC"
+  ],
+  "scenarios": [
+    "baseline_original",
+    "plus_5pct_ELG_R_z_ramp",
+    "minus_5pct_ELG_R_z_ramp"
+  ],
+  "n_fixed_cases": 18,
+  "n_failed_cases": 0,
+  "n_scenario_cases": 54,
+  "all_baseline_A02_sample_pair_and_xi_SHA_replayed": true,
+  "all_scenario_RR_support_cells": 144,
+  "max_abs_xi_reverse_residual": 1.7763568394002505e-15,
+  "all_modified_ELG_RANDOM_factors_min": 0.950001585483551,
+  "all_modified_ELG_RANDOM_factors_max": 1.049998414516449,
+  "max_pair_normalization_relative_residual": 0,
+  "max_abs_plus_minus_symmetric_nonlinear_residual_across_18_cases_ell0to3": 0.0017901711868071324,
+  "fixed_case_source_and_output_fingerprints": {
+    "0001/NGC": {
+      "id": 1,
+      "cap": "NGC",
+      "original_A02_selected_array_SHA256_by_tracer_role": {
+        "eBOSS_LRG_dat": "c7b7bf31b2c6fbc8d85d8065e5485005c8360e53065b6c8eaad3c611280aa87d",
+        "eBOSS_LRG_ran": "e51a89b2c1a2ec91adeb43c78763dec1cbe6ab189c7b951e1110c4eaa53bb6b7",
+        "eBOSS_ELG_dat": "f8fdbb255f29350024f27e7a738b57194354890e5907716eade837554c2543a2",
+        "eBOSS_ELG_ran": "4a8c293ecafe3bc34ae4fb0c96e21299b66e60fabe5a0f63296837838f45bb0a"
+      },
+      "original_A02_sample_and_all_eight_pair_SHA_exact_replay": true,
+      "original_A02_forward_xi_SHA_exact_replay": true,
+      "baseline_forward_xi_grid_sha256": "dfba2b778f24e11564c447e49d966a8fe50e821d7a07f57b11f25b269b7784dd",
+      "scenarios": {
+        "baseline_original": {
+          "RR_supported_cells": 144,
+          "max_abs_xi_tracer_reverse_mirror": 8.881784197001252e-16,
+          "forward_xi_grid_sha256": "dfba2b778f24e11564c447e49d966a8fe50e821d7a07f57b11f25b269b7784dd",
+          "ELG_R_original_selected_weight_sha256": "320a20d687b55159013fd3ca00b8f457725737741b41ee4ea0a993eac9de8041",
+          "ELG_R_modified_selected_weight_sha256": "320a20d687b55159013fd3ca00b8f457725737741b41ee4ea0a993eac9de8041",
+          "ELG_R_weight_factor_min": 1,
+          "ELG_R_weight_factor_max": 1,
+          "forward_weighted_pair_histogram_sha256_by_term": {
+            "D1D2": "577ceb9973e9165bacfd75eb1f244e6852a39af249025a1fb959ec35a92ecd5b",
+            "D1R2": "e07f8832e4e2c86b8f94334172b67cb9b56809c41eeb1cda2802d2eb8a7ca147",
+            "R1D2": "7a6404fee9cf0a891bfd6eb210ec2e5a52ad8bb566f99e4b5f52f431e62014a6",
+            "R1R2": "159463b2a1f45b3f73a09d6ed5f8d68ab47757ea6662ce822d68adaac8e8d917"
+          },
+          "reverse_weighted_pair_histogram_sha256_by_term": {
+            "D1D2": "f91356bac90890ab04d0f6f4fa24f45cf7945a3977e0c5a8e9572407a9027b82",
+            "D1R2": "bb8253d2f19774b6baff1f6461bc847f19e6efa9a76a1e72d43cd57d62a43a06",
+            "R1D2": "97f4154f1d8d21598d4b1cf61c1932122b484a391406b92fe957ad8a23d57224",
+            "R1R2": "f1127e68062f433ebf8aed15edece0bf6c64abf48cca289eb2a15e6c49d3a42c"
+          }
+        },
+        "plus_5pct_ELG_R_z_ramp": {
+          "RR_supported_cells": 144,
+          "max_abs_xi_tracer_reverse_mirror": 1.1102230246251565e-15,
+          "forward_xi_grid_sha256": "cefd1d5002826773365da2742ff1d0651e8660a7bfe9d4b1c75960c13dc2d5a8",
+          "ELG_R_original_selected_weight_sha256": "320a20d687b55159013fd3ca00b8f457725737741b41ee4ea0a993eac9de8041",
+          "ELG_R_modified_selected_weight_sha256": "9101c53a703733bbaa21ff1c0109ccf2cd9805d1fe6dac85a03ebe057e69ed30",
+          "ELG_R_weight_factor_min": 0.950080382823944,
+          "ELG_R_weight_factor_max": 1.0499061822891236,
+          "forward_weighted_pair_histogram_sha256_by_term": {
+            "D1D2": "577ceb9973e9165bacfd75eb1f244e6852a39af249025a1fb959ec35a92ecd5b",
+            "D1R2": "3a98102c9add2672d58a43f318097913d902595a228f9cc9f125306e1518da54",
+            "R1D2": "7a6404fee9cf0a891bfd6eb210ec2e5a52ad8bb566f99e4b5f52f431e62014a6",
+            "R1R2": "1cb80bdb64b51b207476cd6535dbd2b8668cf13b11e1dba5e4099ef811937097"
+          },
+          "reverse_weighted_pair_histogram_sha256_by_term": {
+            "D1D2": "f91356bac90890ab04d0f6f4fa24f45cf7945a3977e0c5a8e9572407a9027b82",
+            "D1R2": "bb8253d2f19774b6baff1f6461bc847f19e6efa9a76a1e72d43cd57d62a43a06",
+            "R1D2": "732ec26da689bcdbb3772129b90a295dc2191e2ef7759ed0cda8b58e28116e1f",
+            "R1R2": "0c4f101c91b3a6a1e4323d5b96e245e84342cf28f40a7579be2e57d6c5f763f0"
+          },
+          "descriptive_max_abs_delta_ell1": 0.01830398753742274,
+          "descriptive_max_abs_delta_ell3": 0.017894530376368664
+        },
+        "minus_5pct_ELG_R_z_ramp": {
+          "RR_supported_cells": 144,
+          "max_abs_xi_tracer_reverse_mirror": 1.3322676295501878e-15,
+          "forward_xi_grid_sha256": "b3ac5ed81cd871d2351956c8b26b9541f48e44f5c4d9f177b26d0b359dd2e5ab",
+          "ELG_R_original_selected_weight_sha256": "320a20d687b55159013fd3ca00b8f457725737741b41ee4ea0a993eac9de8041",
+          "ELG_R_modified_selected_weight_sha256": "9ddf38733c2be5bde291e7e931bbf387090d839c27c9c53b9d27b1d987f5fc3d",
+          "ELG_R_weight_factor_min": 0.9500938177108765,
+          "ELG_R_weight_factor_max": 1.0499196171760559,
+          "forward_weighted_pair_histogram_sha256_by_term": {
+            "D1D2": "577ceb9973e9165bacfd75eb1f244e6852a39af249025a1fb959ec35a92ecd5b",
+            "D1R2": "f4937bb62a4419186b41b711c1d805f391261d8af32216aa5e9a36db03905bab",
+            "R1D2": "7a6404fee9cf0a891bfd6eb210ec2e5a52ad8bb566f99e4b5f52f431e62014a6",
+            "R1R2": "01e61e5af23fc68507b645efc2b1e56fbbe42d92b01aeff6d496805d9553e3af"
+          },
+          "reverse_weighted_pair_histogram_sha256_by_term": {
+            "D1D2": "f91356bac90890ab04d0f6f4fa24f45cf7945a3977e0c5a8e9572407a9027b82",
+            "D1R2": "bb8253d2f19774b6baff1f6461bc847f19e6efa9a76a1e72d43cd57d62a43a06",
+            "R1D2": "c9f351789eb122141dd83f39a3c9902df53db506ba5fd0bded4dff5757496107",
+            "R1R2": "222ae3901bf07c42bb4a3c6c711362177b59e9844db0cd652e04ac4504069879"
+          },
+          "descriptive_max_abs_delta_ell1": 0.01735044829481719,
+          "descriptive_max_abs_delta_ell3": 0.017281889029987785
+        }
+      }
+    },
+    "0001/SGC": {
+      "id": 1,
+      "cap": "SGC",
+      "original_A02_selected_array_SHA256_by_tracer_role": {
+        "eBOSS_LRG_dat": "19ebb0b814bd2343d83a273ccef6aa728e926ed91cb421108ce1201801e8c0c7",
+        "eBOSS_LRG_ran": "85e012179e7e7db1f67d235bd1c6cffcc8bd1f6e4386e895bd8c4bfe2cf423a3",
+        "eBOSS_ELG_dat": "df3289e705461f9b7ec4f2f7f5eadbfbb5d883e604ca077c445cf28148d0a1c0",
+        "eBOSS_ELG_ran": "5cd5a9976b619e5853af86c81aa1dff82fb2f855b9a0fccb9e4d6576ac4a6911"
+      },
+      "original_A02_sample_and_all_eight_pair_SHA_exact_replay": true,
+      "original_A02_forward_xi_SHA_exact_replay": true,
+      "baseline_forward_xi_grid_sha256": "71a1bd0c59f61fb6edc5f77ec30066d418fdf63744718918505881539a7a5c6b",
+      "scenarios": {
+        "baseline_original": {
+          "RR_supported_cells": 144,
+          "max_abs_xi_tracer_reverse_mirror": 1.3322676295501878e-15,
+          "forward_xi_grid_sha256": "71a1bd0c59f61fb6edc5f77ec30066d418fdf63744718918505881539a7a5c6b",
+          "ELG_R_original_selected_weight_sha256": "b348f362e303dbce2d7ef987e1e1f8ef2e90f8e66c05d060cd118a621b66960e",
+          "ELG_R_modified_selected_weight_sha256": "b348f362e303dbce2d7ef987e1e1f8ef2e90f8e66c05d060cd118a621b66960e",
+          "ELG_R_weight_factor_min": 1,
+          "ELG_R_weight_factor_max": 1,
+          "forward_weighted_pair_histogram_sha256_by_term": {
+            "D1D2": "fe165f00180c0fa0be421eab3addce3e5777fd03536928f2a9438e9286ba9a6c",
+            "D1R2": "d47e4cc95ba7d33667632054117d72dfc213c7caa49577e8ff560a044218a568",
+            "R1D2": "1fbff93d1f366537f66cd88be22e3cbc673a5c6e6a22a8078058f755e7dce021",
+            "R1R2": "64122cbebf68dcde40e6dadc25f7b16bec1d3ccd4ba7afc624ef4870eb7853ef"
+          },
+          "reverse_weighted_pair_histogram_sha256_by_term": {
+            "D1D2": "a59984c9d2bb749403b940fc565b80a2bd407bac3a53b32794d77e8ed4b00207",
+            "D1R2": "67e2204605c742d726cbbcf4d4c0f59b1b2514547141f85f8caeed3fe390fac4",
+            "R1D2": "95826add6fbbe5cb25d13bab5035277ad1b1546c9fd6d6bd0c967673a3eff84d",
+            "R1R2": "4cf4063775d61e03f0ccb9f6e1c25ee2dba3dad0698473e8caf7461badb7a823"
+          }
+        },
+        "plus_5pct_ELG_R_z_ramp": {
+          "RR_supported_cells": 144,
+          "max_abs_xi_tracer_reverse_mirror": 9.992007221626409e-16,
+          "forward_xi_grid_sha256": "1fe5c3f96736a629fcd59ce42c0d277b4ddfcad32bf148908c0a90186fd03f5b",
+          "ELG_R_original_selected_weight_sha256": "b348f362e303dbce2d7ef987e1e1f8ef2e90f8e66c05d060cd118a621b66960e",
+          "ELG_R_modified_selected_weight_sha256": "03cd5d43c068727e5a8ed6465c23435bee6837acf917c130499100f0494d29d9",
+          "ELG_R_weight_factor_min": 0.9500036716461181,
+          "ELG_R_weight_factor_max": 1.049984085559845,
+          "forward_weighted_pair_histogram_sha256_by_term": {
+            "D1D2": "fe165f00180c0fa0be421eab3addce3e5777fd03536928f2a9438e9286ba9a6c",
+            "D1R2": "7908b163057f81b062401a4386bed69efa5ca95169661470e887faeab07a5a1a",
+            "R1D2": "1fbff93d1f366537f66cd88be22e3cbc673a5c6e6a22a8078058f755e7dce021",
+            "R1R2": "41ca1942e93b06fb2c5664d45a6313ae678e647b2c5441698233fa52fc908c47"
+          },
+          "reverse_weighted_pair_histogram_sha256_by_term": {
+            "D1D2": "a59984c9d2bb749403b940fc565b80a2bd407bac3a53b32794d77e8ed4b00207",
+            "D1R2": "67e2204605c742d726cbbcf4d4c0f59b1b2514547141f85f8caeed3fe390fac4",
+            "R1D2": "3b8bc4c2513e4aa82be29247722c706022d5fcdac47186188d3ee587893177a0",
+            "R1R2": "8c8c435203543eaf7a8a83705389634869c5e8381a82d28b2a1ad07e1e3f5920"
+          },
+          "descriptive_max_abs_delta_ell1": 0.005334439835456159,
+          "descriptive_max_abs_delta_ell3": 0.00892228202494208
+        },
+        "minus_5pct_ELG_R_z_ramp": {
+          "RR_supported_cells": 144,
+          "max_abs_xi_tracer_reverse_mirror": 9.992007221626409e-16,
+          "forward_xi_grid_sha256": "a3f19fbd9b929c7146d567c498b86ce1c6f0390066590fdce9726997da7e4847",
+          "ELG_R_original_selected_weight_sha256": "b348f362e303dbce2d7ef987e1e1f8ef2e90f8e66c05d060cd118a621b66960e",
+          "ELG_R_modified_selected_weight_sha256": "1b5a2d9ca692d4349dee529c8362ef78b9093bfbc8e793754b2604f68a96bf22",
+          "ELG_R_weight_factor_min": 0.9500159144401551,
+          "ELG_R_weight_factor_max": 1.0499963283538818,
+          "forward_weighted_pair_histogram_sha256_by_term": {
+            "D1D2": "fe165f00180c0fa0be421eab3addce3e5777fd03536928f2a9438e9286ba9a6c",
+            "D1R2": "cd1b5475ba4507548245293d8f8f031e71d99586dc84b038dc54788972f51074",
+            "R1D2": "1fbff93d1f366537f66cd88be22e3cbc673a5c6e6a22a8078058f755e7dce021",
+            "R1R2": "a0dbcf6303d9032e2d4a98836790fd93e7c5b9e64498547a4f652b8ad86b1ef2"
+          },
+          "reverse_weighted_pair_histogram_sha256_by_term": {
+            "D1D2": "a59984c9d2bb749403b940fc565b80a2bd407bac3a53b32794d77e8ed4b00207",
+            "D1R2": "67e2204605c742d726cbbcf4d4c0f59b1b2514547141f85f8caeed3fe390fac4",
+            "R1D2": "8d3f5c9a9007da3a5e529b5334a0edd15fc7baa2b1cdccf4014ba73f2d5de822",
+            "R1R2": "0d7660496fd446f4832dfd569e0cf46eae12156eb889964f1de881eb179d6707"
+          },
+          "descriptive_max_abs_delta_ell1": 0.005060456933404886,
+          "descriptive_max_abs_delta_ell3": 0.008599108065159233
+        }
+      }
+    },
+    "0125/NGC": {
+      "id": 125,
+      "cap": "NGC",
+      "original_A02_selected_array_SHA256_by_tracer_role": {
+        "eBOSS_LRG_dat": "d79cfcc779e8d8b1fcce3462f70910d4807b7130a3988a669f6864ce7d7254c8",
+        "eBOSS_LRG_ran": "c11c8378b76397dd36d437bed8276dbdc44377c122bdbd3129cbf86f20dfb0a7",
+        "eBOSS_ELG_dat": "462115dd13a74902d04f95f49c438b09cf2ce70d73848b9023a79683d2ad3eb5",
+        "eBOSS_ELG_ran": "bd3ee13305684edb8d2f516f76d963e18e24a7236786e908ac86eb3560c5ba14"
+      },
+      "original_A02_sample_and_all_eight_pair_SHA_exact_replay": true,
+      "original_A02_forward_xi_SHA_exact_replay": true,
+      "baseline_forward_xi_grid_sha256": "e0dca6a75bd4673e9ac9acae0065078bcfe30ea94da87f48f9422c513edee1a6",
+      "scenarios": {
+        "baseline_original": {
+          "RR_supported_cells": 144,
+          "max_abs_xi_tracer_reverse_mirror": 1.7763568394002505e-15,
+          "forward_xi_grid_sha256": "e0dca6a75bd4673e9ac9acae0065078bcfe30ea94da87f48f9422c513edee1a6",
+          "ELG_R_original_selected_weight_sha256": "db586a3f235a78d0e03730382ecd2bf6e86db0ac3078919270bb53ad234ea58c",
+          "ELG_R_modified_selected_weight_sha256": "db586a3f235a78d0e03730382ecd2bf6e86db0ac3078919270bb53ad234ea58c",
+          "ELG_R_weight_factor_min": 1,
+          "ELG_R_weight_factor_max": 1,
+          "forward_weighted_pair_histogram_sha256_by_term": {
+            "D1D2": "7516072466494d3fe3f7dc4ff9d14ee462f3d15090719aa2f0ad417f8a81fa55",
+            "D1R2": "bb918c2f44e4c336837583de828382c738d90fa9fbdd2db2ce07b87855840811",
+            "R1D2": "2c9216ed7834515da0aa21dcbd1359d45e305bde23adf97e8943ab3afeb1b32a",
+            "R1R2": "68edc55bfa933b9d8e5c29a85ab20c98b50606f0ffae5d6ced23053ac09cdebf"
+          },
+          "reverse_weighted_pair_histogram_sha256_by_term": {
+            "D1D2": "0e16b1bb2c44d81ff4ba95479b7c5dee63d9ca966cef30c306d602485e4623fa",
+            "D1R2": "ba65c1c4f276b77f70b108b60da7d0af859137ce9489e38c0fc24f96bdf35b14",
+            "R1D2": "fe91bb48896429a48069c419f9d1d55503110523d70bf7ecfcde7142524c06e0",
+            "R1R2": "8fd9d2be55ee987c4f97dd36b867fcbc0e9a3af7c4b77941eb88d85c03f04c40"
+          }
+        },
+        "plus_5pct_ELG_R_z_ramp": {
+          "RR_supported_cells": 144,
+          "max_abs_xi_tracer_reverse_mirror": 1.7763568394002505e-15,
+          "forward_xi_grid_sha256": "b0e1e8c896c61b8433ea391208cd346c08d8cac199ba7bfbc4379e0ee879283c",
+          "ELG_R_original_selected_weight_sha256": "db586a3f235a78d0e03730382ecd2bf6e86db0ac3078919270bb53ad234ea58c",
+          "ELG_R_modified_selected_weight_sha256": "42d3a5abebabad1dac654c72f13ae48071e0102a8c0bcaca993109b073965393",
+          "ELG_R_weight_factor_min": 0.9501622200012206,
+          "ELG_R_weight_factor_max": 1.0499960064888,
+          "forward_weighted_pair_histogram_sha256_by_term": {
+            "D1D2": "7516072466494d3fe3f7dc4ff9d14ee462f3d15090719aa2f0ad417f8a81fa55",
+            "D1R2": "f6d78dd55d78b5728f03ac054a300035daecca62ac29554828f57305c92ba5e8",
+            "R1D2": "2c9216ed7834515da0aa21dcbd1359d45e305bde23adf97e8943ab3afeb1b32a",
+            "R1R2": "b36fff9af07468d3e3c81e2555343545281df9d1a78a6488492d0722212edd5c"
+          },
+          "reverse_weighted_pair_histogram_sha256_by_term": {
+            "D1D2": "0e16b1bb2c44d81ff4ba95479b7c5dee63d9ca966cef30c306d602485e4623fa",
+            "D1R2": "ba65c1c4f276b77f70b108b60da7d0af859137ce9489e38c0fc24f96bdf35b14",
+            "R1D2": "62eb7fe9903a04453d982bc70c78876c3db279b45c6cc76a4cd8098e7acf675a",
+            "R1R2": "c2df394f05543c42b5cb612f64e0a4d89680458598a5f3083a80011501f06cd9"
+          },
+          "descriptive_max_abs_delta_ell1": 0.02094704350347154,
+          "descriptive_max_abs_delta_ell3": 0.021581600116634125
+        },
+        "minus_5pct_ELG_R_z_ramp": {
+          "RR_supported_cells": 144,
+          "max_abs_xi_tracer_reverse_mirror": 1.1102230246251565e-15,
+          "forward_xi_grid_sha256": "b4738f94548b567ac106ce11db74964f23b32e54e3df0c4021547f5735e52b83",
+          "ELG_R_original_selected_weight_sha256": "db586a3f235a78d0e03730382ecd2bf6e86db0ac3078919270bb53ad234ea58c",
+          "ELG_R_modified_selected_weight_sha256": "66feb463d82f545fd902a88b39abf809f87bdf03d064220e34b8196d504a4cef",
+          "ELG_R_weight_factor_min": 0.9500039935112,
+          "ELG_R_weight_factor_max": 1.0498377799987793,
+          "forward_weighted_pair_histogram_sha256_by_term": {
+            "D1D2": "7516072466494d3fe3f7dc4ff9d14ee462f3d15090719aa2f0ad417f8a81fa55",
+            "D1R2": "ca86cd7ce41b5512b669135c12262652d0779d8e485f938f3f88d3bc5bcee10e",
+            "R1D2": "2c9216ed7834515da0aa21dcbd1359d45e305bde23adf97e8943ab3afeb1b32a",
+            "R1R2": "d1d24a3222ff7f2e4357a6b2aa9d1e6b79607619957a95fcb8767cb7835a7940"
+          },
+          "reverse_weighted_pair_histogram_sha256_by_term": {
+            "D1D2": "0e16b1bb2c44d81ff4ba95479b7c5dee63d9ca966cef30c306d602485e4623fa",
+            "D1R2": "ba65c1c4f276b77f70b108b60da7d0af859137ce9489e38c0fc24f96bdf35b14",
+            "R1D2": "ef214747241554957a344f91475ceb98a2cf9d0ce78d3fd6efb498c47ab76581",
+            "R1R2": "8297737ad524a875dbcea02a337f96729c177d11ce8fdfa4e6b1429c2bf113ef"
+          },
+          "descriptive_max_abs_delta_ell1": 0.02004502358543503,
+          "descriptive_max_abs_delta_ell3": 0.020485984344595365
+        }
+      }
+    },
+    "0125/SGC": {
+      "id": 125,
+      "cap": "SGC",
+      "original_A02_selected_array_SHA256_by_tracer_role": {
+        "eBOSS_LRG_dat": "aecde10123c2ad6f63d191b4ff2aeeca15340e3933b2330295f15bfd8f8d895d",
+        "eBOSS_LRG_ran": "570cd698fa916733a6123539a0ff4d3b2f5c85985210298359bcedeeaee485ac",
+        "eBOSS_ELG_dat": "adf6331e050a5dfcd60287a55fc9443ec087e7500671a26d2ecdca77ef487c4b",
+        "eBOSS_ELG_ran": "b100e0b9bfe89544f867c2c9d937250f349a0077be207e8f20ca809b31169bf2"
+      },
+      "original_A02_sample_and_all_eight_pair_SHA_exact_replay": true,
+      "original_A02_forward_xi_SHA_exact_replay": true,
+      "baseline_forward_xi_grid_sha256": "84e217811c1303846d3faaf0f6e51056928f7a518a0aebcda9e402392cdfe818",
+      "scenarios": {
+        "baseline_original": {
+          "RR_supported_cells": 144,
+          "max_abs_xi_tracer_reverse_mirror": 1.5543122344752192e-15,
+          "forward_xi_grid_sha256": "84e217811c1303846d3faaf0f6e51056928f7a518a0aebcda9e402392cdfe818",
+          "ELG_R_original_selected_weight_sha256": "2c38011f44ed765598a8bb414961531e80d4972ad99fd07faccdb6bd5d78ef47",
+          "ELG_R_modified_selected_weight_sha256": "2c38011f44ed765598a8bb414961531e80d4972ad99fd07faccdb6bd5d78ef47",
+          "ELG_R_weight_factor_min": 1,
+          "ELG_R_weight_factor_max": 1,
+          "forward_weighted_pair_histogram_sha256_by_term": {
+            "D1D2": "22e29d4d950e4ae3621778345784cc48924c75fb7fbd3071f7022f06bf8eeb4b",
+            "D1R2": "3fb0a03fa3983d29473f3ab6cbf300cb48b571b92a6619ac6df50d04bc8069a1",
+            "R1D2": "fa6e26f3358128625de0aa73c5e56a1228a819ab4dc25befcceaaa436375cf86",
+            "R1R2": "5e5f245d67112aac1080db61f6ee9e524ba36be5fef533d00b608f19364e1cf1"
+          },
+          "reverse_weighted_pair_histogram_sha256_by_term": {
+            "D1D2": "010786ff1e7a6dad14ddcbeba7c5c0f0dc4903a237bba8d7513248627deb857a",
+            "D1R2": "d81f1b3e6c987259925b4215cda1b7d4894f0a39850865f38d71a1f39ea4ee33",
+            "R1D2": "60142c9e66130bba1c867debfab0aaf63899c96019aade861e602641dbb2d6e6",
+            "R1R2": "3270b9b67ac4e0412a67c1f80e9af306af84cb09be386f92a3dae041c2cb87d6"
+          }
+        },
+        "plus_5pct_ELG_R_z_ramp": {
+          "RR_supported_cells": 144,
+          "max_abs_xi_tracer_reverse_mirror": 8.881784197001252e-16,
+          "forward_xi_grid_sha256": "4ec97564fa0500d9f4e313a15b8562345cc5a0c0a5756b6259f1f3f236817def",
+          "ELG_R_original_selected_weight_sha256": "2c38011f44ed765598a8bb414961531e80d4972ad99fd07faccdb6bd5d78ef47",
+          "ELG_R_modified_selected_weight_sha256": "c9ff7a3b0964d935036b8c6212b5e6292b2fbf5f07645c4172c15dc887609b9d",
+          "ELG_R_weight_factor_min": 0.9500667929649352,
+          "ELG_R_weight_factor_max": 1.049859392642975,
+          "forward_weighted_pair_histogram_sha256_by_term": {
+            "D1D2": "22e29d4d950e4ae3621778345784cc48924c75fb7fbd3071f7022f06bf8eeb4b",
+            "D1R2": "754966b9851027467e5ae2732897d0e1ce09e2dcef23e0764bcff66522040a11",
+            "R1D2": "fa6e26f3358128625de0aa73c5e56a1228a819ab4dc25befcceaaa436375cf86",
+            "R1R2": "15564f032fade11a0b8e1642a259030bb7f2f18258ce2796bc5005ccf3a48592"
+          },
+          "reverse_weighted_pair_histogram_sha256_by_term": {
+            "D1D2": "010786ff1e7a6dad14ddcbeba7c5c0f0dc4903a237bba8d7513248627deb857a",
+            "D1R2": "d81f1b3e6c987259925b4215cda1b7d4894f0a39850865f38d71a1f39ea4ee33",
+            "R1D2": "b0a7efe0f42e5d1a4495ebb77d0780025a05fb3f0f9bcc2d27b80635a5e3817f",
+            "R1R2": "3ab5a58b294dcdb1e00ffa16795d357aa925248366e49c8ed98d368ab97c8533"
+          },
+          "descriptive_max_abs_delta_ell1": 0.009673285135100518,
+          "descriptive_max_abs_delta_ell3": 0.008571412158912273
+        },
+        "minus_5pct_ELG_R_z_ramp": {
+          "RR_supported_cells": 144,
+          "max_abs_xi_tracer_reverse_mirror": 8.881784197001252e-16,
+          "forward_xi_grid_sha256": "3eb09d4be342fd77c40f6330d413ea62caa4ae54b840e219e268627fc85fa8ef",
+          "ELG_R_original_selected_weight_sha256": "2c38011f44ed765598a8bb414961531e80d4972ad99fd07faccdb6bd5d78ef47",
+          "ELG_R_modified_selected_weight_sha256": "5a5b88c8cf7247ec437f9580f82252339a56fad16f2935bccd6a5bb72ff8735d",
+          "ELG_R_weight_factor_min": 0.9501406073570252,
+          "ELG_R_weight_factor_max": 1.0499332070350647,
+          "forward_weighted_pair_histogram_sha256_by_term": {
+            "D1D2": "22e29d4d950e4ae3621778345784cc48924c75fb7fbd3071f7022f06bf8eeb4b",
+            "D1R2": "33348cba21326a45b3330dcbb58f6c60421e0e187322b66f7441b11e8f1f855d",
+            "R1D2": "fa6e26f3358128625de0aa73c5e56a1228a819ab4dc25befcceaaa436375cf86",
+            "R1R2": "3537523ce688f071978dc2ec048e3db5647bb82225de3d9fb7f2e65959cceadc"
+          },
+          "reverse_weighted_pair_histogram_sha256_by_term": {
+            "D1D2": "010786ff1e7a6dad14ddcbeba7c5c0f0dc4903a237bba8d7513248627deb857a",
+            "D1R2": "d81f1b3e6c987259925b4215cda1b7d4894f0a39850865f38d71a1f39ea4ee33",
+            "R1D2": "ced3631d7dd917b4c1f601cc347e93daaf7429c5ace0a22d9b7f3ddac6079063",
+            "R1R2": "bd5cd6c4fdc2002f5937ed8d65329a8b8a678786c4d39a2b7ac145c81b67a5a2"
+          },
+          "descriptive_max_abs_delta_ell1": 0.009253323348901943,
+          "descriptive_max_abs_delta_ell3": 0.00851259778369079
+        }
+      }
+    },
+    "0250/NGC": {
+      "id": 250,
+      "cap": "NGC",
+      "original_A02_selected_array_SHA256_by_tracer_role": {
+        "eBOSS_LRG_dat": "55eb7fd2c4e18dab1d3b3711aca6117213544911b291e6026085fe3498534271",
+        "eBOSS_LRG_ran": "c9e10b7161596e6309354f9e87206b44948bdb0cea26b932aacf33c967a04156",
+        "eBOSS_ELG_dat": "9db18469d1a6a6b632066026c51e2e4044ba10d3207dab2a0611ddd5500d02b0",
+        "eBOSS_ELG_ran": "6d1d593ce192076f393b2d99a327d9ccda22e87c05e348f5df5c9e71f1d7eb9d"
+      },
+      "original_A02_sample_and_all_eight_pair_SHA_exact_replay": true,
+      "original_A02_forward_xi_SHA_exact_replay": true,
+      "baseline_forward_xi_grid_sha256": "9e3e7be53635c1b7bb0354013509a85f1af942817e2bd408e93d253da2f22c0e",
+      "scenarios": {
+        "baseline_original": {
+          "RR_supported_cells": 144,
+          "max_abs_xi_tracer_reverse_mirror": 8.881784197001252e-16,
+          "forward_xi_grid_sha256": "9e3e7be53635c1b7bb0354013509a85f1af942817e2bd408e93d253da2f22c0e",
+          "ELG_R_original_selected_weight_sha256": "d4a961d30ce296c1d5aa75d968c95c5c2914ca79d1d553c1b1c3fe356a6f3344",
+          "ELG_R_modified_selected_weight_sha256": "d4a961d30ce296c1d5aa75d968c95c5c2914ca79d1d553c1b1c3fe356a6f3344",
+          "ELG_R_weight_factor_min": 1,
+          "ELG_R_weight_factor_max": 1,
+          "forward_weighted_pair_histogram_sha256_by_term": {
+            "D1D2": "2613e6d20187c2462ca994c5d3d451b7a4a67a23c238756f14b61758e0d112d7",
+            "D1R2": "5a6bc4b0ee1e66ebdecc5df28b300e09bba4cfc0287fba7d465d399bbb3b90bd",
+            "R1D2": "7fe853c3659ca3406a22e98d98e76ede565217a19725c4a9f8417798cd302155",
+            "R1R2": "8d5a24c3c7bff736750eafde303c2f22f3b5b035286f28d55658be13ecaea44f"
+          },
+          "reverse_weighted_pair_histogram_sha256_by_term": {
+            "D1D2": "886b13f0e1b0dc454ada58cb403395cf530f324c0cb7b327f7cc19cfacaaecbd",
+            "D1R2": "9c2dc07678ea69e7a144c9730affebf28fa9a24288bf1ea8a0f075362c150d5b",
+            "R1D2": "d6777249dd832e7813262d60e17bc75a6b811c00e6e2d6457752aff7628a8a83",
+            "R1R2": "4d640c2cc72dcad2f766597d876a27f2fcc6db1cb4149720a16386adcd04172e"
+          }
+        },
+        "plus_5pct_ELG_R_z_ramp": {
+          "RR_supported_cells": 144,
+          "max_abs_xi_tracer_reverse_mirror": 1.3322676295501878e-15,
+          "forward_xi_grid_sha256": "67e3443bae406970f4805a4dda44ba044ad9d077fff83220d41ff4727760fe64",
+          "ELG_R_original_selected_weight_sha256": "d4a961d30ce296c1d5aa75d968c95c5c2914ca79d1d553c1b1c3fe356a6f3344",
+          "ELG_R_modified_selected_weight_sha256": "06a6dd449b181e441b92edcb7be8947bd38cbae113d7bc5ee68e20eff53f32de",
+          "ELG_R_weight_factor_min": 0.9500183939933776,
+          "ELG_R_weight_factor_max": 1.0499805092811585,
+          "forward_weighted_pair_histogram_sha256_by_term": {
+            "D1D2": "2613e6d20187c2462ca994c5d3d451b7a4a67a23c238756f14b61758e0d112d7",
+            "D1R2": "2f516110b2d1207cafa17e01b3657af2f329030ba8bc1a7c6af61dfe9d8750c0",
+            "R1D2": "7fe853c3659ca3406a22e98d98e76ede565217a19725c4a9f8417798cd302155",
+            "R1R2": "8adc0d7be6dba98bb3b7301df3fca68092d77cd8b37d82f6e21829379a17f0d1"
+          },
+          "reverse_weighted_pair_histogram_sha256_by_term": {
+            "D1D2": "886b13f0e1b0dc454ada58cb403395cf530f324c0cb7b327f7cc19cfacaaecbd",
+            "D1R2": "9c2dc07678ea69e7a144c9730affebf28fa9a24288bf1ea8a0f075362c150d5b",
+            "R1D2": "a4e207d48131fb77c6aec6a97ba7f0caa2cee3d2e85046eb1a7aeaaed0dc64b2",
+            "R1R2": "15d923590fa195a370ac17a939181bf4c6d208d705148e4351f86a6211227091"
+          },
+          "descriptive_max_abs_delta_ell1": 0.00993127614986658,
+          "descriptive_max_abs_delta_ell3": 0.01433571193779104
+        },
+        "minus_5pct_ELG_R_z_ramp": {
+          "RR_supported_cells": 144,
+          "max_abs_xi_tracer_reverse_mirror": 1.3322676295501878e-15,
+          "forward_xi_grid_sha256": "51a2e3a9915dff219fbc903e7bae69575c360814ba0f020782862c99af8bc9ac",
+          "ELG_R_original_selected_weight_sha256": "d4a961d30ce296c1d5aa75d968c95c5c2914ca79d1d553c1b1c3fe356a6f3344",
+          "ELG_R_modified_selected_weight_sha256": "8374db35aadb3c4ac1ed664f23d3f3ffde39d5b962c0d638b08d17aaf2c40926",
+          "ELG_R_weight_factor_min": 0.9500194907188416,
+          "ELG_R_weight_factor_max": 1.0499816060066223,
+          "forward_weighted_pair_histogram_sha256_by_term": {
+            "D1D2": "2613e6d20187c2462ca994c5d3d451b7a4a67a23c238756f14b61758e0d112d7",
+            "D1R2": "cd6237c2310ac220f78039d7bb484237e66e9bdf712f46c3bb0220c67660267d",
+            "R1D2": "7fe853c3659ca3406a22e98d98e76ede565217a19725c4a9f8417798cd302155",
+            "R1R2": "fcec8df94578c2d4b84b3bf3910499d7e9f8ac773475c5f7b46300c42339a0b9"
+          },
+          "reverse_weighted_pair_histogram_sha256_by_term": {
+            "D1D2": "886b13f0e1b0dc454ada58cb403395cf530f324c0cb7b327f7cc19cfacaaecbd",
+            "D1R2": "9c2dc07678ea69e7a144c9730affebf28fa9a24288bf1ea8a0f075362c150d5b",
+            "R1D2": "0beb45deed7ae41fc78f8fe230c1d9614e71ee748e4d9d3790e187eb25442ed5",
+            "R1R2": "4694c2716d7861902cbdf007208bda0c18f8c2554e89e37622848bd02fe51ca5"
+          },
+          "descriptive_max_abs_delta_ell1": 0.009531579588584763,
+          "descriptive_max_abs_delta_ell3": 0.013600012638749548
+        }
+      }
+    },
+    "0250/SGC": {
+      "id": 250,
+      "cap": "SGC",
+      "original_A02_selected_array_SHA256_by_tracer_role": {
+        "eBOSS_LRG_dat": "d0b0564d790af3e147cddd9535736cae92e12f7dcf2315ef87e1964d5e9c3a49",
+        "eBOSS_LRG_ran": "2634a5dc915256615614c56288e5fbc8748e87150bb1f115f67b6c09b7b69778",
+        "eBOSS_ELG_dat": "a8efa8ae5a8cce9b32d39b7513638ba28cc162874108e3bc3bed85aaf755d939",
+        "eBOSS_ELG_ran": "1fbcc1740c19d9f5b001f343a8549dbb6e32f0cd6c443f838147e7128cd6b794"
+      },
+      "original_A02_sample_and_all_eight_pair_SHA_exact_replay": true,
+      "original_A02_forward_xi_SHA_exact_replay": true,
+      "baseline_forward_xi_grid_sha256": "a40eda00a106990162ac776a31808bc10889b436d746da69c56263d66018a800",
+      "scenarios": {
+        "baseline_original": {
+          "RR_supported_cells": 144,
+          "max_abs_xi_tracer_reverse_mirror": 8.881784197001252e-16,
+          "forward_xi_grid_sha256": "a40eda00a106990162ac776a31808bc10889b436d746da69c56263d66018a800",
+          "ELG_R_original_selected_weight_sha256": "c70f71da43b3c7c6b9f3a4f96f740eae76ef6bff6e42f719e349dca9921c932c",
+          "ELG_R_modified_selected_weight_sha256": "c70f71da43b3c7c6b9f3a4f96f740eae76ef6bff6e42f719e349dca9921c932c",
+          "ELG_R_weight_factor_min": 1,
+          "ELG_R_weight_factor_max": 1,
+          "forward_weighted_pair_histogram_sha256_by_term": {
+            "D1D2": "0791c4a8a1d8abf6d257c141d3c2f803fe2d21c8eb4c0ed132ba14fb752a7b2c",
+            "D1R2": "cc8308ea723cd4f79ff7a46a2fcd9aca85aac706c738687ed79437f907abb4e4",
+            "R1D2": "c5e0f1a56b00d18c04b2509356c5794813607986484866fb48d34b813dee345a",
+            "R1R2": "cadc4ada7d32956398ae3bad60a0989dfcaa3b1ce6bd013e0adc1e6866c867d5"
+          },
+          "reverse_weighted_pair_histogram_sha256_by_term": {
+            "D1D2": "8568001d204be19194b5f4fe314efe75e11bd65b5460c584535368a9a9924fe7",
+            "D1R2": "b1bb0638bec562d57e35e3ebcd5b52b14b28c979a71df2e86438cae75d56619b",
+            "R1D2": "7982a6c5d66b6149903c9ed912582a4e6638b33928b58b2a4ae7a8afddc043de",
+            "R1R2": "8907b5043a446d8e1cd014f838b8e3863749b1a7ac261b9bb869f6f0f841cf26"
+          }
+        },
+        "plus_5pct_ELG_R_z_ramp": {
+          "RR_supported_cells": 144,
+          "max_abs_xi_tracer_reverse_mirror": 1.1102230246251565e-15,
+          "forward_xi_grid_sha256": "3a5bc4441280c7337e3d7a7bedeb9ff71bca20fdb76c01959502744a6844c310",
+          "ELG_R_original_selected_weight_sha256": "c70f71da43b3c7c6b9f3a4f96f740eae76ef6bff6e42f719e349dca9921c932c",
+          "ELG_R_modified_selected_weight_sha256": "a9d2b57de8acc499787efd38f7d6cec46aa5f87a25455c20b54ab3a5ae5f1638",
+          "ELG_R_weight_factor_min": 0.9502410769462585,
+          "ELG_R_weight_factor_max": 1.0499623894691468,
+          "forward_weighted_pair_histogram_sha256_by_term": {
+            "D1D2": "0791c4a8a1d8abf6d257c141d3c2f803fe2d21c8eb4c0ed132ba14fb752a7b2c",
+            "D1R2": "d37f4afc815373ea456031ebedd454dde6af07bc679f9d5156942b9092a00989",
+            "R1D2": "c5e0f1a56b00d18c04b2509356c5794813607986484866fb48d34b813dee345a",
+            "R1R2": "eee8894ffc48c1540f05bdc6e6a905b9d9b8f9d104b8cc4f10f8627c81db4ce5"
+          },
+          "reverse_weighted_pair_histogram_sha256_by_term": {
+            "D1D2": "8568001d204be19194b5f4fe314efe75e11bd65b5460c584535368a9a9924fe7",
+            "D1R2": "b1bb0638bec562d57e35e3ebcd5b52b14b28c979a71df2e86438cae75d56619b",
+            "R1D2": "24616bb81cb23bdaadc1f45729c1686e9771fb3150779bbdc150898e212a970f",
+            "R1R2": "ac3cdb2d463d62d1e99b7e12567bb233192868fab0a1c86950e8767f689c2ecd"
+          },
+          "descriptive_max_abs_delta_ell1": 0.004690609346958224,
+          "descriptive_max_abs_delta_ell3": 0.014338880209884386
+        },
+        "minus_5pct_ELG_R_z_ramp": {
+          "RR_supported_cells": 144,
+          "max_abs_xi_tracer_reverse_mirror": 1.3322676295501878e-15,
+          "forward_xi_grid_sha256": "598934fda7f49b0f7a71110312f8076b3ba4474c8d3ff21c3eed5102b28e84a0",
+          "ELG_R_original_selected_weight_sha256": "c70f71da43b3c7c6b9f3a4f96f740eae76ef6bff6e42f719e349dca9921c932c",
+          "ELG_R_modified_selected_weight_sha256": "777f33c2cf6186b51bd7695c69306e2db43f323bd8d79b3ddaa8fad9f850c034",
+          "ELG_R_weight_factor_min": 0.9500376105308533,
+          "ELG_R_weight_factor_max": 1.0497589230537414,
+          "forward_weighted_pair_histogram_sha256_by_term": {
+            "D1D2": "0791c4a8a1d8abf6d257c141d3c2f803fe2d21c8eb4c0ed132ba14fb752a7b2c",
+            "D1R2": "b21e6bee43c3ee5133e7bee4742ef09dafb43e8fa0d7cd97f9b5fa6d164e4cca",
+            "R1D2": "c5e0f1a56b00d18c04b2509356c5794813607986484866fb48d34b813dee345a",
+            "R1R2": "9c0b57771af417543b59ef8770f4e4efadb390e6eeb7f5215e63ccd4fdb5e783"
+          },
+          "reverse_weighted_pair_histogram_sha256_by_term": {
+            "D1D2": "8568001d204be19194b5f4fe314efe75e11bd65b5460c584535368a9a9924fe7",
+            "D1R2": "b1bb0638bec562d57e35e3ebcd5b52b14b28c979a71df2e86438cae75d56619b",
+            "R1D2": "2887492a35441aa3fc32eb714123db21f3a131a59649f70000f4730d66abd15e",
+            "R1R2": "47db43e2b7aa939d816b5de69f4a36cc6f26d5f9d99f1a411bfb90dca2ce7f9e"
+          },
+          "descriptive_max_abs_delta_ell1": 0.004688213001828742,
+          "descriptive_max_abs_delta_ell3": 0.013930416222048325
+        }
+      }
+    },
+    "0375/NGC": {
+      "id": 375,
+      "cap": "NGC",
+      "original_A02_selected_array_SHA256_by_tracer_role": {
+        "eBOSS_LRG_dat": "e5259f4b114f78747a19783710007f45eed071ecbe3cd51ed61d30880aae23e3",
+        "eBOSS_LRG_ran": "83de9b129536b746b5f770ccc553b77b506b324c59724bb0732a9e8ea3463b00",
+        "eBOSS_ELG_dat": "8d9b9d8093960cfb7cd21aad9452f09c21ccc38d0da9d99279d37cdea2c156df",
+        "eBOSS_ELG_ran": "17ed4ee3d6bcdbdbb58ef30356729333b769b9949eb5cd6f910bc2b1be141e07"
+      },
+      "original_A02_sample_and_all_eight_pair_SHA_exact_replay": true,
+      "original_A02_forward_xi_SHA_exact_replay": true,
+      "baseline_forward_xi_grid_sha256": "24025a1f1050235fe4e2feee5c34a5124fcfd2ee317fb229aed18ba35bc8b7fa",
+      "scenarios": {
+        "baseline_original": {
+          "RR_supported_cells": 144,
+          "max_abs_xi_tracer_reverse_mirror": 8.881784197001252e-16,
+          "forward_xi_grid_sha256": "24025a1f1050235fe4e2feee5c34a5124fcfd2ee317fb229aed18ba35bc8b7fa",
+          "ELG_R_original_selected_weight_sha256": "cb83a7eded66259b0d292206ead4986e304046c5d5284993e12ddc0f443814d4",
+          "ELG_R_modified_selected_weight_sha256": "cb83a7eded66259b0d292206ead4986e304046c5d5284993e12ddc0f443814d4",
+          "ELG_R_weight_factor_min": 1,
+          "ELG_R_weight_factor_max": 1,
+          "forward_weighted_pair_histogram_sha256_by_term": {
+            "D1D2": "6b797907da25d5e602d47c629a2ea5275a2d380568ec960e78942408284df62b",
+            "D1R2": "8b146031880cb5a46335ad58ae1d73e5fd913d5d8fb0647b6983578248f505fc",
+            "R1D2": "c507d52196e3b9f9effdea2b0574569ece1f98d00613631b384095f322fab28c",
+            "R1R2": "5c359648695aae32e5b91389cb8641e356f3bb6598c1db5a958b6863aa54c814"
+          },
+          "reverse_weighted_pair_histogram_sha256_by_term": {
+            "D1D2": "904a55239d2901304a293cfefbe47cfa51160a4a96a2c10d355c6191159472e3",
+            "D1R2": "b91980e7893e0c95b2e9940e0717b19da978d648429575a862851eb0d7b90797",
+            "R1D2": "331a3476fd40d84415fef658c90bfed27ed5bb39e29ba4978fb88588e2106dc3",
+            "R1R2": "8c9fe39f18b913c841da09b56d1b9505737a29ab337b515c3ec9d04bafc85f9f"
+          }
+        },
+        "plus_5pct_ELG_R_z_ramp": {
+          "RR_supported_cells": 144,
+          "max_abs_xi_tracer_reverse_mirror": 1.3322676295501878e-15,
+          "forward_xi_grid_sha256": "8570bc2e0e161dae44fd75123886f7b6be3fa40c8222e17430725f26a866427b",
+          "ELG_R_original_selected_weight_sha256": "cb83a7eded66259b0d292206ead4986e304046c5d5284993e12ddc0f443814d4",
+          "ELG_R_modified_selected_weight_sha256": "c64dd1849e25e931a9e4fabe0ac5107d0c8d439e604db7f29251eec7859e44ad",
+          "ELG_R_weight_factor_min": 0.9500043869018554,
+          "ELG_R_weight_factor_max": 1.0499349117279053,
+          "forward_weighted_pair_histogram_sha256_by_term": {
+            "D1D2": "6b797907da25d5e602d47c629a2ea5275a2d380568ec960e78942408284df62b",
+            "D1R2": "ec1f303737c6d969361031f23ef6e7edafd8a571c25f97e544c96d1784767dbc",
+            "R1D2": "c507d52196e3b9f9effdea2b0574569ece1f98d00613631b384095f322fab28c",
+            "R1R2": "7f122d169e147444d5493d58cf1e9e0173c384424a6e9c628962ced5f4ac0cbc"
+          },
+          "reverse_weighted_pair_histogram_sha256_by_term": {
+            "D1D2": "904a55239d2901304a293cfefbe47cfa51160a4a96a2c10d355c6191159472e3",
+            "D1R2": "b91980e7893e0c95b2e9940e0717b19da978d648429575a862851eb0d7b90797",
+            "R1D2": "75ab5262a3cb314caf37f605e479046d359ec15eadc44f41bff21b1ad9e82730",
+            "R1R2": "02882ac80877626a2f2b3bdc069ce26f02558565dcfc3dc031bb1f4fe9c33a6d"
+          },
+          "descriptive_max_abs_delta_ell1": 0.020292632689965284,
+          "descriptive_max_abs_delta_ell3": 0.018828141857584524
+        },
+        "minus_5pct_ELG_R_z_ramp": {
+          "RR_supported_cells": 144,
+          "max_abs_xi_tracer_reverse_mirror": 8.881784197001252e-16,
+          "forward_xi_grid_sha256": "561a071fa3b6353aba62905a301391b4704491e13ec7b896f8dbf4b1a0396411",
+          "ELG_R_original_selected_weight_sha256": "cb83a7eded66259b0d292206ead4986e304046c5d5284993e12ddc0f443814d4",
+          "ELG_R_modified_selected_weight_sha256": "46a90b00522f850a57a42f849100992ded60e38c61e38e6151cbf230c9f8dd74",
+          "ELG_R_weight_factor_min": 0.9500650882720948,
+          "ELG_R_weight_factor_max": 1.0499956130981445,
+          "forward_weighted_pair_histogram_sha256_by_term": {
+            "D1D2": "6b797907da25d5e602d47c629a2ea5275a2d380568ec960e78942408284df62b",
+            "D1R2": "a03924c55531df584d6d3d8fdaba6c9193b78b41c495f519e713d3ee157ed3f5",
+            "R1D2": "c507d52196e3b9f9effdea2b0574569ece1f98d00613631b384095f322fab28c",
+            "R1R2": "9d22c100b75677e9f804ab14f5e90358d3f54b550c07465b33e0f6f13cdd3ab7"
+          },
+          "reverse_weighted_pair_histogram_sha256_by_term": {
+            "D1D2": "904a55239d2901304a293cfefbe47cfa51160a4a96a2c10d355c6191159472e3",
+            "D1R2": "b91980e7893e0c95b2e9940e0717b19da978d648429575a862851eb0d7b90797",
+            "R1D2": "bac5ce6753885dee215ebe2da55ccd2d929e2934d8f13b6499aac0418b33c57a",
+            "R1R2": "2296c4439f4aa7498c1dbcb81fb0247185c8f541c9c4cf7a7d842aadcceef509"
+          },
+          "descriptive_max_abs_delta_ell1": 0.01939456593491884,
+          "descriptive_max_abs_delta_ell3": 0.018434730965870477
+        }
+      }
+    },
+    "0375/SGC": {
+      "id": 375,
+      "cap": "SGC",
+      "original_A02_selected_array_SHA256_by_tracer_role": {
+        "eBOSS_LRG_dat": "eb1d978f24af09e821b56a6e43d0365cfbaac7ed642a56c446dab62c09ea5501",
+        "eBOSS_LRG_ran": "87af10eec96276d1db0f2ee348dbbb2893fe08fb27e9c61b891a4c297f332f90",
+        "eBOSS_ELG_dat": "57df4b861bf997a4f34c592fea6296d9fcc42e9379deb99fe181a2f1b9cbb102",
+        "eBOSS_ELG_ran": "9782e37e830fb240876c6a3d2c614e0ffa9de3e4d2a5120370aa54e552b29eb7"
+      },
+      "original_A02_sample_and_all_eight_pair_SHA_exact_replay": true,
+      "original_A02_forward_xi_SHA_exact_replay": true,
+      "baseline_forward_xi_grid_sha256": "2cddcc81182f3c59df63cc4f2e2cc8c4fd00ea8bd4d997b100671cc65461f369",
+      "scenarios": {
+        "baseline_original": {
+          "RR_supported_cells": 144,
+          "max_abs_xi_tracer_reverse_mirror": 8.881784197001252e-16,
+          "forward_xi_grid_sha256": "2cddcc81182f3c59df63cc4f2e2cc8c4fd00ea8bd4d997b100671cc65461f369",
+          "ELG_R_original_selected_weight_sha256": "35af8073b655f6f24df208a976bd69bdeed4ef329e93571655b560a712e20a88",
+          "ELG_R_modified_selected_weight_sha256": "35af8073b655f6f24df208a976bd69bdeed4ef329e93571655b560a712e20a88",
+          "ELG_R_weight_factor_min": 1,
+          "ELG_R_weight_factor_max": 1,
+          "forward_weighted_pair_histogram_sha256_by_term": {
+            "D1D2": "4dffc1d4c48cc6fdce202caeef20d5f5775ff62756c988475e4dc683a156aea1",
+            "D1R2": "909eaec7935f0116cb2090ff5eae1697d03094fa57a991d7e1f692cf3bb8b024",
+            "R1D2": "720e02cc88159c53934aa45940f1f6033d494fc2b6cfabdd9ca078c089339c64",
+            "R1R2": "3fb110752d090a6cfb439c9b6ac53aac573a60394a658909b4d22a6e99a914d1"
+          },
+          "reverse_weighted_pair_histogram_sha256_by_term": {
+            "D1D2": "f9b1923c6ba1b0e755e2e300d920156f1807c05cc4ae87b469ba2cd8b65f28a0",
+            "D1R2": "4bb09e170748a2b36f849a8b19518f9c8f58ea044f5f1751de1d9d074f4258c1",
+            "R1D2": "03d52a09829edf05df20a8fe36d0e4f21dccf15a54197ff0a1b7c7c16d4c7dec",
+            "R1R2": "a18d5a926be148b15ce70c1d1f4049650519029f2057c2738394dd610f822037"
+          }
+        },
+        "plus_5pct_ELG_R_z_ramp": {
+          "RR_supported_cells": 144,
+          "max_abs_xi_tracer_reverse_mirror": 9.43689570931383e-16,
+          "forward_xi_grid_sha256": "0e60abaa51cb706d456d2c2f2b9fe7862479640caf1b6c0805c918c0f0c7f2f7",
+          "ELG_R_original_selected_weight_sha256": "35af8073b655f6f24df208a976bd69bdeed4ef329e93571655b560a712e20a88",
+          "ELG_R_modified_selected_weight_sha256": "dcd26f9f4e8b6d94bb5445a597ee4d3edd2f02da8c09eb647e4eef57897b37a3",
+          "ELG_R_weight_factor_min": 0.9500592231750488,
+          "ELG_R_weight_factor_max": 1.049885380268097,
+          "forward_weighted_pair_histogram_sha256_by_term": {
+            "D1D2": "4dffc1d4c48cc6fdce202caeef20d5f5775ff62756c988475e4dc683a156aea1",
+            "D1R2": "2ea17793e1a03b1f58b04878c9e05c5cd06e306c4eeb3c5c7d3bc52311f053b4",
+            "R1D2": "720e02cc88159c53934aa45940f1f6033d494fc2b6cfabdd9ca078c089339c64",
+            "R1R2": "420df1341c47c4f38e755bf6cc37d5f093200523fd347091a1cb8dec7a288fa3"
+          },
+          "reverse_weighted_pair_histogram_sha256_by_term": {
+            "D1D2": "f9b1923c6ba1b0e755e2e300d920156f1807c05cc4ae87b469ba2cd8b65f28a0",
+            "D1R2": "4bb09e170748a2b36f849a8b19518f9c8f58ea044f5f1751de1d9d074f4258c1",
+            "R1D2": "43177069506b47c09fb385dfa7973f033a642a0f742464a941a60bc8c3c49bba",
+            "R1R2": "311a95da5fbf5bfda0cd297259faa3b562f9f94f2e264346026e27d03fe3025e"
+          },
+          "descriptive_max_abs_delta_ell1": 0.002641161140242404,
+          "descriptive_max_abs_delta_ell3": 0.004603331584266623
+        },
+        "minus_5pct_ELG_R_z_ramp": {
+          "RR_supported_cells": 144,
+          "max_abs_xi_tracer_reverse_mirror": 9.159339953157541e-16,
+          "forward_xi_grid_sha256": "69938a5b2d116d3bcaeac5ed5a5fdfd6fb60b8001ab2daf4b423291819311fb2",
+          "ELG_R_original_selected_weight_sha256": "35af8073b655f6f24df208a976bd69bdeed4ef329e93571655b560a712e20a88",
+          "ELG_R_modified_selected_weight_sha256": "e3d1a69a302a641fee14fbb31c709a19cedb2e0cbffb571597c0f3af95a99188",
+          "ELG_R_weight_factor_min": 0.9501146197319031,
+          "ELG_R_weight_factor_max": 1.0499407768249511,
+          "forward_weighted_pair_histogram_sha256_by_term": {
+            "D1D2": "4dffc1d4c48cc6fdce202caeef20d5f5775ff62756c988475e4dc683a156aea1",
+            "D1R2": "400103025149f13c4597f349ce55626d660e106b8c35689e0f5729800dddb144",
+            "R1D2": "720e02cc88159c53934aa45940f1f6033d494fc2b6cfabdd9ca078c089339c64",
+            "R1R2": "d8fffda44495447026e6498b66201dcf78b758cc50c88ea8f9f6630ff793e60f"
+          },
+          "reverse_weighted_pair_histogram_sha256_by_term": {
+            "D1D2": "f9b1923c6ba1b0e755e2e300d920156f1807c05cc4ae87b469ba2cd8b65f28a0",
+            "D1R2": "4bb09e170748a2b36f849a8b19518f9c8f58ea044f5f1751de1d9d074f4258c1",
+            "R1D2": "8a1c723cf6bdaec8fb5530808dcbdf6375db66f15b9184a391a6a6d4415bbc7f",
+            "R1R2": "2cb03f6057f86067e88bed5b51a5978ad7f24f04289b7c0c6187dc97e21af377"
+          },
+          "descriptive_max_abs_delta_ell1": 0.00254147119032061,
+          "descriptive_max_abs_delta_ell3": 0.0047222956322795495
+        }
+      }
+    },
+    "0500/NGC": {
+      "id": 500,
+      "cap": "NGC",
+      "original_A02_selected_array_SHA256_by_tracer_role": {
+        "eBOSS_LRG_dat": "45cdc9690716e501ef4b9be4e43a8e924d79c2b36153249110307da5d1529cde",
+        "eBOSS_LRG_ran": "7d83c8e01589a2611f14014d836b7e7343a710be69d1ccf773351fe522ddcef9",
+        "eBOSS_ELG_dat": "481a7a02bba9234953da728ec92d0ab49e6956b1cb3cd92524ed3cc09a73227c",
+        "eBOSS_ELG_ran": "734dc49d7418247c7f529cd3e5200eb6e2d65840fada9d985bf96e2c2df6d71c"
+      },
+      "original_A02_sample_and_all_eight_pair_SHA_exact_replay": true,
+      "original_A02_forward_xi_SHA_exact_replay": true,
+      "baseline_forward_xi_grid_sha256": "70766dbf95126f2ae9eedfc2d754b78af13fd3e84176f707508e816997f008d2",
+      "scenarios": {
+        "baseline_original": {
+          "RR_supported_cells": 144,
+          "max_abs_xi_tracer_reverse_mirror": 1.5543122344752192e-15,
+          "forward_xi_grid_sha256": "70766dbf95126f2ae9eedfc2d754b78af13fd3e84176f707508e816997f008d2",
+          "ELG_R_original_selected_weight_sha256": "bc83a1d637d9b04691e5b5414d311a94ee7d9c9b66f078571a958ec1b2e7839d",
+          "ELG_R_modified_selected_weight_sha256": "bc83a1d637d9b04691e5b5414d311a94ee7d9c9b66f078571a958ec1b2e7839d",
+          "ELG_R_weight_factor_min": 1,
+          "ELG_R_weight_factor_max": 1,
+          "forward_weighted_pair_histogram_sha256_by_term": {
+            "D1D2": "29c3f11797a7161f7a2cbc67fc260f7004c16a814e8a8d385596c0a4ee47c5c0",
+            "D1R2": "f518f5cad28d082b04f0549b8d8c1cc9a145158d97b4703684ff37e11eacefe8",
+            "R1D2": "eff6ea373b297f7a5d4a0789455eafd2285de00641d032bad7615da73d258535",
+            "R1R2": "51153591c327b21cf84a0c4bc280ad180df898b975558fc782a3341889313074"
+          },
+          "reverse_weighted_pair_histogram_sha256_by_term": {
+            "D1D2": "2f9020bdd18cf7bffbdfc97ef8656633e784ba72485e8b805925a502a1e988ea",
+            "D1R2": "50b3492d1458805455548da0bde8dc0dbf67250ce239afb9841b34dc9e9ea0cc",
+            "R1D2": "f0026182476d81d30ca6954985064c9ea7edf3850daed672a09d4379fc1d1ec7",
+            "R1R2": "6a19740e0584bcfa00e09a2e503835f7157bf105e46bb63ac481aadc6dea1e25"
+          }
+        },
+        "plus_5pct_ELG_R_z_ramp": {
+          "RR_supported_cells": 144,
+          "max_abs_xi_tracer_reverse_mirror": 7.771561172376096e-16,
+          "forward_xi_grid_sha256": "d59d4a50e01f50d6f3aae0d94ab765f1e596d74426484c2b871e6e8a5970454e",
+          "ELG_R_original_selected_weight_sha256": "bc83a1d637d9b04691e5b5414d311a94ee7d9c9b66f078571a958ec1b2e7839d",
+          "ELG_R_modified_selected_weight_sha256": "171cd0df21a75e4f85dc28787a90c34183a0a0ae686f4661e6d931a5fe1d9758",
+          "ELG_R_weight_factor_min": 0.9500176787376403,
+          "ELG_R_weight_factor_max": 1.0499778866767884,
+          "forward_weighted_pair_histogram_sha256_by_term": {
+            "D1D2": "29c3f11797a7161f7a2cbc67fc260f7004c16a814e8a8d385596c0a4ee47c5c0",
+            "D1R2": "e5937c4dac22da0692a8681bee11ab77c915890a8517d9d3ee1fdf146d3e0de6",
+            "R1D2": "eff6ea373b297f7a5d4a0789455eafd2285de00641d032bad7615da73d258535",
+            "R1R2": "40a7ea05350f36d863c73a02dbbee04cb66aff1d98462d5ce532a029e0847075"
+          },
+          "reverse_weighted_pair_histogram_sha256_by_term": {
+            "D1D2": "2f9020bdd18cf7bffbdfc97ef8656633e784ba72485e8b805925a502a1e988ea",
+            "D1R2": "50b3492d1458805455548da0bde8dc0dbf67250ce239afb9841b34dc9e9ea0cc",
+            "R1D2": "ecef6cd99358114a1dfaab55ec6f67ea5038c3142272109676d39331cb13dea7",
+            "R1R2": "21769161a4496868f2929f7abc31f5b1d0212ea80bcfba50298251ef1f2d47f2"
+          },
+          "descriptive_max_abs_delta_ell1": 0.00819652030047023,
+          "descriptive_max_abs_delta_ell3": 0.02669669920327894
+        },
+        "minus_5pct_ELG_R_z_ramp": {
+          "RR_supported_cells": 144,
+          "max_abs_xi_tracer_reverse_mirror": 1.1102230246251565e-15,
+          "forward_xi_grid_sha256": "6205a9abdbd164ae1ee4560671eb881460230233e3726f24340bb8207fd24de4",
+          "ELG_R_original_selected_weight_sha256": "bc83a1d637d9b04691e5b5414d311a94ee7d9c9b66f078571a958ec1b2e7839d",
+          "ELG_R_modified_selected_weight_sha256": "d137ed86b6fbd7e8310ba28a60b73b2bdb065ef59e147cfc7e003e2970402da8",
+          "ELG_R_weight_factor_min": 0.9500221133232117,
+          "ELG_R_weight_factor_max": 1.0499823212623596,
+          "forward_weighted_pair_histogram_sha256_by_term": {
+            "D1D2": "29c3f11797a7161f7a2cbc67fc260f7004c16a814e8a8d385596c0a4ee47c5c0",
+            "D1R2": "f6f2a7b5f39a89c6cbff07c90d7cfab7780ac0071c32971b31411fceb7a456fc",
+            "R1D2": "eff6ea373b297f7a5d4a0789455eafd2285de00641d032bad7615da73d258535",
+            "R1R2": "084ef574dd0b776dbe9515c368fa7655b759ee3528659fd6e4716d66ce737e55"
+          },
+          "reverse_weighted_pair_histogram_sha256_by_term": {
+            "D1D2": "2f9020bdd18cf7bffbdfc97ef8656633e784ba72485e8b805925a502a1e988ea",
+            "D1R2": "50b3492d1458805455548da0bde8dc0dbf67250ce239afb9841b34dc9e9ea0cc",
+            "R1D2": "e76dfc78d5edd3ca265b797bdd9c4026887266ed6b01f76a7153cadc30bda4ba",
+            "R1R2": "d9fbc85fce2fb245477cab1f0e569466b8d7869e6729b006aa6176374ddf1817"
+          },
+          "descriptive_max_abs_delta_ell1": 0.008054835542651961,
+          "descriptive_max_abs_delta_ell3": 0.026082190939428818
+        }
+      }
+    },
+    "0500/SGC": {
+      "id": 500,
+      "cap": "SGC",
+      "original_A02_selected_array_SHA256_by_tracer_role": {
+        "eBOSS_LRG_dat": "e93d1713a653dcfac71690410d8c6dc4de4d4afe9a27ec105ee86684051cd219",
+        "eBOSS_LRG_ran": "ff630ee0ef77b74e9d21c78d128aca08d3cb86ae2e292b444562b2d518433814",
+        "eBOSS_ELG_dat": "ecbaf1cefa193af14475dc8b6f2212578c56cecc8a9eea33f7af21223a70ec3f",
+        "eBOSS_ELG_ran": "a49990926bd65fbe2d95178a9f8bafb95271e9bc9634bec7329d3016ba7fd1c3"
+      },
+      "original_A02_sample_and_all_eight_pair_SHA_exact_replay": true,
+      "original_A02_forward_xi_SHA_exact_replay": true,
+      "baseline_forward_xi_grid_sha256": "22bfd3c2bb22d402b1c0c5c53b1dd6572b3242ac3123a035b08a7059e6d36b06",
+      "scenarios": {
+        "baseline_original": {
+          "RR_supported_cells": 144,
+          "max_abs_xi_tracer_reverse_mirror": 9.43689570931383e-16,
+          "forward_xi_grid_sha256": "22bfd3c2bb22d402b1c0c5c53b1dd6572b3242ac3123a035b08a7059e6d36b06",
+          "ELG_R_original_selected_weight_sha256": "8659e7bbbae3469a45db68d7a5cc6e0f11dc1cc0bfd83d83b9f84b18d79cd733",
+          "ELG_R_modified_selected_weight_sha256": "8659e7bbbae3469a45db68d7a5cc6e0f11dc1cc0bfd83d83b9f84b18d79cd733",
+          "ELG_R_weight_factor_min": 1,
+          "ELG_R_weight_factor_max": 1,
+          "forward_weighted_pair_histogram_sha256_by_term": {
+            "D1D2": "b7e8217f354214f4b557ae3e42415871f71601be8b3037e4bd4ad906e646a18e",
+            "D1R2": "3b99655670d33272fa3d35a4cb4b7b601e9d24db5b5784160d86fbee5de65f6c",
+            "R1D2": "90243b1990ce9f83ab77a2a2c4c60a0a35b2a40e0ed95db771828d23531c58af",
+            "R1R2": "84077001b2b1430b4c447130d6bc8164cc1241fd29b9bbce074c651a531dacbb"
+          },
+          "reverse_weighted_pair_histogram_sha256_by_term": {
+            "D1D2": "9c8fd6fcf967646794113173dea43a92edc5a7892cf4667e4a3397866a9ce415",
+            "D1R2": "a4af97a32197d893fdaa72cc1c8ab3b21317cdf6cc09035e6fed06d00b76d835",
+            "R1D2": "1cb74093bb4d0cbbd7c20412c8174b62bfe846967798d5e046839d393a5bbceb",
+            "R1R2": "b7af44b725e6f371f2e9f2df3ab7fc585c0c18c986f6f3c4f61015ec12cc27eb"
+          }
+        },
+        "plus_5pct_ELG_R_z_ramp": {
+          "RR_supported_cells": 144,
+          "max_abs_xi_tracer_reverse_mirror": 8.881784197001252e-16,
+          "forward_xi_grid_sha256": "ffe70116abe25fa16c936227c0d8c75d9d376ffa682ad672fbd6c82d9ac5b3dd",
+          "ELG_R_original_selected_weight_sha256": "8659e7bbbae3469a45db68d7a5cc6e0f11dc1cc0bfd83d83b9f84b18d79cd733",
+          "ELG_R_modified_selected_weight_sha256": "4c6716b164c1ef8f1917f7ef449a0a4f7c57f0fe355c264c8be529f374321935",
+          "ELG_R_weight_factor_min": 0.9500847935676574,
+          "ELG_R_weight_factor_max": 1.0499324083328248,
+          "forward_weighted_pair_histogram_sha256_by_term": {
+            "D1D2": "b7e8217f354214f4b557ae3e42415871f71601be8b3037e4bd4ad906e646a18e",
+            "D1R2": "940997428f33a03c3fb4f26f0797a83ecae0cef8352bde940155086798e72bd1",
+            "R1D2": "90243b1990ce9f83ab77a2a2c4c60a0a35b2a40e0ed95db771828d23531c58af",
+            "R1R2": "0d4918651ff211e5512e4605810b344ce9a24dd3f4074ce134b458db6484ad75"
+          },
+          "reverse_weighted_pair_histogram_sha256_by_term": {
+            "D1D2": "9c8fd6fcf967646794113173dea43a92edc5a7892cf4667e4a3397866a9ce415",
+            "D1R2": "a4af97a32197d893fdaa72cc1c8ab3b21317cdf6cc09035e6fed06d00b76d835",
+            "R1D2": "f10ed5b935fe1d6d5be02b061a4fefd9e11b9d7d4e0b4fd4d64d1aa10da32770",
+            "R1R2": "ee331a0f1100e36f031a75b32dd68c6e1496213e1c2967dc3d510ef31aadb052"
+          },
+          "descriptive_max_abs_delta_ell1": 0.003626407843930056,
+          "descriptive_max_abs_delta_ell3": 0.004793658610509427
+        },
+        "minus_5pct_ELG_R_z_ramp": {
+          "RR_supported_cells": 144,
+          "max_abs_xi_tracer_reverse_mirror": 7.771561172376096e-16,
+          "forward_xi_grid_sha256": "69a9df9edec2b4f92ac4b8bcbff173f16b1328fdaee3c97826ec1739703df4fd",
+          "ELG_R_original_selected_weight_sha256": "8659e7bbbae3469a45db68d7a5cc6e0f11dc1cc0bfd83d83b9f84b18d79cd733",
+          "ELG_R_modified_selected_weight_sha256": "98587c42d9f54ff8e2ea285e488967dfae9fc2d591de833d5b4a256f123d82a1",
+          "ELG_R_weight_factor_min": 0.9500675916671754,
+          "ELG_R_weight_factor_max": 1.0499152064323425,
+          "forward_weighted_pair_histogram_sha256_by_term": {
+            "D1D2": "b7e8217f354214f4b557ae3e42415871f71601be8b3037e4bd4ad906e646a18e",
+            "D1R2": "9a5038dbd875e0fb550b5f4d97ed4ea18ecef8921e861ba7e2f4ffbcc33dfde4",
+            "R1D2": "90243b1990ce9f83ab77a2a2c4c60a0a35b2a40e0ed95db771828d23531c58af",
+            "R1R2": "9064e4f9e77617d9320db51f8ab7481abb2f182580fbf22291b6efa66a254b68"
+          },
+          "reverse_weighted_pair_histogram_sha256_by_term": {
+            "D1D2": "9c8fd6fcf967646794113173dea43a92edc5a7892cf4667e4a3397866a9ce415",
+            "D1R2": "a4af97a32197d893fdaa72cc1c8ab3b21317cdf6cc09035e6fed06d00b76d835",
+            "R1D2": "339e231959620cd6f08ca88c3d359ad40951bfe2a2dcbb7a903837a737734f47",
+            "R1R2": "c7911f8e3a658158fae8281aa3e62f126166e90d1686d4089e18f33ccf27319f"
+          },
+          "descriptive_max_abs_delta_ell1": 0.003532426339616715,
+          "descriptive_max_abs_delta_ell3": 0.004828309544130743
+        }
+      }
+    },
+    "0625/NGC": {
+      "id": 625,
+      "cap": "NGC",
+      "original_A02_selected_array_SHA256_by_tracer_role": {
+        "eBOSS_LRG_dat": "4c1828af96cd0d4743151ec7b7da9bb546f0c3ba3273ac67e99161c0b2fe182c",
+        "eBOSS_LRG_ran": "21ccf80a749eb55746c5cc26eba30f333940fcc11b4c7d264e9606532e05d9dd",
+        "eBOSS_ELG_dat": "b0ca3e756c740bd63ab6cfc4d9af5f31f2340cca8c90f89d581f14956c22076a",
+        "eBOSS_ELG_ran": "3c18e62b210610dcc1912ebd4ae4505052d5004296b4fd1c78b6126100f96559"
+      },
+      "original_A02_sample_and_all_eight_pair_SHA_exact_replay": true,
+      "original_A02_forward_xi_SHA_exact_replay": true,
+      "baseline_forward_xi_grid_sha256": "c3e954f1d68d622d77bdcbcd6540737571c65e2db5b046396eaa3a0ea85e2e98",
+      "scenarios": {
+        "baseline_original": {
+          "RR_supported_cells": 144,
+          "max_abs_xi_tracer_reverse_mirror": 1.1102230246251565e-15,
+          "forward_xi_grid_sha256": "c3e954f1d68d622d77bdcbcd6540737571c65e2db5b046396eaa3a0ea85e2e98",
+          "ELG_R_original_selected_weight_sha256": "515a8db72628c157775b4caa1b34cb62c2de27da7e8d52e003761db6dff6e0ea",
+          "ELG_R_modified_selected_weight_sha256": "515a8db72628c157775b4caa1b34cb62c2de27da7e8d52e003761db6dff6e0ea",
+          "ELG_R_weight_factor_min": 1,
+          "ELG_R_weight_factor_max": 1,
+          "forward_weighted_pair_histogram_sha256_by_term": {
+            "D1D2": "99bf22f26df11b9c7d3d5a91af07aa536a2b5ee276dbd98bdf5c2b2ecb341ced",
+            "D1R2": "71daa48a2fd05b6e74270e15c4fc8717b7a5de41a87ff7217daba9ce826e3248",
+            "R1D2": "c7e0718629a800da59e54a0bdbd535cfb9b432baadeda9225305a05f04b119a9",
+            "R1R2": "4073052ced855426621323f43b57962a772c927a534f2b042d9d966fac890c5a"
+          },
+          "reverse_weighted_pair_histogram_sha256_by_term": {
+            "D1D2": "03c8b2d3e7cd9904b5e6d776183d9e69d67895657d14e8d04087d2dce107f101",
+            "D1R2": "60d3bbd282b5a1a18bb18036573f661c3072a66148d4ad7c139f7a9e829caa8f",
+            "R1D2": "2ae320e1cac26350414c97f572dfce28dad5b3a66ac539b7d9531e7daa24aa86",
+            "R1R2": "aa6b66e4463a05cf012e20cfee46ca7381fe2a27eaced82461b77f4368dfe2d3"
+          }
+        },
+        "plus_5pct_ELG_R_z_ramp": {
+          "RR_supported_cells": 144,
+          "max_abs_xi_tracer_reverse_mirror": 9.43689570931383e-16,
+          "forward_xi_grid_sha256": "689f6fc1f31cc2c6c9edff760a68b6ceb3699a9321cc66828a2e5c16e1195e03",
+          "ELG_R_original_selected_weight_sha256": "515a8db72628c157775b4caa1b34cb62c2de27da7e8d52e003761db6dff6e0ea",
+          "ELG_R_modified_selected_weight_sha256": "75a37778c3c89fd562ab209fbc5133accd7820573d0dd94a9b24da8a7559d560",
+          "ELG_R_weight_factor_min": 0.9501963138580322,
+          "ELG_R_weight_factor_max": 1.0496044039726258,
+          "forward_weighted_pair_histogram_sha256_by_term": {
+            "D1D2": "99bf22f26df11b9c7d3d5a91af07aa536a2b5ee276dbd98bdf5c2b2ecb341ced",
+            "D1R2": "bb1acd6739a4fa312494a1edc79e9ec260944f5aba21716343e5ee85a5aac8d2",
+            "R1D2": "c7e0718629a800da59e54a0bdbd535cfb9b432baadeda9225305a05f04b119a9",
+            "R1R2": "f7f3c9b40f70732d0951a94b52356f56a2061a6713dd49a5b3b52c1edf3288ac"
+          },
+          "reverse_weighted_pair_histogram_sha256_by_term": {
+            "D1D2": "03c8b2d3e7cd9904b5e6d776183d9e69d67895657d14e8d04087d2dce107f101",
+            "D1R2": "60d3bbd282b5a1a18bb18036573f661c3072a66148d4ad7c139f7a9e829caa8f",
+            "R1D2": "ce20367dee01927dc65dcd38cecaac0ef529926ed7daf34e0ae2d49956712fa2",
+            "R1R2": "c724bd0ac6350d626f75faeac1ae13a5694cea8b1e45c235421184afd3433532"
+          },
+          "descriptive_max_abs_delta_ell1": 0.0041897721340581895,
+          "descriptive_max_abs_delta_ell3": 0.010133914491613827
+        },
+        "minus_5pct_ELG_R_z_ramp": {
+          "RR_supported_cells": 144,
+          "max_abs_xi_tracer_reverse_mirror": 9.992007221626409e-16,
+          "forward_xi_grid_sha256": "3c16ac2f3e52c3803c242718ec6f73a332a58065809d5b8df1f680099edb600a",
+          "ELG_R_original_selected_weight_sha256": "515a8db72628c157775b4caa1b34cb62c2de27da7e8d52e003761db6dff6e0ea",
+          "ELG_R_modified_selected_weight_sha256": "4443b4cb0917752d500d312cdb7a9d7c966600abe3dcca6fbe3a1fad630ace8f",
+          "ELG_R_weight_factor_min": 0.9503955960273743,
+          "ELG_R_weight_factor_max": 1.0498036861419677,
+          "forward_weighted_pair_histogram_sha256_by_term": {
+            "D1D2": "99bf22f26df11b9c7d3d5a91af07aa536a2b5ee276dbd98bdf5c2b2ecb341ced",
+            "D1R2": "9912b52dab39b19db611b7bff2d6a4f43927da7736fdd869eb85a17abca38ff9",
+            "R1D2": "c7e0718629a800da59e54a0bdbd535cfb9b432baadeda9225305a05f04b119a9",
+            "R1R2": "a1bcc75233ffbead7e50acc6a11e607178ab2f3556efd42a6e6d2db421f408e7"
+          },
+          "reverse_weighted_pair_histogram_sha256_by_term": {
+            "D1D2": "03c8b2d3e7cd9904b5e6d776183d9e69d67895657d14e8d04087d2dce107f101",
+            "D1R2": "60d3bbd282b5a1a18bb18036573f661c3072a66148d4ad7c139f7a9e829caa8f",
+            "R1D2": "9e8b78e39e4ea36066633bfcf9d5022ba5c3c029d9b1fd8ba17183949b079f71",
+            "R1R2": "6ab77c48670ef7185afb7086f290cbf048d9492c06340c86439964d3934e4a8b"
+          },
+          "descriptive_max_abs_delta_ell1": 0.004045414846432005,
+          "descriptive_max_abs_delta_ell3": 0.009971221763934945
+        }
+      }
+    },
+    "0625/SGC": {
+      "id": 625,
+      "cap": "SGC",
+      "original_A02_selected_array_SHA256_by_tracer_role": {
+        "eBOSS_LRG_dat": "c6b95044a21b93dde1b609d21882355a07363a5906dfb8c670ac49d1d1813758",
+        "eBOSS_LRG_ran": "81bdd2d78d1ac541fa5e7fd1210eb4c14748a08ef4892be29b373a116e0105f0",
+        "eBOSS_ELG_dat": "2e1136d780cd4ff3b4e1bbb1f2e7ea21e0db9decad9e57be2ee95ffe8ed74df1",
+        "eBOSS_ELG_ran": "41291a2801b42322acf8a0e59e5725ba2bd024f0591916955f91da99d750e40b"
+      },
+      "original_A02_sample_and_all_eight_pair_SHA_exact_replay": true,
+      "original_A02_forward_xi_SHA_exact_replay": true,
+      "baseline_forward_xi_grid_sha256": "d3db0f81a58eb8128b7642cb68c4d4d574685dbfad90bfd5e4863a915348acb7",
+      "scenarios": {
+        "baseline_original": {
+          "RR_supported_cells": 144,
+          "max_abs_xi_tracer_reverse_mirror": 8.534839501805891e-16,
+          "forward_xi_grid_sha256": "d3db0f81a58eb8128b7642cb68c4d4d574685dbfad90bfd5e4863a915348acb7",
+          "ELG_R_original_selected_weight_sha256": "06ee7d2139c7eb7c8a1258de45af58a9742df6d72e8a245e5f118add1db3369c",
+          "ELG_R_modified_selected_weight_sha256": "06ee7d2139c7eb7c8a1258de45af58a9742df6d72e8a245e5f118add1db3369c",
+          "ELG_R_weight_factor_min": 1,
+          "ELG_R_weight_factor_max": 1,
+          "forward_weighted_pair_histogram_sha256_by_term": {
+            "D1D2": "b4e42f75c8666ba8bcaf9155a24b9d5efce3f56d34e6c444ac5319fe6db8ac91",
+            "D1R2": "4ec5f14ddd79a5d1313aef7a50e6734bba0e14b73e8873b6a8d9fdb745b9ea87",
+            "R1D2": "e220e2561d95d230c290b98c0146364df4d6004dc71ab054f8d67b996a43187c",
+            "R1R2": "e7aa519a8e306b88ca8011542ad848cd122661874fd0cfedaf204b1e77a6df7d"
+          },
+          "reverse_weighted_pair_histogram_sha256_by_term": {
+            "D1D2": "f1bc57c5f6c9e4abc0c2e347658997ee52c7e62c11360046b1271c035fd79b06",
+            "D1R2": "c6d044d81a65c38cc9a9d2b0cfb154b6c9761791750eed766e741abe0dd025a0",
+            "R1D2": "4599ffedc5a90be38b5ae241e788cef3f17df0cc436cd3bd1580b05d5ca414a2",
+            "R1R2": "22486eee8cb8f18f09027567974a53f77cf09ba9e7676cb27a847b0b7100eb55"
+          }
+        },
+        "plus_5pct_ELG_R_z_ramp": {
+          "RR_supported_cells": 144,
+          "max_abs_xi_tracer_reverse_mirror": 1.1726730697603216e-15,
+          "forward_xi_grid_sha256": "9aec071f889ef5ec0bf48f53bc5cd35b1fa51488416ba606b0f322cdaeb5ac74",
+          "ELG_R_original_selected_weight_sha256": "06ee7d2139c7eb7c8a1258de45af58a9742df6d72e8a245e5f118add1db3369c",
+          "ELG_R_modified_selected_weight_sha256": "2e15f466c819fae5dea6a77b014ccad69a43de25c477a7ee2e9a8d714a4a2720",
+          "ELG_R_weight_factor_min": 0.9500589847564697,
+          "ELG_R_weight_factor_max": 1.0498493194580079,
+          "forward_weighted_pair_histogram_sha256_by_term": {
+            "D1D2": "b4e42f75c8666ba8bcaf9155a24b9d5efce3f56d34e6c444ac5319fe6db8ac91",
+            "D1R2": "8fcef660713aedd8091b83db1c10189b8febd2e12857fd1666f801f46011a0b8",
+            "R1D2": "e220e2561d95d230c290b98c0146364df4d6004dc71ab054f8d67b996a43187c",
+            "R1R2": "22e4c84f36ce9ef8e62013bc3293a5ba5c81346dd57c1bfe5662218f0531bf81"
+          },
+          "reverse_weighted_pair_histogram_sha256_by_term": {
+            "D1D2": "f1bc57c5f6c9e4abc0c2e347658997ee52c7e62c11360046b1271c035fd79b06",
+            "D1R2": "c6d044d81a65c38cc9a9d2b0cfb154b6c9761791750eed766e741abe0dd025a0",
+            "R1D2": "71cedef908436506aafb3481a616b0fa556339eb8a434e518bd82c0a237be6c4",
+            "R1R2": "f3cec6e7320a2fa0282ba7c4da2d839a7d67e37d3fe0d8aa4da1ff95902d147f"
+          },
+          "descriptive_max_abs_delta_ell1": 0.006253637739985118,
+          "descriptive_max_abs_delta_ell3": 0.0037080574702673674
+        },
+        "minus_5pct_ELG_R_z_ramp": {
+          "RR_supported_cells": 144,
+          "max_abs_xi_tracer_reverse_mirror": 9.43689570931383e-16,
+          "forward_xi_grid_sha256": "18bcc13d338ddbfa969f1e4b168b2bfb20f297ba703c80464477d5f96ef61768",
+          "ELG_R_original_selected_weight_sha256": "06ee7d2139c7eb7c8a1258de45af58a9742df6d72e8a245e5f118add1db3369c",
+          "ELG_R_modified_selected_weight_sha256": "e7a593953a6645288a7d979020474baa7c5a76075d25d3f21ac0a6add595d9b8",
+          "ELG_R_weight_factor_min": 0.9501506805419923,
+          "ELG_R_weight_factor_max": 1.0499410152435302,
+          "forward_weighted_pair_histogram_sha256_by_term": {
+            "D1D2": "b4e42f75c8666ba8bcaf9155a24b9d5efce3f56d34e6c444ac5319fe6db8ac91",
+            "D1R2": "169c3d93410a11a4fa7342742e5ce57334a8d914240ae59fd8666c5f69509527",
+            "R1D2": "e220e2561d95d230c290b98c0146364df4d6004dc71ab054f8d67b996a43187c",
+            "R1R2": "79d3e5ffe52dcedaadeda447a761eb91fab2e7a08f98fc1c6096b04e5414b960"
+          },
+          "reverse_weighted_pair_histogram_sha256_by_term": {
+            "D1D2": "f1bc57c5f6c9e4abc0c2e347658997ee52c7e62c11360046b1271c035fd79b06",
+            "D1R2": "c6d044d81a65c38cc9a9d2b0cfb154b6c9761791750eed766e741abe0dd025a0",
+            "R1D2": "14fd213f7525a70540a081d4bff941585dc5e2c9e13ccacd6b25b38121e402f1",
+            "R1R2": "0f79550ef44733fe0d98afece6ed4f83e93e83bdea387981cf0d3b2b839303c5"
+          },
+          "descriptive_max_abs_delta_ell1": 0.006105199617267267,
+          "descriptive_max_abs_delta_ell3": 0.0035670864467342023
+        }
+      }
+    },
+    "0750/NGC": {
+      "id": 750,
+      "cap": "NGC",
+      "original_A02_selected_array_SHA256_by_tracer_role": {
+        "eBOSS_LRG_dat": "b4f8e059b4e709860ade2cf9b1647fc9c43bcc4b14cded13b1e7190765476a79",
+        "eBOSS_LRG_ran": "aae5ec4b6acf9de4aa16e9d54b7481f787ccb1753b5ffd0b8a25d1400b06a2fd",
+        "eBOSS_ELG_dat": "b4464e0c273356d68dc33fc8b3f05490c84eae7b2a5dab34c6c75b4a69c2aa56",
+        "eBOSS_ELG_ran": "349aeed455b264132ce09cc9f20bae7c78f054b3b9dc4bb25a0c449a14af065c"
+      },
+      "original_A02_sample_and_all_eight_pair_SHA_exact_replay": true,
+      "original_A02_forward_xi_SHA_exact_replay": true,
+      "baseline_forward_xi_grid_sha256": "c6eea5517b0d41ccf5e1eac116a2909c2da3a67cb1784034815e1a50ba444c7d",
+      "scenarios": {
+        "baseline_original": {
+          "RR_supported_cells": 144,
+          "max_abs_xi_tracer_reverse_mirror": 1.7763568394002505e-15,
+          "forward_xi_grid_sha256": "c6eea5517b0d41ccf5e1eac116a2909c2da3a67cb1784034815e1a50ba444c7d",
+          "ELG_R_original_selected_weight_sha256": "3c1b017d71d01b18d0bcf5ff5f28e241cbc106517cfa290e53ba5ea61a10cf81",
+          "ELG_R_modified_selected_weight_sha256": "3c1b017d71d01b18d0bcf5ff5f28e241cbc106517cfa290e53ba5ea61a10cf81",
+          "ELG_R_weight_factor_min": 1,
+          "ELG_R_weight_factor_max": 1,
+          "forward_weighted_pair_histogram_sha256_by_term": {
+            "D1D2": "9485a05162e3552b0e06482073eb498d07d4b06d5bc136da59c8c7a3a0d0949d",
+            "D1R2": "14c2ad72f3f04e624b9c438548f3b88bfbbb86965e9448e358d7fdccc2ace44f",
+            "R1D2": "e50a2960fd0c1f8b1283beb83a379754173ce85a714b2881304a85ee4dc0b05a",
+            "R1R2": "0bf422e96b199096ab3af1abe87b3e7f508f5467ff4f94d3fc28e58542e94679"
+          },
+          "reverse_weighted_pair_histogram_sha256_by_term": {
+            "D1D2": "4e799256226443bc45e0f2a029e222f410b46d0b2244d17d6d11b5edce2614ab",
+            "D1R2": "03db9022089febcb05cea24226260180633df81fe8cc65d886ead3a36af0cad4",
+            "R1D2": "e7e030138202e013b261e9c0ebb2957ef543264a6640a1206e131fd03f971644",
+            "R1R2": "02077d432fde4bdfcb84a95c70676270877f5ecc45a1e0126b900120a48e77af"
+          }
+        },
+        "plus_5pct_ELG_R_z_ramp": {
+          "RR_supported_cells": 144,
+          "max_abs_xi_tracer_reverse_mirror": 1.7763568394002505e-15,
+          "forward_xi_grid_sha256": "0589fd98cf3cde3b076a8f67fcbae9d3dd63b7b3467c5f7987880a476132735d",
+          "ELG_R_original_selected_weight_sha256": "3c1b017d71d01b18d0bcf5ff5f28e241cbc106517cfa290e53ba5ea61a10cf81",
+          "ELG_R_modified_selected_weight_sha256": "169ebaf026e7b34612a5668576712e016fa65c509bf5ee5ac2fd39a2e641b952",
+          "ELG_R_weight_factor_min": 0.9500098705291747,
+          "ELG_R_weight_factor_max": 1.0499861121177674,
+          "forward_weighted_pair_histogram_sha256_by_term": {
+            "D1D2": "9485a05162e3552b0e06482073eb498d07d4b06d5bc136da59c8c7a3a0d0949d",
+            "D1R2": "54ca0569f091c88a2f64a72cce58d0497257d0ff74b18e599ff900285b948552",
+            "R1D2": "e50a2960fd0c1f8b1283beb83a379754173ce85a714b2881304a85ee4dc0b05a",
+            "R1R2": "e6b6f88415e8dcf591a31ec802ee9d2a26a921107ab910071f2938c0a81cad4a"
+          },
+          "reverse_weighted_pair_histogram_sha256_by_term": {
+            "D1D2": "4e799256226443bc45e0f2a029e222f410b46d0b2244d17d6d11b5edce2614ab",
+            "D1R2": "03db9022089febcb05cea24226260180633df81fe8cc65d886ead3a36af0cad4",
+            "R1D2": "d9bcb970fa5708486283e125626d0ca6e997a8769b8f5433f0b3ab8491d5f9e5",
+            "R1R2": "b7083badc4dbd9c306ce478f0c0325638f5d157d4cc09db76af1108106ae7f43"
+          },
+          "descriptive_max_abs_delta_ell1": 0.012569086243619909,
+          "descriptive_max_abs_delta_ell3": 0.022175975852663288
+        },
+        "minus_5pct_ELG_R_z_ramp": {
+          "RR_supported_cells": 144,
+          "max_abs_xi_tracer_reverse_mirror": 1.3322676295501878e-15,
+          "forward_xi_grid_sha256": "52844f8250df467245bc4c6c606e6d1c9ee0faeb220dfebbe970288d6b80988e",
+          "ELG_R_original_selected_weight_sha256": "3c1b017d71d01b18d0bcf5ff5f28e241cbc106517cfa290e53ba5ea61a10cf81",
+          "ELG_R_modified_selected_weight_sha256": "94d5f7b89b515ea2906bf023571fd528e4f91042b7d50e530cbda2f799660bd8",
+          "ELG_R_weight_factor_min": 0.9500138878822327,
+          "ELG_R_weight_factor_max": 1.0499901294708252,
+          "forward_weighted_pair_histogram_sha256_by_term": {
+            "D1D2": "9485a05162e3552b0e06482073eb498d07d4b06d5bc136da59c8c7a3a0d0949d",
+            "D1R2": "0fc4ca557344a446841cb0b0c9824521d3674473758debdbd6416abfc56c6c34",
+            "R1D2": "e50a2960fd0c1f8b1283beb83a379754173ce85a714b2881304a85ee4dc0b05a",
+            "R1R2": "7ff6802633d1e240823cf46a36da3c74813a3329b3a420d69fedbe45ec0282db"
+          },
+          "reverse_weighted_pair_histogram_sha256_by_term": {
+            "D1D2": "4e799256226443bc45e0f2a029e222f410b46d0b2244d17d6d11b5edce2614ab",
+            "D1R2": "03db9022089febcb05cea24226260180633df81fe8cc65d886ead3a36af0cad4",
+            "R1D2": "599ae22931e63df49a6a2970153c57b1b67b6ca20a9e6430b8befeab1691e141",
+            "R1R2": "10271bf1b5ba258357fee50d672482e3e688ec528f18373e9b49ff7df948602f"
+          },
+          "descriptive_max_abs_delta_ell1": 0.011989835969563267,
+          "descriptive_max_abs_delta_ell3": 0.02170073249522675
+        }
+      }
+    },
+    "0750/SGC": {
+      "id": 750,
+      "cap": "SGC",
+      "original_A02_selected_array_SHA256_by_tracer_role": {
+        "eBOSS_LRG_dat": "be21e45faf42a23cb9feba78f1be8d1023ade5b52e35aef1c9ec0bc5c48865ba",
+        "eBOSS_LRG_ran": "22704cc4e0030c83a77885baa6c937e738616822e9f5ebb647d4b056f1326ee2",
+        "eBOSS_ELG_dat": "d2d98e195990485111c0a9faebe233881a177e776ffcf0128b6a633731ad3e3b",
+        "eBOSS_ELG_ran": "fe9d1c2334d48e678be738103b57ab197e5e589b9c40f497fcf3110d83f331c8"
+      },
+      "original_A02_sample_and_all_eight_pair_SHA_exact_replay": true,
+      "original_A02_forward_xi_SHA_exact_replay": true,
+      "baseline_forward_xi_grid_sha256": "f7dbef3371d0d37d7ea99985e35e924e51212096d408fce85973798975fb9a46",
+      "scenarios": {
+        "baseline_original": {
+          "RR_supported_cells": 144,
+          "max_abs_xi_tracer_reverse_mirror": 9.653736143810931e-16,
+          "forward_xi_grid_sha256": "f7dbef3371d0d37d7ea99985e35e924e51212096d408fce85973798975fb9a46",
+          "ELG_R_original_selected_weight_sha256": "542bbea5b59368ca9d4a5d952400417f0434dd722aa55e07919b84e6d6db9f73",
+          "ELG_R_modified_selected_weight_sha256": "542bbea5b59368ca9d4a5d952400417f0434dd722aa55e07919b84e6d6db9f73",
+          "ELG_R_weight_factor_min": 1,
+          "ELG_R_weight_factor_max": 1,
+          "forward_weighted_pair_histogram_sha256_by_term": {
+            "D1D2": "b668346302fb2dbfebff38ab01ec8208b7b0dd17a6a01259683f7fa1f45ed5b0",
+            "D1R2": "ba1318dffa56bf865ae067989b109b1077e1f8995cffff1996fb5fb011024e47",
+            "R1D2": "cc56767264b22dec1a9b40cdd75aa43f94fe2616ffa0a3909faf7018cd3f4baf",
+            "R1R2": "3e23edc9d01019256a4a119801bc48ea54ba38a8960c8ef8f9c6f97398d6bf3a"
+          },
+          "reverse_weighted_pair_histogram_sha256_by_term": {
+            "D1D2": "191316d496e28e760c166f4de6a2b892daea5ac0be2c1abe93b079633168d5db",
+            "D1R2": "f4c3571ad523307571f01331592a363291cadefd66ca17cf6245c2f2c7147fb0",
+            "R1D2": "ab6a3a829127a1ae3bb319714dc77927c54228a1901dcbe494d16bfef5d284f3",
+            "R1R2": "8c8f52235134a7a3dd0554a290096da2d3bda882793338e79c5ed05036344877"
+          }
+        },
+        "plus_5pct_ELG_R_z_ramp": {
+          "RR_supported_cells": 144,
+          "max_abs_xi_tracer_reverse_mirror": 9.43689570931383e-16,
+          "forward_xi_grid_sha256": "6e8bb6fe3e3180391c7b0c3f1f22f9baa0c9e35bbc3f74a9576afd226b7e2987",
+          "ELG_R_original_selected_weight_sha256": "542bbea5b59368ca9d4a5d952400417f0434dd722aa55e07919b84e6d6db9f73",
+          "ELG_R_modified_selected_weight_sha256": "6c292ff24aa18a01cd72156545f589f65080ae30a0dfffd71e72c076778f79c4",
+          "ELG_R_weight_factor_min": 0.9500089168548583,
+          "ELG_R_weight_factor_max": 1.0498806715011597,
+          "forward_weighted_pair_histogram_sha256_by_term": {
+            "D1D2": "b668346302fb2dbfebff38ab01ec8208b7b0dd17a6a01259683f7fa1f45ed5b0",
+            "D1R2": "1937c5b7d7c9f233f5fbaffb90892e6909d57022001f0ea68a9dbf9291dd0a40",
+            "R1D2": "cc56767264b22dec1a9b40cdd75aa43f94fe2616ffa0a3909faf7018cd3f4baf",
+            "R1R2": "45b36f4c4da89fa2bec6816edb7159e21f6004af270dffe25da7953484fab651"
+          },
+          "reverse_weighted_pair_histogram_sha256_by_term": {
+            "D1D2": "191316d496e28e760c166f4de6a2b892daea5ac0be2c1abe93b079633168d5db",
+            "D1R2": "f4c3571ad523307571f01331592a363291cadefd66ca17cf6245c2f2c7147fb0",
+            "R1D2": "fb66d30fca1feb48329ac9edcb06b9a92a8e6e876b553aa854fabf7639ec5f32",
+            "R1R2": "1da6557c868ca78a76e03d05ab54829f464b773534f472187fa7464c4a259051"
+          },
+          "descriptive_max_abs_delta_ell1": 0.010176440644220033,
+          "descriptive_max_abs_delta_ell3": 0.004409316719274525
+        },
+        "minus_5pct_ELG_R_z_ramp": {
+          "RR_supported_cells": 144,
+          "max_abs_xi_tracer_reverse_mirror": 8.881784197001252e-16,
+          "forward_xi_grid_sha256": "df83f59812a069ee0b242811009b27ad25635f89c10b89012d41849afd7fe8d9",
+          "ELG_R_original_selected_weight_sha256": "542bbea5b59368ca9d4a5d952400417f0434dd722aa55e07919b84e6d6db9f73",
+          "ELG_R_modified_selected_weight_sha256": "c5c625a3f6bfeaa13d59a0a31c990d3f1bf254dcbf9c2352035eecea2e3f1578",
+          "ELG_R_weight_factor_min": 0.9501193284988404,
+          "ELG_R_weight_factor_max": 1.0499910831451416,
+          "forward_weighted_pair_histogram_sha256_by_term": {
+            "D1D2": "b668346302fb2dbfebff38ab01ec8208b7b0dd17a6a01259683f7fa1f45ed5b0",
+            "D1R2": "3e541301b0e93c1c8e779bf13f2d5929c556abc9a37bdd6df671caddbeee9946",
+            "R1D2": "cc56767264b22dec1a9b40cdd75aa43f94fe2616ffa0a3909faf7018cd3f4baf",
+            "R1R2": "bb1416a70dbfae9e049ebdbf0020905ca9663cf40d62b35c70d8cc8af5c70ebb"
+          },
+          "reverse_weighted_pair_histogram_sha256_by_term": {
+            "D1D2": "191316d496e28e760c166f4de6a2b892daea5ac0be2c1abe93b079633168d5db",
+            "D1R2": "f4c3571ad523307571f01331592a363291cadefd66ca17cf6245c2f2c7147fb0",
+            "R1D2": "a86bc05a67e6069285e40b8758f45b3d217689b400afbb3d532ba8d5ea51a3ea",
+            "R1R2": "1352ff54c6b2ef7f9710396c797b3a2b0c1150e2efe51e7394879e16fdacc9c3"
+          },
+          "descriptive_max_abs_delta_ell1": 0.009847661930012047,
+          "descriptive_max_abs_delta_ell3": 0.0042591828307033675
+        }
+      }
+    },
+    "0875/NGC": {
+      "id": 875,
+      "cap": "NGC",
+      "original_A02_selected_array_SHA256_by_tracer_role": {
+        "eBOSS_LRG_dat": "7d97f8822a47f07ea97bab9ea4ab4f0373f4d65a102c3100e5911baad18e2e3f",
+        "eBOSS_LRG_ran": "756a9f603cbd18881f1a5b584457493133f156982f22c0c199f6250b11a396ca",
+        "eBOSS_ELG_dat": "c56ca5948e7536b0e7db121f4016d237d08b0965cd314d3684cce359acd8e2e0",
+        "eBOSS_ELG_ran": "1f5cb02d8b54aafde956a5909e993bb998baeb4ce972df6b646d0a5f2879db5e"
+      },
+      "original_A02_sample_and_all_eight_pair_SHA_exact_replay": true,
+      "original_A02_forward_xi_SHA_exact_replay": true,
+      "baseline_forward_xi_grid_sha256": "da69ebc187507f7c8ce03df1a4dded792e323e7c3f94aef9ac987b0bb5e785b0",
+      "scenarios": {
+        "baseline_original": {
+          "RR_supported_cells": 144,
+          "max_abs_xi_tracer_reverse_mirror": 1.1102230246251565e-15,
+          "forward_xi_grid_sha256": "da69ebc187507f7c8ce03df1a4dded792e323e7c3f94aef9ac987b0bb5e785b0",
+          "ELG_R_original_selected_weight_sha256": "3a3d86fa9413cf49573f23838d81c8079aa69f106639f7dd3cd71654797b216c",
+          "ELG_R_modified_selected_weight_sha256": "3a3d86fa9413cf49573f23838d81c8079aa69f106639f7dd3cd71654797b216c",
+          "ELG_R_weight_factor_min": 1,
+          "ELG_R_weight_factor_max": 1,
+          "forward_weighted_pair_histogram_sha256_by_term": {
+            "D1D2": "377fa970806bd25d35df1079be1bedf94af9d3ef59a8f4424141f0b6e7f23793",
+            "D1R2": "f1756b1d7d2141de02b04a962cf998aacbf82fed6d710d67bdad4143b1ec160c",
+            "R1D2": "847b91249198723f8dfa6cbbf4ca2cbd47cce8174603ecbd9d025108b837959f",
+            "R1R2": "2adfa16b553fed8405ab0545c70f4424e0708c406ccf058347a9e9b2990bd34d"
+          },
+          "reverse_weighted_pair_histogram_sha256_by_term": {
+            "D1D2": "5ac0940bf449aca120580eefb44d6d14f0d111060e1d8a992ff65d93f585bae8",
+            "D1R2": "098c038d225db7dfade0bad3763694f2a7caa220e24214fec9d290dc4c1bae7d",
+            "R1D2": "0d577ccfaba3d688f3f26aacfd11a091dae9664bb5bc6b7100c8a2473cd4e5b8",
+            "R1R2": "1a5fe36b78ac2ff05e8b5d68c7a79e18da46004d9340fcc9bdf72a901ba57e20"
+          }
+        },
+        "plus_5pct_ELG_R_z_ramp": {
+          "RR_supported_cells": 144,
+          "max_abs_xi_tracer_reverse_mirror": 1.0547118733938987e-15,
+          "forward_xi_grid_sha256": "37ab58b8f2cbec8800a2feb0d0d09465707eeb48730252a8bb932db7feaa89ec",
+          "ELG_R_original_selected_weight_sha256": "3a3d86fa9413cf49573f23838d81c8079aa69f106639f7dd3cd71654797b216c",
+          "ELG_R_modified_selected_weight_sha256": "d6c16469b86ae9d6f2250b3d95454696a3e3ae0b58da05fb2cc148d09e62fbf9",
+          "ELG_R_weight_factor_min": 0.9500064730644225,
+          "ELG_R_weight_factor_max": 1.049947488307953,
+          "forward_weighted_pair_histogram_sha256_by_term": {
+            "D1D2": "377fa970806bd25d35df1079be1bedf94af9d3ef59a8f4424141f0b6e7f23793",
+            "D1R2": "b57c37c06f6f0b3f78b08d112f84d2b287c33a7f6ede258f12c97c30b66cc4b5",
+            "R1D2": "847b91249198723f8dfa6cbbf4ca2cbd47cce8174603ecbd9d025108b837959f",
+            "R1R2": "a7645af187a48d9ec826165b1f38e6ef6a54face60940c64b419ccb9abf1e323"
+          },
+          "reverse_weighted_pair_histogram_sha256_by_term": {
+            "D1D2": "5ac0940bf449aca120580eefb44d6d14f0d111060e1d8a992ff65d93f585bae8",
+            "D1R2": "098c038d225db7dfade0bad3763694f2a7caa220e24214fec9d290dc4c1bae7d",
+            "R1D2": "cfcf1d78a61918661418f359243cbec8e3fad576380f19ff10c222e213f07c3b",
+            "R1R2": "626be4c05a6432c287aeaf654611d6e91e20364e2d6d1bedcecaaea6c784e593"
+          },
+          "descriptive_max_abs_delta_ell1": 0.008951058494409234,
+          "descriptive_max_abs_delta_ell3": 0.03890646909334772
+        },
+        "minus_5pct_ELG_R_z_ramp": {
+          "RR_supported_cells": 144,
+          "max_abs_xi_tracer_reverse_mirror": 8.881784197001252e-16,
+          "forward_xi_grid_sha256": "f2f7d45b53d926ca0727b411e163bb246b118da9036110a46479e2c601913441",
+          "ELG_R_original_selected_weight_sha256": "3a3d86fa9413cf49573f23838d81c8079aa69f106639f7dd3cd71654797b216c",
+          "ELG_R_modified_selected_weight_sha256": "145245bbb66d1146587c95ad6c6feb575a505ac0f76ec7ab033a0d21bd90f7a0",
+          "ELG_R_weight_factor_min": 0.9500525116920472,
+          "ELG_R_weight_factor_max": 1.0499935269355773,
+          "forward_weighted_pair_histogram_sha256_by_term": {
+            "D1D2": "377fa970806bd25d35df1079be1bedf94af9d3ef59a8f4424141f0b6e7f23793",
+            "D1R2": "da824225754c1b9b00562c22bc1d575d1fc5ebfae2a24e807c560fb7da9524c5",
+            "R1D2": "847b91249198723f8dfa6cbbf4ca2cbd47cce8174603ecbd9d025108b837959f",
+            "R1R2": "fc1abab6f9d50dfe8aaeda1f6d42981112e52245149c822c5afb6d85905282bc"
+          },
+          "reverse_weighted_pair_histogram_sha256_by_term": {
+            "D1D2": "5ac0940bf449aca120580eefb44d6d14f0d111060e1d8a992ff65d93f585bae8",
+            "D1R2": "098c038d225db7dfade0bad3763694f2a7caa220e24214fec9d290dc4c1bae7d",
+            "R1D2": "f100cb05b1b73671cf3260a9e92b44b8c127acef07af49fd120348c52cad1945",
+            "R1R2": "630e0b0d4f043d30267d80e49ebfb6b7d1836430d30202307656ace5c0de20b9"
+          },
+          "descriptive_max_abs_delta_ell1": 0.008717466790889056,
+          "descriptive_max_abs_delta_ell3": 0.037116297906540585
+        }
+      }
+    },
+    "0875/SGC": {
+      "id": 875,
+      "cap": "SGC",
+      "original_A02_selected_array_SHA256_by_tracer_role": {
+        "eBOSS_LRG_dat": "7cd872b1ddfe678d0a78ae2e463932f7cf2ea3543a33afa9dc6195389e06e94b",
+        "eBOSS_LRG_ran": "f07e875ee1f4d5f74dfa68ef4d5912901fa07c3069cb477c3b9c151d73bd277b",
+        "eBOSS_ELG_dat": "c4682fb7f44fd03cfb499d95f5bc814ea5eef916b1d66213862ef483634a7d7c",
+        "eBOSS_ELG_ran": "7202318d27ce0c5bd308c0c51bd8af7147c283ae8a260a9051b20d1b3859aae1"
+      },
+      "original_A02_sample_and_all_eight_pair_SHA_exact_replay": true,
+      "original_A02_forward_xi_SHA_exact_replay": true,
+      "baseline_forward_xi_grid_sha256": "c4aa5abec76db8b940eed3ec69767566dc904ac16c119657b8f7a454ceba49b3",
+      "scenarios": {
+        "baseline_original": {
+          "RR_supported_cells": 144,
+          "max_abs_xi_tracer_reverse_mirror": 8.881784197001252e-16,
+          "forward_xi_grid_sha256": "c4aa5abec76db8b940eed3ec69767566dc904ac16c119657b8f7a454ceba49b3",
+          "ELG_R_original_selected_weight_sha256": "4c3e24ea81168ed6cb45dd5f0d9c084a15ddaf360c547228160010144a7aa69e",
+          "ELG_R_modified_selected_weight_sha256": "4c3e24ea81168ed6cb45dd5f0d9c084a15ddaf360c547228160010144a7aa69e",
+          "ELG_R_weight_factor_min": 1,
+          "ELG_R_weight_factor_max": 1,
+          "forward_weighted_pair_histogram_sha256_by_term": {
+            "D1D2": "515e895e8f6f54e9c6d2de22c1486c1c6038a618fe66facb9a52bd38ffbb54ac",
+            "D1R2": "2ddfbf9ab2c74d2529d4fb6b37baf6b19a0d0aed1e59e8c236144eb4e333db28",
+            "R1D2": "5004da51f6abd174a381763291a243fd37eea19a457611b2c6cf9967adba9d2d",
+            "R1R2": "3983e84f57012b761dd2eb59c55a642ca52d0f9f230456517fca13dd2eb3c22a"
+          },
+          "reverse_weighted_pair_histogram_sha256_by_term": {
+            "D1D2": "8ebfb458b13737ba42be0084a40e01a5d813a0ff9c2b928ba86db2f8f54e16a7",
+            "D1R2": "51080c070f7dc64a1f0686f59dad2a4a3641268abaa9b6bd141e64c37cc236cf",
+            "R1D2": "8e767553b1b38865747c066ced5c25860778e5a5c0a3913a2dcf64cf9b07c269",
+            "R1R2": "f9aa7369ee58947ad46de43816938210dbd9634a0464d6cf5237b084ca8dd38a"
+          }
+        },
+        "plus_5pct_ELG_R_z_ramp": {
+          "RR_supported_cells": 144,
+          "max_abs_xi_tracer_reverse_mirror": 1.1102230246251565e-15,
+          "forward_xi_grid_sha256": "57b7a45beb716ecf2e22bedc6f8e89111ac8c9dc5d3a96630bcbda14fd263549",
+          "ELG_R_original_selected_weight_sha256": "4c3e24ea81168ed6cb45dd5f0d9c084a15ddaf360c547228160010144a7aa69e",
+          "ELG_R_modified_selected_weight_sha256": "78a69fe31dba6e87761d54c8e72085b620af774e9182ec555a084d4c68f1ed6b",
+          "ELG_R_weight_factor_min": 0.9500440835952758,
+          "ELG_R_weight_factor_max": 1.0499839067459107,
+          "forward_weighted_pair_histogram_sha256_by_term": {
+            "D1D2": "515e895e8f6f54e9c6d2de22c1486c1c6038a618fe66facb9a52bd38ffbb54ac",
+            "D1R2": "90a6f4e6fda22aa44f97075d227f9e7fec61e3ff120dbece778c1fbf8ea195ec",
+            "R1D2": "5004da51f6abd174a381763291a243fd37eea19a457611b2c6cf9967adba9d2d",
+            "R1R2": "8f45c8f2fd5380d9dbce86a639107977086a35b248fcffeabf2daea74d9cbed0"
+          },
+          "reverse_weighted_pair_histogram_sha256_by_term": {
+            "D1D2": "8ebfb458b13737ba42be0084a40e01a5d813a0ff9c2b928ba86db2f8f54e16a7",
+            "D1R2": "51080c070f7dc64a1f0686f59dad2a4a3641268abaa9b6bd141e64c37cc236cf",
+            "R1D2": "15331e3ddd0b0035488c0781baf1fcb86bcbdb61d86132a1766c7bd485400dd9",
+            "R1R2": "dc0b8fcd34ddd4349be55fd4253bead514704f7b12c74883a9bb6ae064826ad2"
+          },
+          "descriptive_max_abs_delta_ell1": 0.008276707978751366,
+          "descriptive_max_abs_delta_ell3": 0.003798427029488627
+        },
+        "minus_5pct_ELG_R_z_ramp": {
+          "RR_supported_cells": 144,
+          "max_abs_xi_tracer_reverse_mirror": 1.1102230246251565e-15,
+          "forward_xi_grid_sha256": "7cf388e5c3301cde462262dc029042d5a0704faad359e16c365fa4e9be4c613c",
+          "ELG_R_original_selected_weight_sha256": "4c3e24ea81168ed6cb45dd5f0d9c084a15ddaf360c547228160010144a7aa69e",
+          "ELG_R_modified_selected_weight_sha256": "05e279634ee555de1e5c1496898ca3b8a0da1876153e195a18134b99091c5406",
+          "ELG_R_weight_factor_min": 0.9500160932540894,
+          "ELG_R_weight_factor_max": 1.049955916404724,
+          "forward_weighted_pair_histogram_sha256_by_term": {
+            "D1D2": "515e895e8f6f54e9c6d2de22c1486c1c6038a618fe66facb9a52bd38ffbb54ac",
+            "D1R2": "522219f975413f18627aa8fa88123c685524bbc37aa18127183e103b036027f1",
+            "R1D2": "5004da51f6abd174a381763291a243fd37eea19a457611b2c6cf9967adba9d2d",
+            "R1R2": "412524c07bf76eef04daeb4139aee2c4c3d056cc1aa3ee0bc596371e5eeb3221"
+          },
+          "reverse_weighted_pair_histogram_sha256_by_term": {
+            "D1D2": "8ebfb458b13737ba42be0084a40e01a5d813a0ff9c2b928ba86db2f8f54e16a7",
+            "D1R2": "51080c070f7dc64a1f0686f59dad2a4a3641268abaa9b6bd141e64c37cc236cf",
+            "R1D2": "0fe40a93c35c6834a8002c0d0a9f4e9fbb2a8bacb27f1a6629d35825cf7775f0",
+            "R1R2": "b9d823b703d448bc3126a680bfb52afffca7fb1c71d524077a6b9c721a84735c"
+          },
+          "descriptive_max_abs_delta_ell1": 0.008075176584076235,
+          "descriptive_max_abs_delta_ell3": 0.0036100290139844393
+        }
+      }
+    },
+    "1000/NGC": {
+      "id": 1000,
+      "cap": "NGC",
+      "original_A02_selected_array_SHA256_by_tracer_role": {
+        "eBOSS_LRG_dat": "dc44f33842a6bd8b9a7b08e6a18e3102572bd804a9a210469df8a7d944b2454f",
+        "eBOSS_LRG_ran": "623d9e4ade07c296caa4a7ad9078907b7f5523d60268ca2ef57013840d9e3155",
+        "eBOSS_ELG_dat": "b47721f2b3add9997a23fdc7c6fab6a5290a6cd3dddc1138a33fbaba3e8c4ae7",
+        "eBOSS_ELG_ran": "b6f460b0a2cf1bab08af5678f511b9053ed9cc11226fa51081aaca2a5f87b100"
+      },
+      "original_A02_sample_and_all_eight_pair_SHA_exact_replay": true,
+      "original_A02_forward_xi_SHA_exact_replay": true,
+      "baseline_forward_xi_grid_sha256": "f5a7e37071848ff84adb12dd529a0ec0ef5f99be851382bd22cfeb89abe999ee",
+      "scenarios": {
+        "baseline_original": {
+          "RR_supported_cells": 144,
+          "max_abs_xi_tracer_reverse_mirror": 9.992007221626409e-16,
+          "forward_xi_grid_sha256": "f5a7e37071848ff84adb12dd529a0ec0ef5f99be851382bd22cfeb89abe999ee",
+          "ELG_R_original_selected_weight_sha256": "12aef6a49c3d6dbe7990dea6ca90d2dd8724c0329c8cb9e4bd1aca4c4b3c2bea",
+          "ELG_R_modified_selected_weight_sha256": "12aef6a49c3d6dbe7990dea6ca90d2dd8724c0329c8cb9e4bd1aca4c4b3c2bea",
+          "ELG_R_weight_factor_min": 1,
+          "ELG_R_weight_factor_max": 1,
+          "forward_weighted_pair_histogram_sha256_by_term": {
+            "D1D2": "4aa768187888cccbe84e274ea1ce81c98ac96d8f4c94810e622531e0be472652",
+            "D1R2": "fce67cb3f735b365c432651dba3f40116c69a9a645c3e61758d309711d3f773e",
+            "R1D2": "4081d2a7ac6ab82fd69320024c4a43156e766f18de19c7579586e3bd1dd84b9c",
+            "R1R2": "2a4b6114a3a6d5824f69394c710f83f085cc41986bdacc17d60f5dfa5e619101"
+          },
+          "reverse_weighted_pair_histogram_sha256_by_term": {
+            "D1D2": "dacd6643cecae79f544920fb2abb5baffca1fa688c5fdde7efae97e54d3d5eca",
+            "D1R2": "dbd05309c199e2d777302172be91dd6e5967b6118fe077d35b727169ae7c31d5",
+            "R1D2": "91c69ef1197f5b9355335a4ea961b60dcf7fa2d331981efe5d1e836343883a74",
+            "R1R2": "81557e1e5b172de1b8802843777064cc6e63cd4c6fc9de51e1e951adf258f1b5"
+          }
+        },
+        "plus_5pct_ELG_R_z_ramp": {
+          "RR_supported_cells": 144,
+          "max_abs_xi_tracer_reverse_mirror": 6.661338147750939e-16,
+          "forward_xi_grid_sha256": "8982801ac4c49c583838ff2d5c356d871b21c082f9e2082f3bb51500ab27cc20",
+          "ELG_R_original_selected_weight_sha256": "12aef6a49c3d6dbe7990dea6ca90d2dd8724c0329c8cb9e4bd1aca4c4b3c2bea",
+          "ELG_R_modified_selected_weight_sha256": "04c7427984c8e89810a6020d4a7e0f33ce916b910d24d036815e407eee986d11",
+          "ELG_R_weight_factor_min": 0.9500114202499389,
+          "ELG_R_weight_factor_max": 1.049788224697113,
+          "forward_weighted_pair_histogram_sha256_by_term": {
+            "D1D2": "4aa768187888cccbe84e274ea1ce81c98ac96d8f4c94810e622531e0be472652",
+            "D1R2": "8d45dcc6a5c6cbba717da7e201237d01fd84704615c20e6bce6a2001308f7f89",
+            "R1D2": "4081d2a7ac6ab82fd69320024c4a43156e766f18de19c7579586e3bd1dd84b9c",
+            "R1R2": "8f211da95c694fccccab4b59dbcf33877b6b548e35a82a2c7e9eaf81c1eee86f"
+          },
+          "reverse_weighted_pair_histogram_sha256_by_term": {
+            "D1D2": "dacd6643cecae79f544920fb2abb5baffca1fa688c5fdde7efae97e54d3d5eca",
+            "D1R2": "dbd05309c199e2d777302172be91dd6e5967b6118fe077d35b727169ae7c31d5",
+            "R1D2": "be368fdd6435b18ba88acc1d9043091f0a98fb5b40d1af5bab7e6932baa33e04",
+            "R1R2": "6d035a6737ccae002fa0f31a77589907414c4513507dfaadafa7082d2467c305"
+          },
+          "descriptive_max_abs_delta_ell1": 0.006177631580056964,
+          "descriptive_max_abs_delta_ell3": 0.012371945107481741
+        },
+        "minus_5pct_ELG_R_z_ramp": {
+          "RR_supported_cells": 144,
+          "max_abs_xi_tracer_reverse_mirror": 1.1102230246251565e-15,
+          "forward_xi_grid_sha256": "e83879be5a489588f12d00b8b7ee1e2034122ae0c9b01c083e572d093820d354",
+          "ELG_R_original_selected_weight_sha256": "12aef6a49c3d6dbe7990dea6ca90d2dd8724c0329c8cb9e4bd1aca4c4b3c2bea",
+          "ELG_R_modified_selected_weight_sha256": "33b7848da37a0b8db1ee4e64de4384f9fdab3791ba0d4907078ebde1ddb5bc90",
+          "ELG_R_weight_factor_min": 0.950211775302887,
+          "ELG_R_weight_factor_max": 1.049988579750061,
+          "forward_weighted_pair_histogram_sha256_by_term": {
+            "D1D2": "4aa768187888cccbe84e274ea1ce81c98ac96d8f4c94810e622531e0be472652",
+            "D1R2": "101cad285807e02825963dbf3411e33993fb998c2f91ea52c840c920a1b0d898",
+            "R1D2": "4081d2a7ac6ab82fd69320024c4a43156e766f18de19c7579586e3bd1dd84b9c",
+            "R1R2": "2c2a3dc74be7856295352c0349353bd3ef424b6f1076eea4ca939def95ce9f6e"
+          },
+          "reverse_weighted_pair_histogram_sha256_by_term": {
+            "D1D2": "dacd6643cecae79f544920fb2abb5baffca1fa688c5fdde7efae97e54d3d5eca",
+            "D1R2": "dbd05309c199e2d777302172be91dd6e5967b6118fe077d35b727169ae7c31d5",
+            "R1D2": "2e24cb39cee338ae8fe4c7c315d60eefd34bb69c3603ac27db802c15bbe9cdf3",
+            "R1R2": "8bc570d13c930f4daf75dbf8614c28bc522ad5ef87cb2e26e3822cd30b73fa81"
+          },
+          "descriptive_max_abs_delta_ell1": 0.006033799463694617,
+          "descriptive_max_abs_delta_ell3": 0.012478441081630653
+        }
+      }
+    },
+    "1000/SGC": {
+      "id": 1000,
+      "cap": "SGC",
+      "original_A02_selected_array_SHA256_by_tracer_role": {
+        "eBOSS_LRG_dat": "3b4775509b8f40115371413503130436b5039d45ccb981bbdf90c035123ad5f8",
+        "eBOSS_LRG_ran": "33e64a09bc0d4b83780baa88e1882e7093eb3f16d624e77062305982f065d507",
+        "eBOSS_ELG_dat": "49f2668c242e69305e3580f7521de89f69474c7acb3082a47f40a359dc553fae",
+        "eBOSS_ELG_ran": "3fdcb2274070923eb84d5649aa0cca813439860cc6a2f1a401cdd93ac2e095c3"
+      },
+      "original_A02_sample_and_all_eight_pair_SHA_exact_replay": true,
+      "original_A02_forward_xi_SHA_exact_replay": true,
+      "baseline_forward_xi_grid_sha256": "353b852c04c2a8f5d17bbcf0939902172ac81f2b9dbc2a033bf5029fdbf2e53b",
+      "scenarios": {
+        "baseline_original": {
+          "RR_supported_cells": 144,
+          "max_abs_xi_tracer_reverse_mirror": 1.2073675392798577e-15,
+          "forward_xi_grid_sha256": "353b852c04c2a8f5d17bbcf0939902172ac81f2b9dbc2a033bf5029fdbf2e53b",
+          "ELG_R_original_selected_weight_sha256": "a35e358d8ab0801721c38d7db0fc34dcce657f3346b0ecc7f8b128b2c613fcea",
+          "ELG_R_modified_selected_weight_sha256": "a35e358d8ab0801721c38d7db0fc34dcce657f3346b0ecc7f8b128b2c613fcea",
+          "ELG_R_weight_factor_min": 1,
+          "ELG_R_weight_factor_max": 1,
+          "forward_weighted_pair_histogram_sha256_by_term": {
+            "D1D2": "bccea65911aa74caba9eaa8cfb485b431381199269fc752f89432460e778405a",
+            "D1R2": "aa99ee67dedf6fb3dc9efbfebb8dae0e57b2f699000c9a05af32e1531a7d5c98",
+            "R1D2": "a30cb7e87527b3c2697db2edebc8b075a52dfca321df26ee8f6526df04e5570f",
+            "R1R2": "b72de4933e54018a44034bbbe2ffefe7b1aea260e28bdde42c9583b25f1b6659"
+          },
+          "reverse_weighted_pair_histogram_sha256_by_term": {
+            "D1D2": "022422d870fcf3382a0016298d1cab7f2155899545a6ae01950997612314f613",
+            "D1R2": "067e45d92cd520ca6a811f57f7752cad716935c99d833c343c78486a160d4b01",
+            "R1D2": "0d0d0197303270b072aa98d3a0fb9bf074cf20709c9312808f3791bdad3f5783",
+            "R1R2": "21fbd88ded4a863a93fa2d2335aaed9a92f67b2349fcb854502704c673ddb27d"
+          }
+        },
+        "plus_5pct_ELG_R_z_ramp": {
+          "RR_supported_cells": 144,
+          "max_abs_xi_tracer_reverse_mirror": 9.992007221626409e-16,
+          "forward_xi_grid_sha256": "074f6f959be4ec23a0198a27367a0e55b6d53aab07fdfab6ec9c5b7c4f29571e",
+          "ELG_R_original_selected_weight_sha256": "a35e358d8ab0801721c38d7db0fc34dcce657f3346b0ecc7f8b128b2c613fcea",
+          "ELG_R_modified_selected_weight_sha256": "096a28f4c29e74b6d13cb4878a8312d49a28bb937defd0719d91bfee2a185778",
+          "ELG_R_weight_factor_min": 0.950001585483551,
+          "ELG_R_weight_factor_max": 1.0497541904449463,
+          "forward_weighted_pair_histogram_sha256_by_term": {
+            "D1D2": "bccea65911aa74caba9eaa8cfb485b431381199269fc752f89432460e778405a",
+            "D1R2": "9d84cbd77084aa842a7d95955b80c50e8c2d2bf79ef340eb6cf44d3b6a269fe1",
+            "R1D2": "a30cb7e87527b3c2697db2edebc8b075a52dfca321df26ee8f6526df04e5570f",
+            "R1R2": "9af186b17f6621b7383cdbc8bf8e86699fc496e9f2dc47a18d9dba4eaccef353"
+          },
+          "reverse_weighted_pair_histogram_sha256_by_term": {
+            "D1D2": "022422d870fcf3382a0016298d1cab7f2155899545a6ae01950997612314f613",
+            "D1R2": "067e45d92cd520ca6a811f57f7752cad716935c99d833c343c78486a160d4b01",
+            "R1D2": "8359b0a851a00724f0638ae21bee219ce29d97296cf9f27996589e30b8296fab",
+            "R1R2": "4ae1dcf137dd0b7c342c66864fbc9395bb41750cb78d913ceea0dc81091a77b6"
+          },
+          "descriptive_max_abs_delta_ell1": 0.005686319508134197,
+          "descriptive_max_abs_delta_ell3": 0.006176379016283984
+        },
+        "minus_5pct_ELG_R_z_ramp": {
+          "RR_supported_cells": 144,
+          "max_abs_xi_tracer_reverse_mirror": 1.0547118733938987e-15,
+          "forward_xi_grid_sha256": "6bb945d3fbe55769ee6886ab3f47c7e89818871e6ebfcf4bb580d4301b6527f1",
+          "ELG_R_original_selected_weight_sha256": "a35e358d8ab0801721c38d7db0fc34dcce657f3346b0ecc7f8b128b2c613fcea",
+          "ELG_R_modified_selected_weight_sha256": "e33ffab9e948ab366ed5ee806cb540bd4b0a8addd2bd82af23596fbf2f984c3d",
+          "ELG_R_weight_factor_min": 0.9502458095550538,
+          "ELG_R_weight_factor_max": 1.049998414516449,
+          "forward_weighted_pair_histogram_sha256_by_term": {
+            "D1D2": "bccea65911aa74caba9eaa8cfb485b431381199269fc752f89432460e778405a",
+            "D1R2": "f5be8df2c9a06ad003f2b99f0c72dea8c318f34f0c09651a8632851124227a14",
+            "R1D2": "a30cb7e87527b3c2697db2edebc8b075a52dfca321df26ee8f6526df04e5570f",
+            "R1R2": "ea18a6e6e9c6d7030d55bb07096608b57df52f5db07c0e954944e09528d333ff"
+          },
+          "reverse_weighted_pair_histogram_sha256_by_term": {
+            "D1D2": "022422d870fcf3382a0016298d1cab7f2155899545a6ae01950997612314f613",
+            "D1R2": "067e45d92cd520ca6a811f57f7752cad716935c99d833c343c78486a160d4b01",
+            "R1D2": "3faf9c0049ebb115d27777b36f90f59acb53b7125de4e9f04037541edef5380c",
+            "R1R2": "325d58d2a19cf9abf12edb987c03fe6e947bb9ed540bf63fccf1e2c438286a73"
+          },
+          "descriptive_max_abs_delta_ell1": 0.005566206659123718,
+          "descriptive_max_abs_delta_ell3": 0.006122887362875515
+        }
+      }
+    }
+  },
+  "predeclared_by_cap_descriptive_max_abs_delta_by_ell": {
+    "NGC": {
+      "plus_5pct_ELG_R_z_ramp": {
+        "1": {
+          "all_nine_fixed_ID_max_abs_delta": [
+            0.01830398753742274,
+            0.02094704350347154,
+            0.00993127614986658,
+            0.020292632689965284,
+            0.00819652030047023,
+            0.0041897721340581895,
+            0.012569086243619909,
+            0.008951058494409234,
+            0.006177631580056964
+          ],
+          "descriptive_min": 0.0041897721340581895,
+          "descriptive_median": 0.00993127614986658,
+          "descriptive_max": 0.02094704350347154
+        },
+        "3": {
+          "all_nine_fixed_ID_max_abs_delta": [
+            0.017894530376368664,
+            0.021581600116634125,
+            0.01433571193779104,
+            0.018828141857584524,
+            0.02669669920327894,
+            0.010133914491613827,
+            0.022175975852663288,
+            0.03890646909334772,
+            0.012371945107481741
+          ],
+          "descriptive_min": 0.010133914491613827,
+          "descriptive_median": 0.018828141857584524,
+          "descriptive_max": 0.03890646909334772
+        }
+      },
+      "minus_5pct_ELG_R_z_ramp": {
+        "1": {
+          "all_nine_fixed_ID_max_abs_delta": [
+            0.01735044829481719,
+            0.02004502358543503,
+            0.009531579588584763,
+            0.01939456593491884,
+            0.008054835542651961,
+            0.004045414846432005,
+            0.011989835969563267,
+            0.008717466790889056,
+            0.006033799463694617
+          ],
+          "descriptive_min": 0.004045414846432005,
+          "descriptive_median": 0.009531579588584763,
+          "descriptive_max": 0.02004502358543503
+        },
+        "3": {
+          "all_nine_fixed_ID_max_abs_delta": [
+            0.017281889029987785,
+            0.020485984344595365,
+            0.013600012638749548,
+            0.018434730965870477,
+            0.026082190939428818,
+            0.009971221763934945,
+            0.02170073249522675,
+            0.037116297906540585,
+            0.012478441081630653
+          ],
+          "descriptive_min": 0.009971221763934945,
+          "descriptive_median": 0.018434730965870477,
+          "descriptive_max": 0.037116297906540585
+        }
+      }
+    },
+    "SGC": {
+      "plus_5pct_ELG_R_z_ramp": {
+        "1": {
+          "all_nine_fixed_ID_max_abs_delta": [
+            0.005334439835456159,
+            0.009673285135100518,
+            0.004690609346958224,
+            0.002641161140242404,
+            0.003626407843930056,
+            0.006253637739985118,
+            0.010176440644220033,
+            0.008276707978751366,
+            0.005686319508134197
+          ],
+          "descriptive_min": 0.002641161140242404,
+          "descriptive_median": 0.005686319508134197,
+          "descriptive_max": 0.010176440644220033
+        },
+        "3": {
+          "all_nine_fixed_ID_max_abs_delta": [
+            0.00892228202494208,
+            0.008571412158912273,
+            0.014338880209884386,
+            0.004603331584266623,
+            0.004793658610509427,
+            0.0037080574702673674,
+            0.004409316719274525,
+            0.003798427029488627,
+            0.006176379016283984
+          ],
+          "descriptive_min": 0.0037080574702673674,
+          "descriptive_median": 0.004793658610509427,
+          "descriptive_max": 0.014338880209884386
+        }
+      },
+      "minus_5pct_ELG_R_z_ramp": {
+        "1": {
+          "all_nine_fixed_ID_max_abs_delta": [
+            0.005060456933404886,
+            0.009253323348901943,
+            0.004688213001828742,
+            0.00254147119032061,
+            0.003532426339616715,
+            0.006105199617267267,
+            0.009847661930012047,
+            0.008075176584076235,
+            0.005566206659123718
+          ],
+          "descriptive_min": 0.00254147119032061,
+          "descriptive_median": 0.005566206659123718,
+          "descriptive_max": 0.009847661930012047
+        },
+        "3": {
+          "all_nine_fixed_ID_max_abs_delta": [
+            0.008599108065159233,
+            0.00851259778369079,
+            0.013930416222048325,
+            0.0047222956322795495,
+            0.004828309544130743,
+            0.0035670864467342023,
+            0.0042591828307033675,
+            0.0036100290139844393,
+            0.006122887362875515
+          ],
+          "descriptive_min": 0.0035670864467342023,
+          "descriptive_median": 0.004828309544130743,
+          "descriptive_max": 0.013930416222048325
+        }
+      }
+    }
+  },
+  "source_report_errors": [],
+  "observed_galaxy_rows_read": false,
+  "observed_random_rows_read": false,
+  "observed_odd_data_vector_read": false,
+  "new_science_selection_applied": false,
+  "physical_LRG_ELG_pair_window_certified": false,
+  "real_survey_selection_systematic_calibrated": false,
+  "18D_inferential_covariance_computed": false,
+  "not_a_detection_or_exclusion": true,
+  "next_gate": "Independently preregister blind empirical injection/recovery and finite-random/resampling convergence with physical tracer-specific pair-window applicability, before A-04 18D covariance and any observed odd unblinding; do not infer true survey systematic amplitude from arbitrary ±5% probe."
+}

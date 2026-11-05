@@ -1,0 +1,33 @@
+{
+  "date": "2026-09-28",
+  "stage": "E17D2B3B2R1_SYNTHETIC_TESTED_REAL_ASDF_HEADER_BYTE_CHECKSUM_READER_READY_BUT_NOT_EXECUTED_ON_REAL_DATA",
+  "status": "PROSPECTIVELY_PREREGISTERED_BEFORE_REAL_FILE_VERIFIER_CODE_AND_SYNTHETIC_CI",
+  "question": "Write and CI-test an actual local file acceptance checker without acquiring or inspecting any actual halo_info file in this stage. It must require an existing exact c000 ph000 z0.950 halo_info_NNN.asdf, supplied manifest checksums.crc32 GNU POSIX cksum+file byte count, full computed local SHA256, pinned official ASDF Blosc extension, and real file header fields matching previously SHA-locked source-copy exact values. Never label provider provenance authenticated from a user-supplied manifest or assert individual M200c.",
+  "parents": {
+    "E17D2B3B2_original_SHA256": "efa1878250ca395ab65207f485f214854b817188613acaae1ce668f58af78a38",
+    "E17D2B3B2_manifest_git_blob": "0563c53fdb966bb9382a3b910e94e237fef90bf8",
+    "E17D2B3B2_protocol_git_blob": "324e722200997b21a0fa97d965b8ef096e1587e6",
+    "E17D2B3B1_original_SHA256": "aacd9b4f6e3dd63fb353c72488669e7eb01e365d48c220664a0dfda8dc9e0673",
+    "E8_original_SHA256": "bf8f48deb9514c5101d5ce314bfbd397485102a5487da1039f141e3cad6143d0",
+    "E16_original_SHA256": "5d81f95a5571175f06eb032b865285ba34804701693f76af392be7fc31fb06db",
+    "upstream_official_Blosc_extension_git_blob": "8c5e5135736409bb0fab77bff06ad1259951189d",
+    "frozen_main_sha": "e50549a5c974772eb9576d301df7a5ea6e6d87d2"
+  },
+  "scope": {
+    "allowed_now": "Only frozen copied header JSON, source code and tiny self-created bytes in temporary directory for cksum/sha/parser negative tests. NO actual Abacus file/Globus/API transfer in current CI. Optional future user-initiated --real-file runs only when genuine file and checksum have independently been acquired and verified in a new data-access decision. This checker NEVER authenticates provenance of user-supplied checksums.crc32 without independent provider record.",
+    "file_path_pattern": "AbacusSummit_base_c000_ph000/halos/z0.950/halo_info/halo_info_XXX.asdf where XXX exactly 3 digits, not invented NNN and no symlink",
+    "checksum_requirement": "GNU/POSIX cksum CRC AND byte length in supplied checksums.crc32 exactly one record with exact filename or ./filename; independently compute local SHA256; no zlib crc32 equivalence.",
+    "header_requirement": "read af.tree['header'] from existing ASDF file via upstream SHA-pinned Blosc extension and ASDF lazy_load; exact SimName, Redshift, ScaleFactor, OmegaNow_m, SODensityL1, ParticleMassHMsun and ParticleMassMsun matching archived copied state with prereg tol 1e-10 absolute for z/a, and 2e-7 relative for scalar mass/SO/Omega; do not load halo columns or N",
+    "outcome": "METADATA_AND_SUPPLIED_CHECKSUM_MATCH_ONLY_PROVIDER_ORIGIN_UNATTESTED, NEVER HALO_M200C_READY OR PHYSICAL_B",
+    "test_negative": "missing supplied checksum, duplicate entry, checksum/byte count corruption, path redshift mismatch, symlink, wrong simulation identity, wrong source copy or observed odd unseal all fail-closed",
+    "NO_CI_REAL_DATA": true
+  },
+  "absolute_STOP": {
+    "no_real_halo_ASDF_download_or_read_during_current_CI": true,
+    "no_new_mock_CLASS_FITS_or_observed_galaxy_odd_read": true,
+    "no_actual_M200c_tree_or_Fplus_Fminus_wake_claim": true,
+    "no_2pt_odd_to_3pt_or_significance": true,
+    "observed_odd_SEALED": true,
+    "main_untouched_PR_draft": true
+  }
+}

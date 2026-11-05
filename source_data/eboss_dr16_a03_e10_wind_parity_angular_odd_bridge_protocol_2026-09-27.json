@@ -1,0 +1,72 @@
+{
+  "date": "2026-09-27",
+  "status": "REGISTERED_AFTER_E9_OBSERVED_RESULTS_BEFORE_NEW_ANGULAR_PROJECTION",
+  "study": "E10 source-only necessary parity gate: published Okoli Eq A7-A8 conditional cross-tracer imaginary mode using frozen F± E9 CLASS wind, angular FD occupancy, symmetric wind reversal. Not eBOSS odd mean.",
+  "parents": {
+    "frozen_E8_4000q_CSV_SHA256": "bf8f48deb9514c5101d5ce314bfbd397485102a5487da1039f141e3cad6143d0",
+    "full_E9_three_CLASS_report_SHA256": "450b35f68a329f545f21bbe7ec02e36941e4c303037ccb7c011830c315d15890",
+    "original_E9_three_CLASS_run": 36325438404,
+    "original_E9_prereg_git_blob": "a31249a6c429fb694aab525d539afd1392adf974",
+    "original_E9_script_git_blob": "700a80d9ea9bc45454925b9a06fec2106203c506",
+    "original_E9_summary_git_blob": "7596540697124e3c014369b6d1c051d6145d62dc"
+  },
+  "external_theory": {
+    "doi": "10.1093/mnras/stx560",
+    "link": "https://academic.oup.com/mnras/article/468/2/2164/3063204",
+    "equations": [
+      "A7 galaxy RSD with common matter phase",
+      "A8 imaginary cross power proportional to delta_b*P_m*(dot_phi/H)*mu_LOS^2 for C_LE=delta_LRG delta_ELG*",
+      "A11-A12 coherent filtered velocity variance, not a fixed positive wind"
+    ],
+    "boundary": "Locally uniform wind only. Conditional cross power is not unconditional released eBOSS xi."
+  },
+  "fixed_angular_test": {
+    "k_com_h_per_Mpc": 0.05,
+    "z_center": 0.95,
+    "phase_redshift_stencil_h": 0.005,
+    "velocity_density_relative_z_step": 0.004,
+    "original_z_neighbors": [
+      0.945,
+      0.955
+    ],
+    "original_center_wind": "Frozen E9 +1sigma LOS velocity per state and z, coherent same rank, no new v normalization",
+    "mu_quadrature_nodes": [
+      256,
+      512
+    ],
+    "mu_domain": [
+      -1,
+      1
+    ],
+    "basis_ell": [
+      1,
+      3
+    ],
+    "q_res_angular": "mnu*abs(v_LOS(z)*mu)/(c*Tnu0*(1+z)), original 4000q interpolation",
+    "phase_angular": "phi(k,z,mu)=phi_aligned(k,z)*mu*occupation(qres(z,mu))/occupation(qres(z,1)); fixed exact FD branch",
+    "fourier_response": "T(mu)=mu^2 dphi(k,z,mu)/dln(a); actual Im P_LE(k,mu)=(b_LRG-b_ELG)*P_cb(k,z)*T(mu) only with calibrated biases/P",
+    "projection": "T_ell=(2ell+1)/2 integral_-1^1 P_ell(mu) T(mu) dmu",
+    "tracer_orientation": "C_LE=<delta_LRG^s delta_ELG^{s*}> positive delta_b=b_LRG-b_ELG; reverse tracers conjugates.",
+    "symmetric_wind": "Exactly ±v_LOS, equal weights independent of galaxy selection: conditional multipole odd in wind; mean zero, rms absolute conditional. Not an eBOSS wind estimate.",
+    "null_controls": [
+      "zero wind zero odd",
+      "equal biases zero Im cross power",
+      "tracer reversal changes Im sign",
+      "wind sign reversal flips response",
+      "mu parity odd",
+      "even-to-odd survey-window leakage separate and not constrained by wind mean zero"
+    ],
+    "quad_256_vs_512_relative_QA_tolerance": 0.0001,
+    "relative_denominator_floor": 1e-14
+  },
+  "guards": {
+    "E10_is_unit_bias_and_unit_power_conditional_Fourier_response": true,
+    "not_abs_eBOSS_xi": true,
+    "observed_odd_sealed": true,
+    "original_v1_SGC_reverse_failure_open": true,
+    "no_new_FITS_or_mock_download": true,
+    "no_new_science_seeds_or_cuts": true,
+    "main_mutation": false
+  },
+  "necessary_for_nonzero_eBOSS_mean": "Independent signed velocity conditioning or derived nonzero halo/tracer velocity-density/selection correlation; full k/z evolution P, true tracer calibration, pair-z window, independent covariance. If symmetry remains, intrinsic odd mean is zero."
+}

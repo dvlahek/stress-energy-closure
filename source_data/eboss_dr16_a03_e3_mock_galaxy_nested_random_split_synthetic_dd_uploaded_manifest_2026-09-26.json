@@ -1,0 +1,469 @@
+{
+  "study": "A-03E3 immutable original-upload mock-only nested-random split and synthetic DD odd estimator QA; NOT physical window or wake validation",
+  "record_date": "2026-09-26",
+  "branch": "audit/eboss-elg-bit8-ra-orientation-20260925",
+  "pr": "draft PR #1; main untouched",
+  "original_upload_filename": "a03_e3_mock_galaxy_nested_random_split_and_synthetic_dd_odd_injection.json",
+  "original_uploaded_exact_bytes": 1848217,
+  "original_uploaded_sha256": "1e52f95be973aa6616337c2427fde60725a0df31ce7d3a818e99d1dd1fb0fb35",
+  "original_uploaded_git_blob_sha1": "fa32a0f1546307e7bcdfe3a7911e613b83bb4f53",
+  "archived_report_path": "source_data/eboss_dr16_a03_e3_mock_galaxy_nested_random_split_and_synthetic_dd_odd_injection_report_2026-09-26.json",
+  "archived_report_git_blob_sha1": "fa32a0f1546307e7bcdfe3a7911e613b83bb4f53",
+  "archive_byte_identical_to_uploaded_source": true,
+  "original_stdout_upload_filename": "a03_e3_local_stdout_2026-09-26.log",
+  "original_stdout_exact_bytes": 11544,
+  "original_stdout_sha256": "869d46781871f6d88b5f487618e6d1e0c823b9f35d72c0edf98b673f9684e1d6",
+  "original_stdout_git_blob_sha1": "6bb9266abd1aa00087d4150e6e89ac816b205ebe",
+  "archived_stdout_path": "source_data/eboss_dr16_a03_e3_local_stdout_2026-09-26.log",
+  "stdout_archive_byte_identical_to_uploaded_source": true,
+  "registered_E3_protocol": "source_data/eboss_dr16_a03_e3_nested_mock_random_split_synthetic_dd_injection_protocol_2026-09-26.json",
+  "registered_E3_protocol_sha256": "bb4cd60ff84a167a09d91324f8a2fce8948f15b86766ae82f4bed121df384a0d",
+  "registered_E3_protocol_git_blob_sha1": "03b2eb73f13e63d91c683d2b37fd5faf030c5c59",
+  "exact_parent_E2_archive_sha256": "6ef86f904bb0cdc407adabe2e125146ce4d0671ea1ac932e13d11fc481cd596a",
+  "exact_parent_A02_archive_sha256": "15f7668fd483d8e1329fbb9684bbdf07cb49d1974d264f9ceebd85e0156daa27",
+  "full_72_original_gzip_rehash_logged_before_first_E3_FITS": true,
+  "total_original_72_compressed_bytes": 1860198719,
+  "independent_raw_FITS_gzip_rehash_outside_user_WSL": false,
+  "full_log_source_rehash_lines": 72,
+  "fixed_ids": [
+    1,
+    125,
+    250,
+    375,
+    500,
+    625,
+    750,
+    875,
+    1000
+  ],
+  "caps": [
+    "NGC",
+    "SGC"
+  ],
+  "random_levels": [
+    "half_A_600",
+    "half_B_600",
+    "three_quarter_A_900",
+    "full_1200"
+  ],
+  "weight_scenarios": [
+    "baseline_original",
+    "plus_5pct_ELG_R_z_ramp",
+    "minus_5pct_ELG_R_z_ramp"
+  ],
+  "DD_pair_injection_amplitudes": [
+    0.02,
+    -0.02
+  ],
+  "number_of_cases": 18,
+  "failed_cases": 0,
+  "number_of_scenario_records": 180,
+  "number_of_sparse_scenario_records_without_full_multipoles": 56,
+  "number_of_full_RR_scenario_records": 124,
+  "number_of_synthetic_DD_injections": 144,
+  "full_1200_E2_scenario_xi_SHA_replay_count": 54,
+  "full_1200_E2_forward_and_reverse_histogram_SHA_replay_count": 432,
+  "independent_parent_E2_comparison": "All 18 cases matched 55 frozen E2-source fields each: original LRG/ELG random selected-array SHA256; 3 full-1200 xi SHA256; 24 forward/reverse pair counts and 24 weighted-histogram SHA256; 2 changed ELG random-weight SHA256. This independent comparison used cross-source FNV64 over a deterministic tuple of SHA256 identifiers and counts, not an additional primary cryptographic source identity.",
+  "seed_and_index_SHA_checks": {
+    "PCG64_tracer_seeds": 36,
+    "subset_index_sha256": 144,
+    "half_A_B_disjoint_and_900_nested": true
+  },
+  "max_synthetic_DD_residuals": {
+    "forward_analytic": 2.733924198139448e-15,
+    "reverse_analytic": 2.733924198139448e-15,
+    "mirror_increment": 1.7763568394002505e-15,
+    "mirror_injected_xi": 3.552713678800501e-15
+  },
+  "baseline_RR_support_by_cap_level": {
+    "NGC": {
+      "half_A_600": {
+        "min_RR_supported": 138,
+        "max_RR_supported": 142,
+        "cases_with_144_RR": 0,
+        "total_cases": 9
+      },
+      "half_B_600": {
+        "min_RR_supported": 137,
+        "max_RR_supported": 143,
+        "cases_with_144_RR": 0,
+        "total_cases": 9
+      },
+      "three_quarter_A_900": {
+        "min_RR_supported": 143,
+        "max_RR_supported": 144,
+        "cases_with_144_RR": 7,
+        "total_cases": 9
+      },
+      "full_1200": {
+        "min_RR_supported": 144,
+        "max_RR_supported": 144,
+        "cases_with_144_RR": 9,
+        "total_cases": 9
+      }
+    },
+    "SGC": {
+      "half_A_600": {
+        "min_RR_supported": 144,
+        "max_RR_supported": 144,
+        "cases_with_144_RR": 9,
+        "total_cases": 9
+      },
+      "half_B_600": {
+        "min_RR_supported": 144,
+        "max_RR_supported": 144,
+        "cases_with_144_RR": 9,
+        "total_cases": 9
+      },
+      "three_quarter_A_900": {
+        "min_RR_supported": 144,
+        "max_RR_supported": 144,
+        "cases_with_144_RR": 9,
+        "total_cases": 9
+      },
+      "full_1200": {
+        "min_RR_supported": 144,
+        "max_RR_supported": 144,
+        "cases_with_144_RR": 9,
+        "total_cases": 9
+      }
+    }
+  },
+  "per_fixed_case_source_and_output_fingerprints": {
+    "0001/NGC": {
+      "per_case_checkpoint_SHA256": "cf2ab05b9da0e87832e4edd294cbfd22b8d348ed1339d8aa090c4bcf26bf89bc",
+      "fixed_random_seeds": {
+        "eBOSS_LRG": 20502026,
+        "eBOSS_ELG": 20502126
+      },
+      "RR_supported_baseline_by_level": {
+        "half_A_600": 142,
+        "half_B_600": 138,
+        "three_quarter_A_900": 144,
+        "full_1200": 144
+      },
+      "original_E2_full_1200_xi_SHA256_by_scenario": {
+        "baseline_original": "dfba2b778f24e11564c447e49d966a8fe50e821d7a07f57b11f25b269b7784dd",
+        "plus_5pct_ELG_R_z_ramp": "cefd1d5002826773365da2742ff1d0651e8660a7bfe9d4b1c75960c13dc2d5a8",
+        "minus_5pct_ELG_R_z_ramp": "b3ac5ed81cd871d2351956c8b26b9541f48e44f5c4d9f177b26d0b359dd2e5ab"
+      }
+    },
+    "0001/SGC": {
+      "per_case_checkpoint_SHA256": "605faccc3f724a4aea59802598e18299709e68fc40cd216fb8d7ef19bba6662b",
+      "fixed_random_seeds": {
+        "eBOSS_LRG": 20503026,
+        "eBOSS_ELG": 20503126
+      },
+      "RR_supported_baseline_by_level": {
+        "half_A_600": 144,
+        "half_B_600": 144,
+        "three_quarter_A_900": 144,
+        "full_1200": 144
+      },
+      "original_E2_full_1200_xi_SHA256_by_scenario": {
+        "baseline_original": "71a1bd0c59f61fb6edc5f77ec30066d418fdf63744718918505881539a7a5c6b",
+        "plus_5pct_ELG_R_z_ramp": "1fe5c3f96736a629fcd59ce42c0d277b4ddfcad32bf148908c0a90186fd03f5b",
+        "minus_5pct_ELG_R_z_ramp": "a3f19fbd9b929c7146d567c498b86ce1c6f0390066590fdce9726997da7e4847"
+      }
+    },
+    "0125/NGC": {
+      "per_case_checkpoint_SHA256": "54325f33ac4de02a7368a6a6fd4fd59d5f9d1dc4c15d432f081b65ca6732a116",
+      "fixed_random_seeds": {
+        "eBOSS_LRG": 32902026,
+        "eBOSS_ELG": 32902126
+      },
+      "RR_supported_baseline_by_level": {
+        "half_A_600": 139,
+        "half_B_600": 139,
+        "three_quarter_A_900": 143,
+        "full_1200": 144
+      },
+      "original_E2_full_1200_xi_SHA256_by_scenario": {
+        "baseline_original": "e0dca6a75bd4673e9ac9acae0065078bcfe30ea94da87f48f9422c513edee1a6",
+        "plus_5pct_ELG_R_z_ramp": "b0e1e8c896c61b8433ea391208cd346c08d8cac199ba7bfbc4379e0ee879283c",
+        "minus_5pct_ELG_R_z_ramp": "b4738f94548b567ac106ce11db74964f23b32e54e3df0c4021547f5735e52b83"
+      }
+    },
+    "0125/SGC": {
+      "per_case_checkpoint_SHA256": "c6154a85e4f9721c2615098369d54edfca9b1710dc3be1e67d828baa50e52187",
+      "fixed_random_seeds": {
+        "eBOSS_LRG": 32903026,
+        "eBOSS_ELG": 32903126
+      },
+      "RR_supported_baseline_by_level": {
+        "half_A_600": 144,
+        "half_B_600": 144,
+        "three_quarter_A_900": 144,
+        "full_1200": 144
+      },
+      "original_E2_full_1200_xi_SHA256_by_scenario": {
+        "baseline_original": "84e217811c1303846d3faaf0f6e51056928f7a518a0aebcda9e402392cdfe818",
+        "plus_5pct_ELG_R_z_ramp": "4ec97564fa0500d9f4e313a15b8562345cc5a0c0a5756b6259f1f3f236817def",
+        "minus_5pct_ELG_R_z_ramp": "3eb09d4be342fd77c40f6330d413ea62caa4ae54b840e219e268627fc85fa8ef"
+      }
+    },
+    "0250/NGC": {
+      "per_case_checkpoint_SHA256": "f37d89a3fc0a439aeb3f2232a421ce766485aad210a0e6ad18dc658d21a0c62a",
+      "fixed_random_seeds": {
+        "eBOSS_LRG": 45402026,
+        "eBOSS_ELG": 45402126
+      },
+      "RR_supported_baseline_by_level": {
+        "half_A_600": 141,
+        "half_B_600": 142,
+        "three_quarter_A_900": 144,
+        "full_1200": 144
+      },
+      "original_E2_full_1200_xi_SHA256_by_scenario": {
+        "baseline_original": "9e3e7be53635c1b7bb0354013509a85f1af942817e2bd408e93d253da2f22c0e",
+        "plus_5pct_ELG_R_z_ramp": "67e3443bae406970f4805a4dda44ba044ad9d077fff83220d41ff4727760fe64",
+        "minus_5pct_ELG_R_z_ramp": "51a2e3a9915dff219fbc903e7bae69575c360814ba0f020782862c99af8bc9ac"
+      }
+    },
+    "0250/SGC": {
+      "per_case_checkpoint_SHA256": "17ec434c1737de8c442dd260a81bfa8418e51fe0b8c13ad451a0f871ff89461f",
+      "fixed_random_seeds": {
+        "eBOSS_LRG": 45403026,
+        "eBOSS_ELG": 45403126
+      },
+      "RR_supported_baseline_by_level": {
+        "half_A_600": 144,
+        "half_B_600": 144,
+        "three_quarter_A_900": 144,
+        "full_1200": 144
+      },
+      "original_E2_full_1200_xi_SHA256_by_scenario": {
+        "baseline_original": "a40eda00a106990162ac776a31808bc10889b436d746da69c56263d66018a800",
+        "plus_5pct_ELG_R_z_ramp": "3a5bc4441280c7337e3d7a7bedeb9ff71bca20fdb76c01959502744a6844c310",
+        "minus_5pct_ELG_R_z_ramp": "598934fda7f49b0f7a71110312f8076b3ba4474c8d3ff21c3eed5102b28e84a0"
+      }
+    },
+    "0375/NGC": {
+      "per_case_checkpoint_SHA256": "b46597472d8e112a1e057067475282038be9abc3e11307002fdefb49d241245a",
+      "fixed_random_seeds": {
+        "eBOSS_LRG": 57902026,
+        "eBOSS_ELG": 57902126
+      },
+      "RR_supported_baseline_by_level": {
+        "half_A_600": 139,
+        "half_B_600": 143,
+        "three_quarter_A_900": 144,
+        "full_1200": 144
+      },
+      "original_E2_full_1200_xi_SHA256_by_scenario": {
+        "baseline_original": "24025a1f1050235fe4e2feee5c34a5124fcfd2ee317fb229aed18ba35bc8b7fa",
+        "plus_5pct_ELG_R_z_ramp": "8570bc2e0e161dae44fd75123886f7b6be3fa40c8222e17430725f26a866427b",
+        "minus_5pct_ELG_R_z_ramp": "561a071fa3b6353aba62905a301391b4704491e13ec7b896f8dbf4b1a0396411"
+      }
+    },
+    "0375/SGC": {
+      "per_case_checkpoint_SHA256": "4ef7f9576a393742d1d782bc53662c2905dbfd29a7830ecf908f927fd7a8a991",
+      "fixed_random_seeds": {
+        "eBOSS_LRG": 57903026,
+        "eBOSS_ELG": 57903126
+      },
+      "RR_supported_baseline_by_level": {
+        "half_A_600": 144,
+        "half_B_600": 144,
+        "three_quarter_A_900": 144,
+        "full_1200": 144
+      },
+      "original_E2_full_1200_xi_SHA256_by_scenario": {
+        "baseline_original": "2cddcc81182f3c59df63cc4f2e2cc8c4fd00ea8bd4d997b100671cc65461f369",
+        "plus_5pct_ELG_R_z_ramp": "0e60abaa51cb706d456d2c2f2b9fe7862479640caf1b6c0805c918c0f0c7f2f7",
+        "minus_5pct_ELG_R_z_ramp": "69938a5b2d116d3bcaeac5ed5a5fdfd6fb60b8001ab2daf4b423291819311fb2"
+      }
+    },
+    "0500/NGC": {
+      "per_case_checkpoint_SHA256": "6e3c27809b2210b67dc139e0d530a912dd4d788f29a82e6bbf38467118fd4841",
+      "fixed_random_seeds": {
+        "eBOSS_LRG": 70402026,
+        "eBOSS_ELG": 70402126
+      },
+      "RR_supported_baseline_by_level": {
+        "half_A_600": 142,
+        "half_B_600": 137,
+        "three_quarter_A_900": 144,
+        "full_1200": 144
+      },
+      "original_E2_full_1200_xi_SHA256_by_scenario": {
+        "baseline_original": "70766dbf95126f2ae9eedfc2d754b78af13fd3e84176f707508e816997f008d2",
+        "plus_5pct_ELG_R_z_ramp": "d59d4a50e01f50d6f3aae0d94ab765f1e596d74426484c2b871e6e8a5970454e",
+        "minus_5pct_ELG_R_z_ramp": "6205a9abdbd164ae1ee4560671eb881460230233e3726f24340bb8207fd24de4"
+      }
+    },
+    "0500/SGC": {
+      "per_case_checkpoint_SHA256": "94363e530c05bbf940649f04907b99635d2232e47156b90060288996adbbc016",
+      "fixed_random_seeds": {
+        "eBOSS_LRG": 70403026,
+        "eBOSS_ELG": 70403126
+      },
+      "RR_supported_baseline_by_level": {
+        "half_A_600": 144,
+        "half_B_600": 144,
+        "three_quarter_A_900": 144,
+        "full_1200": 144
+      },
+      "original_E2_full_1200_xi_SHA256_by_scenario": {
+        "baseline_original": "22bfd3c2bb22d402b1c0c5c53b1dd6572b3242ac3123a035b08a7059e6d36b06",
+        "plus_5pct_ELG_R_z_ramp": "ffe70116abe25fa16c936227c0d8c75d9d376ffa682ad672fbd6c82d9ac5b3dd",
+        "minus_5pct_ELG_R_z_ramp": "69a9df9edec2b4f92ac4b8bcbff173f16b1328fdaee3c97826ec1739703df4fd"
+      }
+    },
+    "0625/NGC": {
+      "per_case_checkpoint_SHA256": "000fdee5868b620abe32293b292de6d8e25617f44c7e4d8eb0cfb553c19606d9",
+      "fixed_random_seeds": {
+        "eBOSS_LRG": 82902026,
+        "eBOSS_ELG": 82902126
+      },
+      "RR_supported_baseline_by_level": {
+        "half_A_600": 139,
+        "half_B_600": 141,
+        "three_quarter_A_900": 144,
+        "full_1200": 144
+      },
+      "original_E2_full_1200_xi_SHA256_by_scenario": {
+        "baseline_original": "c3e954f1d68d622d77bdcbcd6540737571c65e2db5b046396eaa3a0ea85e2e98",
+        "plus_5pct_ELG_R_z_ramp": "689f6fc1f31cc2c6c9edff760a68b6ceb3699a9321cc66828a2e5c16e1195e03",
+        "minus_5pct_ELG_R_z_ramp": "3c16ac2f3e52c3803c242718ec6f73a332a58065809d5b8df1f680099edb600a"
+      }
+    },
+    "0625/SGC": {
+      "per_case_checkpoint_SHA256": "f93bf45a81c46509572063f4a7136b4ec8f9acc9851e1165b9b23e5bd0143883",
+      "fixed_random_seeds": {
+        "eBOSS_LRG": 82903026,
+        "eBOSS_ELG": 82903126
+      },
+      "RR_supported_baseline_by_level": {
+        "half_A_600": 144,
+        "half_B_600": 144,
+        "three_quarter_A_900": 144,
+        "full_1200": 144
+      },
+      "original_E2_full_1200_xi_SHA256_by_scenario": {
+        "baseline_original": "d3db0f81a58eb8128b7642cb68c4d4d574685dbfad90bfd5e4863a915348acb7",
+        "plus_5pct_ELG_R_z_ramp": "9aec071f889ef5ec0bf48f53bc5cd35b1fa51488416ba606b0f322cdaeb5ac74",
+        "minus_5pct_ELG_R_z_ramp": "18bcc13d338ddbfa969f1e4b168b2bfb20f297ba703c80464477d5f96ef61768"
+      }
+    },
+    "0750/NGC": {
+      "per_case_checkpoint_SHA256": "df848a46874ebc4248bb9b140c139af503e38f261f23b3fc65561a693e3f095c",
+      "fixed_random_seeds": {
+        "eBOSS_LRG": 95402026,
+        "eBOSS_ELG": 95402126
+      },
+      "RR_supported_baseline_by_level": {
+        "half_A_600": 138,
+        "half_B_600": 140,
+        "three_quarter_A_900": 143,
+        "full_1200": 144
+      },
+      "original_E2_full_1200_xi_SHA256_by_scenario": {
+        "baseline_original": "c6eea5517b0d41ccf5e1eac116a2909c2da3a67cb1784034815e1a50ba444c7d",
+        "plus_5pct_ELG_R_z_ramp": "0589fd98cf3cde3b076a8f67fcbae9d3dd63b7b3467c5f7987880a476132735d",
+        "minus_5pct_ELG_R_z_ramp": "52844f8250df467245bc4c6c606e6d1c9ee0faeb220dfebbe970288d6b80988e"
+      }
+    },
+    "0750/SGC": {
+      "per_case_checkpoint_SHA256": "139058058cb1d78d2e431f071627405196d9750093c764db603d25143fbb77b0",
+      "fixed_random_seeds": {
+        "eBOSS_LRG": 95403026,
+        "eBOSS_ELG": 95403126
+      },
+      "RR_supported_baseline_by_level": {
+        "half_A_600": 144,
+        "half_B_600": 144,
+        "three_quarter_A_900": 144,
+        "full_1200": 144
+      },
+      "original_E2_full_1200_xi_SHA256_by_scenario": {
+        "baseline_original": "f7dbef3371d0d37d7ea99985e35e924e51212096d408fce85973798975fb9a46",
+        "plus_5pct_ELG_R_z_ramp": "6e8bb6fe3e3180391c7b0c3f1f22f9baa0c9e35bbc3f74a9576afd226b7e2987",
+        "minus_5pct_ELG_R_z_ramp": "df83f59812a069ee0b242811009b27ad25635f89c10b89012d41849afd7fe8d9"
+      }
+    },
+    "0875/NGC": {
+      "per_case_checkpoint_SHA256": "b59c37fd66b318722a9d8743d51fc78e987eeef4e1687e12314a2b6b0f07e855",
+      "fixed_random_seeds": {
+        "eBOSS_LRG": 107902026,
+        "eBOSS_ELG": 107902126
+      },
+      "RR_supported_baseline_by_level": {
+        "half_A_600": 139,
+        "half_B_600": 139,
+        "three_quarter_A_900": 144,
+        "full_1200": 144
+      },
+      "original_E2_full_1200_xi_SHA256_by_scenario": {
+        "baseline_original": "da69ebc187507f7c8ce03df1a4dded792e323e7c3f94aef9ac987b0bb5e785b0",
+        "plus_5pct_ELG_R_z_ramp": "37ab58b8f2cbec8800a2feb0d0d09465707eeb48730252a8bb932db7feaa89ec",
+        "minus_5pct_ELG_R_z_ramp": "f2f7d45b53d926ca0727b411e163bb246b118da9036110a46479e2c601913441"
+      }
+    },
+    "0875/SGC": {
+      "per_case_checkpoint_SHA256": "3f59e1ac48d369fc868976e883b6c5d9ef915dc4b8f0abb0bd5e703d63323b16",
+      "fixed_random_seeds": {
+        "eBOSS_LRG": 107903026,
+        "eBOSS_ELG": 107903126
+      },
+      "RR_supported_baseline_by_level": {
+        "half_A_600": 144,
+        "half_B_600": 144,
+        "three_quarter_A_900": 144,
+        "full_1200": 144
+      },
+      "original_E2_full_1200_xi_SHA256_by_scenario": {
+        "baseline_original": "c4aa5abec76db8b940eed3ec69767566dc904ac16c119657b8f7a454ceba49b3",
+        "plus_5pct_ELG_R_z_ramp": "57b7a45beb716ecf2e22bedc6f8e89111ac8c9dc5d3a96630bcbda14fd263549",
+        "minus_5pct_ELG_R_z_ramp": "7cf388e5c3301cde462262dc029042d5a0704faad359e16c365fa4e9be4c613c"
+      }
+    },
+    "1000/NGC": {
+      "per_case_checkpoint_SHA256": "4ccbcce3b73ad3d3e9572380d06aa3a050476d3cdc67a673da46a4445ee612b2",
+      "fixed_random_seeds": {
+        "eBOSS_LRG": 120402026,
+        "eBOSS_ELG": 120402126
+      },
+      "RR_supported_baseline_by_level": {
+        "half_A_600": 142,
+        "half_B_600": 140,
+        "three_quarter_A_900": 144,
+        "full_1200": 144
+      },
+      "original_E2_full_1200_xi_SHA256_by_scenario": {
+        "baseline_original": "f5a7e37071848ff84adb12dd529a0ec0ef5f99be851382bd22cfeb89abe999ee",
+        "plus_5pct_ELG_R_z_ramp": "8982801ac4c49c583838ff2d5c356d871b21c082f9e2082f3bb51500ab27cc20",
+        "minus_5pct_ELG_R_z_ramp": "e83879be5a489588f12d00b8b7ee1e2034122ae0c9b01c083e572d093820d354"
+      }
+    },
+    "1000/SGC": {
+      "per_case_checkpoint_SHA256": "51b75753253c2571f1c47fa7553daeacb173aa7af2851b26ac191201e1d7df23",
+      "fixed_random_seeds": {
+        "eBOSS_LRG": 120403026,
+        "eBOSS_ELG": 120403126
+      },
+      "RR_supported_baseline_by_level": {
+        "half_A_600": 144,
+        "half_B_600": 144,
+        "three_quarter_A_900": 144,
+        "full_1200": 144
+      },
+      "original_E2_full_1200_xi_SHA256_by_scenario": {
+        "baseline_original": "353b852c04c2a8f5d17bbcf0939902172ac81f2b9dbc2a033bf5029fdbf2e53b",
+        "plus_5pct_ELG_R_z_ramp": "074f6f959be4ec23a0198a27367a0e55b6d53aab07fdfab6ec9c5b7c4f29571e",
+        "minus_5pct_ELG_R_z_ramp": "6bb945d3fbe55769ee6886ab3f47c7e89818871e6ebfcf4bb580d4301b6527f1"
+      }
+    }
+  },
+  "original_user_report_errors": [],
+  "observed_galaxy_rows_read": false,
+  "observed_random_rows_read": false,
+  "observed_odd_data_vector_read": false,
+  "new_science_selection_applied": false,
+  "physical_LRG_ELG_empirical_pair_window_certified": false,
+  "physical_wake_injection_recovery_certified": false,
+  "real_survey_selection_systematic_measured": false,
+  "inferential_18D_covariance_computed": false,
+  "not_a_detection_or_exclusion": true,
+  "next_gate": "A-03 physical empirical pair-window validation remains open; A-04 independent inferential 18D covariance/tail calibration remains open; keep observed odd SEALED. No new source transfers/author contact/science cuts."
+}

@@ -1,0 +1,57 @@
+{
+  "stage": "A03E20_QUADRATIC_WIND_DENSITY_RESPONSE_MIXED_BISPECTRUM_STRUCTURAL_GATE",
+  "date": "2026-09-29",
+  "registration_status": "PROSPECTIVE_ONLY_FOR_NEW_E20_ANALYTIC_AND_SYNTHETIC_QA_AFTER_E19_IS_KNOWN_NO_NEW_PHYSICAL_CALIBRATION",
+  "base_audit_head": "8adc0881a296a645e3c6190e1641e143113d9072",
+  "source_pins": {
+    "original_E10_archived_summary": {
+      "path": "source_data/eboss_dr16_a03_e10_frozen_conditional_angular_wind_parity_summary_2026-09-27.json",
+      "git_blob": "a9e0f49a58b9fd5e0ad975d4d14ba6521a648c28"
+    },
+    "original_E19_archived_math": {
+      "path": "source_data/eboss_dr16_a03_e19_posthoc_conditional_Fourier_shape_and_marginal_RR_nonidentifiability_2026-09-29.json",
+      "git_blob": "fc5044684b84ff3de86c236988617ead79d8e7e6"
+    },
+    "original_E6_physical_bridge_protocol": {
+      "path": "source_data/eboss_dr16_a03_e6_physical_template_to_empirical_window_bridge_protocol_2026-09-27.json",
+      "git_blob": "4df20872cff5b3d8aa09831ab50b22fa5f8b6581"
+    },
+    "original_E17D1_document": {
+      "path": "docs/EBOSS_DR16_A03_E17D1_RESTRICTED_CAUSAL_SOURCE_HISTORY_NONIDENTIFIABILITY_2026-09-27.md",
+      "git_blob": "3a536aa384eec1a202e77c532beb3a55c7333cb2"
+    }
+  },
+  "physics_scope": {
+    "new_mathematical_object": "Minimal explicit post-E19 local-in-fields quadratic wake-like tracer response; response kernel NOT supplied by existing full nonlinear Einstein-Vlasov halo/tracer dynamics.",
+    "fourier_convention": "For real fields δ(-k)=δ(k)*, v_i(-q)=v_i(q)*. S_a(k)=integral[d3q/(2π)^3] Γ_ai(k,q) v_i(q) δ(k-q), with Γ_ai(-k,-q)=Γ_ai(k,q)*. A local real-space prototype is v·gradδ, Γ_i=i(k-q)_i. Actual E17 time-dependent kernel and LOS projection NOT measured or identified.",
+    "tracer_fields": "δ_L=b_Lδ+λ_L S and δ_E=b_Eδ+λ_E S for one common S only as a transparent illustrative submodel; b_L,b_E,λ_L,λ_E real unknown and not fitted here.",
+    "cross_power_definition": "P_LE(k)=<δ_L(k)δ_E(k)*>; Q(k)=P_Sδ(k)=<S(k)δ(k)*> per homogeneous volume convention.",
+    "first_order_formula": "P_LE^(1)=b_L b_E P_δδ+λ_L b_E Q+b_L λ_E Q*+O(λ²); Im P_LE^(1)=(λ_L b_E-b_L λ_E) Im Q. If λ_L=λ_E then the contrast is proportional to b_E-b_L; orientation LE→EL complex-conjugates P. Not an actual E10 amplitude mapping.",
+    "mixed_bispectrum_gate": "For translation-invariant means, Q(k)=∫_q Γ_i(k,q) B_{v_iδδ}(q,k-q,-k) (with momentum-conserving delta function stripped). Nonzero B and nonzero LOS-odd projection both needed for this submodel; B alone is NOT sufficient for observed ℓ=1/3.",
+    "gaussian_null": "For jointly centered Gaussian linear v and δ, including arbitrarily nonzero two-point velocity-density correlation, all centered third moments B_vδδ=0, hence Q=0 at first order in λ for quadratic S. The no-go does NOT apply to separately allowed linear-v tracer/selection response or nonlinear response kernels without their own sign-symmetry assumptions.",
+    "joint_sign_inversion": "If a nonlinear E10-like wind response is odd under v→−v and multiplies two linear density factors, a joint centrally symmetric distribution under (v,δ,δ)→(−v,−δ,−δ) has zero signed mean. This is conditional; not all galaxy-formation/observational terms obey this symmetry.",
+    "higher_order_limit": "O(λ²) gives four-field moments and may be nonzero; no statement that complete eBOSS odd cross-power or all Gaussian nonlinear models vanish.",
+    "non_gaussian_witness": "X,Y independent equiprobable ±1; V=X,D1=Y,D2=XY have zero means, vanishing all pairwise cross moments, yet <V D1 D2>=1. This is an algebraic three-variable witness only, not a physical spatial Fourier bispectrum or Vlasov simulation."
+  },
+  "frozen_new_synthetic_tests_before_any_new_execution": [
+    "Check exact source Git blobs and E10/E19 observed seal and physical caveat.",
+    "Finite sign-paired centrally symmetric toy with nonzero <vδ> and zero <vδδ>, prove correlation alone cannot break odd-third-moment no-go.",
+    "Finite non-centrosymmetric X,Y,XY witness has zero all one/two-field moments but nonzero mixed third moment.",
+    "Check cross-power imaginary coefficient for synthetic complex Q and its exact sign reversal under tracer swap.",
+    "Check equal b_L=b_E and equal λ_L=λ_E yields zero first-order Im, while λ contrast at equal b can produce nonzero in the GENERAL submodel (not E10 original special case).",
+    "Test response-kernel reality under k,q→−k,−q for Γ_i=i(k-q)_i.",
+    "Reject tampered source, broken Gaussian sign symmetry, fake mixed three-point=0 witness, incorrect tracer reversal, inappropriate general no-go from one model."
+  ],
+  "source_limit": "Source-only original small pinned E10/E19 and E17D1 narrative plus new synthetic arithmetic. No E8 original CSV or CLASS artifact re-run, no physical B_vδδ, no measured halo/galaxy Γ/b/λ or real eBOSS window.",
+  "interpretation": "A *necessary* mixed bispectrum/nonlinear selection datum for the chosen quadratic wake-like route has been isolated. This is not an unconditional theorem for arbitrary neutrino effects, not a measured eBOSS bispectrum, not a physical galaxy prediction and not a new detection claim.",
+  "STOP": {
+    "no_observed_eBOSS_galaxies_or_24D_odd": true,
+    "no_FITS_ASDF_PID_RV_cleaned_or_tree_download": true,
+    "no_new_mock_or_WSL": true,
+    "no_new_CLASS_or_E8_E16_F0_Fplus_Fminus": true,
+    "no_48k_cut_seed_mock_retuning": true,
+    "no_inferential_C_or_snr_pvalue": true,
+    "no_main_or_PR_merge": true,
+    "existing_empirical_random_only_no_author_contact": true
+  }
+}

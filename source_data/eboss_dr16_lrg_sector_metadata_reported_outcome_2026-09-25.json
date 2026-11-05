@@ -1,0 +1,82 @@
+{
+  "kind": "blinded_official_lrg_sector_metadata_user_reported_stdout",
+  "report_date": "2026-09-25",
+  "source_script": "scripts/audit_eboss_dr16_lrg_sector_metadata.py",
+  "preregistered_protocol": "source_data/eboss_dr16_lrg_sector_metadata_protocol_2026-09-25.json",
+  "source_fits_sha256_frozen_before_any_sector_rows": "39b831801adec04fe6dc5d6ab76a4b303aa58bfd303548cb7fddfae7d7f9331d",
+  "local_report_path": "eboss_workspace/official_mask_inventory/lrg_full_sector_metadata_audit.json",
+  "local_report_sha256": null,
+  "evidence_status": "USER_REPORTED_STDOUT; EXACT LOCAL JSON NOT YET UPLOADED OR SHA_VERIFIED",
+  "self_test": "EBOSS_LRG_SECTOR_FOUR_COLUMN_SYNTHETIC_SELF_TEST_OK",
+  "status": "OFFICIAL_LRG_SECTOR_METADATA_AGGREGATES_ONLY_NOT_SEMANTICS_CERTIFIED",
+  "rows": 311848,
+  "distinct_integer_sector_labels": 5813,
+  "within_sector_constancy": {
+    "COMP_BOSS": {
+      "largest_within_sector_span": 0,
+      "sector_labels_with_span_gt_fixed_tol": 0
+    },
+    "sector_SSR": {
+      "largest_within_sector_span": 0,
+      "sector_labels_with_span_gt_fixed_tol": 0
+    },
+    "sector_TSR": {
+      "largest_within_sector_span": 0,
+      "sector_labels_with_span_gt_fixed_tol": 0
+    }
+  },
+  "field_diagnostics": {
+    "COMP_BOSS": {
+      "exact_zero_count": 9413,
+      "finite_count": 311848,
+      "greater_than_1_count": 0,
+      "less_or_equal_0_5_DIAGNOSTIC_NOT_A_CUT": 58575,
+      "less_than_0_count": 0,
+      "maximum": 1,
+      "median": 0.9855072463768116,
+      "minimum": 0
+    },
+    "sector_SSR": {
+      "exact_zero_count": 9424,
+      "finite_count": 311848,
+      "greater_than_1_count": 0,
+      "less_or_equal_0_5_DIAGNOSTIC_NOT_A_CUT": 9528,
+      "less_than_0_count": 0,
+      "maximum": 1,
+      "median": 0.9855072463768116,
+      "minimum": 0
+    },
+    "sector_TSR": {
+      "exact_zero_count": 9413,
+      "finite_count": 311848,
+      "greater_than_1_count": 0,
+      "less_or_equal_0_5_DIAGNOSTIC_NOT_A_CUT": 59250,
+      "less_than_0_count": 0,
+      "maximum": 1,
+      "median": 0.9421487603305785,
+      "minimum": 0
+    }
+  },
+  "fixed_formula_diagnostics": {
+    "COMP_BOSS - sector_TSR": {
+      "abs_difference_le_fixed_tol_count": 107090,
+      "max_abs_difference": 0.5,
+      "median_abs_difference": 0.025974025974025983
+    },
+    "COMP_BOSS - sector_TSR * sector_SSR": {
+      "abs_difference_le_fixed_tol_count": 74143,
+      "max_abs_difference": 1,
+      "median_abs_difference": 0.0444444444444444
+    },
+    "sector_TSR - sector_SSR": {
+      "abs_difference_le_fixed_tol_count": 25676,
+      "max_abs_difference": 1,
+      "median_abs_difference": 0.04048085641580623
+    }
+  },
+  "observed_odd_data_vector_read": false,
+  "physical_lrg_mask_certified": false,
+  "physical_pair_window_certified": false,
+  "interpretation": "All three logged fields are exactly constant within every listed sector. Neither identity COMP_BOSS=sector_TSR nor COMP_BOSS=sector_TSR*sector_SSR holds globally; sector_TSR and sector_SSR are not identical globally. At this stage none is authenticated as paper C_eBOSS or C_z based only on numerical fits.",
+  "next_step": "Upload exact local sector_metadata_audit.json and SHA-pin unchanged report before further observed-row audits; in parallel inspect official LRG column data model/production code for historical definitions without making data-driven formula selection."
+}

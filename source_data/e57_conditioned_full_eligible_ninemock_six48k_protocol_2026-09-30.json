@@ -1,0 +1,70 @@
+{
+  "stage": "E57_CONDITIONED_FULL_ELIGIBLE_NINEMOCK_SIX48K_PROTOCOL",
+  "date": "2026-09-30",
+  "frozen_before_local_result": true,
+  "parent": "E56 PASS_NINEMOCK_FULL_ELIGIBLE_FOUR48K_BACKGROUND_QUANTIFIED with both cap median precision gates narrowly failed",
+  "why_six_replicas": {
+    "rule": "choose the minimum integer R predicted by standard 1/sqrt(R) Monte-Carlo scaling to satisfy the already-frozen E56 final-mean median target 0.25 in both caps",
+    "E56_median_ratios": {
+      "NGC": 0.28935226307743306,
+      "SGC": 0.2886521521383264
+    },
+    "minimum_integer_from_scaling": {
+      "NGC": 6,
+      "SGC": 6
+    },
+    "important": "The E56 final-mean gate itself is NOT changed or divided by sqrt(6) again."
+  },
+  "scope": {
+    "mock_ids": [
+      1,
+      125,
+      250,
+      375,
+      500,
+      625,
+      750,
+      875,
+      1000
+    ],
+    "caps": [
+      "NGC",
+      "SGC"
+    ],
+    "replicas": [
+      "R1",
+      "R2",
+      "R3",
+      "R4",
+      "R5",
+      "R6"
+    ],
+    "new_replicas_only": [
+      "R5",
+      "R6"
+    ],
+    "random_size_per_tracer": 48000,
+    "seed_root": 202609305400,
+    "reuse": "R1-R4 from E56; add R5/R6 only",
+    "galaxies": "same all source-eligible full mock galaxies",
+    "tag_fields": "same frozen E51 A-D",
+    "injection_basis": "same frozen E19 F+/F-"
+  },
+  "engineering_gate_carried_forward_unchanged_from_E56": {
+    "median_effective_random_SE_over_between_mock_SD_max": 0.25,
+    "per_field_max": 0.5,
+    "must_pass_each_cap": true
+  },
+  "methodological_clarification": "Replica averaging estimates conditional subset Monte-Carlo noise. It does not diagnose common finite-parent-pool discretization bias.",
+  "forbidden": {
+    "observed_galaxy_rows": true,
+    "observed_odd_vector": true,
+    "physical_velocity_reconstruction": true,
+    "covariance_inverse": true,
+    "pvalues_or_detection_sigma": true,
+    "new_science_cuts": true,
+    "retuning_E19_or_E51_fields": true,
+    "changing_E56_precision_gate": true,
+    "main_mutation": true
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "date": "2026-09-30",
+  "engineering_gate": {
+    "derivation": "E55 thresholds 0.5 median / 1.0 max divided by sqrt(4), because E56 judges Monte-Carlo noise of the four-replica MEAN rather than one replicate",
+    "median_effective_random_SE_over_between_mock_SD_max": 0.25,
+    "must_pass_each_cap": true,
+    "per_field_max": 0.5
+  },
+  "forbidden": {
+    "covariance_inverse": true,
+    "main_mutation": true,
+    "new_science_cuts": true,
+    "observed_galaxy_rows": true,
+    "observed_odd_vector": true,
+    "physical_velocity_reconstruction": true,
+    "pvalues_or_detection_sigma": true,
+    "retuning_E19_or_E51_fields": true
+  },
+  "frozen_before_local_result": true,
+  "methodological_clarification": "Independent without-replacement subset draws are independent conditional on the fixed eligible random pool even when realized subsets overlap. Replica averaging estimates conditional subset Monte-Carlo noise, not common finite-pool discretization bias.",
+  "parents": {
+    "E54": "PASS_RANDOM_REPLICA_FLOOR_QUANTIFIED",
+    "E55": "PASS_NINEMOCK_FULL_ELIGIBLE_TWO48K_BACKGROUND_QUANTIFIED with global random-integration gate fail"
+  },
+  "primary_variance_decomposition": {
+    "between_mock_SD": "sample SD of nine four-replica mock means",
+    "effective_random_SE": "sqrt(pooled_random_variance)/sqrt(4)",
+    "mock_mean": "mean of four calibrated Fminus-Fplus coordinates within each mock",
+    "pooled_random_variance": "sum_i sum_r (m_ir-mbar_i)^2 / [9*(4-1)]"
+  },
+  "scope": {
+    "caps": ["NGC","SGC"],
+    "galaxies": "same all source-eligible full mock galaxies",
+    "injection_basis": "same E19 F+/F-",
+    "mock_ids": [1,125,250,375,500,625,750,875,1000],
+    "new_replicas_only": ["R3","R4"],
+    "random_size_per_tracer": 48000,
+    "replicas": ["R1","R2","R3","R4"],
+    "reuse": "mock0001 R1-R4 from E54; all other R1/R2 and DD from E55",
+    "seed_root": 202609305400,
+    "tag_fields": "same E51 A-D"
+  },
+  "stage": "E56_CONDITIONED_FULL_ELIGIBLE_NINEMOCK_FOUR48K_PROTOCOL"
+}

@@ -1,0 +1,89 @@
+{
+  "date": "2026-09-27",
+  "status": "E11_ORIGINAL_FROZEN_E8_E9_E10_GAUSSIAN_SQUEEZED_SOURCE_RESPONSE_GAMMA_NONZERO_UNCONDITIONAL_TWO_POINT_ODD_ZERO_NO_REAL_EBOSS_BISPECTRUM",
+  "registration": {
+    "preregistered_before_calculation": true,
+    "git_blob_sha1": "c959d0a1c133c158131561acc7a36bdce4cfd0ab",
+    "path": "source_data/eboss_dr16_a03_e11_gaussian_wind_squeezed_response_prereg_2026-09-27.json"
+  },
+  "origins_sha256": {
+    "E8": "bf8f48deb9514c5101d5ce314bfbd397485102a5487da1039f141e3cad6143d0",
+    "E9": "450b35f68a329f545f21bbe7ec02e36941e4c303037ccb7c011830c315d15890",
+    "E10": "cc55a914a8be0174eb7c1e49e0e1968537cedfcf4a429d52ad66ab86cb44a488"
+  },
+  "CI": {
+    "run_id": 36331206915,
+    "conclusion": "success",
+    "source_only_artifact_id": 10934889531,
+    "artifact_zip_sha256": "cb9a7f0f946a94b211e13da09438e27abd4b78f18efb6952afe25cca9ab8f90b",
+    "full_result_JSON_sha256": "cade0959c112ca57e9cd5fd4433a49cbec3be0b74eb1f0a1d6eab9350a756ebd",
+    "MAX_NUMERICAL_QA_GAP": 0.0013701658629030086,
+    "warning_count": 0
+  },
+  "independent_audit": {
+    "description": "New direct 96x512 quadrature from original E8/E9/E10 source files, without importing GitHub E11 script, six state-ell Gamma and rank=1 E10 closure",
+    "local_json_sha256": "6170bcbb67c44090d7338ffdca0f87f5309131a895f638dfd2efec775844ee3e",
+    "all_six_gamma_recomputed": true,
+    "max_abs_gamma_disagreement": 2.8731357570865868e-18,
+    "max_abs_E10_rank1_difference": 3.7947076036992655e-19,
+    "max_abs_unconditional_mean": 3.3881317890172014e-21,
+    "max_abs_wind_sign_reversal_residual": 0
+  },
+  "numerical_configuration": {
+    "mass_eV": 0.06,
+    "z_match": 1100,
+    "source_pointwise_cap": 0.3,
+    "z_illustrative": 0.95,
+    "short_k_comoving_h_per_Mpc": 0.05,
+    "rank_distribution": "unit normal coherent r common across F states and z",
+    "original_R16_filtered_positive_1sigma_wind_E9": true,
+    "GH_node_counts": [
+      48,
+      96
+    ],
+    "GL_node_counts": [
+      256,
+      512
+    ],
+    "z_derivative_h": 0.005,
+    "original_density_wind_step": 0.004,
+    "Stein_rank_steps": [
+      0.002,
+      0.001
+    ]
+  },
+  "source_only_kernel_512GL_96GH": {
+    "definition": "Gamma_ell=E_r[r*T_ell(r)] per unit DeltaBias*Pcb at fixed short mode, conditional EqA8 original E9 rank model",
+    "FD": {
+      "ell1": 0.0002600278965058659,
+      "ell3": 0.0001684107348834053
+    },
+    "Fplus": {
+      "ell1": 0.0002037604735313876,
+      "ell3": 0.00012544186994843285
+    },
+    "Fminus": {
+      "ell1": 0.0003160261251109056,
+      "ell3": 0.00021117602154044362
+    },
+    "Fplus_minus_Fminus": {
+      "ell1": -0.000112265651579518,
+      "ell3": -0.00008573415159201077
+    },
+    "equal_plus_minus_wind_two_point_intrinsic_mean_exact_zero": true
+  },
+  "theory": "For jointly Gaussian long density and local standardized LOS velocity rank r, E[D_L T_ell(r)]=P_Dr Gamma_ell under local response and independent nuisance assumptions. This is a sourced mathematical necessary coefficient, not Zhu-Castorina exact bispectrum and not a measured halo/tracer three-point.",
+  "physical_stop": {
+    "independent_signed_long_mode_velocity_density_cross_P_Dr_NOT_calibrated": true,
+    "real_eBOSS_LRG_ELG_bias_HOD_standardGR_and_triangle_k_z_not_calibrated": true,
+    "retarded_Vlasov_halo_response_absent": true,
+    "selected_survey_triple_window_and_A04_covariance_absent": true,
+    "original_24D_unconditional_odd_not_a_three_point_observable": true,
+    "actual_eBOSS_bispectrum_signal_to_noise_not_computed": true,
+    "observed_odd_vector_sealed": true,
+    "original_v1_SGC_reverse_and_48k_convergence_open": true,
+    "no_new_catalogue_mock_download_or_seed_cut": true,
+    "main_unchanged": true
+  },
+  "next_science_gate": "Use independently pinned CLASS original F± to derive the actual gauge-consistent long density–relative-vector cross-transfer P_Dr(K,z) and check direct CLASS vTk against the archived E9 density-derived velocity proxy, at prospectively fixed long K. Only then combine with Gamma; do not invent eBOSS biases/halo/wind realization."
+}

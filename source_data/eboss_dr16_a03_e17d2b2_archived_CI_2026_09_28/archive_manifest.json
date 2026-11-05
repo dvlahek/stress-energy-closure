@@ -1,0 +1,27 @@
+{
+  "date": "2026-09-28",
+  "CI_run_id": "36419675549",
+  "prospective_E17D2b2_protocol_git_blob": "c1079b666fa8b91af42a8191dbddf56966ea3221",
+  "original_E17D2b1_joint_sha256": "19cfd3e3a9382d07b4a978522e437780b79467dcbf8f8adcf45d3804b46ad3b9",
+  "official_public_DOCUMENTATION_only_no_real_header_or_catalogue": true,
+  "nominal_Abacus_c000_six_params_match_but_As_tau_differ": true,
+  "secondary_z_exact_and_200critical_mass_and_nonlinear_neutrino_UNVERIFIED": true,
+  "original_Fplus_Fminus_no_Abacus_nonlinear_wake": true,
+  "full_physical_halo_tracer_bispectrum": "BLOCKED",
+  "observed_odd_SEALED": true,
+  "no_new_CLASS_FITS_mock_ASDF_catalogue": true,
+  "main_untouched": true,
+  "PR_remains_draft": true,
+  "files": [
+    {
+      "file": "e17d2b2_independent_ast_decimal_c000_metadata_replay.json",
+      "size_bytes": 2603,
+      "sha256": "10c81a9c513b6206beb4cbf1bacdc9ee51946cbe8b62bb534e91d20da88f2d96"
+    },
+    {
+      "file": "e17d2b2_original_abacus_c000_documented_metadata_bridge.json",
+      "size_bytes": 4248,
+      "sha256": "b8da4d6c33235ed82e76f548f2eb052e0fcd751a42672f48d8fffff153ac6926"
+    }
+  ]
+}

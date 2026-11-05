@@ -1,0 +1,63 @@
+{
+  "study": "Blinded eBOSS DR16 four-family selected ELG maskbit pixel-byte aggregate QA, exact uploaded artifact",
+  "registered_on": "2026-09-26",
+  "uploaded_name": "elg_four_sample_pixel_bitcode_aggregates.json",
+  "local_report_path": "eboss_workspace/official_mask_inventory/elg_four_sample_pixel_bitcode_aggregates.json",
+  "exact_uploaded_report_bytes": 16601,
+  "exact_uploaded_report_sha256": "ed83fcaad2b299a987e1bc759f0156dbbcfb974242ecdedbc0fdb894534f0e7c",
+  "exact_uploaded_report_git_blob_sha1": "26a0851516543da1449694ecde022185c112296e",
+  "archived_exact_report_path": "source_data/eboss_dr16_elg_four_sample_pixel_bitcode_aggregates_2026-09-26.json",
+  "archived_report_git_blob_sha1": "26a0851516543da1449694ecde022185c112296e",
+  "byte_identical_archive_verified": true,
+  "parent_pixel_protocol": "source_data/eboss_dr16_elg_four_sample_pixel_bitcode_protocol_2026-09-26.json",
+  "parent_wcs_header_report_sha256": "233339946dda20dc7b81f83c70645761dfc728f562396fecd261750e3eec6e04",
+  "status": "OFFICIAL_ELG_FOUR_SAMPLE_PIXEL_AGGREGATES_SOURCE_QA_ONLY",
+  "sample_order": [
+    "eboss21",
+    "eboss22",
+    "eboss23",
+    "eboss25"
+  ],
+  "each_declared_sample_pixels": 12960000,
+  "per_sample_aggregate": {
+    "eboss21": {
+      "bit0_set": 12960000,
+      "bit2_set": 1345,
+      "bit0_and_bit2_set": 1345,
+      "nonzero_histogram_bins": 12,
+      "payload_sha256": "f377bc34dcc8484998d924b15323936b967845dab2a4edc865995e9973546bd2"
+    },
+    "eboss22": {
+      "bit0_set": 12960000,
+      "bit2_set": 3542,
+      "bit0_and_bit2_set": 3542,
+      "nonzero_histogram_bins": 28,
+      "payload_sha256": "e345dda6b485d1b7d0d4a1e6694b686f2838764c8c715ff843f883e775750b3f"
+    },
+    "eboss23": {
+      "bit0_set": 12960000,
+      "bit2_set": 2080939,
+      "bit0_and_bit2_set": 2080939,
+      "nonzero_histogram_bins": 22,
+      "payload_sha256": "d622bc04a6b2201ee71ab3dcaf24b7ae94d99711e7093d19e02d06aeba2e9572"
+    },
+    "eboss25": {
+      "bit0_set": 12960000,
+      "bit2_set": 0,
+      "bit0_and_bit2_set": 0,
+      "nonzero_histogram_bins": 9,
+      "payload_sha256": "cc69f3141d7b8dc576d4fcc8260c75c03d5df46e42a511fadc4314951fa2c538"
+    }
+  },
+  "validation_performed": "Independent read of uploaded JSON verified every 256-element histogram sums to 12,960,000 and each frozen bit0/bit2 aggregate recomputes exactly. WSL source runner previously checked complete compressed SHA of four files, FITS header SHA of four images and gzip EOF/CRC; the assistant did not independently re-read original local FITS.gz bytes.",
+  "histogram_not_spatial_mask": true,
+  "histogram_results_not_extrapolated_to_other_19377_images": true,
+  "no_pixel_positions_or_sky_coordinates_output": true,
+  "gzip_CRC_ISIZE_reported_valid_for_all_four": true,
+  "no_catalogue_or_random_rows_read": true,
+  "observed_odd_data_vector_read": false,
+  "new_science_selection_applied": false,
+  "physical_elg_mask_certified": false,
+  "physical_lrg_elg_pair_window_certified": false,
+  "next_provenance_gate": "Source-authenticate exact historical published ELG bit acceptance, extra bit8 RA interpretation, polygon bits9-11 and random-catalogue mask application. Do not infer historical production mapping solely from four sample histograms or post-veto data absence."
+}

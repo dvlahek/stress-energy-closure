@@ -1,0 +1,107 @@
+{
+  "stage": "E17D2B3B6_USER_REPORTED_REAL_ASDF_YAML_METADATA_ONLY_ACCEPTANCE",
+  "date": "2026-09-29",
+  "status": "USER_PASTED_LOCAL_WSL_STDOUT_PASS_NOT_GITHUB_INDEPENDENT_REAL_ASDF_REPLAY",
+  "parent_b6_prereg_git_blob": "e1f43da1a73aad3ef85c76a114fbffadc76d4761",
+  "parent_b6_local_script_git_blob": "718d2dde75f29dfbf2e32ab54cb624fc2a6688f8",
+  "exact_file": "AbacusSummit_base_c000_ph000/halos/z0.950/halo_info/halo_info_000.asdf",
+  "b6_report_local_path": "/home/dino/stress-energy-closure/eboss_workspace/e17d2b3b6_reports/halo_info_000_schema_only.json",
+  "local_report_SHA256_USER_REPORTED": "70820fb64965849ec692a035d4c2d6a1dedf38a8de492f19c88a4082dd42cedd",
+  "real_file_SHA256_PREVIOUSLY_USER_REPORTED": "7f3755a469b3c25c869a0394b06192780d4a03717fd918d01c7459b0405724c3",
+  "user_stdout_markers": [
+    "E17D2B3B6_SYNTHETIC_SCHEMA_AND_SIX_NEGATIVES_PASS",
+    "E17D2B3B6_REAL_ASDF_YAML_METADATA_ONLY_PASS",
+    "NO_BINARY_BLOCK_NO_HALO_ROWS_OBSERVED_ODD_SEALED"
+  ],
+  "negative_controls_user_reported": [
+    "MISSING_N",
+    "DUPLICATE_ID",
+    "WRONG_SIM",
+    "MISSING_DTYPE",
+    "NO_END",
+    "OVER_LIMIT"
+  ],
+  "actual_yaml_prefix_bytes_user_reported": 14416,
+  "actual_raw_column_count_user_reported": 70,
+  "actual_row_count_FROM_DESCRIPTOR_ONLY": 11676687,
+  "descriptors_user_reported": {
+    "id": {
+      "shape": [
+        11676687
+      ],
+      "datatype": "uint64",
+      "byteorder": "little",
+      "source": 0
+    },
+    "N": {
+      "shape": [
+        11676687
+      ],
+      "datatype": "uint32",
+      "byteorder": "little",
+      "source": 7
+    },
+    "SO_radius": {
+      "shape": [
+        11676687
+      ],
+      "datatype": "float32",
+      "byteorder": "little",
+      "source": 20
+    },
+    "SO_central_particle": {
+      "shape": [
+        11676687,
+        3
+      ],
+      "datatype": "float32",
+      "byteorder": "little",
+      "source": 18
+    },
+    "SO_central_density": {
+      "shape": [
+        11676687
+      ],
+      "datatype": "float32",
+      "byteorder": "little",
+      "source": 19
+    },
+    "x_L2com": {
+      "shape": [
+        11676687,
+        3
+      ],
+      "datatype": "float32",
+      "byteorder": "little",
+      "source": 21
+    },
+    "r100_L2com": {
+      "shape": [
+        11676687
+      ],
+      "datatype": "float32",
+      "byteorder": "little",
+      "source": 27
+    },
+    "r50_L2com_i16": {
+      "shape": [
+        11676687
+      ],
+      "datatype": "int16",
+      "byteorder": "little",
+      "source": 59
+    }
+  },
+  "evidence_limitations": {
+    "full_local_JSON_bytes_uploaded_to_GitHub": false,
+    "real_ASDF_bytes_on_GitHub": false,
+    "GitHub_CI_replayed_actual_real_ASDF": false,
+    "provider_origin_signed_or_independently_attested": false,
+    "actual_numeric_halo_columns_read": false,
+    "individual_L1_halo_mass_measured": false,
+    "individual_M200c_measured": false,
+    "real_merger_history_measured": false,
+    "physical_neutrino_wake_or_galaxy_bispectrum_measured": false,
+    "observed_eBOSS_24D_odd_vector_SEALED": true
+  }
+}

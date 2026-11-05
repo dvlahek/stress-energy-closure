@@ -1,0 +1,74 @@
+{
+  "stage": "E61_ELG_FULLPOOL_RECONSTRUCTION_LOCK",
+  "date": "2026-09-30",
+  "status": "PASS_ELG_FULLPOOL_RECONSTRUCTION_LOCK_QUANTIFIED",
+  "selected_tracer": "eBOSS_ELG",
+  "aggregate": {
+    "NGC": {
+      "pearson": {
+        "n": 9,
+        "mean": 0.9914531094048775,
+        "median": 0.9919635037634837,
+        "min": 0.9877627477630423,
+        "max": 0.9940734749981084,
+        "sample_sd": 0.0017206478135016613
+      },
+      "sign_agreement": {
+        "n": 9,
+        "mean": 0.9607204861111112,
+        "median": 0.962890625,
+        "min": 0.94921875,
+        "max": 0.970703125,
+        "sample_sd": 0.007900169986661197
+      },
+      "rms_difference_ratio": {
+        "n": 9,
+        "mean": 0.13329436483208054,
+        "median": 0.12977088083351554,
+        "min": 0.11107717743498284,
+        "max": 0.16065602793750464,
+        "sample_sd": 0.013491003501067387
+      },
+      "sevenrep_surrogate_gate_pass": true
+    },
+    "SGC": {
+      "pearson": {
+        "n": 9,
+        "mean": 0.9921251947472088,
+        "median": 0.9920690187776153,
+        "min": 0.9903052055111554,
+        "max": 0.993555557114583,
+        "sample_sd": 0.0009853702740842026
+      },
+      "sign_agreement": {
+        "n": 9,
+        "mean": 0.9602864583333334,
+        "median": 0.958984375,
+        "min": 0.939453125,
+        "max": 0.98046875,
+        "sample_sd": 0.01313830473347042
+      },
+      "rms_difference_ratio": {
+        "n": 9,
+        "mean": 0.126179284767015,
+        "median": 0.12645475238994047,
+        "min": 0.1133763291073222,
+        "max": 0.140276767830936,
+        "sample_sd": 0.00790115885413778
+      },
+      "sevenrep_surrogate_gate_pass": true
+    }
+  },
+  "decision": {
+    "full_pool_reconstruction_operator_locked": true,
+    "sevenrep_surrogate_valid_all_caps": true,
+    "interpretation": "FULLPOOL_ELG_RECONSTRUCTION_LOCKED; SEVENREP_SURROGATE_VALID; NEXT_TRUTH_VELOCITY_CALIBRATION",
+    "important_limit": "No truth-velocity calibration yet."
+  },
+  "full_eligible_random_pool_is_final_selection_operator": true,
+  "sevenrep_mean_is_surrogate_diagnostic_only": true,
+  "observed_galaxy_rows_used": false,
+  "observed_odd_used": false,
+  "true_velocity_used": false,
+  "absolute_EV_amplitude_calibrated": false
+}

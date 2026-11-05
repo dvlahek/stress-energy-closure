@@ -1,0 +1,68 @@
+{
+  "date": "2026-09-28",
+  "stage": "E17D2B3B3R1_SOURCE_MANIFEST_DIRECTORY_ENTRY_COUNT_SEMANTICS_ERRATUM",
+  "status": "PROSPECTIVE_CORRECTIVE_METADATA_AUDIT_BEFORE_REPLAY_KEEP_PRIOR_ARCHIVE_IMMUTABLE",
+  "finding_before_replay": "Upstream original build_manifest.py line du=[fn.stat().st_size for fn in fpath.iterdir()], then nfile=len(du) and du=sum(du), with NO '*.asdf' extension filtering. The original published table's value 35 is DIRECTORY ENTRY COUNT, not 35 verified ASDF superslabs. The aggregate bytes include any checksum/auxiliary files that reside in the same directory. Official Abacus documentation says checksums.crc32 is present in each file directory. Actual per-item listing, number of ASDFs, real file sizes and checksums still require access to provider.",
+  "prior_original_AUDIT_preserve": {
+    "original_E17D2b3b3_prospective_prereg_git_blob": "42dab76d5e4fb7c8325ece9ea4465775b384da21",
+    "original_CI_run_id": 36451864487,
+    "original_result_SHA256": "39b83642737da1f29e71aade85a2ed7d854dbdb3ff02582b7f1d61d5d92cf340",
+    "original_archive_manifest_git_blob": "4fae0b9418e65e6dba823e22f35fc5d5a9749824",
+    "original_wrong_labelled_field": "archived_provider_portal_source_inventory_not_live.<product>.file_count_in_archived_snapshot must be interpreted as directory_entry_count_in_archived_snapshot, NOT ASDF_count.",
+    "original_wrong_public_wording": "35 halo_info ASDF files, 35 cleaned_halo_info ASDF files",
+    "correction": "The published table lists 35 entries in each relevant source directory, including any checksums.crc32 or auxiliary entries. Exact .asdf file counts are UNVERIFIED. The previously reported total byte amounts remain correct as directory-aggregate totals but must not be described as ASDF-only totals.",
+    "original_archives_not_edited": true
+  },
+  "upstream_public_pins": {
+    "repo": "abacusorg/abacussummit-data-portal",
+    "commit": "f877298344a6988d55f57a7c39f5be14dce63ff3",
+    "builder_path": "build_manifest.py",
+    "builder_blob": "88dc7c198c1332d2a0204bb0d3c698fd1dcf28a5",
+    "portal_snapshot_path": "web/portal/static/data/simulations.table.json",
+    "portal_snapshot_blob": "cb235ad72ab2516f872bd4ca79b9447a3f4b30e3",
+    "expected_simname": "AbacusSummit_base_c000_ph000",
+    "expected_epoch_key": "0.95",
+    "expected_counts_and_aggregate_dir_bytes": {
+      "halo_info": [
+        35,
+        75722740486
+      ],
+      "halo_pid_A": [
+        35,
+        7933832501
+      ],
+      "cleaned_halo_info": [
+        35,
+        18363791798
+      ],
+      "cleaned_rvpid": [
+        35,
+        488961946
+      ]
+    },
+    "source_docs": "https://abacussummit.readthedocs.io/en/latest/data-products.html"
+  },
+  "locked_QA": {
+    "source_builder_gitblob_and_manifest_gitblob_SHA_verified": true,
+    "first_original_CI_result_SHA_and_manifest_gitblob_verified": true,
+    "independent_ast_of_builder_must_prove_direct_directory_iterdir_no_extension_filter": true,
+    "must_not_claim_ASDF_count_35_or_even_34_without_provider_specific_actual_listing": true,
+    "all_four_archived_directory_entry_counts_and_aggregate_sizes_match_source": true,
+    "do_not_invent_real_superslab_XXX_file_name_or_assume_zero_based_consecutive_set": true,
+    "negative_test_fake_filter_only_asdf_must_fail": true,
+    "negative_test_tampered_original_35_to_34_must_fail": true
+  },
+  "user_access_next": "Official Globus source browse only; after user authenticates, inspect actual halo_info file names and 'checksums.crc32' in same exact directory, select ONE verified .asdf and checksum entry, no whole folder transfer. Validate with existing R1 local checksum/header checker after real transfer and independent provider checksum authenticity; DO NOT download automatically.",
+  "absolute_STOP": {
+    "no_actual_Abacus_ASDF_or_particle_PID_tree_or_Globus_Transfer": true,
+    "no_live_file_listing_claim_from_static_portal_snapshot": true,
+    "no_fixed_ASDF_superslab_count_or_per_file_size_without_real_provider_listing": true,
+    "no_relabel_35_directory_items_as_35_ASDF_files": true,
+    "no_fictitious_XXX_filename_or_cksum": true,
+    "no_new_observed_CLASS_mock_or_science_cut_seed": true,
+    "no_M200c_from_L1_or_SO_radius": true,
+    "no_Fplus_Fminus_nonlinear_wake_or_finiteK_galaxy_B": true,
+    "observed_odd_SEALED": true,
+    "main_untouched_PR_draft": true
+  }
+}

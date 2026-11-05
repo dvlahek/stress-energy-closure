@@ -1,0 +1,37 @@
+name: eBOSS A03 E18 independently verify archived E4 9-mock 24D descriptive analysis
+on:
+  push:
+    branches:
+      - audit/eboss-elg-bit8-ra-orientation-20260925
+    paths:
+      - 'scripts/audit_eboss_dr16_a03_e18_independent_stdlib_replay.py'
+      - 'source_data/eboss_dr16_a03_e18_*'
+      - '.github/workflows/eboss_dr16_a03_e18_independent_24d_replay.yml'
+      - 'EINSTEIN_VLASOV_NP_MASTER_PLAN.md'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-e4-json-only-independent-validation:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    env:
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Exact prior E4, erratum, E18 protocol and result source Git blobs
+        run: |
+          set -euo pipefail
+          test "$(git hash-object source_data/eboss_dr16_a03_e18_posthoc_nine_mock_paired_random_24d_stability_protocol_2026-09-29.json)" = 9b13de770d4c9b051f8b6af7c5a6e2a342df77e3
+          test "$(git hash-object source_data/eboss_dr16_a03_e4_mock_galaxy_nested_random_density_1200_2400_4800_report_2026-09-27.json)" = 32246a495506deac5b9dfe71bea51c3db33202b1
+          test "$(git hash-object source_data/eboss_dr16_a03_e4_odd_multipole_summary_erratum_and_24d_drift_2026-09-27.json)" = 0baf9c5a009bf8f5e78f5725e44395bad6f91715
+          test "$(git hash-object source_data/eboss_dr16_a03_e18_posthoc_nine_mock_24d_paired_random_vs_mock_scatter_descriptive_result_2026-09-29.json)" = 86ea80bca942143d20e93123aa7d8d0892431643
+          echo E18_FOUR_IMMUTABLE_SOURCE_GIT_BLOBS_PASS
+      - name: Independent complete 24D numerical replay and five negative controls
+        run: |
+          set -euo pipefail
+          python3 -m py_compile scripts/audit_eboss_dr16_a03_e18_independent_stdlib_replay.py
+          python3 -u scripts/audit_eboss_dr16_a03_e18_independent_stdlib_replay.py
+          echo E18_INDEPENDENT_SOURCE_ONLY_CI_PASS

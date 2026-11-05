@@ -1,0 +1,95 @@
+{
+  "date": "2026-09-27",
+  "scope": "Retrospective mock0001 engineering source-only audit of user-uploaded final V2.1 report and append log. Not an inference gate or new science selection.",
+  "source_report": {
+    "bytes": 529771,
+    "sha256": "187e21e206cdb6ded1108887a2b6670113d50b752e438d28212cfc3d187572da"
+  },
+  "source_log": {
+    "bytes": 21853,
+    "sha256": "81fd7b93b26fb56f2334038bb558155a314d4a33f1b872d8282d56b197628243"
+  },
+  "source_original_v1_json_sha256": "6731e0aa1f18a192b8067bcd44fda5aae8ffdb5164f64a86eab55d2b3e585f5c",
+  "previous_user_uploaded_v2_4800_stage_sha256": "d3f298a9550981c0ece7d6c9e7aee0d3fb5cebaf0d80cdd39805cda3bb08e238",
+  "status": "EBOSS_FULL_ELIGIBLE_MOCK0001_SGC_RECOVERY_V2_ENGINEERING_ONLY",
+  "errors": [],
+  "completed_mock_caps": [
+    "0001/NGC",
+    "0001/SGC"
+  ],
+  "source_only_json_audit": {
+    "weighted_pair_histogram_SHA256": 32,
+    "cross_LS_xi_6x24_SHA256_and_exact_algebra": 4,
+    "ell0_to_ell3_six_bin_clipped_physical_mu_projections": 16,
+    "SGC_48000_chunk_SHA256_and_disjoint_row_partition": 26,
+    "SGC_48000_chunk_histograms_and_accepted_candidate_counts_exact_assembly": 3,
+    "errors": [],
+    "qualifier": "Reconstructed from user-uploaded JSON, not new independent FITS pair counting."
+  },
+  "observed_rows_or_odd_read": false,
+  "cases": {
+    "0001/NGC": {
+      "xi_L1_4800": 7.442271507272991,
+      "xi_L1_48000": 3.8021230683111047,
+      "xi_difference_L1": 6.3685293571235775,
+      "xi_relative_L1_difference_to_48000": 1.6749929559624868,
+      "xi_max_cell_difference": 0.17132575039528097,
+      "max_ell1_difference": 0.02546494963895583,
+      "max_ell3_difference": 0.039177327151613435,
+      "RR_count_4800": 116782,
+      "RR_count_48000": 11690810,
+      "normalized_hist_relative_L1_drift_DR": 0.024341581839132334,
+      "RD": 0.041733304882136724,
+      "RR": 0.043457412615250504,
+      "large_reverse_independently_recounted": true
+    },
+    "0001/SGC": {
+      "xi_L1_4800": 6.548315272568793,
+      "xi_L1_48000": 3.532344902395005,
+      "xi_difference_L1": 5.158239744043457,
+      "xi_relative_L1_difference_to_48000": 1.4602876804431133,
+      "xi_max_cell_difference": 0.23322459087941894,
+      "max_ell1_difference": 0.05195803327406882,
+      "max_ell3_difference": 0.0472679804839392,
+      "RR_count_4800": 323373,
+      "RR_count_48000": 32458840,
+      "normalized_hist_relative_L1_drift_DR": 0.017659831389457988,
+      "RD": 0.01204980642915224,
+      "RR": 0.020922318632974345,
+      "large_reverse_independently_recounted": false,
+      "original_v1_independent_reverse_R1D2_failure_unresolved": true,
+      "xi_SHA256_4800": "a197d0b88fe2675e55a26b8cf3d6c0664ab91f736344e8736bda33f66a4fd54c",
+      "xi_SHA256_48000": "efc3f3e11203d324c6cce3a6258034fbd1c63319c3ffbe0df050c9a7e92f5352",
+      "full_random_48000_pair_counts": {
+        "DD": 1006690,
+        "DR": 3045421,
+        "RD": 10706742,
+        "RR": 32458840
+      },
+      "SGC_48000_saved_first_catalogue_chunks": {
+        "DR": 2,
+        "RD": 12,
+        "RR": 12
+      },
+      "posthoc_exploratory_leave_one_4000_LRG_random_block_out": {
+        "block_count": 12,
+        "other_catalogues_fixed": true,
+        "max_dipole_ell1_change": 0.0026850010302000653,
+        "max_octupole_ell3_change": 0.004765257164664517,
+        "not_full_ELG_random_error_or_covariance": true
+      }
+    }
+  },
+  "decision": {
+    "low_4800_reference_drift_large": true,
+    "high_48000_convergence_not_certified": true,
+    "stop_expensive_WSL_pair_recount": true,
+    "source_only_physics_budget_and_independent_A03_window_next": true,
+    "eBOSS_A04_covariance_not_certified": true,
+    "absolute_EV_wake_amplitude_not_calibrated": true,
+    "no_detection_or_exclusion": true,
+    "observed_odd_remains_sealed": true,
+    "no_new_mock_ids_seeds_cuts_or_downloads": true,
+    "main_unchanged": true
+  }
+}

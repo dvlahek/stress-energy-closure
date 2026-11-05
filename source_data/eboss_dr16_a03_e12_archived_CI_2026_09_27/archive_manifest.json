@@ -1,0 +1,32 @@
+{
+  "date": "2026-09-27",
+  "run_id": "36332156763",
+  "scope": "Original frozen source-only vTk vs density-proxy audit. NOT an observed eBOSS B, xi, S/N or valid product with E11 Gamma.",
+  "preregistration_git_blob": "4805ce5f70d0908ccbf26ccc0a3ec5812f4ce757",
+  "frozen_original_E8_csv_sha256": "bf8f48deb9514c5101d5ce314bfbd397485102a5487da1039f141e3cad6143d0",
+  "frozen_original_E9_full_sha256": "450b35f68a329f545f21bbe7ec02e36941e4c303037ccb7c011830c315d15890",
+  "originals_unchanged": true,
+  "observed_odd_sealed": true,
+  "files": [
+    {
+      "file": "e12_all_states_summary_source_only.json",
+      "sha256": "5b8d369f3997adf318e56002098705c683876702528706240e1770e2febf887f",
+      "size_bytes": 2162
+    },
+    {
+      "file": "e12_direct_vTk_long_cross_FD.json",
+      "sha256": "b1c679e8ccdf2e901abbb2ffc200cfcce765bf8ee9492364a280625835d42414",
+      "size_bytes": 19797
+    },
+    {
+      "file": "e12_direct_vTk_long_cross_minus.json",
+      "sha256": "4a12370b578a5482b67cd3d484504bf672396df35d8c252ff5d1150875b04777",
+      "size_bytes": 19815
+    },
+    {
+      "file": "e12_direct_vTk_long_cross_plus.json",
+      "sha256": "aedaf4381065ba807adced01b7740ade91db5a83d49113315e7a596ac2652655",
+      "size_bytes": 19797
+    }
+  ]
+}
