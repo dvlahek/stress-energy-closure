@@ -1,0 +1,49 @@
+{
+  "stage": "K01B_R1_HIGHER_N_NUMERICAL_RESOLUTION_CONFIRMATION_PREREG",
+  "date": "2026-11-05",
+  "parent": {
+    "stage": "K01B_REMOTE_LOCAL_NFW_MATCHED_PARTICLE_DYNAMICS",
+    "result": "FAIL_LOCAL_HIDDEN_STATE_CONTRAST_NOT_RESOLVED_UNDER_PREREGISTERED_GATE",
+    "parent_fine_contrast_km_s": -0.000013598208990976408,
+    "parent_relative_to_abs_FD_drag": -0.01961074237939262,
+    "parent_timestep_relative_gap": 0.004774150962489973,
+    "parent_nested_sample_relative_gap": 0.4023659787265196,
+    "parent_contrast_to_numerical_floor": 2.485299585131378
+  },
+  "purpose": "One prospective higher-particle-count confirmation of the unchanged K01B local dynamics setup, motivated solely by the parent's sampling-resolution failure.",
+  "immutable_physics": {
+    "halo": "Exactly the same frozen E28 lower-mass DM14/NFW anchor.",
+    "z_obs": 0.95,
+    "z_init_for_duration": 1,
+    "halo_relative_wind_km_s": 200,
+    "physical_periodic_box_Mpc": 4,
+    "position_direction_seed": 2026110502,
+    "momentum_states": "Exactly the same frozen E8 F0/F+/F- distributions and matched stratified-quantile construction.",
+    "integrator": "Same kick-drift-kick leapfrog.",
+    "coarse_steps": 128,
+    "fine_steps": 256
+  },
+  "only_resolution_change": {
+    "particles_per_state": 262144,
+    "nested_half_sample": 131072,
+    "factor_vs_parent": 4
+  },
+  "unchanged_gate": {
+    "timestep_relative_gap_at_most": 0.1,
+    "nested_sample_relative_gap_at_most": 0.25,
+    "contrast_to_numerical_floor_at_least": 5,
+    "wind_reversal_relative_parity_residual_at_most": 0.02,
+    "sign_consistency_required": true
+  },
+  "interpretation": "R1 can establish numerical resolution of the same local toy dynamics, but cannot retroactively convert K01B to PASS and is not a cosmological or detectability result.",
+  "stopping_rule": "If R1 fails the unchanged gate, do not escalate particle count again in this local toy branch. Reassess variance reduction or move only to an independently motivated physical engine test.",
+  "guards": {
+    "observed_galaxy_rows_used": false,
+    "observed_odd_used": false,
+    "E63_used_as_science_input": false,
+    "galaxy_response_fitted": false,
+    "survey_covariance_used": false,
+    "pvalue_or_detection_sigma_computed": false,
+    "main_branch_modified": false
+  }
+}
