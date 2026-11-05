@@ -1,0 +1,92 @@
+{
+  "stage": "K01C_DETERMINISTIC_LOCAL_NFW_PHASE_SPACE_SCATTERING_PREREG",
+  "date": "2026-11-05",
+  "motivation": "K01B and its single preregistered 4x-N confirmation failed particle-sampling resolution despite good time-step and wind-reversal controls. K01C therefore changes the estimator, not the physics, to deterministic phase-space quadrature.",
+  "interpretation_boundary": "Static local truncated-NFW test-particle scattering kernel only. Not a cosmological N-body simulation, total halo drag, galaxy response, survey observable, or detectability forecast.",
+  "frozen_physics": {
+    "kinetic_states": "Original E8 4000-q CLASS-normalized F0/F+/F- at m_nu=0.06 eV, source-matched at z=1100.",
+    "evaluation_redshift": 0.95,
+    "halo_relative_wind_km_s": 200,
+    "halo": "Original E28 lower-mass DM14/NFW anchor: same M200c, c200c and r_s at z=.95.",
+    "potential": "Spherical NFW truncated at r200=c*r_s, with Kepler point-mass potential outside r200.",
+    "neutrino_self_gravity": false,
+    "cosmological_expansion_during_single_scattering": false
+  },
+  "estimand": {
+    "definition": "For each state F, D(F;bmax) is the number-normalized incoming-flux-weighted x-momentum-transfer cross-section proxy integrated over q, thermal-direction cosine mu, and impact parameter b.",
+    "formula": "D = [integral dq q^2 F(q) integral dmu/2 2pi v_rel^2 mu_rel J(v_rel;bmax)] / [integral dq q^2 F(q)], with J=integral_0^bmax b[cos(chi)-1] db.",
+    "hidden_contrast": "C(bmax)=D(Fminus;bmax)-D(Fplus;bmax).",
+    "units": "(km/s)^2 Mpc^2",
+    "primary_bmax": "1*r200",
+    "preregistered_cutoff_diagnostics": [
+      "2*r200",
+      "4*r200"
+    ]
+  },
+  "deterministic_numerics": {
+    "q_intervals": [
+      [
+        0,
+        0.25
+      ],
+      [
+        0.25,
+        0.5
+      ],
+      [
+        0.5,
+        1
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        2,
+        4
+      ],
+      [
+        4,
+        8
+      ],
+      [
+        8,
+        12
+      ],
+      [
+        12,
+        20
+      ]
+    ],
+    "fine_q_legendre_nodes_per_interval": 12,
+    "coarse_q_legendre_nodes_per_interval": 8,
+    "fine_mu_legendre_nodes": 32,
+    "coarse_mu_legendre_nodes": 20,
+    "fine_b_legendre_nodes_0_to_r200": 48,
+    "coarse_b_legendre_nodes_0_to_r200": 32,
+    "fine_orbit_angle_legendre_nodes": 64,
+    "coarse_orbit_angle_legendre_nodes": 40,
+    "turning_point_solver": "80-step bisection for the unique outer radial turning point",
+    "outside_r200_extension": "Analytic point-mass impact-parameter integral from r200 to 2*r200 and 4*r200.",
+    "no_speed_interpolation": true
+  },
+  "preregistered_gate": {
+    "primary_contrast_nonzero_and_same_sign_coarse_fine": true,
+    "primary_contrast_coarse_fine_relative_gap_at_most": 0.05,
+    "each_state_primary_D_coarse_fine_relative_gap_at_most": 0.02,
+    "contrast_sign_same_for_bmax_1_2_4_r200": true,
+    "zero_wind_absolute_residual_relative_to_primary_FD_at_most": 1e-10,
+    "wind_reversal_relative_parity_residual_at_most": 1e-10,
+    "note": "PASS establishes only a numerically resolved deterministic local scattering contrast. It is not a total-force or observational significance result."
+  },
+  "stopping_rule": "If K01C fails the deterministic gate, do not retune quadrature or bmax to recover a contrast. Diagnose and reconsider the local-scattering estimand before any cosmological engine work.",
+  "guards": {
+    "observed_galaxy_rows_used": false,
+    "observed_odd_used": false,
+    "E63_used_as_science_input": false,
+    "galaxy_response_fitted": false,
+    "survey_covariance_used": false,
+    "pvalue_or_detection_sigma_computed": false,
+    "main_branch_modified": false
+  }
+}
