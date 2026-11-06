@@ -48,7 +48,8 @@ jobs:
           set -euo pipefail
           cd external/SWIFT
           ./autogen.sh
-          ./configure             --disable-mpi             --disable-optimization             --disable-doxygen-doc             --disable-compiler-warnings
+          ./configure             --disable-mpi             --disable-optimization             --disable-doxygen-doc             --disable-compiler-warnings \
+            --with-potential=constant
           make -j2
           ./swift --version || true
           git rev-parse HEAD
@@ -60,7 +61,7 @@ jobs:
         run: |
           set -euo pipefail
           cd k01d1_swift_work/calibration
-          ../../external/SWIFT/swift -c --threads=2 calibration.yml 2>&1 | tee calibration.log
+          ../../external/SWIFT/swift -c -g --threads=2 calibration.yml 2>&1 | tee calibration.log
 
       - name: Extract SWIFT-calibrated neutrino macro mass
         run: python -u scripts/k01d1_swift_custom_f_transport_smoke.py extract-calibration
@@ -75,7 +76,7 @@ jobs:
             echo "=== K01D1 SWIFT STATE $state ==="
             (
               cd "k01d1_swift_work/science/$state"
-              ../../../external/SWIFT/swift -c --threads=2 science.yml 2>&1 | tee swift.log
+              ../../../external/SWIFT/swift -c -g --threads=2 science.yml 2>&1 | tee swift.log
             )
           done
 
