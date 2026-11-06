@@ -32,11 +32,16 @@ jobs:
           ref: e1a963fa682061498a5a59da1b3e1521e9eae724
           path: external/SWIFT
 
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
       - name: Install build and analysis dependencies
         run: |
           sudo apt-get update
           sudo apt-get install -y             build-essential autoconf automake libtool pkg-config             libhdf5-dev libfftw3-dev libgsl-dev libnuma-dev
-          python -m pip install --upgrade pip numpy scipy h5py
+          python -m pip install --upgrade pip numpy h5py
 
       - name: Build pinned SWIFT
         run: |
