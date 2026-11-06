@@ -1,0 +1,50 @@
+{
+  "stage": "K01E0_FROZEN_E9_SWIFT_COSMOLOGY_CLOSURE_AND_NU_MASS_CALIBRATION",
+  "status": "PASS_FROZEN_E9_SWIFT_COSMOLOGY_CLOSURE_AND_NU_MASS_CALIBRATION",
+  "date": "2026-11-06",
+  "evidence": {
+    "workflow_run_id": 42246549361,
+    "job_id": 127990151930
+  },
+  "frozen_E9": {
+    "h": 0.6736,
+    "omega_b": 0.02237,
+    "omega_cdm": 0.12,
+    "N_ur": 2.0328,
+    "N_nu": 1,
+    "M_nu_eV": 0.06,
+    "T_nu_0_K": 1.951757805,
+    "deg_nu": 1,
+    "k_h_Mpc": 0.05
+  },
+  "derived": {
+    "Omega_b": 0.049301692328524445,
+    "Omega_cdm": 0.26447041034523616,
+    "Omega_m_nonnu": 0.3137721026737606,
+    "Omega_r": 0.00007966418265133115,
+    "Omega_nu_0": 0.0014197672287666455,
+    "Omega_lambda_flat": 0.6847284659148214,
+    "closure_residual": 0,
+    "box_Mpc": 186.55538322979768,
+    "fundamental_k_h_Mpc": 0.05,
+    "nside_fine": 32,
+    "particles_per_species_fine": 32768,
+    "neutrino_macro_mass_fine_internal": 3.54225492477417,
+    "cold_total_nonnu_macro_mass_fine_internal": 782.847183279757,
+    "nside_coarse": 16,
+    "particles_per_species_coarse": 4096,
+    "neutrino_macro_mass_coarse_internal": 28.33803939819336,
+    "cold_total_nonnu_macro_mass_coarse_internal": 6262.777466238056
+  },
+  "swift": {
+    "commit": "e1a963fa682061498a5a59da1b3e1521e9eae724",
+    "audited_universe_age_patch": "only present-day age qag epsrel 1e-13 -> 1e-11",
+    "patch_diff_sha256": "c69cbe3dfa7ebf7b6f5e90034d9b4943f77f49381a65431c01c9537374f044ab"
+  },
+  "interpretation": "Cosmology/mass calibration only; no self-gravity hidden-state response.",
+  "guards": {
+    "observed_data_used": false,
+    "self_gravity_used": false,
+    "main_branch_modified": false
+  }
+}
