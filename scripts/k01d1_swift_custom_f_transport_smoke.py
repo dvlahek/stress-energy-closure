@@ -25,7 +25,7 @@ import numpy as np
 
 ROOT = Path(__file__).resolve().parents[1]
 PREREG = ROOT / "source_data/k01d1_swift_custom_f_transport_smoke_prereg_2026-11-06.json"
-PREREG_BLOB = "4519708bde9cfab729651375e22e5176ee353609"
+PREREG_BLOB = "7be00a07f869c3f318f7d307ef640940736af5a5"
 WORK = ROOT / "k01d1_swift_work"
 CAL = WORK / "calibration"
 SCI = WORK / "science"
