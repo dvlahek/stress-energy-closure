@@ -1,0 +1,38 @@
+name: K01D2-D0 GSL neutrino density scan
+
+on:
+  push:
+    branches:
+      - experiment/k01-matched-f-detectability-20261105
+    paths:
+      - "scripts/k01d2_d0_gsl_neutrino_density_tolerance_scan.c"
+      - "source_data/k01d2_d0_gsl_neutrino_density_tolerance_scan_2026-11-06.json"
+      - ".github/workflows/k01d2_d0_gsl_neutrino_density_scan.yml"
+  pull_request:
+    branches:
+      - audit/eboss-elg-bit8-ra-orientation-20260925
+    paths:
+      - "scripts/k01d2_d0_gsl_neutrino_density_tolerance_scan.c"
+      - "source_data/k01d2_d0_gsl_neutrino_density_tolerance_scan_2026-11-06.json"
+      - ".github/workflows/k01d2_d0_gsl_neutrino_density_scan.yml"
+  workflow_dispatch:
+
+jobs:
+  scan:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install GSL
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gcc libgsl-dev
+      - name: Build diagnostic
+        run: gcc -O2 scripts/k01d2_d0_gsl_neutrino_density_tolerance_scan.c -lgsl -lgslcblas -lm -o k01d2_d0_scan
+      - name: Run diagnostic
+        run: ./k01d2_d0_scan | tee k01d2_d0_scan.log
+      - name: Upload diagnostic
+        uses: actions/upload-artifact@v4
+        with:
+          name: k01d2-d0-gsl-neutrino-density-scan
+          path: k01d2_d0_scan.log

@@ -1,0 +1,78 @@
+{
+  "date": "2026-11-05",
+  "branch": "experiment/k01-matched-f-detectability-20261105",
+  "scope": "K01 hidden-state detectability development; no observations and no main merge.",
+  "status_chain": {
+    "K01A": {
+      "status": "PASS_MATCHED_F0_FPLUS_FMINUS_PARTICLE_SAMPLING_FEASIBILITY",
+      "key_result": "Exact source-moment matching at machine precision; matched quantile particle construction feasible."
+    },
+    "K01B": {
+      "status": "FAIL_LOCAL_HIDDEN_STATE_CONTRAST_NOT_RESOLVED_UNDER_PREREGISTERED_GATE",
+      "note": "Initial random-particle local drag estimate showed a ~1.96% Fminus-Fplus contrast relative to FD, but failed nested particle-resolution and numerical-floor gates."
+    },
+    "K01B_R1": {
+      "status": "FAIL_HIGHER_N_CONFIRMATION_UNRESOLVED_STOP_LOCAL_PARTICLE_CHASING",
+      "note": "4x higher N changed the contrast sign and remained strongly unresolved; random-particle local-drag route closed."
+    },
+    "K01C": {
+      "status": "PASS_NUMERICALLY_RESOLVED_DETERMINISTIC_LOCAL_SCATTERING_CONTRAST",
+      "primary": {
+        "bmax": "1*r200",
+        "FD_D": 1.504891494537875,
+        "Fplus_D": 1.1783385647479583,
+        "Fminus_D": 1.8314445353150117,
+        "hidden_C": 0.6531059705670534,
+        "relative_to_abs_FD": 0.4339887446620266,
+        "contrast_coarse_fine_relative_gap": 0.000006979058372670584
+      },
+      "cutoff_diagnostics": {
+        "C_2r200": 1.2022957387195552,
+        "C_4r200": 1.717202514447996,
+        "sign_same_1_2_4r200": true
+      },
+      "controls": {
+        "zero_wind_relative_residual": 2.0863217373890822e-16,
+        "wind_reversal_max_relative_residual": 6.799650131271742e-16
+      },
+      "interpretation": "Deterministic local truncated-NFW scattering cross-section proxy only; not total cosmological drag or observational detectability."
+    },
+    "K01C_R1": {
+      "formal_status": "FAIL_K01C_POSTHOC_PRECISION_AUDIT",
+      "reason": "Predeclared adaptive double-precision point-mass QA threshold was not met in an extreme near-pi deflection case.",
+      "actual_NFW_high_precision_replay": {
+        "FD_D": 1.5048909899824636,
+        "Fplus_D": 1.178338221299857,
+        "Fminus_D": 1.831443869652236,
+        "hidden_C": 0.6531056483523789,
+        "parent_C_relative_shift": 4.933574167415514e-7,
+        "max_state_relative_shift": 3.6346324606276125e-7,
+        "cutoff_signs": [
+          1,
+          1,
+          1
+        ]
+      },
+      "interpretation": "Formal R1 FAIL is preserved and is not retroactively relabeled."
+    },
+    "K01C_D1": {
+      "status": "DIAGNOSTIC_COMPLETE_NO_SCIENCE_RECLASSIFICATION",
+      "arbitrary_precision_digits": 80,
+      "point_mass_max_abs_chi_gap_rad": "7.269395922313762936e-46",
+      "point_mass_max_abs_coschi_gap": "2.8471649550964747256e-48",
+      "NFW_spot_max_abs_gap_64_rad": 0.0014088096617788023,
+      "NFW_spot_max_abs_gap_160_rad": 0.00007782201493155422,
+      "interpretation": "Confirms the orbit integral itself is correct; the R1 adaptive double-precision benchmark failure was numerical cancellation near extreme deflection. Does not alter the formal R1 status."
+    }
+  },
+  "retained_scientific_interpretation": "The deterministic local scattering estimand exhibits a large and numerically stable Fminus-Fplus dependence for the frozen stress-energy-matched states. This justifies proceeding to a separately defined cosmological-engine test, but does not by itself imply a survey signal or detectability.",
+  "next_stage": "K01D_COSMOLOGICAL_ENGINE_DESIGN_NO_OBSERVATIONS",
+  "guards": {
+    "observed_galaxy_rows_used": false,
+    "observed_odd_used": false,
+    "E63_used_as_science_input": false,
+    "survey_covariance_used": false,
+    "detection_significance_computed": false,
+    "main_branch_modified": false
+  }
+}

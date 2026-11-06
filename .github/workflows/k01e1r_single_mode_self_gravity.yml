@@ -1,0 +1,103 @@
+name: K01E1R matched-phase single-mode self-gravity
+
+on:
+  push:
+    branches:
+      - experiment/k01-matched-f-detectability-20261105
+    paths:
+      - "scripts/k01e1r_single_mode_self_gravity.py"
+      - "source_data/k01e1r_single_mode_self_gravity_revised_prereg_2026-11-06.json"
+      - "source_data/k01e1_original_prereg_preexecution_block_2026-11-06.json"
+      - "source_data/k01e0_e9_swift_cosmology_closure_result_freeze_2026-11-06.json"
+      - "source_data/k01e0c_canonical_z1_pair_result_freeze_2026-11-06.json"
+      - ".github/workflows/k01e1r_single_mode_self_gravity.yml"
+  workflow_dispatch:
+
+jobs:
+  science_gate:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 60
+    steps:
+      - name: Checkout stress-energy-closure
+        uses: actions/checkout@v4
+
+      - name: Checkout pinned SWIFT
+        uses: actions/checkout@v4
+        with:
+          repository: SWIFTSIM/SWIFT
+          ref: e1a963fa682061498a5a59da1b3e1521e9eae724
+          path: external/SWIFT
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential autoconf automake libtool pkg-config libhdf5-dev libfftw3-dev libgsl-dev libnuma-dev
+          python -m pip install --upgrade pip numpy h5py
+
+      - name: Apply exact audited SWIFT universe-age patch
+        run: python -u scripts/k01d2_apply_universe_age_tolerance_patch.py
+
+      - name: Build pinned patched SWIFT with periodic gravity
+        run: |
+          set -euo pipefail
+          cd external/SWIFT
+          ./autogen.sh
+          ./configure --disable-mpi --disable-optimization --disable-doxygen-doc --disable-compiler-warnings
+          make -j2
+          git rev-parse HEAD
+
+      - name: Regenerate canonical z=1 moment-null pair
+        run: python -u scripts/k01e0c_build_canonical_z1_pair.py
+
+      - name: Prepare all preregistered K01E1R ICs
+        run: python -u scripts/k01e1r_single_mode_self_gravity.py prepare
+
+      - name: Run all 12 matched self-gravity cases
+        run: |
+          set -euo pipefail
+          for res in coarse fine; do
+            for state in FD Fplus Fminus; do
+              for tag in plus minus; do
+                echo "=== K01E1R $res $state $tag ==="
+                (
+                  cd "k01e1r_self_gravity_work/$res/$state/$tag"
+                  ../../../../../external/SWIFT/swift -c -G --threads=2 science.yml 2>&1 | tee swift.log
+                )
+              done
+            done
+          done
+
+      - name: Analyze frozen K01E1R science gate
+        run: python -u scripts/k01e1r_single_mode_self_gravity.py analyze
+
+      - name: Show result
+        if: always()
+        run: |
+          cat k01e1r_self_gravity_result.json 2>/dev/null || true
+          cat k01e1r_self_gravity_work/pre_run_qa.json 2>/dev/null || true
+          for res in coarse fine; do
+            for state in FD Fplus Fminus; do
+              for tag in plus minus; do
+                echo "=== tail $res $state $tag ==="
+                tail -25 "k01e1r_self_gravity_work/$res/$state/$tag/swift.log" 2>/dev/null || true
+              done
+            done
+          done
+
+      - name: Upload K01E1R evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: k01e1r-single-mode-self-gravity
+          path: |
+            k01e1r_self_gravity_result.json
+            k01e1r_self_gravity_work/pre_run_qa.json
+            k01e0c_z1_pair/k01e0c_canonical_z1_moment_null_pair_qa.json
+            k01d2_swift_universe_age_patch.diff
+            k01e1r_self_gravity_work/*/*/*/swift.log
+          if-no-files-found: warn

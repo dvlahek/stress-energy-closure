@@ -1,0 +1,72 @@
+{
+  "stage": "K01D2_PHYSICAL_NNU1_BACKGROUND_NUMERICAL_PATH_PREREG",
+  "date": "2026-11-06",
+  "parent_chain": {
+    "K01D0": "PASS_SWIFT_CUSTOM_F_PARTICLE_NEUTRINO_ENGINE_CONTRACT",
+    "K01D1_R2": "PASS_SWIFT_CUSTOM_F_RADIATION_REGULARIZED_TRANSPORT_ONLY",
+    "K01D2_D0": "Original SWIFT massive-neutrino density integral passed all 512 y nodes at epsrel=1e-13.",
+    "K01D2_D1": "First failing qag pinpointed to the present-day universe-age integral over a=[0,1], status GSL_EROUND, original epsrel=1e-13, result=0.034531375501686244, abserr=1.0583871189658161e-13."
+  },
+  "purpose": "Validate the original physical N_nu=1 SWIFT background and executable custom-F transport using a single narrowly-scoped numerical patch to the present-day universe-age metadata integral.",
+  "swift": {
+    "repository": "SWIFTSIM/SWIFT",
+    "commit": "e1a963fa682061498a5a59da1b3e1521e9eae724"
+  },
+  "exact_patch": {
+    "file": "src/cosmology.c",
+    "target": "Only the qag call under comment 'Integrate the time \\\\int_{0}^{1} dt' assigning c->universe_age_at_present_day.",
+    "old_epsrel": 1e-13,
+    "new_epsrel": 1e-11,
+    "all_other_qag_tolerances_unchanged": true,
+    "rationale": "D1 measured estimated relative quadrature error ~3.1e-12, above the original 1e-13 request but below 1e-11. The simulation drift/kick/time tables retain their original tolerances."
+  },
+  "physical_cosmology": {
+    "h": 0.6736,
+    "Omega_cdm": 0,
+    "Omega_b": 0,
+    "Omega_lambda": 0.998,
+    "N_nu": 1,
+    "N_ur": 2.0328,
+    "T_nu_0_K": 1.951757805,
+    "M_nu_eV": 0.06,
+    "deg_nu": 2,
+    "a_begin": 0.5,
+    "a_end": 0.5128205128205128
+  },
+  "inherited_particle_design": "Exactly original K01D1: 1024/state, 512 Mpc box, same IDs/positions/directions, antithetic pairs, frozen E8 stratified q quantiles, seed 2026110601.",
+  "calibration": "Use pinned patched SWIFT generate_ics=1, delta-f off, solely to obtain the equal macro-particle mass required by its N_nu=1 background. Calibration is not a science state.",
+  "science_modes": {
+    "Neutrino:generate_ics": 0,
+    "Neutrino:use_delta_f": 0,
+    "Neutrino:use_delta_f_mesh_only": 0,
+    "Neutrino:use_linear_response": 0,
+    "Neutrino:use_model_none": 0,
+    "self_gravity": false,
+    "hydro": false,
+    "external_gravity": "ConstantPotential g_cgs=[0,0,0]"
+  },
+  "acceptance": {
+    "patched_source_diff_exactly_one_universe_age_tolerance_literal": true,
+    "calibration_and_three_science_runs_exit_zero": true,
+    "calibration_mass_positive_and_uniform": true,
+    "science_IDs_identical_to_input": true,
+    "science_masses_identical_across_states": true,
+    "no_FD_resampling": true,
+    "expected_velocity_scaling_relative_error_at_most": 0.00002,
+    "per_state_q_vs_displacement_spearman_at_least": 0.999,
+    "state_specific_displacement_not_identical": true,
+    "output_state_speed_ordering_matches_input": true
+  },
+  "interpretation": "PASS validates the physical SWIFT N_nu=1 background path and custom nonthermal FD/Fplus/Fminus transport under a narrowly audited universe-age quadrature patch. It is still not a self-gravitating hidden-state signal.",
+  "next_if_pass": "K01E_MATCHED_PHASE_COSMOLOGICAL_GRAVITY_PERTURBATION_PREREG",
+  "guards": {
+    "observed_data_used": false,
+    "observed_odd_used": false,
+    "E63_used_as_science_input": false,
+    "self_gravity_used": false,
+    "galaxy_response_used": false,
+    "survey_covariance_used": false,
+    "detection_significance_computed": false,
+    "main_branch_modified": false
+  }
+}

@@ -1,0 +1,47 @@
+name: K01A matched-F feasibility
+
+on:
+  push:
+    branches:
+      - experiment/k01-matched-f-detectability-20261105
+  pull_request:
+    branches:
+      - audit/eboss-elg-bit8-ra-orientation-20260925
+    paths:
+      - "scripts/k01a_matched_custom_f_particle_sampling_ci.py"
+      - ".github/workflows/k01a_matched_f_feasibility.yml"
+  workflow_dispatch:
+
+jobs:
+  k01a:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install numerical dependency
+        run: python -m pip install --upgrade pip numpy
+
+      - name: Run K01A matched-F feasibility
+        run: python -u scripts/k01a_matched_custom_f_particle_sampling_ci.py
+
+      - name: Show frozen result
+        if: always()
+        run: |
+          if [ -f k01a_ci_result.json ]; then
+            cat k01a_ci_result.json
+          fi
+
+      - name: Upload K01A result
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: k01a-matched-f-feasibility
+          path: k01a_ci_result.json
+          if-no-files-found: warn

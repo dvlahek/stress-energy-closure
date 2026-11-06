@@ -1,0 +1,52 @@
+name: K01B-R1 higher-N confirmation
+
+on:
+  push:
+    branches:
+      - experiment/k01-matched-f-detectability-20261105
+    paths:
+      - "scripts/k01b_r1_higher_n_resolution_confirmation.py"
+      - "source_data/k01b_r1_higher_n_resolution_confirmation_prereg_2026-11-05.json"
+      - ".github/workflows/k01b_r1_higher_n_confirmation.yml"
+  pull_request:
+    branches:
+      - audit/eboss-elg-bit8-ra-orientation-20260925
+    paths:
+      - "scripts/k01b_r1_higher_n_resolution_confirmation.py"
+      - "source_data/k01b_r1_higher_n_resolution_confirmation_prereg_2026-11-05.json"
+      - ".github/workflows/k01b_r1_higher_n_confirmation.yml"
+  workflow_dispatch:
+
+jobs:
+  k01b_r1:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install numerical dependency
+        run: python -m pip install --upgrade pip numpy
+
+      - name: Run preregistered K01B-R1 confirmation
+        run: python -u scripts/k01b_r1_higher_n_resolution_confirmation.py
+
+      - name: Show K01B-R1 result
+        if: always()
+        run: |
+          if [ -f k01b_r1_ci_result.json ]; then
+            cat k01b_r1_ci_result.json
+          fi
+
+      - name: Upload K01B-R1 result
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: k01b-r1-higher-n-confirmation
+          path: k01b_r1_ci_result.json
+          if-no-files-found: warn

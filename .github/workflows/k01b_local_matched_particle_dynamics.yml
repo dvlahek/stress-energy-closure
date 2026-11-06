@@ -1,0 +1,52 @@
+name: K01B local matched-particle dynamics
+
+on:
+  push:
+    branches:
+      - experiment/k01-matched-f-detectability-20261105
+    paths:
+      - "scripts/k01b_remote_local_nfw_matched_particle_dynamics.py"
+      - "source_data/k01b_remote_local_nfw_matched_particle_dynamics_prereg_2026-11-05.json"
+      - ".github/workflows/k01b_local_matched_particle_dynamics.yml"
+  pull_request:
+    branches:
+      - audit/eboss-elg-bit8-ra-orientation-20260925
+    paths:
+      - "scripts/k01b_remote_local_nfw_matched_particle_dynamics.py"
+      - "source_data/k01b_remote_local_nfw_matched_particle_dynamics_prereg_2026-11-05.json"
+      - ".github/workflows/k01b_local_matched_particle_dynamics.yml"
+  workflow_dispatch:
+
+jobs:
+  k01b:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install numerical dependency
+        run: python -m pip install --upgrade pip numpy
+
+      - name: Run preregistered K01B local dynamics test
+        run: python -u scripts/k01b_remote_local_nfw_matched_particle_dynamics.py
+
+      - name: Show K01B result
+        if: always()
+        run: |
+          if [ -f k01b_ci_result.json ]; then
+            cat k01b_ci_result.json
+          fi
+
+      - name: Upload K01B result
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: k01b-local-matched-particle-dynamics
+          path: k01b_ci_result.json
+          if-no-files-found: warn

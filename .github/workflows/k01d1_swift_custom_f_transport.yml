@@ -1,0 +1,112 @@
+name: K01D1 executable SWIFT custom-F transport
+
+on:
+  push:
+    branches:
+      - experiment/k01-matched-f-detectability-20261105
+    paths:
+      - "scripts/k01d1_swift_custom_f_transport_smoke.py"
+      - "source_data/k01d1_swift_custom_f_transport_smoke_prereg_2026-11-06.json"
+      - ".github/workflows/k01d1_swift_custom_f_transport.yml"
+  pull_request:
+    branches:
+      - audit/eboss-elg-bit8-ra-orientation-20260925
+    paths:
+      - "scripts/k01d1_swift_custom_f_transport_smoke.py"
+      - "source_data/k01d1_swift_custom_f_transport_smoke_prereg_2026-11-06.json"
+      - ".github/workflows/k01d1_swift_custom_f_transport.yml"
+  workflow_dispatch:
+
+jobs:
+  transport:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 35
+    steps:
+      - name: Checkout stress-energy-closure
+        uses: actions/checkout@v4
+
+      - name: Checkout pinned SWIFT
+        uses: actions/checkout@v4
+        with:
+          repository: SWIFTSIM/SWIFT
+          ref: e1a963fa682061498a5a59da1b3e1521e9eae724
+          path: external/SWIFT
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install build and analysis dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y             build-essential autoconf automake libtool pkg-config             libhdf5-dev libfftw3-dev libgsl-dev libnuma-dev
+          python -m pip install --upgrade pip numpy h5py
+
+      - name: Build pinned SWIFT
+        run: |
+          set -euo pipefail
+          cd external/SWIFT
+          ./autogen.sh
+          ./configure             --disable-mpi             --disable-optimization             --disable-doxygen-doc             --disable-compiler-warnings \
+            --with-potential=constant
+          make -j2
+          ./swift --version || true
+          git rev-parse HEAD
+
+      - name: Prepare SWIFT mass calibration
+        run: python -u scripts/k01d1_swift_custom_f_transport_smoke.py prepare-calibration
+
+      - name: Run SWIFT calibration
+        run: |
+          set -euo pipefail
+          cd k01d1_swift_work/calibration
+          ../../external/SWIFT/swift -c -g --threads=2 calibration.yml 2>&1 | tee calibration.log
+
+      - name: Extract SWIFT-calibrated neutrino macro mass
+        run: python -u scripts/k01d1_swift_custom_f_transport_smoke.py extract-calibration
+
+      - name: Prepare matched FD Fplus Fminus science ICs
+        run: python -u scripts/k01d1_swift_custom_f_transport_smoke.py prepare-science
+
+      - name: Run three custom-F SWIFT transport jobs
+        run: |
+          set -euo pipefail
+          for state in FD Fplus Fminus; do
+            echo "=== K01D1 SWIFT STATE $state ==="
+            (
+              cd "k01d1_swift_work/science/$state"
+              ../../../external/SWIFT/swift -c -g --threads=2 science.yml 2>&1 | tee swift.log
+            )
+          done
+
+      - name: Analyze K01D1 transport contract
+        run: python -u scripts/k01d1_swift_custom_f_transport_smoke.py analyze
+
+      - name: Show frozen result
+        if: always()
+        run: |
+          if [ -f k01d1_swift_transport_result.json ]; then
+            cat k01d1_swift_transport_result.json
+          fi
+          echo "=== calibration tail ==="
+          tail -80 k01d1_swift_work/calibration/calibration.log 2>/dev/null || true
+          for state in FD Fplus Fminus; do
+            echo "=== $state tail ==="
+            tail -80 "k01d1_swift_work/science/$state/swift.log" 2>/dev/null || true
+          done
+
+      - name: Upload K01D1 evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: k01d1-swift-custom-f-transport
+          path: |
+            k01d1_swift_transport_result.json
+            k01d1_swift_work/calibrated_macro_mass.json
+            k01d1_swift_work/science_input_summary.json
+            k01d1_swift_work/calibration/calibration.log
+            k01d1_swift_work/science/FD/swift.log
+            k01d1_swift_work/science/Fplus/swift.log
+            k01d1_swift_work/science/Fminus/swift.log
+          if-no-files-found: warn

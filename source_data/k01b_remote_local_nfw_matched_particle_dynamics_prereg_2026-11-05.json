@@ -1,0 +1,62 @@
+{
+  "stage": "K01B_REMOTE_LOCAL_NFW_MATCHED_PARTICLE_DYNAMICS_PREREG",
+  "date": "2026-11-05",
+  "purpose": "Numerically test whether frozen stress-energy-matched F0/F+/F- neutrino momentum distributions produce distinguishable collisionless momentum transfer in the same externally specified halo potential.",
+  "interpretation_boundary": "Local frozen-z dynamics smoke test only; not a cosmological N-body result, not a galaxy/HOD response, not a survey observable, not a detection forecast.",
+  "frozen_inputs": {
+    "kinetic_states": "Original E8 4000-q CLASS-normalized F0/F+/F- construction, source-pinned by existing E8 code.",
+    "halo": "Original E28 lower-mass DM14/NFW anchor at z_obs=0.95, using its M200c, c200c and comoving r_s without retuning.",
+    "halo_relative_wind_km_s": 200,
+    "z_obs": 0.95,
+    "duration": "Proper-time interval z=1.0 to z=0.95 derived from the frozen FD E27 CLASS H(z) background."
+  },
+  "particle_design": {
+    "particles_per_state": 65536,
+    "nested_half_sample": 32768,
+    "physical_periodic_box_Mpc": 4,
+    "position_direction_seed": 2026110502,
+    "momentum_sampling": "Equal-weight p(q) proportional to q^2 F_state(q), identical stratified quantiles across states.",
+    "antithetic_pairing": "Each sampled position/direction is paired with its spatial and directional negative; q magnitude is duplicated within the pair.",
+    "same_ids_positions_directions_across_states": true,
+    "halo_frame_velocity": "Relativistic thermal velocity from q at z=0.95 plus bulk neutrino wind -V_halo along x."
+  },
+  "dynamics": {
+    "potential": "Static spherical truncated NFW halo in physical coordinates; enclosed mass from the frozen E28 M200c,c200c,r_s anchor.",
+    "integrator": "Kick-drift-kick leapfrog.",
+    "primary_steps": 256,
+    "coarse_steps": 128,
+    "periodic_position_wrapping": true,
+    "minimum_image_halo_distance": true,
+    "self_gravity_of_neutrinos": false,
+    "cosmological_expansion_during_local_step": false,
+    "delta_f_method": false
+  },
+  "metrics": {
+    "primary": "D_state = mean(vx_final-vx_initial) for +200 km/s halo wind.",
+    "hidden_contrast": "C = D_Fminus - D_Fplus.",
+    "relative_hidden_contrast": "C / |D_FD| when D_FD is nonzero.",
+    "controls": [
+      "M_halo=0 gives exactly zero momentum-transfer proxy.",
+      "Wind reversal flips D_state and C under the antithetic phase-space construction.",
+      "128-vs-256 step convergence.",
+      "32768-vs-65536 nested particle convergence."
+    ]
+  },
+  "preregistered_resolution_gate": {
+    "sign_consistency_required": "C must have the same nonzero sign for coarse/fine time steps and half/full nested samples.",
+    "timestep_relative_gap_at_most": 0.1,
+    "nested_sample_relative_gap_at_most": 0.25,
+    "contrast_to_numerical_floor_at_least": 5,
+    "wind_reversal_relative_parity_residual_at_most": 0.02,
+    "note": "Passing this gate means only numerically resolved local hidden-state dynamics. It is not a detectability threshold."
+  },
+  "guards": {
+    "observed_galaxy_rows_used": false,
+    "observed_odd_used": false,
+    "E63_used_as_science_input": false,
+    "galaxy_response_fitted": false,
+    "survey_covariance_used": false,
+    "pvalue_or_detection_sigma_computed": false,
+    "main_branch_modified": false
+  }
+}

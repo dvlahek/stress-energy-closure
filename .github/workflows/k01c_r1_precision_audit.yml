@@ -1,0 +1,45 @@
+name: K01C-R1 precision audit
+
+on:
+  push:
+    branches:
+      - experiment/k01-matched-f-detectability-20261105
+    paths:
+      - "scripts/k01c_r1_posthoc_numerical_precision_audit.py"
+      - "source_data/k01c_r1_posthoc_numerical_precision_audit_prereg_2026-11-05.json"
+      - ".github/workflows/k01c_r1_precision_audit.yml"
+  pull_request:
+    branches:
+      - audit/eboss-elg-bit8-ra-orientation-20260925
+    paths:
+      - "scripts/k01c_r1_posthoc_numerical_precision_audit.py"
+      - "source_data/k01c_r1_posthoc_numerical_precision_audit_prereg_2026-11-05.json"
+      - ".github/workflows/k01c_r1_precision_audit.yml"
+  workflow_dispatch:
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install dependencies
+        run: python -m pip install --upgrade pip numpy scipy
+      - name: Run K01C-R1 precision audit
+        run: python -u scripts/k01c_r1_posthoc_numerical_precision_audit.py
+      - name: Show result
+        if: always()
+        run: |
+          if [ -f k01c_r1_precision_audit_result.json ]; then
+            cat k01c_r1_precision_audit_result.json
+          fi
+      - name: Upload result
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: k01c-r1-precision-audit
+          path: k01c_r1_precision_audit_result.json
+          if-no-files-found: warn

@@ -1,0 +1,93 @@
+{
+  "stage": "K01C_R1_POSTHOC_NUMERICAL_PRECISION_AUDIT_PREREG",
+  "date": "2026-11-05",
+  "parent": {
+    "stage": "K01C_DETERMINISTIC_LOCAL_NFW_PHASE_SPACE_SCATTERING_PREREG",
+    "result": "PASS_NUMERICALLY_RESOLVED_DETERMINISTIC_LOCAL_SCATTERING_CONTRAST",
+    "primary_FD_D": 1.504891494537875,
+    "primary_Fplus_D": 1.1783385647479583,
+    "primary_Fminus_D": 1.8314445353150117,
+    "primary_hidden_C": 0.6531059705670534,
+    "primary_relative_to_abs_FD": 0.4339887446620266,
+    "original_contrast_coarse_fine_gap": 0.000006979058372670584
+  },
+  "motivation": "A separate independent point-mass QA using fixed 160-node Gauss-Legendre angular integration failed only in an extreme near-pi deflection case, indicating slow quadrature convergence there. This audit prospectively tests the actual NFW integrated result at substantially higher numerical precision and uses adaptive point-mass integration.",
+  "immutable_physics": "Identical to K01C: same E8 F states, z=.95, 200 km/s wind, same lower-mass E28 truncated-NFW halo, same bmax diagnostics.",
+  "high_precision_replay": {
+    "q_intervals": [
+      [
+        0,
+        0.25
+      ],
+      [
+        0.25,
+        0.5
+      ],
+      [
+        0.5,
+        1
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        2,
+        4
+      ],
+      [
+        4,
+        8
+      ],
+      [
+        8,
+        12
+      ],
+      [
+        12,
+        20
+      ]
+    ],
+    "q_legendre_nodes_per_interval": 12,
+    "mu_legendre_nodes": 32,
+    "b_legendre_nodes_0_to_r200": 64,
+    "orbit_angle_legendre_nodes": 160
+  },
+  "independent_point_mass_adaptive_QA": {
+    "method": "scipy.integrate.quad on the transformed turning-point angular integral",
+    "speeds_km_s": [
+      50,
+      100,
+      200,
+      500,
+      1000,
+      1800
+    ],
+    "b_over_r200": [
+      0.03,
+      0.1,
+      0.3,
+      0.7,
+      1,
+      2,
+      4
+    ],
+    "exact_reference": "chi=2 atan(GM/(b v^2))",
+    "max_abs_coschi_gap": 1e-9,
+    "max_abs_chi_gap_rad": 1e-9
+  },
+  "acceptance": {
+    "parent_primary_C_relative_shift_at_most": 0.005,
+    "each_parent_primary_state_D_relative_shift_at_most": 0.005,
+    "primary_contrast_sign_unchanged": true,
+    "contrast_sign_same_bmax_1_2_4r200": true,
+    "point_mass_adaptive_QA_pass_required": true
+  },
+  "interpretation": "If PASS, K01C's deterministic local contrast is numerically validated more strongly. This still does not establish cosmological total drag or observational detectability.",
+  "guards": {
+    "observed_data_used": false,
+    "survey_covariance_used": false,
+    "pvalue_or_detection_sigma_computed": false,
+    "main_branch_modified": false
+  }
+}

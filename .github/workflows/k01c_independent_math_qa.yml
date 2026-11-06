@@ -1,0 +1,42 @@
+name: K01C independent math QA
+
+on:
+  push:
+    branches:
+      - experiment/k01-matched-f-detectability-20261105
+    paths:
+      - "scripts/k01c_independent_central_orbit_math_qa.py"
+      - ".github/workflows/k01c_independent_math_qa.yml"
+  pull_request:
+    branches:
+      - audit/eboss-elg-bit8-ra-orientation-20260925
+    paths:
+      - "scripts/k01c_independent_central_orbit_math_qa.py"
+      - ".github/workflows/k01c_independent_math_qa.yml"
+  workflow_dispatch:
+
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: python -m pip install --upgrade pip numpy
+      - name: Run independent central-orbit QA
+        run: python -u scripts/k01c_independent_central_orbit_math_qa.py
+      - name: Show QA result
+        if: always()
+        run: |
+          if [ -f k01c_independent_math_qa.json ]; then
+            cat k01c_independent_math_qa.json
+          fi
+      - name: Upload QA
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: k01c-independent-math-qa
+          path: k01c_independent_math_qa.json
+          if-no-files-found: warn

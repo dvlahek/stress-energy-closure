@@ -1,0 +1,51 @@
+{
+  "stage": "K01C_D1_ARBITRARY_PRECISION_ORBIT_DIAGNOSTIC",
+  "date": "2026-11-05",
+  "purpose": "Diagnose whether the K01C-R1 point-mass QA failure is caused by double-precision cancellation near near-pi scattering, without changing or reclassifying any K01C/K01C-R1 science gate.",
+  "arithmetic": "mpmath 80 decimal digits",
+  "fixed_point_mass_cases": [
+    {
+      "v_km_s": 50,
+      "b_over_r200": 0.03
+    },
+    {
+      "v_km_s": 100,
+      "b_over_r200": 0.1
+    },
+    {
+      "v_km_s": 200,
+      "b_over_r200": 0.3
+    },
+    {
+      "v_km_s": 500,
+      "b_over_r200": 1
+    },
+    {
+      "v_km_s": 1000,
+      "b_over_r200": 2
+    },
+    {
+      "v_km_s": 1800,
+      "b_over_r200": 4
+    }
+  ],
+  "fixed_nfw_spot_cases": [
+    {
+      "v_km_s": 50,
+      "b_over_r200": 0.03
+    },
+    {
+      "v_km_s": 200,
+      "b_over_r200": 0.3
+    },
+    {
+      "v_km_s": 500,
+      "b_over_r200": 1
+    }
+  ],
+  "outputs": [
+    "Point-mass arbitrary-precision numerical chi versus exact chi.",
+    "NFW arbitrary-precision chi compared with the existing double-precision K01C orbit integral at 64 and 160 angle nodes."
+  ],
+  "guard": "Diagnostic only. K01C parent PASS and K01C-R1 formal FAIL remain unchanged regardless of result."
+}

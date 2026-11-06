@@ -1,0 +1,108 @@
+{
+  "stage": "K01D1_EXECUTABLE_SWIFT_CUSTOM_F_COSMOLOGICAL_TRANSPORT_SMOKE_PREREG",
+  "date": "2026-11-06",
+  "parent": "K01D0 PASS_SWIFT_CUSTOM_F_PARTICLE_NEUTRINO_ENGINE_CONTRACT",
+  "swift": {
+    "repository": "SWIFTSIM/SWIFT",
+    "commit": "e1a963fa682061498a5a59da1b3e1521e9eae724"
+  },
+  "purpose": "Compile pinned SWIFT and execute a drift-only cosmological transport smoke test of frozen E8 FD/Fplus/Fminus custom PartType6 momentum distributions without any Fermi-Dirac resampling in the science runs.",
+  "cosmology": {
+    "h": 0.6736,
+    "Omega_cdm": 0,
+    "Omega_b": 0,
+    "Omega_lambda": 0.998,
+    "N_nu": 1,
+    "N_ur": 2.0328,
+    "T_nu_0_K": 1.951757805,
+    "M_nu_eV": 0.06,
+    "deg_nu": 2,
+    "a_begin": 0.5,
+    "a_end": 0.5128205128205128
+  },
+  "particle_design": {
+    "particles_per_state": 1024,
+    "box_comoving_Mpc": 512,
+    "same_particle_IDs": true,
+    "same_positions": true,
+    "same_momentum_directions": true,
+    "antithetic_direction_pairs": true,
+    "stratified_quantiles": true,
+    "seed_positions_directions": 2026110601,
+    "source_states": "Frozen E8 4000-q CLASS-normalized FD/Fplus/Fminus."
+  },
+  "calibration_run": {
+    "allowed_generate_ics": 1,
+    "purpose": "Use pinned SWIFT itself once to calibrate the equal macro-particle mass required by its background neutrino cosmology.",
+    "not_science_state": true,
+    "delta_f": 0
+  },
+  "science_runs": {
+    "states": [
+      "FD",
+      "Fplus",
+      "Fminus"
+    ],
+    "Neutrino:generate_ics": 0,
+    "Neutrino:use_delta_f": 0,
+    "Neutrino:use_delta_f_mesh_only": 0,
+    "Neutrino:use_linear_response": 0,
+    "Neutrino:use_model_none": 0,
+    "self_gravity": false,
+    "hydro": false
+  },
+  "velocity_convention": {
+    "input": "SWIFT IC peculiar velocity at a_begin: v_IC = q*c*T_nu0/(a_begin*m_nu) times matched direction.",
+    "source_basis": "SWIFT space_first_init multiplies IC gpart velocities by a; generated neutrino internal momentum variable is q*c*T_nu0/m_nu.",
+    "expected_force_free_snapshot_scaling": "v_snapshot(a_end) / v_IC = a_begin/a_end."
+  },
+  "acceptance": {
+    "swift_build_and_all_four_runs_exit_zero": true,
+    "calibration_mass_positive_and_uniform": true,
+    "science_IDs_identical_to_input": true,
+    "science_masses_identical_across_states": true,
+    "no_FD_resampling": "Initial science snapshot velocities must match supplied state-specific IC velocities, modulo snapshot precision.",
+    "expected_velocity_scaling_relative_error_at_most": 0.00002,
+    "per_state_q_vs_displacement_spearman_at_least": 0.999,
+    "state_specific_displacement_not_identical": true,
+    "output_state_speed_ordering_matches_input": true
+  },
+  "interpretation": "PASS establishes executable transport compatibility of custom nonthermal F states with SWIFT's cosmological relativistic neutrino drift. It is not a gravitational hidden-state signal.",
+  "guards": {
+    "observed_data_used": false,
+    "self_gravity_used": false,
+    "galaxy_response_used": false,
+    "survey_covariance_used": false,
+    "detection_significance_computed": false,
+    "main_branch_modified": false
+  },
+  "next_if_pass": "K01E_MATCHED_PHASE_COSMOLOGICAL_GRAVITY_PERTURBATION_PREREG",
+  "pre_execution_geometry_amendment": {
+    "status": "AMENDED_BEFORE_ANY_K01D1_EXECUTION",
+    "reason": "Original 20 Mpc periodic box is smaller than the possible force-free relativistic neutrino comoving travel distance from z=1 to z=.95, which would make the preregistered q-versus-displacement Spearman diagnostic ambiguous under periodic wrapping.",
+    "changed_field": "particle_design.box_comoving_Mpc",
+    "old_value": 20,
+    "new_value": 512,
+    "all_other_physics_and_acceptance_unchanged": true
+  },
+  "technical_engine_policy_amendment_after_preflight_failure": {
+    "status": "TECHNICAL_ONLY_NO_SCIENCE_EXECUTION_OCCURRED",
+    "failure": "Pinned SWIFT refused to start with cosmology alone: at least one of hydro, external-gravity, or self-gravity is required.",
+    "implementation": "Compile SWIFT with --with-potential=constant and run with --external-gravity using ConstantPotential:g_cgs=[0,0,0].",
+    "physical_acceleration_cgs": [
+      0,
+      0,
+      0
+    ],
+    "self_gravity_remains_false": true,
+    "acceptance_unchanged": true,
+    "note": "The failed preflight stopped at command-line policy validation before calibration/science dynamics."
+  },
+  "technical_runtime_environment_amendment_after_cosmology_preflight_abort": {
+    "status": "ENVIRONMENT_ONLY_NO_PARTICLE_DYNAMICS_EXECUTED",
+    "failure": "ubuntu-24.04 runner GSL qag aborted with GSL_EROUND while initializing the pinned SWIFT massive-neutrino background, before calibration particles were read/evolved.",
+    "remedy": "Pin GitHub Actions runner to ubuntu-22.04 while keeping the same SWIFT commit, cosmology, N_nu=1, neutrino mass/temperature, zero-force external potential, IC design and acceptance gates.",
+    "science_inputs_unchanged": true,
+    "acceptance_unchanged": true
+  }
+}

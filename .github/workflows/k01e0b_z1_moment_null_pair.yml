@@ -1,0 +1,42 @@
+name: K01E0B prospective z1 moment-null pair
+
+on:
+  push:
+    branches:
+      - experiment/k01-matched-f-detectability-20261105
+    paths:
+      - "scripts/k01e0b_build_z1_moment_null_pair.py"
+      - "source_data/k01e0b_z1_moment_null_pair_prereg_2026-11-06.json"
+      - ".github/workflows/k01e0b_z1_moment_null_pair.yml"
+  pull_request:
+    branches:
+      - audit/eboss-elg-bit8-ra-orientation-20260925
+    paths:
+      - "scripts/k01e0b_build_z1_moment_null_pair.py"
+      - "source_data/k01e0b_z1_moment_null_pair_prereg_2026-11-06.json"
+      - ".github/workflows/k01e0b_z1_moment_null_pair.yml"
+  workflow_dispatch:
+
+jobs:
+  build_pair:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: python -m pip install --upgrade pip numpy
+      - name: Build and validate z=1 moment-null pair
+        run: python -u scripts/k01e0b_build_z1_moment_null_pair.py
+      - name: Show QA
+        if: always()
+        run: cat k01e0b_z1_pair/k01e0b_z1_moment_null_pair_qa.json 2>/dev/null || true
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: k01e0b-z1-moment-null-pair
+          path: |
+            k01e0b_z1_pair/frozen_z1_moment_null_pair_4000q.csv
+            k01e0b_z1_pair/k01e0b_z1_moment_null_pair_qa.json
+          if-no-files-found: warn

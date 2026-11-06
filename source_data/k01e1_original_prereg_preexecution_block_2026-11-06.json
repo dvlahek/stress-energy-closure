@@ -1,0 +1,24 @@
+{
+  "stage": "K01E1_ORIGINAL_PREREG_PREEXECUTION_ENGINEERING_BLOCK",
+  "date": "2026-11-06",
+  "original_prereg": "source_data/k01e1_single_mode_self_gravity_prereg_2026-11-06.json",
+  "status": "BLOCKED_BEFORE_SELF_GRAVITY_NO_SCIENCE_RESULT",
+  "reason": "The preregistered antithetic construction duplicates each q quantile within a +/- direction pair. For coarse N=4096 this means 2048 unique midpoint q quantiles. A deterministic pre-run calculation gives Fplus-vs-Fminus sampled pressure-proxy gap 4.5413429923889255e-6, exceeding the original engineering-only coarse threshold 2e-6.",
+  "deterministic_pre_run_values": {
+    "coarse_unique_q_quantiles": 2048,
+    "coarse_sampled_energy_pair_gap": 9.251927993148391e-10,
+    "coarse_sampled_pressure_pair_gap": 0.0000045413429923889255,
+    "fine_unique_q_quantiles": 16384,
+    "fine_sampled_energy_pair_gap": 6.1134711388675756e-12,
+    "fine_sampled_pressure_pair_gap": 2.99525795692998e-8
+  },
+  "science_information_used": false,
+  "self_gravity_run_executed": false,
+  "resolution_mode_amplitude_pair_and_science_gates_unchanged": true,
+  "permitted_revision": "A new prereg may relax only the coarse sampled-pressure engineering threshold to a value above 4.5414e-6. No science gate may be changed.",
+  "guards": {
+    "observed_data_used": false,
+    "self_gravity_result_seen": false,
+    "main_branch_modified": false
+  }
+}

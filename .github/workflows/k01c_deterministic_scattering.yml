@@ -1,0 +1,52 @@
+name: K01C deterministic scattering quadrature
+
+on:
+  push:
+    branches:
+      - experiment/k01-matched-f-detectability-20261105
+    paths:
+      - "scripts/k01c_deterministic_local_nfw_phase_space_scattering.py"
+      - "source_data/k01c_deterministic_local_nfw_phase_space_scattering_prereg_2026-11-05.json"
+      - ".github/workflows/k01c_deterministic_scattering.yml"
+  pull_request:
+    branches:
+      - audit/eboss-elg-bit8-ra-orientation-20260925
+    paths:
+      - "scripts/k01c_deterministic_local_nfw_phase_space_scattering.py"
+      - "source_data/k01c_deterministic_local_nfw_phase_space_scattering_prereg_2026-11-05.json"
+      - ".github/workflows/k01c_deterministic_scattering.yml"
+  workflow_dispatch:
+
+jobs:
+  k01c:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install numerical dependency
+        run: python -m pip install --upgrade pip numpy
+
+      - name: Run preregistered K01C deterministic quadrature
+        run: python -u scripts/k01c_deterministic_local_nfw_phase_space_scattering.py
+
+      - name: Show K01C result
+        if: always()
+        run: |
+          if [ -f k01c_ci_result.json ]; then
+            cat k01c_ci_result.json
+          fi
+
+      - name: Upload K01C result
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: k01c-deterministic-scattering
+          path: k01c_ci_result.json
+          if-no-files-found: warn

@@ -1,0 +1,38 @@
+{
+  "stage": "K01E0C_CANONICAL_CLOSEST_Z1_MOMENT_NULL_PAIR_PREREG",
+  "date": "2026-11-06",
+  "parent_diagnostic": {
+    "K01E_D0": "Original E8 pair is not stress-energy matched at z=1; pressure mismatch is about 1.429%.",
+    "K01E0B": "The predeclared >=0.99 direction-continuity gate is not satisfied; the mathematically closest fractional-L2 z=1 null projection has cosine about 0.982. K01E0B remains a formal FAIL and is not relabeled."
+  },
+  "purpose": "Define the canonical z=1 hidden-state pair for the self-gravity initial-value test as the unique orthogonal projection of the original E8 fractional direction onto the z=1 n,rho,P null space. Similarity to E8 is reported, not used as an acceptance criterion.",
+  "construction": "Exactly the K01E0B projection rule: trapezoid-L2 orthogonal projection of r0=(Fplus_E8-Fminus_E8)/(0.6F0) onto null(B), B_ij=sqrt(Q_j) w_i(q_j,z=1) F0(q_j), followed by max|r|=1 normalization and Fplus/minus=F0*(1 +/- 0.30 r).",
+  "immutable_inputs": {
+    "original_E8_csv": "source_data/eboss_dr16_a03_e8_e11_archived_CI_2026_09_27/E8/frozen_matched_distributions_4000q.csv",
+    "mass_eV": 0.06,
+    "target_match_z": 1,
+    "pointwise_fractional_cap": 0.3,
+    "q_nodes": 4000
+  },
+  "acceptance": {
+    "constraint_rank_exactly": 3,
+    "both_distributions_strictly_positive": true,
+    "max_fractional_distortion_equals_0_30_abs_tolerance": 2e-13,
+    "pair_symmetry_max_relative_error_at_most": 3e-13,
+    "z1_max_symmetric_relative_n_rho_P_gap_at_most": 1e-12,
+    "deterministic_repeat_sha_required": true
+  },
+  "diagnostics_not_gates": [
+    "weighted fractional-direction cosine with original E8",
+    "weighted fractional-direction relative L2 change",
+    "n,rho,P gaps at z=0.95"
+  ],
+  "interpretation": "This is a new prospective z=1 control pair for K01E. It does not modify E8/E27, and it is selected without any self-gravity response or observed data.",
+  "guards": {
+    "observed_data_used": false,
+    "self_gravity_result_seen": false,
+    "downstream_signal_optimization": false,
+    "main_branch_modified": false
+  },
+  "next_if_pass": "K01E1_SINGLE_MODE_MATCHED_PHASE_SELF_GRAVITY_PREREG"
+}

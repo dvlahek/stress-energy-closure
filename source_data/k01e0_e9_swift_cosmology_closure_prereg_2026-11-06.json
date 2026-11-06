@@ -1,0 +1,66 @@
+{
+  "stage": "K01E0_FROZEN_E9_SWIFT_COSMOLOGY_CLOSURE_AND_NU_MASS_CALIBRATION_PREREG",
+  "date": "2026-11-06",
+  "parent": "K01D2 PASS_PHYSICAL_NNU1_BACKGROUND_AND_CUSTOM_F_TRANSPORT_WITH_AUDITED_UNIVERSE_AGE_PATCH",
+  "purpose": "Before any self-gravity science run, map the frozen E9 CLASS background exactly into pinned SWIFT conventions and calibrate the equal neutrino macro-particle mass for the fundamental k=0.05 h/Mpc box with 32^3 PartType6 particles.",
+  "frozen_E9_CLASS": {
+    "H0_km_s_Mpc": 67.36,
+    "h": 0.6736,
+    "omega_b": 0.02237,
+    "omega_cdm": 0.12,
+    "N_ur": 2.0328,
+    "N_ncdm": 1,
+    "m_ncdm_eV": 0.06,
+    "T_ncdm_over_TCMB": 0.71611,
+    "deg_ncdm": 1,
+    "TCMB_K": 2.7255,
+    "k_h_Mpc": 0.05
+  },
+  "derived_preexecution": {
+    "Omega_b": 0.049301692328524445,
+    "Omega_cdm": 0.26447041034523616,
+    "Omega_m_nonnu": 0.3137721026737606,
+    "box_Mpc_for_fundamental_k": 186.55538322979768,
+    "neutrino_particles": 32768
+  },
+  "calibration_background": {
+    "note": "Omega_cdm=Omega_b=0 only for this calibration run because only Omega_nu0 and Omega_r and the PartType6 macro mass are being extracted. These are independent of the chosen Omega_lambda/Omega_k. Full E9 matter densities are imposed only after closure is computed.",
+    "Omega_cdm": 0,
+    "Omega_b": 0,
+    "Omega_lambda": 0.998,
+    "h": 0.6736,
+    "N_ur": 2.0328,
+    "N_nu": 1,
+    "T_nu_0_K": 1.951757805,
+    "M_nu_eV": 0.06,
+    "deg_nu": 1,
+    "a_begin": 0.5,
+    "a_end": 0.5128205128205128
+  },
+  "swift": {
+    "repository": "SWIFTSIM/SWIFT",
+    "commit": "e1a963fa682061498a5a59da1b3e1521e9eae724",
+    "universe_age_patch": "exact K01D2 one-line epsrel 1e-13 -> 1e-11 only"
+  },
+  "outputs": [
+    "SWIFT Omega_nu_0",
+    "SWIFT Omega_r, Omega_g, Omega_ur",
+    "flat Omega_lambda = 1 - Omega_b - Omega_cdm - Omega_r - Omega_nu_0",
+    "calibrated equal PartType6 macro mass for L and 32^3 particles"
+  ],
+  "acceptance": {
+    "calibration_exits_zero": true,
+    "deg_nu_equals_one": true,
+    "calibrated_mass_positive_uniform": true,
+    "flat_lambda_between_0_6_and_0_8": true,
+    "closure_absolute_residual_at_most": 1e-12
+  },
+  "interpretation": "Engineering/cosmology closure only; no self-gravity hidden-state response is measured.",
+  "guards": {
+    "observed_data_used": false,
+    "self_gravity_used": false,
+    "detection_significance_computed": false,
+    "main_branch_modified": false
+  },
+  "next_if_pass": "K01E1_SINGLE_MODE_MATCHED_PHASE_SELF_GRAVITY_PREREG"
+}

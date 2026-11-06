@@ -1,0 +1,20 @@
+{
+  "date": "2026-11-06",
+  "stage": "K01D1_ORIGINAL_EXECUTABLE_SWIFT_TRANSPORT_STATUS_FREEZE",
+  "status": "BLOCKED_ENGINE_BACKGROUND_NUMERICS_NO_PARTICLE_DYNAMICS_EXECUTED",
+  "swift_commit": "e1a963fa682061498a5a59da1b3e1521e9eae724",
+  "evidence": [
+    "Pinned SWIFT built successfully on Ubuntu 24.04/GSL 2.8 and Ubuntu 22.04/GSL 2.7.1.",
+    "Zero-force ConstantPotential scheduler hook compiled and command-line policy was satisfied.",
+    "Both environments aborted inside GSL qag while initializing the N_nu=1 massive-neutrino cosmology before calibration/science particle dynamics.",
+    "No FD/Fplus/Fminus science run reached particle evolution."
+  ],
+  "interpretation": "Engine-blocked, not a hidden-state physics failure. Do not classify original K01D1 as PASS or FAIL.",
+  "retained_guards": {
+    "observed_data_used": false,
+    "self_gravity_used": false,
+    "detection_significance_computed": false,
+    "main_branch_modified": false
+  },
+  "next": "K01D1_R1_TRANSPORT_ONLY_ENGINE_ISOLATION"
+}

@@ -1,0 +1,46 @@
+{
+  "stage": "K01E0B_PROSPECTIVE_Z1_MOMENT_NULL_PAIR_PREREG",
+  "date": "2026-11-06",
+  "motivation": "The frozen E8 Fplus/Fminus pair is exactly n,rho,P matched at z=1100 but at z=1 has a pressure mismatch of about 1.43%. Using it directly in K01E would contaminate a hidden-state self-gravity test with an ordinary initial stress-energy difference.",
+  "purpose": "Construct, before any self-gravity result, the unique closest z=1 moment-null fractional deformation to the original E8 deformation, retaining the same q-grid, FD baseline, 0.06 eV mass, and 30% pointwise cap.",
+  "immutable_inputs": {
+    "original_E8_csv": "source_data/eboss_dr16_a03_e8_e11_archived_CI_2026_09_27/E8/frozen_matched_distributions_4000q.csv",
+    "mass_eV": 0.06,
+    "target_match_z": 1,
+    "pointwise_fractional_cap": 0.3,
+    "q_nodes": 4000,
+    "q_range": [
+      0,
+      20
+    ]
+  },
+  "construction": {
+    "original_fractional_direction": "r0(q)=(Fplus_E8-Fminus_E8)/(0.6*F0), whose max |r0|=1.",
+    "target_constraints": "At z=1 require integral q^2 F0 r dq = integral q^2 epsilon F0 r dq = integral q^4/epsilon F0 r dq = 0.",
+    "metric": "Trapezoid-quadrature L2 norm of the fractional deformation r(q), i.e. minimize integral [r-r0]^2 dq.",
+    "numerical_projection": "Let Q be trapezoid weights and B_ij=sqrt(Q_j)*w_i(q_j,z=1)*F0(q_j). Project u0=sqrt(Q) r0 orthogonally onto null(B) using numpy SVD row-space subtraction. Row scaling may be used only for conditioning because it leaves the row space unchanged.",
+    "renormalization": "After projection divide r by max|r|, then set Fplus_z1=F0*(1+0.30*r), Fminus_z1=F0*(1-0.30*r).",
+    "no_signal_optimization": true
+  },
+  "acceptance": {
+    "both_distributions_strictly_positive": true,
+    "max_fractional_distortion_equals_0_30_abs_tolerance": 2e-13,
+    "Fplus_plus_Fminus_equals_2F0_max_relative_error_at_most": 3e-13,
+    "z1_max_symmetric_relative_moment_gap_at_most": 1e-12,
+    "fractional_direction_weighted_cosine_with_original_at_least": 0.99,
+    "fractional_direction_relative_L2_change_at_most": 0.1
+  },
+  "outputs": [
+    "Frozen 4000-q CSV for F0,Fplus_z1,Fminus_z1",
+    "QA JSON with z=1 moments, overlap with original E8 direction, and positivity/cap checks",
+    "diagnostic moments at z=0.95, not an acceptance criterion"
+  ],
+  "interpretation": "This pair is a prospective control state for K01E only. It does not replace or retroactively modify the original E8/E27 results.",
+  "guards": {
+    "observed_data_used": false,
+    "self_gravity_used": false,
+    "downstream_signal_used_for_direction_choice": false,
+    "main_branch_modified": false
+  },
+  "next_if_pass": "K01E1_SINGLE_MODE_MATCHED_PHASE_SELF_GRAVITY_PREREG"
+}

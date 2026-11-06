@@ -1,0 +1,94 @@
+name: K01D1-R1 SWIFT transport-only isolation
+
+on:
+  push:
+    branches:
+      - experiment/k01-matched-f-detectability-20261105
+    paths:
+      - "scripts/k01d1_r1_swift_transport_only_engine_isolation.py"
+      - "source_data/k01d1_r1_transport_only_engine_isolation_prereg_2026-11-06.json"
+      - ".github/workflows/k01d1_r1_swift_transport_only.yml"
+  pull_request:
+    branches:
+      - audit/eboss-elg-bit8-ra-orientation-20260925
+    paths:
+      - "scripts/k01d1_r1_swift_transport_only_engine_isolation.py"
+      - "source_data/k01d1_r1_transport_only_engine_isolation_prereg_2026-11-06.json"
+      - ".github/workflows/k01d1_r1_swift_transport_only.yml"
+  workflow_dispatch:
+
+jobs:
+  transport_only:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 30
+    steps:
+      - name: Checkout stress-energy-closure
+        uses: actions/checkout@v4
+
+      - name: Checkout pinned SWIFT
+        uses: actions/checkout@v4
+        with:
+          repository: SWIFTSIM/SWIFT
+          ref: e1a963fa682061498a5a59da1b3e1521e9eae724
+          path: external/SWIFT
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install build and analysis dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y             build-essential autoconf automake libtool pkg-config             libhdf5-dev libfftw3-dev libgsl-dev libnuma-dev
+          python -m pip install --upgrade pip numpy h5py
+
+      - name: Build pinned SWIFT with zero constant potential
+        run: |
+          set -euo pipefail
+          cd external/SWIFT
+          ./autogen.sh
+          ./configure             --disable-mpi             --disable-optimization             --disable-doxygen-doc             --disable-compiler-warnings             --with-potential=constant
+          make -j2
+          git rev-parse HEAD
+
+      - name: Prepare matched custom-F ICs
+        run: python -u scripts/k01d1_r1_swift_transport_only_engine_isolation.py prepare
+
+      - name: Run three transport-only SWIFT jobs
+        run: |
+          set -euo pipefail
+          for state in FD Fplus Fminus; do
+            echo "=== K01D1-R1 SWIFT STATE $state ==="
+            (
+              cd "k01d1_r1_swift_work/$state"
+              ../../external/SWIFT/swift -c -g --threads=2 science.yml 2>&1 | tee swift.log
+            )
+          done
+
+      - name: Analyze preregistered R1 gates
+        run: python -u scripts/k01d1_r1_swift_transport_only_engine_isolation.py analyze
+
+      - name: Show result and logs
+        if: always()
+        run: |
+          if [ -f k01d1_r1_transport_only_result.json ]; then
+            cat k01d1_r1_transport_only_result.json
+          fi
+          for state in FD Fplus Fminus; do
+            echo "=== $state tail ==="
+            tail -100 "k01d1_r1_swift_work/$state/swift.log" 2>/dev/null || true
+          done
+
+      - name: Upload K01D1-R1 evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: k01d1-r1-swift-transport-only
+          path: |
+            k01d1_r1_transport_only_result.json
+            k01d1_r1_swift_work/input_summary.json
+            k01d1_r1_swift_work/FD/swift.log
+            k01d1_r1_swift_work/Fplus/swift.log
+            k01d1_r1_swift_work/Fminus/swift.log
+          if-no-files-found: warn

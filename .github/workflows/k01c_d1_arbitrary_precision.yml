@@ -1,0 +1,45 @@
+name: K01C-D1 arbitrary precision orbit diagnostic
+
+on:
+  push:
+    branches:
+      - experiment/k01-matched-f-detectability-20261105
+    paths:
+      - "scripts/k01c_d1_arbitrary_precision_orbit_diagnostic.py"
+      - "source_data/k01c_d1_arbitrary_precision_orbit_diagnostic_2026-11-05.json"
+      - ".github/workflows/k01c_d1_arbitrary_precision.yml"
+  pull_request:
+    branches:
+      - audit/eboss-elg-bit8-ra-orientation-20260925
+    paths:
+      - "scripts/k01c_d1_arbitrary_precision_orbit_diagnostic.py"
+      - "source_data/k01c_d1_arbitrary_precision_orbit_diagnostic_2026-11-05.json"
+      - ".github/workflows/k01c_d1_arbitrary_precision.yml"
+  workflow_dispatch:
+
+jobs:
+  diagnostic:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install dependencies
+        run: python -m pip install --upgrade pip numpy mpmath
+      - name: Run K01C-D1 diagnostic
+        run: python -u scripts/k01c_d1_arbitrary_precision_orbit_diagnostic.py
+      - name: Show diagnostic
+        if: always()
+        run: |
+          if [ -f k01c_d1_arbitrary_precision_orbit_diagnostic_result.json ]; then
+            cat k01c_d1_arbitrary_precision_orbit_diagnostic_result.json
+          fi
+      - name: Upload diagnostic
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: k01c-d1-arbitrary-precision-orbit
+          path: k01c_d1_arbitrary_precision_orbit_diagnostic_result.json
+          if-no-files-found: warn

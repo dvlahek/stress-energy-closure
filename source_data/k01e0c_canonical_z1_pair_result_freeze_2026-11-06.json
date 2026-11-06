@@ -1,0 +1,27 @@
+{
+  "stage": "K01E0C_CANONICAL_CLOSEST_Z1_MOMENT_NULL_PAIR",
+  "status": "PASS_CANONICAL_CLOSEST_Z1_MOMENT_NULL_PAIR",
+  "date": "2026-11-06",
+  "evidence": {
+    "workflow_run_id": 42247768191,
+    "job_id": 127994397017
+  },
+  "construction": "Trapezoid-L2 orthogonal projection of original E8 fractional deformation onto z=1 n,rho,P null space, then max|r|=1 and +/-30% symmetric deformation around F0.",
+  "source_original_E8": "source_data/eboss_dr16_a03_e8_e11_archived_CI_2026_09_27/E8/frozen_matched_distributions_4000q.csv",
+  "output_csv_artifact_sha256": "cc795bb304f8a4e2eff40f44e5332e5241cf34b018f948082a84884154ff3262",
+  "q_nodes": 4000,
+  "mass_eV": 0.06,
+  "match_z": 1,
+  "max_fractional_distortion": 0.3,
+  "z1_max_symmetric_relative_n_rho_P_gap": 1.7121942799944377e-16,
+  "weighted_fractional_direction_cosine_with_original_E8": 0.981791003565302,
+  "weighted_fractional_direction_relative_L2_change": 0.19388374382581153,
+  "z0p95_diagnostic_max_symmetric_relative_n_rho_P_gap": 8.304207032709909e-10,
+  "interpretation": "Canonical z=1 control pair for K01E only. E0B's >=0.99 continuity test remains a formal FAIL; E0C is a distinct prospective construction criterion selected before self-gravity results.",
+  "guards": {
+    "observed_data_used": false,
+    "self_gravity_result_seen": false,
+    "downstream_signal_optimization": false,
+    "main_branch_modified": false
+  }
+}

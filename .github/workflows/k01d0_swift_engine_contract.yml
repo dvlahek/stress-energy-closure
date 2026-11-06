@@ -1,0 +1,51 @@
+name: K01D0 SWIFT custom-F engine contract
+
+on:
+  push:
+    branches:
+      - experiment/k01-matched-f-detectability-20261105
+    paths:
+      - "scripts/k01d0_swift_custom_f_engine_contract_audit.py"
+      - "source_data/k01d0_swift_custom_f_engine_contract_prereg_2026-11-06.json"
+      - ".github/workflows/k01d0_swift_engine_contract.yml"
+  pull_request:
+    branches:
+      - audit/eboss-elg-bit8-ra-orientation-20260925
+    paths:
+      - "scripts/k01d0_swift_custom_f_engine_contract_audit.py"
+      - "source_data/k01d0_swift_custom_f_engine_contract_prereg_2026-11-06.json"
+      - ".github/workflows/k01d0_swift_engine_contract.yml"
+  workflow_dispatch:
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout stress-energy-closure
+        uses: actions/checkout@v4
+
+      - name: Checkout pinned SWIFT
+        uses: actions/checkout@v4
+        with:
+          repository: SWIFTSIM/SWIFT
+          ref: e1a963fa682061498a5a59da1b3e1521e9eae724
+          path: external/SWIFT
+
+      - name: Run K01D0 source contract audit
+        run: python -u scripts/k01d0_swift_custom_f_engine_contract_audit.py
+
+      - name: Show result
+        if: always()
+        run: |
+          if [ -f k01d0_swift_engine_contract_result.json ]; then
+            cat k01d0_swift_engine_contract_result.json
+          fi
+
+      - name: Upload result
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: k01d0-swift-engine-contract
+          path: k01d0_swift_engine_contract_result.json
+          if-no-files-found: warn

@@ -1,0 +1,132 @@
+{
+  "stage": "K01E1R_SINGLE_MODE_MATCHED_PHASE_SELF_GRAVITY_REVISED_PREREG",
+  "date": "2026-11-06",
+  "purpose": "First self-gravitating cosmological hidden-state science gate. Test whether three initially n,rho,P-matched neutrino kinetic states FD/Fplus/Fminus respond differently to the identical finite-amplitude cold-matter fundamental Fourier mode over z=1.0 to z=0.95.",
+  "interpretation_boundary": "Controlled periodic Newtonian cosmological initial-value problem in pinned SWIFT with a common frozen E9 expansion background. Not a full relativistic Einstein-Vlasov background-backreaction calculation, not a halo/HOD model, and not a survey detectability result.",
+  "frozen_inputs": {
+    "cosmology_freeze": {
+      "path": "source_data/k01e0_e9_swift_cosmology_closure_result_freeze_2026-11-06.json",
+      "git_blob": "7e8115d1c8779bd8e0dc1d82cef6a3c67ce1765d"
+    },
+    "canonical_pair_freeze": {
+      "path": "source_data/k01e0c_canonical_z1_pair_result_freeze_2026-11-06.json",
+      "git_blob": "80ddf7519217f49d4bf2b5ec0c4b74ad98249971",
+      "regenerated_csv_sha256_reference": "cc795bb304f8a4e2eff40f44e5332e5241cf34b018f948082a84884154ff3262"
+    },
+    "swift_commit": "e1a963fa682061498a5a59da1b3e1521e9eae724",
+    "swift_universe_age_patch_diff_sha256": "c69cbe3dfa7ebf7b6f5e90034d9b4943f77f49381a65431c01c9537374f044ab"
+  },
+  "cosmology": {
+    "h": 0.6736,
+    "Omega_b": 0.049301692328524445,
+    "Omega_cdm": 0.26447041034523616,
+    "Omega_m_nonnu": 0.3137721026737606,
+    "Omega_r": 0.00007966418265133115,
+    "Omega_nu_0": 0.0014197672287666455,
+    "Omega_lambda": 0.6847284659148214,
+    "N_ur": 2.0328,
+    "N_nu": 1,
+    "T_nu_0_K": 1.951757805,
+    "M_nu_eV": 0.06,
+    "deg_nu": 1,
+    "a_begin": 0.5,
+    "a_end": 0.5128205128205128,
+    "note": "Omega_b remains in the background cosmology. For this DMO control, PartType1 carries the total non-neutrino matter density Omega_b+Omega_cdm; no hydrodynamic or baryonic subgrid physics is used."
+  },
+  "mode": {
+    "target_k_h_Mpc": 0.05,
+    "box_Mpc": 186.55538322979768,
+    "mode_axis": "x",
+    "finite_displacement_amplitude_A": 0.05,
+    "cold_lagrangian_map": "x = q_x - s*(A/k)*sin(k q_x), y=q_y, z=q_z, with s=+1 or -1 and periodic wrapping.",
+    "cold_initial_peculiar_velocity": "zero by design; this is a controlled finite-amplitude response experiment, not a growing-mode cosmological IC.",
+    "paired_cases": "For every kinetic state and resolution run both s=+1 and s=-1. Neutrino positions, IDs, q quantiles and thermal directions are identical between the +/- mode runs."
+  },
+  "resolutions": {
+    "coarse": {
+      "nside_cold": 16,
+      "nside_neutrino": 16,
+      "particles_each": 4096,
+      "gravity_mesh_side": 32,
+      "cold_macro_mass_internal": 6262.777466238056,
+      "neutrino_macro_mass_internal": 28.33803939819336,
+      "comoving_softening_Mpc": 0.5829855725931178
+    },
+    "fine": {
+      "nside_cold": 32,
+      "nside_neutrino": 32,
+      "particles_each": 32768,
+      "gravity_mesh_side": 64,
+      "cold_macro_mass_internal": 782.847183279757,
+      "neutrino_macro_mass_internal": 3.54225492477417,
+      "comoving_softening_Mpc": 0.2914927862965589
+    }
+  },
+  "phase_space_design": {
+    "neutrino_lattice_offset_in_cell_fraction": 0.25,
+    "cold_lattice_offset_in_cell_fraction": 0.5,
+    "neutrino_direction_seed": 2026110603,
+    "directions": "Gaussian isotropic unit vectors generated for N/2 entries, paired exactly with their negatives, then one fixed permutation assigns the paired phase-space tuples to the neutrino lattice.",
+    "q_sampling": "For each state p(q) proportional to q^2 F_state(q); identical midpoint stratified quantiles are used across states, duplicated within each antithetic direction pair, with the same fixed assignment permutation.",
+    "same_neutrino_IDs_positions_and_direction_labels_across_states": true,
+    "same_cold_IDs_and_undisplaced_lattice_across_states": true
+  },
+  "pre_run_particle_QA": {
+    "continuum_z1_max_n_rho_P_gap_at_most": 1e-12,
+    "fine_sampled_energy_pair_gap_at_most": 1e-10,
+    "fine_sampled_pressure_pair_gap_at_most": 5e-8,
+    "coarse_sampled_energy_pair_gap_at_most": 1e-9,
+    "coarse_sampled_pressure_pair_gap_at_most": 0.000006,
+    "initial_neutrino_fundamental_cos_and_sin_abs_at_most": 1e-12,
+    "cold_initial_cosine_amplitude_abs_range": [
+      0.045,
+      0.055
+    ],
+    "cold_initial_sine_amplitude_abs_at_most": 1e-12
+  },
+  "observables": {
+    "Fourier_convention": "For particle positions x, C_n=2 mean cos(n k x), S_n=2 mean sin(n k x).",
+    "state_response": "Rcos_state=[C1_state(s=+1)-C1_state(s=-1)]/(2A).",
+    "parity_null": "Rsin_state=[S1(+)-S1(-)]/(2A).",
+    "harmonic_null": "R2cos_state=[C2(+)-C2(-)]/(2A).",
+    "primary_hidden_contrast": "H = Rcos_Fminus - Rcos_Fplus.",
+    "FD_reference": "H_rel = H/abs(Rcos_FD) when Rcos_FD != 0.",
+    "numerical_null_floor": "max(abs(Rsin_Fminus-Rsin_Fplus), abs(R2cos_Fminus-R2cos_Fplus), 1e-15).",
+    "cold_mode_response": "Same Rcos definition evaluated on PartType1, reported separately for each neutrino state."
+  },
+  "preregistered_science_gate": {
+    "all_12_runs_exit_zero": true,
+    "Rcos_FD_positive_at_both_resolutions": true,
+    "hidden_contrast_nonzero_same_sign_coarse_fine": true,
+    "hidden_contrast_coarse_fine_relative_gap_at_most": 0.25,
+    "each_state_Rcos_coarse_fine_relative_gap_at_most": 0.3,
+    "fine_hidden_contrast_to_null_floor_at_least": 5,
+    "coarse_hidden_contrast_to_null_floor_at_least": 3,
+    "note": "No minimum hidden contrast relative to FD is imposed. PASS means numerically resolved state-dependent response, not observational relevance."
+  },
+  "numerical_engine": {
+    "self_gravity": true,
+    "hydro": false,
+    "external_potential": false,
+    "neutrino_generate_ics": false,
+    "delta_f": false,
+    "linear_response": false,
+    "tasks_per_cell": 100,
+    "dt_max": 0.0005,
+    "threads": 2
+  },
+  "stopping_rule": "If the fine/coarse hidden contrast fails sign or convergence/null-floor gates, do not tune A, k, pair direction, softening, or resolution to recover a signal within K01E1. Diagnose and define any new experiment separately.",
+  "guards": {
+    "observed_galaxy_rows_used": false,
+    "observed_odd_used": false,
+    "E63_used_as_science_input": false,
+    "galaxy_response_used": false,
+    "survey_covariance_used": false,
+    "pvalue_or_detection_sigma_computed": false,
+    "downstream_signal_used_to_choose_pair": false,
+    "main_branch_modified": false
+  },
+  "next_if_pass": "K01F_HALO_WAVE_RESPONSE_AND_KSZ_CONDITIONING_FORECAST_DESIGN",
+  "parent_preexecution_block": "source_data/k01e1_original_prereg_preexecution_block_2026-11-06.json",
+  "revision_scope": "Only coarse sampled-pressure engineering QA threshold changed from 2e-6 to 6e-6, before any self-gravity execution. All physics and science gates are byte-for-byte conceptually unchanged."
+}
