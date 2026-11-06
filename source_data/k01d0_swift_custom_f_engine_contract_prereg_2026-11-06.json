@@ -1,0 +1,39 @@
+{
+  "stage": "K01D0_SWIFT_CUSTOM_F_NEUTRINO_ENGINE_CONTRACT_PREREG",
+  "date": "2026-11-06",
+  "purpose": "Verify from a pinned SWIFT source revision that custom PartType6 neutrino velocities and masses can be supplied without Fermi-Dirac resampling or delta-f assumptions, while retaining SWIFT cosmological relativistic drift.",
+  "swift": {
+    "repository": "SWIFTSIM/SWIFT",
+    "commit": "e1a963fa682061498a5a59da1b3e1521e9eae724",
+    "pinned_git_blobs": {
+      "src/neutrino/Default/neutrino.h": "65770e99fe9cae30c53eb7885bb69edcf3fd7fcb",
+      "src/neutrino/Default/neutrino.c": "35e6b7697c22daed65dec0a6a3279df1a2c110fb",
+      "src/neutrino/Default/neutrino_io.h": "8d43b7d8d34e878eeb1938664e1f274426589b4b",
+      "doc/RTD/source/Neutrinos/index.rst": "47da4e0db10473216a25356639c679b4598320df",
+      "doc/RTD/source/InitialConditions/index.rst": "e325d7b88662c5042cae22ed1709bf6e72dbe550"
+    }
+  },
+  "required_contract": {
+    "PartType6_supported": true,
+    "IC_coordinates_velocities_masses_particleIDs_read": true,
+    "generate_ics_zero_leaves_input_neutrino_velocity_unchanged": true,
+    "delta_f_zero_does_not_reconstruct_initial_FD_momentum": true,
+    "plain_particle_neutrino_mode_allowed_with_particles_present": true,
+    "relativistic_neutrino_drift_available": true,
+    "custom_Fplus_Fminus_compatible_in_principle": true
+  },
+  "forbidden_for_K01D1": {
+    "Neutrino:generate_ics": 1,
+    "Neutrino:use_delta_f": 1,
+    "Neutrino:use_delta_f_mesh_only": 1,
+    "Neutrino:use_linear_response": 1,
+    "Neutrino:use_model_none": 1
+  },
+  "interpretation": "PASS is only an engine-contract result. It does not show that a cosmological hidden-state signal survives gravitational evolution.",
+  "guards": {
+    "observed_data_used": false,
+    "survey_covariance_used": false,
+    "detection_significance_computed": false,
+    "main_branch_modified": false
+  }
+}
