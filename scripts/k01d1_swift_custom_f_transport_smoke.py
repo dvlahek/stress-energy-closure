@@ -25,7 +25,7 @@ import numpy as np
 
 ROOT = Path(__file__).resolve().parents[1]
 PREREG = ROOT / "source_data/k01d1_swift_custom_f_transport_smoke_prereg_2026-11-06.json"
-PREREG_BLOB = "c67a200260058f633736884c9f974d354e740ed2"
+PREREG_BLOB = "4519708bde9cfab729651375e22e5176ee353609"
 WORK = ROOT / "k01d1_swift_work"
 CAL = WORK / "calibration"
 SCI = WORK / "science"
@@ -173,6 +173,9 @@ Neutrino:
   generate_ics: {generate_ics}
   use_linear_response: 0
   use_model_none: 0
+
+ConstantPotential:
+  g_cgs: [0.0, 0.0, 0.0]
 
 Gravity:
   mesh_side_length: 32
