@@ -1,0 +1,15 @@
+{
+  "stage": "K01D2_D1_PINPOINT_SWIFT_COSMOLOGY_QAG_FAILURE",
+  "date": "2026-11-06",
+  "parent": "K01D2_D0 found zero failures in the standalone massive-neutrino density integral at the original 1e-13 tolerance across the full physical y range.",
+  "purpose": "Instrument only the pinned SWIFT cosmology.c GSL qag calls to report and stop at the first non-success status for the original physical N_nu=1 calibration configuration.",
+  "swift_commit": "e1a963fa682061498a5a59da1b3e1521e9eae724",
+  "instrumentation": "Wrap gsl_integration_qag after the original include, disable the default GSL abort handler inside the wrapper, and print __LINE__, status, bounds, epsabs and epsrel before exiting on first failure.",
+  "physics_changes": false,
+  "expected_output": "Exact failing cosmology.c source line and GSL status.",
+  "guards": {
+    "observed_data_used": false,
+    "self_gravity_used": false,
+    "main_branch_modified": false
+  }
+}
