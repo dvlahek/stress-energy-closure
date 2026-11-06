@@ -1,0 +1,40 @@
+name: K01E-D0 E8 stress-energy persistence audit
+
+on:
+  push:
+    branches:
+      - experiment/k01-matched-f-detectability-20261105
+    paths:
+      - "scripts/k01e_d0_e8_stress_energy_persistence_audit.py"
+      - "source_data/k01e_d0_e8_stress_energy_persistence_audit_2026-11-06.json"
+      - ".github/workflows/k01e_d0_e8_stress_energy_persistence.yml"
+  pull_request:
+    branches:
+      - audit/eboss-elg-bit8-ra-orientation-20260925
+    paths:
+      - "scripts/k01e_d0_e8_stress_energy_persistence_audit.py"
+      - "source_data/k01e_d0_e8_stress_energy_persistence_audit_2026-11-06.json"
+      - ".github/workflows/k01e_d0_e8_stress_energy_persistence.yml"
+  workflow_dispatch:
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: python -m pip install --upgrade pip numpy
+      - name: Audit E8 moment matching at z=1100,1,.95
+        run: python -u scripts/k01e_d0_e8_stress_energy_persistence_audit.py
+      - name: Show result
+        if: always()
+        run: cat k01e_d0_e8_stress_energy_persistence_result.json 2>/dev/null || true
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: k01e-d0-e8-stress-energy-persistence
+          path: k01e_d0_e8_stress_energy_persistence_result.json
+          if-no-files-found: warn
