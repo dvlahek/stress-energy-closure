@@ -22,7 +22,6 @@ import sys
 
 import h5py
 import numpy as np
-from scipy.stats import spearmanr
 
 ROOT = Path(__file__).resolve().parents[1]
 PREREG = ROOT / "source_data/k01d1_swift_custom_f_transport_smoke_prereg_2026-11-06.json"
@@ -349,8 +348,29 @@ def prepare_science(p: dict):
     print("K01D1_SCIENCE_INPUTS_READY", flush=True)
 
 
-def rank_order_signature(values):
-    return np.argsort(np.asarray(values), axis=0)
+def average_ranks(values):
+    x=np.asarray(values,dtype=np.float64)
+    order=np.argsort(x,kind="mergesort")
+    ranks=np.empty(len(x),dtype=np.float64)
+    s=x[order]
+    i=0
+    while i<len(x):
+        j=i+1
+        while j<len(x) and s[j]==s[i]:
+            j+=1
+        # Average of 1-based ranks i+1 ... j.
+        ranks[order[i:j]]=0.5*((i+1)+j)
+        i=j
+    return ranks
+
+
+def spearman_rho(x,y):
+    rx=average_ranks(x)
+    ry=average_ranks(y)
+    rx-=rx.mean(); ry-=ry.mean()
+    den=math.sqrt(float(np.dot(rx,rx)*np.dot(ry,ry)))
+    need(den>0,"degenerate Spearman ranks")
+    return float(np.dot(rx,ry)/den)
 
 
 def analyze(p: dict):
@@ -405,7 +425,7 @@ def analyze(p: dict):
         # amended 512 Mpc box is much wider than twice the travel distance.
         dx = (x - x0 + 0.5 * box) % box - 0.5 * box
         disp = np.linalg.norm(dx, axis=1)
-        rho = float(spearmanr(q0, disp).statistic)
+        rho = spearman_rho(q0, disp)
         need(np.isfinite(rho), f"{name} displacement Spearman nonfinite")
         need(
             rho >= float(p["acceptance"]["per_state_q_vs_displacement_spearman_at_least"]),
