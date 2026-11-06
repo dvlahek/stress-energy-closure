@@ -97,5 +97,12 @@
     "self_gravity_remains_false": true,
     "acceptance_unchanged": true,
     "note": "The failed preflight stopped at command-line policy validation before calibration/science dynamics."
+  },
+  "technical_runtime_environment_amendment_after_cosmology_preflight_abort": {
+    "status": "ENVIRONMENT_ONLY_NO_PARTICLE_DYNAMICS_EXECUTED",
+    "failure": "ubuntu-24.04 runner GSL qag aborted with GSL_EROUND while initializing the pinned SWIFT massive-neutrino background, before calibration particles were read/evolved.",
+    "remedy": "Pin GitHub Actions runner to ubuntu-22.04 while keeping the same SWIFT commit, cosmology, N_nu=1, neutrino mass/temperature, zero-force external potential, IC design and acceptance gates.",
+    "science_inputs_unchanged": true,
+    "acceptance_unchanged": true
   }
 }
