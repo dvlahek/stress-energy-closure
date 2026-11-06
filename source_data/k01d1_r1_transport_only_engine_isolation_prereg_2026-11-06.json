@@ -1,0 +1,90 @@
+{
+  "stage": "K01D1_R1_TRANSPORT_ONLY_ENGINE_ISOLATION_PREREG",
+  "date": "2026-11-06",
+  "parent": {
+    "stage": "K01D1_EXECUTABLE_SWIFT_CUSTOM_F_COSMOLOGICAL_TRANSPORT_SMOKE_PREREG",
+    "status": "BLOCKED_ENGINE_BACKGROUND_NUMERICS_NO_PARTICLE_DYNAMICS_EXECUTED",
+    "freeze": "source_data/k01d1_original_engine_block_status_freeze_2026-11-06.json"
+  },
+  "purpose": "Isolate and execute the custom PartType6 transport contract in the real pinned SWIFT executable while deliberately removing the upstream massive-neutrino background GSL integral that blocked the parent before any particle dynamics.",
+  "interpretation_boundary": "Artificial transport-only cosmology. PASS proves executable custom nonthermal neutrino-particle transport and no Fermi-Dirac resampling; it does not validate the physical N_nu=1 cosmology, self-gravity, halo response, or detectability.",
+  "swift": {
+    "repository": "SWIFTSIM/SWIFT",
+    "commit": "e1a963fa682061498a5a59da1b3e1521e9eae724"
+  },
+  "artificial_transport_background": {
+    "h": 0.6736,
+    "Omega_cdm": 0,
+    "Omega_b": 0,
+    "Omega_lambda": 1,
+    "N_nu": 0,
+    "N_ur": 0,
+    "a_begin": 0.5,
+    "a_end": 0.5128205128205128,
+    "note": "N_nu=0 is an engine-isolation device only. PartType6 particles remain neutrino particle type and therefore retain SWIFT's relativistic neutrino drift correction."
+  },
+  "custom_particle_kinematics": {
+    "physical_T_nu_0_K_used_to_build_IC_velocities": 1.951757805,
+    "physical_M_nu_eV_used_to_build_IC_velocities": 0.06,
+    "velocity_definition": "v_IC = q*c*T_nu0/(a_begin*m_nu) times the matched direction, exactly as in the parent K01D1 design.",
+    "macro_particle_mass_internal_units": 1,
+    "macro_particle_mass_role": "Common positive inert engineering mass only; no self-gravity and no cosmological particle-mass closure check are active."
+  },
+  "particle_design": {
+    "particles_per_state": 1024,
+    "box_comoving_Mpc": 512,
+    "states": [
+      "FD",
+      "Fplus",
+      "Fminus"
+    ],
+    "same_particle_IDs": true,
+    "same_positions": true,
+    "same_momentum_directions": true,
+    "antithetic_direction_pairs": true,
+    "stratified_quantiles": true,
+    "seed_positions_directions": 2026110601,
+    "source_states": "Frozen E8 4000-q CLASS-normalized FD/Fplus/Fminus."
+  },
+  "engine_modes": {
+    "Neutrino:generate_ics": 0,
+    "Neutrino:use_delta_f": 0,
+    "Neutrino:use_delta_f_mesh_only": 0,
+    "Neutrino:use_linear_response": 0,
+    "Neutrino:use_model_none": 0,
+    "self_gravity": false,
+    "hydro": false,
+    "external_gravity": "ConstantPotential with g_cgs=[0,0,0] only to satisfy the SWIFT engine policy.",
+    "physical_external_acceleration": [
+      0,
+      0,
+      0
+    ]
+  },
+  "preregistered_acceptance": {
+    "all_three_runs_exit_zero": true,
+    "particle_IDs_identical_to_input": true,
+    "masses_uniform_positive_and_identical_across_states": true,
+    "no_FD_resampling": "If snapshot Weights exists it must be identically 1; if SampledSpeeds exists it must be identically 0.",
+    "expected_force_free_snapshot_velocity_scaling": "v_snapshot(a_end)/v_IC = a_begin/a_end",
+    "expected_velocity_scaling_max_relative_error_at_most": 0.00002,
+    "per_state_q_vs_periodic_displacement_spearman_at_least": 0.999,
+    "state_specific_displacement_not_identical": true,
+    "per_particle_cross_state_output_speed_ordering_matches_input_q_ordering": true
+  },
+  "stopping_and_next": {
+    "if_pass": "K01D2_PHYSICAL_NNU1_BACKGROUND_NUMERICAL_PATCH_PREREG",
+    "if_fail": "Do not proceed to self-gravity. Diagnose only the executable transport contract.",
+    "note": "Even if R1 passes, K01E self-gravity is not authorized until a separately preregistered and independently validated physical N_nu=1 background path passes."
+  },
+  "guards": {
+    "observed_data_used": false,
+    "observed_odd_used": false,
+    "E63_used_as_science_input": false,
+    "self_gravity_used": false,
+    "galaxy_response_used": false,
+    "survey_covariance_used": false,
+    "pvalue_or_detection_sigma_computed": false,
+    "main_branch_modified": false
+  }
+}
