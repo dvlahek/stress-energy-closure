@@ -1,0 +1,28 @@
+{
+  "stage": "K01D2_D0_SWIFT_GSL_NEUTRINO_DENSITY_TOLERANCE_SCAN",
+  "date": "2026-11-06",
+  "swift_commit": "e1a963fa682061498a5a59da1b3e1521e9eae724",
+  "purpose": "Reproduce SWIFT's massive-neutrino Fermi-Dirac density quadrature over the exact physical y range for m_nu=0.06 eV and T_nu0=1.951757805 K, with the GSL abort handler disabled, and quantify tolerance-dependent failures.",
+  "scan": {
+    "m_nu_eV": 0.06,
+    "T_nu0_K": 1.951757805,
+    "a_safe_definition": "0.5*1e-7/M_nu_eV",
+    "a_max": 1,
+    "log_y_nodes": 512,
+    "relative_tolerances": [
+      1e-13,
+      1e-12,
+      1e-11,
+      1e-10
+    ],
+    "workspace_size": 100000,
+    "quadrature": "GSL_INTEG_GAUSS61",
+    "integrands": "Exact copies of SWIFT neutrino_density_integrand and transformed w=1/x form."
+  },
+  "interpretation": "Diagnostic only. No change to physical neutrino background or custom F states.",
+  "guards": {
+    "observed_data_used": false,
+    "self_gravity_used": false,
+    "main_branch_modified": false
+  }
+}
