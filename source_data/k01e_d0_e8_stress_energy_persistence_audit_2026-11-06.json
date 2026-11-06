@@ -1,0 +1,22 @@
+{
+  "stage": "K01E_D0_FROZEN_E8_STRESS_ENERGY_MATCH_PERSISTENCE_AUDIT",
+  "date": "2026-11-06",
+  "purpose": "Measure whether the original frozen E8 Fplus/Fminus pair, constructed in the kinetic null space at z=1100, remains matched in the same n,rho,P moment convention at z=1.0 and z=0.95.",
+  "inputs": {
+    "E8_builder": "scripts/build_eboss_dr16_a03_e8_frozen_resonant_occupation.py",
+    "mass_eV": 0.06,
+    "original_match_z": 1100,
+    "audit_redshifts": [
+      1100,
+      1,
+      0.95
+    ]
+  },
+  "outputs": "For each z, FD/Fplus/Fminus moments n,rho,P and symmetric Fplus-vs-Fminus relative gaps.",
+  "interpretation": "Diagnostic only. If z=1 gaps are not negligible, the original E8 pair must not be described as stress-energy matched at K01E start; a separately preregistered z=1 null-pair construction is then required for the self-gravity hidden-state test.",
+  "guards": {
+    "observed_data_used": false,
+    "simulation_run": false,
+    "main_branch_modified": false
+  }
+}
