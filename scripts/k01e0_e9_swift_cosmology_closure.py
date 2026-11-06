@@ -102,6 +102,7 @@ TimeIntegration:
 
 Scheduler:
   max_top_level_cells: 16
+  tasks_per_cell: 100
   cell_split_size: 100
 
 Snapshots:
