@@ -62,7 +62,7 @@ jobs:
             echo "=== K01D1-R1 SWIFT STATE $state ==="
             (
               cd "k01d1_r1_swift_work/$state"
-              ../../../external/SWIFT/swift -c -g --threads=2 science.yml 2>&1 | tee swift.log
+              ../../external/SWIFT/swift -c -g --threads=2 science.yml 2>&1 | tee swift.log
             )
           done
 
