@@ -84,5 +84,18 @@
     "old_value": 20,
     "new_value": 512,
     "all_other_physics_and_acceptance_unchanged": true
+  },
+  "technical_engine_policy_amendment_after_preflight_failure": {
+    "status": "TECHNICAL_ONLY_NO_SCIENCE_EXECUTION_OCCURRED",
+    "failure": "Pinned SWIFT refused to start with cosmology alone: at least one of hydro, external-gravity, or self-gravity is required.",
+    "implementation": "Compile SWIFT with --with-potential=constant and run with --external-gravity using ConstantPotential:g_cgs=[0,0,0].",
+    "physical_acceleration_cgs": [
+      0,
+      0,
+      0
+    ],
+    "self_gravity_remains_false": true,
+    "acceptance_unchanged": true,
+    "note": "The failed preflight stopped at command-line policy validation before calibration/science dynamics."
   }
 }
