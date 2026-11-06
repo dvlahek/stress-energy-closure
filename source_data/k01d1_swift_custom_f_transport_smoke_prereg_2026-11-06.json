@@ -22,7 +22,7 @@
   },
   "particle_design": {
     "particles_per_state": 1024,
-    "box_comoving_Mpc": 20,
+    "box_comoving_Mpc": 512,
     "same_particle_IDs": true,
     "same_positions": true,
     "same_momentum_directions": true,
@@ -76,5 +76,13 @@
     "detection_significance_computed": false,
     "main_branch_modified": false
   },
-  "next_if_pass": "K01E_MATCHED_PHASE_COSMOLOGICAL_GRAVITY_PERTURBATION_PREREG"
+  "next_if_pass": "K01E_MATCHED_PHASE_COSMOLOGICAL_GRAVITY_PERTURBATION_PREREG",
+  "pre_execution_geometry_amendment": {
+    "status": "AMENDED_BEFORE_ANY_K01D1_EXECUTION",
+    "reason": "Original 20 Mpc periodic box is smaller than the possible force-free relativistic neutrino comoving travel distance from z=1 to z=.95, which would make the preregistered q-versus-displacement Spearman diagnostic ambiguous under periodic wrapping.",
+    "changed_field": "particle_design.box_comoving_Mpc",
+    "old_value": 20,
+    "new_value": 512,
+    "all_other_physics_and_acceptance_unchanged": true
+  }
 }
